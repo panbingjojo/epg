@@ -1,0 +1,117 @@
+body {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+
+#debug1 {
+    border: 1px red solid;
+    color: red;
+    top: 50px;
+    left: 30px;
+    width: 680px;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 100;
+    font-size: 20px;
+    display: none;
+}
+
+#debug2 {
+    border: 1px deeppink solid;
+    text-align: left;
+    color: deeppink;
+    top: 50px;
+    right: 30px;
+    width: 480px;
+    max-height: 40%;
+    overflow: auto;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 100;
+    font-size: 20px;
+    display: none;
+}
+
+#video-title {
+    position: absolute;
+    width: 1160px;
+    height: 90px;
+    color: #fff;
+    font-size: 35px;
+    background-color: rgba(0,0,0,0.3);
+    padding-left: 60px;
+    padding-right: 60px;
+    line-height: 90px;
+}
+
+#controller {
+    position: absolute;
+    width: 1280px;
+    height: 90px;
+    top: 630px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+#play-status {
+    position: absolute;
+    top: 13px;
+    left: 12px;
+    height: 64px;
+    width: 64px;
+}
+
+#time-info {
+    position: absolute;
+    left: 100px;
+    height: 90px;
+    line-height: 90px;
+    color: #fff;
+    font-size: 35px;
+}
+
+#time-divider {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#progress-bar {
+    position: absolute;
+    left: 340px;
+    height: 4px;
+    width: 888px;
+    background-color: #999;
+    top: 43px;
+}
+
+#progress-layer {
+    background-color: #93b2e9;
+    height: 4px;
+    width: 0px;
+    z-index: 999;
+    position: absolute;
+}
+
+#progress-indicator {
+    width: 24px;
+    height: 24px;
+    top: -10px;
+    left: -10px;
+    position: absolute;
+}
+
+#time-preview {
+    position: absolute;
+    width: 360px;
+    height: 200px;
+    top: 260px;
+    left: 460px;
+    text-align: center;
+    line-height: 200px;
+    color: #fff;
+    font-size: 40px;
+    background-color: rgba(0,0,0,0.6);
+    display: none;
+}

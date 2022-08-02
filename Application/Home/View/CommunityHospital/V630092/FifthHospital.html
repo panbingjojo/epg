@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>青海省第五人民医院体检中心</title>
+    <meta charset="utf-8" name="page-view-size" content='1280*720'/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/CommunityHospital/630092/FifthHospital.css?t={$time}">
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            // 公用参数
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            userId: "{$userId}",                // 用户Id
+            thirdPlayerUrl: "{$domainUrl}",                     // 第三方播放器根路径地址
+            focusIndex: "{$focusIndex2}",                        // 焦点ID
+            isVip: {$isVip},
+            inner:"{$inner}",// 用户是否是vip
+            homePollVideoList: {
+                "count": 1,
+                "list": [{
+                    "sourceId": "8126",
+                    "title": "因你珍稀 所以珍惜丨国际罕见病日",
+                    "userType": "0",
+                    "modelType": "14",
+                    "freeSeconds": "0",
+                    "unionCode": "d5yy005",
+                    "videoUrl": "Program1006156"
+                }]
+            },            // 首页轮播的视频列表
+            playPosition: [parseInt(350), parseInt(120), parseInt(580), parseInt(280)], //默认为高清正常播放位置
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/CommunityHospital/V630092/function.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/CommunityHospital/V630092/FifthHospital.js?t={$time}"></script>
+
+</head>
+<body>
+<!-- 默认标签 -->
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+<!--背景-->
+<img id="img-body" class="bg" src="__ROOT__/Public/img/hd/CommunityHospital/video_bg.png"/>
+<img id="logo" alt="" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/logo.png"/>
+<div class="title">
+    青海省第五人民医院体检中心
+</div>
+<div id="small-video-wrap" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+    <iframe id="iframe_small_screen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+</div>
+<div class="recommended">
+    <img id="recommended-1" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/tab_1.png"/>
+    <img id="recommended-2" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/video_box.png">
+    <img id="recommended-3" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/tab_2.png" alt="">
+    <img id="recommended-4" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/subectj.png" alt="">
+    <img id="recommended-5" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/img_pic.png" alt="">
+</div>
+<div class="title-model">
+    健康资讯
+</div>
+
+<div class="album">
+    <img id="album-1" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/fif_1.png"/>
+    <img id="album-2" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/fif_2.png" alt="">
+    <img id="album-3" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/fif_3.png" alt="">
+    <img id="album-4" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/fif_4.png" alt="">
+</div>
+<!--音量控制器容器-->
+<div id="volume_container"></div>
+<script>
+    Pages.init();
+</script>
+</body>
+</html>

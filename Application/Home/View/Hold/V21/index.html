@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>挽留页-V21</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Hold/V21/hold.css?t={$time}"/>
+
+    <script>var carrierId = {$carrierId};</script>
+    <if condition="$carrierId eq '07430093' ">
+        <!--湖南联通芒果TV 07430093js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/mongoTV/webview.js?t={$time}"></script>
+    </if>
+    <!--全局渲染变量-->
+    <script type="text/javascript" >
+        var RenderParam = {$renderParam | json_encode}; // 把控制器传过来的参数进行解析，并进行json编码
+        var UserFromType = "{$userFromType}";
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Hold/V21/hold.js?t={$time}"></script>
+</head>
+<body>
+<!--第一个是背景图，下面两个分别是按钮-->
+<div class="splash_background">
+    <img id="splash" src="__ROOT__/Public/img/Common/spacer.gif"/>
+</div>
+<!--推荐位-->
+<div id="recommend_container">
+</div>
+<switch name="renderParam[carrierId]">
+    <case value="450094">
+        <!--继续-->
+        <img id="continue" class="btn_position_2" src="<?php echo $renderParam['fsUrl'].$renderParam['tipsData'][1]->onfocus_image_url?>"/>
+        <!--退出-->
+        <img id="back" class="btn_position_1" src="<?php echo $renderParam['fsUrl'].$renderParam['tipsData'][0]->onfocus_image_url?>"/>
+    </case>
+    <default />
+        <!--继续-->
+        <img id="continue" class="btn_position_1" src="<?php echo $renderParam['fsUrl'].$renderParam['tipsData'][1]->onfocus_image_url?>"/>
+        <!--退出-->
+        <img id="back" class="btn_position_2" src="<?php echo $renderParam['fsUrl'].$renderParam['tipsData'][0]->onfocus_image_url?>"/>
+</switch>
+
+<!--左右翻页-->
+<img id="prev_page" class="page_icon" src="<?php echo $renderParam['fsUrl'].$renderParam['tipsData'][3]->onfocus_image_url?>"/>
+<img id="next_page" class="page_icon" src="<?php echo $renderParam['fsUrl'].$renderParam['tipsData'][4]->onfocus_image_url?>"/>
+
+<!-- 默认标签 -->
+<a id="default_link" href="#"><img src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+<script type="text/javascript">
+    window.onload = function () {
+        Hold.init();
+    }
+</script>
+</body>
+</html>

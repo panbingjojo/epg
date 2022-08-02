@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>活动《社区医院》-主页-V8</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!-- 默认标签 -->
+    <a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCommunityHospital/V8/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--本地库-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityCommunityHospital/V8/guide.js?t={$time}"></script>
+    <!--全局变量-->
+    <script type="text/javascript">
+        var RenderParam = {
+            userId: "{$userId}",
+            userAccount: "{$userAccount}",
+            hospitalId: "100000024",
+            currentPage: 1,
+            currentDeptId: "{$deptId}", //全部科室
+            MAX_PAGE_STEP: 1,      //每页获取1个医生;
+            buttons: [{
+                id: 'btn-back',
+                name: '返回按钮',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'piece-1-btn',
+                click: 'onBack()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back_f.png'
+            }, {
+                id: 'piece-1-btn',
+                name: '健康咨询',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'btn-back',
+                nextFocusDown: 'piece-2-btn',
+                click: 'goInquiry()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask_f.png'
+            }, {
+                id: 'piece-2-btn',
+                name: '上门预约',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'piece-1-btn',
+                nextFocusDown: '',
+                click: onOrder,
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_order.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_order_f.png'
+            }, {
+                id: 'dialog-confirm',
+                name: '确定',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                click: onBack,
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm_f.png'
+            }]
+        }
+    </script>
+
+</head>
+<body>
+<p id="title" class="txt">哈密仁和社区</p>
+<img id="btn-back" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back.png" alt="">
+<div id="piece-0">
+    <p class="txt piece-0-txt">哈密仁和社区</p>
+    <img id="piece-0-pic" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/hosp_pic8.jpg" alt="">
+    <div id="doctor-intro">
+        <marquee behavior="" scrollamount="3" direction="up" height="200px">
+            <span id="goods-call">医院简介：</span>"  红星医院位于新疆东部、闻名遐迩的“哈密瓜”的故乡----哈密市中心。红星医院(石河子大学医学院哈密临床学院)1945年创建于革命圣地延安，其前身为白求恩国际和平医院第九分院，至今建院73年的历史。经过几代人的努力奋斗，已发展成为哈密地区集医疗、教学、科研、预防、保健于一体的综合性三级甲等医院及全国爱婴医院。
+            医院先后配置1.5T核磁共振、64排螺旋CT、直线加速器、全自动生化分析仪、飞利浦全数字化大型血管平板造影系统、美国GE高档实时四维彩色多普勒超声波诊断仪、美国GE偏心脏彩超、自体血液回输系统高压氧舱（16人舱）、椎间孔镜等大中型高精尖医疗设备，。
+            目前，在河南省的大力扶持下，创建了哈密区域首个“胸心医学中心”、“神经医学中心”、“消化医学中心”、“妇幼医学中心”、“骨伤中心”和康复医学科”、“皮肤科”、“肛肠科”三个专科联盟，开启了医院学科建设和发展全新里程。
+            医院占地14.7747万平方米，建筑面积10.1万平方米，编制床位550张，开放床位755张，全院设有临床科室23个，医技科室14个，行政职能科室17个。医院致力于重点学科建设，目前我院兵团重点学科三个：中医风湿免疫科、肿瘤外科、感染性疾病科；师级重点专科：心血管内科、骨科、消化科、神经内科、妇产科、康复医学科。开展了一系列高难度手术，形成了在骨科、普外科、消化科、神经内科等多个学科领域的技术优势，成为哈密市医疗市场的“亮点”。
+            医院现有职工893名，其中卫生专业技术人员736名，拥有各类高级专业技术人员90名，中级专业技术人员186名，其中享受国务院特殊津贴专家2名，新疆医科大学硕士生导师2名，每年有10名高级职称河南省人民医院专家长期援疆。
+            医院投资2500万进行信息化管理建设，目前已完成HIS、LIS、电子病历、门诊医生工作站、电子处方等数字化项目建设。建成了以住院医生工作站、护士工作站门诊分诊叫号系统、影像管理系统、合理用药咨询和抗生素使用管理系统、医保控费系统、财务管理系统、HIP物资管理系统等为主要项目的医疗业务网络。
+            我院现为新乡医学院、河南科技大学、新疆医科大学、石河子大学医学院教学实习医院，是新疆医科大学第一附属医院、自治区人民医院、兵团医院、兰州军区乌鲁木齐总医院、自治区中医医院的协作医院。是卫生部北京医院对口支援医院，河南省人民医院、河南大学附属医院等对口援助医院。承担新乡医学院、河南科技大学、新疆医科大学、石河子大学医学院、石河子卫校、新疆职业技术学校、昌吉卫校、甘肃九泉卫校、河西学院、漯河医学高等职业学院等学校本、专科生的教学、实习培训任务。
+            医院以精湛的医疗技术，一流的服务质量，赢得哈密区域内各行各业的赞誉。近年来，医院分别获得兵团、十三师科技进步一、二、三等奖101余项，在国家、省级医学期刊上发表专业论文631多篇。
+            红星医院先后受到国务院及国家卫计委的表扬，荣获“全国卫生系统先进集体”、“全国卫生系统纪检监察工作先进集体”、“全国卫生系统行业作风建设先进集体”、“全国民族团结先进集体”、“全国卫生系统抗击‘非典’先进集体”、“全国卫生系统思想政治工作先进单位”、“全国医院文化建设先进单位”“全国青年文明号”及自治区、兵团文明单位等多种荣誉称号。
+            红星医院始终坚持以病人为中心的服务理念，以一流的服务、一流的技术、一流的质量、一流的设备、一流的环境，为哈密各族人民提供优质的诊疗保健服务。"
+        </marquee>
+    </div>
+</div>
+<div id="piece-1">
+    <img id="piece-1-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_ask.png" alt="">
+<!--    <img id="piece-2-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_order.png" alt="">-->
+</div>
+<!--<div id="dialog">-->
+<!--    <p>预约电话：0991-2575371</p>-->
+<!--    <img id="dialog-confirm" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm.png" alt="">-->
+<!--</div>-->
+</body>
+
+
+<script type="text/javascript">
+	LMEPG.BM.init('piece-1-btn', RenderParam.buttons, '', true);
+    window.onload = function () {
+        // 通过医院ID来获取医生信息
+        loadDoctorList(RenderParam.hospitalId, RenderParam.currentDeptId, RenderParam.currentPage, RenderParam.MAX_PAGE_STEP);
+        //lmInitGo();
+    };
+</script>
+</html>

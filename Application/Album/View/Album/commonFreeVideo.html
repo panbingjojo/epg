@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>免费专区-公用</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Album/commonFreeVideo/commonFreeVideo.css?t={$time}"/>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+    <script type="text/javascript">
+        // TP框架控制器返回数据应用
+        var RenderParam = {
+            userId: '{$userId}',    // 当前用户ID
+            lmcid: '{$carrierId}',  // 所属地区Id
+        };
+    </script>
+
+</head>
+<body>
+<p class="title">免费专区</p>
+<img id="search" src="__ROOT__/Public/img/hd/Common/V11/search.png" alt="">
+<div id="debug"></div>
+<p id="page-index">0/0</p>
+<div id="container">
+
+</div>
+<img src="__ROOT__/Public/img/hd/Album/CommonFreeVideo/prev.png" id="prev-arrow" class="arrow-icon">
+<img src="__ROOT__/Public/img/hd/Album/CommonFreeVideo/next.png" id="next-arrow" class="arrow-icon">
+<script>
+
+    window.onload = function () {
+
+        $.looperDataToCurrentPage();
+        LMEPG.ButtonManager.init(saveCurrentId, buttons, '', true);
+    };
+
+
+    currentPageData = JSON.parse('{$data}').data.video_list; //专题节目列表;
+
+    /**
+     * 渲染
+     */
+    (function () {
+        function RenderTopic() {
+
+            var page = {$moveNum};
+            var maxPage = Math.ceil(currentPageData.length / 6);
+            var prevPageId = [0, 3];
+            var nextPageId = [2, 5];
+            return {
+                looperDataToCurrentPage: function () {
+                    var htm = "";
+                    var cutData = currentPageData.slice(page * 6, page * 6 + 6);
+                    cutData.forEach(function (item, index) {
+                        htm += '<div id=focus-' + index + '>';
+                        htm += '<img src={$resourcesUrl}' + item.image_url + '>';
+                        htm += '</div>';
+                    });
+                    if (cutData.length == 0) {
+                        htm += "<div class='null-data' style='color: #fff;font-style: italic'>很遗憾，结果为空~~~";
+                    }
+                    G("container").innerHTML = htm;
+                    G("page-index").innerText = (cutData.length ? (page + 1) : 0) + "/" + (maxPage);
+                    $.toggleArrow();
+                    $.setButtons(cutData);
+                    LMEPG.ButtonManager.init('debug', buttons, '', true);
+                },
+                setButtons: function (cutData) {
+                    buttons.splice(2);
+                    var lastFocusObj = "focus-" + (currentPageData.length - 1 - page * 6);
+                    cutData.forEach(function (t, e) {
+                        var upFocusObj = e < 3 ? "search" : 'focus-' + (e - 3);
+                        var downFocusObj = G("focus-" + (+e + 3));
+                        buttons.push({
+                            id: 'focus-' + e,
+                            name: '视频' + e,
+                            value: t.id,
+                            type: '',
+                            nextFocusLeft: 'focus-' + (e - 1),
+                            nextFocusUp: upFocusObj,
+                            // 如果当前ID下移没有对象则移动到最后的那个对象上
+                            nextFocusDown: downFocusObj ? 'focus-' + (e + 3) : (e < 3 && lastFocusObj),
+                            nextFocusRight: 'focus-' + (e + 1),
+                            click: onClickPlay,
+                            focusChange: topicItemOnFocus,
+                            beforeMoveChange: $.turnPage,
+                            cIdx: e,
+                            item: t,
+                        })
+                    })
+                },
+                turnPage: function (key, btn) {
+
+                    var cutId = btn.id.slice(6);
+                    switch (key) {
+                        case "left":
+                            prevPageId.filter(judgeCutId).length && page != 0 && prevPage();
+                            break;
+                        case "right":
+                            nextPageId.filter(judgeCutId).length && (page + 1) != maxPage && nextPage();
+                            break;
+                        case "down":
+                            break;
+                    }
+
+                    function judgeCutId(t) {
+                        return t == cutId;
+                    }
+
+                    function prevPage() {
+                        page = Math.max(0, page -= 1);
+                        $.looperDataToCurrentPage();
+                    }
+
+                    function nextPage() {
+                        page = Math.min(maxPage, page += 1);
+                        $.looperDataToCurrentPage();
+                    }
+                },
+                toggleArrow: function () {
+                    S("prev-arrow");
+                    S("next-arrow");
+                    page == 0 && H("prev-arrow");
+                    (currentPageData.length ? (page + 1) : 0) == maxPage && H("next-arrow");
+                },
+                getCurrentPage: function () {
+                    var objCurrent = LMEPG.Intent.createIntent("album");
+                    objCurrent.setParam("userId", "{$userId}");
+                    objCurrent.setParam("albumName", "commonFreeVideo");
+                    objCurrent.setParam("focus_index", saveCurrentId);
+                    objCurrent.setParam("inner", 1);
+                    objCurrent.setParam("moveNum", page);
+                    return objCurrent;
+                },
+
+                /**
+                 * 跳转 - 搜索页
+                 * */
+                jumpSearchPage: function () {
+                    saveCurrentId = "search";
+                    var objHome = $.getCurrentPage();
+
+                    var objSearch = LMEPG.Intent.createIntent("search");
+                    objSearch.setParam("userId", "{$userId}");
+                    LMEPG.Intent.jump(objSearch, objHome);
+                },
+
+            };
+        }
+
+        window.$ = new RenderTopic();
+    }());
+
+    function topicItemOnFocus(btn, bol) {
+
+        var currentBtn = document.getElementById(btn.id);
+        var currentBtnImg = currentBtn.getElementsByTagName('img')[0];
+        if (bol) {
+            currentBtnImg.className = "focus";
+        } else {
+            currentBtnImg.removeAttribute("class")
+        }
+    }
+
+    var saveCurrentId = "{$focus_index}" == "focus-1-1" ? "focus-0" : "{$focus_index}";
+
+    function onClickPlay(btn) {
+        saveCurrentId = btn.id;
+        onClickVideoItem(btn.item) // 播放视频
+    }
+
+     function showToast(msg, second, callback) {
+        if (typeof msg !== "string") { //数据未空时，不产生任何效果
+            return;
+        }
+
+        second = typeof second !== "number" ? 3 : second; //没有传递second 默认3秒
+        if (second > 0) {
+            if (!LMEPG.UI.showToastUI) {
+                var toastDiv = document.createElement("div");
+                toastDiv.id = "id_toast";
+                LMEPG.CssManager.addClass(toastDiv, "g_toast");
+                document.body.appendChild(toastDiv);
+                LMEPG.UI.showToastUI = toastDiv;
+            }
+
+            G("id_toast").innerHTML = msg;
+            S("id_toast");
+
+            // 如果已经执行了setTimeOut,强制停止
+            if (LMEPG.UI.showToastUITimer) clearTimeout(LMEPG.UI.showToastUITimer);
+            LMEPG.UI.showToastUITimer = setTimeout(function () {
+                H("id_toast");
+                LMEPG.call(callback);
+            }, second * 1000);
+        }
+    };
+
+    // 处理点击视频列表事件
+    function onClickVideoItem(videoInfo) {
+        var ftp_url_json;
+        if (videoInfo.ftp_url instanceof Object) {
+            ftp_url_json = videoInfo.ftp_url;
+        } else {
+            ftp_url_json = JSON.parse(videoInfo.ftp_url);
+        }
+        // 视频ID
+        var play_id = ftp_url_json.gq_ftp_url;
+
+        //视频专辑下线处理
+        if(videoInfo.show_status == "3") {
+            showToast('该节目已下线');
+            return;
+        }
+
+        var paramJson = {
+            "sourceId": videoInfo.source_id,
+            "videoUrl": encodeURIComponent(play_id),
+            "title": videoInfo.title,
+            "type": 2,
+            "entryType": 4,
+            "entryTypeName": "QHfreeVideo",
+            "userType": videoInfo.user_type,
+            "freeSeconds": videoInfo.free_seconds,
+            "focusIdx": saveCurrentId
+        };
+
+        jumpVideoPlay(paramJson);
+    }
+
+    function jumpVideoPlay(paramJson) {
+        var objCurrent = $.getCurrentPage();
+
+        var objPlayer = LMEPG.Intent.createIntent("player");
+        objPlayer.setParam("userId", "{$userId}");
+        objPlayer.setParam("videoInfo", JSON.stringify(paramJson));
+
+        LMEPG.Intent.jump(objPlayer, objCurrent);
+    }
+
+    /**
+     * 设置当前页参数
+     */
+
+
+    function onBack() {
+        if (RenderParam.lmcid == "520092") {
+            // 贵州电信专辑返回逻辑
+            LMEPG.Intent.back('IPTVPortal');
+        } else {
+            LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+        }
+    }
+
+    var buttons = [{
+        id: 'debug',
+        name: '脚手架ID',
+        nextFocusLeft: 'focus-5',
+        nextFocusRight: 'focus-0',
+    }, {
+        id: 'search',
+        name: '',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: 'focus-0',
+        backgroundImage:  g_appRootPath+ "/Public/img/hd/Home/V11/search.png",
+        focusImage:  g_appRootPath+ "/Public/img/hd/Home/V11/search-f.png",
+        click: $.jumpSearchPage,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: "",
+        cIdx: "",
+    }]
+</script>
+</body>
+</html>

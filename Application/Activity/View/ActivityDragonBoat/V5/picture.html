@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>点赞详情</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/Activity/ActivityDragonBoat/picture.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--<script type="text/javascript"-->
+            <!--src="__ROOT__/Public/js/Activity/ActivityDragonBoat/V5/PlayerJsonData.js?t={$time}"></script>-->
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("appointmentRegister");
+            return objCurrent;
+        }
+
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            //回到活动界面
+            LMEPG.Intent.back();
+        }
+
+    </script>
+</head>
+<body style="background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/produce_bg.png');">
+
+<img class="left_page" id="left_page"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/icon_left.png"/>
+<img class="right_page" id="right_page"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/icon_right.png"/>
+<img id="pr-img" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/pr_1.png"/>
+<img id="back" class="btnInfo"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/f_back.gif"/>
+<div id="pages">10/35</div>
+<div id="content" class="pr-content">
+
+</div>
+<script type="text/javascript">
+    //    var pageCurrent = "{$pageCurrent}";   //当前页数
+    //    var lastFocusId = "{$lastFocusId}";   //在当前页的位置
+    //    var index = "{$index}" var index = "{$index}";
+    var imgPathPrefix = "__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/";
+    var pageCurrent = 1;
+
+    var introduce =
+            [
+                {
+                    "index": 1,
+                    "title": " 绿豆糯米粽：",
+                    "content": "绿豆有清凉解毒、利尿明目之效，糯米具有补中益气，健脾养胃，止虚汗之功效，此二物同煮，有温和滋补，健身养胃，清凉降暑之效。"
+                },
+                {
+                    "index": 2,
+                    "title": " 红枣糯米粽：",
+                    "content": "红枣有补中益气、养血安神、缓和药性之效，糯米补虚养胃，二者同煮功力倍增，能够强力对抗脾胃虚寒。"
+                },
+                {
+                    "index": 3,
+                    "title": " 莲子糯米粽:",
+                    "content": "莲子性凉，有清热、固精、安神、强心之功效，与糯米同煮能安心挑神，可改善焦虑失眠多梦的症状。"
+                },
+                {
+                    "index": 4,
+                    "title": " 黑豆糯米粽：",
+                    "content": "黑豆有补脾、利水、解毒之效，可促进肠胃蠕动，预防便秘、促进胆固醇的代谢、对于各种水肿、体虚、中风、肾虚等病症有显著疗效，与糯米同煮可美容、抗衰老。"
+                },
+                {
+                    "index": 5,
+                    "title": " 板栗糯米粽:",
+                    "content": "板栗性甘温，无毒，有健脾补肝，身壮骨之效，经常生食可治腰腿无力，熟食能和胃健脾，缓解脾虚，但不可多食，与糯米同煮，有补益之效。"
+                },
+            ]
+
+    var buttons = [
+        {
+            id: 'back',
+            name: '医院1',
+            type: 'img',
+            nextFocusLeft: 'time-3',
+            nextFocusRight: 'time-5',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            click: onBack,
+            focusChange: "",
+            moveChange: "",
+            beforeMoveChange: onBeforeMoveChange,
+        },
+
+    ]
+
+    window.onload = function (ev) {
+        createHtml();
+        LMEPG.ButtonManager.init("back", buttons, '', true);
+    }
+
+    function onBeforeMoveChange(dir, current) {
+        //翻页
+        switch (dir) {
+            case 'left':
+                turnUp();
+                break;
+            case 'right':
+                turnDown();
+                break;
+        }
+    }
+    /**
+     * 向前翻页
+     */
+    function turnUp() {
+        if (pageCurrent <= 1) {
+            return;
+        }
+        pageCurrent--;
+        createHtml();
+    }
+
+    /**
+     * 向后翻页
+     */
+    function turnDown() {
+        if (pageCurrent >= introduce.length) {
+            return;
+        }
+        pageCurrent++;
+        createHtml();
+    }
+
+    /**
+     * 更新指示箭头
+     */
+    function updateArrows() {
+        var top_pages = document.getElementById("left_page");
+        var bottom_pages = document.getElementById("right_page");
+        if (pageCurrent == introduce.length) {
+            //判断已经到最后面一页
+            top_pages.style.display = "block";
+            bottom_pages.style.display = "none";
+        } else if (pageCurrent == 1) {
+            top_pages.style.display = "none";
+            bottom_pages.style.display = "block";
+        } else {
+            top_pages.style.display = "block";
+            bottom_pages.style.display = "block";
+        }
+    }
+
+    /**
+     * 创建医生列表显示的内容
+     */
+    function createHtml() {
+        G("pr-img").src = imgPathPrefix + "pr_" + introduce[pageCurrent-1].index + ".png";
+        G("content").innerHTML = introduce[pageCurrent-1].title + "<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;" + introduce[pageCurrent-1].content
+        updateArrows();
+        G("pages").innerHTML=pageCurrent+"/"+introduce.length
+    }
+</script>
+</body>
+</html>

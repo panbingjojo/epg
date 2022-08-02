@@ -1,0 +1,429 @@
+#app{
+    width: 1280px;
+    height: 720px;
+    background-size: 1280px 720px;
+    position: relative;
+}
+
+.container{
+    padding: 20px 0 20px 60px;
+}
+.scroll-area{
+    position: relative;
+    height: 450px;
+    width: 1220px;
+    overflow: hidden;
+}
+.scroll-area-2{
+    position: relative;
+    height: 520px;
+    width: 1220px;
+    overflow: hidden;
+}
+.head-func{
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+.head-func img{
+    margin-left: 10px;
+}
+
+.classify{
+    text-align: center;
+}
+
+.content{
+    margin-top: 10px;
+}
+
+.classify img{
+    margin-left: 20px;
+}
+
+.tab1-left-area{
+    display: inline-block;
+    width: 264px;
+    height: 450px;
+    vertical-align: bottom;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.tab1-left-area .left-absolute{
+    position: absolute;
+}
+
+.tab1-left-area .hot-title{
+    color: #fff;
+    background: url("../../../../img/hd/Home/V25/hot-head.png");
+    width: 248px;
+    height: 48px;
+    margin-left: 10px;
+}
+
+.tab1-left-area .hot-item{
+    color: #fff;
+    padding: 14px ;
+    font-size: 20px;
+    position: relative;
+    margin-left: 10px;
+    width: 220px;
+    background-size: 248px 55px;
+}
+
+.tab1-left-area .hot-item img{
+    position: absolute;
+    right: 20px;
+    top:18px;
+}
+
+.tab1-left-area .hot-item .hot-text{
+    overflow: hidden;
+    width: 170px;
+    height: 28px;
+}
+
+.tab1-left-area .hot-line{
+    height: 1px;
+    background: url("../../../../img/hd/Home/V25/hot-line.png");
+    margin-left: 10px;
+    width: 248px;
+}
+
+.tab1-right-area{
+    width: 9999px;
+    height: 445px;
+    overflow: hidden;
+    display: inline-block;
+    position: absolute;
+}
+
+.tab1-right-area .first-recommend{
+    position: absolute;
+    width: 770px;
+    height: 430px;
+}
+
+.tab1-right-area .first-recommend .recommend-position-0{
+    width: 520px;
+    height: 230px;
+    position: absolute;
+    top: 0;
+    left: -5px;
+    background-size: 520px 241px;
+    padding: 10px;
+    background-position: 3px 2px;
+}
+
+.tab1-right-area .first-recommend .recommend-position-0 img{
+    width: 505px;
+    height: 225px;
+}
+
+.tab1-right-area .first-recommend  .recommend-position-1{
+    position: absolute;
+    width: 250px;
+    height: 230px;
+    top: 0;
+    left: 510px;
+    background-size: 269px 242px;
+    background-position: 0 2px;
+    padding: 10px;
+}
+
+.tab1-right-area .first-recommend  .recommend-position-1 img{
+    width: 249px;
+    height: 225px;
+}
+
+.tab1-right-area .first-recommend .recommend-position-base{
+    position: absolute;
+    width:245px ;
+    height: 207px;
+    bottom: -35px;
+    padding: 10px;
+    background-size: 266px 206px;
+}
+
+.tab1-right-area .first-recommend .recommend-position-base img{
+    width: 247px;
+    height:186px
+}
+
+.other-recommend{
+    padding: 10px;
+    width: 245px;
+    height: 190px;
+    margin-top: 5px;
+    background-size: 265px 205px;
+    background-position-y: 1px;
+    position: relative;
+}
+.other-recommend img{
+    width: 247px;
+    height: 185px;
+}
+.tab1-right-area .recommend-item{
+    width: 300px;
+    height: 425px;
+    display: inline-block;
+    position: absolute;
+    padding: 10px;
+    background-size: 281px 445px;
+}
+
+.tab1-right-area .recommend-item img{
+    width: 260px;
+    height:100%
+}
+
+.tab1-bottom-area{
+    height: 70px;
+    width: 1200px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.tab1-bottom-area .bottom-item{
+    display: inline-block;
+    width: 210px;
+    height: 70px;
+    background: url("../../../../img/hd/Home/V25/tab1-bottom-no-choose.png");
+    text-align: center;
+    color: #fff;
+    line-height: 70px;
+    margin-left: 20px;
+}
+.tab1-bottom-area .bottom-item:first-child{
+    margin-left: 0;
+}
+
+.scroll-wrapper{
+    background:url("../../../../img/hd/Home/V25/lamp-bg.png");
+    height: 30px;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 50px 10px 0;
+    margin-top: 20px;
+    width: 1120px;
+}
+
+/*tab2区域*/
+
+.tab2-main-area .food-position-0{
+    position: absolute;
+    width: 260px;
+    height: 430px;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    background-size: 280px 450px;
+
+}
+.tab2-main-area .food-position-0 .pos-img,
+.tab2-main-area .food-position-4 .pos-img{
+    width: 260px ;
+    height: 430px;
+}
+
+.tab2-main-area .food-position-1{
+    position: absolute;
+    width: 500px;
+    height: 230px;
+    left: 280px;
+    top: 0;
+    padding: 10px;
+}
+
+.tab2-main-area .food-position-1 .pos-img{
+    width: 100%;
+    height: 100%;
+}
+
+.tab2-main-area .food-position-2{
+    position: absolute;
+    width: 240px;
+    height: 180px;
+    left: 279px;
+    top: 250px;
+    padding: 10px;
+    background-size: 260px 200px;
+}
+
+.tab2-main-area .food-position-3{
+    position: absolute;
+    width: 240px;
+    height: 180px;
+    left: 540px;
+    top: 250px;
+    padding: 10px;
+    background-size: 260px 200px;
+}
+
+.tab2-main-area .food-position-3 .pos-img,
+.tab2-main-area .food-position-2 .pos-img{
+    width: 241px;
+    height: 180px;
+}
+
+.tab2-main-area .food-position-4{
+    position: absolute;
+    width: 260px;
+    height: 460px;
+    left: 800px;
+    top: 0;
+    padding: 10px;
+    background-size: 279px 449px;
+}
+
+.tab2-main-area .food-item{
+    position: absolute;
+    top: 0;
+    width: 260px;
+    height: 460px;
+    padding: 10px;
+    background-size: 279px 451px;
+}
+
+.tab2-main-area .food-item img{
+    width: 100%;
+    height: 94%
+}
+
+/*tab3区域*/
+.tab3-main-area .food-position-0{
+    position: absolute;
+    width: 500px;
+    height: 265px;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    background-size: 519px 284px;
+}
+.tab3-main-area .food-position-0 img{
+    width: 500px;
+    height: 265px;
+}
+
+.tab3-main-area .food-position-1{
+    position: absolute;
+    width: 240px;
+    height: 190px;
+    left: 0;
+    top: 288px;
+    padding: 10px;
+    background-size: 260px 208px;
+}
+
+.tab3-main-area .food-position-2{
+    position: absolute;
+    width: 240px;
+    height: 190px;
+    left: 260px;
+    top: 288px;
+    padding: 10px;
+    background-size: 260px 208px;
+}
+
+.tab3-main-area .food-position-1 img,
+.tab3-main-area .food-position-2 img{
+    width: 240px;
+    height: 190px;
+}
+
+.tab3-main-area .food-position-3{
+    position: absolute;
+    width: 230px;
+    height: 392px;
+    left: 520px;
+    top: 0;
+    padding: 10px;
+    background-size: 250px 409px;
+}
+
+.tab3-main-area .food-position-3 img{
+    width: 230px;
+    height: 390px;
+}
+
+.tab3-main-area .food-position-4{
+    position: absolute;
+    width: 230px;
+    height: 70px;
+    left: 529px;
+    top: 418px;
+}
+
+.tab3-main-area .food-position-4 img{
+    width: 210px;
+    height: 70px;
+}
+.tab3-main-area .food-item{
+    position: absolute;
+    width: 260px;
+    height: 480px;
+    padding: 10px;
+    background-size: 280px 500px;
+}
+.tab3-main-area .food-item img{
+    width: 260px;
+    height: 480px;
+}
+/*tab4区域*/
+
+.tab4-main-area .album-list{
+    position: absolute;
+    width: 260px;
+    height: 440px;
+    padding: 10px;
+    top: 25px;
+}
+
+.pop{
+    position: absolute;
+    background: url("../../../../img/hd/Home/V25/pop-bg.png");
+    width: 1280px;
+    height: 720px;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.pop-back{
+    position: absolute;
+    bottom: 150px;
+    left: 395px;
+}
+
+.pop-continue{
+    position: absolute;
+    bottom: 150px;
+    right: 395px;
+}
+
+.cut-down{
+    position: absolute;
+    font-size: 50px;
+    color: #fff;
+    right: 303px;
+    top: 186px;
+}
+
+.sign{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+.point-area{
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+.point-area img{
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+}
+

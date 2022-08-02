@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../img/hd/Menu/Common/bg.png);
+    background-position: left;
+}
+
+body > * {
+    position: absolute;
+}
+
+#title {
+    top: 20px;
+    left: 80px;
+}
+
+#prev-arrow {
+    top: 360px;
+    left: 10px;
+}
+
+#next-arrow {
+    top: 360px;
+    left: 1226px;
+
+}
+
+#hospital-wrapper {
+    top: 137px;
+    left: 55px;
+}
+
+#hospital-wrapper > img {
+    width: 360px;
+    height: 222px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#hospital-wrapper > img.focus {
+    background-image: url(../../../../img/hd/Menu/QHotherPages/hospital_f.png) !important;
+}
+#hospital-wrapper p#hosp-page-index{
+    width: 100px;
+    text-align:center;
+    position: static;
+    margin: 0 auto;
+    color:#fff;
+    font-size:24px;
+}
+
+/*框架集*/
+#level2Wrapper {
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    position: relative;
+    font-family: "SimHei", sans-serif;
+    background-image: url(../../../../img/hd/Menu/Common/bg.png);
+}
+
+#level2Wrapper > * {
+    position: absolute;
+
+}
+
+.btn-wrap-intro {
+
+    top: 294px;
+    left: 910px;
+    width: 179px;
+}
+
+.hos-pic {
+    top: 53px;
+    left: 50px;
+}
+
+#detail-wrapper {
+    top: 60px;
+    left: 450px;
+    width: 767px;
+    height: 600px;
+    background-image: url(../../../../img/hd/Menu/QHotherPages/detail_bg.png);
+}
+
+#detail-wrapper > * {
+    position: absolute;
+}
+
+
+#detail-wrapper p.departments-hospital-title {
+    position: static;
+    margin-bottom: 50px;
+}
+#detail-wrapper p.departments {
+    position: static;
+    margin-bottom: 50px;
+    float: left;
+    margin-left: 80px;
+}
+
+.code {
+    width: 260px;
+    height: 260px;
+    top: 242px;
+    left: 57px;
+}
+
+.btn-wrap-intro {
+    top: 242px;
+    left: 457px;
+    width: 182px;
+    height: 72px;
+}
+
+.iframe-title {
+    top: 32px;
+    left: 47px;
+    overflow: hidden;
+    font-size: 45px;
+    width: 600px;
+}
+
+.iframe-address {
+    top: 106px;
+    left: 115px;
+    overflow: hidden;
+    font-size: 30px;
+    width: 620px;
+    text-align: left;
+
+}
+.icon-address{
+    top: 115px;
+    left: 50px;
+}
+.icon-tel{
+    top: 172px;
+    left: 50px;
+}
+.code-text{
+    top: 520px;
+    left: 76px;
+}
+.iframe-tel {
+    top: 166px;
+    left: 115px;
+    overflow: hidden;
+    font-size: 30px;
+    width: 600px;
+    text-align: left;
+}
+
+#hos-details {
+    width: 767px;
+    height: 600px;
+    z-index: 99;
+}
+
+#hos-details-prevPage {
+    position: absolute;
+    top: -50px;
+    left: 350px;
+
+}
+
+#hos-details-nextPage {
+    position: absolute;
+    bottom: -50px;
+    left: 350px;
+}
+
+.departments {
+    width: 260px;
+    height: 86px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 92px;
+    background-image: url(../../../../img/hd/Menu/QHotherPages/departments_f.png);
+}
+
+.departments-hospital-title {
+    margin: 20px;
+    font-size: 38px;
+}
+
+.odd {
+    margin-left: 80px;
+}
+
+.even {
+    margin-left: 450px;
+    margin-top: -135px;
+}
+
+.doctors {
+    position: relative !important;
+    width: 719px;
+    height: 109px;
+    margin-top: 30px;
+    margin-left: 20px;
+
+}
+
+#doc-page-index {
+    position: absolute !important;
+    top: 80px;
+    left: 696px;
+    font-size: 28px;
+}
+
+#doctor-page-up {
+    top: 80px;
+    left: 350px;
+}
+
+#doctor-page-down {
+    bottom: 30px;
+    left: 350px;
+}
+
+.doctor-male {
+    background-image: url(../../../../img/hd/Menu/QHotherPages/doctor_male.png);
+}
+
+.doctor-female {
+    background-image: url(../../../../img/hd/Menu/QHotherPages/doctor_female.png);
+
+}
+
+#detail-wrapper p.doctor-name {
+    top: 30px;
+    left: 100px;
+    font-size: 32px;
+    margin-left: 120px;
+    margin-bottom: 0;
+}
+#detail-wrapper p .doctor-position {
+    font-size: 20px;
+    color: #80d4ff;
+    display: block;
+    left: 315px;
+    position: absolute;
+    top: 15px;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 3px;
+}
+#detail-wrapper p.doctor-subject-name {
+    height: 31px;
+    width: 600px;
+    overflow: hidden;
+    font-size: 24px;
+    margin-top: 15px;
+    margin-left: 120px;
+}
+#detail-wrapper p.doctor-subject-name span.doctor-good-at{
+    position: absolute;
+    display: block;
+    width: 400px;
+    overflow: hidden;
+    height: 30px;
+    top: 58px;
+    left: 315px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#detail-wrapper p.doctor-name {
+    top: 30px;
+    left: 100px;
+}
+
+#qr-code{
+    position: absolute;
+    top: 90px;
+    left: 100px;
+    width: 360px;
+    height: 500px;
+    padding: 30px;
+    background-color: rgba(239, 247, 246, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+#qr-code p{
+      font-size: 24px;
+    color: #fff;
+    margin-top: 24px;
+    line-height: 34px;
+}
+#qr-code img{
+    width:360px;
+    height:360px;
+}
+#more-39-intro {
+    position: absolute;
+    top: 90px;
+    left: 570px;
+    width: 540px;
+    height: 500px;
+    padding: 30px;
+    text-indent: 50px;
+    font-size: 30px;
+    line-height: 60px;
+    /* background-image: url(../../../img/AppointmentRegister/V13/intro_bg.png); */
+    background-color: rgba(239, 247, 246, 0.1);
+    border-radius: 10px;
+}

@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    /*position:absolute;;*/
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    top: 0px
+}
+
+#small-video-wrap{
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#small-video {
+    top: 97px;
+    left: 44px;
+}
+
+.hd-corner-mark{
+    width: 146px;
+    top: 517px;
+    left: 737px;
+    visibility: hidden;
+}
+
+.hd-back {
+    width: 190px;
+    top: 20px;
+    left: 1060px;
+}
+
+.hd-view-more {
+    top: 20px;
+    left: 880px;
+}
+
+.hd-video-list {
+    top: 110px;
+    left: 505px;
+    /*border: 1px red solid;*/
+}
+.hd-video-list img{
+    margin-right: 50px;
+}
+
+.hd-v-arrow {
+    top: 270px;
+}
+
+.hd-v-prev {
+    left: 420px;
+    visibility: hidden;
+}
+
+.hd-v-next {
+    left: 1149px;
+}
+
+/*==============SD==================*/
+.sd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+.sd-body{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    /*border: 1px solid red;*/
+}
+.sd-view-more {
+    position:absolute;
+    top: 15px;
+    left: 360px;
+    width: 107px;
+    height: 34px;
+}
+
+.sd-back {
+    position: absolute;
+    top: 15px;
+    left: 495px;
+    width: 135px;
+    height: 34px;
+}
+
+.sd-video-list {
+    position:absolute;
+    top: 102px;
+    left: 239px;
+    width: 388px;
+    height: 277px;
+    /*border: 1px red solid;*/
+}
+
+.sd-video-list img {
+    /*position: absolute;*/
+    width: 48px;
+    height: 243px;
+    margin-right: 26px;
+}
+
+.sd-v-arrow {
+    position:absolute;
+    top: 199px;
+    width: 24px;
+    height: 28px;
+}
+
+.sd-v-prev {
+    left: 197px;
+    visibility: hidden;
+}
+
+.sd-v-next {
+    left: 609px;
+}
+
+

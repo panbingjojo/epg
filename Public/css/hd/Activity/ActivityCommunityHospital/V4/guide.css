@@ -1,0 +1,133 @@
+body {
+    font-size: 24px;
+    background-image: url("../../../../../img/hd/Activity/ActivityCommunityHospital/V4/bg.png");
+}
+#title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #ccc;
+}
+#btn-back{
+    position: absolute;
+    top: 1200px;
+    top: 20px;
+    left: 1100px;
+}
+.txt {
+    color: #08a8b6;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+#piece-0 {
+    position: absolute;
+    top: 96px;
+    left: 150px;
+    text-align: center;
+}
+
+.piece-0-txt {
+    width: 427px;
+}
+
+#piece-0-pic {
+    width: 427px;
+    height: 271px;
+}
+#doctor-intro{
+   text-align: left;
+   width: 427px;
+   line-height: 35px;
+   margin-top: 10px;
+   height: 200px;
+   overflow: hidden;
+}
+
+#piece-1 {
+    position: absolute;
+    left: 703px;
+    width: 210px;
+}
+
+#piece-1-btn {
+    margin-top: 190px;
+    width: 130px;
+    height: 130px;
+}
+
+#piece-2-btn {
+    position: absolute;
+    margin-top: 398px;
+    left:12px;
+    width: 130px;
+    height: 130px;
+}
+
+#dialog {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    background-image: url("../../../../../img/hd/Activity/ActivityCommunityHospital/V4/win_bg.png");
+    display: none;
+}
+#dialog-type{
+    position: absolute;
+    width: 700px;
+    top: 208px;
+    left: 290px;
+    font-size: 22px;
+    text-align: center;
+}
+
+#dialog-phone{
+    position: absolute;
+    top: 310px;
+    left:476px;
+    font-size: 26px;
+    color: #000000;
+    font-family: SourceHanSansCN-Regular;
+}
+#dialog-doctor-phone{
+    position: absolute;
+    top: 367px;
+    left: 502px;
+    font-size: 26px;
+    color: #000000;
+    font-family: SourceHanSansCN-Regular;
+}
+
+#dialog img{
+    position: absolute;
+    top: 439px;
+    left: 560px;
+}
+#dialog-dt{
+    position: absolute;
+    top: 551px;
+    left: 425px;
+    font-size: 22px;
+    text-align: center;
+}
+
+#doctor-name,
+#goods-title,
+#goods-call{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#doctor-position {
+
+}
+
+#doctor-dep {
+
+}
+
+#doctor-goods {
+}

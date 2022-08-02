@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+    overflow: hidden;
+}
+
+body > * {
+    position: absolute;
+}
+
+p.title,
+p.demo-title,
+#about-wrap p.about-title{
+    position: absolute;
+    top: 24px;
+    left: 58px;
+    font-size: 35px;
+    color: #fff;
+}
+
+.bottom-demo-title {
+    position: absolute;
+    top: 649px;
+    left: 443px;
+    font-size: 24px;
+    color: #fff;
+}
+
+div.container {width: 1280px;height: 720px;overflow: hidden;}
+
+#list-wrapper {
+    margin: 150px auto;
+    width: 888px;
+    text-align: center;
+}
+
+#list-wrapper.list-wrapper-450092
+{
+   width: 600px;
+}
+#list-wrapper.list-wrapper-420092
+{
+    width: 600px;
+}
+#list-wrapper.list-wrapper-410092
+{
+    width: 600px;
+}
+#list-wrapper.list-wrapper-650092
+{
+    width: 600px;
+}
+#list-wrapper div {
+    float: left;
+}
+
+#list-wrapper p {
+    color: #fff;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.focus-0 {
+    /* margin-left: 200px; */
+}
+
+/*++++++++++++新手指南/关于我们++++++++++*/
+#demo-wrap,
+#about-wrap {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: left;
+    background-image: url(../../../../img/hd/Home/V13/Home/Common/bg.png);
+    overflow: hidden;
+    display: none;
+}
+
+#demo-wrap img {
+    position: absolute;
+    top: 110px;
+    left: 200px;
+    display: none;
+}
+#about-wrap img{
+    position: absolute;
+    top: 122px;
+    left: 133px;
+}
+#demo-wrap img.arrow{
+    top: 333px;
+    visibility: visible;
+    display: none;
+}
+#demo-wrap img#left-arrow{
+    left: 110px;
+}
+#demo-wrap img#right-arrow{
+    left: 1120px;
+}
+#about-wrap p{
+    position: absolute;
+    top: 627px;
+    left: 133px;
+    color: #b2deff;
+    font-size: 24px;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V8/peopleInfo.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            editInfo:'{$edit}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V8/peopleInfo.js?t={$time}"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="container">
+    <div style="padding: 60px 50px 34px 50px">
+        <div class="main">
+            <div class="title">就诊人管理-<span id="title-type"></span></div>
+            <div class="line"></div>
+            <div class="left-area">
+                <div class="label">就诊人：<span id="name"></span></div>
+                <div class="label">身份证号：<span id="card-num"></span></div>
+                <div class="label">住址：<span id="addr"></span></div>
+                <div class="label">手机号：<span id="phone"></span></div>
+                <div class="tips">温馨提示:为确保您的预约挂号有效，请正确填写您的信息，就诊时凭身份证取号。</div>
+            </div>
+            <div class="right-area">
+                <div>
+                    <div class="sex-area">
+                        <img class="pic" src="__ROOT__/Public/img/hd/AppointmentRegister/V8/ino.png" id="man">
+                        <div class="sex">男</div>
+                    </div>
+                    <div class="sex-area">
+                        <img class="pic" src="__ROOT__/Public/img/hd/AppointmentRegister/V8/ino.png" id="woman">
+                        <div class="sex">女</div>
+                    </div>
+                </div>
+                <div class="qr">
+                    <img src="" id="qr" style="width: 100%;height: 100%">
+                </div>
+                <div class="tips" style="width: 202px;text-align: center;color: #DC143C">
+                    <div> 微信扫一扫</div>
+                    <div>手机填写就诊人</div>
+                </div>
+            </div>
+            <div class="save" id="back">完成</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

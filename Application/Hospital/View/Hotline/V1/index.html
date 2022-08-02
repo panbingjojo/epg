@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>服务热线</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+</head>
+<body>
+<script>
+    var RenderParam = {
+        inner: "{$inner}",
+        userId: "{$userId}",
+        accountId: "{$accountId}",
+        hospitalName: '{$hospitalName}',
+        hospitalId: '{$hospitalId}'
+    };
+
+    window.onload = function () {
+        //服务热线将此页作为中转页面
+        var currObj = LMEPG.Intent.createIntent('IPTVPortal');
+        var addrObj = LMEPG.Intent.createIntent("doctorIndex");
+        addrObj.setParam('userId', RenderParam.userId);
+        addrObj.setParam('inner', RenderParam.inner);
+        addrObj.setParam('hospitalName', RenderParam.hospitalName);
+        addrObj.setParam('hospitalId', RenderParam.hospitalId);
+        addrObj.setParam('s_demo_id', 'superDemo');
+
+        LMEPG.Intent.jump(addrObj, currObj);
+    }
+</script>
+</body>
+
+</html>
+  
+  

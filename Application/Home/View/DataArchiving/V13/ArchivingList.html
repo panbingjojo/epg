@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数据归档（中国联通新版）-V13</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/DataArchiving/V13/ArchivingList.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+                //公共渲染
+                isRunOnAndroid: "{$isRunOnAndroid}",// 是否运行在apk平台
+                carrierId: "{$carrierId}",          // 地区id
+                areaCode: "{$areaCode}",            // 省份地区码
+                subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+                platformType: "{$platformType}",    // 平台类型
+                debug: "{$debug}",                  // 调试模式
+                pageSize: "{$size}",            // 页面尺寸
+                stbModel: "{$stbModel}",                            // 盒子的型号
+                fsUrl: "{$resourcesUrl}",           // fs 地址
+                time: "{$time}",                    // 开始渲染时间
+                userId: "{$userId}",                // 用户Id
+                accountId: "{$accountId}",                // 用户Id
+                //当前页渲染
+                positionTwoConfig: "{$positionTwoConfig}",
+                checkTime: "{$checkTime}",
+                commonImgsView: "{$commonImgsView}",                // 公用图片模式
+                themeImage: "{$themePicture}",                      // 应用主题背景
+                focusIndex: "{$focusIndex}",                        // 焦点ID
+                isVip: {$isVip},// 用户是否是vip
+                comeFrom:'{$comeFrom}',
+                autoOrder: "{$autoOrder}",                          // 用户是否是续订vip
+                classifyId: "{$classifyId}",                        // 导航栏ID
+                addedMemberList: {$addedMemberList | json_encode},  // 已添加的家庭成员
+                momentData: {$momentData | json_encode},            // 时段和就餐状态
+                showAskDoctorTab: {$showAskDoctorTab},              // 是否显示问医记录tab
+                skin: {$skin},      // 用户自定义背景
+                // 焦点保持
+                page: "{$page}",
+                focusId: "{$focusId}",
+                isFromAskDoctorDetailPageBack: "{$isFromAskDoctorDetailPageBack}", // 是否从问医记录详情返回
+                CWS_HLWYY_URL: "{$cwsHlwyyUrl}",
+                teletextInquiryUrl: '{$teletextInquiryUrl}', // 图文问诊地址
+            };
+    </script>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/DataArchiving/V10/measure.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/DataArchiving/V13/ArchivingList.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+</head>
+
+
+<body>
+<div id="debug"></div>
+<p class="title">数据归档</p>
+
+<if condition="($carrierId eq '110052') AND ($comeFrom eq 'doc')">
+    <img id="member-inspection-record" style="display: block" src="__ROOT__/Public/img/hd/DataArchiving/V13/see-doc-record_cihai.png" alt=""/>
+<elseif condition="$comeFrom eq 'doc' " />
+    <img id="member-inspection-record" style="display: block" src="__ROOT__/Public/img/hd/DataArchiving/V13/see-doc-record.png" alt=""/>
+<else/>
+    <img id="member-inspection-record" style="display: block" src="__ROOT__/Public/img/hd/DataArchiving/V13/member_inspection_record.png" alt=""/>
+</if>
+
+<img id="doctor-list" style="display: block" src="__ROOT__/Public/img/hd/DataArchiving/V13/doctor_list.png" alt=""/>
+<img id="test-bloodSugar" src="__ROOT__/Public/img/hd/HealthTest/V8/weight/go_test.png" alt="">
+
+
+<!--<img id="test-record" src="__ROOT__/Public/img/hd/DataArchiving/V13/test_record.png" alt=""/>-->
+<!--<img id="ask-doctor-record" src="__ROOT__/Public/img/hd/DataArchiving/V13/ask_record.png" alt=""/>-->
+
+<div id="test-record">检测记录</div>
+<if condition="($carrierId eq '110052')">
+    <div id="ask-doctor-record">问诊记录</div>
+    <else/>
+    <div id="ask-doctor-record">问医记录</div>
+</if>
+
+
+
+<div id="record-container"></div>
+<div id="page-arrow">
+    <img id="prev-arrow" src="__ROOT__/Public/img/hd/DataArchiving/V13/up_arrow.png" alt=""/>
+    <img id="next-arrow" src="__ROOT__/Public/img/hd/DataArchiving/V13/down_arrow.png" alt=""/>
+</div>
+<div id="choice-inner">
+    <p id="member-title">检测成员</p>
+    <ul id="test-member">
+        <li id="prev-member"></li>
+        <li id="select-member"></li>
+        <li id="next-member"></li>
+    </ul>
+    <p id="food-title">检测状态</p>
+    <ul id="food-status">
+        <li id="prev-status"></li>
+        <li id="select-status"></li>
+        <li id="next-status"></li>
+    </ul>
+    <img id="btn-submit" src="__ROOT__/Public/img/hd/DataArchiving/V13/btn_submit.png" alt=""/>
+    <img id="btn-delete" src="__ROOT__/Public/img/hd/DataArchiving/V13/btn_delete.png" alt=""/>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+        DataArchive.init();
+    };
+
+
+    if (RenderParam.carrierId == "410092") {
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        } catch (e) {
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</body>
+</html>

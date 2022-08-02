@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>献血模块-二维码首页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/hd/DonateBlood/V1/QrCode.css?t={$time}"/>
+    <!--<link rel="stylesheet" href="/Public/css/hd/DonateBlood/V1/BloodRoomInfo.css">-->
+    <script>
+        var RenderParam = {
+            carrierId: "{$carrierId}",
+        };
+    </script>
+</head>
+<body>
+
+<div id="qr_title"></div>
+
+<img id="pic_qr_code" src="" alt="">
+
+<p id="qr_text1"></p>
+<p id="qr_text2"></p>
+<p id="qr_text3"></p>
+
+
+
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<!--<script type="text/javascript" src="__ROOT__/Public/js/DoctorP2P/Vfree/DoctorList.js?t={$time}"></script>-->
+<!--当前模块js-->
+<script type="text/javascript" src="__ROOT__/Public/js/DonateBlood/V1/QrCode.js?t={$time}"></script>
+<script>
+    DonateBlood.init();
+</script>
+</body>
+</html>
+  
+  

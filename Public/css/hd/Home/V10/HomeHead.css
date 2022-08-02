@@ -1,0 +1,76 @@
+.logo{
+    position: absolute;
+    top: 50px;
+    left: 80px;
+    width: 58px;
+    height: 48px;
+}
+
+.nav{
+    position: absolute;
+    top: 38px;
+    left: 146px;
+    height: 51px;
+}
+.nav-btn{
+   margin-left: -15px;
+    height: 72px;
+}
+#nav-btn-1{
+    width: 132px;
+}
+
+#nav-btn-2{
+    width: 172px;
+}
+#nav-btn-3{
+    width: 172px;
+}
+#nav-btn-4{
+    width: 172px;
+}
+#nav-btn-5{
+    width: 162px;
+}
+
+.btn {
+    position: absolute;
+    width: 132px;
+    height: 44px;
+}
+.nav-list{
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    width: 780px;
+}
+.order{
+    position: absolute;
+    top: 18px;
+    left:818px ;
+    width: 280px;
+    font-size: 24px;
+    color: #ffee99;
+    text-align: left;
+}
+.order-btn{
+    position: absolute;
+    top: -20px;
+    left: 85px;
+    width: 162px;
+    height: 72px;
+}
+
+.retain2 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 999;
+}
+.retain2 > .hold-bg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}

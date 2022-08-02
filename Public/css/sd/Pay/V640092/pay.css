@@ -1,0 +1,38 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 640px;
+    height: 530px;
+    position: relative;
+}
+
+.tab1 {
+    width: 256px;
+    height: 98px;
+    position: absolute;
+    top: 356px;
+    left: 261px
+}
+
+.tab2 {
+    width: 154px;
+    height: 48px;
+    position: absolute;
+    top: 380px;
+    left: 245px
+}
+
+.tab3 {
+    width: 106px;
+    height: 56px;
+    position: absolute;
+    left: 518px;
+    top: 378px
+}

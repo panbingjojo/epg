@@ -1,0 +1,157 @@
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    font-size: 29px;
+    color: #ffffff;
+}
+
+.line {
+    width: 1200px;
+    height: 3px;
+    position: absolute;
+    top: 87px;
+    left: 41px
+}
+
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    color: #ffffff
+}
+
+#role {
+    width: 154px;
+    height: 300px;
+    position: absolute;
+    top: 280px;
+    left: 122px;
+}
+
+.introduce {
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+}
+
+.head_img {
+    width: 154px;
+    height: 154px
+}
+
+#top_page {
+    position: absolute;
+    width: 55px;
+    height: 32px;
+    left: 170px;
+    top: 212px;
+    display: none;
+}
+
+#bottom_page {
+    position: absolute;
+    width: 55px;
+    height: 29px;
+    left: 170px;
+    top: 520px;
+    display: none;
+}
+
+.age {
+    position: absolute;
+    top: 240px;
+    left: 357px;
+    width: 150px;
+}
+
+.height {
+    position: absolute;
+    top: 240px;
+    left: 561px;
+    width: 150px;
+}
+
+.weight {
+    position: absolute;
+    top: 240px;
+    left: 800px;
+    width: 150px;
+}
+
+.btn {
+    width: 170px;
+    height: 60px;
+    font-size: 24px;
+    background-image: url("../../../../img/hd/Doctor/V1/btn_big_out.png");
+    line-height: 60px;
+    text-align: center;
+    position: absolute;
+}
+
+#focus-1-5 {
+    top: 377px;
+    left: 1000px
+}
+
+.scoller {
+    width: 150px;
+    text-align: center;
+    height: 110px;
+    line-height: 110px;
+}
+
+.scoller2 {
+    width: 150px;
+    text-align: center;
+    height: 110px;
+    font-size: 53px;
+    line-height: 110px;
+}
+
+.scoller3 {
+    width: 150px;
+    text-align: center;
+    height: 110px;
+    font-size: 53px;
+    line-height: 110px;
+    color: #41bed5
+}
+
+#rember {
+    width: 467px;
+    height: 50px;
+    position: absolute;
+    top: 595px;
+    left: 400px
+}
+
+.remember_bg {
+    width: 564px;
+    height: 360px;
+    position: absolute;
+    top: 160px;
+    left: 360px
+}
+
+#focus-1-1 {
+    width: 171px;
+    height: 171px;
+    position: absolute;
+    left: 113px;
+    top: 272px;
+    z-index: 999;
+    display: none
+
+}

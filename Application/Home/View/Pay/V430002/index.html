@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>湖南电信APK-订购页</title>
+
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            accountId: "{$accountId}",            // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+            userAccount: "{$userAccount}",
+            lmp: "{$lmp}",
+
+            // 页面参数
+            orderItems: {$orderItems},
+            isPlaying: "{$isPlaying}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            returnPageName: "{$returnPageName}",
+            imagePath: "__ROOT__/Public/img/{$platformType}/Pay/V430002/",
+
+        };
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Pay/V{$carrierId}/pay.css?t={$time}"/>
+
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V{$carrierId}/pay.js?t={$time}"></script>
+
+    <script type="text/javascript ">
+        // 页面载完执行
+        if(RenderParam.userAccount == "LD036598945@VOD"){
+            Controller.order({"cIndex":0});
+        }else{
+            window.onload = function () {
+                // 展示我方订购页
+                //Controller.init();
+                Controller.order({"cIndex":0});
+            }
+        }
+    </script>
+</head>
+
+<body id="body" style="display:none">
+<div class="order_item_container">
+    <!--
+    <img src="__ROOT__/Public/img/{$platformType}/Pay/V{$carrierId}/order_item_1.png" alt="" id="order_item_1">
+    <img src="__ROOT__/Public/img/{$platformType}/Pay/V{$carrierId}/order_item_2.png" alt="" id="order_item_2">
+    <img style="display: none" src="__ROOT__/Public/img/{$platformType}/Pay/V{$carrierId}/order_item_3.png" alt="" id="order_item_3">
+    -->
+</div>
+<script type="text/javascript ">
+    if(RenderParam.userAccount == "LD036598945@VOD"){
+        document.getElementById("body").style.display='none';
+    }
+</script>
+</body>
+</html>

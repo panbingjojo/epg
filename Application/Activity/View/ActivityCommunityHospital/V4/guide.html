@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>活动《社区医院》-主页-V4</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!-- 默认标签 -->
+    <a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCommunityHospital/V4/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--本地库-->
+    <script type="text/javascript" src="__ROOT__/Public\js\Activity\ActivityCommunityHospital\V4\guide.js?t={$time}"></script>
+    <!--全局变量-->
+    <script type="text/javascript">
+        var RenderParam = {
+            userId: "{$userId}",
+            userAccount: "{$userAccount}",
+            hospitalId: "MJX565107",
+            //hospitalId: "100000020";
+            currentPage: 1,
+            currentDeptId: "{$deptId}", //全部科室
+            MAX_PAGE_STEP: 1,      //每页获取1个医生;
+
+            buttons: [{
+                id: 'btn-back',
+                name: '返回按钮',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'piece-1-btn',
+                click: 'onBack()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_back.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_back_f.png'
+            }, {
+                id: 'piece-1-btn',
+                name: '健康咨询',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'btn-back',
+                nextFocusDown: 'piece-2-btn',
+                click: 'goInquiry()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask_f.png'
+            }, {
+                id: 'piece-2-btn',
+                name: '上门预约',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'piece-1-btn',
+                nextFocusDown: '',
+                click: onOrder,
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_order.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_order_f.png'
+            }, {
+                id: 'dialog-confirm',
+                name: '确定',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                click: onBack,
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm_f.png'
+            }]
+        }
+    </script>
+
+</head>
+<body>
+<p id="title" class="txt">赛马场管委会社区卫生服务中心</p>
+<img id="btn-back" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_back.png" alt="">
+<div id="piece-0">
+    <p class="txt piece-0-txt">赛马场管委会社区卫生服务中心</p>
+    <img id="piece-0-pic" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/hosp_pic.png" alt="">
+    <div id="doctor-intro">
+        <marquee behavior="" scrollamount="3" direction="up" height="200px">
+            <span id="goods-call">医院简介：</span>赛马场管委会社区卫生服务中心,是公益性服务单位,隶属于天山区卫建委直属管理,坐落于赛马场路三屯碑北巷97号,共二层楼,建筑面
+            积为1400平方米。环境优雅,医疗设备齐全,医疗专家队伍建全,服务范围为赛马场所管辖的所有居民及流动人口。法人及负责人热依兰•努尔麦麦提,电话;13699961040
+            一、机构设置:中心内设全科、中医科、妇科、儿科、内科、外科、住院部(设有25张床位)、口腔科、儿
+            童保健科、预防保健科、医学检验科、医学影像科(彩超)、放射科、理疗科、康复科、健康教育科、心理咨询科、皮肤科、治疗科、急
+            救科、临终关怀科等,主要承担赛马场社区居民的基本医疗和公共卫生服务。此外,还配备了彩超机,全自动生化仪、心电图、全自动血
+            球分析仪、尿十项、微波治疗仪、牙科综合治疗仪等医疗设备。
+            二、专业技术力量:社区服务中心医疗专家团队,是由多民族医务工作者组成,专业技术人员占全中心人员的85%,拥有一支专业权威的医疗队伍。使居民在社区能享受到大医院专家服务,急危重病能及时转诊,基本形成小病在社区、大病到医院、康复回社区的分级医疗服务格局。
+            服务内容:
+            1、基本医行服务:中心实行全年无假日门诊,开展基本用药和基本检查,建立以慢病管理和建康管理为内容的工作平台,积极开展社区适宜技术,有效解决居民看病难、看病贵的实际问题。
+            2、率先开展65岁居民健康体检:开展对区65岁以上居民建康体检项目,对发现的高血压、糖尿病等慢性病及时建立档案, 纳入规范化管理,减少患病率 、致残车、病死率。
+            3.实施免费惠民政策:中心对孤寡老人、低保户、残疾人患者实施免挂号费、诊疗费、肌肉注射费、住院诊查费及二级护理费.
+            4.坚持计划免疫接种:预防接种是一种有效控制疾病传播的重要手段,免疫预防是措施之一,坚持儿童计划免疫运转工作.
+            5、抓好妇保儿保工作:定期开展0-6岁儿童建康体检和建档工作,开展妇女病普查,计划生育指导,咨询工作,聘请新疆医科大第六附属医院妇幼专家进行教育讲座.
+            四、服务宗旨:立足社区,面向家庭,优质、便携、综合服务,为您提供健康教育、预防、保建、诊疗、
+            计划生育和技术指导。当您在健康方面,需要帮助的时候,赛马场社区卫生服务中心的医护人员,将是你们最知心的朋友,为您排忧解难,消除痛苦, 解决困困惑!
+            咨询电话:2553352       急救电话:2507111
+        </marquee>
+    </div>
+</div>
+<div id="piece-1">
+    <img id="piece-1-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask.png" alt="">
+    <img id="piece-2-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_order.png" alt="">
+</div>
+<div id="dialog">
+    <p id="dialog-type">本院接收：中医推拿，正骨，经络推拿，针灸，脏腑调理，淋巴排毒，
+        妇科调理，小儿推拿，捏脊，刮痧，拔罐，艾灸</p>
+    <p id="dialog-phone">预约电话：0991-2553352</p>
+    <p id="dialog-doctor-phone">曹大夫：18119153355</p>
+    <img id="dialog-confirm" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm.png" alt="">
+    <p id="dialog-dt">接诊时间：10：30~21：00（北京时间）</p>
+</div>
+</body>
+
+<script type="text/javascript">
+	LMEPG.BM.init('piece-1-btn', RenderParam.buttons, '', true);
+    window.onload = function () {
+        // 通过医院ID来获取医生信息
+        loadDoctorList(RenderParam.hospitalId, RenderParam.currentDeptId, RenderParam.currentPage, RenderParam.MAX_PAGE_STEP);
+      //  lmInitGo();
+    };
+</script>
+</html>

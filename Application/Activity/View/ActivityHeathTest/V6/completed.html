@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康测一测（中国联通EPG-山东省独立活动）</title>
+    <link rel="stylesheet" type="text/css"
+          href="/Public/css/{$platformType}/activity/activityHeathTest/V6/completed.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityHeathTest/V1/dialog.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug">.</div>
+<div id="page-title">完成测试</div>
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/activity_back.png" id="activity-back">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/icon_modify.png" id="icon-modify" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/title_bg.png" id="title-bg">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/video_intro.png" id="video-intro">
+<ul id="result-container">
+    <li id="test-result">
+        <img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/result_test.png" alt="">
+        <p>
+            测试结果：可能缺乏的的营养：维生素伽马！测试结果：可能缺乏的的营养：维生素伽马！测试结果：可能缺乏的的营养：维生素伽马！
+        </p>
+    </li>
+    <li id="health-intro-text">
+        <img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/nutrition_measure.png" alt="">
+        <p>
+            多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!多喝水!
+        </p>
+    </li>
+</ul>
+<script>
+	var ftp = '/Public/img/hd/Activity/activityHeathTest/V6/';
+	window.onload = function() {
+		console.log(JSON.parse('{$answers}'));
+		LMEPG.ButtonManager.init([''], buttons, '', true);
+		var result = LMEPG.Func.getLocationString('answersResult');
+		console.log(decodeURIComponent(result));
+	};
+
+	function onBack() {
+		LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+	}
+
+	var buttons = [
+		{
+			id: 'video-intro',
+			name: '',
+			type: 'img',
+			nextFocusLeft: 'prev-arrow',
+			nextFocusUp: '',
+			nextFocusDown: 'key-2',
+			nextFocusRight: 'key-1',
+			backgroundImage: ftp + 'video_intro.png',
+			focusImage: ftp + 'video_intro_f.gif',
+			click: '',
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'activity-back',
+			name: '',
+			type: 'img',
+			nextFocusLeft: 'key-0',
+			nextFocusUp: '',
+			nextFocusDown: 'key-3',
+			nextFocusRight: 'next-arrow',
+			backgroundImage: ftp + 'activity_back.png',
+			focusImage: ftp + 'activity_back_f.gif',
+			click: '',
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}];
+</script>
+</body>
+</html>

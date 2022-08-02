@@ -1,0 +1,138 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+#back {
+    position: absolute;
+    top: 32px;
+    left: 564px;
+    outline: none !important;
+    width: 67px;
+    height: 69px;
+}
+
+#titel_introduce{position: absolute; width: 1090px; height: 40px; font-size: 34px; color:#fe7727; text-align: center; top: 469px; left: 95px}
+
+#searchText {
+    width: 229px;
+    height: 23px;
+    z-index: 999;
+    position: absolute;
+    top: 374px;
+    left: 220px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    line-height: 23px;
+    color: #FFFFFF;
+    border: 1px#FFFFFF solid;
+    border-radius: 4px;
+    text-indent: 15px;
+    overflow: hidden;
+}
+
+#submit {
+    position: absolute;
+    top: 408px;
+    left: 248px;
+    outline: none !important;
+    width: 87px;
+    height: 35px;
+}
+#clear {
+    position: absolute;
+    top: 408px;
+    left: 354px;
+    outline: none !important;
+    width: 87px;
+    height: 35px;
+}
+
+
+#rule {
+    width: 422px;
+    height: 68px;
+    overflow: hidden;
+    position:relative;
+    top: 193px;
+    left: 110px;
+}
+
+table tr td {
+    width: 140px;
+    text-align: center;
+    list-style: none;
+    font-size: 14px;
+    color: #f5f3f3 !important;
+    height: 20px;
+}
+
+.list2 li {
+    list-style: none;
+}
+
+#myprice {
+    width: 422px;
+    height: 42px;
+    overflow: hidden;
+    position: absolute;
+    top: 324px;
+    left: 110px;
+}
+
+#scoller {
+    position: absolute;
+    top: 0px;
+}
+
+#play {
+    font-size: 20px;
+    color: red;
+    position: absolute;
+    top: 680px;
+    left: 513px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 30px;
+    font-family: Source Han Sans CN;
+}
+
+#tips {
+    position: absolute;
+    top: 83px;
+    left: 86px;
+    z-index: 1;
+    width: 1108px;
+    height: 347px
+}
+#price_name{ font-size: 20px;color:#ff1975; position: absolute; top:290px; left: 306px; font-weight: 100; width: 664px; text-align: center;}
+#scoller_box{ width: 690px; height: 40px; position: absolute; top: 285px; left: 300px}
+#sound{ width: 162px; height: 156px; position: absolute; top: 210px; left: 195px}
+.none{display: none}
+
+#win_price_box{width: 441px; height: 55px; position: absolute; top: 550px; left: 423px}
+#myPhone{position: absolute; font-size: 16px;color: #f5f3f3;top: 375px; left: 120px}
+#warm{position: absolute;left: 41px; font-size: 20px;color:black;top: 685px; width: 1200px; }
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}

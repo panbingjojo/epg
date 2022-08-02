@@ -1,0 +1,80 @@
+/*-------------hd-------------*/
+.hd-more-wonderful {
+    top: 606px;
+    left: 530px;
+}
+
+.hd-history-album {
+    width: 1280px;
+    height: 200px;
+    top: 516px;
+    left: 0;
+    z-index: 3;
+    visibility: hidden;
+}
+
+.hd-history-album-list{
+    position: absolute;
+    top: 20px;
+    left: 180px;
+}
+
+.hd-history-album-list > div {
+    float: left;
+}
+
+.hd-history-album-list img{
+    margin-right: 40px;
+    padding: 7px;
+    width: 196px;
+    height: 130px;
+}
+/*-------------sd-------------*/
+.sd-more-wonderful {
+    top: 452px;
+    left: 244px;
+    width: 156px;
+    height: 78px;
+}
+
+.sd-history-album {
+    position: absolute;
+    width: 644px;
+    height: 146px;
+    top: 384px;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+}
+
+.sd-history-album-marker {
+    position: absolute;
+    width: 644px;
+    height: 146px;
+}
+
+.sd-history-album-list {
+    position: absolute;
+    top: 26px;
+    left: 22px;
+    width: 600px;
+    /*border: 1px solid red;*/
+}
+
+
+.sd-history-album-list img{
+    padding: 4px;
+    width: 126px;
+    height: 84px;
+    margin-right: 16px;
+}
+
+.sd-history-album-list #album-4{
+    margin-right: 0px;
+}
+
+img{
+    border: none;
+    outline: none;
+}
+

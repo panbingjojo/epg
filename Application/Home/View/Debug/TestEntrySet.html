@@ -1,0 +1,1382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>EPG测试入口</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Debug/TestEntrySet/TestEntrySet.css?t={$time}"/>
+
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmPayFrame.js?t={$time}"></script>
+
+    <script type="text/javascript">
+        // TP框架控制器返回数据应用
+        var RenderParam = {
+            carrierId: '{$carrierId}', // 地区id
+            vip: {$isVip},          //当前用户是否VIP
+            userId: '{$userId}',    // 当前用户ID
+            focusIdName: '',        //  焦点所在元素的ID
+            inner: '{$inner}',
+            lmcid: '{$carrierId}',
+            SectionTypes: [            //测试入口类型
+                1,  // 测试服入口
+                2,  // 专辑
+                3,  // 活动
+                4,  // 图文
+                5,  //其他
+            ],
+            modelBtnNumList: [1, 4, 8, 4, 4],   //各个模块按钮数列表[测试服入口,专辑,活动,图文,其他]
+            buttons: [],                //所有按钮
+            testServerList: [],         //测试服列表
+            albumList: [],              //专辑列表
+            activityList: [],           //活动列表
+            imgTextList: [],            //图文列表
+            otherList: [],              //其他列表
+
+            testServerPage: 0,          //测试服列表当前页
+            albumPage: 0,               //专辑列表当前页
+            activityPage: 0,            //活动列表当前页
+            imgTextPage: 0,             //图文列表当前页
+            otherPage: 0,               //其他列表当前页
+
+            testServerListLen: 0,       //测试服列表长度
+            albumListLen: 0,            //专辑列表长度
+            activityListLen: 0,         //活动列表长度
+            imgTextListLen: 0,          //图文列表长度
+            otherListLen: 0,            //其他列表长度
+        };
+    </script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        // 监听返回键，回到首页
+        function onBack() {
+            var item = document.getElementById('ifr');
+            if (item instanceof Object) {
+                LMEPG.Log.info('TestEntrySet click back!!!!!!!!!!!!!!!!!!')
+            } else {
+                LMEPG.Intent.back();
+            }
+        }
+    </script>
+</head>
+<!--<body style="background-color:black; margin: 0; padding: 0; width: 100%; height: 100%;">-->
+<body id="body">
+<div id="table-mode">
+    <h1>EPG测试入口</h1>
+    <hr/>
+    <div id="table1"></div>
+
+    <hr/>
+    <div id="table2"></div>
+
+    <hr/>
+    <div id="table3"></div>
+
+    <hr/>
+    <div id="table4"></div>
+
+    <hr/>
+    <div id="table5"></div>
+</div>
+
+
+<img id="prev-2" class="{$platformType}-prev prev-top-2" src="__ROOT__/Public/img/{$platformType}/Debug/prev_page.png"/>
+<img id="next-2" class="{$platformType}-next prev-top-2" src="__ROOT__/Public/img/{$platformType}/Debug/next_page.png"/>
+<img id="prev-3" class="{$platformType}-prev prev-top-3" src="__ROOT__/Public/img/{$platformType}/Debug/prev_page.png"/>
+<img id="next-3" class="{$platformType}-next prev-top-3" src="__ROOT__/Public/img/{$platformType}/Debug/next_page.png"/>
+<img id="prev-4" class="{$platformType}-prev prev-top-4" src="__ROOT__/Public/img/{$platformType}/Debug/prev_page.png"/>
+<img id="next-4" class="{$platformType}-next prev-top-4" src="__ROOT__/Public/img/{$platformType}/Debug/next_page.png"/>
+<img id="prev-5" class="{$platformType}-prev prev-top-5" src="__ROOT__/Public/img/{$platformType}/Debug/prev_page.png"/>
+<img id="next-5" class="{$platformType}-next prev-top-5" src="__ROOT__/Public/img/{$platformType}/Debug/next_page.png"/>
+
+<script type="text/javascript">
+    var r = RenderParam;
+
+    var webData;                //  所有测试入口选项列表
+    var j = 0;                  //  测试服首页入口选项列表长度
+    var k = 0;                  //  专辑入口选项列表长度
+    var n = 0;                  //  活动入口选项列表长度
+    var m = 0;                  //  其他入口选项列表长度
+    var h = 0;                  //  单独图文入口选项列表长度
+    var MAX_COLUMNS_1_ROW = 4;  // 每行最多展示多少个
+
+    /**
+     * 文档加载完成，开始加载js数据
+     */
+    window.onload = function () {
+        sectionTypesSort()
+        getData();
+    };
+
+    /**
+     * 对测试入口类型进行升序排序，下面时原来的代码
+     */
+    function sectionTypesSort() {
+        r.SectionTypes.sort(function (a, b) { // 升序排序
+            if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;
+        });
+    }
+
+    /**
+     * 获取测试入口列表
+     */
+    function getData() {
+        LMEPG.ajax.postAPI('Debug/getTestEntrySetData', null, function (data) {
+            getDataHander(data);
+        }, function (data) {
+        });
+    }
+
+    /**
+     * 获取测试入口选项列表后的操作
+     */
+    function getDataHander(data) {
+        webData = data instanceof Object ? data : JSON.parse(data);
+        if (null != webData && webData.result == 0) {
+            updateUI(webData.list);
+        } else {
+            fillContentTable(1, 0, r.testServerList); // 测试服首页
+            LMEPG.ButtonManager.init(r.focusIdName, r.buttons, '', true); // 初始焦点在第一个
+        }
+    }
+
+    /**
+     * 更新页面UI
+     */
+    function updateUI(dataList) {
+        updateTypeList(dataList)
+        updateTypeLength()
+        updateTypeTableUI()
+        initOptFocus(dataList)
+    }
+
+    /**
+     * 更新各入口类型列表
+     */
+    function updateTypeList(dataList) {
+        updateConfigOption(dataList)
+        addOtherOptionByLmcid()
+    }
+
+    /**
+     * 更新后台配置的测试入口
+     */
+    function updateConfigOption(dataList) {
+        for (var i = 0; i < dataList.length; i++) {
+            if (dataList[i].entry_type == 0) { // 测试服首页
+                r.testServerList[j++] = dataList[i];
+            } else if (dataList[i].entry_type == 1) {  // 专辑
+                r.albumList[k++] = dataList[i];
+            } else if (dataList[i].entry_type == 2) {   // 活动
+                r.activityList[n++] = dataList[i];
+            } else if (dataList[i].entry_type == 3) {   // 单独图文
+                r.imgTextList[h++] = dataList[i];
+            } else if (dataList[i].entry_type == 4) {   //其他
+                r.otherList[m++] = dataList[i];
+            }
+        }
+    }
+
+    /**
+     * 更新各类型入口列表长度
+     */
+    function updateTypeLength() {
+        r.testServerListLen = j;
+        r.albumListLen = k;
+        r.activityListLen = n;
+        r.imgTextListLen = h;
+        r.otherListLen = m;
+    }
+
+    /**
+     * 更新各类型选项UI界面
+     */
+    function updateTypeTableUI() {
+        fillContentTable(1, r.modelBtnNumList[0], r.testServerList);           // 测试服首页
+        fillContentTable(2, k > r.modelBtnNumList[1] ? r.modelBtnNumList[1] : k, r.albumList);    // 专辑
+        fillContentTable(3, n > r.modelBtnNumList[2] ? r.modelBtnNumList[2] : n, r.activityList); // 活动
+        fillContentTable(4, h > r.modelBtnNumList[3] ? r.modelBtnNumList[3] : h, r.imgTextList);  // 图文
+        fillContentTable(5, m > r.modelBtnNumList[4] ? r.modelBtnNumList[4] : m, r.otherList); // 其它
+    }
+
+    /**
+     * 填充内容到table
+     */
+    function fillContentTable(type, num, data) {
+        var count = 0; // 用于循环控制每行的个数
+        var tableId = 'table' + type; // 组成对应的div 的table id
+        var focusId = '';
+        var contentStr = '<table><tr>'; // table,tr开始标签
+        for (var i = 0; i < num; i++) {
+            focusId = 'focus-' + type + '-' + (i + 1);
+            contentStr += '<td><div id="' + focusId + '" class="btn">' + data[i].entry_name + '</div></td>';
+            // 每行显示4个，超出部分就换行
+            count += 1;
+            if (count % MAX_COLUMNS_1_ROW == 0) {
+                // 重新换到新的tr，所以要把上一个tr给结束掉
+                contentStr += '</tr><tr>';
+                count = 0;
+            }
+            pushButton(focusId, data[i].entry_flag, data[i].entry_name);
+            // 每种类型的测试入口，最多只能显示16个
+            if (i == 15) break;
+        }
+
+        // 当什么都没有配置时，默认有一个进入测试服首页的选项
+        if ((type == 1) && (num == 0)) {
+            focusId = 'focus-1-1';
+            contentStr += '<td><div id="' + focusId + '" class="btn">' + '测试服首页' + '</div></td>';
+            pushButton(focusId, 'test', '测试服首页');
+        }
+
+        contentStr += '</tr></table>'; // table,tr结束标签
+
+        G(tableId).innerHTML += contentStr;
+        if (type > 1) {
+            arrowDeal(type, 0, data.length);
+        }
+    }
+
+    /**
+     * 初始化焦点位置
+     */
+    function initOptFocus(list) {
+        var temp_num = parseInt(list[0].entry_type) + 1
+        r.focusIdName = "focus-" + temp_num + "-1"
+        LMEPG.ButtonManager.init(r.focusIdName, r.buttons, '', true);
+    }
+
+    /**
+     * 特殊代码，增加其他测试选项入口
+     */
+    function addOtherOptionByLmcid() {
+        RenderParam.carrierId == "320092" && addOption320092();
+        RenderParam.carrierId == "000051" && addOption000051();
+        RenderParam.carrierId == "630092" && addOption630092();
+        RenderParam.carrierId == "04630092" && addOption04630092();
+        RenderParam.carrierId == "640092" && addOption640092();
+        RenderParam.carrierId == "640001" && addOption640001();
+        RenderParam.carrierId == "650092" && addOption650092();
+        RenderParam.carrierId == "460092" && addOption460092();
+        RenderParam.carrierId == "410092" && addOption410092();
+        RenderParam.carrierId == "420092" && addOption420092();
+        RenderParam.carrierId == "10000051" && addOption10000051();
+        RenderParam.carrierId == "520092" && addOption520092();
+        RenderParam.lmcid === "220095" && addOption220095(); // 吉林电信其他测试入口
+    }
+
+    /**
+     * 吉林电信WEB-EPG增加特殊选项入口
+     */
+    function addOption220095() {
+        r.otherList[m++] = buildOptionsParams("吉林电信魔方", "routeMFBy220095", "吉林电信魔方", 3);
+    }
+
+    function addOption520092() {
+        var playerUrl = LMEPG.STBUtil.getEPGDomain();
+        LMEPG.Log.error("getEPGDomain :"+playerUrl);
+        playerUrl = playerUrl.substring(0,playerUrl.indexOf('function'));
+        LMEPG.Log.error("getEPGDomain playerUrl:"+playerUrl);
+        r.otherList[m++] = buildOptionsParams("播放测试", "goPlayer", "播放测试", 3);
+        r.otherList[m++] = buildOptionsParams("专区首页", "goCustomizeHome", "专区首页", 3);
+    }
+
+    /**
+     * 江苏电信WEB-EPG增加特殊选项入口
+     */
+    function addOption320092() {
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+        r.otherList[m++] = buildOptionsParams("广西广电", "goGuangXiTest", "广西广电", 3);
+        r.otherList[m++] = buildOptionsParams("趣玩游戏平台", "goFunPlayByCUTest", "趣玩游戏平台(CU)", 3);
+        r.otherList[m++] = buildOptionsParams("启动j2me测试", "goJ2meTest", "启动j2me测试", 3);
+    }
+
+    /**
+     *中国联通天津基地WEB-EPG增加特殊选项入口
+     */
+    function addOption000051() {
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+        r.otherList[m++] = buildOptionsParams("贵州电信专区", "goGuiZhouHome", "贵州电信专区", 3);
+        r.otherList[m++] = buildOptionsParams("遇见生活", "goyjsh", "遇见生活", 3);
+        r.otherList[m++] = buildOptionsParams("吉林广电魔方", "goJiLinGDMFTest", "吉林广电魔方", 3);
+        r.otherList[m++] = buildOptionsParams("健康魔方（新）", "goWizardTestNew", "健康魔方（新）", 3);
+        r.otherList[m++] = buildOptionsParams("乐动传奇EPG", "goLDLengendEPG", "乐动传奇EPG", 3);
+        r.otherList[m++] = buildOptionsParams("青海电信", "goQingHaiTest", "青海电信", 3);
+        r.otherList[m++] = buildOptionsParams("联通启生", "goMoFangTest", "联通启生", 3);
+        r.otherList[m++] = buildOptionsParams("吉林广电电信", "goJiLinGDDXTest", "吉林广电电信", 3);
+        r.otherList[m++] = buildOptionsParams("陕西电信", "goShanXiTest", "陕西电信", 3);
+        r.otherList[m++] = buildOptionsParams("广西电信", "goGuangXiTest", "广西电信", 3);
+        r.otherList[m++] = buildOptionsParams("河南电信", "goHeNanTest", "河南电信", 3);
+        r.otherList[m++] = buildOptionsParams("湖北电信", "goHuBeiTest", "湖北电信", 3);
+        r.otherList[m++] = buildOptionsParams("青海电信", "goQingHaiTest", "青海电信", 3);
+        r.otherList[m++] = buildOptionsParams("宁夏电信", "goNingXiaTest", "宁夏电信", 3);
+        r.otherList[m++] = buildOptionsParams("贵州电信", "goGuiZhouDXTest", "贵州电信", 3);
+        r.otherList[m++] = buildOptionsParams("宁夏广电", "goNINGXIAGDTest", "宁夏广电", 3);
+        r.otherList[m++] = buildOptionsParams("新疆电信EPG", "goXINJIANGDXTest", "新疆电信EPG", 3);
+        r.otherList[m++] = buildOptionsParams("新疆电信EPG_天天健身", "goXINJIANGDX_TTJS_Release", "新疆电信EPG_天天健身", 3);
+        r.otherList[m++] = buildOptionsParams("新疆电信EPG-热线服务(正式服)", "goXINJIANGDX_HOTLINE_Release", "新疆电信EPG-热线服务(正式服)", 3);
+        r.otherList[m++] = buildOptionsParams("新疆电信EPG-热线服务", "goXINJIANGDX_HOTLINE_Test", "新疆电信EPG-热线服务", 3);
+        r.otherList[m++] = buildOptionsParams("趣玩游戏平台", "goFunPlayByCUTest", "趣玩游戏平台(CU)", 3);
+        r.otherList[m++] = buildOptionsParams("启动j2me测试", "goJ2meTest", "启动j2me测试", 3);
+        r.otherList[m++] = buildOptionsParams("联通魔方测试入口", "goCUCCMofangTest", "联通魔方测试入口", 3);
+        r.otherList[m++] = buildOptionsParams("联通魔方正式入口", "goCUCCMofangFormal", "联通魔方正式入口", 3);
+        r.otherList[m++] = buildOptionsParams("芒果TV移动测试入口", "goMangoTVYDTest", "芒果TV移动测试入口", 3);
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+        r.otherList[m++] = buildOptionsParams("游戏测试", "goGameTest", "游戏测试", 3);
+    }
+
+    /**
+     * 青海电信EPG增加特殊选项入口
+     */
+    function addOption630092() {
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+        r.otherList[m++] = buildOptionsParams("游戏测试", "goGameTest", "游戏测试", 3);
+    }
+
+    function addOption04630092() {
+        r.otherList[m++] = buildOptionsParams("游戏封套", "yxft", "游戏封套", 3);
+        r.otherList[m++] = buildOptionsParams("青海麻将", "qhmj", "青海麻将", 3);
+        r.otherList[m++] = buildOptionsParams("跑得快", "pdk", "跑得快", 3);
+        r.otherList[m++] = buildOptionsParams("红中麻将", "hzmj", "红中麻将", 3);
+        r.otherList[m++] = buildOptionsParams("转转麻将", "zzmj", "转转麻将", 3);
+    }
+
+    /**
+     * 宁夏电信EPG增加特殊选项入口
+     */
+    function addOption640092() {
+        r.otherList[m++] = buildOptionsParams("核酸检测", "goTestNucleatOrder", "核酸检测", 3);
+        r.otherList[m++] = buildOptionsParams("核酸检测", "goTestNucleatOrder", "核酸检测", 3);
+        r.otherList[m++] = buildOptionsParams("家庭成员", "goTestFamiryEdit", "家庭成员", 3);
+        r.otherList[m++] = buildOptionsParams("健康检测", "goTestTestIndex", "健康检测", 3);
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+        r.otherList[m++] = buildOptionsParams("预约挂号", "goPppointment", "预约挂号", 3);
+        r.otherList[m++] = buildOptionsParams("新疆电信社区医院", "goServiceHotline", "新疆电信社区医院", 3);
+        r.otherList[m++] = buildOptionsParams("新疆电信EPG_天天健身", "goXINJIANGDX_TTJS_Release", "新疆电信EPG_天天健身", 3);
+        r.otherList[m++] = buildOptionsParams("在线商城", "goPayOnline", "在线商城", 3);
+    }
+
+    function addOption640001() {
+        r.otherList[m++] = buildOptionsParams("游戏测试", "goGameTest", "游戏测试", 3);
+    }
+
+    /**
+     * 新疆电信EPG增加特殊选项入口
+     */
+    function addOption650092() {
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+        r.otherList[m++] = buildOptionsParams("预约挂号", "goPppointment", "预约挂号", 3);
+        r.otherList[m++] = buildOptionsParams('新疆电信社区医院“服务热线”', "goServiceHotline", '新疆电信社区医院“服务热线”', 3);
+        r.otherList[m++] = buildOptionsParams("新疆电信EPG_天天健身", "goXINJIANGDX_TTJS_Release", "新疆电信EPG_天天健身", 3);
+        r.otherList[m++] = buildOptionsParams("在线商城", "goPayOnline", "在线商城", 3);
+    }
+
+    /**
+     * 海南电信EPG增加特殊选项入口
+     * 海南电信EPG测试桩测试鉴权和计费
+     */
+    function addOption460092() {
+        r.otherList[m++] = buildOptionsParams("去鉴权", "goVerifyVip", "去鉴权", 3);
+        r.otherList[m++] = buildOptionsParams("去计费页面", "goBuyVip", "去计费页面", 3);
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+    }
+
+    /**
+     * 河南电信EPG增加特殊选项入口
+     */
+    function addOption410092() {
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+    }
+
+    /**
+     * 湖北电信EPG增加特殊选项入口
+     */
+    function addOption420092() {
+        r.otherList[m++] = buildOptionsParams("启动APK测试页", "goAPKTest", "启动APK测试页", 3);
+        r.otherList[m++] = buildOptionsParams("外推首页推荐位", "goExtrapolationHomeRecomm", "外推首页推荐位", 3);
+        r.otherList[m++] = buildOptionsParams("开机活动", "goBootActivities", "开机活动", 3);
+        r.otherList[m++] = buildOptionsParams("专家约诊", "goExpertIndex", "专家约诊", 3);
+    }
+
+    /**
+     *
+     */
+    function addOption10000051() {
+        r.otherList[m++] = buildOptionsParams("在线问诊", "goDoctorIndex", "在线问诊", 3);
+        r.otherList[m++] = buildOptionsParams("食乐汇", "goslh", "食乐汇", 3);
+    }
+
+    /**
+     * 构建特殊测试入口选项数据包
+     */
+    function buildOptionsParams(data, flag, name, type) {
+        return {
+            entry_data: data,
+            entry_flag: flag,
+            entry_name: name,
+            entry_type: type
+        }
+    }
+
+    /**
+     * 装载按钮
+     */
+    function pushButton(btnId, entryFlag, entryName) {
+        var button = {
+            id: btnId,
+            name: entryName,
+            entryFlag: entryFlag,
+            type: 'div',
+            focusable: true,
+            click: onClick,
+            focusChange: onFocusChange,
+            beforeMoveChange: onBeforeMoveChange
+        };
+        r.buttons.push(button);
+    }
+
+    /**
+     * 入口选项点击跳转事件
+     */
+    function onClick(btnObj) {
+        r.focusIdName = btnObj.id;
+        switch (jumpToWhere(r.focusIdName)) {
+            case "testServerPage":      //测试服务器首页
+                jumpToTestServerPage();
+                break;
+            case "albumPage":           //专辑
+                jumpAlbumPage(btnObj)
+                break;
+            case "activityPage":        //活动
+                jumpActivityPage(btnObj)
+                break;
+            case "imageAlbumPage":      //图文
+                jumpImageAlbumPage(btnObj)
+                break;
+            case "otherPage":           //其他
+                jumpOtherPage(btnObj)
+                break;
+            default:                    //未实现
+                LMEPG.UI.showToast('操作无效');
+                return;
+        }
+    }
+
+    /**
+     * 判断跳转到哪里
+     */
+    function jumpToWhere(btnName) {
+        if (btnName.startWith('focus-1-1')) {
+            if (RenderParam.lmcid === '440004') {
+                window.location.href =
+                    'http://172.31.134.185:10014/index.php?lmuf=0&lmsid=&lmsl=hd-1&lmcid=440004&lmp=2';
+                return;
+            } else {
+                return "testServerPage"
+            }
+        } else if (btnName.startWith('focus-2')) {
+            return "albumPage"
+        } else if (btnName.startWith('focus-3')) {
+            return "activityPage"
+        } else if (btnName.startWith('focus-4')) {
+            return "imageAlbumPage"
+        } else if (btnName.startWith('focus-5')) {
+            return "otherPage"
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * 跳转到测试服首页
+     */
+    function jumpToTestServerPage() {
+        var objTestServer = LMEPG.Intent.createIntent('testServer');
+        objTestServer.setParam('userId', r.userId);
+        LMEPG.Intent.jump(objTestServer);
+    }
+
+    /**
+     * 跳转到专辑页面
+     */
+    function jumpAlbumPage(btnObj) {
+        // 进入专题 inner = 1,表示应用内跳转，inner = 0,表示应用外进来; $subId = album1, album2,....
+        var objAlbum = LMEPG.Intent.createIntent('album');
+        objAlbum.setParam('userId', r.userId);
+        objAlbum.setParam('albumName', btnObj.entryFlag);
+        objAlbum.setParam('inner', '0');
+        LMEPG.Intent.jump(objAlbum);
+    }
+
+    /**
+     * 跳转到活动页面
+     */
+    function jumpActivityPage(btnObj) {
+        // 进入活动 inner = 1,表示应用内跳转，inner = 0,表示应用外进来
+        var objActivity = LMEPG.Intent.createIntent('activity');
+        objActivity.setParam('userId', r.userId);
+        objActivity.setParam('activityName', btnObj.entryFlag);
+        objActivity.setParam('inner', '0');
+        LMEPG.Intent.jump(objActivity);
+    }
+
+    /**
+     * 跳转到图文专辑
+     */
+    function jumpImageAlbumPage(btnObj) {
+        // 进入活动 inner = 1,表示应用内跳转，inner = 0,表示应用外进来
+        var objTemplateAlbum = LMEPG.Intent.createIntent('album');
+        objTemplateAlbum.setParam('userId', r.userId);
+        objTemplateAlbum.setParam('albumName', 'TemplateAlbum');
+        objTemplateAlbum.setParam('graphicId', btnObj.entryFlag);
+        objTemplateAlbum.setParam('inner', '0');
+        LMEPG.Intent.jump(objTemplateAlbum);
+    }
+
+    /**
+     * 跳转到其他自定义页面
+     */
+    function jumpOtherPage(btnObj) {
+        doOtherProcess(btnObj.entryFlag);
+    }
+
+    function onFocusChange(btn, hasFocus) {
+        if (hasFocus) {
+            onFocused(btn.id);
+        } else {
+            onUnfocused(btn.id);
+        }
+    }
+
+    /**
+     */
+    function onBeforeMoveChange(dir, current) {
+        // focus-{$X}-{$Y} e.g. focus-1-1
+        var btnId = current.id;
+        var nextAvailableBtn = undefined;
+
+        switch (dir) {
+            case 'left':
+                nextAvailableBtn = moveLeft(current);
+                break;
+            case 'right':
+                nextAvailableBtn = moveRight(current);
+                break;
+            case 'up':
+                nextAvailableBtn = moveUp(current);
+                break;
+            case 'down':
+                nextAvailableBtn = moveDown(current);
+                break;
+        }
+
+        if (nextAvailableBtn) {
+            LMEPG.ButtonManager.requestFocus(nextAvailableBtn.id);
+            return false;
+        } else {
+            console.error('No such a button defined when you continue moving key to [' + dir.toUpperCase() + '] ！');
+        }
+
+        return true;
+    }
+
+    /**
+     * 寻找下一个指定的button
+     * @params {}
+     */
+    function findNextButton(row, no) {
+        var targetBtnId = 'focus-' + row + '-' + no;
+        return LMEPG.ButtonManager.getButtonById(targetBtnId);
+    }
+
+    /**
+     * 获取格式为 focus-{$X}-{$Y} 按钮的 X,Y 值，以数组封装返回。  e.g. focus-1-1
+     */
+    function getCoordinate(currentBtn) {
+        var array = currentBtn.id.split('-');
+        var x = parseInt(array[1]);
+        var y = parseInt(array[2]);
+        return [x, y];
+    }
+
+    /**
+     * 按左键
+     */
+    function moveLeft(currentBtn) {
+        var coordinate = getCoordinate(currentBtn); // 按钮坐标
+        var x = coordinate[0];
+        var y = coordinate[1];
+        // if (!prevPage(currentBtn)) return
+        var nextAvailableBtn = findNextButton(x, y - 1); // 移动到左相邻
+        if (!nextAvailableBtn) {
+            //翻页处理
+            if (prevPage(currentBtn)) {
+                return nextAvailableBtn;
+            }
+            var buttons = getAdjacentButtonsUp(currentBtn); // 无左相邻按钮，则移动到上一栏目的最后一个。
+            if (buttons instanceof Array && buttons.length > 0) {
+                nextAvailableBtn = buttons[buttons.length - 1]; // 移动到相邻上一行的最后一个
+            }
+        }
+
+        return nextAvailableBtn;
+    }
+
+    /**
+     * 按右键
+     */
+    function moveRight(currentBtn) {
+        var coordinate = getCoordinate(currentBtn); // 按钮坐标
+        var x = coordinate[0];
+        var y = coordinate[1];
+
+        var nextAvailableBtn = findNextButton(x, y + 1); // 移动到右相邻
+        if (!nextAvailableBtn) {
+            //翻页处理
+            if (nextPage(currentBtn)) {
+                return nextAvailableBtn;
+            }
+            var buttons = getAdjacentButtonsDown(currentBtn); // 无右相邻按钮，则移动到下一栏目的第一个。
+            if (buttons instanceof Array && buttons.length > 0) {
+                nextAvailableBtn = buttons[0]; // 移动到相邻下一行的第一个
+            }
+        }
+
+        return nextAvailableBtn;
+    }
+
+    /**
+     * 上一页
+     */
+    function prevPage(currentBtn) {
+        if (currentBtn.id.startWith('focus-2')) {   //专辑翻页处理
+            return prevPageRender(2, r.albumPage, r.albumList);
+        } else if (currentBtn.id.startWith('focus-3')) {
+            return prevPageRender(3, r.activityPage, r.activityList);
+        } else if (currentBtn.id.startWith('focus-4')) {
+            return prevPageRender(4, r.imgTextPage, r.imgTextList);
+        } else if (currentBtn.id.startWith('focus-5')) {
+            return prevPageRender(5, r.otherPage, r.otherList);
+        }
+
+        return false;
+    }
+
+    /**
+     * 下一页
+     */
+    function nextPage(currentBtn) {
+        if (currentBtn.id.startWith('focus-2')) {  //专辑翻页处理
+            return nextPageRender(2, r.albumPage, r.albumList);
+        } else if (currentBtn.id.startWith('focus-3')) {
+            return nextPageRender(3, r.activityPage, r.activityList);
+        } else if (currentBtn.id.startWith('focus-4')) {
+            return nextPageRender(4, r.imgTextPage, r.imgTextList);
+        } else if (currentBtn.id.startWith('focus-5')) {
+            return nextPageRender(5, r.otherPage, r.otherList);
+        }
+        return false;
+    }
+
+    /**
+     * 渲染type模块的上一页
+     * @param {Number} type 入口类型
+     * @param {Number} currenPage 当前页
+     * @param {Object} data 当前类型列表
+     */
+    function prevPageRender(type, currenPage, data) {
+        if (currenPage > 0) {
+            updateCurrenPage(currenPage, -1, type)
+            currenPage--;
+            updateContentTable(type, r.modelBtnNumList[type - 1], data, currenPage);
+            r.focusIdName = 'focus-' + type + '-1';
+            LMEPG.ButtonManager.init(r.focusIdName, r.buttons, '', true);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 渲染type模块的下一页
+     * @param {Number} type 入口类型
+     * @param {Number} currenPage 当前页
+     * @param {Object} data 当前类型列表
+     */
+    function nextPageRender(type, currenPage, data) {
+        var ListLen = data.length;
+        if (r.modelBtnNumList[type - 1] * (currenPage + 1) < ListLen) {
+            updateCurrenPage(currenPage, 1, type);
+            currenPage++;
+            r.modelBtnNum = r.modelBtnNumList[type - 1];
+            var num = r.modelBtnNum * (currenPage + 1) < ListLen ? r.modelBtnNum : ListLen - r.modelBtnNum * currenPage;
+            updateContentTable(type, num, data, currenPage);
+            r.focusIdName = 'focus-' + type + '-1';
+            LMEPG.ButtonManager.init(r.focusIdName, r.buttons, '', true);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 更新当前页数
+     */
+    function updateCurrenPage(currenPage, num, type) {
+        if (type == 1) {
+            r.testServerPage = num > 0 ? ++currenPage : --currenPage;
+        } else if (type == 2) {
+            r.albumPage = num > 0 ? ++currenPage : --currenPage;
+        } else if (type == 3) {
+            r.activityPage = num > 0 ? ++currenPage : --currenPage;
+        } else if (type == 4) {
+            r.imgTextPage = num > 0 ? ++currenPage : --currenPage;
+        } else if (type == 5) {
+            r.otherPage = num > 0 ? ++currenPage : --currenPage;
+        }
+    }
+
+    function arrowDeal(type, currenPage, listLen) {
+        var num = r.modelBtnNumList[type - 1];
+        if (currenPage == 0) {
+            G('prev-' + type).style.visibility = 'hidden';
+        } else {
+            G('prev-' + type).style.visibility = 'visible';
+        }
+
+        if (num * (currenPage + 1) >= listLen) {
+            G('next-' + type).style.visibility = 'hidden';
+        } else {
+            G('next-' + type).style.visibility = 'visible';
+        }
+    }
+
+    /**
+     * 删除即将更新模块的按钮，包括LMEPG
+     */
+    function deleteButton(type) {
+        var i = 0;
+        for (i = 0; i < r.buttons.length; i++) {
+            if (r.buttons[i].id.startWith('focus-' + type)) {
+                delete LMEPG.ButtonManager._buttons[r.buttons[i].id];
+                r.buttons.splice(i, 1);
+                i--;
+            }
+        }
+    }
+
+    /**
+     * 翻页更新内容到table
+     */
+    function updateContentTable(type, num, data, pageNum) {
+        var count = 0; // 用于循环控制每行的个数
+        var tableId = 'table' + type; // 组成对应的div 的table id
+        var focusId = '';
+        var button = [];
+        deleteButton(type);
+        var contentStr = '<table><tr>'; // table,tr开始标签
+        for (var i = 0; i < num; i++) {
+            focusId = 'focus-' + type + '-' + (i + 1);
+            contentStr += '<td><div id="' + focusId + '" class="btn">' + data[num * pageNum + i].entry_name + '</div></td>';
+            // 每行显示4个，超出部分就换行
+            count += 1;
+            if (count % MAX_COLUMNS_1_ROW == 0) {
+                // 重新换到新的tr，所以要把上一个tr给结束掉
+                contentStr += '</tr><tr>';
+                count = 0;
+            }
+
+            var btn = {
+                id: focusId,
+                name: data[num * pageNum + i].entry_name,
+                entryFlag: data[num * pageNum + i].entry_flag,
+                type: 'div',
+                focusable: true,
+                click: onClick,
+                focusChange: onFocusChange,
+                beforeMoveChange: onBeforeMoveChange
+            };
+            button.push(btn);
+        }
+        UpdataButtons(button, type);
+        contentStr += '</tr></table>'; // table,tr结束标签
+        var tabId = G(tableId);
+        tabId.innerHTML = contentStr;
+        arrowDeal(type, pageNum, data.length);
+    }
+
+    //更新Buttons，本地全局和LMEPG的Buttons
+    function UpdataButtons(button, type) {
+        var i = 0;
+        var btnTmp = [];
+        for (i = 0; i < r.buttons.length; i++) {
+            if (r.buttons[i].id.startWith('focus-' + (type + 1))) {
+                btnTmp = r.buttons.slice(0, i);
+                break;
+            }
+        }
+        if (type == r.modelBtnNumList.length) {
+            btnTmp.push.apply(btnTmp, r.buttons);
+            btnTmp.push.apply(btnTmp, button);
+        } else {
+            btnTmp.push.apply(btnTmp, button);
+            btnTmp.push.apply(btnTmp, r.buttons.slice(i, r.buttons.length));
+        }
+        r.buttons.length = 0;
+        r.buttons = btnTmp;
+    }
+
+
+    /**
+     * 按上键
+     */
+    function moveUp(currentBtn) {
+        var coordinate = getCoordinate(currentBtn); // 按钮坐标
+        var x = coordinate[0];
+        var y = coordinate[1];
+
+        var nextAvailableBtn = undefined;
+        var currentSectionButtons = getCurrentSectionButtons(currentBtn);
+        if (currentSectionButtons instanceof Array && currentSectionButtons.length > 1) {
+            var nextBtnId = 'focus-' + x + '-' + (y - MAX_COLUMNS_1_ROW);
+            nextAvailableBtn = LMEPG.ButtonManager.getButtonById(nextBtnId);
+        }
+
+        if (!nextAvailableBtn) {
+            var buttons = getAdjacentButtonsUp(currentBtn); // 无上相邻按钮，则移动到上一栏目的最后一个。
+            if (buttons instanceof Array && buttons.length > 0) {
+                nextAvailableBtn = buttons[buttons.length - 1]; // 移动到相邻下一行的第一个
+            }
+        }
+
+        return nextAvailableBtn;
+    }
+
+    /**
+     * 按下键
+     */
+    function moveDown(currentBtn) {
+        var coordinate = getCoordinate(currentBtn); // 按钮坐标
+        var x = coordinate[0];
+        var y = coordinate[1];
+
+        var nextAvailableBtn = undefined;
+        var curSectionButtons = getCurrentSectionButtons(currentBtn); // 当前栏目区域内的所有按钮数组
+        if (curSectionButtons instanceof Array && curSectionButtons.length > 1) {
+            var nextBtnId = 'focus-' + x + '-' + (y + MAX_COLUMNS_1_ROW);
+            nextAvailableBtn = LMEPG.ButtonManager.getButtonById(nextBtnId);
+            // 如果下一行未找到同列的且当前不是最后一个，则默认跳到当前栏目最后一个
+
+            if (!nextAvailableBtn) {
+                var currentIndex = curSectionButtons.indexOf(currentBtn); // 当前按钮索引
+                var nextIndex = y + MAX_COLUMNS_1_ROW - 1; // 下一按钮索引
+                var currentDisplayRow = Math.ceil(y / MAX_COLUMNS_1_ROW); // 当前按钮显示在第几行
+                var nextDisplayRow = Math.ceil(nextIndex / MAX_COLUMNS_1_ROW); // 下一按钮显示在第几行
+                if (currentIndex !== curSectionButtons.length - 1 && nextIndex <= curSectionButtons.length && currentDisplayRow < nextDisplayRow) {
+                    nextAvailableBtn = curSectionButtons[curSectionButtons.length - 1];
+                }
+            }
+        }
+
+        if (!nextAvailableBtn) {
+            var buttons = getAdjacentButtonsDown(currentBtn); // 无下相邻按钮，则移动到下一栏目的第一个。
+            if (buttons instanceof Array && buttons.length > 0) {
+                nextAvailableBtn = buttons[0]; // 移动到相邻下一行的第一个
+            }
+        }
+        return nextAvailableBtn;
+    }
+
+    /**
+     * 把一个对象元素（这里是把buttons）转换为数组，方便后续操作
+     */
+    function convertArray(object) {
+        if (object instanceof Object) {
+            var array = [];
+            for (var i in object) {
+                array.push(object[i]);
+            }
+            return array;
+        }
+    }
+
+    /**
+     * 距当前Button相邻上一行
+     */
+    function getAdjacentButtonsUp(currentBtn) {
+        var allButtons = convertArray(LMEPG.ButtonManager.getButtons()); // 所有的按钮集合
+        var targetButtons = []; // 相邻上一行按钮
+        if (allButtons == null || !(allButtons instanceof Array) || allButtons.length == 0) {
+            return;
+        }
+
+        var coordinate = getCoordinate(currentBtn); // 按钮坐标
+        var x = coordinate[0]; // 栏目号：即 focus-x-y中的x
+        for (var i = x - 1; i >= 0; i--) {
+            for (var j = 0; j < allButtons.length; j++) {
+                var btn = allButtons[j];
+                if (btn && btn.id && btn.id.startWith('focus-' + i)) {
+                    targetButtons.push(btn);
+                }
+            }
+
+            // 找到匹配的，则跳出循环
+            if (targetButtons.length > 0) {
+                break;
+            }
+        }
+        return targetButtons;
+    }
+
+    /**
+     * 距当前Button相邻下一行
+     */
+    function getAdjacentButtonsDown(currentBtn) {
+        var allButtons = convertArray(LMEPG.ButtonManager.getButtons()); // 所有的按钮集合
+        var targetButtons = []; // 相邻上一行按钮
+        if (allButtons == null || !(allButtons instanceof Array) || allButtons.length == 0) {
+            return;
+        }
+
+        var coordinate = getCoordinate(currentBtn); // 按钮坐标
+        var x = coordinate[0]; // 栏目号：即 focus-x-y中的x
+        var i = x + 1;
+        do {
+            for (var j = 0; j < allButtons.length; j++) {
+                var btn = allButtons[j];
+                if (btn && btn.id && btn.id.startWith('focus-' + i)) {
+                    targetButtons.push(btn);
+                }
+            }
+
+            // 找到匹配的，则跳出循环
+            if (targetButtons.length > 0) {
+                break;
+            }
+            i++;
+        } while (i <= r.SectionTypes.length);
+        return targetButtons;
+    }
+
+    /**
+     * 当前Button所在栏目的所有按钮
+     */
+    function getCurrentSectionButtons(currentBtn) {
+        var allButtons = convertArray(LMEPG.ButtonManager.getButtons()); // 所有的按钮集合
+        var targetButtons = []; // 当前栏目所有按钮
+        if (allButtons == null || !(allButtons instanceof Array) || allButtons.length == 0) {
+            return;
+        }
+
+        var coordinate = getCoordinate(currentBtn); // 按钮坐标
+        var x = coordinate[0]; // 栏目号：即 focus-x-y中的x
+        for (var j = 0; j < allButtons.length; j++) {
+            var btn = allButtons[j];
+            if (btn && btn.id && btn.id.startWith('focus-' + x)) {
+                targetButtons.push(btn);
+            }
+        }
+        return targetButtons;
+    }
+
+    /**
+     * 跳转到其他自定义页面
+     */
+    function doOtherProcess(entryFlag) {
+        if (entryFlagIsNull(entryFlag)) return;
+
+        switch (entryFlag) {
+            case 'goAPKTest':// 跳转到APK测试服务器
+                navigateToNoBack("debugCallApkTest", "", "")
+                break;
+            case "routeMFBy220095":
+                navigateToNoBack("testServer", "10220095", "")
+                break;
+            case 'goyjsh':
+                navigateToNoBack("testServer", "13000051", "")
+                break;
+            case 'goJiLinGDMFTest'://吉林广电魔方首页
+                navigateToNoBack("testServer", "10220094", "")
+                break;
+            case 'goWizardTestNew'://魔方首页
+                navigateToNoBack("testServer", "10000051", "")
+                break;
+            case 'goLDLengendEPG'://乐动传奇EPG-首页
+                navigateToNoBack("testServer", "11000051", "")
+                break;
+            case 'goQingHaiTest'://青海电信EPG测试服首页
+                navigateToNoBack("testServer", "630092", "")
+                break;
+            case 'goJiLinGDDXTest': //吉林广电电信EPG测试服首页
+                navigateToNoBack("testServer", "220095", "")
+                break;
+            case 'goShanXiTest': //去陕西电信EPG测试服首页
+                navigateToNoBack("testServer", "610092", "")
+                break;
+            case 'goGuangXiTest': //去广西电信EPG测试服首页
+                navigateToNoBack("testServer", "450092", "")
+                break;
+            case 'goHeNanTest'://河南电信EPG测试服首页
+                navigateToNoBack("testServer", "410092", "")
+                break;
+            case 'goHuBeiTest'://去湖北电信EPG测试服首页
+                navigateToNoBack("testServer", "420092", "")
+                break;
+            case 'goNingXiaTest':
+                navigateToNoBack("testServer", "640092", "")
+                break;
+            case 'goGuiZhouDXTest':
+                navigateToNoBack("testServer", "520092", "")
+                break;
+            case 'goNINGXIAGDTest':
+                navigateToNoBack("testServer", "640094", "")
+                break;
+            case 'goMoFangTest':
+                navigateToNoBack("testServer", "10000051", "")
+                break;
+            case 'goXINJIANGDX_HOTLINE_Test':
+                navigateToNoBack("testServer", "651092", "1")
+                break;
+            case 'goXINJIANGDX_HOTLINE_Release':
+                navigateToNoBack("testServer", "651092", "2")
+                break;
+            case 'goXINJIANGDXTest':
+                navigateToNoBack("testServer", "650092", "")
+                break;
+            case 'goXINJIANGDX_TTJS_Release':
+                navigateToNoBack("testServer", "12650092", "")
+                break;
+            case 'goGuangXiTest':
+                navigateToNoBack("testServer", "450094", "")
+                break;
+            case 'goFunPlayByCUTest':
+                //趣玩游戏平台-中国联通
+                navigateToNoBack("testServer", "04000051", "")
+                break;
+            case 'goJ2meTest':
+                navigateToNoBack("goJ2meTest", "", "")
+                break;
+            case 'goVerifyVip':
+                goVerifyVipPage()
+                break;
+            case 'goBuyVip':
+                LMEPG.UI.showToast("去计费页面");
+                navigateToCanBack("orderHome")
+                break;
+            case 'goCUCCMofangTest':
+                navigateToByHref("goCUCCMofangTest");
+                break;
+            case 'goTestNingxiaMofang':
+                navigateToByHref("goTestNingxiaMofang");
+                break;
+            case 'goCUCCMofangFormal':
+                navigateToByHref("goCUCCMofangFormal");
+                break;
+            case 'goServiceHotline':
+                navigateToByHref("goServiceHotline");
+                break;
+            case 'goPppointment':
+                navigateToCanBack("xinjiang-reservation")
+                break;
+            case 'goPayOnline':
+                navigateToCanBack("xinjiang-payOnline")
+                break;
+            case 'goTestNucleatOrder':
+                navigateToCanBack("testNucleatOrder")
+                break;
+            case 'goTestFamiryEdit':
+                navigateToCanBack("familyEdit")
+                break;
+            case 'goTestTestIndex':
+                navigateToCanBack("testIndex")
+                break;
+            case 'goExtrapolationHomeRecomm':
+                navigateToByHref("goExtrapolationHomeRecomm");
+                break;
+            case 'goBootActivities':
+                navigateToByHref("goBootActivities");
+                break;
+            case 'goPlayer':
+                navigateToByHref("goPlayer");
+                break;
+            case 'goCustomizeHome':
+                navigateToByHref("goCustomizeHome");
+                break;
+            case 'goGuiZhouHome':
+                navigateToByHref("goGuiZhouHome");
+                break;
+            case 'goGameTest':
+                navigateToByHref("goGameTest");
+                break;
+            case 'goExpertIndex':
+                var jumpObj = LMEPG.Intent.createIntent("expertHome");
+                jumpObj.setParam("channel", "1");
+                LMEPG.Intent.jump(jumpObj, getCurrentPage());
+                break;
+            case 'goDoctorIndex':
+                window.location.href = 'http://202.99.114.152:30278/index.php?lmuf=1000&lmsid=eyJqdW1wX3R5cGUiOjEsIm1vZHVsZV90eXBlIjoxMDB9&lmsl=hd-1&lmcid=10000051&lmp=302&lmacid=211&UserID='+LMEPG.STBUtil.getUserId()+'&LoginID='+LMEPG.STBUtil.getUserId()+'&carrierId=211&tvPlatForm=&type=11&feeAccountCode='+LMEPG.STBUtil.getUserId()+'&UserToken=0E14F93533623340DC37C3BCDB7C3232&HomeUrl=http%3A%2F%2F202.99.114.27%3A35811%2Fepg_uc%2Fviews%2Fhome%2Fhome.html%3FjumpBack%3DMjA3NC8xNS8wLy9udWxs&ReturnUrl=http%3A%2F%2F202.99.114.27%3A35811%2Fepg_uc%2Fviews%2Fhome%2Fhome.html%3FjumpBack%3DMjA3NC8xNS8wLy9udWxs&resolution=hd';
+                break;
+            case 'goslh':
+                window.location.href = 'http://202.99.114.152:30214/index.php?lmuf=0&lmsl=hd&lmcid=000051&lmsid=0&lmp=0&UserID='+LMEPG.STBUtil.getUserId()+'&LoginID='+LMEPG.STBUtil.getUserId()+'&carrierId=201&tvPlatForm=http://218.24.20.203:8080/iptvepg/function/index.jsp&type=11&feeAccountCode=zte107&UserToken=0E1B96F4676933502E36FA894A7C3037&HomeUrl=http%3A%2F%2F202.99.114.63%3A30721%2Fact%2FactCollection%2Fviews%2FACT202205161459584948_209_qrCode.html%3FuserId%3Dzte107%26carrierId%3D209%26isFromDSM%3Dnull%26position%3D0%2C0%26returnUrl%3Dhttp%253A%252F%252F218.24.20.203%253A8080%252Fiptvepg%252Fframe1004%252Ftj_portal_pinterest.jsp&ReturnUrl=http%3A%2F%2F202.99.114.63%3A30721%2Fact%2FactCollection%2Fviews%2FACT202205161459584948_209_qrCode.html%3FuserId%3Dzte107%26carrierId%3D209%26isFromDSM%3Dnull%26position%3D0%2C0%26returnUrl%3Dhttp%253A%252F%252F218.24.20.203%253A8080%252Fiptvepg%252Fframe1004%252Ftj_portal_pinterest.jsp&resolution=hd';
+                break;
+            case 'pdk':
+                var appDownloadUrl = 'http://223.221.36.146:10002/fs/imgs/4630092/game/20220517/MRONE_PDK-release.apk';
+                STBAppManager.installApp(appDownloadUrl);
+                break;
+            case 'qhmj':
+                var appDownloadUrl = 'http://223.221.36.146:10002/fs/imgs/4630092/game/20220531/MRONE-release.apk';
+                STBAppManager.installApp(appDownloadUrl);
+                break;
+            case 'hzmj':
+                var appDownloadUrl = 'http://223.221.36.146:10002/fs/imgs/4630092/game/20220517/MRONE_HZMJ-release.apk';
+                STBAppManager.installApp(appDownloadUrl);
+                break;
+            case 'zzmj':
+                var appDownloadUrl = 'http://223.221.36.146:10002/fs/imgs/4630092/game/20220517/MRONE_ZZMJ-release.apk';
+                STBAppManager.installApp(appDownloadUrl);
+                break;
+            case 'yxft':
+                try {
+                    var appDownloadUrl = 'http://223.221.36.146:10002/fs/imgs/4630092/game/20220517/app-debug.apk';
+                    LMEPG.Log.error("STBAppManager appDownloadUrl:" +appDownloadUrl)
+                    LMEPG.Log.error("STBAppManager typeof:" + typeof STBAppManager)
+                    STBAppManager.installApp(appDownloadUrl);
+
+                }catch (e) {
+                    LMEPG.Log.error("STBAppManager appDownloadUrl:" +e.toString());
+                }
+                break;
+            default:
+                var target = LMEPG.Intent.createIntent("customizeModule");
+                target.setParam("moduleId", entryFlag);
+                LMEPG.Intent.jump(target, getCurrentPage());
+                break
+        }
+
+    }
+
+    /**
+     * 判断入口标志是否为空
+     */
+    function entryFlagIsNull(entryFlag) {
+        if (entryFlag == null) {
+            LMEPG.UI.showToast('操作无效！entry_flag为空', 3);
+            return true;
+        }
+        return false
+    }
+
+    /**
+     * 跳转页面，不可以返回
+     */
+    function navigateToNoBack(intentName, carrierId, isTest) {
+        var objTestServer = LMEPG.Intent.createIntent(intentName);
+        objTestServer.setParam('userId', r.userId);
+        objTestServer.setParam('carrierId', carrierId);
+        objTestServer.setParam('isTest', isTest);
+        LMEPG.Intent.jump(objTestServer);
+    }
+
+    /**
+     * 跳转页面，可以返回启动APK测试页
+     */
+    function navigateToCanBack(intentName) {
+        var objHomeTab = LMEPG.Intent.createIntent(intentName);
+        objHomeTab.setParam('userId', RenderParam.userId);
+        LMEPG.Intent.jump(objHomeTab, getCurrentPage());
+    }
+
+    /**
+     * 通过href打开新页面
+     */
+    function navigateToByHref(hrefName) {
+        window.location.href = getLinkByHrefBame(hrefName)
+    }
+
+    /**
+     * 通过要跳转的的目标页面名称获取页面跳转链接
+     */
+    function getLinkByHrefBame(hrefName) {
+        return {
+            "goCUCCMofangTest": "http://222.85.144.70:40050/index.php?lmuf=0&lmsl=hd&lmcid=01000051&lmsid=JointActivityWordsPuzzle20190124&lmp=52&UserID=cutv518112276576_211&LoginID=vern&tvPlatForm=&carrierId=211&type=11&resolution=hd&feeAccoutCode=vern&UserToken=0E344A67656332ED4F708ED9D7C3230&StbVendor=HUWEI&BuyWebUrl=&BuyService=&RechargeUrl=&PlatformExt=&HomeUrl=http%3A%2F%2F202.99.114.62%3A35807%2Fepg_uc%2Freturn.action%3FreturnUrl%3DaHR0cDovLzIwMi45OS4xMTQuNjI6MzU4MDcvZXBnX3VjL3Nob3BwaW5nLmFjdGlvbj9yZXR1cm5Vcmw9JTJGZXBnX3VjJTJGcmVjb21tZW5kcy5hY3Rpb24mY3VycmVudFBvc3Rpb249MywxJlVzZXJJRD12ZXJu&ReturnUrl=http%3A%2F%2F202.99.114.62%3A35807%2Fepg_uc%2Freturn.action%3FreturnUrl%3DaHR0cDovLzIwMi45OS4xMTQuNjI6MzU4MDcvZXBnX3VjL3Nob3BwaW5nLmFjdGlvbj9yZXR1cm5Vcmw9JTJGZXBnX3VjJTJGcmVjb21tZW5kcy5hY3Rpb24mY3VycmVudFBvc3Rpb249MywxJlVzZXJJRD12ZXJu",
+            "goTestNingxiaMofang": "http://124.224.242.242:10404/index.php?lmuf=0&lmsl=hd-1&lmcid=10640092&lmsid=0&lmp=1&INFO=%3CuserId%3E104epg%7Blkrxww%3C%2FuserId%3E%3CuserToken%3E02127214624424.74%3A%2F42833%2F6727426%3C%2FuserToken%3E%3CTokenExpiretime%3E20170825090302%3C%2FTokenExpiretime%3E%3CGroupId%3E327%3C%2FGroupId%3E%3CuserIP%3E61.155.239.205%3C%2FuserIP%3E%3CareaCode%3E0002%3C%2FareaCode%3E%3CTradeId%3E1%3C%2FTradeId%3E%3Ckey%3E5%3A2%3C%2Fkey%3E%3CstbId%3EED100499007034400000D071C4224F98%3C%2FstbId%3E%3CVAStoEPG%3Ehttp%3A%2F%2F58.223.228.196%3A8080%2Fiptvepg%2Fframe205%2Fthird_to_epg.jsp%3C%2FVAStoEPG%3E%3Cback_epg_url%3Ehttp%3A%2F%2F58.223.228.196%3A8080%2Fiptvepg%2Fframe205%2Fback.jsp%3C%2Fback_epg_url%3E%3Cback_hall_url%3Ehttp%3A%2F%2F58.223.228.196%3A8080%2Fiptvepg%2Fframe205%2Fthird_to_epg.jsp%3C%2Fback_hall_url%3E%3CadContentId%3E%3C%2FadContentId%3E%3CadContentName%3E%3C%2FadContentName%3E%3Ccdrtype%3E%3C%2Fcdrtype%3E%3CrecSourceId%3E%3C%2FrecSourceId%3E",
+            "goCUCCMofangFormal": "http://120.70.237.86:10001/index.php/Home/DoctorP2P/serviceHotlineV14/" + "?userId=" + RenderParam.userId + "&hospitalId=TN5281&s_demo_id=superDemo",
+            "goExtrapolationHomeRecomm": "http://116.210.254.194:10080/webapp_v2/yxhd/home_page.html?Reserve3=5",
+            "goBootActivities": "http://116.210.254.194:10080/webapp_v2/yxhd/home_page.html?Reserve3=4",
+            "goPlayer": "http://10.255.128.15:8080/iptvepg/frame1121/dcitvzzyw/langma/lmepg/player/index.html?videoInfo=00231001000000011000983367332656",
+            "goCustomizeHome":"http://10.255.12.54:10002/langma/home/index.html?epg_info=%3Cserver_ip%3Ehttp%3A%2F%2F10.255.128.15%3A8080%3C%2Fserver_ip%3E%3Cgroup_name%3E1071%3C%2Fgroup_name%3E%3Cgroup_path%3Ehttp%3A%2F%2F10.255.128.15%3A8080%2Fiptvepg%2Ffunction%2Findex.jsp%3Floadbalanced%3D0%3C%2Fgroup_path%3E%3Coss_user_id%3E085105538168%40itv1%3C%2Foss_user_id%3E%3Cpage_url%3Ehttp%253A%252F%252F10.255.128.15%253A8080%252Fiptvepg%252Fframe1121%252Fduocaiguizhou%252FBSLauncher%252FprePortal.html%253Fisdx%253D0%2526flag%253D1%2526messageFlag%253D1%2526columnIndex%253D2%2526modelIndex%253D0%2526index%253D0%2526currIndex%253D3%2526topNum%253D0%2526userId%253D085105538168%2540itv1%2526titalIndex%253D0%2526nowScrollIndex%253D0%2526navIndex%253D3%2526backUrl%253Dundefined%3C%2Fpage_url%3E%3Cpartner%3EHW2X%3C%2Fpartner%3E%3CstbId%3E0010059900E068000219D458004AF2D4%3C%2FstbId%3E%3CstbType%3EHG680-KA%3C%2FstbType%3E%3CuserToken%3E915f11b0357448fda2e0334c36dcd9a6%3C%2FuserToken%3E%3CareaCode%3E085100%3C%2FareaCode%3E%3CTokenExpiretime%3E%3C%2FTokenExpiretime%3E%3Creturn_url%3Ehttp%253A%252F%252F10.255.128.15%253A8080%252Fiptvepg%252Fframe1121%252Fduocaiguizhou%252FBSLauncher%252FprePortal.html%253Fisdx%253D0%2526flag%253D1%2526messageFlag%253D1%2526columnIndex%253D2%2526modelIndex%253D0%2526index%253D0%2526currIndex%253D3%2526topNum%253D0%2526userId%253D085105538168%2540itv1%2526titalIndex%253D0%2526nowScrollIndex%253D0%2526navIndex%253D3%2526backUrl%253Dundefined%3C%2Freturn_url%3E",
+            "goGuiZhouHome":"http://202.99.114.152:30214/lmepg/home/index.html?epg_info=%3Cserver_ip%3Ehttp%3A%2F%2F10.255.128.15%3A8080%3C%2Fserver_ip%3E%3Cgroup_name%3E1071%3C%2Fgroup_name%3E%3Cgroup_path%3Ehttp%3A%2F%2F10.255.128.15%3A8080%2Fiptvepg%2Ffunction%2Findex.jsp%3Floadbalanced%3D0%3C%2Fgroup_path%3E%3Coss_user_id%3E085105538168%40itv1%3C%2Foss_user_id%3E%3Cpage_url%3Ehttp%253A%252F%252F10.255.128.15%253A8080%252Fiptvepg%252Fframe1121%252Fduocaiguizhou%252FBSLauncher%252FprePortal.html%253Fisdx%253D0%2526flag%253D1%2526messageFlag%253D1%2526columnIndex%253D2%2526modelIndex%253D0%2526index%253D0%2526currIndex%253D3%2526topNum%253D0%2526userId%253D085105538168%2540itv1%2526titalIndex%253D0%2526nowScrollIndex%253D0%2526navIndex%253D3%2526backUrl%253Dundefined%3C%2Fpage_url%3E%3Cpartner%3EHW2X%3C%2Fpartner%3E%3CstbId%3E0010059900E068000219D458004AF2D4%3C%2FstbId%3E%3CstbType%3EHG680-KA%3C%2FstbType%3E%3CuserToken%3E915f11b0357448fda2e0334c36dcd9a6%3C%2FuserToken%3E%3CareaCode%3E085100%3C%2FareaCode%3E%3CTokenExpiretime%3E%3C%2FTokenExpiretime%3E%3Creturn_url%3Ehttp%253A%252F%252F10.255.128.15%253A8080%252Fiptvepg%252Fframe1121%252Fduocaiguizhou%252FBSLauncher%252FprePortal.html%253Fisdx%253D0%2526flag%253D1%2526messageFlag%253D1%2526columnIndex%253D2%2526modelIndex%253D0%2526index%253D0%2526currIndex%253D3%2526topNum%253D0%2526userId%253D085105538168%2540itv1%2526titalIndex%253D0%2526nowScrollIndex%253D0%2526navIndex%253D3%2526backUrl%253Dundefined%3C%2Freturn_url%3E",
+            "goGameTest":"http://223.221.36.146:10010/index.php?lmuf=0&lmsid=ActivityLecture20190718&lmsl=hd-1&lmcid=04630092&lmp=37&userId="+LMEPG.STBUtil.getUserId()+"&backUrl=http%3A%2F%2F125.72.241.133%3A8080%2Fiptvepg%2Fframe65%2FuiChief.jsp",
+        }[hrefName]
+    }
+
+    /**
+     * 去鉴权页面
+     */
+    function goVerifyVipPage() {
+        LMEPG.UI.showToast("去鉴权");
+        LMEPG.ajax.postAPI("User/loadUserInfoHaiNan", {}, function (data) {
+        });
+    }
+
+    function onFocused(id) {
+        r.focusIdName = id;
+        var button = G(id);
+        if (button) {
+            button.style.backgroundColor = '#AB82FF';
+        }
+    }
+
+    function onUnfocused(id) {
+        var button = G(id);
+        if (button) {
+            button.style.backgroundColor = 'black';
+        }
+    }
+
+
+    /**
+     * 跳转到盒子信息测试页
+     */
+    function jumpTestPage() {
+        var objCurrent = getCurrentPage();
+
+        var objHomeTab = LMEPG.Intent.createIntent('deviceInformation');
+        objHomeTab.setParam('userId', r.userId);
+
+        LMEPG.Intent.jump(objHomeTab, objCurrent);
+    }
+
+    function getCurrentPage() {
+        var objCurrent = LMEPG.Intent.createIntent('testEntrySet');
+
+        objCurrent.setParam('userId', '{$userId}');
+        objCurrent.setParam('inner', '{$inner}');
+        return objCurrent;
+    }
+
+
+    LMEPG.KeyEventManager.addKeyEvent(
+        {
+            KEY_3: 'jumpTestPage()',
+            KEY_5: 'jumpToPay()',
+//            KEY_9: 'showPay()'
+            KEY_2: 'goJsPay()',
+            KEY_1: 'goDebugTest()'
+        });
+
+    ///////////////////////////////////////
+    function goJsPay() {
+        var payUrl = "http://202.99.114.14:35820/ACS/vas/serviceorder?SPID=96596&UserID=cutv201711272010204&UserToken=0EA886736E7232BB317147A65B7C3730&ServiceID=&ContentID=sjjklinux&ProductID=sjjkby25linux@201&Action=1&OrderMode=1&ContinueType=1&Lang=zh&ReturnURL=http%3A%2F%2F222.85.144.70%3A40020%2Findex.php%2FHome%2FPay%2FpayCallback%2F%3FuserId%3D100489%26tradeNo%3D201909201053374910156355316%26lmreason%3D2%26lmcid%3D000051%26returnPageName%3D%26isPlaying%3D0%26videoInfo%3D";
+        LMEPG.PayFrame.goLMPay(payUrl);
+    }
+
+    /////////////////////////////////////////////////////
+    function showPay() {
+        var buttons = [];
+        LMEPG.ButtonManager.init("", buttons, "", true);
+//        lmInitGo();
+        buildFrame();
+        var payUrl = "http://202.99.114.14:35820/ACS/vas/serviceorder?SPID=96596&UserID=cutv201711272010204&UserToken=0EA886736E7232BB317147A65B7C3730&ServiceID=&ContentID=sjjklinux&ProductID=sjjkby25linux@201&Action=1&OrderMode=1&ContinueType=1&Lang=zh&ReturnURL=http%3A%2F%2F222.85.144.70%3A40020%2Findex.php%2FHome%2FPay%2FpayCallback%2F%3FuserId%3D100489%26tradeNo%3D201909201053374910156355316%26lmreason%3D2%26lmcid%3D000051%26returnPageName%3D%26isPlaying%3D0%26videoInfo%3D";
+        document.getElementById("ifr").setAttribute("src", payUrl);
+        document.getElementById("ifr").onload = function () {
+            document.getElementById("ifr").style.height = "400px";
+            document.getElementById("ifr").style.width = "800px";
+            setTimeout(function () {
+                document.getElementById('ifr').focus();
+                LMEPG.ButtonManager.setKeyEventPause(true);
+            }, 100);
+        };
+    }
+
+    function buildFrame() {
+        item = document.createElement("iframe");
+        item.name = "ifr";
+        item.id = "ifr";
+        //设置iframe的样式
+        item.style.overflow = "hidden";
+        item.style.border = "none";
+        item.style.zIndex = "9";
+        item.style.position = "fixed";
+        item.style.top = "0px";
+        item.style.left = "0px";
+        item.height = "400px";
+        item.width = "800px";
+        item.scrolling = "no";
+        item.frameborder = "0";
+
+        document.body.appendChild(item);
+    }
+
+    function releaseFrame() {
+        LMEPG.Log.info("releaseFrame!!!!!!!!!!!!!");
+        try {
+            var item = document.getElementById('ifr');
+            item.blur();
+            document.body.removeChild(item); // 移除标签
+            LMEPG.BM.requestFocus(r.focusIdName);
+        } catch (e) {
+            LMEPG.Log.info("异常：" + e.toString());
+        }
+        LMEPG.ButtonManager.setKeyEventPause(false);
+    }
+
+    ///////////////////////////////////////////////////////////////////
+    function jumpToPay() {
+        var objCurrent = getCurrentPage();
+        var objHomeTab = LMEPG.Intent.createIntent('jumpToPay');
+        LMEPG.Intent.jump(objHomeTab, objCurrent);
+    }
+
+    function jumpCommunityHospitalPage() {
+        var objCurrent = getCurrentPage();
+        var objHomeTab = LMEPG.Intent.createIntent('community-index');
+        LMEPG.Intent.jump(objHomeTab, objCurrent);
+    }
+
+    function jumpCommunityHospitalPageMiDong() {
+        var objCurrent = getCurrentPage();
+        var objHomeTab = LMEPG.Intent.createIntent('community-index');
+//        obj.setParam("userId", RenderParam.userId);
+        objHomeTab.setParam("areaName", 'midong');
+        objHomeTab.setParam("inner", 0);
+        LMEPG.Intent.jump(objHomeTab, objCurrent);
+    }
+
+    LMEPG.KeyEventManager.addKeyEvent({
+        KEY_7: jumpCommunityHospitalPage,
+        KEY_9: jumpCommunityHospitalPageMiDong,
+    });
+
+    // todo 测试跳转专用
+    LMUtils.listenKey(6, [KEY_6, KEY_1, KEY_1, KEY_6], function () {
+        location.href = "http://10.254.30.100:40053";
+        location.href = 'http://10.254.30.100:40053'
+    });
+
+    /**
+     * 实现当前debug页面跳转到服务器端的测试
+     */
+    function goDebugTest() {
+        var objCurrent = getCurrentPage();
+        var objHomeTab = LMEPG.Intent.createIntent('serverResponseTest');
+        objHomeTab.setParam('userId', r.userId);
+        LMEPG.Intent.jump(objHomeTab, objCurrent);
+    }
+
+</script>
+</body>
+</html>

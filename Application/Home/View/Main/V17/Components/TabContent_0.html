@@ -1,0 +1,329 @@
+<div id="first-content-row">
+    <img id="video-TV" src="__ROOT__/Public/img/Common/spacer.gif">
+    <!-- 宁夏广电不需要药iframe标签 -->
+    <div class="small_screen_player"></div>
+
+    <img id="small-video-bg" src="__ROOT__/Public/img/hd/Home/V13/Home/smp_bg.png">
+    <img id="free-area"/>
+    <div id="link-1-wrapper">
+        <img id="icon-modify1" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_hot.png">
+        <img id="link-1">
+    </div>
+    <!--轮播组件-->
+    <div id="carousel-wrapper">
+        <div id="link-2"></div>
+        <img id="link-2-1" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+        <img id="link-2-0">
+        <img id="icon-modify2" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_new.png">
+        <div id="point-wrapper"></div>
+    </div>
+    <div id="keep-watch-wrapper">
+        <div id="keep-watch-title">
+            <marquee id="lately-video-title">您还没有点播过视频哦！</marquee>
+        </div>
+        <img id="keep-watch" src="__ROOT__/Public/img/Common/spacer.gif">
+    </div>
+    <div id="link-3-wrapper">
+        <img id="link-3">
+    </div>
+</div>
+<div id="second-content-row">
+    <div><img id="b-link-0"></div>
+    <div><img id="b-link-1"></div>
+    <div><img id="b-link-2"></div>
+    <div><img id="b-link-3"></div>
+    <div><img id="b-link-4"></div>
+</div>
+<div id="tab0-help" class="tab-help-wrap">
+    <img id="tab0-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab0_help0.png">
+    <img id="tab0-help1" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab0_help1.png">
+    <img id="tab0-help2" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab0_help2.png">
+    <img id="tab0-help3" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab0_help3.png">
+</div>
+<script type="text/javascript">
+    var Tab0 = {
+        init: function () {
+            this.createBtns();
+        },
+        /**
+         * 当前页面元素获得失去焦点
+         * 修饰图标“热门”，“最新”跟随寄生元素得失焦点变化
+         * 轮播获得焦点与通用元素变化一致
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusIn: function (btn, hasFocus) {
+            var me = Tab0;
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+            me.modifyOnFocus(btn.id, hasFocus);
+            me.link2OnFocus(btn, hasFocus, btnElement);
+        },
+        /**
+         * 轮播推荐位得失焦点处理
+         * 轮询切换
+         * @param btn
+         * @param hasFocus
+         */
+        link2OnFocus: function (btn, hasFocus) {
+            if (btn.id != 'link-2') {
+                return;
+            }
+            var carousel_0 = G(btn.id + '-0');
+            var carousel_1 = G(btn.id + '-1');
+            if (hasFocus) {
+                carousel_0.setAttribute('class', 'focus');
+                carousel_1.setAttribute('class', 'focus');
+            } else {
+                carousel_0.removeAttribute('class');
+                carousel_1.removeAttribute('class');
+            }
+        },
+        /**
+         * 修饰图标得失焦点
+         * @param id
+         * @param hasFocus
+         */
+        modifyOnFocus: function (id, hasFocus) {
+            if (id != 'link-1' && id != 'link-2') {
+                return;
+            }
+            var prevModifyElementId = 'icon-modify' + (id == 'link-1' ? 1 : 2);
+            if (hasFocus) {
+                G(prevModifyElementId).setAttribute('class', 'focus');
+            } else {
+                G(prevModifyElementId).removeAttribute('class');
+            }
+        },
+        /*=====处理轮播对象封装=====*/
+        data: [], // 配置推荐位轮播数据
+        Carousel: {
+            reverseStatus: false,
+            init: function () {
+                var data = Tab0.data;
+                if (data.length < 2) {
+                    H('point-wrapper');
+                    return;
+                }
+                this.data = data;
+                this.img1 = G('link-2-0');
+                this.img2 = G('link-2-1');
+                this.timer = setInterval(this.update, 4333);
+            },
+
+            /*更新轮播图片*/
+            update: function () {
+                var me = Tab0.Carousel;
+                var data = me.data;
+
+                me.prevRender(me, data);
+                me.switchDot();
+                me.appendDataAfter(me, data);
+                me.shuffle(data[0].id);
+            },
+
+            /*追加数据结构（引用循环）*/
+            appendDataAfter: function (me, data) {
+                data.push(data.shift());
+            },
+
+            /*渲染图片UI*/
+            prevRender: function (me) {
+                var runTag = me.getTag();
+
+                LMEPG.Func.fade(runTag.hideTag, 1, 50, function () {
+                    runTag.hideTag.src = me.data[1].src;
+                    curTab0CarouselId = me.data[0].id;
+                });
+                LMEPG.Func.fade(runTag.showTag, 0, 50, 0);
+
+            },
+
+            /*添加动态小圆点*/
+            points: function () {
+                var htm = '';
+                var len = Tab0.data.length;
+
+                while (len--) {
+                    var className = len === 0 ? 'focus' : '';
+                    htm = '<img src="__ROOT__/Public/img/hd/Common/transparent.png" id="point-' + len + '" class="' + className + '">' + htm;
+                }
+
+                G('point-wrapper').innerHTML = htm;
+            },
+
+            /*获得切换过程中对应dom元素*/
+            getTag: function () {
+                this.reverseStatus = !this.reverseStatus;
+                return this.reverseStatus ? {hideTag: this.img1, showTag: this.img2} : {hideTag: this.img2, showTag: this.img1};
+            },
+
+            /*重组轮播数据*/
+            shuffle: function (id) {
+                var me = this;
+                me.data.sort(function (a, b) {
+                    var sum = a.id - b.id;
+                    if (id == me.data.length - 1) {
+                        return -sum;
+                    } else if (id == 0) {
+                        return sum;
+                    }
+                });
+            },
+
+            /*切换轮播小圆点提示*/
+            switchDot: function () {
+                G('point-' + this.data[0].id).removeAttribute('class');
+                G('point-' + this.data[1].id).setAttribute('class', 'focus');
+            }
+        },
+
+        bottomBtnOnfocus: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.className = 'focus';
+            } else {
+                btnElement.className = '';
+            }
+        },
+
+        createBtns: function () {
+            buttons.push({
+                id: 'video-TV',
+                name: '小窗视频',
+                type: 'img',
+                nextFocusRight: 'link-1',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'free-area',
+                backgroundImage: g_appRootPath+'/Public/img/Common/spacer.gif',
+                focusImage: g_appRootPath+'/Public/img/hd/Home/V13/Home/video_f.png',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 12
+            }, {
+                id: 'free-area',
+                name: '免费专区',
+                type: 'img',
+                nextFocusRight: 'link-1',
+                nextFocusUp: 'video-TV',
+                nextFocusDown: 'b-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 11
+            }, {
+                id: 'link-1',
+                name: '推荐位1',
+                type: 'img',
+                nextFocusLeft: 'video-TV',
+                nextFocusRight: 'link-2',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'b-link-2',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 13
+            }, {
+                id: 'link-2',
+                name: '推荐为2（由轮播映射）',
+                type: 'others',
+                nextFocusLeft: 'link-1',
+                nextFocusRight: 'keep-watch',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'b-link-3',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 14
+            }, {
+                id: 'keep-watch',
+                name: '继续观看',
+                type: 'img',
+                nextFocusLeft: 'link-2',
+                nextFocusRight: '',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'link-3',
+                backgroundImage: g_appRootPath + '/Public/img/Common/spacer.gif',
+                focusImage: RenderParam.platformType == 'sd'
+                    ?g_appRootPath + '/Public/img/sd/Unclassified/V13/keep_watch_f.png'
+                    : g_appRootPath + '/Public/img/hd/Home/V13/Home/keep_watch_f.png',
+                click: PageJump.jumpContinuePlay,
+                focusChange: this.onFocusIn,
+                cNavId: 2
+            }, {
+                id: 'link-3',
+                name: '推荐位3',
+                type: 'img',
+                nextFocusLeft: 'link-2',
+                nextFocusUp: 'keep-watch',
+                nextFocusDown: 'b-link-4',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 15
+            }, {
+                id: 'b-link-0',
+                name: '第一个功能区',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'b-link-1',
+                nextFocusUp: 'free-area',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-1',
+                name: '第二个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-0',
+                nextFocusRight: 'b-link-2',
+                nextFocusUp: 'free-area',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-2',
+                name: '第三个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-1',
+                nextFocusRight: 'b-link-3',
+                nextFocusUp: 'link-1',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-3',
+                name: '第四个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-2',
+                nextFocusRight: 'b-link-4',
+                nextFocusUp: 'link-2',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-4',
+                name: '第五个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-3',
+                nextFocusRight: '',
+                nextFocusUp: 'link-3',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            });
+        }
+    };
+    Tab0.init();
+</script>

@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>扫码</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}">
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityConsultation/V1/SuccessfulAppointment.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+</head>
+<body style=" background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/bg.png')">
+<img id="back_btn" class="btn"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png"/>
+<div class="title">预约成功</div>
+<div id="title" class="introduce">你已预约2017-12-17日周四 11:00-12:00的专家远程门诊。请<br/>提前20分钟在我的家-专家门诊中进入诊疗室等待。</div>
+<div class="common_bg">
+    <table class="table">
+        <tr>
+            <td><span id="doctor">杨高云</span>|<span id="job">主任医生</span></td>
+            <td>患者姓名：<span id="name">杨高云</span></td>
+            <td rowspan="7" style="vertical-align: top; text-align: center"><img id="code"
+                                                                                 src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/photo_img.png"/><br/>
+                <div class="code_intro">为了让专家更了解您的情况<br/>请将相关材料通过扫码上传</div>
+            </td>
+        </tr>
+        <tr>
+            <td>医院：<span id="hospital">北京路人民医院三十二号</span></td>
+            <td>联系方式：<span id="telephone">1387755663</span></td>
+        </tr>
+        <tr>
+            <td>科室：<span id="subjiect">皮肤科</span></td>
+            <td>订单状态：<span id="book_status">待就诊</span></td>
+
+        </tr>
+        <tr>
+            <td>订单编号：<span id="book_num">548555788554558</span></td>
+            <td></td>
+
+        </tr>
+        <tr>
+            <td>就诊编号：<span id="visit_num">548555788554558</span></td>
+            <td></td>
+
+        </tr>
+        <tr>
+            <td colspan="2">就诊时间：<span id="visit_time">2017-12-17日周四 11:00-12:00</span></td>
+
+        </tr>
+        <tr>
+            <td colspan="2">申请时间：<span id="application_time">2017-12-17日周四 11:00-12:00</span></td>
+
+
+        </tr>
+        <tr>
+            <td>费用：<span id="price">三</span>元</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+
+    var buttons = [
+        {
+            id: 'back_btn',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'reservation_btn',
+            nextFocusUp: '',
+            nextFocusRight: '',
+            nextFocusDown: 'reservation_btn',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_in.png',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        }]
+</script>
+
+<script type="text/javascript">
+    var initAppointmentID = "{$appointmentID}";
+
+    var eleTitle = G("title");
+    var eleName = G("doctor");
+    var eleJob = G("job");
+    var eleHospital = G("hospital");
+    var eleDepartment = G("subjiect");
+    var eleFee = G("price");
+    var eleCreateDt = G("application_time");
+    var eleInquiryDt = G("visit_time");
+    var elePatientName = G("name");
+    var eleVisitNum = G("visit_num");
+    var eleTel = G("telephone");
+    var eleStatus = G("status");
+    var eleQrCode = G("code");
+
+    var ORDER_STATUS_PAY = 1;//待付款的订单状态
+    var ORDER_STATUS_INQUIRY = 2;//等就诊的订单状态
+    var ORDER_STATUS_OVER = 3;//已完成的订单状态
+    var ORDER_STATUS_CLOSE = 4;//已关闭的订单状态
+    var ORDER_STATUS = 0;//没有订单状态
+
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init(['back_btn'], buttons, '', true);
+        LMEPG.Inquiry.expertApi.getInquiryList(initAppointmentID, 0, 1, function (data) {
+            console.log(data);
+            updateUI(data);
+        });
+    }
+
+    function updateUI(data) {
+        try {
+            var expertJsonObj = null;
+            if (data instanceof Object) {
+                expertJsonObj = data;
+            } else {
+                expertJsonObj = JSON.parse(data);
+            }
+            var code = expertJsonObj.code;
+            if (code == 0) {
+                var tempData = expertJsonObj.data[0];
+                eleName.innerHTML = tempData.doctor_name;
+                eleJob.innerHTML = tempData.doctor_level;
+                eleDepartment.innerHTML = tempData.department_name;
+                eleFee.innerHTML = tempData.pay_value;
+                eleCreateDt.innerHTML = tempData.insert_dt;
+                elePatientName.innerHTML = tempData.patient_name;
+                eleTel.innerHTML = tempData.phone_num;
+                eleVisitNum.innerHTML = tempData.appointment_id;
+                eleHospital.innerHTML = tempData.hospital_name;
+
+                var timeWithYear = new Date(getStandardDt(tempData.begin_dt)).format("yyyy");
+                var tempInquiryTime = "";
+                if (timeWithYear == "2099") {
+                    tempInquiryTime = "3天内安排就诊";
+                } else {
+                    tempInquiryTime = new Date(getStandardDt(tempData.begin_dt)).format("yyyy-MM-dd hh:mm") + "到" + new Date(getStandardDt(tempData.end_dt)).format("hh:mm");
+                }
+                eleInquiryDt.innerHTML = tempInquiryTime;
+                eleTitle.innerHTML = "您已预约" + tempInquiryTime + "的专家远程门诊。请提前20分钟在我的家-专家门诊中进入诊疗室等待。";
+
+                getQrCode(tempData.appointment_id);
+
+                var stateFlag = tempData.clinic_is_pay + '-' + tempData.clinic_state // 支付状态  0未支付 1已支付 - 就诊状态 0：等待；1：进行；2：完成；3：关闭；
+                switch (stateFlag) {
+                    case '0-0':
+                        ORDER_STATUS = ORDER_STATUS_PAY;
+                        break;
+                    case '0-3':
+                        ORDER_STATUS = ORDER_STATUS_CLOSE;
+                        break;
+                    case '1-0':
+                        ORDER_STATUS = ORDER_STATUS_INQUIRY;
+                        break;
+                    case '1-2':
+                        ORDER_STATUS = ORDER_STATUS_OVER;
+                        break;
+                }
+
+                switch (ORDER_STATUS) {
+                    case ORDER_STATUS_OVER:
+                        eleStatus.innerHTML = "订单状态：已完成";
+                        break;
+                    case ORDER_STATUS_INQUIRY:
+                        eleStatus.innerHTML = "订单状态：待就诊";
+                        break;
+                    case ORDER_STATUS_PAY:
+                        eleStatus.innerHTML = "订单状态：待付款";
+                        break;
+                    case ORDER_STATUS_CLOSE:
+                        eleStatus.innerHTML = "订单状态：已关闭";
+                        break;
+                    default:
+                        LMEPG.UI.showToast("当前约诊状态异常");
+                        break;
+                }
+
+            } else if (code == "-102") {
+                LMEPG.UI.showToast("拉取数据失败" + code);
+            } else {
+                LMEPG.UI.showToast("拉取数据失败" + code);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function getQrCode(appointmentID) {
+        LMEPG.Inquiry.expertApi.getQrCodeViaAppointmentID(appointmentID, 1, function (data) {
+            try {
+                var qrCodeJsonObj;
+                if (data instanceof Object) {
+                    qrCodeJsonObj = data;
+                } else {
+                    qrCodeJsonObj = JSON.parse(data);
+                }
+                if (qrCodeJsonObj.code == 0) {
+                    eleQrCode.setAttribute("src", qrCodeJsonObj.base);
+                } else {
+                    LMEPG.UI.showToast("获取二维码失败" + qrCodeJsonObj.code);
+                }
+            } catch (e) {
+                LMEPG.UI.showToast("解析二维码异常" + qrCodeJsonObj.code);
+            }
+        });
+    }
+
+
+    function getStandardDt(dt) {
+        var time = dt.replace(/-/g, ':').replace(' ', ':');
+        time = time.split(':');
+        return new Date(time[0], (time[1] - 1), time[2], time[3], time[4], time[5]);
+    }
+
+</script>
+</body>
+</html>

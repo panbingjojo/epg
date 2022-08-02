@@ -1,0 +1,406 @@
+
+body {
+    width: 644px;
+    height: 530px;
+}
+
+div, img, ul {
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+#jump-start {
+    top: 298px;
+    left: 192px;
+}
+
+#jump-knowledge {
+    top: 16px;
+    left: 0;
+}
+
+#knowledge-next {
+    top: 428px;
+    left: 391px;
+}
+
+#knowledge-pic {
+    top: 96px;
+    left: 46px;
+}
+
+#knowledge-back{
+    top: 428px;
+    left: 223px;
+}
+
+.txt-tip,
+#score-count,
+#times-count {
+    font-family: "Source Code Pro", sans-serif;
+    text-align: left;
+    color: #35629b;
+}
+
+.jump-wrap {
+    top: 23px;
+    left: 529px;
+}
+
+.jump-wrap img {
+    position: static;
+    margin-bottom: 20px;
+}
+
+.game-wrapper {
+    top: 134px;
+    left: 277px;
+    width: 301px;
+}
+
+.game-wrapper img {
+    position: static;
+    background-position: bottom;
+    /*background-size: 164px 202px;*/
+    margin: 5px 25px;
+}
+
+.txt-tip {
+    text-align: center;
+    position: absolute;
+    top: 290px;
+    left: 20px;
+}
+
+.prize-wrapper {
+    width: 158px;
+    top: 169px;
+    left: 46px;
+}
+
+.prize-wrapper img {
+    position: static;
+}
+
+#score-count {
+    position: absolute;
+    top: 222px;
+    left: 360px;
+    font-size: 45px;
+    line-height: 1;
+}
+
+#times-count {
+    position: absolute;
+    top: 480px;
+    left: 345px;
+    font-size: 32px;
+    line-height: 1;
+    width: 50px;
+    text-align: center;
+}
+
+.modal {
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/*====倒计时====*/
+#modal-cd {
+}
+
+#count-down {
+    color: #e55231;
+    font-size: 35px;
+    top: 200px;
+    left: 364px;
+    font-weight: bold;
+}
+
+/*====活动规则====*/
+#modal-rule {
+}
+
+#btn-rule-close {
+    top: 88px;
+    left: 222px;
+}
+
+/*====中奖名单====*/
+#modal-list {
+}
+
+#total-list {
+    top: 144px;
+    left: 10px;
+}
+
+#all-marquee {
+    height: 88px;
+}
+
+#my-marquee {
+    height: 30px;
+}
+
+table.marquee-table {
+    width: 600px;
+}
+
+table#all-table tr {
+    height: 30px;
+}
+
+table.marquee-table td {
+    width: 33%;
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+}
+
+#my-list {
+    top: 325px;
+    left: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.list-tel {
+    color: #a3a3a3;
+    top: 370px;
+    left: 230px;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    text-align: center;
+}
+
+img.btn-list {
+    top: 422px;
+}
+
+#btn-list-submit {
+    left: 181px;
+}
+
+#btn-list-cancel {
+    left: 347px;
+}
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+}
+
+#btn-one0 {
+    top: 306px;
+    left: 255px;
+}
+
+/*====普通用户没有游戏次数====*/
+#modal-pay-notimes {
+}
+
+img.btn-pay {
+    top: 329px;
+}
+
+#btn-pay-sure {
+    left: 149px;
+}
+
+#btn-pay-cancel {
+    left: 315px;
+}
+
+/*====兑换/抽奖成功====*/
+#modal-accomplish {
+}
+
+#accomplish-prize {
+    top: 188px;
+    left: 666px;
+}
+
+#accomplish-tel {
+    top: 247px;
+    left: 282px;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #a3a3a3;
+}
+
+img.btn-win {
+    top: 329px;
+}
+
+#btn-accomplish-submit {
+    left: 149px;
+}
+
+#btn-accomplish-cancel {
+    left: 315px;
+}
+
+/*====游戏主界面====*/
+#modal-game {
+}
+
+
+#game-start {
+    top: 588px;
+    left: 187px;
+    background-position: center;
+    background-size: 100%;
+}
+
+
+#game-cd {
+    top: 310px;
+    left: 250px;
+    font-size: 36px;
+    color: #ee4a8d;
+    text-align: center;
+    font-weight: bold;
+    width: 75px;
+}
+
+
+/*====增加积分界面===*/
+#modal-add-score {
+    top: 0;
+    left: 0;
+}
+
+#p-add-score {
+    position: absolute;
+    top: 235px;
+    left: 345px;
+    font-size: 24px;
+    color: #d56000;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#exchange-total-score {
+    position: absolute;
+    top: 62px;
+    left: 175px;
+    font-size: 40px;
+    color: #f75d48;
+}
+
+ul.prize-list {
+    top: 308px;
+    left: 20px;
+}
+
+ul.prize-list li {
+    width: 58px;
+    text-align: center;
+    position: absolute;
+}
+
+#exchange-0{
+    left: 130px;
+}
+
+#exchange-1{top: 70px;left: 320px;}
+
+#exchange-2{
+    top: -5px;
+    left: 475px;
+}
+
+ul.prize-list li img {
+    position: static;
+    margin-left: -80px;
+}
+
+ul.prize-list li p {
+    font-size: 28px;
+    color: #f75d48;
+    margin: 0 0 10px 0;
+}
+
+#subject-count {
+    position: absolute;
+    top: 125px;
+    left: 220px;
+    font-size: 22px;
+    color: #f17c5c;
+    line-height: 1;
+}
+
+#subject-wrap {
+    top: 133px;
+    left: 268px;
+    font-size: 18px;
+    color: #404040;
+    width: 340px;
+}
+
+#subject-title {
+    margin-bottom: 10px;
+}
+
+#subject-options {
+    position: relative;
+}
+
+#subject-options li {
+    padding: 0 10px 6px 10px;
+    line-height: 30px;
+    margin-top: -5px;
+}
+
+#subject-desc {}
+
+#subject-nav {
+    top: 180px;
+    overflow: hidden;
+}
+
+#subject-nav li {
+    width: 40px;
+    height: 25px;
+    background-position: right;
+    float: left;
+}
+
+.subject-0{
+    margin-left: -10px;
+}
+
+#btn-one,
+#btn-one0,
+#btn-one1 {
+
+top: 333px;
+
+left: 254px;
+}
+
+
+
+
+
+

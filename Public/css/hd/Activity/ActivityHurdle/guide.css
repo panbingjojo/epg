@@ -1,0 +1,468 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+div, img, ul {
+    position: absolute;
+}
+
+
+.modal {
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+#score-count {
+
+top: 432px;
+
+left: 565px;
+
+position: absolute;
+
+font-size: 36px;
+
+color: #fff;
+}
+
+#times-count {
+    position: absolute;
+    top: 665px;
+    left: 588px;
+    font-size: 30px;
+    line-height: 1;
+    text-align: center;
+    color: #000;
+    font-family: "Source Code Pro", sans-serif;
+}
+
+#jump-debook {
+
+    top: 38px;
+
+    left: 20px;
+}
+
+#jump-start {
+    top: 553px;
+    left: 520px;
+}
+
+#wheel-img {
+    top: 223px;
+    left: 446px;
+}
+
+.jump-wrap {
+    top: 38px;
+    right: 20px;
+    width: 216px;
+}
+
+.jump-wrap img {
+    position: static;
+    margin-bottom: 20px;
+}
+
+#jump-back,
+#jump-winner {
+}
+
+.game-wrapper {
+    top: 210px;
+    left: 300px;
+    width: 750px;
+}
+
+.game-wrapper img {
+    position: static;
+    background-position: bottom;
+    background-size: 164px 202px;
+    margin: 5px 35px;
+}
+
+.txt-tip {
+    text-align: center;
+    position: absolute;
+    top: 444px;
+    left: 20px;
+}
+
+.prize-wrapper {
+    width: 158px;
+    top: 169px;
+    left: 46px;
+}
+
+.prize-wrapper img {
+    position: static;
+}
+
+
+/*====倒计时====*/
+#modal-cd {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.count-down {
+    color: #fff;
+    font-size: 35px;
+    top: 305px;
+    /* left: 617px; */
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 0 50px;
+    margin: 300px 200px 0 200px;
+    background-color: #ffc107cf;
+    position: static;
+    text-align: center;
+}
+
+#modal-cd span {
+    line-height: 1;
+    color: chartreuse;
+}
+
+/*====活动规则====*/
+#modal-rule {
+}
+
+/*====中奖名单====*/
+#modal-list {
+}
+
+.winner-list {
+    left: 266px;
+    font-size: 24px;
+    text-align: center;
+}
+
+#total-list {
+    top: 212px;
+}
+
+#all-marquee {
+    height: 120px;
+}
+
+#my-marquee {
+    height: 40px;
+}
+
+table.marquee-table {
+    width: 705px;
+}
+
+table#all-table tr {
+    height: 40px;
+}
+
+table.marquee-table td {
+    width: 25%;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+}
+
+#my-list {
+    top: 406px;
+}
+
+.list-tel {
+    color: #004475;
+    top: 455px;
+    left: 480px;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+img.btn-list {
+    top: 520px;
+}
+
+#btn-list-submit {
+    left: 466px;
+}
+
+#btn-list-cancel {
+    left: 666px;
+}
+
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+}
+
+#btn-one0 {
+    top: 418px;
+    left: 586px;
+}
+
+/*====普通用户没有游戏次数====*/
+#modal-pay-notimes {
+}
+
+img.btn-pay {
+    top: 481px;
+}
+
+#btn-pay-sure {
+    left: 432px;
+}
+
+#btn-pay-cancel {
+    left: 674px;
+}
+
+/*====兑换/抽奖成功====*/
+#modal-accomplish {
+}
+
+#accomplish-prize {
+    top: 246px;
+    left: 666px;
+}
+
+#accomplish-tel {
+    top: 350px;
+    left: 566px;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 10px;
+    color: #ff5c31;
+}
+
+img.btn-win {
+    top: 480px;
+}
+
+#btn-accomplish-submit {
+    left: 432px;
+}
+
+#btn-accomplish-cancel {
+    left: 674px;
+}
+
+/*====游戏主界面====*/
+#union-pay-wrap img {
+
+}
+
+#modal-game {
+    background-repeat: repeat-x;
+}
+
+#game-start {
+    top: 588px;
+    left: 187px;
+    background-position: center;
+    background-size: 100%;
+}
+
+#game-cd {
+    top: 263px;
+    left: 0;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    /* width: 75px; */
+}
+
+/*====增加积分界面===*/
+#modal-add-score {
+    top: 0;
+    left: 0;
+}
+
+#p-add-score {
+    position: absolute;
+    top: 310px;
+    left: 750px;
+    font-size: 36px;
+    color: #000;
+    width: 120px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#exchange-total-score {
+    position: absolute;
+    top: 149px;
+    left: 300px;
+    font-size: 30px;
+    color: #fff;
+}
+
+#btn-one,
+#btn-one0,
+#btn-one1 {
+    top: 403px;
+    left: 534px;
+}
+
+
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-repeat: repeat-x;
+}
+
+#hurdle-count {
+    position: absolute;
+    font-weight: bold;
+    text-align: left;
+    color: #27753c;
+    font-size: 30px;
+}
+
+#game-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 1280px;
+    height: 435px;
+    background-repeat: repeat-x;
+    background-position-y: bottom;
+}
+
+img#game-start {
+    position: absolute;
+    left: 42%;
+    z-index: 3;
+}
+
+img#guy {
+    position: absolute;
+    transition: .4s bottom;
+    top: 0;
+}
+
+img#btn-rule {
+    position: absolute;
+    z-index: 3;
+}
+
+#modal-rule {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: none;
+    background-repeat: no-repeat;
+}
+
+#tip {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    z-index: 99;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+}
+
+.hd-game-start {
+    top: 600px;
+    left: 42%;
+}
+
+.hd-hurdle-count {
+    top: 30px;
+    left: 30px;
+    font-size: 30px;
+}
+
+.hd-guy {
+    bottom: 200px;
+    left: 50px;
+}
+
+img#guy.hd-guyJumpHeight {
+    bottom: 244px;
+}
+
+#btn-start {
+    top: 553px;
+    left: 581px;
+    z-index: 3;
+}
+
+ul.prize-list {
+    top: 250px;
+    left: 220px;
+}
+
+ul.prize-list li {
+    float: left;
+    width: 155px;
+    text-align: center;
+    margin: 0 60px;
+}
+
+ul.prize-list li p {
+    text-align: center;
+    color: #a9e9bd;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+ul.prize-list li img {
+    position: static;
+}
+
+.union-pay-wrap {
+    top: 415px;
+    left: 330px;
+}
+
+#modal-pay-union img {
+    position: static;
+    margin-right: 40px;
+}
+.home-union-pay{
+    top: 131px;
+    left: 80px;
+    width: 110px;
+}
+.home-union-pay img{
+    position:static;
+}
+img#btn-pay-0{}
+img#btn-pay-1{
+    margin-right: 300px;
+}
+img#btn-pay-2{}
+img#btn-pay-3{}

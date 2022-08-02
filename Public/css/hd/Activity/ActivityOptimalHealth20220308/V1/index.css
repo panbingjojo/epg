@@ -1,0 +1,42 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+body > *,
+.modal > * {
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: hidden;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*活动首页*/
+.btn-list {
+    position: absolute;
+    top: 16px;
+    left: 1097px;
+}
+
+#btn_order {
+    position: absolute;
+    top: 554px;
+    left: 229px;
+}
+

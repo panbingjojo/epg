@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+body > * {
+    position: absolute;
+}
+
+#help-introduce {
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+/*上*/
+#top-icon {
+    position: absolute;
+    display: inline;
+    height: 55px;
+    line-height: 60px;
+    /*top: 5px;*/
+    right: 0;
+}
+
+#top-icon > img {
+    top: 20px;
+    margin-right: 22px;
+    vertical-align: middle;
+}
+
+/*导航*/
+#nav {
+    top: 53px;
+    left: 64px;
+}
+
+#nav > img {
+    margin-right: 20px;
+    width: 178px;
+    height: 60px;
+}
+
+/*主容器*/
+#container {
+    top: 160px;
+    left: 77px;
+    width: 1126px;
+}
+
+/*左容器*/
+#container-left {
+    width: 228px;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+#container-left > img {
+    width: 230px;
+    height: 120px;
+    padding: 10px;
+    margin-bottom: -8px;
+}
+#container-left > img.focus {
+   background-image: url(../../../../img/hd/Home/V7/tab0/left_link_f.png);
+    background-position: center;
+}
+
+#night-medicine {
+}
+
+#39-featured {
+}
+
+#history-album {
+}
+
+/*中容器*/
+#container-center {
+    position: absolute;
+    top: 0;
+    left: 246px;
+    width: 506px;
+}
+
+/*轮播*/
+#center-link-1 {
+    position: absolute;
+    top: 0;
+    width: 506px;
+    height: 257px;
+    overflow: hidden;
+}
+
+#carousel-link {
+    position: absolute;
+    width: 558px;
+    height: 303px;
+    z-index: 9999;
+    top: -26px;
+    left: -26px;
+}
+
+#carousel-wrapper {
+    position: absolute;
+    width: 506px;
+    height: 257px;
+}
+
+#carousel-wrapper img {
+    position: absolute;
+    opacity: 0;
+    width: 506px;
+    height: 257px;
+    transition: 1s opacity;
+    border-radius: 10px;
+}
+
+#carousel-wrapper img.active {
+    opacity: 1;
+}
+
+ul#point li {
+    display: inline-block;
+}
+
+#point {
+    position: absolute;
+    bottom: 0;
+    width: 506px;
+    height: 27px;
+    line-height: 33px;
+    background: rgba(0, 0, 0, 0.49);
+    list-style-type: none;
+    border-radius: 0 0 10px 10px;
+}
+
+#point li {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fff;
+    margin: 0 3px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+#point li.currentImg {
+    background-color: #fff;
+    transition: 1s background-color;
+}
+
+#point li#point-1 {
+    margin-left: 188px;
+}
+
+#book-and-smile {
+    position: absolute;
+    top: 273px;
+    height: 257px;
+}
+#book-and-smile>img {
+    position: absolute;
+    width: 246px;
+    height: 257px;
+    padding: 20px;
+    top: -20px;
+    border-radius: 30px;
+}
+#book-registration{
+    left: -20px;
+}
+#do-smile-people {
+    left: 240px;
+}
+#book-and-smile>img.focus{
+    background-image: url(../../../../img/hd/Home/V7/tab0/order_smile_f.png);
+    background-position: center;
+}
+
+/*右容器*/
+#container-right {
+    position: absolute;
+    top: 0;
+    left: 766px;
+    width: 356px;
+}
+
+iframe {
+    width: 1px;
+    height: 1px
+}
+#container-right>img{
+    position: absolute;
+    width: 356px;
+    height: 257px;
+    padding: 20px;
+    left: -20px;
+    border-radius: 30px;
+}
+#videoTv-link {
+    top: -20px;
+}
+
+#album-inner {
+    top: 253px;
+}
+
+#container-right>img.focus{
+    background-image: url(../../../../img/hd/Home/V7/tab0/rightLink_f.png);
+    background-position: center;
+}
+#home_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#iframe_small_screen {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}

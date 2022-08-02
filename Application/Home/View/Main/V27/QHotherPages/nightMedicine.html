@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>夜间药房</title>
+
+    <!--全局变量-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+        }
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: 'Source Han Sans CN';
+        }
+
+        body {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-position: left;
+            background-image: url(__ROOT__/Public/img/hd/Home/V27/bg.png);
+        }
+
+        body > * {
+            position: absolute;
+        }
+
+        #title {
+            top: 20px;
+            left: 80px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        #prev-arrow {
+            top: 345px;
+            left: 86px;
+        }
+
+        #next-arrow {
+            top: 345px;
+            left: 1150px;
+        }
+
+        #container {
+            width: 950px;
+            height: 500px;
+            top: 125px;
+            left: 194px;
+        }
+
+        #container > div {
+            display: inline-block;
+        }
+
+        #page-index {
+            top: 80px;
+            left: 1160px;
+            font-size: 22px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #focus-1, #focus-2 {
+            width: 400px;
+            height: 500px;
+            padding: 20px;
+        }
+
+        .active {
+            background-image: url(__ROOT__/Public/img/hd/Home/V27/medicineHouse_f.png);
+        }
+
+        .house-bg {
+            width: 400px;
+        }
+
+        #container .medicine-house-wrapper {
+            background: #fff;
+            width: 400px;
+            height: 500px;
+            border-radius: 12px;
+        }
+
+        ul.medicine-house-desc {
+            width: 360px;
+            height: 150px;
+            padding: 20px;
+        }
+
+        ul.medicine-house-desc li {
+            width: 360px;
+            padding-top: 3px;
+            line-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 22px;
+            vertical-align: middle;
+        }
+
+        ul.medicine-house-desc li.house-name {
+            font-size: 30px;
+        }
+
+        li.house-addr {
+            background-image: url(__ROOT__/Public/img/hd/Home/V27/icon_addr.png);
+            background-position: 4px 10px;
+        }
+
+        li.house-tel {
+            background-image: url(__ROOT__/Public/img/hd/Home/V27/icon_tel.png);
+            background-position: 0 7px;
+        }
+
+        ul.medicine-house-desc li {
+            height: 43px;
+        }
+
+        ul.medicine-house-desc li span,
+        ul.medicine-house-desc li marquee {
+            margin-left: 35px;
+        }
+
+        ul.medicine-house-desc li.house-name span,
+        ul.medicine-house-desc li.house-name marquee {
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="debug"></div>
+<div id="title">夜间药房</div>
+<img id="prev-arrow" src="__ROOT__/Public/img/hd/Home/V27/prev.png" alt="">
+<img id="next-arrow" src="__ROOT__/Public/img/hd/Home/V27/next.png" alt="">
+<div id="container">
+
+</div>
+<div id="page-index">0/0</div>
+<script>
+    window.onload = function () {
+        renderPage();
+        LMEPG.ButtonManager.init(["focus-1"], buttons, '', true);
+    };
+    var buttons = [{
+        id: 'focus-1',
+        name: '',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: 'focus-2',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        click: "",
+        focusChange: onFocusChangeBg,
+        beforeMoveChange: turnPage,
+        moveChange: "",
+        cIdx: "",
+    }, {
+        id: 'focus-2',
+        name: '',
+        type: 'img',
+        nextFocusLeft: 'focus-1',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        click: "",
+        focusChange: onFocusChangeBg,
+        beforeMoveChange: turnPage,
+        moveChange: "",
+        cIdx: "",
+    },];
+
+    if (RenderParam.carrierId == "620007") {
+        var data = [{
+            name: "德生堂（酒泉路店）",
+            addr: "城关区玉佛寺向南斜对面静宁路152号德生堂药店一楼",
+            tell: "0931-2665639"
+        }, {
+            name: "德生堂（东方红大药房）",
+            addr: "城关区庆阳路44号（格桑花饭店一楼）",
+            tell: "9318412115"
+        }, {
+            name: " 德生堂（平凉路大药房）",
+            addr: "城关区平凉路276号",
+            tell: "0931-2657396/8412101"
+        }, {
+            name: " 德生堂（大沙坪药店）",
+            addr: "城关区佛慈大街232号",
+            tell: "0931-8971890"
+        }, {
+            name: "德生堂（西湖医药广场）",
+            addr: "七里河区西津东路420号1层商铺",
+            tell: "18152009367"
+        }, {
+            name: "德生堂（西站店）",
+            addr: "七里河区七里小西湖东街186-192号一层",
+            tell: "0931-2351034"
+        }, {
+            name: "德生堂（火车站西路药房店）",
+            addr: "城关区火车站西路549号（电信家属院外围商铺）",
+            tell: "13369499529"
+        }, {
+            name: "德生堂（龚家湾店）",
+            addr: "七里河区龚湖公路龚家湾建兰新村120号大院内新建5号楼一楼107号商铺",
+            tell: "0931-2664440"
+        }, {
+            name: "德生堂（静宁南路大药房）",
+            addr: "城关区静宁路217号浩森写字楼",
+            tell: "0931-2657396"
+        }, {
+            name: "德生堂 (临夏路店)",
+            addr: "城关区临夏路35号",
+            tell: "暂无"
+        }, {
+            name: "惠仁堂药业旗舰店",
+            addr: "城关区静宁南路189号火吧九号店楼下",
+            tell: "0931-8469805/18919018456"
+        }, {
+            name: "惠仁堂药业（正宁路店）",
+            addr: "城关区永昌南路正宁路夜市西出口拐角处",
+            tell: "17726986707"
+        }, {
+            name: " 惠仁堂药业（雁滩店）",
+            addr: "城关区雁滩路2583号（交警大队斜对面）",
+            tell: "17726983285"
+        }, {
+            name: "惠仁堂药业（华润万家新店）",
+            addr: "城关区和政东街路189号仁恒国际32幢1层25号",
+            tell: "17726986716"
+        }
+
+            , {
+                name: "惠仁堂药业（西关店）",
+                addr: "城关区萃英门6号金城名苑沿街商铺（地税局旁）",
+                tell: "17726983201"
+            }, {
+                name: "惠仁堂药业（二热店）",
+                addr: "城关区嘉峪关南路260号",
+                tell: "400-608-0598"
+            }, {
+                name: " 惠仁堂药业（费家营店）",
+                addr: "安宁区万新路114号（兰飞社区服务站旁）",
+                tell: "400-608-0598/17726983327"
+            }, {
+                name: "惠仁堂药业（甘南路店）",
+                addr: "城关区甘南路25号（金色家园小区对面）",
+                tell: "0931-8838527/17726983195"
+            }, {
+                name: " 惠仁堂药业（广武门店）",
+                addr: "城关区秦安路3号（秦安路与金昌北路交口东行100米路北）",
+                tell: "400-608-0598/17726986782"
+            }, {
+                name: "惠仁堂药业（科学院店）",
+                addr: "城关区渭源路207号",
+                tell: "400-608-0598/17726983227"
+            }, {
+                name: " 惠仁堂药业（二十七中店）",
+                addr: "城关区火车站西路549号（二七中学对面）",
+                tell: "0931-8122696"
+            }, {
+                name: "惠仁堂药业（秀川店）",
+                addr: "七里河区西津西路734-830号（省人民医院西院区南门旁）",
+                tell: "17726983323"
+            }, {
+                name: " 惠仁堂药业（西固中街店）",
+                addr: "西固区西固巷35-47号（荣成雅园西北）",
+                tell: "400-608-0598/17726983607"
+            }, {
+                name: "亚欣大药房（建兰路店）",
+                addr: "七里河区瓜州路与建兰路交叉口机具厂家属院底商",
+                tell: "0931-8351712"
+            }, {
+                name: " 亚欣大药房（七中店）",
+                addr: "城关区定西路266号附近",
+                tell: "0931-8351712"
+            }, {
+                name: "亚欣大药房（雁北路店）",
+                addr: "城关区雁北路1737-2117号",
+                tell: "0931-8351712"
+            }, {
+                name: " 亚欣大药房（西站店）",
+                addr: "七里河区武威路与西站西路交叉口东北50米",
+                tell: "0931-8351712"
+            }, {
+                name: "亚欣大药房（文化宫店）",
+                addr: "七里河区西津东路6号",
+                tell: "0931-8351712"
+            }, {
+                name: " 亚欣大药房连锁（亚太花园店）",
+                addr: "城关区佛慈大街301-7号附近",
+                tell: "0931-8350941"
+            }, {
+                name: "亚欣大药房（盐场路店）",
+                addr: "城关区佛慈大街82号（盐场路和佛慈大街交叉口北行100米路西）",
+                tell: "0931-8351712"
+            }, {
+                name: " 亚欣大药房（七中店）",
+                addr: "城关区定西路266号附近",
+                tell: "0931-8351712"
+            }, {
+                name: "亚欣大药房（雁北路店）",
+                addr: "城关区雁北路1737-2117号",
+                tell: "0931-8351712"
+            }, {
+                name: " 亚欣大药房连锁（秀川店）",
+                addr: "七里河区西津西路880号",
+                tell: "0931-8351712"
+            }, {
+                name: "亚欣大药房（嘉峪关路店)",
+                addr: "城关区嘉峪关南路360号附近",
+                tell: "0931-8351712"
+            }, {
+                name: "众友药店",
+                addr: "城关区平凉路517号",
+                tell: "0931-8479899"
+            }, {
+                name: "众友健康药房",
+                addr: "城关区畅家巷178号",
+                tell: "暂无"
+            }, {
+                name: "众友健康药店（秀川店）",
+                addr: "七里河区秀川新村",
+                tell: "0931-2837766"
+            }, {
+                name: "众友健康药店（雁北路店）",
+                addr: "城关区雁北路1972号（鼎火锅隔壁）",
+                tell: "0931-8516041"
+            }, {
+                name: "众友健康药店（火车站西路店）",
+                addr: "城关区天水路7-9号兰州大厦（近火车站西路）",
+                tell: "0931-8847206"
+            }, {
+                name: "西域阳光大药房（西客站店）",
+                addr: "七里河区西津西路171号",
+                tell: "暂无"
+            }, {
+                name: "至仁同济专业药房",
+                addr: "城关区箭道巷78号",
+                tell: "暂无"
+            }, {
+                name: "至仁同济专业药房（红星巷店）",
+                addr: "城关区红星巷131号靖煤大厦附近",
+                tell: "18993085505"
+            }, {
+                name: "永春堂药业",
+                addr: "城关区雁北路雁滩北面滩新村底商",
+                tell: "0931-4504059"
+            }, {
+                name: "玉堂大药房",
+                addr: "城关区正宁路与甘家巷交叉口东北50米",
+                tell: "0931-8400815"
+            }, {
+                name: " 百福堂药店",
+                addr: "安宁区建宁东路康宁家园3号楼底商",
+                tell: "0931-4555433"
+            }, {
+                name: "万民药房",
+                addr: "城关区皋兰路31号",
+                tell: "0931-8634205"
+            }, {
+                name: " 康炜大药房",
+                addr: "城关区雁北路辰北花园（鸿运·润园南150米）",
+                tell: "0931-7890660"
+            }, {
+                name: "百草堂药店",
+                addr: "城关区东岗东路606号附近",
+                tell: "0931-4562932"
+            }, {
+                name: " 同庆和药店",
+                addr: "七里河区七里金港城金福花园12号楼（金港城东）",
+                tell: "0931-2627756"
+            }, {
+                name: "任家庄同庆和药店（同庆和药店）",
+                addr: "七里河区七里任家庄联发小区1181号",
+                tell: "0931-2607381"
+            }, {
+                name: "老百姓大药房（天水路店）",
+                addr: "城关区天水南路325号",
+                tell: "0931-8862712"
+            }, {
+                name: "天天好药房（徐家湾店）",
+                addr: "城关区华夏老街中路附近",
+                tell: "18919110098"
+            }, {
+                name: "老百姓大药房（假日时光药妆店）",
+                addr: "七里河区西津东路575号建工大厦",
+                tell: "0931-2650650"
+            }, {
+                name: "甘肃神农大药房",
+                addr: "城关区皋兰路48号",
+                tell: "0931-8411294"
+            }, {
+                name: "至仁同济专业药房（瓜州路店）",
+                addr: "七里河区瓜州路890号",
+                tell: "0931-2312302"
+            }, {
+                name: "安泰堂医药（万全堂药店）",
+                addr: "城关区通渭路3号",
+                tell: "13893699711"
+            }, {
+                name: "天方药店",
+                addr: "七里河区西津东路413号（小西湖立交桥）",
+                tell: "暂无"
+            }, {
+                name: "万民药房（曦华源店）",
+                addr: "七里河区敦煌路与火星街交口西70米路北",
+                tell: "0931-8433333"
+            }, {
+                name: " 惠仁堂药业（甘南花园店）",
+                addr: "城关区排洪沟路866号甘南花园西区",
+                tell: "400-608-0598/17726983395"
+            }, {
+                name: "益民药店",
+                addr: "城关区永昌路6号",
+                tell: "暂无"
+            }
+        ];
+    } else if (RenderParam.carrierId == "630001" || RenderParam.carrierId == "000509") {
+        var data = [{
+            name: "西宁城西区佰世堂大药房",
+            addr: "城西区金羚大街26号7号楼26—54号",
+            tell: "0971-5316799"
+        }, {
+            name: "西宁城西区百瑞堂大药房",
+            addr: "城西区文成路B16—104号（海湖星城东门）",
+            tell: "0971-8185833"
+        }, {
+            name: " 西宁城西区祥达大药房",
+            addr: "城西区胜利路西交通巷2号",
+            tell: "0971-5316799"
+        }, {
+            name: " 青海省新绿洲医药连锁有限公司新绿洲医药广场",
+            addr: "城西区同仁路46号1号楼1单元46-2号",
+            tell: "0971-8125743"
+        }, {
+            name: "青海省富康医药连锁有限公司源丰医药超市",
+            addr: "城西区胜利路30号",
+            tell: "0971-6266659"
+        }, {
+            name: "青海金珠药业连锁有限公司珍草堂大药房",
+            addr: "城东区林安小区",
+            tell: "0971-7614572"
+        }, {
+            name: "西宁锦瑞堂医药商店",
+            addr: "城东区七一东路18号7号楼18-58室",
+            tell: "暂无"
+        }, {
+            name: "青海富康医药连锁有限公司康仁堂大药房",
+            addr: "城东区昆仑东路299号",
+            tell: "暂无"
+        }, {
+            name: "青海春天医药连锁有限公司春天医药广场",
+            addr: "城中区西大街6-4号",
+            tell: "0971-8213303"
+        }, {
+            name: "西宁市城中区仁和大药房",
+            addr: "城中区南山路8-10号",
+            tell: "暂无"
+        }, {
+            name: "青海省新绿洲医药连锁有限公司山川大药房",
+            addr: "城北区朝阳西路59号山川住宅区",
+            tell: "暂无"
+        }, {
+            name: "  青海省佳农医药连锁有限公司中心店",
+            addr: "城北区小桥大街46号",
+            tell: "暂无"
+        }, {
+            name: "  西宁城北康弘医药超市",
+            addr: "城北区小桥大街30-8号",
+            tell: "暂无"
+        }, {
+            name: " 青海天奕医药连锁有限公司晨翔药房",
+            addr: "大通县园林路付8号花儿步行街13-93号",
+            tell: "暂无"
+        }, {
+            name: "  青海省康宁医药连锁有限公司湟源店",
+            addr: "湟源县建设东路",
+            tell: "暂无"
+        }];
+    }
+
+    var currentIndex = 0;
+    var count = data.length;
+
+    function renderPage() {
+
+        var htm = '';
+        var renderData = data.slice(currentIndex, currentIndex + 2);
+        renderData.forEach(function (item, index) {
+
+            htm += '<div id=focus-' + (index + 1) + '>';
+            htm += '<div class="medicine-house-wrapper">';
+            htm += '<img class="house-bg" src="__ROOT__/Public/img/hd/Home/V27/medicineHouse.png" alt="">';
+            htm += '<ul class="medicine-house-desc">';
+            htm += '<li class="house-name">';
+            htm += '<span>' + item.name + '</span>';
+            htm += '<li class="house-addr">';
+            htm += '<span>' + item.addr + '</span>';
+            htm += '<li class="house-tel">';
+            htm += '<span>' + item.tell + '</span>';
+            htm += '</ul></div></div>';
+        });
+        G("container").innerHTML = htm;
+        toggleArrow();
+        G("page-index").innerText = (currentIndex + 1) + "/" + data.length;
+    }
+
+    /**
+     * 翻页
+     */
+    function turnPage(direction, btn) {
+        if (direction == "left" && btn.id == "focus-1") {
+            if (currentIndex > 0) {
+                currentIndex = currentIndex - 1;
+                currentIndex = Math.max(0, currentIndex);
+                renderPage();
+                LMEPG.ButtonManager.init(["focus-2"], buttons, '', true);
+            }
+            return false
+        }
+        if (direction == "right" && btn.id == "focus-2") {
+            if (currentIndex < count) {
+                currentIndex = currentIndex + 1;
+                currentIndex = Math.min(count, currentIndex);
+                renderPage();
+                LMEPG.ButtonManager.init(["focus-1"], buttons, '', true);
+            }
+            return false
+        }
+        toggleArrow();
+    }
+
+
+    /**
+     * 切换指示箭头
+     */
+    function toggleArrow() {
+        Show("prev-arrow");
+        Show("next-arrow");
+        if (currentIndex == 0) {
+            Hide("prev-arrow");
+        }
+        if (currentIndex == count - 1) {
+            Hide("next-arrow");
+        }
+    }
+
+    /**
+     * 获得焦点添加样式
+     * @param btn
+     * @param hasFocus
+     */
+    var textOblur = null;
+
+    function onFocusChangeBg(btn, hasFocus) {
+        var currentDom = G(btn.id);
+        var focusDomLiName = currentDom.getElementsByClassName('house-name')[0];
+        var focusDomLiAddr = currentDom.getElementsByClassName('house-addr')[0];
+        var focusDomMarqueeName = focusDomLiName.getElementsByTagName('marquee')[0];
+        var focusDomMarqueeAddr = focusDomLiAddr.getElementsByTagName('marquee')[0];
+        if (hasFocus) {
+            currentDom.className = "active";
+            replaceElement(currentDom, "span", "marquee")
+        } else {
+            currentDom.className = "";
+            if (focusDomMarqueeName) {
+                focusDomLiName.innerHTML = '<span>' + focusDomMarqueeName.innerText + '</span>'
+            }
+            if (focusDomMarqueeAddr) {
+                focusDomLiAddr.innerHTML = '<span>' + focusDomMarqueeAddr.innerText + '</span>'
+            }
+
+            // replaceElement(currentDom, "marquee", "span");
+        }
+    }
+
+    /**
+     * 跑马灯切换
+     * @param currentDom
+     * @param oldE
+     * @param newE
+     */
+    function replaceElement(currentDom, oldE, newE) {
+        var focusDom = currentDom.getElementsByTagName('li');
+        try {
+            for (var i = 0; i < 2; i++) {
+                var oldElement = focusDom[i].getElementsByTagName(oldE)[0];
+                var newElement = document.createElement(newE);
+                newElement.innerText = oldElement.innerText;
+                oldElement.innerText.length > 11 && (focusDom[i].replaceChild(newElement, oldElement));
+            }
+        } catch (e) {
+            // nothing
+        }
+    }
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+body {
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    background-image: url("../../../../img/sd/Home/V13/Home/bg.png");
+}
+
+div#container {
+    position: relative;
+    /* width: 644px; */
+    /* height: 530px; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+    top: 0;
+    left: 0;
+}
+#top-positon {
+    height: 108px;
+    position: relative;
+    top: 30px;
+    width: 580px;
+    margin: 0 auto;
+}
+
+#hosp-pic {
+    width: 166px;
+    height: 108px;
+    border-radius: 10px;
+    float: left;
+}
+
+#addr-tel {
+    margin-left: 15px;
+    float: left;
+    width: 350px;
+}
+#addr-tel li#hosp-name{
+    font-size:28px;
+    margin-top: 0;
+    height: 40px;
+}
+#addr-tel li {
+    text-align: left;
+    margin-top: 7px;
+    position: relative;
+    width: 350px;
+}
+#tel-wrap{
+    height: 30px;
+    line-height: 30px;
+}
+#addr-tel li span{
+  font-size:18px;
+  margin-left: 30px;
+}
+
+#doctor-name {
+    font-size: 24px;
+}
+
+#addr-tel img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+}
+
+#top-positon marquee {
+    color: #fff;
+    font-size: 18px;
+    margin-left: 30px;
+}
+div#list-wrapper {
+    width: 580px;
+    margin: 0 auto;
+    height: 300px;
+    position: relative;
+    top: 85px;
+}
+div#icon-arrow {
+    position: absolute;
+    top: 300px;
+    left: 0;
+}
+
+.doctor-item{
+    float: left;
+    background-image: url("../../../../img/sd/AppointmentRegister/V13/doctor_item.png");
+    width: 135px;
+    height: 238px;
+    background-position: center;
+    padding: 5px;
+    text-align: center;
+}
+#doctor-pic{
+    width: 105px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.doctor-item p{
+    margin-top: 6px;
+}
+p#doctor-name{
+    font-size: 18px;
+}
+p#doctor-dep,
+p#doctor-pos{
+    text-align: center;
+    font-size: 14px;
+}
+div#icon-arrow img{
+    position: absolute;
+    width: 44px;
+    height: 44px;
+}
+img#icon-next {
+    left: 600px;
+}
+#page-count{
+    position: absolute;
+    left: 580px;
+    top: 476px;
+    color: #b2deff;
+}

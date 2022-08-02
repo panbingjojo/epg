@@ -1,0 +1,102 @@
+
+
+#menu_border_0 {
+    position: absolute;
+    left: -14px;
+    top: 105px;
+    width: 167px;
+    height: 145px;
+    z-index: 1
+}
+
+#menu_border_1 {
+    position: absolute;
+    left: -14px;
+    top: 210px;
+    width: 167px;
+    height: 145px;
+    z-index: 1
+}
+
+#menu_border_2 {
+    position: absolute;
+    left: -14px;
+    top: 315px;
+    width: 167px;
+    height: 145px;
+    z-index: 1
+}
+
+#menu_border_3 {
+    position: absolute;
+    left: -14px;
+    top: 421px;
+    width: 167px;
+    height: 145px;
+    z-index: 1
+}
+
+#menu_border_4 {
+    position: absolute;
+    left: -14px;
+    top: 526px;
+    width: 167px;
+    height: 145px;
+    z-index: 1
+}
+
+.menu_parent_0 {
+    position: absolute;
+    left: 20px;
+    top: 145px;
+    width: 111px;
+    height: 89px;
+}
+
+.menu_parent_1 {
+    position: absolute;
+    left: 20px;
+    top: 250px;
+    width: 111px;
+    height: 89px;
+}
+
+.menu_parent_2 {
+    position: absolute;
+    left: 20px;
+    top: 355px;
+    width: 111px;
+    height: 89px;
+}
+
+.menu_parent_3 {
+    position: absolute;
+    left: 20px;
+    top: 461px;
+    width: 111px;
+    height: 89px;
+}
+
+.menu_parent_4 {
+    position: absolute;
+    left: 20px;
+    top: 565px;
+    width: 111px;
+    height: 89px;
+}
+
+.menu_zoom_out {
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    width: 120%;
+    height: 120%;
+}
+
+.menu_zoom_in {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}

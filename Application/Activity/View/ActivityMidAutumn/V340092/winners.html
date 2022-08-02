@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>月饼欢乐送V340092-中奖名单</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityMidAutumn/V340092/winner.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityMidAutumn/V340092/DialogMoreThree.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/keyboard.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back("activity-common-guide");
+        }
+    </script>
+
+</head>
+<body style='background-image: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V340092/winner_list.png");'>
+<img id="back" class="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V340092/close_out.png" alt="" />
+<div id="searchText" class="searchText">请输入有效的手机号码</div>
+<img id="submit" class="submit" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V340092/submit_out.png" alt="" />
+<img id="clear" class="clear" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V340092/rewrrite_out.png" alt="" />
+<div id="all-prizes">
+    <!--超过5行才滚动-->
+    <?php if(!empty($prizeList) && count($prizeList) > 5 ) { ?>
+        <marquee direction="up" behavior="scroll" scrollamount="3" scrolldelay="0" loop="-1" style="" height="<?php echo ($platformType == hd ? 150 : 110)?>">
+    <?php } ?>
+
+        <table>
+            <!--该部分重复为了实现滚动循环无缝衔接；-->
+            <?php foreach($prizeList as $key=>$val):?>
+            <tr>
+                <td><?php echo (substr($val['user_account'], 0, 3) ."***". substr($val['user_account'], -3))?></td>
+                <td><?php echo substr($val['prize_dt'], 0, 10)?>
+                </td>
+                <td><?php echo $val['prize_name'] ?></td>
+            </tr>
+            <?php endforeach;?>
+        </table>
+
+    <!--超过5行才滚动-->
+    <?php if(!empty($prizeList) && count($prizeList) > 5) { ?>
+        </marquee>
+    <?php } ?>
+</div>
+<div id="my-prizes">
+    <!--超过3行才滚动-->
+    <?php if(!empty($myPrizeList->list) && count($myPrizeList->list) > 3 ) { ?>
+        <marquee direction="up" behavior="scroll" scrollamount="3" scrolldelay="0" loop="-1" style="" height="<?php echo ($platformType == hd ? 150 : 80)?>">
+    <?php } ?>
+
+        <table>
+            <?php
+        if (empty($myPrizeList->list)) { ?>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>暂无中奖记录</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <?php } else{
+            foreach($myPrizeList->list as $key=>$val):
+            ?>
+            <tr>
+                <td><?php echo (substr($accountId, 0, 3) ."***". substr($accountId, -3))?></td>
+                <td><?php echo substr($val->insert_dt, 0, 10)?></td>
+                <td><?php echo $val->prize_name ?></td>
+            </tr>
+            <?php endforeach; }?>
+        </table>
+
+    <!--超过3行才滚动-->
+    <?php if(!empty($myPrizeList->list) && count($myPrizeList->list) > 3) { ?>
+        </marquee>
+    <?php } ?>
+</div>
+
+<!--<div id="warm">温馨提示：为了方便奖品发放，请留下您有效的手机号码，所中奖品若是红包，请务必填写有效的电信手机号，否则视为放弃领奖资格!</div>-->
+<script type="text/javascript">
+    // 抽中奖弹出输入框呼出键盘X-Y坐标
+    var keyWordX = '<?php echo ($platformType === "hd" ? 430 : 145)?>';//呼出键盘的X坐标
+    var keyWordY = '<?php echo ($platformType === "hd" ? 420 : 305)?>';//呼出键盘的Y坐标
+    var searchTextTips = "请输入有效的手机号码"; //搜索框中的文字提示
+
+    var scollerSet = -1;//滚动距离
+    var timerID3;//定时器
+    var newTop;//表单当前位置
+    var offSet = 10;//移动单位量，高清20；标清10；
+    var lastTop = -12 * offSet;//循环最大值，当位置到达最大值循环开始；
+    var platformType = "{$platformType}";
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V340092/';
+
+    buttons = [
+        {
+            id: 'submit',
+            name: '提交',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'clear',
+            nextFocusUp: 'searchText',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'submit_out.png',
+            focusImage: imgPathPrefix + 'submit_in.png',
+            click: goSetPhoneNumber,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'clear',
+            name: '重置',
+            type: 'img',
+            nextFocusLeft: 'submit',
+            nextFocusRight: 'back',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'rewrrite_out.png',
+            focusImage: imgPathPrefix + 'rewrrite_in.png',
+            click: "reWritePhone()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'clear',
+            backgroundImage: imgPathPrefix + 'close_out.png',
+            focusImage: imgPathPrefix + 'close_in.gif',
+            click: onBack,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'searchText',
+            name: '号码框',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'submit',
+            backgroundImage: '',
+            focusImage: '',
+            click: "",
+            focusChange: "KeyBtn.init(keyWordY, keyWordX, 'searchText', 'submit')",
+            beforeMoveChange: "onCommonMoveChange",
+            moveChange: ""
+        }
+    ];
+
+    window.onload = function () {
+        // 山西联通某款盒子焦点会有问题，对方提供的
+        if ('<?php echo ($carrierId == "000051") ?>') {
+            var stbModel = LMEPG.STBUtil.getSTBModel();
+            if (stbModel === "B700V5C") {
+                if (top.location !== self.location) {
+                    top.location = self.location;
+                }
+            }
+        }
+
+        LMEPG.ButtonManager.init(['submit'], buttons, '', true);
+
+        getPhoneNumber();
+    };
+
+    window.onerror = function (message, filename, lineno) {
+        // if (debug) {
+        //     var errorLog = "发生错误>>> " +
+        //         "\nmessage:" + message +
+        //         "\nfile_name:" + filename +
+        //         "\nline_NO:" + lineno;
+        //     LMEPG.UI.showToast(errorLog, 5);
+        // }
+    };
+
+    //活动手纵向平移
+    function directionY() {
+        try {
+            Marquee();
+            timerID3 = setTimeout("directionY()", 50);
+        } catch (e) {
+        }
+
+    }
+
+    //滚动定时器实现表单滚动
+    function Marquee() {
+        hand = G("scoller");
+        newTop = parseInt(hand.style.top);
+        hand.style.top = newTop + scollerSet + "px";
+        if (newTop <= lastTop) {
+            if (platformType == "hd") {
+                hand.style.top = -100 + "px";
+            } else {
+                hand.style.top = -40 + "px";
+            }
+        }
+    }
+
+    /**
+     * 重置号码
+     */
+    function reWritePhone() {
+        uiSearchTextElement = document.getElementById("searchText");
+        var currentText = uiSearchTextElement.innerHTML;
+        if (currentText == searchTextTips) {
+            return;
+        }
+        uiSearchTextElement.innerHTML = searchTextTips;
+        LMEPG.ButtonManager.requestFocus('searchText');
+    }
+
+    /**
+     * 获取中奖电话号码
+     */
+    function getPhoneNumber() {
+        LMEPG.ajax.postAPI('Activity/getPhoneNumber', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    if (data.result == 0) {
+                        var list = data.list;
+                        for (var i = 0; i < list.length; i++) {
+                            var itemList = list[i];
+                            var tel = itemList["user_tel"];
+                            if (tel != null && tel != "") {
+                                G("searchText").innerHTML = tel;
+                                break;
+                            }
+                        }
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("获取中奖手机号，结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("请求获取中奖手机号，发生错误！");
+            }
+        );
+    }
+
+    /**
+     * 去设置中奖电话号码
+     */
+    function goSetPhoneNumber() {
+        // 获取用户填写的手机号
+        var phoneTex = G("searchText");
+        var userTel = phoneTex.innerHTML;
+        var myPrices = '<?php echo json_encode($myPrizeList)?>';
+        var jsonMyPrices = JSON.parse(myPrices);
+
+        // 判断手机号是否正确
+        if (!LMEPG.Func.isTelPhoneMatched(userTel)) {
+            LMEPG.UI.showToast("请输入有效的手机号码");
+            return;
+        }
+
+        // 判断获奖信息是否在空
+        var prizeList = jsonMyPrices.list;
+        if (prizeList.length == 0) {
+            LMEPG.UI.showToast("您尚未中奖！");
+            return;
+        }
+
+        // 提取中奖奖品id
+        var prizeIdx = prizeList[0].prize_idx;
+        if (prizeIdx == null) {
+            LMEPG.UI.showToast("中奖编号为空！");
+            return;
+        }
+
+        var reqData = {
+            "phoneNumber": userTel,
+            "prizeIdx": prizeIdx
+        };
+        LMEPG.ajax.postAPI('Activity/setPhoneNumber', reqData,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {  // 设置号码成功
+                        LMEPG.UI.showToast("提交成功");
+                    } else { // 设置号码失败
+                        LMEPG.UI.showToast("提交失败，请重试！");
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("保存手机号结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("请求保存手机号发生错误！");
+            }
+        );
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    background: url("../../../img/Album/album34/bg.png") no-repeat;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#back {
+    position: absolute;
+    top: 36px;
+    left: 38px;
+    z-index: 0;
+    outline: none !important;
+    width: 123px;
+    height: 44px;
+}
+#more {
+    position: absolute;
+    top: 36px;
+    left: 1078px;
+    z-index: 0;
+    outline: none !important;
+    width: 160px;
+    height: 44px;
+}
+
+
+#focus-2-3 {
+    position: absolute;
+    top: 321px;
+    left: 935px;
+    z-index: 0;
+    outline: none !important;
+    width: 151px;
+    height: 171px;
+}
+
+#focus-2-4 {
+    position: absolute;
+    top: 321px;
+    left: 1096px;
+    z-index: 0;
+    outline: none !important;
+    width: 151px;
+    height: 171px;
+}
+
+#focus-3-1 {
+    position: absolute;
+    top: 499px;
+    left: 613px;
+    z-index: 0;
+    outline: none !important;
+    width: 151px;
+    height: 171px;
+}
+
+#focus-3-2 {
+    position: absolute;
+    top: 499px;
+    left: 775px;
+    z-index: 0;
+    outline: none !important;
+    width: 151px;
+    height: 171px;
+}
+#focus-3-3 {
+    position: absolute;
+    top: 499px;
+    left: 935px;
+    z-index: 0;
+    outline: none !important;
+    width: 151px;
+    height: 171px;
+}
+
+#focus-3-4 {
+    position: absolute;
+    top: 499px;
+    left: 1096px;
+    z-index: 0;
+    outline: none !important;
+    width: 151px;
+    height: 171px;
+
+}
+
+
+

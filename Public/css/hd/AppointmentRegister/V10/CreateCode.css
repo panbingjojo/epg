@@ -1,0 +1,40 @@
+.center{
+    position: absolute;
+    top: 160px;
+    left: 97px;
+    font-size: 24px;
+    text-align: center;
+}
+.code-img{
+    width: 398px;
+    height: 397px;
+}
+.row{
+    height: 100px;
+}
+.row2{
+    margin-top: 10px;
+    line-height: 30px;
+    vertical-align: middle;
+}
+.left{
+    position: absolute;
+    left: 554px;
+    top: 160px;
+    width: 567px;
+    font-size: 28px;
+    padding: 30px;
+    height: 330px;
+}
+
+dd{
+    text-indent: 50px;
+    margin-top: 30px;
+    line-height: 40px;
+}
+dt{
+    font-weight: bold;
+}
+.btn-hover{
+    font-weight: bold;
+}

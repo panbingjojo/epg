@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>眼科医院主页</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'/>
+    <title>epg-page</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/CommunityHospital/630092/EyeHospital.css">
+    <!--公用库-->
+    <script type="text/javascript">var ROOT = '__ROOT__'</script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/CommunityHospital/V630092/EyeHospital.js?t={$time}"></script>
+
+    <script>
+        var RenderParam = {
+            focusIndex: "{$focusIndex2}",                        // 焦点ID
+        };
+    </script>
+</head>
+
+
+<!--页面跳转-->
+<script type="text/javascript">
+
+</script>
+<body>
+<!--背景-->
+<img id="img-body" class="bg" src="__ROOT__/Public/img/hd/Home/V10/bg.png"/>
+<img id="logo" alt="" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/logo.png"/>
+<div class="title">
+    西宁爱尔眼科医院
+</div>
+
+<div class="recommended">
+    <img id="recommended-1" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/tab_1.png"/>
+    <img id="recommended-2" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/carousel_1.png" alt="">
+    <img id="recommended-3" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/tab_2.png" alt="">
+    <img id="recommended-4" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/tab_3.png" alt="">
+    <img id="recommended-5" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/tab_4.png" alt="">
+    <div class="carousel-focus-group">
+        <div id="carousel-focus-radius-1" class="radius blue"></div>
+        <div id="carousel-focus-radius-2" class="radius withe"></div>
+        <div id="carousel-focus-radius-3" class="radius withe"></div>
+    </div>
+</div>
+
+
+<div class="title-model">
+    护眼小常识
+</div>
+
+<div class="album">
+    <img id="album-1" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/album_1.png"/>
+    <img id="album-2" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/album_2.png" alt="">
+    <img id="album-3" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/album_3.png" alt="">
+    <img id="album-4" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/album_4.png" alt="">
+</div>
+<script>
+    Pages.init();
+</script>
+</body>
+</html>

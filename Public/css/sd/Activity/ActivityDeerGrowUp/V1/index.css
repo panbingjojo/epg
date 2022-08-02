@@ -1,0 +1,382 @@
+body {
+    width: 640px;
+    height: 530px;
+    overflow: hidden;
+}
+
+body > *,
+.modal > * {
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+#score {
+    top: 169px;
+    left: 160px;
+    width: 28px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    font-size: 49px;
+    color: #fff;
+}
+
+#btn_start {
+    position: absolute;
+    top: 434px;
+    left: 220px;
+    height: 80px;
+    width: 199px;
+}
+#btn_back {
+    position: absolute;
+    top: 44px;
+    left: 503px;
+}
+
+#left_times {
+    top: 490px;
+    left: 133px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #83164d;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#eat_fish{
+    position: absolute;
+    top: 329px;
+    left: 235px;
+    width: 184px;
+    height: 83px;
+}
+
+#progress{
+    position: absolute;
+    top: 215px;
+    left: 172px;
+    /* width: 20px; */
+    /* height: 150px; */
+}
+
+#progress_div {
+    position: absolute;
+    top: 234px;
+    left: 179px;
+    z-index: -1;
+}
+
+#bg_progress{
+    position: absolute;
+    top: -1px;
+    left: 0px;
+}
+
+#bg_progress_b{
+    position: absolute;
+    top: -1px;
+    left: 285px;
+    /*height: 24px;*/
+}
+
+#flag_100{
+    position: absolute;
+    top: 9px;
+    left: 78px;
+}
+
+#flag_300{
+    position: absolute;
+    top: 9px;
+    left: 192px;
+}
+
+#flag_500{
+    position: absolute;
+    top: 9px;
+    left: 304px;
+}
+
+#growup_deer{
+    position: absolute;
+    top: 257px;
+    left: 276px;
+}
+
+#btn_container > * {
+    display: block;
+}
+
+#btn_activity_rule{
+    position: absolute;
+    top: 44px;
+    left: 15px;
+}
+
+#btn_winner_list{
+    position: absolute;
+    top: 113px;
+    left: 15px;
+}
+
+#btn_exchange_prize{
+    position: absolute;
+    top: 113px;
+    left: 503px;
+}
+
+
+/*====中奖名单====*/
+#total_list {
+    top: 135px;
+    left: 20px;
+}
+
+#all_marquee {
+    height: 90px;
+}
+
+#my_marquee {
+    height: 88px;
+}
+
+table.marquee_table {
+    width: 610px;
+}
+
+table#all_table tr {
+    height: 20px;
+}
+
+table.marquee_table td {
+    width: 170px;
+    margin-right: 10px;
+    text-align: center;
+    color: #808080;
+    font-size: 20px;
+}
+
+#my_list {
+    top: 328px;
+    left: 21px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+#reset_tel {
+    color: #8e551d;
+    top: 448px;
+    left: 150px;
+    width: 156px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 16px;
+    text-align: left;
+}
+
+#btn_list_submit {
+    top: 430px;
+    left: 346px;
+    width: 130px;
+}
+
+#btn_list_cancel {
+    top: 430px;
+    left: 480px;
+    width: 130px;
+}
+
+/*====兑换奖品====*/
+#game_score {
+    top: 110px;
+    left: 200px;
+    width: 28px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 30px;
+    color: #ca1212;
+    text-align: center;
+}
+
+
+#exchange_prize_2 {
+    top: 373px;
+    left: 43px;
+}
+
+#exchange_prize_1 {
+    top: 373px;
+    left: 234px;
+}
+
+#exchange_prize_3 {
+    top: 373px;
+    left: 418px;
+}
+
+#exchange_point_2 {
+    top: 331px;
+    left: 349px;
+    width: 40px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    color: #83164d;
+    font-size: 18px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#exchange_point_1 {
+    top: 332px;
+    left: 158px;
+    width: 40px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    color: #83164d;
+    font-size: 18px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#exchange_point_3 {
+    top: 333px;
+    left: 545px;
+    width: 40px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    color: #83164d;
+    font-size: 18px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#ex_progress{
+    position: absolute;
+    top: 161.6px;
+    left: 22.8px;
+    width: 11px;
+    height: 78px;
+}
+#ex_progress_step{
+    position: absolute;
+    bottom: 0px;
+    width: 11px;
+    height: 30px;
+    background: #ffd400;
+    border-radius: 20px;
+}
+#ex_bg_progress{
+    position: absolute;
+}
+
+/*====游戏成功====*/
+
+#btn_game_success {
+    top: 300px;
+    left: 270px;
+}
+#btn_fail{
+    top: 306px;
+    left: 260px;
+
+}
+
+#add_score{
+    position: absolute;
+    top: 290px;
+    left: 436px;
+    font-size: 28px;
+    color:#fff;
+    /*border: 1px red solid;*/
+}
+
+/*====订购VIP====*/
+#btn_order_submit {
+    top: 300px;
+    left: 150px;
+}
+
+#btn_order_cancel {
+    top: 300px;
+    left: 345px;
+}
+
+/*====兑换成功====*/
+#exchange_tel {
+    color: #8e551d;
+    top: 274px;
+    left: 305px;
+    width: 180px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 22px;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+#btn_exchange_submit {
+    top: 329px;
+    left: 316px;
+}
+
+#btn_exchange_cancel {
+    top: 329px;
+    left: 426px;
+}
+
+#count {
+    top: 208px;
+    left: 360px;
+    color: #a83b35;
+    font-size: 35px;
+}
+
+#btn_close_rule{
+    top: 10px;
+    left: 554px;
+    display: none;
+}
+
+/*#btn-play {*/
+    /*position: absolute;*/
+    /*top: 260px;*/
+    /*left:430px;*/
+/*}*/
+
+#btn_game_over_sure {
+    position: absolute;
+    top: 301px;
+    left:292px;
+}
+
+/*.start{*/
+    /*position: absolute;*/
+    /*top: 0px;*/
+    /*z-index: 1;*/
+/*}*/

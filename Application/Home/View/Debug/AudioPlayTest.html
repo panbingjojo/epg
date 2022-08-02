@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>音频播放测试页面</title>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+
+    <style type="text/css">
+        .divider-line {
+            position: absolute;
+            width: 1200px;
+            height: 3px;
+            left: 40px;
+            top: 87px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            position: absolute;
+            top: 26px;
+            left: 40px;
+            font-size: 32px;
+            color: #ffffff
+        }
+
+        table {
+            position: absolute;
+            top: 120px;
+            left: 40px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        table tr td {
+            color: #FFFFFF;
+            font-size: 25px;
+            line-height: 37px;
+        }
+
+    </style>
+</head>
+<body style='background-image: url("__ROOT__/Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png")'>
+<span class="title">该页面为音频播放测试页面：</span>
+<hr class="divider-line"/>
+<div id="audio-container" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+</div>
+<table>
+    <tr>
+        <td>
+            <div id="btn-play-audio">播放</div>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    function playAudio() {
+        LMEPG.UI.showToast('playAudio: Coming soon');
+    }
+
+    function onFocusChanged(btn, hasFocus) {
+        if (hasFocus) {
+            G(btn.id).style.background = '#AB82FF';
+        } else {
+            G(btn.id).style.background = '#FFFFFFFF';
+        }
+    }
+
+    var buttons = [
+        {
+            id: 'btn-play-audio',
+            type: 'div',
+            name: '播放音频',
+            focusable: true,
+            click: playAudio,
+            focusChange: onFocusChanged,
+        }
+    ];
+
+    window.onload = function () {
+        LMEPG.ButtonManager.init('btn-play-audio', buttons, '', true);
+    }
+</script>
+</body>
+</html>

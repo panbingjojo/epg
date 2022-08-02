@@ -1,0 +1,360 @@
+
+img {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+}
+
+#home_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.logo {
+    position: absolute;
+    left: 36px;
+    top: 40px;
+    width: 75px;
+    height: 59px;
+}
+
+/*首页导航菜单栏*/
+.navs {
+    position: absolute;
+    left: 55px;
+    top: 30px;
+    width: 1170px;
+    height: 83px;
+}
+
+.navs > div {
+    width: 220px;
+    height: 83px;
+    float: left;
+    margin: 0px 4px;
+}
+
+.menu_zoom_out {
+    position: absolute;
+    left: -7px;
+    top: -4px;
+    width: 108%;
+    height: 108%;
+}
+
+.menu_zoom_in {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#menu_border_0 {
+    position: absolute;
+    left: -3px;
+    top: 120px;
+    width: 156px;
+    height: 140px;
+    z-index: 2
+}
+
+#menu_border_1 {
+    position: absolute;
+    left: -3px;
+    top: 226px;
+    width: 156px;
+    height: 140px;
+    z-index: 2
+}
+
+#menu_border_2 {
+    position: absolute;
+    left: -3px;
+    top: 332px;
+    width: 156px;
+    height: 140px;
+    z-index: 2
+}
+
+#menu_border_3 {
+    position: absolute;
+    left: -3px;
+    top: 438px;
+    width: 156px;
+    height: 140px;
+    z-index: 2
+}
+
+#menu_border_4 {
+    position: absolute;
+    left: -3px;
+    top: 544px;
+    width: 156px;
+    height: 140px;
+    z-index: 2
+}
+
+.menu_parent_0 {
+    position: absolute;
+    left: 20px;
+    top: 145px;
+    width: 110px;
+    height: 91px;
+}
+
+.menu_parent_1 {
+    position: absolute;
+    left: 20px;
+    top: 251px;
+    width: 110px;
+    height: 91px;
+}
+
+.menu_parent_2 {
+    position: absolute;
+    left: 20px;
+    top: 357px;
+    width: 110px;
+    height: 91px;
+}
+
+.menu_parent_3 {
+    position: absolute;
+    left: 20px;
+    top: 463px;
+    width: 111px;
+    height: 91px;
+}
+
+.menu_parent_4 {
+    position: absolute;
+    left: 20px;
+    top: 569px;
+    width: 110px;
+    height: 91px;
+}
+
+#menu_0 {
+    /*height: 91px;*/
+}
+
+#menu_1 {
+    /*height: 91px;*/
+}
+
+#menu_2 {
+    /*height: 91px;*/
+}
+
+#menu_3 {
+    /*height: 91px;*/
+}
+
+#menu_4 {
+    /*height: 91px;*/
+}
+
+.recommend_zoom_out {
+    position: absolute;
+    left: -10px;
+    top: -15px;
+    width: 108%;
+    height: 108%;
+    z-index: 998;
+}
+
+.recommend_zoom_in {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#recommends {
+    position: absolute;
+    left: 140px;
+    top: 110px;
+    width: 1130px;
+    height: 550px;
+}
+
+.recommends {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1130px;
+    height: 550px;
+}
+
+/*推荐位1焦点框*/
+#recommend_border_1 {
+    position: absolute;
+    left: -31px;
+    top: -2px;
+    width: 621px;
+    height: 371px;
+    z-index: 1;
+}
+
+/*推荐位图片放大时的容器*/
+.recommend_parent_1 {
+    position: absolute;
+    left: 3px;
+    top: 37px;
+    width: 531px;
+    height: 299px;
+}
+
+#recommend_border_2 {
+    position: absolute;
+    left: -31px;
+    top: 309px;
+    width: 330px;
+    height: 261px;
+    z-index: 1;
+    /*display: none;*/
+}
+
+.recommend_parent_2 {
+    position: absolute;
+    left: 3px;
+    top: 348px;
+    width: 261px;
+    height: 197px;
+}
+
+#recommend_border_3 {
+    position: absolute;
+    left: 238px;
+    top: 309px;
+    width: 330px;
+    height: 261px;
+    z-index: 1
+    /*display: none;*/
+}
+
+.recommend_parent_3 {
+    position: absolute;
+    left: 272px;
+    top: 348px;
+    width: 261px;
+    height: 197px;
+}
+
+#recommend_border_4 {
+    position: absolute;
+    left: 508px;
+    top: -2px;
+    width: 372px;
+    height: 599px;
+    /*display: none;*/
+    z-index: 1
+}
+
+.recommend_parent_4 {
+    position: absolute;
+    left: 542px;
+    top: 37px;
+    width: 300px;
+    height: 511px;
+}
+
+#recommend_border_5 {
+    position: absolute;
+    left: 820px;
+    top: -2px;
+    width: 319px;
+    height: 405px;
+    /*display: none;*/
+    z-index: 1;
+}
+
+.recommend_parent_5 {
+    position: absolute;
+    left: 853px;
+    top: 37px;
+    width: 255px;
+    height: 331px;
+}
+
+#recommend_border_6 {
+    position: absolute;
+    left: 820px;
+    top: 338px;
+    width: 319px;
+    height: 228px;
+    /*display: none;*/
+    z-index: 1
+}
+
+.recommend_parent_6 {
+    position: absolute;
+    left: 853px;
+    top: 377px;
+    width: 254px;
+    height: 167px;
+}
+
+/*字幕滚动消息*/
+#scroll_message {
+    position: absolute;
+    left: 74px;
+    top: 670px;
+    width: 1130px;
+    height: 30px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 29px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+}
+
+/* 弹出图片提示框*/
+#toast_message_pic {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+}
+
+/* 弹出提示文字内容*/
+#toast_message_text {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    font-family: 'Source Han Sans CN';
+    font-size: 31px;
+    color: #2a4e87;
+    top: 270px;
+    left: 450px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* 确定或取消 按钮文字内容*/
+#toast_message_submit {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    font-family: 'Source Han Sans CN';
+    font-size: 35px;
+    color: #ffffff;
+    top: 435px;
+    left: 588px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+}

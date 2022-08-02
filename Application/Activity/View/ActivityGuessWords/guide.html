@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>冬季猜图，健康动动脑</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--处理background-img拿取图片fs地址-->
+    <include file="./Application/Activity/View/ActivityGuessWords/bgImage.html"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/{$platformType}/Activity/ActivityGuessWords/guide.css?t={$time}">
+    <script type="text/javascript">
+        var ROOT = '__ROOT__';
+        var RenderParam = {
+            isVip: '{$isVip}',
+            userId: '{$userId}',
+            userTel: '{$userTel}',
+            lmcid: '{$carrierId}',
+            cdCount: '{$cdCount}',
+            beClickId: 'jump-start',
+            AllUserPrizeList:'',// 积分兑换不涉及抽奖流程
+            isOrderBack: '{$isOrderBack}',
+            activityImg: '{$activityFsImg}{$platformType}/',
+            cOrderResult: '{$Think.cookie.c_order_result}',
+            getExchangeList: {$setExchangeList}.data,
+            prizeConfigItems: {$prizeConfigItems},
+            exchangeRecords: {$exchangeRecords},
+            loginUserAccount: '{$userAccount}',
+            platformType: '{$platformType}',
+            activityInfo: {$activityInfo},
+            extraTimes: '{$extraTimes}',
+            leftTimes: {$leftTimes},
+            score: '{$score}'
+        };
+
+        window.onload = function () {
+            Activity.init();
+        };
+    </script>
+</head>
+<body>
+
+<div id="debug"></div>
+<p id="times-count">剩余次数：XXX</p>
+<p id="score-count">脑力值：XXX</p>
+<img id="jump-start" src="{$activityFsImg}{$platformType}/jump_start.png">
+<div class="jump-wrap">
+    <img id="jump-back" src="{$activityFsImg}{$platformType}/jump_back.png">
+    <img id="jump-rule" src="{$activityFsImg}{$platformType}/jump_rule.png">
+    <img id="jump-winner" src="{$activityFsImg}{$platformType}/jump_winner.png">
+    <img id="jump-exchange" src="{$activityFsImg}{$platformType}/jump_exchange.png">
+    <img id="jump-knowledge" src="{$activityFsImg}{$platformType}/jump_knowledge.png">
+</div>
+
+<div class="modify">
+    <img src="{$activityFsImg}{$platformType}/V{$carrierId}/prize1.png" alt="">
+    <img src="{$activityFsImg}{$platformType}/V{$carrierId}/prize2.png" alt="">
+    <img src="{$activityFsImg}{$platformType}/V{$carrierId}/prize3.png" alt="">
+</div>
+
+<!--游戏UI-->
+<div id="modal-game" class="modal">
+    <img id="guess-pic" src="" alt="">
+    <div id="piece-word-wrap">
+        <p>遥控器按确定键选字</p>
+        <ul id="words-inner"></ul>
+        <div id="game-cd">倒计时：10S</div>
+    </div>
+</div>
+
+<!--常识UI-->
+<div id="modal-knowledge" class="modal">
+    <img id="knowledge-pic" src="{$activityFsImg}{$platformType}/txt0.png" alt="">
+    <img id="knowledge-next" src="{$activityFsImg}{$platformType}/btn_next.png" alt="">
+    <img id="knowledge-back" src="{$activityFsImg}{$platformType}/knowledge_back.png" alt="">
+</div>
+
+<!--增加积分UI-->
+<div id="modal-add-score" class="modal">
+    <p id="p-add-score">0</p>
+    <img id="btn-one" src="{$activityFsImg}{$platformType}/btn_sure.png" alt="">
+</div>
+
+<!--没能增加积分UI-->
+<div id="modal-lose-score" class="modal">
+    <img id="btn-one0" src="{$activityFsImg}{$platformType}/btn_sure.png" alt="">
+</div>
+
+<!--普通用户返回时进入触发返回倒计时UI-->
+<div id="modal-cd" class="modal">
+    <div id="count-down">8 </div><span>s</span>
+</div>
+
+<!--活动规则UI-->
+<div id="modal-rule" class="modal">
+<!--    <img id="btn-rule-close" src="__ROOT__/Public/img/Common/spacer.gif">-->
+</div>
+
+<!--中奖名单UI-->
+<div id="modal-list" class="modal">
+    <div id="total-list"  class="winner-list"></div>
+    <div id="my-list" class="winner-list"></div>
+    <div id="rewrite-tel" class="list-tel my">请输入有效的电话</div>
+    <img id="btn-list-submit" class="btn-list" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-list-cancel" class="btn-list" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--VIP没有游戏次数UI-->
+<div id="modal-vip-notimes" class="modal">
+    <img id="btn-one1" src="{$activityFsImg}{$platformType}/btn_sure.png">
+</div>
+
+<!--普通用户没有游戏次数UI-->
+<div id="modal-pay-notimes" class="modal">
+    <img id="btn-pay-sure" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-pay-cancel" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--兑换UI-->
+<div id="modal-exchange" class="modal"></div>
+
+<!--奖品抽中/兑换成功UI-->
+<div id="modal-accomplish" class="modal">
+    <img id="accomplish-prize" src="">
+    <div id="accomplish-tel">请输入有效的电话</div>
+    <img id="btn-accomplish-submit" class="btn-win" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-accomplish-cancel" class="btn-win" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--支付反馈UI-->
+<div id="modal-pay" class="modal">
+    <img id="pay-back-tip" src="__ROOT__/Public/img/Common/spacer.gif">
+</div>
+
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+<!--当前模块js-->
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/activityBase.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityGuessWords/index.js?t={$time}"></script>
+</body>
+</html>

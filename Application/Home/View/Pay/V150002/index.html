@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>内蒙电信-计费页</title>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Pay/V150002/pay.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            accountId: "{$accountId}",            // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+
+            // 页面参数
+            orderItems: {$orderItems},
+            isPlaying: "{$isPlaying}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-1.7.2.min.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    <!--订购-->
+    <script type="text/javascript"  src="__ROOT__/Public/js/Pay/V150002/pay.js?t={$time}"></script>
+</head>
+<body id="body">
+<!--用于显示弹窗-->
+<div id="showDialog"></div>
+<!--用于加载表单-->
+<div id="showForm" style="display: none"></div>
+
+<script type="text/javascript">
+    Pay.init();
+</script>
+</body>
+</html>

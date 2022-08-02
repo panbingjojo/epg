@@ -1,0 +1,199 @@
+#container {
+    height: 100%;
+    background: #0D8080;
+    background-size: 100% 100%;
+    position: relative;
+    color: #fff;
+}
+
+#avatar {
+    position: absolute;
+    top: 89px;
+    left: 90px;
+    background-size: 100% 100%;
+}
+
+.name {
+    width: 140px;
+    height: 34px;
+    position: absolute;
+    top: 389px;
+    left: 120px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 34px;
+    font-family: Source Han Sans CN;
+    font-weight: bold;
+}
+
+#hospital-name {
+    position: absolute;
+    top: 463px;
+    left: 90px;
+    width: 208px;
+    height: 26px;
+    font-size: 26px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: center;
+}
+
+#title {
+    position: absolute;
+    top: 519px;
+    left: 125px;
+    width: 130px;
+    height: 26px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: center;
+    font-size: 26px;
+}
+
+#depName {
+    position: absolute;
+    top: 575px;
+    left: 95px;
+    width: 200px;
+    height: 26px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: center;
+    font-size: 26px;
+}
+
+.info-area {
+    position: relative;
+    top: 60px;
+    left: 380px;
+    width: 845px;
+    height: 600px;
+    background: rgba(0,0,0,0.2);
+}
+
+.doctor-info {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 96px;
+    height: 24px;
+    font-size: 24px;
+    font-family: Source Han Sans CN;
+    font-weight: bold;
+
+}
+
+.registered {
+    position: absolute;
+    width: 845px;
+    height: 294px;
+    top: 80px;
+    left: 0;
+}
+.title1 {
+    position: absolute;
+    font-size: 18px;
+    width: 50px;
+    height: 24px;
+    left: 240px;
+    top: 305px;
+    background: #f94c4c;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#doctor-info {
+    position: absolute;
+    top: 388px;
+    left: 30px;
+    width: 98px;
+    height: 24px;
+    font-size: 24px;
+}
+
+#introduce {
+    width: 796px;
+    height: 119px;
+    font-size: 20px;
+    overflow: hidden;
+    display: block;
+    padding-top: 20px;
+}
+
+#all-time {
+    width: 870px;
+    height: 40px;
+    padding: 5px 0 0 0;
+    float: left;
+}
+
+#left-arrow {
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    left: 34px;
+}
+
+#time-area {
+    width: 730px;
+    height: 40px;
+    padding: 0 0 10px 83px;
+    float: left;
+}
+
+#right-arrow {
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    right: 48px;
+}
+
+.order-state {
+    float: left;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    margin-right: 37px;
+    background-size: 100% 100%;
+}
+#timeList {
+    width: 845px;
+    height: 184px;
+    overflow: hidden;
+
+}
+
+.appointment {
+    width: 825px;
+    /*background-color: #fff;*/
+    padding: 0 10px 0 10px;
+}
+
+.order-time {
+    float: left;
+    margin: 5px;
+}
+
+.order-info{
+    width: 170px;
+    height: 80px;
+    font-size: 24px;
+}
+.order-time1 {
+    text-align: center;
+    line-height: 80px;
+}
+
+.test-tab-f{
+    border-bottom: 5px;
+    border-bottom-color: #17a1e5;
+    border-bottom-style: solid;
+}

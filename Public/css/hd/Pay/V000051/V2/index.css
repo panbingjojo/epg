@@ -1,0 +1,27 @@
+#back{
+    width: auto;
+    height: auto;
+    left: 459px;
+}
+.hd-goods-name{
+    position: absolute;
+    top: 340px;
+    left: 500px;
+    color: #b73a23;
+    font-size: 33px;
+}
+.sd-goods-name{
+    position: absolute;
+    top: 250px;
+    left: 240px;
+    color: #b73a23;
+    font-size: 24px;
+}
+.hd-second-sure,
+.hd-second-cancle{
+    top: 449px !important;
+}
+.sd-second-sure,
+.sd-second-cancle{
+    top: 349px !important;
+}

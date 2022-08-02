@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/sd/Home/V13/Home/bg.png);
+    background-size: 644px 530px;
+    font-size: 22px;
+    color: #fff;
+}
+
+body > * {
+    position: absolute;
+}
+.body-setPhone{
+    position: absolute;
+    top: 437px;
+    left: 194px;
+    /*width: 571px;*/
+    /*height: 30px;*/
+    /*background-color: pink;*/
+}
+#tips{
+    position: absolute;
+    top: 392px;
+    left: 130px;
+    width: 432px;
+    height: 19px;
+    font-size: 18px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #B2DEFF;
+}
+.body-setPhone-1{
+    display: inline-block;
+    position: absolute;
+    width: 65px;
+    height: 18px;
+    font-size: 18px;
+    font-family: Source Han Sans CN;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+#setPhone{
+    display: inline-block;
+    position: absolute;
+    left: 84px;
+    width: 144px;
+    height: 18px;
+    font-size: 18px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+#btn_phone{
+    position: absolute;
+    top: 431px;
+    left: 462px;
+    width: 99px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 18px;
+    color: #FFFFFF;
+    border-radius: 7px;
+    background-image: url("../../../../img/hd/Family/V13/setphone.png");
+}
+#inputPhone{
+    position: relative;
+    /*z-index: 100;*/
+    display: none;
+}
+#identifyingCodeToast{
+    position: absolute;
+    top: 224px;
+    left: 205px;
+    width: 238px;
+    height: 30px;
+    font-size: 24px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    text-align: center;
+    color: #000000;
+}
+/*提示框样式*/
+#pointOut{
+    position: absolute;
+    /*z-index: 100;*/
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../../img/sd/Family/V13/pointOut.png");
+}
+#pointOut1{
+    position: absolute;
+    top: 296px;
+    left: 139px;
+    width: 370px;
+    height: 50px;
+    font-size: 30px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    text-align: center;
+    color: #000000;
+    line-height: 50px;
+}
+#phone_number{
+    position: absolute;
+    width: 318px;
+    height: 48px;
+    top: 265px;
+    left: 197px;
+    font-size: 22px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    text-align: center;
+    color: #0F78E6;
+    line-height: 48px;
+    border-radius: 9px;
+}
+#identifyingCode{
+    position: absolute;
+    width: 187px;
+    height: 48px;
+    top: 322px;
+    left: 195px;
+    font-size: 22px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #0F78E6;
+    text-align: center;
+    line-height: 48px;
+    border-radius: 7px;
+    background-image: url("../../../../img/hd/Family/V13/identifyingCode.png");
+}
+#btn_identifyingCode{
+    position: absolute;
+    width: 122px;
+    height: 48px;
+    top: 322px;
+    left: 394px;
+    background-image: url("../../../../img/hd/Family/V13/countdown.png");
+    font-size: 22px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 43px;
+    border-radius: 7px;
+}
+#phone_submit{
+    position: absolute;
+    top: 392px;
+    left: 248px;
+}
+
+p#title {
+    top: 20px;
+    left: 38px;
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    clear: both;
+}
+
+#member-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#icon-member {
+    position: absolute;
+    top: 102px;
+    left: 25px;
+    width: 102px;
+    height: 102px;
+}
+
+#call-wrap {
+    position: absolute;
+    top: 213px;
+    left: 25px;
+}
+
+#call-wrap li {
+    width: 102px;
+    height: 48px;
+    padding-top: 18px;
+}
+
+#call-wrap li.edit-member {
+    font-size: 20px;
+}
+
+/*身体特征输入*/
+.body-characteristic {
+    position: absolute;
+    top: 123px;
+    left: 156px;
+}
+.icon-wrap{
+    width: 371px;
+    height: 64px;
+}
+.body-characteristic ul li {
+    float: left;
+    text-align: center;
+    /* padding-top: 40px; */
+}
+
+.age {
+    width: 66px;
+}
+
+.height {
+    width: 230px;
+}
+
+.weight {
+    width: 80px;
+}
+
+ul#prev-wrap,
+ul#select-wrap,
+ul#next-wrap{
+    padding-left: 45px;
+    margin-left: -45px;
+    width: 440px;
+    height: 40px;
+}
+ul#prev-wrap{
+    /* margin-top: 25px; */
+    padding-top: 40px;
+}
+ul#select-wrap{
+    background-image: url(../../../../img/sd/Unclassified/V13/select_bg.png);
+    line-height: 40px;
+    margin-top: 15px;
+}
+ul#next-wrap{
+    margin-top: 40px;
+}
+ul#select-wrap li span.focus {
+    color: red;
+    border-bottom: 1px solid red;
+}
+
+#submit {
+    position: absolute;
+    top: 292px;
+    left: 550px;
+    width: 83px;
+    height: 34px;
+}
+
+#delete-member {
+    position: absolute;
+    top: 230px;
+    left: 550px;
+    width: 83px;
+    height: 34px;
+}
+
+.text-info {
+    position: absolute;
+    top: 505px;
+    left: 46px;
+    width: 558px;
+    height: 19px;
+    font-size: 18px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #FFFFFF;
+}

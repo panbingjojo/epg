@@ -1,0 +1,112 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.btn {
+    position: absolute;
+    width: 158px;
+    height: 52px;
+    outline: none;
+}
+
+#back_btn {
+    top: 35px;
+    left: 1080px;
+}
+#advice_btn{
+    /*position: absolute;*/
+    /*top: 456px;*/
+    /*left: 910px;*/
+    width: 140px;
+    height: 40px;
+    margin-top: 20px;
+
+}
+
+.common_bg {
+    position: absolute;
+    top: 118px;
+    left: 100px;
+    width: 1080px;
+    height: 444px;
+    background: #ececec;
+}
+
+#code {
+
+    width: 172px;
+    height: 172px;
+    outline: none;
+}
+#photo {
+
+    width: 216px;
+    height: 288px;
+    outline: none;
+}
+
+.title {
+    top: 40px;
+    left: 562px;
+    position: absolute;
+    outline: none;
+    font-size: 36px;
+    line-height: 36px;
+    color: #08a8b6;
+    font-weight: bold;
+}
+
+.introduce {
+    top: 88px;
+    left: 186px;
+    position: absolute;
+    outline: none;
+    font-size: 24px;
+    line-height: 24px;
+    color: black;
+    width: 680px;
+    letter-spacing: 2px;
+}
+
+.table {
+    top: 33px;
+    left: 108px;
+    position: absolute;
+    width: 884px;
+}
+
+.table tr td{
+    font-size: 20px;
+    color: #000000;
+    height: 32px;
+    letter-spacing: 1px;
+}
+#doctor{
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 40px;
+}
+.photo_intro{
+    text-align: center;
+    font-size: 19px;
+    line-height: 28px;
+}
+.code_intro{
+    text-align: center;
+    line-height: 40px;
+    font-size: 19px;
+}
+#timer{
+    color: #bd242e;
+}

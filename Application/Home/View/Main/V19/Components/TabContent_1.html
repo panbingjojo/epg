@@ -1,0 +1,488 @@
+<div class="tab1-link-1-wrap">
+    <div id="tab1-link"></div>
+    <img id="tab1-link-1" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+    <img id="tab1-link-0">
+    <div id="tab1-point-wrapper"></div>
+</div>
+<div class="tab1-center-link">
+    <div><img id="tab1-link-2"></div>
+    <div><img id="tab1-link-3"></div>
+    <!--标清位置改变-->
+    <div class="sd-re-pos-1"><img id="tab1-link-4"></div>
+    <div class="sd-re-pos-2"><img id="tab1-link-5"></div>
+</div>
+<ul class="hot-video-list" id="hot-wrap"></ul>
+<div class="tab1-bottom-link">
+    <!--滚动容器-->
+    <div id="overlay-wrap"></div>
+</div>
+<div id="tab1-help" class="tab-help-wrap">
+    <img id="tab1-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab1_help0.png">
+</div>
+
+<script type="text/javascript">
+    var Tab1 = {
+        init: function () {
+            this.hotRefVideo = [];
+            this.bottomData = [];
+            this.bottomPageSize = 5;
+            this.bottomPage = +LMEPG.Func.getLocationString('bottomPage') || 0;
+            this.createBtns();
+            this.getBottomData();
+            this.renderTab1();
+            this.renderBottom();
+            this.Carousel.points();
+        },
+        /**
+         * 渲染Tab1
+         */
+        renderTab1: function () {
+            var me = Tab1;
+            var list = RenderParam.configInfo.data.entry_list;
+            var getImgFun = Page.getImg;
+            var tab_1 = Tab1;
+            var id = '';
+            hotVideo_htm();  // 热播榜
+            for (var i = 0; i < list.length; i++) {
+                var item = list[i];
+                switch (parseInt(item.position)) {
+                    // banner
+                    case 21:
+                        id = '';
+                        banner_htm(item.item_data);
+                        break;
+                    case 22:
+                        id = 'tab1-link-2';
+                        break;
+                    case 23:
+                        id = 'tab1-link-3';
+                        break;
+                    case 24:
+                        id = 'tab1-link-4';
+                        break;
+                    case 25:
+                        id = 'tab1-link-5';
+                        break;
+                }
+
+                if (id) G(id).src = getImgFun(item.item_data[0].img_url);
+            }
+
+            function banner_htm(carouselData) {
+                me.bannerData = [];
+                for (var j = 0; j < carouselData.length; j++) {
+                    var val = carouselData[j];
+                    me.bannerData.push({
+                        id: j,
+                        src: getImgFun(val.img_url),
+                        entry_type: val.entry_type,
+                        parameters: val.parameters,
+                        inner_parameters: val.inner_parameters,
+                    })
+                }
+                if (me.bannerData[0]) G('tab1-link-0').src = me.bannerData[0].src;
+                if (me.bannerData[1]) G('tab1-link-1').src = me.bannerData[1].src;
+            }
+
+            function hotVideo_htm() {
+                var data = LMEPG.Func.shuffle(RenderParam.videoPlayRank.list);
+                var hotInner = '';
+                var staticCount = 6; // 固定的位置个数
+                var currentBtn = LMEPG.BM.getCurrentButton();
+
+                if (data.length === 0) return;
+
+                for (var i = 0; i < staticCount; i++) {
+                    var hotItem = data[i];
+                    var titleTxt = hotItem ? hotItem.title : '';
+                    var titlen = RenderParam.platformType == 'sd' ? 10 : 12;
+                    var title = titleTxt.length > titlen ? titleTxt.slice(0, titlen) + "..." : titleTxt;
+                    hotInner += ' <li data-title="' + titleTxt + '" id=hot-' + i + '>' + title;
+                }
+
+                me.hotRefVideo = data;
+                G('hot-wrap').innerHTML = hotInner;
+                // 如果焦点在热播榜上，每次刷新时把焦点移到第一条
+                if (currentBtn && currentBtn.id.substr(0, 4) === 'hot-') {
+                    LMEPG.BM.requestFocus('hot-0');
+                }
+
+                // 隔十秒刷新一下热播榜
+                if (data.length > 6) {
+                    clearTimeout(me.hotTimer);
+                    me.hotTimer = setTimeout(hotVideo_htm, 10000);
+                }
+            }
+        },
+        /**
+         * 通用位置获得焦点
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+            Tab1.bottomOnFocusIn(btn, hasFocus);
+            Tab1.carouselLink1OnFocus(btn, hasFocus);
+        },
+        /**
+         * 轮播推荐位得失焦点处理
+         * 轮询切换
+         * @param btn
+         * @param hasFocus
+         */
+        carouselLink1OnFocus: function (btn, hasFocus) {
+            if (btn.id != 'tab1-link') {
+                return;
+            }
+            var carousel_0 = G(btn.id + '-0');
+            var carousel_1 = G(btn.id + '-1');
+            if (hasFocus) {
+                carousel_0.setAttribute('class', 'focus');
+                carousel_1.setAttribute('class', 'focus');
+            } else {
+                carousel_0.removeAttribute('class');
+                carousel_1.removeAttribute('class');
+            }
+        },
+
+        hotOnFocusIn: function (btn, hasFocus) {
+            var btnEl = G(btn.id);
+            var txtInner = btnEl.getAttribute('data-title');
+            var lenWord = RenderParam.platformType == 'sd' ? 8 : 12;
+            if (btn.id.indexOf('hot') < 0 || txtInner.length <= lenWord) {
+                return;
+            }
+
+            if (hasFocus) {
+                btnEl.innerHTML = '<marquee>' + txtInner;
+            } else {
+                btnEl.innerHTML = txtInner.length > lenWord ? txtInner + '...' : txtInner;
+            }
+        },
+
+        /**
+         * 点击二级视频入口（页面的最后一行）
+         */
+        onClickJumpLevel2Page: function (btn) {
+            var currentObj = getCurPageObj();
+            var jumpAgreementObj = LMEPG.Intent.createIntent('channelIndex');
+            jumpAgreementObj.setParam('itemIndex', Tab1.bottomPage);
+            jumpAgreementObj.setParam('modelType', Tab1.jumpBottomData[btn.id.slice(-1)].model_type);
+            jumpAgreementObj.setParam('modelName', Tab1.jumpBottomData[btn.id.slice(-1)].model_name);
+            LMEPG.Intent.jump(jumpAgreementObj, currentObj);
+        },
+        /**
+         * 视频栏目获得焦点
+         * 处理进入二级视频栏目滚动效果
+         * @param btn
+         * @param hasFocus
+         */
+        bottomOnFocusIn: function (btn, hasFocus) {
+            if (btn.id.indexOf('bottom') < 0) {
+                return;
+            }
+            if (hasFocus) {
+                if (btn.id == 'bottom-link-0') {
+                    showLeft();
+                }
+                if (btn.id == 'bottom-link-4') {
+                    showRight();
+                }
+            }
+
+            function showLeft() {
+                G('first-action').setAttribute('class', 'moveRight');
+                if (Tab1.prevImage) {
+                    Show('placeholder-0');
+                    Hide('placeholder-1');
+                }
+            }
+
+            function showRight() {
+                G('first-action').setAttribute('class', 'moveLeft');
+                if (Tab1.nextImage) {
+                    Hide('placeholder-0');
+                    Show('placeholder-1');
+                }
+            }
+        },
+        /**
+         * 视频栏目焦点移动
+         * 切换滚动
+         * @param dir
+         * @param btn
+         */
+        turnBottomPage: function (dir, btn) {
+            var me = Tab1;
+            if (dir == 'left' && btn.id == 'bottom-link-0' && me.bottomPage != 0) {
+                me.bottomPage -= 1;
+                me.renderBottom(btn);
+                LMEPG.BM.requestFocus('bottom-link-0');
+            }
+            if (dir == 'right' && btn.id == 'bottom-link-4' && me.bottomPage < me.bottomData.length - 5) {
+                me.bottomPage += 1;
+                me.renderBottom(btn);
+                LMEPG.BM.requestFocus('bottom-link-4');
+            }
+        },
+        /**
+         * 转换组装底部视频栏目数据
+         */
+        getBottomData: function () {
+            var bom_data = RenderParam.videoClass.data;
+            var getImgFun = Page.getImg;
+            for (var k = 0; k < bom_data.length; k++) {
+                this.bottomData.push({
+                    id: k,
+                    src: getImgFun(bom_data[k].img_url),
+                    show_title:bom_data[k].show_title,
+                    model_type:bom_data[k].model_type,
+                    model_name:bom_data[k].model_name
+                });
+            }
+        },
+        /**
+         * 底部视频栏目
+         */
+        renderBottom: function (btn) {
+
+            var bottomInner = '';
+            var parentNodeId = '';
+            var parentNodeClass = '';
+            var src = '';
+            var start = this.bottomPage;
+            var end = this.bottomPage + this.bottomPageSize;
+            var data = this.bottomData.slice(start, end);
+
+            if (data.length === 0) return;
+            for (var k = 0; k < this.bottomPageSize; k++) {
+                src = data[k] ? data[k].src : '';
+                parentNodeId = k === 0 ? 'first-action' : '';
+                parentNodeClass = k === 0 ? 'moveRight' : '';
+                bottomInner += '<div class="' + parentNodeClass + '" id="' + parentNodeId + '"><img id="bottom-link-' + k + '" src="' + src + '"></div>';
+            }
+
+            // 添加站位元素
+            bottomInner = '<div id="placeholder-0" class="left-placeholder"><img id="placeholder-img-0" src=""></div>' + bottomInner;
+            bottomInner += '<div id="placeholder-1" class="right-placeholder"><img id="placeholder-img-1" src=""></div>';
+
+            G('overlay-wrap').innerHTML = bottomInner;
+            this.jumpBottomData = data;
+            this.prevImage = start ? this.bottomData[start - 1] : null;
+            this.nextImage = this.bottomData[end] ? this.bottomData[end] : null;
+            this.refPlaceholder(this.prevImage, this.nextImage);
+        },
+
+        /**
+         * 视频栏目
+         * 展示占位元素
+         * @param prevImage
+         * @param nextImage
+         */
+        refPlaceholder: function (prevImage, nextImage) {
+            if (this.bottomData.length < 6) {
+                return;
+            }
+
+            if (prevImage && prevImage.src) {
+                G('placeholder-img-0').src = prevImage.src;
+            }
+
+            if (nextImage && nextImage.src) {
+                G('placeholder-img-1').src = nextImage.src;
+            }
+        },
+        /*=====处理轮播对象封装=====*/
+        data: [], // 配置推荐位轮播数据
+        Carousel: {
+            reverseStatus: false,
+            init: function () {
+                if (Tab1.bannerData.length < 2) {
+                    H('tab1-point-wrapper');
+                    return;
+                }
+                this.data = Tab1.bannerData;
+                this.img1 = G('tab1-link-0');
+                this.img2 = G('tab1-link-1');
+                this.timer = setInterval(this.update, 4333);
+            },
+
+            /*更新轮播图片*/
+            update: function () {
+                var me = Tab1.Carousel;
+                var data = me.data;
+
+                me.prevRender(me, data);
+                me.switchDot();
+                me.appendDataAfter(me, data);
+                me.shuffle(data[0].id);
+            },
+
+            /*追加数据结构（引用循环）*/
+            appendDataAfter: function (me, data) {
+                data.push(data.shift());
+            },
+
+            /*渲染图片UI*/
+            prevRender: function (me) {
+                var runTag = me.getTag();
+
+                LMEPG.Func.fade(runTag.hideTag, 1, 50, function () {
+                    runTag.hideTag.src = me.data[1].src;
+                    me.carouselIdx = me.data[0].id;
+                });
+
+                LMEPG.Func.fade(runTag.showTag, 0, 50);
+            },
+
+            /*添加动态小圆点*/
+            points: function () {
+                var htm = '';
+                var len = Tab1.bannerData.length;
+
+                while (len--) {
+                    var className = len === 0 ? 'focus' : '';
+                    htm = '<img src="__ROOT__/Public/img/hd/Common/transparent.png" id="tab1-point-' + len + '" class="' + className + '">' + htm;
+                }
+
+                G('tab1-point-wrapper').innerHTML = htm;
+            },
+
+            /*获得切换过程中对应dom元素*/
+            getTag: function () {
+                this.reverseStatus = !this.reverseStatus;
+                return this.reverseStatus ? {hideTag: this.img1, showTag: this.img2} : {hideTag: this.img2, showTag: this.img1};
+            },
+
+            /*重组轮播数据*/
+            shuffle: function (id) {
+                var me = this;
+                me.data.sort(function (a, b) {
+                    var sum = a.id - b.id;
+                    if (id == me.data.length - 1) {
+                        return -sum;
+                    } else if (id == 0) {
+                        return sum;
+                    }
+                });
+            },
+
+            /*切换轮播小圆点提示*/
+            switchDot: function () {
+                G('tab1-point-' + this.data[0].id).removeAttribute('class');
+                G('tab1-point-' + this.data[1].id).setAttribute('class', 'focus');
+            }
+        },
+        createBtns: function () {
+            // 推荐位1
+            buttons.push({
+                id: 'tab1-link',
+                type: 'img',
+                nextFocusRight: 'tab1-link-2',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'tab1-link-4' : 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 21
+            });
+            // 中间四个推荐位
+            buttons.push({
+                id: 'tab1-link-2',
+                type: 'img',
+                nextFocusLeft: 'tab1-link',
+                nextFocusRight: RenderParam.platformType == 'sd' ? 'hot-0' : 'tab1-link-3',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'tab1-link-3' : 'tab1-link-4',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 22
+            }, {
+                id: 'tab1-link-3',
+                type: 'img',
+                nextFocusLeft: RenderParam.platformType == 'sd' ? 'tab1-link-5' : 'tab1-link-2',
+                nextFocusRight: 'hot-0',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link-2' : 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'bottom-link-1' : 'tab1-link-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 23
+            }, {
+                id: 'tab1-link-4',
+                type: 'img',
+                nextFocusLeft: RenderParam.platformType == 'sd' ? '' : 'tab1-link',
+                nextFocusRight: 'tab1-link-5',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link' : 'tab1-link-2',
+                nextFocusDown: 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 24
+            }, {
+                id: 'tab1-link-5',
+                type: 'img',
+                nextFocusLeft: 'tab1-link-4',
+                nextFocusRight: RenderParam.platformType == 'sd' ? 'tab1-link-3' : 'hot-0',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link' : 'tab1-link-3',
+                nextFocusDown: 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 25
+            });
+            // 热播榜
+            var hot_length = 6;
+            while (hot_length--) {
+                var topFocus = hot_length == 0 ? 'tab-1' : 'hot-' + (hot_length - 1);
+                var downFocus = hot_length == 5 ? 'bottom-link-3' : 'hot-' + (hot_length + 1);
+                buttons.push({
+                    id: 'hot-' + hot_length,
+                    type: 'div',
+                    nextFocusLeft: 'tab1-link-3',
+                    nextFocusUp: topFocus,
+                    nextFocusDown: downFocus,
+                    click: Page.onClickHotVideo,
+                    focusChange: Tab1.hotOnFocusIn,
+                    backgroundImage: RenderParam.platformType == 'sd'
+                        ? g_appRootPath + '/Public/img/sd/Unclassified/V13/hot_bg.png'
+                        : g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab1/hot_bg.png',
+                    focusImage: RenderParam.platformType == 'sd' ? g_appRootPath + '/Public/img/sd/Unclassified/V13/hot_f.png' : g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab1/hot_link.png',
+                    cNavId: 2
+                });
+            }
+            // 跳转二级页面按钮
+            var tabCount = 5; // 后台拉去的个数
+            while (tabCount--) {
+                var top1Focus = function () {
+                    var id;
+                    if (tabCount < 2) {
+                        id = 'tab1-link-4';
+                    } else if (tabCount == 2 || RenderParam.videoPlayRank.count == 0) {
+                        id = 'tab1-link-5';
+                    } else {
+                        id = 'hot-5';
+                    }
+                    return id;
+                }();
+                buttons.push({
+                    id: 'bottom-link-' + tabCount,
+                    type: 'others',
+                    nextFocusLeft: 'bottom-link-' + (tabCount - 1),
+                    nextFocusRight: 'bottom-link-' + (tabCount + 1),
+                    nextFocusUp: top1Focus,
+                    click: Tab1.onClickJumpLevel2Page,
+                    focusChange: Tab1.onFocusIn,
+                    beforeMoveChange: Tab1.turnBottomPage,
+                    cNavId: tabCount
+                });
+            }
+        }
+    };
+</script>

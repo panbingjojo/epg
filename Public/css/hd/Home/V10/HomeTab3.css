@@ -1,0 +1,209 @@
+body {
+    color: white;
+}
+
+.depart {
+    position: absolute;
+    top: 100px;
+    left: 75px;
+    width: 1144px;
+    height: 68px;
+    text-align: center;
+    line-height: 68px;
+    font-size: 24px;
+    border-radius: 12px;
+    background: url("../../../../../Public/img/hd/Home/V10/HomeBox/bg_btn_long.png");
+}
+
+.depart img {
+    vertical-align: middle;
+}
+
+.center {
+    position: absolute;
+    top: 115px;
+    left: 8px;
+    width: 1240px;
+    height: 508px;
+}
+
+.recommended {
+    position: absolute;
+    width: 686px;
+    height: 345px;
+    background: url("../../../../../Public/img/hd/Home/V10/HomeBox/bg_card.png");
+    border-radius: 12px;
+    background-position: center;
+    /*border: 1px red solid;*/
+
+}
+
+.recommended-bg {
+    position: absolute;
+    top: 50px;
+    left: 69px;
+    width: 162px;
+    height: 244px;
+    border-radius: 10px;
+}
+
+.recommended-photo {
+    position: absolute;
+    top: 92px;
+    left: 69px;
+    width: 162px;
+    height: 160px;
+}
+
+.introduce {
+    position: absolute;
+    top: 65px;
+    left: 269px;
+    width: 330px;
+    height: 230px;
+    font-size: 26px;
+    color: #393838;
+}
+
+.big-size {
+    font-size: 40px;
+}
+
+.middle-size {
+    font-size: 30px;
+}
+
+.introduce-word {
+    width: 330px;
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.inquiry-number {
+    position: absolute;
+    top: 260px;
+    left: 69px;
+    width: 162px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 22px;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.position {
+    width: 100%;
+    height: 40px;
+}
+
+#recommended-0 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#recommended-1 {
+    position: absolute;
+    top: 0px;
+    left: 580px;
+}
+
+#recommended-2 {
+    position: absolute;
+    top: 258px;
+    left: 0px;
+}
+
+#recommended-3 {
+    position: absolute;
+    top: 258px;
+    left: 580px;
+}
+
+#m-pre {
+    position: absolute;
+    top: 410px;
+    left: 10px;
+    display: none;
+}
+
+#m-next {
+    position: absolute;
+    top: 680px;
+    left: 620px;
+}
+
+#pages {
+    position: absolute;
+    top: 685px;
+    left: 1050px;
+    font-size: 25px;
+    color: #FFFFFF;
+}
+
+/*--------------------------------------------------
+         按钮选中效果
+ ---------------------------------------------------*/
+/*推荐位*/
+.recommended-hover {
+    position: absolute;
+    /*width: 300px;*/
+    /*-webkit-transform: scale(1.1);*/
+    /*-moz-transform: scale(1.1);*/
+    /*box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);*/
+    /*border: 1px solid black;*/
+    /*border-radius: 12px;*/
+    z-index: 996;
+    /*-webkit-transition: all 0.1s;*/
+    /*-moz-transition: all 0.1s;*/
+}
+
+.recommended-hover > .inquiry-number {
+    top: 270px;
+    left: 59px;
+}
+.recommended-hover > .introduce {
+    /*top: 270px;*/
+    /*left: 59px;*/
+    font-weight: bold;
+    top: 80px;
+    left: 269px;
+}
+
+.zoom-img-1 {
+    top: 40px;
+    left: 39px;
+    width: 182px;
+    height: 268px;
+
+}
+
+.zoom-img-2 {
+    top: 83px;
+    left: 41px;
+    width: 179px;
+    height: 182px;
+
+}
+
+.active {
+    top: 300px
+}
+
+/*.recommended-photo {*/
+/*position: absolute;*/
+/*top: 96px;*/
+/*left:69px;*/
+/*width: 162px;*/
+/*height: 158px;*/
+/*}*/
+
+
+

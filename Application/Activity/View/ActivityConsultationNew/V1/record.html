@@ -1,0 +1,821 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>专家约诊记录</title>
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var CWS_HLWYY_URL = "{$cwsHlwyyUrl}";
+        var platformType = "<?php echo $platformType ?>";     // 平台类型
+        var parentPage = "<?php echo $parentPage ?>";         // 父页面
+        var returnUrl = "<?php echo $returnUrl ?>";               // 父页面
+        var focusId = "{$focusId}";       //默认焦点
+        var userId = "{$userId}";
+        var carrierId = "{$carrierId}";
+        var areaCode = "{$areaCode}";
+        var initClinicId = "{$clinicId}";
+
+        var RenderParam = {
+            CWS_HLWYY_URL: "{$cwsHlwyyUrl}",
+            carrierId: "{$carrierId}",
+            expertUrl: "{$expertUrl}",
+            isRunOnAndroid: "{$isRunOnAndroid}",
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+        };
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityConsultation/V2/AppointmentRecord.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <!-- 按钮焦点处理 -->
+    <script type="text/javascript">
+        /** 按返回键 */
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+    </script>
+</head>
+<body style=" background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/bg_box.png')">
+<div id="debug" style="position: absolute; top: 0px; left: 0px;font-size: 36px;color: red;"></div>
+<div class="title">约诊记录</div>
+<div id="content" class="content">
+    <img id="arrow-left" class="pre-page" src="__ROOT__/Public/img/hd/Expert/left_pages.png"/>
+    <img id="arrow-right" class="next-page" src="__ROOT__/Public/img/hd/Expert/right_pages.png"/>
+    <div id="pages" class="pages"></div>
+    <!--<img class="expert-bg" src="__ROOT__/Public/img/hd/Expert/expert-bg.png">-->
+    <div id="count-down" class="dead-line"></div>
+    <table class="expert-detial">
+        <tr>
+            <td rowspan="9" class="fst-td">
+                <img id="photo" onerror="this.src='__ROOT__/Public/img/hd/Expert/init_doctor.png'">
+            </td>
+            <!--<td></td>-->
+        </tr>
+        <tr>
+            <td><span id="hospital"></span></td>
+        </tr>
+        <tr>
+
+            <td>
+                <div id="department"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="good"></div>
+            </td>
+        </tr>
+        <tr>
+            <td><span id="fee"></span></td>
+        </tr>
+        <tr>
+            <td><span id="inquiry-dt"></span></td>
+        </tr>
+        <tr>
+            <td><span id="create-dt"></span></td>
+        </tr>
+        <tr>
+            <td><span id="patient-name"></span></td>
+        </tr>
+        <tr>
+            <td><span id="tel"></span></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><span class="expert-name" id="name"></span>&nbsp;|&nbsp;<span id="job"></span></td>
+            <td><span id="visit-num"></span></td>
+        </tr>
+        <tr>
+            <td>
+                <div>订单状态：<span id="status"></span></div>
+            </td>
+        </tr>
+    </table>
+    <!--右侧部分-->
+
+    <!--<img class="bg-qr-code" src="__ROOT__/Public/img/hd/Expert/bg_qr_code.png">-->
+    <img id="qr-code" src="" alt=""/>
+    <div id="qr-code-title"></div>
+
+    <div id="consultation-wrap">
+        <img id="btn-consult" class="btn-bg" src="__ROOT__/Public/img/hd/Activity/ActivityConsultation/V2/bg_btn.png">
+        <div id="btn-consult-title" class="btn-title">咨询助理医生</div>
+    </div>
+    <div id="introduce-wrap">
+        <img id="btn-case" class="btn-bg" src="__ROOT__/Public/img/hd/Activity/ActivityConsultation/V2/bg_btn.png">
+        <div id="btn-case-title" class="btn-title">查看病历</div>
+    </div>
+    <div id="advise-wrap" class="advise-wrap">
+        <img id="btn-advise" class="btn-bg" src="__ROOT__/Public/img/hd/Activity/ActivityConsultation/V2/bg_btn.png">
+        <div id="btn-advise-title" class="btn-title">医生建议</div>
+    </div>
+
+</div>
+
+<div id="no-data">暂无约诊记录</div>
+
+<script type="text/javascript">
+    var lmcid = "{$carrierId}";// 区域ID
+    var expertUrl = "{$expertUrl}";
+    var IS_FIRST_LOAD = true;//是否第一次加载数据
+
+    var focusIndex = "{$focusIndex}" || "btn-consult";
+    var pageCount = 0;
+    var pageCurrent =  {$page};
+    var limitBegin = 0;
+
+    var ORDER_STATUS_PAY = 1;//待付款的订单状态
+    var ORDER_STATUS_INQUIRY = 2;//等就诊的订单状态
+    var ORDER_STATUS_OVER = 3;//已完成的订单状态
+    var ORDER_STATUS_CLOSE = 4;//已关闭的订单状态
+    var ORDER_STATUS = 0;//没有订单状态
+    var APPOINTMENT_ID;//预约id
+
+    var INQUIRY_START_TIME = "0";//问诊时间,用来做定时器使用
+    var INQUIRY_END_TIME = "0";//问诊结束时间
+    var mServerTime = 0;//定时器开始的值
+
+    var CONSULT_EXPERT_STATUS = false;//true:咨询大医生，false：咨询助理医生
+
+    var mOrderTimer;//轮询定时器，订单状态为待付款的时候，开启轮询
+    var mInquiryTimer = null;//问诊定时器
+    var mInquiryAppUpdateUiTimer = null;//开始问诊时定时获取医生状态，更新订单状态
+
+    var eleHeader = G("photo");
+    var eleName = G("name");
+    var eleJob = G("job");
+    var eleHospital = G("hospital");
+    var eleDepartment = G("department");
+    var eleGood = G("good");
+    var eleFee = G("fee");
+    var eleCreateDt = G("create-dt");
+    var eleInquiryDt = G("inquiry-dt");
+    var elePatientName = G("patient-name");
+    var eleVisitNum = G("visit-num");
+    var eleTel = G("tel");
+    var eleStatus = G("status");
+    var eleQrCode = G("qr-code");
+    var elePage = G("pages");
+    var eleBtnConsult = G("btn-consult");
+    var eleBtnConsultTitle = G("btn-consult-title");
+    var eleBtnCase = G("btn-case");
+    var eleBtnAdvise = G("btn-advise");
+    var eleArrowLeft = G("arrow-left");
+    var eleArrowRight = G("arrow-right");
+    var eleCountDown = G("count-down");
+    var eleQrCodeTips = G("qr-code-title");
+
+    var Action = {
+        getCurrentPage: function () {
+            var intent = LMEPG.Intent.createIntent("activity-consultation-new-record");
+            intent.setParam("page", pageCurrent);
+            return intent;
+        },
+        consult: function (btnItemObj) {
+            if (CONSULT_EXPERT_STATUS) {
+                LMEPG.Inquiry.expert.inquiryExpert(btnItemObj.expertObj, RenderParam.isRunOnAndroid === '0',btnItemObj.id);
+
+                ActionTime.startInquiryAppUpdateUiTimer();
+            } else {
+                consultFree(btnItemObj.id);
+            }
+            console.log(CONSULT_EXPERT_STATUS);
+        },
+        patientCase: function (btnItemObj) {
+            var objCurrent = Action.getCurrentPage();
+            objCurrent.setParam("clinicId", initClinicId);
+            objCurrent.setParam("focusIndex", btnItemObj.id);
+
+            var objExpertCase = LMEPG.Intent.createIntent("expertCase");
+            objExpertCase.setParam("appointmentID", btnItemObj.appointmentID);
+
+            LMEPG.Intent.jump(objExpertCase, objCurrent);
+        },
+        advise: function (btnItemObj) {
+            var objCurrent = Action.getCurrentPage();
+            objCurrent.setParam("focusIndex", btnItemObj.id);
+
+            var objExpertAdvice = LMEPG.Intent.createIntent("expertAdvice");
+            objExpertAdvice.setParam("appointmentID", btnItemObj.appointmentID);
+
+            LMEPG.Intent.jump(objExpertAdvice, objCurrent);
+        },
+        onBeforeMoveChange: function (dir, btnItemObj) {
+            switch (dir) {
+                case "left":
+                    moveLeft(btnItemObj);
+                    break;
+                case "right":
+                    moveRight(btnItemObj);
+                    break;
+            }
+        }
+        ,
+        jumpExpertSuccess: function (appointmentID) {
+            var objCurrent = Action.getCurrentPage();
+
+            var objExpertRecordSuccess = LMEPG.Intent.createIntent("expertRecordSuccess");
+            objExpertRecordSuccess.setParam("appointmentID", appointmentID);
+
+            LMEPG.Intent.jump(objExpertRecordSuccess, objCurrent);
+        }
+    };
+
+    //定时器相关的方法
+    var ActionTime = {
+        orderTimerAppointmentID: "",//保存订单中的预约id
+        startOrderTimer: function (appointmentID) {
+            ActionTime.orderTimerAppointmentID = appointmentID;
+            if (ActionTime.orderTimerAppointmentID == "") {
+                return;
+            }
+            mOrderTimer = setInterval(function () {
+                LMEPG.Inquiry.expertApi.getInquiryList(ActionTime.orderTimerAppointmentID, 0, 1, function (data) {
+                    try {
+                        var expertJsonObj = null;
+                        if (data instanceof Object) {
+                            expertJsonObj = data;
+                        } else {
+                            expertJsonObj = JSON.parse(data);
+                        }
+                        var code = expertJsonObj.code;
+                        if (code == 0) {
+                            var tempData = expertJsonObj.data[0];
+                            var isPay = tempData.clinic_is_pay;                //支付状态  0未支付 1已支付
+                            var clinicState = tempData.clinic_state;           //就诊状态 0：等待；1：进行；2：完成；3：关闭；
+                            if (isPay == 1 && clinicState == 0) {
+                                ActionTime.clearOrderTimer();
+                                Action.jumpExpertSuccess(ActionTime.orderTimerAppointmentID);
+                            }
+                        } else if (code == "-102") {
+                            console.log("拉取数据失败订单数据失败：" + code);
+                        } else {
+                            console.log("拉取数据失败订单数据失败：" + code);
+                        }
+                    } catch (e) {
+                        console.log("拉取数据失败订单数据异常：" + e.toString());
+                    }
+                });
+            }, 3000);
+        },
+        clearOrderTimer: function () {
+            ActionTime.orderTimerAppointmentID = "";
+            clearInterval(mOrderTimer);
+        }
+        ,
+        startInquiryTimer: function (isLoop) {
+            if (isLoop) {
+                mServerTime = mServerTime + 1000;
+            }
+            if (INQUIRY_START_TIME > 0) {
+                var timeStartInterval = INQUIRY_START_TIME - mServerTime;//距离开始问诊的时间间隔
+                var timeEndInterval = INQUIRY_END_TIME - mServerTime;//距离结束问诊的时间间隔
+                console.log("------->timeStartInterval=" + timeStartInterval + "--->INQUIRY_START_TIME=" + INQUIRY_START_TIME);
+                if (timeStartInterval > 0) {
+                    if (timeStartInterval <= 1200000) { //距离问诊开始20分钟内
+                        CONSULT_EXPERT_STATUS = true;
+                        eleBtnConsultTitle.innerHTML = "进入候诊室";
+                    } else {
+                        CONSULT_EXPERT_STATUS = false;
+                        eleBtnConsultTitle.innerHTML = "咨询助理医生";
+                    }
+                    eleCountDown.innerHTML = '距离门诊开始还有：<span id="time"></span>';
+                    showTime();
+                } else {
+                    if (timeEndInterval > 0) {  //问诊时间中
+                        var timeStr = "请及时进入候诊室";
+                        if (eleCountDown != null) {
+                            eleCountDown.innerHTML = timeStr;
+                        }
+                        CONSULT_EXPERT_STATUS = true;
+                        eleBtnConsultTitle.innerHTML = "进入候诊室";
+                    }
+                }
+
+                function showTime() {
+                    var d, h, m, s;
+                    d = Math.floor(timeStartInterval / 1000 / 60 / 60 / 24);
+                    h = checkTime(Math.floor(timeStartInterval / 1000 / 60 / 60 % 24));
+                    m = checkTime(Math.floor(timeStartInterval / 1000 / 60 % 60));
+                    s = checkTime(Math.floor(timeStartInterval / 1000 % 60));
+                    var timeStr = d + "天" + h + "时" + m + "分" + s + "秒";
+                    var eleTime = document.getElementById("time");
+                    console.log("timer=" + timeStr);
+                    eleTime.innerHTML = timeStr;
+                    mInquiryTimer = setTimeout(ActionTime.startInquiryTimer, 1000, true);
+
+                    function checkTime(i) { //将0-9的数字前面加上0，历1变为01
+                        if (i < 10) {
+                            i = "0" + i;
+                        }
+                        return i;
+                    }
+
+                }
+            }
+        }
+        ,
+        clearInquiryTimer: function () {
+            clearTimeout(mInquiryTimer);
+        },
+        startInquiryAppUpdateUiTimer: function () {
+            console.log("startInquiryAppUpdateUiTimer-->start");
+            mInquiryAppUpdateUiTimer = setInterval(function () {
+                LMEPG.Inquiry.expertApi.getInquiryList(APPOINTMENT_ID, 0, 1, function (data) {
+                    try {
+                        var expertJsonObj = null;
+                        if (data instanceof Object) {
+                            expertJsonObj = data;
+                        } else {
+                            expertJsonObj = JSON.parse(data);
+                        }
+                        var code = expertJsonObj.code;
+                        if (code == 0) {
+                            var tempData = expertJsonObj.data[0];
+                            var clinicState = tempData.clinic_state;           //就诊状态 0：等待；1：进行；2：完成；3：关闭；
+                            if (clinicState == 2 || clinicState == 3) {
+                                ActionTime.clearInquiryAppUpdateUiTimer();
+                                ActionTime.clearInquiryTimer();
+                                eleCountDown.innerHTML = "";
+                                console.log("startInquiryAppUpdateUiTimer-->正常了");
+                            } else {
+                                console.log("startInquiryAppUpdateUiTimer-->其他状态");
+                            }
+
+                        } else if (code == "-102") {
+                            console.log("startInquiryAppUpdateUiTimer拉取数据失败订单数据失败：" + code);
+                        } else {
+                            console.log("startInquiryAppUpdateUiTimer拉取数据失败订单数据失败：" + code);
+                        }
+                    } catch (e) {
+                        console.log("startInquiryAppUpdateUiTimer拉取数据失败订单数据异常：" + e.toString());
+                    }
+                });
+            }, 1000);
+        },
+        clearInquiryAppUpdateUiTimer: function () {
+            clearInterval(mInquiryAppUpdateUiTimer);
+            eleCountDown.innerHTML = "";
+            console.log("clearInquiryAppUpdateUiTimer-->");
+        }
+    };
+
+    var buttonConsult = {
+        id: 'btn-consult',
+        name: '咨询',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: 'btn-case',
+        backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityConsultation/V2/bg_btn.png',
+        focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityConsultation/V2/f_btn.png',
+        click: Action.consult,
+        focusChange: "",
+        beforeMoveChange: Action.onBeforeMoveChange,
+        moveChange: "",
+        appointmentID: "",//预约的id
+        consultStatus: "false",//false咨询普通医生，true约诊的大专家医生
+        expertObj: null //大专家对象
+    };
+
+    var buttonCase = {
+        id: 'btn-case',
+        name: '查看病历',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: 'btn-consult',
+        nextFocusDown: 'btn-advise',
+        backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityConsultation/V2/bg_btn.png',
+        focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityConsultation/V2/f_btn.png',
+        click: Action.patientCase,
+        focusChange: "",
+        beforeMoveChange: Action.onBeforeMoveChange,
+        moveChange: "",
+        appointmentID: ""
+    };
+
+    var buttonAdvise = {
+        id: 'btn-advise',
+        name: '医生建议',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: 'btn-case',
+        nextFocusDown: '',
+        backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityConsultation/V2/bg_btn.png',
+        focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityConsultation/V2/f_btn.png',
+        click: Action.advise,
+        focusChange: "",
+        beforeMoveChange: Action.onBeforeMoveChange,
+        moveChange: "",
+        appointmentID: ""
+    };
+
+    var buttons = [];
+
+    window.onload = function (ev) {
+        Hide("content");
+        Hide("no-data");
+        limitBegin = pageCurrent - 1;
+        getInquiryData(limitBegin);
+    };
+
+    /**
+     * 获取二维码
+     * @param appointmentID
+     * @param orderStatus
+     */
+    function getQrCode(appointmentID, orderStatus) {
+        var qrType = 1;
+        if (orderStatus == ORDER_STATUS_OVER || orderStatus == ORDER_STATUS_INQUIRY) {
+            qrType = 2;
+        }
+        LMEPG.Inquiry.expertApi.getQrCodeViaAppointmentID(appointmentID, qrType, function (data) {
+            try {
+                var qrCodeJsonObj;
+                if (data instanceof Object) {
+                    qrCodeJsonObj = data;
+                } else {
+                    qrCodeJsonObj = JSON.parse(data);
+                }
+                if (qrCodeJsonObj.code == 0) {
+                    if (orderStatus == ORDER_STATUS_PAY) {
+                        ActionTime.startOrderTimer(appointmentID, qrCodeJsonObj.timestamp);
+                    }
+                    LMEPG.Log.info("qrCodeUrl>>>>" + qrCodeJsonObj.base);
+                    eleQrCode.src = qrCodeJsonObj.base;
+                } else {
+                    LMEPG.UI.showToast("获取二维码失败" + qrCodeJsonObj.code);
+                    eleQrCode.setAttribute("src", "/Public/img/Common/spacer.gif");
+                }
+            } catch (e) {
+                LMEPG.UI.showToast("解析二维码异常" + e);
+                console.log("d=" + e);
+                eleQrCode.setAttribute("src", "/Public/img/Common/spacer.gif");
+            }
+        });
+    }
+
+    //向左翻页
+    function moveLeft(btnItemObj) {
+        if (pageCurrent > 1) {
+            pageCurrent--;
+            limitBegin = pageCurrent - 1;
+            getInquiryData(limitBegin);
+        }
+    }
+
+    //向右翻页
+    function moveRight(btnItemObj) {
+        if (pageCurrent < pageCount) {
+            pageCurrent++;
+            limitBegin = pageCurrent - 1;
+            getInquiryData(limitBegin);
+        }
+
+    }
+
+    /**
+     * 拉取问诊记录信息
+     * @param startLimit 对应mysql中的limit字句开始值
+     */
+    function getInquiryData(startLimit) {
+        LMEPG.UI.showWaitingDialog("");
+        LMEPG.Inquiry.expertApi.getInquiryList("",startLimit, 1, function (data) {
+            LMEPG.UI.dismissWaitingDialog();
+            updateUI(data);
+        });
+    }
+
+    //更新界面元素
+    function updateUI(data) {
+        try {
+
+            if (data == null) {
+                LMEPG.UI.showToast("拉取数据失败" + data);
+                return;
+            } else {
+                Hide("no-data");
+            }
+
+
+            var expertJsonObj = data instanceof Object ? data : JSON.parse(data);
+            if (expertJsonObj.data.length > 0) {
+                IS_FIRST_LOAD = false;
+                Show("content");
+            } else {
+                if (IS_FIRST_LOAD) {
+                    Show("no-data");
+                }
+                LMEPG.ButtonManager.init('', [], '', true); // 确保能响应返回键
+                return;
+            }
+
+            pageCount = expertJsonObj.count;
+            elePage.innerHTML = pageCurrent + "/" + pageCount;
+            ActionTime.clearOrderTimer();
+            ActionTime.clearInquiryTimer();
+            eleCountDown.innerHTML = "";
+
+            if (pageCurrent > 1) {
+                eleArrowLeft.style.display = "block";
+            } else {
+                eleArrowLeft.style.display = "none";
+            }
+            if (pageCurrent < pageCount) {
+                eleArrowRight.style.display = "block";
+            } else {
+                eleArrowRight.style.display = "none";
+            }
+
+            var code = expertJsonObj.code;
+            if (code == 0) {
+
+                CONSULT_EXPERT_STATUS = false;
+
+                var tempData = expertJsonObj.data[0];
+                eleName.innerHTML = tempData.doctor_name;
+                eleJob.innerHTML = tempData.doctor_level;
+                eleDepartment.innerHTML = "科室：" + tempData.department_name;
+                eleFee.innerHTML = "支付费用：" + (parseFloat(tempData.pay_value) - parseFloat(tempData.discount_value)).toFixed(2);
+                eleCreateDt.innerHTML = "申请时间：" + tempData.insert_dt;
+                elePatientName.innerHTML = "患者姓名：" + tempData.patient_name;
+                eleTel.innerHTML = "联系方式：" + tempData.phone_num;
+
+                if (tempData.doctor_skill == undefined || tempData.doctor_skill == null || tempData.doctor_skill == "") {
+                    eleGood.innerHTML = "擅长：" + "暂无";
+                } else {
+                    eleGood.innerHTML = "擅长：" + tempData.doctor_skill;
+                }
+
+                eleHospital.innerHTML = "医院：" + tempData.hospital_name;
+                eleHeader.setAttribute("src", LMEPG.Inquiry.expertApi.createDoctorUrl(expertUrl, tempData.doctor_user_id, tempData.doctor_avatar, lmcid));
+
+                var timeWithYear = new Date(getStandardDt(tempData.begin_dt)).format("yyyy");
+                var inquiryBeginDtFromApi = tempData.begin_dt;            //问诊开始时间
+                var inquiryEndDtFromApi = tempData.end_dt;            //问诊开始时间
+
+                var tempInquiryTime = "";
+                if (timeWithYear == "2099") {
+                    tempInquiryTime = "3天内安排就诊";
+                } else {
+                    tempInquiryTime = new Date(getStandardDt(tempData.begin_dt)).format("yyyy-MM-dd hh:mm") + "到" + new Date(getStandardDt(tempData.end_dt)).format("hh:mm");
+                }
+                eleInquiryDt.innerHTML = "就诊时间：" + tempInquiryTime;
+
+                eleBtnAdvise.setAttribute("src", "__ROOT__/Public/img/hd/Activity/ActivityConsultation/V2/bg_btn.png");
+                eleBtnCase.setAttribute("src", "__ROOT__/Public/img/hd/Activity/ActivityConsultation/V2/bg_btn.png");
+
+                var stateFlag = tempData.clinic_is_pay + '-' + tempData.clinic_state // 支付状态  0未支付 1已支付 - 就诊状态 0：等待；1：进行；2：完成；3：关闭；
+                switch (stateFlag) {
+                    case '0-0':
+                        ORDER_STATUS = ORDER_STATUS_PAY;
+                        break;
+                    case '0-3':
+                        ORDER_STATUS = ORDER_STATUS_CLOSE;
+                        break;
+                    case '1-0':
+                        ORDER_STATUS = ORDER_STATUS_INQUIRY;
+                        break;
+                    case '1-2':
+                        ORDER_STATUS = ORDER_STATUS_OVER;
+                        break;
+                }
+
+                APPOINTMENT_ID = tempData.appointment_id;
+                buttons = [];
+                buttonConsult.appointmentID = tempData.appointment_id;
+                buttonAdvise.appointmentID = tempData.appointment_id;
+                buttonCase.appointmentID = tempData.appointment_id;
+                buttonConsult.expertObj = tempData;
+                switch (ORDER_STATUS) {
+                    case ORDER_STATUS_OVER:
+                        eleStatus.innerHTML = "已完成";
+                        eleQrCodeTips.innerHTML = "扫码保存建议至手机";
+                        buttons.push(buttonConsult);
+                        buttons.push(buttonAdvise);
+                        buttons.push(buttonCase);
+                        buttonConsult.nextFocusDown = "btn-case";
+                        LMEPG.ButtonManager.init(focusIndex, buttons, "", true);
+                        Show("consultation-wrap");
+                        Show("introduce-wrap");
+                        Show("advise-wrap");
+                        getQrCode(tempData.appointment_id, ORDER_STATUS);
+                        eleBtnConsultTitle.innerHTML = "咨询助理医生";
+                        eleVisitNum.innerHTML = "就诊编号：" + tempData.appointment_id;
+                        break;
+                    case ORDER_STATUS_INQUIRY:
+                        eleStatus.innerHTML = "待就诊";
+                        eleQrCodeTips.innerHTML = "打开微信扫一扫上传病历资料";
+                        eleVisitNum.innerHTML = "就诊编号：" + tempData.appointment_id;
+                        buttons.push(buttonConsult);
+                        buttons.push(buttonCase);
+                        buttonConsult.nextFocusDown = "btn-case";
+                        LMEPG.ButtonManager.init(focusIndex, buttons, "", true);
+                        Show("consultation-wrap");
+                        Show("introduce-wrap");
+                        Hide("advise-wrap");
+
+                        INQUIRY_END_TIME = new Date(getStandardDt(inquiryEndDtFromApi)).getTime();
+                        INQUIRY_START_TIME = new Date(getStandardDt(inquiryBeginDtFromApi)).getTime();
+
+                        getQrCode(tempData.appointment_id, ORDER_STATUS);
+
+                        if (timeWithYear == "2099") {
+                            Hide("count-down");
+                            CONSULT_EXPERT_STATUS = false;
+                            eleBtnConsultTitle.innerHTML = "咨询助理医生";
+                            break;
+                        } else {
+                            mServerTime = 0;
+                            LMEPG.Inquiry.expertApi.getTime(function (date) {
+                                mServerTime = new Date(getStandardDt(date)).getTime();
+                                var timeEndInterval = INQUIRY_END_TIME - mServerTime;//距离结束问诊的时间间隔
+                                if (timeEndInterval <= 0) {
+                                    var timeStr = "请及时进入候诊室";
+                                    if (eleCountDown != null) {
+                                        eleCountDown.innerHTML = timeStr;
+                                    }
+                                    CONSULT_EXPERT_STATUS = true;
+                                    eleBtnConsultTitle.innerHTML = "进入候诊室";
+                                } else {
+                                    CONSULT_EXPERT_STATUS = false;
+                                    ActionTime.startInquiryTimer(false);
+                                }
+                                Show("count-down");
+                            });
+                        }
+                        break;
+                    case ORDER_STATUS_PAY:
+                        eleStatus.innerHTML = "待付款";
+                        eleQrCodeTips.innerHTML = "微信扫码支付";
+                        eleVisitNum.innerHTML = "就诊编号：无";
+                        buttonConsult.nextFocusDown = "";
+                        if (focusIndex === buttonAdvise.id || focusIndex === buttonCase.id) focusIndex = buttonConsult.id;
+                        buttons.push(buttonConsult);
+                        LMEPG.ButtonManager.init(focusIndex, buttons, "", true);
+                        Show("consultation-wrap");
+                        Hide("introduce-wrap");
+                        Hide("advise-wrap");
+                        Hide("count-down");
+                        eleBtnConsultTitle.innerHTML = "咨询助理医生";
+                        getQrCode(tempData.appointment_id, ORDER_STATUS);
+                        break;
+                    case ORDER_STATUS_CLOSE:
+                        eleStatus.innerHTML = "已关闭";
+                        eleVisitNum.innerHTML = "就诊编号：" + tempData.appointment_id;
+                        buttons.push(buttonConsult);
+                        buttonConsult.nextFocusDown = "";
+                        if (focusIndex === buttonAdvise.id || focusIndex === buttonCase.id) focusIndex = buttonConsult.id;
+                        LMEPG.ButtonManager.init(focusIndex, buttons, "", true);
+                        Hide("introduce-wrap");
+                        Hide("advise-wrap");
+                        Hide("count-down");
+                        Hide("qr-code-title");
+                        eleQrCode.setAttribute("src", "/Public/img/Common/spacer.gif");
+                        eleBtnConsultTitle.innerHTML = "咨询助理医生";
+                        break;
+                    default:
+                        eleVisitNum.innerHTML = "就诊编号：" + tempData.appointment_id;
+                        LMEPG.UI.showToast("当前约诊状态异常");
+                        buttonConsult.nextFocusDown = "";
+                        buttons.push(buttonConsult);
+                        if (focusIndex === buttonAdvise.id || focusIndex === buttonCase.id) focusIndex = buttonConsult.id;
+                        LMEPG.ButtonManager.init(focusIndex, buttons, "", true);
+                        Hide("introduce-wrap");
+                        Hide("advise-wrap");
+                        Hide("count-down");
+                        Hide("qr-code-title");
+                        eleQrCode.setAttribute("src", "/Public/img/Common/spacer.gif");
+                        eleBtnConsultTitle.innerHTML = "咨询助理医生";
+                        break;
+                }
+
+
+            } else if (code == "-102") {
+                Show("no-data");
+                LMEPG.UI.showToast("拉取数据失败" + code);
+                LMEPG.ButtonManager.init('', [], '', true); // 确保能响应返回键
+            } else {
+                LMEPG.UI.showToast("拉取数据失败" + code);
+                LMEPG.ButtonManager.init('', [], '', true); // 确保能响应返回键
+            }
+            LMEPG.UI.dismissWaitingDialog();
+        } catch (e) {
+            LMEPG.UI.dismissWaitingDialog();
+            LMEPG.ButtonManager.init('', [], '', true); // 确保能响应返回键
+            console.log(e);
+        }
+    }
+
+    //咨询助理医生
+    function consultFree(buttonId) {
+        LMEPG.UI.showWaitingDialog("");
+        LMEPG.ajax.postAPI("Expert/getAdvisoryDoctor", null, function (data) {
+            try {
+                var resObj = data instanceof Object ? data : JSON.parse(data);
+                if (resObj.code != "0") {
+                    LMEPG.UI.dismissWaitingDialog("");
+                    LMEPG.UI.showToast("当前没有医生在线，请稍后在试！");
+                    return;
+                }
+                // 判断医生是否在线
+                var docInfo = resObj.doc_info;
+                var tempOnline = parseInt(docInfo.online_state);
+
+                if (tempOnline !== 3 && tempOnline !== 2) {
+                    LMEPG.UI.dismissWaitingDialog("");
+                    LMEPG.UI.showToast("助理医生暂时不在线");
+                    return;
+                }
+
+                // 医生处于在线或者忙碌状态时
+                var entryType = -1;
+                if (ORDER_STATUS == ORDER_STATUS_OVER) {
+                    //诊后咨询
+                    entryType = LMEPG.Inquiry.p2p.InquiryEntry.EXPERT_INQUIRIED_RECORD;
+                } else if (ORDER_STATUS == ORDER_STATUS_INQUIRY) {
+                    //已约咨询
+                    entryType = LMEPG.Inquiry.p2p.InquiryEntry.EXPERT_INQUIRIING_RECORD;
+                } else {
+                    //诊前咨询
+                    entryType = LMEPG.Inquiry.p2p.InquiryEntry.EXPERT_INQUIRY;
+                }
+
+                var inquiryInfo = getInquiryInfo(buttonId, entryType);
+                inquiryInfo.doctorInfo = docInfo;
+                if (RenderParam.platformType === 'sd' || RenderParam.areaCode === '216') { // 使用微信小程序问诊
+                    LMEPG.Inquiry.p2p._startWeChatVideoInquiry(inquiryInfo);
+                } else {
+                    LMEPG.Inquiry.p2p._startVideoInquiry(inquiryInfo);
+                }
+            } catch (e) {
+                LMEPG.UI.dismissWaitingDialog("");
+                LMEPG.UI.showToast("解析数据异常");
+                console.log("--->" + e.toString());
+            }
+        }, function (data) {
+            LMEPG.UI.dismissWaitingDialog("");
+            LMEPG.UI.showToast("获取咨询医生信息请求失败");
+        });
+    }
+
+    /**
+     * 通用的问诊参数
+     * @param buttonId 点击问诊的按钮Id
+     * @param moduleType 当前问诊的状态
+     */
+    function getInquiryInfo(buttonId, moduleType) {
+        return {
+            userInfo: {
+                isVip: '{$isVip}',                                           // 用户身份信息标识
+                accountId: '{$accountId}',                                   // IPTV业务账号
+            },
+            memberInfo: null,                                                // 问诊成员信息（从家庭成员已归档记录里面进行问诊，该参数标识成员身份）
+            moduleInfo: {
+                moduleId: LMEPG.Inquiry.p2p.EXPERT_INQUIRY_MODULE_ID,        // 问诊模块标识 - 在线问医
+                moduleName: LMEPG.Inquiry.p2p.EXPERT_INQUIRY_MODULE_NAME,    // 问诊模块名称 - 在线问医
+                moduleType: moduleType,                                      // 问诊模块标识 - 在线问医
+                focusId: buttonId,                                           // 当前页面的焦点Id
+                intent: Action.getCurrentPage(),                             // 当前模块页面路由标识
+            },
+            serverInfo: {
+                fsUrl: RenderParam.fsUrl,                                    // 文件资源服务器链接地址，一键问医获取按钮图片时用到
+                cwsHlwyyUrl: RenderParam.CWS_URL_OUT,                        // cws互联网医院模块链接地址
+            },
+            inquiryEndHandler: inquiryEndHandler,               // 检测医生问诊结束之后，android端回调JS端的回调函数
+            inquiryByPlugin: RenderParam.isRunOnAndroid === '0' ? '1' : '0', // 判断是否使用问诊插件进行问诊（APK版本直接调回android端进行问诊）
+        };
+    }
+
+    /**
+     * 问诊结束处理函数
+     */
+    function inquiryEndHandler() {
+        LMEPG.Log.info("ExpertIndex.js---startInquiry--End");
+    }
+
+    function getStandardDt(dt) {
+        var time = dt.replace(/-/g, ':').replace(' ', ':');
+        time = time.split(':');
+        var resultTime = new Date(time[0], (time[1] - 1), time[2], time[3], time[4], time[5]);
+        return resultTime;
+    }
+
+</script>
+
+</body>
+</html>

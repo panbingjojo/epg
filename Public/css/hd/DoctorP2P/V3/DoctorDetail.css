@@ -1,0 +1,142 @@
+.doctor_info {
+    position: relative;
+    top: 58px;
+    height: 272px;
+    margin-left: 85px;
+    color: #FFFFFF;
+}
+
+.icon_status {
+    position: absolute;
+    top: 238px;
+    left: 167px;
+    width: 42px;
+    height: 42px;
+}
+
+.submit_btn {
+    position: absolute;
+    left: 924px;
+    top: 162px;
+    width: 180px;
+    height: 67px;
+    text-align: center;
+    line-height: 67px;
+    font-size: 23px;
+}
+
+.wx_submit_btn {
+    position: absolute;
+    left: 710px;
+    top: 162px;
+    width: 180px;
+    height: 67px;
+    text-align: center;
+    line-height: 67px;
+    font-size: 23px;
+}
+
+.btn_bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 180px;
+    height: 67px;
+}
+
+.btn_title {
+    position: absolute;
+    width: 180px;
+    height: 67px;
+}
+
+.doctor_photo {
+    width: 200px;
+    height: 272px;
+    border-radius: 8px;
+    /*margin:0px auto;*/
+    box-shadow: 0px 0px 8px #ffffff;
+    float: left;
+}
+
+.doctor_word {
+    margin-top: 20px;
+    font-size: 26px;
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+.doctor_content {
+    display: inline-block;
+    width: 626px;
+    height: 270px;
+    margin-left: 46px;
+    float: left;
+}
+
+.yellow {
+    font-size: 20px;
+    color: #fff333;
+}
+
+.big_size {
+    font-size: 40px;
+}
+
+.content {
+    position: relative;
+    top: 97px;
+    width: 1124px;
+    height: 310px;
+    margin-left: 77px;
+    background: url("../../../../../Public/img/hd/DoctorP2P/V3/detail_bg.png");
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.inner {
+    position: absolute;
+    top: 14px;
+    left: 33px;
+    height: 260px;
+    width: 1056px;
+    letter-spacing: 1px;
+    overflow: hidden;
+    /*overflow: auto;*/
+}
+
+.inner_height {
+    position: absolute;
+}
+
+.bold {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.inner_title {
+    margin-top: 20px;
+    line-height: 26px;
+    text-indent: 40px;
+}
+
+#inquiry_by_wx_qrcode {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+}
+
+#wx_inquiry_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+}

@@ -1,0 +1,144 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    color: #000;
+    background-image: url(../../../../img/hd/Home/V16/Home/bg.png);
+}
+
+#content{
+    
+display: none;
+}
+.title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+}
+
+#doctor-container {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    background-image: url(../../../../img/hd/Common/V16/expertRecord_bg.png);
+    background-position: center;
+}
+.doctor-item{
+
+}
+ul{
+    list-style: none;
+}
+.picture-wrap{
+    position: absolute;
+    top: 161px;
+    left: 164px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 40px;
+}
+.picture-wrap li{
+    overflow: hidden;
+    width: 210px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.doctor-picture{
+    width: 208px;
+    height: 209px;
+    border-radius: 50%;
+}
+
+.doctor-name{
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 30px;
+    
+}
+.doctor-case{
+    font-size: 20px;
+    color: #b2deff;
+}
+#user-order-info{
+    font-size: 24px;
+    position: absolute;
+    top: 175px;
+    left: 411px;
+    line-height: 40px;
+}
+#user-order-info span{
+    font-weight: bold;
+}
+.code-wrap{
+    position: absolute;
+    top: 135px;
+    left: 931px;
+    width: 186px;
+}
+.code-wrap img{
+    width: 186px;
+    height: 186px;
+}
+.code-wrap p{
+    margin-top: 20px;
+    text-align: center;
+    color: #F95F53;
+    font-size: 20px;
+}
+
+#page-count {
+    position: absolute;
+    top: 600px;
+    left: 0;
+    width: 1280px;
+    text-align: center;
+    font-size: 24px;
+    color: #000;
+}
+
+.arrow{
+    position: absolute;
+    top: 338px;
+    width: 65px;
+    height: 66px;
+}
+#prev-arrow{
+    left: 76px;
+}
+#next-arrow{
+    right: 76px;
+}
+#left-time {
+    color: #F95F53;
+}
+
+#btn-consult {
+    position: absolute;
+    top: 412px;
+    left: 926px;
+    width: 198px;
+    height: 62px;
+}
+#btn-case {
+    position: absolute;
+    top: 491px;
+    left: 926px;
+    width: 198px;
+    height: 62px;
+}
+#btn-advise {
+    position: absolute;
+    top: 570px;
+    left: 926px;
+    width: 198px;
+    height: 62px;
+}
+#null-data-000051{
+    color: #000;
+}

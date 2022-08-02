@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+div.container {
+    position: absolute;
+    top: 154px;
+    left: 247px;
+    color: #fff;
+}
+
+.container .recd-box {
+    position: absolute;
+}
+
+#recd-1 {
+    top: 0px;
+    left: 0px;
+}
+
+#recd-2 {
+    top: 0px;
+    left: 440px;
+}
+#recd-3 {
+    top: 210px;
+    left: 0px;
+}
+#recd-4 {
+    top: 210px;
+    left: 440px;
+}
+
+#recd-1 img.recd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+
+.recd-info {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 170px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 22px;
+}
+.recd-info div{
+    width: 338px;
+    text-align: center;
+}
+.head-data{
+    margin-top: 20px;
+}
+.center-data{
+    margin-top: 30px;
+    font-size: 28px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 28px;
+}
+.show-data{
+    position: relative;
+    top: 5px;
+    font-size: 38px !important;
+}
+.show-data2{
+    position: relative;
+    top: 0px;
+    font-size: 30px !important;
+}
+.unit{
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.footer-data{
+    margin-top: 20px;
+    font-size: 24px;
+}
+#text-mac{
+    position: absolute;
+    top: 550px;
+    left: 357px;
+    color: #fff;
+    font-size: 24px;
+    height: 90px;
+    line-height: 90px;
+}
+#text-mac>img{
+    position: relative;
+    top: 33px;
+}
+#update-wrist{
+    position: absolute;
+    top: 24px;
+    left: 733px;
+}
+#delete-wrist{
+    position: absolute;
+    top: 24px;
+    height: 60px;
+    left: 1053px;
+}
+.focusBtn{
+    padding: 10px;
+    margin: -10px;
+    background-image: url(../../../../../img/hd/HealthTest/V8/Wristband/type_box.png);
+}
+
+
+

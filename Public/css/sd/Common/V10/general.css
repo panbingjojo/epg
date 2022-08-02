@@ -1,0 +1,671 @@
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+.bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+
+img {
+    border: 0;
+}
+
+.g_toast {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background: url("../../../../img/hd/Common/bg_toast.png") no-repeat;
+    -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+    background-size: 1280px 720px;
+    z-index: 999;
+    display: table;
+}
+
+.g_title {
+    position: absolute;
+    top: 270px;
+    left: 290px;
+    width: 700px;
+    height: 300px;
+    color: #ffffff;
+    font-size: 32px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 60px;
+    word-break: break-all;
+    display: table-cell;
+
+}
+
+.g_toast_big {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 666;
+}
+
+/*.g_waiting_dialog {*/
+    /*position: absolute;*/
+    /*left: 393px;*/
+    /*top: 206px;*/
+    /*width: 66px;*/
+    /*height: 67px;*/
+    /*line-height: 110px;*/
+    /*font-size: 21px;*/
+    /*z-index: 666;*/
+    /*text-align: center;*/
+    /*color: #ff6600;*/
+    /*-moz-background-size: 66px 67px; !* 老版本的 Firefox *!*/
+    /*background-size: 66px 67px;*/
+    /*background: url("../../../../img/hd/Common/bg_waiting_dialog.gif") no-repeat;*/
+/*}*/
+
+.grubFocusImg {
+    width: 0px;
+    height: 0px;
+}
+
+.corner_free {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 34px;
+}
+
+.g_common_dialog {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: transparent no-repeat;
+    width: 1280px;
+    height: 720px;
+    z-index: 999;
+}
+
+.g_common_dialog_img_bg {
+    width: 1280px;
+    height: 720px;
+}
+
+.g_common_button_img {
+    width: 179px;
+    height: 66px;
+}
+
+/*通用弹框消息文本*/
+.g_common_dialog_message_text {
+    position: absolute;
+    top: 314px;
+    left: 380px;
+    width: 520px;
+    height: 110px;
+    font-size: 25px;
+    text-align: center;
+    color: #000;
+    z-index: 1000;
+}
+
+.g_common_button_container {
+    position: absolute;
+    margin: auto;
+    top: 386px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.g_common_button_border {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_common_button_interval {
+    margin-left: 86px;
+}
+
+.g_common_button_text {
+    width: 179px;
+    height: 66px;
+    /* margin-top: -66px; */
+    text-align: center;
+    line-height: 66px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+
+.g_message {
+    position: absolute;
+    left: 306px;
+    width: 666px;
+    height: 40px;
+    padding-left: 14px;
+    padding-right: 14px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-bottom-left-radius: 33px;
+    border-bottom-right-radius: 33px;
+    color: #00194d;
+    background: white;
+    z-index: 1000;
+}
+
+/*--------------------------------------------------
+           滚动条style
+ ---------------------------------------------------*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-button {
+    background-color: #FFFFFF;
+    display: none;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-corner {
+    background: #FFFFFF;
+    display: none;
+}
+
+.vip-icon {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 79px;
+    height: 79px;
+    z-index: 4;
+}
+
+/*--------------------------------------------------
+         按钮选中效果
+ ---------------------------------------------------*/
+/*按钮*/
+.btn-hover {
+    font-weight: bold;
+}
+
+.btn-bg {
+    text-align: center;
+    width: 192px;
+    height: 72px;
+    line-height: 72px;
+    font-size: 28px;
+    background: url("../../../../..../../../../img/hd/Home/V10/HomeBox/bg_btn_1.png") no-repeat;
+}
+
+.btn-select {
+    /*text-align: center;*/
+    /*background: #FFFFFF !important;*/
+    /*color: #011025;*/
+    /*border-radius: 25px;*/
+    /*font-size: 24px;*/
+    /*padding: 5px 10px;*/
+}
+
+.btn-selected {
+    color: #011025;
+}
+
+hr {
+    color: #FFFFFF;
+    opacity: 0.3;
+}
+
+.border-white{
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px rgba(255, 255, 255, 0.3) solid !important;
+}
+
+/*.border2 {*/
+    /*border-radius: 12px;*/
+    /*border: 1px rgba(255, 255, 255, 0.3) solid;*/
+    /*background: rgba(0, 0, 0, 0.1) !important;*/
+/*}*/
+
+input {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    font-size: 27px;
+    height: 48px;
+    border-radius: 12px;
+    border: none;
+    color: #FFFFFF;
+}
+
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+    color: #FFFFFF;
+    /* placeholder字体大小  */
+    /* placeholder位置  */
+    text-align: left;
+    font-size: 24px;
+    text-indent: 20px;
+}
+
+.radio {
+    width: 64px;
+    left: 64px;
+}
+
+.blue {
+    color: #33ffdd;
+}
+
+.lan {
+    color: #33ffdd;
+}
+
+.brown {
+    color: #ff9966;
+}
+
+.green {
+    color: #66ff99;
+}
+
+.yellow {
+    color: #ffee99;
+}
+
+.red {
+    color: #ff6666;
+}
+
+.dropDown {
+    position: absolute;
+    z-index: 998;
+    top: 50%;
+    width: 1280px;
+    height: 548px;
+    margin-top: -274px;
+    text-align: center;
+}
+
+.option {
+    width: 345px;
+    height: 548px;
+    display: inline-block;
+    margin-left: 0px;
+    text-align: center;
+    /*margin: 0 auto;*/
+    /*float: left;*/
+}
+
+.option-scroll {
+    position: relative;
+    top: 60px;
+    width: 345px;
+    height: 428px;
+    overflow: auto;
+}
+
+.select-btn {
+    width: 220px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    margin: 5px auto;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.select-btn2 {
+    width: 170px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    margin: 28px auto;
+    border-radius: 20px;
+}
+
+.content-select {
+    width: 100px;
+    height: 50px;
+}
+
+/* for Chrome */
+.option-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/*--------------------------------------------------
+           可输入文本对话框V1版本开始
+ ---------------------------------------------------*/
+/*可输入文本对话框*/
+.g_common_input_dialog_v1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background: transparent no-repeat;
+    z-index: 999;
+}
+
+.g_common_input_btn_border_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_common_input_btn_interval_v1 {
+    margin-left: 86px;
+}
+
+/*背景图*/
+.g_common_input_dialog_img_bg_v1 {
+    width: 1280px;
+    height: 720px;
+}
+
+/*显示文本*/
+.g_common_input_dialog_message_text_v1 {
+    position: absolute;
+    top: 145px;
+    left: 340px;
+    width: 600px;
+    height: 180px;
+    line-height: 45px;
+    font-size: 34px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    z-index: 1000;
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 4;
+}
+
+input::-ms-input-placeholder {
+    text-align: center;
+    font-size: 28px;
+    color: rgba(255,255,255,0.8);
+}
+
+input::-webkit-input-placeholder {
+    text-align: center;
+    font-size: 28px;
+    color: rgba(255,255,255,0.8);
+}
+
+/*输入框input区域*/
+/*.g_common_input_dialog_message_v1 {*/
+    /*position: absolute;*/
+    /*top: 336px;*/
+    /*left: 406px;*/
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
+    /*width: 462px;*/
+    /*height: 60px;*/
+    /*font-size: 35px;*/
+    /*font-weight: bold;*/
+    /*color: black;*/
+    /*border: 3px solid transparent;*/
+    /*border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    /*z-index: 1000;*/
+/*}*/
+
+/*输入框input的focus状态border*/
+.g_common_input_message_border_focus_v1 {
+    box-shadow: 0 0 6px 4px #ffffff;
+    -moz-box-shadow: 0 0 6px 4px #ffffff;
+    -webkit-box-shadow: 0 0 6px 4px #ffffff;
+}
+
+/*输入框input的unfocus状态border*/
+.g_common_input_dialog_message_border_unfocus_v1 {
+    border: 3px solid transparent;
+}
+
+.g_common_input_btn_img_v1 {
+    width: 192px;
+    height: 72px;
+}
+
+.g_common_input_text_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: -70px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+
+/*输入框底部按钮*/
+.g_common_input_btn_v1 {
+    position: absolute;
+    margin: auto;
+    top: 450px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+
+/*******可输入文本对话框V1版本结束********/
+
+#null-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    margin-left: -250px;
+    text-align: center;
+    /*font-size: 28px;*/
+    font-size: 36px;
+    display: none;
+}
+
+
+.g_common_dialog_v1 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: transparent no-repeat;
+    width: 1280px;
+    height: 720px;
+    z-index: 999;
+}
+
+.g_common_button_img_v1 {
+    width: 179px;
+    height: 66px;
+}
+
+.g_common_dialog_img_bg_v1 {
+    width: 1280px;
+    height: 720px;
+}
+
+/*通用弹框消息文本*/
+.g_common_dialog_message_text_v1 {
+    position: absolute;
+    top: 244px;
+    left: 300px;
+    width: 680px;
+    height: 110px;
+    /*font-size: 36px;*/
+    font-size: 28px;
+    text-align: center;
+    color: #ffffff;
+    z-index: 1000;
+}
+.g_common_button_container_v1 {
+    position: absolute;
+    margin: auto;
+    /*top: 386px;*/
+    top: 423px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+.g_common_button_border_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+.g_common_button_interval_v1 {
+    margin-left: 86px;
+}
+
+.g_common_button_text_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: -66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+.g_waiting_dialog {
+    position: absolute;
+    left: 590px;
+    top: 310px;
+    width: 99px;
+    height: 100px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url(../../../../img/hd/Common/bg_waiting_dialog.gif) no-repeat;
+}
+table tr td{
+    font-size: 26px;
+}
+#top {
+    position: absolute;
+    z-index: 1000
+}
+
+
+
+/*==>css/img目录结构调整*/
+
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 540px;
+    color: #fff;
+}
+
+body > * {
+    position: absolute;
+}
+
+#body-bg {
+    width: 1280px;
+    height: 720px;
+    top: 0px;
+    left: 0px;
+}
+
+
+/*==>css/img目录结构调整*/
+
+
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+    color: #fff;
+}
+
+body > * {
+    position: absolute;
+}
+#body-bg{
+    width: 1280px;
+    height: 720px;
+    top: 0px;
+    left: 0px;
+}
+.btn-group{
+    left: 50px;
+    top: 280px;
+}
+.btn-wap{
+    position:absolute;
+    left: 1060px;
+    top: 20px;
+}
+#rule-layer{
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 998;
+    display: none;
+}
+#back-layer{
+    position:absolute;
+    left: 1060px;
+    top: 20px;
+}

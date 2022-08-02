@@ -1,0 +1,41 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+.tab1 {
+    /*width: 232px;*/
+    /*height: 90px;*/
+    position: absolute;
+    top: 324px;
+}
+#focus-2-1{
+    left: 265px;
+}
+#focus-2-2{
+    left: 455px;
+}
+#focus-2-3{
+    left: 649px;
+}
+#focus-2-4{
+    left: 840px;
+}
+
+/*.tab3 {*/
+    /*width: 232px;*/
+    /*height: 90px;*/
+    /*position: absolute;*/
+    /*left: 683px;*/
+    /*top: 577px;*/
+/*}*/

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>设备信息</title>
+    <meta charset="utf-8" name="page-view-size" content={$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/debug/DeviceInformation.css?t={$time}"/>
+    <style>
+        * {
+            font-size: 26px;
+            color: #ffffff;
+        }
+
+        .tableInfo {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            line-height: 35px;
+            table-layout: fixed;
+        }
+
+        .tableInfo .title {
+            width: 20%;
+        }
+
+        .tableInfo td {
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+
+</head>
+<body style=" background-color: black">
+<table class="tableInfo">
+    <tr>
+        <td class="title">机顶盒型号：</td>
+        <td id="stbId"></td>
+    </tr>
+    <tr>
+        <td>盒子业务账号：</td>
+        <td id="accountId"></td>
+    </tr>
+    <tr>
+        <td>JS获取盒子业务账号：</td>
+        <td id="accountIdJS"></td>
+    </tr>
+    <tr>
+        <td>用户ID：</td>
+        <td id="userId"></td>
+    </tr>
+    <tr>
+        <td>盒子IP：</td>
+        <td id="userIp"></td>
+    </tr>
+    <tr>
+        <td>高标清：</td>
+        <td id="platformType"></td>
+    </tr>
+    <tr>
+        <td>是否VIP：</td>
+        <td id="isVip"></td>
+    </tr>
+    <tr>
+        <td>入口参数：</td>
+        <td id="indexUrl"></td>
+    </tr>
+    <tr>
+        <td>是否测试账号：</td>
+        <td id="isTest"></td>
+    </tr>
+</table>
+<div id="btn_default"></div>
+<script type="application/javascript">
+    var accountId = "{$accountId}";
+    var userId = "{$userId}";
+    var platformType = "{$platformType}";
+    var stbId = "{$stbId}";
+    var isVip = "{$isVip}";
+    var userIp = "{$userIp}";
+    var indexUrl = "{$indexUrl}";
+    var isTest = "{$isTest}";
+    var STBType = LMEPG.STBUtil.getSTBModel(); // 设备型号
+    var accountIdJS = LMEPG.STBUtil.getUserId(); // 业务帐号
+    var buttons = [
+        {
+            id: 'btn_default',
+            name: '确定',
+            type: 'img',
+            focusChange: '',
+            beforeMoveChange: '',
+            moveChange: '',
+            click: onBack
+        }];
+
+    window.onload = function () {
+        document.getElementById("accountId").innerHTML = accountId;
+        document.getElementById("accountIdJS").innerHTML = accountIdJS;
+        document.getElementById("userId").innerHTML = userId;
+        document.getElementById("platformType").innerHTML = platformType;
+        document.getElementById("stbId").innerHTML = STBType;
+        document.getElementById("userIp").innerHTML = userIp;
+        if (!LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {
+            document.getElementById("isVip").innerHTML = "否";
+        } else {
+            document.getElementById("isVip").innerHTML = "是";
+        }
+        if (isTest == "1") {
+            document.getElementById("isTest").innerHTML = "是";
+        } else {
+            document.getElementById("isTest").innerHTML = "否";
+        }
+        document.getElementById("indexUrl").innerHTML = indexUrl;
+        LMEPG.ButtonManager.init("btn_default", buttons, '', true);
+    };
+
+    /**
+     * 返回事件
+     * 中国联通联合活动，返回时只能回到局方
+     */
+    function onBack() {
+        LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+    }
+</script>
+</body>
+</html>

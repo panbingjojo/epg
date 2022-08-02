@@ -1,0 +1,61 @@
+/*底部音量进度整个最外层容器div*/
+#volumeUI {
+    z-index: 850;
+}
+
+/*音量背景底图蒙层*/
+#volume-background {
+    position: absolute;
+    width: 644px;
+    top: 445px;
+    left: 0;
+}
+
+/*音量开关图标*/
+#volume-switch {
+    position: absolute;
+    width: 22px;
+    height: 21px;
+    left: 41px;
+    top: 475px;
+}
+
+/*音量值*/
+#volume-value {
+    position: absolute;
+    width: 45px;
+    height: 26px;
+    line-height: 26px; /*让行内文字垂直居中*/
+    left: 90px;
+    top: 475px;
+    text-align: center;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-image: url("../../../../img/sd/Player/V7/volume_value_bg.png");
+}
+
+/*音量进度条总长度显示容器*/
+#volume-progressbar-container {
+    position: absolute;
+    height: 25px;
+    width: 440px;
+    top: 479px;
+    left: 150px;
+}
+
+/*每一个音量进度块*/
+.volume-progress {
+    width: 9px;
+    height: 19px;
+    margin-left: 13px;
+}
+
+/* 首页轮播的音量进度条长度*/
+#volume_progressbar_home {
+    height: 9px;
+    width: 400px;
+    background-color: #2d2e2f;
+    position: absolute;
+    top: 87px;
+    left: 400px;
+}

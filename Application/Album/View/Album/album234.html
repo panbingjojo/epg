@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>专辑234-新冠肺炎及其他科室专家公益问诊</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/Common/Album/album234.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Album/common/countdown_new.css?t={$time}"/>
+    <script type="text/javascript">
+        // TP框架控制器返回数据应用
+        var RenderParam = {
+            vip: {$isVip},  //当前用户是否VIP
+            albumName: '{$albumName}',          // 专辑名称
+            platformType: '{$platformType}',     // hd--高清 sd--标清
+            imgPath: "__ROOT__/Public/img/{$platformType}/Album/album234/",
+            focusIndex: "{$focusIndex2}",                       // 焦点ID
+            pages: "{$pages}",                                  // 焦点ID
+            pageMenuCnt: '{$platformType}' == 'hd' ? 4 : 3,      //每页按钮数
+            buttonCnt: 12,                                      //按钮总数
+            focusFist: 'focus-1',
+            focusLast: '{$platformType}' == 'hd' ? 'focus-4' : 'focus-3',
+        };
+    </script>
+
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <if condition="$carrierId eq '450094' ">
+        <!-- 广西广电小窗视频播放 -->
+        <script type="text/javascript" src="http://10.1.15.25/webJS/gxgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+    </if>
+</head>
+<body id="body" class="{$platformType}-body" >
+<div id="debug"></div>
+<img src="__ROOT__/Public/img/{$platformType}/Album/{$albumName}/{$albumName}.png" alt="" id="background"
+     class="{$platformType}-bg">
+
+<!--视频列表翻页箭头-->
+<img id="image-prev-arrow" class="{$platformType}-v-arrow {$platformType}-v-prev"
+     src="__ROOT__/Public/img/{$platformType}/Album/{$albumName}/prev-arrow.png"/>
+<img id="image-next-arrow" class="{$platformType}-v-arrow {$platformType}-v-next"
+     src="__ROOT__/Public/img/{$platformType}/Album/{$albumName}/next-arrow.png"/>
+
+<!--视频列表渲染容器-->
+<div id="video_list" class="{$platformType}-video-list"></div>
+
+<img id="{$platformType}_list_1_f" class="{$platformType}_list_f" src="__ROOT__/Public/img/{$platformType}/Album/album234/list_f.png">
+<img id="{$platformType}_list_2_f" class="{$platformType}_list_f" src="__ROOT__/Public/img/{$platformType}/Album/album234/list_f.png">
+<img id="{$platformType}_list_3_f" class="{$platformType}_list_f" src="__ROOT__/Public/img/{$platformType}/Album/album234/list_f.png">
+<img id="{$platformType}_list_4_f" class="{$platformType}_list_f" src="__ROOT__/Public/img/{$platformType}/Album/album234/list_f.png">
+
+
+<div id="purchase-dialog" style="visibility:hidden">
+    <img class="purchase-dialog-img" src="__ROOT__/Public/img/{$platformType}/Album/common/bg_purchase_dialog.png">
+    <img id="btn-purchase" src="__ROOT__/Public/img/{$platformType}/Album/common/btn_purchase_focus.png">
+    <img id="btn-cancel-purchase" src="__ROOT__/Public/img/{$platformType}/Album/common/btn_cancel_purchase.png">
+</div>
+
+<div id="countdown-dialog" style="visibility:hidden">
+    <img src="__ROOT__/Public/img/{$platformType}/Album/common/bg_countdown_dialog.png">
+    <div id="count">8</div>
+</div>
+<script type="text/javascript">
+    var buttons = [];
+    var page = 0;
+
+    window.onload = function () {
+        InitButtun(RenderParam.pageMenuCnt);
+        createListView(page);
+        LMEPG.BM.init(RenderParam.focusFist, buttons, "", true);
+
+    };
+
+    function InitButtun(menuCnt) {
+        var i = 0;
+        for (i = 1; i <= menuCnt; i++) {
+            buttons.push({
+                id: 'focus-' + i,
+                name: 'focus-' + i,
+                type: 'div',
+                nextFocusLeft: ('focus-' + (i - 1)),
+                nextFocusRight: ('focus-' + (i + 1)),
+                focusChange: focusChangeEvent,
+                beforeMoveChange: turnPage,
+                cIdx: i,
+            });
+        }
+
+        var carrierId = '{$carrierId}';
+        if (carrierId == '450094') {
+            if (typeof iPanel == "object") {  //广西广电需要赋值返回键、退出键有页面来控制
+                iPanel.setGlobalVar("SEND_RETURN_KEY_TO_PAGE", 1);
+                iPanel.setGlobalVar("SEND_EXIT_KEY_TO_PAGE", 1);
+            }
+            //  添加点击返回事件
+            LMEPG.Log.info('--->album History addKeyEvent: 广西广电新增返回事件');
+            LMEPG.KeyEventManager.addKeyEvent(
+                {
+                    KEY_399: function () { //广西广电返回键
+                        LMEPG.Log.info('--->album History KEY_399: 广西广电返回键');
+                        onBack();
+                    },
+                    KEY_514: function () {  //广西广电退出键
+                        LMEPG.Log.info('--->album History KEY_514: 广西广电退出键');
+                        onBack();
+                    }
+                }
+            )
+        }
+    }
+    //焦点按钮添加框图
+    function focusChangeEvent(btn, hasFocus) {
+        if (hasFocus) {
+            G(RenderParam.platformType + '_list_' + btn.cIdx + '_f').style.visibility = 'visible';
+        } else {
+            G(RenderParam.platformType + '_list_' + btn.cIdx + '_f').style.visibility = 'hidden';
+        }
+    }
+
+    function turnPage(key, btn) {
+        if (key == 'left') {
+            if (btn.id == RenderParam.focusFist) {
+                prevPge(btn);
+                return false;
+            }
+        } else if (key == 'right') {
+            if (btn.id == RenderParam.focusLast) {
+                nextPage(btn);
+                return false;
+            }
+        }
+    }
+
+    function prevPge(btn) {
+        if (btn.id == RenderParam.focusFist) {
+            if (page > 0) {
+                page--;
+                G(RenderParam.platformType + '_list_' + btn.cIdx + '_f').style.visibility = 'hidden';
+                LMEPG.BM.clearFocus();
+                buttons.length = 0;
+                InitButtun(RenderParam.pageMenuCnt);
+                createListView(page);
+                LMEPG.BM.init(RenderParam.focusLast, buttons, "", true);
+                return false;
+            }
+        }
+    }
+
+    function nextPage(btn) {
+        if (btn.id == RenderParam.focusLast) {
+            if (RenderParam.pageMenuCnt * (page + 1) < RenderParam.buttonCnt) {
+                page++;
+                var menuCnt = RenderParam.buttonCnt - RenderParam.pageMenuCnt * (page + 1) >= 0 ?
+                    RenderParam.pageMenuCnt : RenderParam.buttonCnt - RenderParam.pageMenuCnt * page;
+                G(RenderParam.platformType + '_list_' + btn.cIdx + '_f').style.visibility = 'hidden';
+                LMEPG.BM.clearFocus();
+                buttons.length = 0;
+                InitButtun(menuCnt);
+                createListView(page);
+                LMEPG.BM.init(RenderParam.focusFist, buttons, "", true);
+                return false;
+            }
+        }
+    }
+
+    function upDateArrow(page) {
+        if (RenderParam.pageMenuCnt * (page + 1) < RenderParam.buttonCnt) {
+            G("image-next-arrow").style.display = "block";
+        } else {
+            G("image-next-arrow").style.display = "none";
+        }
+
+        if (page > 0) {
+            G("image-prev-arrow").style.display = "block";
+        } else {
+            G("image-prev-arrow").style.display = "none";
+        }
+    }
+
+    function createListView(page) {
+        var html = '';
+        G('video_list').innerHTML = "";
+        var maxMenu = RenderParam.pageMenuCnt * (page + 1) > RenderParam.buttonCnt ?
+            RenderParam.buttonCnt - RenderParam.pageMenuCnt * page : RenderParam.pageMenuCnt;
+        var i = 0;
+        for (i = 0; i < maxMenu; i++) {
+            html += '<img id="focus-' + (i + 1) + '" class="list_common"' + ' src="'
+                + RenderParam.imgPath + 'list_' + (RenderParam.pageMenuCnt * page + (i + 1)) + '.png">';
+        }
+        G('video_list').innerHTML = html;
+        upDateArrow(page);
+    }
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <title>新疆预约挂号</title>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V8/index.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            backIndex:'{$backIndex}',
+            hosId:'{$hosId}',
+
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V8/index.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="index-container">
+    <div id="head-func">
+        <div id="record"><div class="head-text">订单记录</div></div>
+        <div id="patient-admin"><div class="head-text">就诊人管理</div></div>
+    </div>
+
+    <div id="choose-area">
+        <div id="area-text">所属区域</div>
+        <div id="has-choose-text"><div class="choose-text" style="font-size: 30px">新疆</div></div>
+        <div id="line"></div>
+        <div id="all-area">
+            <div id="left-arrow"></div>
+            <div id="right-arrow"></div>
+            <div id="place-area"></div>
+        </div>
+    </div>
+
+    <div id="hospital-area"></div>
+    <div class="no-result" id="no-result">该地区暂时没有医院</div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        Home.init()
+    }
+</script>
+</body>
+</html>

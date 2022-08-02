@@ -1,0 +1,294 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+body > *,
+.modal > * {
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+#score {
+    top: 245px;
+    left: 650px;
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 30px;
+    color: #3a3030;
+    /*border: 1px red solid;*/
+}
+
+#btn-start {
+    position: absolute;
+    top: 418px;
+    left: 480px;
+}
+
+#left_times {
+    top: 590px;
+    left: 1093px;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #d3160a;
+    font-size: 30px;
+    /*border: 1px red solid;*/
+}
+
+#btn_container {
+    top: 40px;
+    left: 1039px;
+}
+
+#btn_container > img {
+    margin-top: -30px;
+}
+
+#btn_container > * {
+    display: block;
+}
+
+#btn_knowledge {
+    top: 20px;
+    left: 40px;
+}
+
+/*====中奖名单====*/
+#total_list {
+    top: 210px;
+    left: 265px;
+    /*border: 1px red solid;*/
+}
+
+#all_marquee {
+    height: 166px;
+}
+
+#my_marquee {
+    height: 58px;
+}
+
+table.marquee_table {
+    width: 780px;
+}
+
+table#all_table tr {
+    height: 40px;
+}
+
+table.marquee_table td {
+    width: 260px;
+    margin-right: 10px;
+    text-align: center;
+    color: #64350f;
+    font-size: 26px;
+}
+
+#my_list {
+    top: 480px;
+    left: 265px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+#reset_tel {
+    color: #999;
+    top: 542px;
+    left: 590px;
+    width: 220px;
+    height: 36px;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+#btn_list_submit {
+    top: 609px;
+    left: 336px;
+}
+
+#btn_list_cancel {
+    top: 609px;
+    left: 696px;
+}
+
+/*====兑换奖品====*/
+#game_score {
+    top: 38px;
+    left: 310px;
+    font-size: 49px;
+    color:#ea5138;
+}
+#add_score{
+    position: absolute;
+    top: 340px;
+    left: 747px;
+    font-size: 49px;
+    color:#ea5138;
+}
+
+#exchange_prize_1 {
+    top: 512px;
+    left: 171px;
+}
+
+#exchange_prize_2 {
+    top: 512px;
+    left: 523px;
+}
+
+#exchange_prize_3 {
+    top: 512px;
+    left: 870px;
+}
+
+#exchange_point_1 {
+    top: 427px;
+    left: 302px;
+    color: #d86f43;
+    font-size: 36px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#exchange_point_2 {
+    top: 427px;
+    left: 660px;
+    color: #d86f43;
+    font-size: 36px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#exchange_point_3 {
+    top: 427px;
+    left: 1002px;
+    color: #d86f43;
+    font-size: 36px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+/*====游戏成功====*/
+
+#btn_game_success {
+    top: 454px;
+    left: 532px;
+}
+#btn_fail{
+    top: 454px;
+    left: 532px;
+}
+
+/*====订购VIP====*/
+#btn_order_submit {
+    top: 449px;
+    left: 366px;
+}
+
+#btn_order_cancel {
+    top: 449px;
+    left: 696px;
+}
+
+/*====兑换成功====*/
+#exchange_tel {
+    color: #4864cc;
+    top: 330px;
+    left: 620px;
+    width: 218px;
+    height: 36px;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+#btn_exchange_submit {
+    top: 449px;
+    left: 366px;
+}
+
+#btn_exchange_cancel {
+    top: 449px;
+    left: 696px;
+}
+
+#count {
+    top: 266px;
+    left: 690px;
+    color: #ea5138;
+    font-size: 54px;
+}
+
+#btn_close_rule{
+    top: 13px;
+    left: 1129px;
+}
+
+/*====游戏部分====*/
+#animal-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+}
+
+#animal-car {
+    position: absolute;
+    top: 224px;
+    left:462px;
+}
+
+#animal-timer {
+    position: absolute;
+    top: 22px;
+    left: 141px;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #d3160a;
+    font-size: 30px;
+    /*border: 1px red solid;*/
+}
+
+#btn-play {
+    position: absolute;
+    top: 594px;
+    left:518px;
+}
+
+#btn_game_over_sure {
+    position: absolute;
+    top: 13px;
+    left:1129px;
+}
+
+
+

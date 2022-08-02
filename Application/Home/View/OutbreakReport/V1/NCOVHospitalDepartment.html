@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>2019nCoV</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            lmcid: '{$carrierId}',
+            carrierId: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            firstEnter: '{$firstEnter}',
+            historyLength: "{$historyLength}",
+            splashHistory: "{$splashHistory}", // 获取欢迎页在浏览器中的历史步长// 用户首次进入
+        };
+        function onBack(){
+            LMEPG.Intent.back()
+        }
+
+        window.onload = function () {
+            var deartment = LMEPG.Func.getLocationString('department');
+            //G('qr-code').src = ROOT + '/Public/img/hd/OutbreakReport/NCOV/qr_' + deartment + '.png';
+            document.body.style.backgroundImage = 'url(' + ROOT + '/Public/img/hd/OutbreakReport/NCOV/bg_' + deartment + '.png)';
+            LMEPG.BM.init('', [], '', true);
+
+        }
+
+        if (RenderParam.carrierId == "410092") {
+            try {
+                HybirdCallBackInterface.setCallFunction(function (param) {
+                    if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                        LMEPG.Intent.back();
+                    }
+                });
+            }catch (e){
+                LMEPG.UI.logPanel.show("e");
+            }
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <style>
+        #qr-code {
+            position: absolute;
+            top: 290px;
+            left: 310px;
+        }
+    </style>
+</head>
+<body>
+<div id="debug"></div>
+<div id="department-wrap">
+    <!--<img id="qr-code" src="" alt="">-->
+</div>
+</body>
+</html>

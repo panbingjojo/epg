@@ -1,0 +1,285 @@
+.doctor_info {
+    position: relative;
+    width: 373px;
+    height: 606px;
+    left: 52px;
+    top: 56px;
+    color: #FFFFFF;
+}
+
+.bg_info {
+    position: absolute;
+    width: 373px;
+    height: 606px;
+    left: 0px;
+    top: 0px;
+}
+
+.doctor_photo {
+    position: absolute;
+    left: 6px;
+    top: 22px;
+    width: 226px;
+    height: 226px;
+    border-radius: 133px;
+    box-shadow: 0px 0px 14px #ffffff;
+    /*margin:0px auto;*/
+    margin-left: 66px;
+}
+
+.doctor_introduce {
+    position: absolute;
+    top: 260px;
+    width: 373px;
+}
+
+.title {
+    width: 373px;
+    font-size: 33px;
+    text-align: center;
+    line-height: 36px;
+    margin-top: 0px;
+}
+
+.doctor_word {
+    margin-top: 6px;
+    width: 373px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 1px;
+}
+
+.button_text_1 {
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    margin: -30px auto 0 113px;
+    font-size: 28px;
+    line-height: 100px;
+}
+
+.button_img_1 {
+    height: 57px;
+    width: 179px;
+}
+
+.marginTop {
+    margin-top: 14px;
+}
+
+.arched_btn {
+    position: relative;
+    text-align: center;
+    line-height: 66px;
+    font-size: 26px;
+}
+
+.btn_bg {
+    position: absolute;
+    left: 96px;
+    width: 179px;
+    height: 66px;
+}
+
+.btn_title {
+    position: relative;
+    /*width: 269px;*/
+    /*height: 100px;*/
+}
+
+.page {
+    position: absolute;
+    top: 613px;
+    left: 217px;
+    font-size: 26px;
+    line-height: 26px;
+}
+
+.suggest_btn {
+    position: absolute;
+    left: 438px;
+    top: 56px;
+}
+
+.result_btn {
+    /*position: absolute;*/
+    /*left: 622px;*/
+    /*top: 56px;*/
+    position: absolute;
+    left: 438px;
+    top: 56px;
+}
+
+.tab_bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 179px;
+    height: 57px;
+}
+
+.tab_title {
+    position: absolute;
+    width: 179px;
+    height: 57px;
+    text-align: center;
+    line-height: 57px;
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+.delete_btn {
+    position: absolute;
+    width: 89px;
+    height: 57px;
+    left: 622px;
+    top: 56px;
+}
+
+#warm_tips {
+    position: absolute;
+    left: 915px;
+    top: 56px;
+    height: 57px;
+    line-height: 57px;
+    font-size: 18px;
+    color: #fff333;
+    display: none;
+}
+
+.center_bg {
+    position: absolute;
+    width: 790px;
+    height: 548px;
+    left: 438px;
+    top: 113px;
+}
+
+.tab_content {
+    position: absolute;
+    top: 26px;
+    left: 20px;
+    width: 750px;
+    height: 508px;
+    overflow: auto;
+    overflow-x: hidden;
+    border: 1px solid transparent;
+    color: #FFFFFF;
+    /*display: none;*/
+}
+
+table {
+    /*width: 740px;
+    font-size: 20px;*/
+}
+
+table tr td {
+    /*padding: 20px 10px;
+    border: 1px #FFFFFF solid;
+    text-align: center;*/
+    /*display: inline-block;*/
+}
+
+table tr td div {
+    text-align: center;
+    display: inline-block;
+}
+
+/*表格首列（药品名）文本左对齐*/
+.td1 {
+    text-align: left;
+    display: inline-block;
+}
+
+table tr th {
+    border: 1px #FFFFFF solid;
+    padding: 10px;
+}
+
+table tr th:nth-child(1) {
+    width: 33%;
+}
+
+.table_bg {
+    position: absolute;
+    width: 790px;
+    height: 548px;
+    left: 0px;
+    top: 0px;
+}
+
+.result {
+    /*line-height:30px;*/
+    margin-top: 33px;
+    margin-left: 20px;
+    width: 710px;
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.font_weight {
+    font-weight: bold;
+}
+
+.line {
+    display: inline-block;
+    text-decoration: underline;
+    text-align: center;
+    width: 133px;
+}
+
+.long {
+    display: inline-block;
+    width: 266px;
+}
+
+.arrow_pre {
+    position: absolute;
+    top: 13px;
+    left: 216px;
+    width: 44px;
+    height: 42px;
+    display: none;
+}
+
+.arrow_next {
+    position: absolute;
+    top: 666px;
+    left: 216px;
+    width: 44px;
+    height: 42px;
+    display: none;
+}
+
+#tab2 {
+    display: none;
+    position: absolute;
+    top: 0px;
+}
+
+#tab2 {
+    position: absolute;
+    top: 0px;
+}
+
+.star {
+    width: 36px;
+    height: 34px;
+}
+
+.content {
+    display: none;
+}
+
+#no_data {
+    position: absolute;
+    width: 400px;
+    height:50px;
+     top: 50%;
+     left: 50%;
+    margin-left: -200px;
+    font-size: 45px;
+    display: none;
+}

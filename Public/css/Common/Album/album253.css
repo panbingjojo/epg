@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    /*position:absolute;;*/
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    top: 0px
+}
+
+#small-video-wrap{
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#small-video {
+    position: absolute;
+    top: 290px;
+    left: 82px;
+    width: 399px;
+    height: 255PX;
+}
+
+.hd-corner-mark{
+    top: 517px;
+    left: 737px;
+    visibility: hidden;
+}
+
+.hd-back {
+    position: absolute;
+    top: 2px;
+    left: 1163px;
+    width: 100px;
+    height: 83px;
+}
+
+.hd-view-more {
+    position: absolute;
+    top: 96px;
+    left: 1163px;
+}
+
+.hd-video-list {
+    top: 0px;
+    left: 70px;
+    width: 1020px;
+    height: 261px;
+    /*border: 1px red solid;*/
+}
+.hd-video-list img{
+    width: 255PX;
+    height: 252px;
+    /* top: -32px; */
+    /* margin-left: 30px; */
+}
+
+.hd-v-arrow {
+    top: 569px;
+    width: 26px;
+    height: 34px;
+}
+
+.hd-v-prev {
+    top: 99px;
+    left: 7px;
+    width: 45px;
+    height: 60px;
+    visibility: hidden;
+}
+
+.hd-v-next {
+    top: 99px;
+    left: 1100px;
+    height: 60px;
+    width: 46px;
+}
+
+/*==============SD==================*/
+.sd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+.sd-body{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    /*border: 1px solid red;*/
+}
+.sd-view-more {
+    position:absolute;
+    top: 60px;
+    left: 570px;
+    width: 66px;
+    height: 55px;
+}
+
+.sd-back {
+    position: absolute;
+    top: 0px;
+    left: 570px;
+    width: 66px;
+    height: 55px;
+}
+
+.sd-video-list {
+    position:absolute;
+    top: 0px;
+    left: 43px;
+    height: 120px;
+    width: 487px;
+    /*border: 1px red solid;*/
+}
+
+.sd-video-list img {
+    /*position: absolute;*/
+    width: 121px;
+    height: 130px;
+    margin-left: 0px;
+}
+
+.sd-v-arrow {
+    position:absolute;
+    top: 446px;
+    width: 24px;
+    height: 24px;
+}
+
+.sd-v-prev {
+    left: 5px;
+    top: 50px;
+    width: 24px;
+    height: 33px;
+    visibility: hidden;
+}
+
+.sd-v-next {
+    top: 50px;
+    left: 535px;
+    height: 33px;
+    width: 24px;
+}
+
+

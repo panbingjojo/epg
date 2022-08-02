@@ -1,0 +1,297 @@
+<div class="tab2-box">
+    <div class="tab2-recommended-1-box">
+        <img id="tab2-recommended-1" class="recommended-img"
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+        <p id="tab2-recommended-1-title"></p>
+    </div>
+
+    <div class="tab2-recommended-2-box">
+        <img id="tab2-recommended-2" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+        <p id="tab2-recommended-2-title"></p>
+    </div>
+
+    <div class="tab2-recommended-3-box">
+        <img id="tab2-recommended-3" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+        <p id="tab2-recommended-3-title"></p>
+    </div>
+    <div class="tab2-recommended-4-box">
+        <img id="tab2-recommended-4" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+        <p id="tab2-recommended-4-title"></p>
+    </div>
+
+    <div class="tab2-recommended-5-box">
+        <img id="tab2-recommended-5" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+        <p id="tab2-recommended-5-title"></p>
+    </div>
+
+    <div class="tab2-recommended-6-box">
+        <img id="tab2-recommended-6" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+        <p id="tab2-recommended-6-title"></p>
+    </div>
+
+    <!--<div class="tab2-recommended-7-10-box">-->
+        <!--<div class="tab2-recommended-7-box">-->
+            <!--<img id="tab2-recommended-7" class="recommended-img"-->
+                 <!--src=""-->
+                 <!--onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">-->
+            <!--<p id="tab2-recommended-7-title" class="hidden"></p>-->
+        <!--</div>-->
+
+        <!--<div class="tab2-recommended-7-box">-->
+            <!--<img id="tab2-recommended-8" class="recommended-img"-->
+                 <!--src=""-->
+                 <!--onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">-->
+            <!--<p id="tab2-recommended-8-title" class="hidden"></p>-->
+        <!--</div>-->
+
+        <!--<div class="tab2-recommended-7-box">-->
+            <!--<img id="tab2-recommended-9" class="recommended-img"-->
+                 <!--src=""-->
+                 <!--onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">-->
+            <!--<p id="tab2-recommended-9-title" class="hidden"></p>-->
+        <!--</div>-->
+
+        <!--<div class="tab2-recommended-7-box">-->
+            <!--<img id="tab2-recommended-10" class="recommended-img"-->
+                 <!--src=""-->
+                 <!--onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">-->
+            <!--<p id="tab2-recommended-10-title" class="hidden"></p>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <table class="tab2-recommended-7-10-box">
+        <tr>
+            <td class="tab2-recommended-7-box" width="25%">
+                <img id="tab2-recommended-7" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+                <p id="tab2-recommended-7-title" class="hidden"></p>
+            </td>
+
+            <td class="tab2-recommended-7-box" width="25%">
+                <img id="tab2-recommended-8" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+                <p id="tab2-recommended-8-title" class="hidden"></p>
+            </td>
+
+            <td class="tab2-recommended-7-box" width="25%">
+                <img id="tab2-recommended-9" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+                <p id="tab2-recommended-9-title" class="hidden"></p>
+            </td>
+
+            <td class="tab2-recommended-7-box" width="25%">
+                <img id="tab2-recommended-10" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V21/Common/default.png'">
+                <p id="tab2-recommended-10-title" class="hidden"></p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    Tab2 = {
+        initButton: function () {
+            buttons.push({
+                id: 'tab2-recommended-1',
+                type: 'img',
+                nextFocusRight: 'tab2-recommended-2',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: 'tab2-recommended-7',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 0,
+                show_title: true,
+                show_num: 20,
+                cPosition: 31
+            })
+            buttons.push({
+                id: 'tab2-recommended-2',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-1',
+                nextFocusRight: 'tab2-recommended-3',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: 'tab2-recommended-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 0,
+                show_title: true,
+                show_num: 10,
+                cPosition: 32
+            })
+            buttons.push({
+                id: 'tab2-recommended-3',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-2',
+                nextFocusRight: 'tab2-recommended-4',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: 'tab2-recommended-9',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 0,
+                show_title: true,
+                show_num: 10,
+                cPosition: 33
+            })
+            buttons.push({
+                id: 'tab2-recommended-4',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-3',
+                nextFocusRight: 'tab2-recommended-1',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: 'tab2-recommended-6',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 0,
+                show_title: true,
+                show_num: 10,
+                cPosition: 34
+            })
+            buttons.push({
+                id: 'tab2-recommended-5',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-1',
+                nextFocusRight: 'tab2-recommended-3',
+                nextFocusUp: 'tab2-recommended-2',
+                nextFocusDown: 'tab2-recommended-8',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 0,
+                show_title: true,
+                show_num: 10,
+                cPosition: 35
+            })
+            buttons.push({
+                id: 'tab2-recommended-6',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-3',
+                nextFocusRight: 'tab2-recommended-1',
+                nextFocusUp: 'tab2-recommended-4',
+                nextFocusDown: 'tab2-recommended-10',
+                show_title: true,
+                show_num: 10,
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 0,
+                cPosition: 36
+            })
+
+            buttons.push({
+                id: 'tab2-recommended-7',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-10',
+                nextFocusRight: 'tab2-recommended-8',
+                nextFocusUp: 'tab2-recommended-1',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                show_title: true,
+                show_num: 10,
+                cNavId: 0,
+                cPosition: 37
+            })
+            buttons.push({
+                id: 'tab2-recommended-8',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-7',
+                nextFocusRight: 'tab2-recommended-9',
+                nextFocusUp: 'tab2-recommended-5',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                show_title: true,
+                show_num: 10,
+                cNavId: 1,
+                cPosition: 37
+            })
+            buttons.push({
+                id: 'tab2-recommended-9',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-8',
+                nextFocusRight: 'tab2-recommended-10',
+                nextFocusUp: 'tab2-recommended-3',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                show_title: true,
+                show_num: 10,
+                cNavId: 2,
+                cPosition: 37
+            })
+            buttons.push({
+                id: 'tab2-recommended-10',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-9',
+                nextFocusRight: 'tab2-recommended-7',
+                nextFocusUp: 'tab2-recommended-6',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                show_title: true,
+                show_num: 10,
+                cNavId: 3,
+                cPosition: 37
+            })
+        },
+        createHtml: function () {
+            var list = RenderParam.homeConfigInfo.data.entry_list;
+            var id = '';
+            for (var i = 0; i < list.length; i++) {
+                id = 0;
+                var item = list[i];
+                switch (parseInt(item.position)) {
+                        // banner
+                    case 31:
+                        id = 'tab2-recommended-1';
+                        break;
+                    case 32:
+                        id = 'tab2-recommended-2';
+                        break;
+                    case 33:
+                        id = 'tab2-recommended-3';
+                        break;
+                    case 34:
+                        id = 'tab2-recommended-4';
+                        break;
+                    case 35:
+                        id = 'tab2-recommended-5';
+                        break;
+                    case 36:
+                        id = 'tab2-recommended-6';
+                        break;
+                }
+                if (parseInt(item.position) == 37) {
+                    for (var j = 0; j < 4; j++) {
+                        id = 'tab2-recommended-' + (j + 7);
+                        G(id).src = RenderParam.fsUrl + item.item_data[j].img_url;
+                        // G(id + '-title').innerHTML = item.item_data[j].inner_parameters;
+                    }
+                }else if (id) {
+                    G(id).src = RenderParam.fsUrl + item.item_data[0].img_url;
+                    G(id + '-title').innerHTML = JSON.parse(item.item_data[0].inner_parameters).title;
+                }
+            }
+        },
+        init: function () {
+            try {
+                Tab2.initButton();
+                Tab2.createHtml();
+            } catch (e) {
+                LMEPG.UI.showToast("天天瑜珈异常运行" + e)
+            }
+        },
+    }
+</script>

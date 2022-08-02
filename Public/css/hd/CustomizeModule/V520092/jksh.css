@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+#container {
+  width: 1120px;
+  height: 720px;
+  margin: 0px auto;
+}
+#container #P1,
+#container #P2,
+#container #P3,
+#container #P4,
+#container #P5 {
+  width: 1120px;
+  margin: 0px auto;
+}
+#container #P1 .item,
+#container #P2 .item,
+#container #P3 .item,
+#container #P4 .item,
+#container #P5 .item {
+  float: left;
+  margin-top: 20px;
+  margin-right: 20px;
+  border-radius: 4px;
+}
+#container #P1 .item:last-child,
+#container #P2 .item:last-child,
+#container #P3 .item:last-child,
+#container #P4 .item:last-child,
+#container #P5 .item:last-child {
+  margin-right: 0px;
+}
+#container #P1 .item {
+  width: 360px;
+  height: 180px;
+}
+#container #P2 .item {
+  width: 208px;
+  height: 280px;
+}
+#container #P2 .item:first-child {
+  width: 436px;
+  height: 280px;
+}
+#container #P2 .item:nth-child(4) {
+  margin-right: 0px;
+}
+#container #P2 .item:nth-last-child(2),
+#container #P2 .item:last-child {
+  width: 550px;
+  height: 220px;
+}
+#container #P3 .item {
+  width: 360px;
+  height: 180px;
+}
+#container #P4 .item {
+  width: 265px;
+  height: 149px;
+}
+#container #P4 .item:nth-child(4) {
+  margin-right: 0px;
+}
+#container #P5 .item {
+  width: 170px;
+  height: 80px;
+}
+#container .clear-both {
+  clear: both;
+}
+#container .title {
+  margin-bottom: 0px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-top: 20px;
+}
+#container .tips {
+  clear: both;
+  width: 1120px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+#container .focus {
+  background-color: #2e9987;
+  border: 5px solid #2e9987;
+}

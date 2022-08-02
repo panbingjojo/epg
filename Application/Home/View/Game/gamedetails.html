@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>安装游戏</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="utf-8" name="page-view-size" content="1280*720">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Home/V32/home.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmapkmofang.js?t={$time}"></script>
+    <!--当前页所用自定义js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            accountId:'{$accountId}',
+            // 公用参数
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            historyLength: "{$historyLength}",   // 局方推荐位进入39EPG时的浏览器历史栈长度
+            footer: "{$footer}",
+            fromLaunch:"{$fromLaunch}",
+            // 页面参数
+            checkTime: "{$checkTime}",
+            commonImgsView: "{$commonImgsView}",                // 公用图片模式
+            themeImage: "{$themePicture}",                      // 应用主题背景
+            thirdPlayerUrl: "{$domainUrl}",                     // 第三方播放器根路径地址
+            focusIndex: "{$focusIndex}",
+            focusId:'{$focusId}',
+            scrollTop: "{$scrollTop}",
+            pluginMofangAppName: "{$pluginMofangAppName}",
+            isVip: {$isVip},
+            CWS_HLWYY_URL: "{$cwsHlwyyUrl}",
+            mapTime: "{$mapTime}",
+            departmentId: "{$departmentId}",
+            departmentIndex: "{$departmentIndex}",
+            departmentName: "{$departmentName}",// 用户是否是vip
+            expertUrl: "{$expertUrl}",
+            pageCurrent: "{$pageCurrent}",                      // 页码
+            autoOrder: "{$autoOrder}",                          // 用户是否是续订vip
+            classifyId: "{:($classifyId <1 )?1:$classifyId}",                        // 导航栏ID
+            cwsHlwyyUrl: "{$cwsHlwyyUrl}",
+            gameId:'{$gameId}'
+        };
+
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Game/V1/gameDetail.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="app"></div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        Page.init()
+    }
+</script>
+</body>
+</html>

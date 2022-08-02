@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>名医问诊</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/FamousDoctors/index.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <!--页面跳转-->
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            carrierId: "{$carrierId}",                      // 地区id
+            areaCode: "{$areaCode}",                        // 省份地区码
+            platformType: "{$platformType}",                // 平台类型（hd--高清 sd--标清）
+            userId: "{$userId}",                // 用户Id
+            isVip: "{$isVip}",
+            focusId: "{$focusId}",
+            currIndex: "{$currIndex}"
+        };
+    </script>
+</head>
+
+
+<body id="body" style="background-image: url(__ROOT__/Public/img/{$platformType}/FamousDoctors/bg.png)">
+<div id="debug"></div>
+
+<img id="back" src="__ROOT__/Public/img/{$platformType}/FamousDoctors/back.png" alt="返回">
+<!--<img id="prev" src="__ROOT__/Public/img/{$platformType}/FamousDoctors/prev.png" alt="上一个">-->
+<img id="photo" src="" alt="照片">
+<!--<img id="next" src="__ROOT__/Public/img/{$platformType}/FamousDoctors/next.png" alt="下一个">-->
+<img id="order" src="__ROOT__/Public/img/{$platformType}/FamousDoctors/order.png" alt="预约">
+<img id="doc-intro" src="__ROOT__/Public/img/{$platformType}/FamousDoctors/dingxiaofei_intro.png" alt="医生介绍">
+<div id="order-details">
+    <img src="__ROOT__/Public/img/{$platformType}/FamousDoctors/activity_detail.png" alt="">
+    <img id="order-back" src="__ROOT__/Public/img/{$platformType}/FamousDoctors/back.png" alt="返回">
+</div>
+<div id="AD" style="background-image: url(__ROOT__/Public/img/{$platformType}/FamousDoctors/ad.png)">
+    <!--字幕层-->
+    <if condition="$platformType eq 'sd'">
+        <marquee direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1" width="588">
+            <span>{$marqueeText}</span>
+        </marquee>
+        <else/>
+        <marquee direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1" width="1130">
+            <span>{$marqueeText}</span>
+        </marquee>
+    </if>
+</div>
+<script>
+    var fileIndex = "__ROOT__/Public/img/{$platformType}/FamousDoctors/";
+    var imgUrlWithPhotoFocus = "__ROOT__/Public/img/{$platformType}/FamousDoctors/photo_f.png";//医生头像选中的背景
+
+    var mockData = [{
+        id: 1,
+        name: "丁晓飞",
+        photoUrl: "dingxiaofei",
+        videoUrlHD: "99100000012018111215591203554393",
+        videoUrlSD: "99100000012018111215595403554681",
+    }/*,{
+        id: 2,
+        name: "李学松",
+        photoUrl: "lixuesong",
+        videoUrlHD: "99100000012018080717393702598972",
+        videoUrlSD: "99100000012018080717414502600164",
+    },{
+        id: 3,
+        name: "栗鹏程",
+        photoUrl: "lipengcheng",
+        videoUrlHD: "99100000012018080717352102596528",
+        videoUrlSD: "99100000012018080717371502597630",
+    }*/];
+
+    var buttons = [
+        {
+            id: "back",
+            name: "返回",
+            type: 'img',
+            nextFocusLeft: "photo",
+            nextFocusRight: "",
+            nextFocusUp: "",
+            nextFocusDown: "photo",
+            backgroundImage: fileIndex + "back.png",
+            focusImage: fileIndex + "back_f.png",
+            click: onBack,
+            // focusChange: onFocus,
+            // beforeMoveChange: beforeMove,
+        }, {
+            id: "photo",
+            name: "相片",
+            type: 'img',
+            nextFocusLeft: "",
+            nextFocusRight: "",
+            nextFocusUp: "back",
+            nextFocusDown: "order",
+            // backgroundImage:fileIndex+ 'dingxiaofei.png',
+            // focusImage: fileIndex+'dingxiaofei.png',
+            click: enterKey,
+            focusChange: onFocus,
+            beforeMoveChange: beforeMove,
+        }, {
+            id: "order",
+            name: "预约",
+            type: 'img',
+            nextFocusLeft: "",
+            nextFocusRight: "",
+            nextFocusUp: "photo",
+            nextFocusDown: "",
+            backgroundImage: fileIndex + "order.png",
+            focusImage: fileIndex + "order_f.png",
+            click: enterKey,
+            // focusChange: onFocus,
+            // beforeMoveChange: beforeMove,
+        },{
+            id: "order-back",
+            name: "预约",
+            type: 'img',
+            nextFocusLeft: "",
+            nextFocusRight: "",
+            nextFocusUp: "",
+            nextFocusDown: "",
+            backgroundImage: fileIndex + "back.png",
+            focusImage: fileIndex + "back_f.png",
+            click: enterKey,
+            // focusChange: onFocus,
+            // beforeMoveChange: beforeMove,
+        }];
+
+
+    function getCurrentIntentObj() {
+        var objCurrent = LMEPG.Intent.createIntent("activity-famous-index");
+        objCurrent.setParam("focusId", "photo");
+        objCurrent.setParam("currIndex", count);
+        return objCurrent;
+    }
+
+    /**
+     * @func 进行购买操作
+     * @returns {boolean}
+     */
+    function jumpBuyVip() {
+        var objCurrent = getCurrentIntentObj();
+        var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+        objOrderHome.setParam("userId", RenderParam.userId);
+        objOrderHome.setParam("isPlaying", "1");
+        objOrderHome.setParam("remark", "名医服务基础活动");
+        LMEPG.Intent.jump(objOrderHome, objCurrent);
+    }
+
+    /**
+     * 播放视频
+     * @param paramJson
+     */
+    function jumpVideoPlay(paramJson) {
+        var objCurrent = getCurrentIntentObj();
+        var objPlayer = LMEPG.Intent.createIntent("player");
+        objPlayer.setParam("userId", RenderParam.userId);
+        objPlayer.setParam("videoInfo", JSON.stringify(paramJson));
+        LMEPG.Intent.jump(objPlayer, objCurrent);
+    }
+
+    /**
+     * 点击医生头像操作
+     * @param mockDataItemArr
+     */
+    function onClickDoctorPhoto(mockDataItemArr) {
+
+        var videoUrl = "";
+        if (RenderParam.platformType == "hd") {
+            videoUrl = mockDataItemArr["videoUrlHD"];
+        } else {
+            videoUrl = mockDataItemArr["videoUrlSD"];
+        }
+        var paramJson = {
+            "sourceId": "",
+            "videoUrl": videoUrl,
+            "title": "",
+            "type": 2,
+            "freeSeconds": 0,
+            "focusIdx": "photo",
+            "userType": 0,
+            "entryType": 1,
+            "entryTypeName": "FamousDoctor",
+        };
+        if (LMEPG.Func.isAllowAccess(RenderParam.isVip, ACCESS_NO_TYPE)) {
+            jumpVideoPlay(paramJson);
+        } else {
+            jumpBuyVip();
+        }
+    }
+
+    function onFocus(btn,hasFocus) {
+        if (hasFocus && btn.id == "photo"){
+            G("photo").style.background = "url(" + imgUrlWithPhotoFocus + ") no-repeat center";
+        }else{
+            G("photo").style.background = "";
+            setSrc("photo", mockData[count].photoUrl); // 设置名医照片
+        }
+
+
+    }
+
+    function beforeMove(direction, btn) {
+        switch (direction) {
+            case "left":
+                btn.id == "photo" && prev(btn);
+                break;
+            case "right":
+                btn.id == "photo" && next(btn);
+                break;
+        }
+    }
+
+    var count = 0; // 当前选中的元素
+    var status = 0;
+    function prev() {
+        count = count == 0 ? mockData.length - 1 : Math.max(0, count -= 1);
+        setSrc("photo", mockData[count].photoUrl); // 设置名医照片
+        setSrc("doc-intro", mockData[count].photoUrl + "_intro"); // 设置名医介绍背景
+        // 切换箭头指示
+        // setSrc("next", "next");
+        // setSrc("prev", "prev_f");
+    }
+
+    function next() {
+        count = count == mockData.length - 1 ? 0 : Math.min(mockData.length - 1, count += 1);
+        setSrc("photo", mockData[count].photoUrl);
+        setSrc("doc-intro", mockData[count].photoUrl + "_intro");
+        // 切换箭头指示
+        // setSrc("prev", "prev");
+        // setSrc("next", "next_f");
+    }
+
+    function setSrc(Id, val) {
+        G(Id).src = fileIndex + val + ".png";
+    }
+
+    function enterKey(btn) {
+        switch (btn.id) {
+            case "order-back":
+                Hide("order-details");
+                LMEPG.ButtonManager.init(["order"], buttons, '', true);
+                break;
+            case "photo":
+                //  播放视频
+                onClickDoctorPhoto(mockData[count]);
+                break;
+            case "order":
+                status = 1;
+                Show("order-details");
+                LMEPG.ButtonManager.requestFocus("order-back");
+                break;
+        }
+    }
+
+    window.onload = function () {
+        LMEPG.ButtonManager.init(["order"], buttons, '', true)
+        setSrc("photo", mockData[count].photoUrl); // 设置名医照片
+    };
+    function onBack() {
+        if (status == 1){
+            status = 0;
+            Hide("order-details");
+            LMEPG.ButtonManager.requestFocus("order");
+        }else{
+            LMEPG.Intent.back();
+        }
+    }
+</script>
+</body>
+</html>

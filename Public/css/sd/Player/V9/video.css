@@ -1,0 +1,55 @@
+.picture {
+    width: 122px;
+    height: 122px;
+    border-radius: 10px;
+}
+
+.imghover {
+    border-radius: 10px;
+}
+
+.imgtitle {
+    background-image: url(../../../../img/Common/spacer.gif);
+    top: 133px;
+    text-align: center;
+    width: 122px;
+
+}
+
+.imgtitle li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+div.imghover {
+    background-image: url(../../../../img/hd/Menu/Tab5/levelThree_f.png) !important;
+    background-size: 100% 90%;
+    background-repeat: no-repeat;
+    border: 0;
+}
+
+#focus-1-1,
+#focus-1-2,
+#focus-1-3,
+#focus-1-4 {
+    width: 122px;
+    height: 142px;
+    padding: 10px;
+}
+
+#focus-1-1 {
+    left: 40px;
+}
+
+#focus-1-2 {
+    left: 173px;
+}
+
+#focus-1-3 {
+    left: 305px;
+}
+
+#focus-1-4 {
+    left: 438px;
+}

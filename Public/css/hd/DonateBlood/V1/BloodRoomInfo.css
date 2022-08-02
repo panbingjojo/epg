@@ -1,0 +1,106 @@
+body {
+    color: #fff;
+    background-image: url("../../../../../Public/img/hd/DonateBlood/V1/bg_content.png");
+    background-repeat: no-repeat;
+}
+p.title {
+    position: absolute;
+    top: 20px;
+    left: 80px;
+    font-size: 38px;
+    color: #FFFFFF;
+}
+#title_line{
+    position: absolute;
+    top: 88px;
+    left: 80px;
+    width: 188px;
+}
+
+#bg_room_frame{
+    position: absolute;
+    top: 130px;
+    left: 80px;
+}
+#bg_room_pic{
+    position: absolute;
+    top: 201px;
+    left: 110px;
+    width: 370px;
+    height: 380px;
+    /*border: 1px solid red;*/
+}
+#blood_room_name{
+    position: absolute;
+    top: 200px;
+    left: 519px;
+    width: 675px;
+    font-size: 45px;
+    color: #FFFFFF;
+}
+#blood_room_addr{
+    position: absolute;
+    top: 275px;
+    left: 595px;
+    width: 580px;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+#blood_room_time{
+    position: absolute;
+    top: 335px;
+    left: 595px;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+#blood_room_tel{
+    position: absolute;
+    top: 397px;
+    left: 595px;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+#icon_addr{
+    position: absolute;
+    top: 282px;
+    left: 525px;
+}
+#icon_time{
+    position: absolute;
+    top: 341px;
+    left: 525px;
+}
+#icon_tel{
+    position: absolute;
+    top: 398px;
+    left: 525px;
+}
+
+
+
+#btn_ask_doctor{
+    position: absolute;
+    top: 507px;
+    left: 518px;
+}
+#btn_order_advance{
+    position: absolute;
+    top: 507px;
+    left: 728px;
+}
+#btn_order_advance.platform_640094{
+    position: absolute;
+    top: 507px;
+    left: 518px;
+}
+#btn_nav{
+    position: absolute;
+    top: 507px;
+    left: 938px;
+}
+#btn_nav.platform_640094{
+    position: absolute;
+    top: 507px;
+    left: 728px;
+}

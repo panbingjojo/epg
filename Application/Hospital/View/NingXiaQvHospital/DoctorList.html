@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>在线问诊</title>
+    <script>
+        Root = "__ROOT__";
+        var RenderParam = {
+            carrierId: "{$carrierId}",          // 地区id
+            focusIndex: "{$focusIndex2}",                        // 焦点ID
+            pages: "{$pages}",                        // 焦点ID
+            imagePath: "__ROOT__/Public/img/hd/Hospital/V1/",
+        };
+    </script>
+    <!--公用库-->
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/Hospital/NingXiaQvHospital/DoctorList.css?t={$time}"/>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Hospital/NingXiaQvHospital/DoctorList.js?t={$time}"></script>
+</head>
+<body>
+<img id="back" src="__ROOT__/Public/img/hd/Hospital/V1/btn_back.png"/>
+<div class="menu-list">
+    <img id="btn-1" src="__ROOT__/Public/img/hd/Hospital/V1/doctor_btn_1.png"/>
+    <img id="btn-2" src="__ROOT__/Public/img/hd/Hospital/V1/doctor_btn_2.png"/>
+    <img id="btn-3" src="__ROOT__/Public/img/hd/Hospital/V1/doctor_btn_3.png"/>
+    <img id="btn-4" src="__ROOT__/Public/img/hd/Hospital/V1/doctor_btn_4.png"/>
+    <img id="btn-5" src="__ROOT__/Public/img/hd/Hospital/V1/doctor_btn_5.png"/>
+    <img id="btn-6" src="__ROOT__/Public/img/hd/Hospital/V1/doctor_btn_6.png"/>
+    <img id="btn-7" src="__ROOT__/Public/img/hd/Hospital/V1/doctor_btn_7.png"/>
+</div>
+<div id="list">
+
+</div>
+
+<img id="area-next-arrow" style="display: none" src="__ROOT__/Public/img/hd/OutbreakReport/V1/left_page.png"/>
+<img id="area-prev-arrow" style="display: none" src="__ROOT__/Public/img/hd/OutbreakReport/V1/right_page.png"/>
+<div id="page">
+    1/1
+</div>
+
+<img id="detail" style="display: none" src="__ROOT__/Public/img/hd/Hospital/V1/detail_bg.png"/>
+<script>
+    //    var imgPrefix = g_appRootPath + "/Public/img/" + RenderParam.platformType + "/Menu/QHotherPages/V640092/";
+
+
+    window.onload = function () {
+        MenuList.init(data);
+        LMEPG.BM.init(MenuList.defaultFocusId, buttons, "", true);
+        LMEPG.ButtonManager.setSelected("btn-1", true);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#body{
+    background-color:black;
+    margin: 0;
+    padding: 0;
+    width: 644px;
+    height: 530px;
+    /*border: solid 1px red;*/
+}
+#btn_pingTest{
+    text-align: center;
+}
+
+p.ex {
+    color: rgb(255, 255, 255)
+}
+
+table {
+    width: 620px;
+    /*border: solid 1px #add9c0;*/
+    margin: 0px auto
+}
+
+#table-mode {
+    margin-left: 20px;
+}
+
+#table {
+    position: relative;
+    width: 640px;
+    height: 50px;
+    margin: auto;
+    border: solid 1px #5fa2ff;
+}
+table tr td {
+    padding: 5px;
+    color: #FFFFFF;
+}
+
+.btn {
+    position: relative;
+    padding: 2px 5px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 25px
+}
+
+/*标题*/
+#btn_pingTest {
+    color: white;
+    text-align: center;
+    font-size: 27pt;
+    margin: 12px auto;
+}
+
+p {
+    color: white;
+}
+
+.arrow {
+    position: absolute;
+    top: 338px;
+}
+
+#prev-arrow {
+    left: 0;
+}
+
+#next-arrow {
+    left: 1240px;
+}
+#thead tr{
+    border: solid 1px #5fa2ff;
+}
+#thead th {
+    background-color: rgb(171, 130, 255);
+    width: 33.12%;
+    font-size: 25px;
+    color: white;
+}
+
+#tbody td {
+    background-color: rgb(171, 130, 255);
+    font-size: 10px;
+    color: white;
+    text-align: center;
+
+}

@@ -1,0 +1,110 @@
+html{
+}
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+    overflow: hidden;
+    /*background-size: 100%;*/
+}
+
+body > * {
+    position: absolute;
+}
+
+div.container {}
+
+div.container img.arrow {
+    position: absolute;
+    top: 338px;
+}
+
+img#left-arrow {
+    left: 50px;
+}
+
+img#right-arrow {
+    left: 1160px;
+}
+#page-count{
+    position: absolute;
+    top: 666px;
+    left: 616px;
+    font-size: 20px;
+    color: #fff;
+}
+ul#list-wrapper {
+    position: absolute;
+    top: 80px;
+    left: 211px;
+    width: 758px;
+    height: 480px;
+    padding: 43px;
+    background-image: url(../../../../img/hd/Album/FeatureAlbum/modal_bg.png);
+    border-radius: 10px;
+}
+
+ul#list-wrapper li {
+    height: 22px;
+    font-size: 30px;
+    color: #fff;
+    list-style: none;
+    line-height: 12px;
+    text-align: left;
+    padding: 20px 60px;
+    margin-top: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-image: url(../../../../img/hd/Album/FeatureAlbum/item.png);
+}
+marquee{
+    height: 32px;
+    line-height: 32px;
+    margin-top: -10px;;
+}
+#iframe {
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    display: none;
+    /*background-image: url(../../../../img/hd/Common/bg_waiting_dialog.gif);*/
+}
+
+#iframe-img {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+#img_count{
+    position: absolute;
+    top: 680px;
+    left: 600px;
+    color: #000;
+    font-size: 25px;
+}
+#iframe img.arrow {
+    position: absolute;
+    top: 50%;
+}
+
+img#img_prevArrow {
+    left: 0;
+}
+
+img#img_nextArrow {
+    right: 0;
+}
+

@@ -1,0 +1,41 @@
+/*背景图*/
+.splash_background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+
+.btn_f_1 {
+    position: absolute;
+    left: 412px;
+    top: 480px;
+    /*left: 380px;
+    top: 490px;
+    width: 160px;
+    height: 68px;*/
+    display: none;
+}
+
+.btn_f_2 {
+    position: absolute;
+    left: 708px;
+    top: 480px;
+    /*left: 570px;
+    top: 490px;
+    width: 160px;
+    height: 68px;*/
+    display: none;
+}
+.btn_f_3 {
+    position: absolute;
+    left: 760px;
+    top: 490px;
+    width: 220px;
+    height: 68px;
+    display: none;
+}
+
+

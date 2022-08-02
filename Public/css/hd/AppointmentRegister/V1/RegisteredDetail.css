@@ -1,0 +1,307 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #ffffff;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+div {
+    position: absolute;
+}
+
+div.title {
+    top: 46px;
+    left: 558px;
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    line-height: 46px;
+}
+
+.lan1 {
+    position: absolute;
+    width: 4px;
+    height: 32px;
+    top: 130px;
+    left: 40px;
+}
+
+.lan2 {
+    position: absolute;
+    width: 4px;
+    height: 32px;
+    top: 130px;
+    left: 420px;
+}
+
+.lan3 {
+    position: absolute;
+    width: 4px;
+    height: 32px;
+    top: 130px;
+    left: 960px;
+}
+
+div.card-title1 {
+    top: 130px;
+    left: 50px;
+    font-size: 32px;
+    line-height: 32px;
+}
+
+div.card-title2 {
+    top: 130px;
+    left: 430px;
+    font-size: 32px;
+    line-height: 32px;
+}
+
+div.card-title3 {
+    top: 130px;
+    left: 970px;
+    font-size: 32px;
+    line-height: 32px;
+}
+
+div.name {
+    top: 190px;
+    left: 40px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.name-id {
+    top: 232px;
+    left: 40px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.regist-num {
+    top: 278px;
+    left: 40px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.phone {
+    top: 320px;
+    left: 40px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.cardId {
+    top: 364px;
+    left: 40px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.hospital {
+    top: 190px;
+    left: 420px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.address {
+    top: 232px;
+    left: 420px;
+    font-size: 24px;
+    line-height: 24px;
+    width: 530px;
+    height: 24px;
+    overflow: hidden;
+}
+
+div.doctor {
+    top: 278px;
+    left: 420px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.type {
+    top: 320px;
+    left: 420px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.time {
+    top: 364px;
+    left: 420px;
+    font-size: 24px;
+    line-height: 24px;
+    width: 530px;
+    height: 24px;
+    overflow: hidden;
+}
+
+div.price {
+    top: 190px;
+    left: 960px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.book-price {
+    top: 232px;
+    left: 960px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.check-price {
+    top: 278px;
+    left: 960px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.card-price {
+    top: 320px;
+    left: 960px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+div.total {
+    top: 364px;
+    left: 960px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+#name-id {
+    color: yellow;
+}
+
+#time {
+    color: #40bfff;
+}
+
+#total {
+    color: #aaff7f;
+}
+
+div.introduce {
+    top: 426px;
+    left: 32px;
+    width: 1176px;
+    height: 166px;
+    background-image: url('../../../../../Public/img/hd/AppointmentRegister/V1/introduce_bg.png');
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+}
+
+div#confirm_btn {
+    width: 170px;
+    height: 76px;
+    left: 370px;
+    top: 640px;
+    font-size: 19px;
+    background-image: url('../../../../../Public/img/hd/AppointmentRegister/V1/register_btn_out.png');
+    line-height: 76px;
+    text-align: center;
+}
+
+div#cancel_btn {
+    width: 170px;
+    height: 76px;
+    left: 740px;
+    top: 640px;
+    font-size: 19px;
+    background-image: url('../../../../../Public/img/hd/AppointmentRegister/V1/register_btn_out.png');
+    line-height: 76px;
+    text-align: center;
+}
+
+.charge {
+    font-size: 18px;
+}
+div#regist_type {
+    position: absolute;
+    width: 940px;
+    top: 20px;
+    left: 140px;
+    height: 30px;
+    text-align: center;
+}
+#register_type{
+    width: 30px;
+    height: 30px;
+}
+
+#register_text{
+    line-height: 30px;
+    text-align: center;
+    vertical-align: top;
+    overflow: hidden;
+    font-size: 24px;
+    position: static;
+    display: inline-block;
+}
+
+div#content {
+    width: 1176px;
+    height: 100px;
+    top: 80px;
+    line-height: 36px;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+div.tip_title{
+    top: 0px;
+    line-height: 40px;
+    font-size: 40px;
+    left:320px;
+}
+
+div#confirm_tip_btn {
+    width: 170px;
+    height: 76px;
+    left: 280px;
+    top: 80px;
+    font-size: 19px;
+    background-image: url('../../../../../Public/img/hd/AppointmentRegister/V1/register_btn_out.png');
+    line-height: 76px;
+    text-align: center;
+}
+
+div#cancel_tip_btn {
+    width: 170px;
+    height: 76px;
+    left: 600px;
+    top: 80px;
+    font-size: 19px;
+    background-image: url('../../../../../Public/img/hd/AppointmentRegister/V1/register_btn_out.png');
+    line-height: 76px;
+    text-align: center;
+}
+
+div#tost{
+    width: 1100px;
+    height: 160px;
+    left: 60px;
+    text-align: center;
+    visibility:hidden;
+}

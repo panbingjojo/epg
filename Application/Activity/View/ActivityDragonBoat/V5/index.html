@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>赛龙舟主页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityDragonBoat/V5/index.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityDragonBoat/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("demoTimes", "{$demoTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示非会员答题次数用尽
+         */
+        function jumpNoVipTimesOverDialog() {
+            jumpDialog(NOT_VIP_USER_PLAY_TIMES_OVER);
+        }
+
+        /**
+         * 显示中奖
+         */
+        function jumpDrawnPrizeDialog(prizeIdx) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("context", VIP_USER_DRAWN_PRIZE);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         */
+        function jumpPlayUI() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            objActivityHome.setParam("userId", "{$userId}");
+            objActivityHome.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityHome, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        }
+
+        /**
+         * 显示未中奖
+         */
+        function jumpNotDrawnPrizeDialog() {
+            jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+
+    </script>
+
+</head>
+<body id="body"
+      style="background: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/play_bg_2.png') no-repeat">
+<div id="debug" style=" position:absolute; color: red; font-size: 30px"></div>
+<img id="boat" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/boat_1.png"/>
+<img id="btn-go" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/f_go.gif"/>
+<div id="timer">
+    10s
+</div>
+
+<div id="default_tip"></div>
+<div id="defaultFocus"></div>
+<script type="text/javascript">
+    var platformType = "{$platformType}";
+    var imgUrl = "__ROOT__/Public/img/{$platformType}/Activity/ActivityDragonBoat/V5/";
+    var isVip = {$isVip}; // 是否是vip（0-非vip 1-vip）
+    var leftTimes = 0; //剩余抽奖次数
+    var buttons = [];
+    var Button = {
+        initBtn: function () {
+            buttons.push({
+                id: 'btn-go',
+                name: '接手',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                click: Pages.onClickPlay,
+                focusChange: "",
+                moveChange: ""
+            }, {
+                id: 'defaultFocus',
+                name: '接手',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                click: "",
+                focusChange: "",
+                moveChange: ""
+            })
+        },
+    };
+
+    /**
+     * 界面渲染交互
+     */
+    var Pages = {
+        // 当用户点击开始玩游戏时触发
+        onClickPlay: function () {
+            LMEPG.ButtonManager.requestFocus("defaultFocus");
+            G('btn-go').style.display = 'none';
+            Pages.uploadAnswerResult(); //点击游戏时直接扣除游戏次数
+            animal.init();
+//            Animal.animalInit();
+        },
+        /**
+         * 上报参与记录（上报答题结果）
+         */
+        //
+        participationActivity: function () {
+            LMEPG.KeyEventManager.setAllowFlag(false);
+            setTimeout("LMEPG.KeyEventManager.setAllowFlag(true)", 1000);
+            LMEPG.UI.showWaitingDialog("", 2);
+            var reqData = {
+                round_flag: 1
+            };
+            LMEPG.ajax.postAPI('Activity/participateActivity', reqData,
+                    function (rsp) {
+                        LMEPG.UI.dismissWaitingDialog();
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            switch (data.result) {
+                                    // 没有抽中奖品
+                                case 0:
+                                    jumpNotDrawnPrizeDialog();
+                                    break;
+
+                                    // 抽中奖品
+                                case 1:
+                                    jumpDrawnPrizeDialog(data.prize_idx);
+                                    break;
+
+                                default:
+                                    LMEPG.UI.showToast('抽奖失败[' + data.result + ']');
+                                    setTimeout("onBack()", 3000);
+                                    return;
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("抽奖结果处理异常！"+e);
+                            setTimeout("onBack()", 3000);
+                            LMEPG.Log.error(e.toString());
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.dismissWaitingDialog();
+                        LMEPG.UI.showToast("请求抽奖发生错误！");
+                    }
+            );
+        },
+
+        /**
+         * 上报参与记录（上报答题结果）
+         */
+        uploadAnswerResult: function () {
+            LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            var result = data.result;
+                            console.log('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                            LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                        } catch (e) {
+                            console.log('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                            LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                        }
+                    },
+                    function (rsp) {
+                        console.log('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                        LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                    }
+            );
+        },
+
+
+        /**
+         * 判断用户是否可以答题
+         */
+        canAnswer: function () {
+            LMEPG.ajax.postAPI('Activity/canAnswer', null,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            var result = data.result;
+                            if (result == 0) {
+                                leftTimes = data.leftTimes;
+                                demoTimes = data.demoTimes;
+                                spMap = data.spMap;
+                            } else {
+                                leftTimes = 0;
+                            }
+                            LMEPG.UI.showWaitingDialog("", 2);
+//                        initButton();
+                        } catch (e) {
+                            LMEPG.UI.showToast("判断用户是否可以试玩，解析异常！");
+                            LMEPG.Log.error(e.toString());
+                            LMEPG.ButtonManager.init('', [], '', true); // 失败异常处理，保证至少可以响应返回按键
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("判断用户是否可以试玩失败");
+                        LMEPG.ButtonManager.init('', [], '', true); // 失败异常处理，保证至少可以响应返回按键
+                    }
+            );
+        }
+
+    };
+
+        /**
+         * 动画部分
+         */
+        (function (W) {
+            function Animal(boat, max, time) {
+                this.boat = boat;
+                this.index = 0;
+                this.max = max;
+                this.time = time;
+                this.that = this;
+            }
+
+            Animal.prototype.init = function () {
+                var bgImg = imgUrl + "play_bg_2.png";
+                G("body").style.background = "url(" + bgImg + ") no-repeat"
+                this.timeId();
+                this.timer();
+            }
+            Animal.prototype.timeId = function () {
+                var that=this;
+                window.boatTimer = setInterval(function () {
+                    that.index++;
+//                    G("debug").innerHTML=that.index;
+                    that.boat.src = imgUrl + "boat_" + that.index + ".png";
+                    if (that.index == that.max) {
+                        that.index = 0;
+                    }
+                }, 550)
+            };
+            Animal.prototype.timer = function () {
+                var that=this;
+                var timer1 = setInterval(function () {
+                    G("timer").innerHTML = that.time + "s";
+                    that.time--;
+                    if (that.time == -1) {
+                        clearInterval(timer1);
+    //                    clearInterval(boatTimer);
+                        Pages.participationActivity();
+//                        Pages.uploadAnswerResult();       修改点击游戏的时候扣除
+                    }
+                }, 1000);
+            };
+            W.animal = new Animal(G("boat"), 5, 10);
+        }(window));
+
+
+//    /**
+//     * 动画部分
+//     */
+//    var Animal = {
+//        boat: G("boat"),
+//        index: 0,
+//        max: 5,
+//        time: 10,
+//        that: this,
+//        boatTimer: null,
+//        boatTimer2: null,
+//
+//        animalInit: function () {
+//            var bgImg = imgUrl + "play_bg_2.png";
+//            G("body").style.background = "url(" + bgImg + ") no-repeat"
+//            Animal.animalTimeId();
+//            Animal.animalTimer();
+//        },
+//
+//        animalTimeId: function () {
+//            Animal.boatTimer = setTimeout(Animal.animal1, 1000)
+//        },
+//
+//        animalTimer: function () {
+//            Animal.boatTimer2 = setTimeout(Animal.animal2, 550)
+//        },
+//
+//
+//        animal1: function () {
+//            G("timer").innerHTML = parseInt(Animal.time) + "s";
+//            Animal.time--;
+//            Animal.animalTimeId();
+//            if (Animal.time == -1) {
+//                clearTimeout(Animal.boatTimer);
+//                    clearTimeout(Animal.boatTimer);
+//                    Pages.participationActivity();
+//                    Pages.uploadAnswerResult();
+//            }
+//        },
+//        animal2: function () {
+//
+//            Animal.index++;
+////            G("debug").innerHTML = Animal.index;
+//            Animal.boat.src = imgUrl + "boat_" + Animal.index + ".png";
+//            Animal.animalTimer();
+//            if (Animal.index == Animal.max) {
+//                Animal.index = 0;
+//            }
+//        },
+//
+//    }
+
+    /**
+     * 初始化月饼对象
+     */
+    window.onload = function () {
+//         山西联通某款盒子焦点会有问题，对方提供的
+//        if ('<?php echo ($carrierId == "000051") ?>') {
+//            var stbModel = LMEPG.STBUtil.getSTBModel();
+//            if (stbModel === "B700V5C") {
+//                if (top.location !== self.location) {
+//                    top.location = self.location;
+//                }
+//            }
+//        }
+        Button.initBtn();
+        LMEPG.ButtonManager.init(['btn-go'], buttons, '', true);
+    };
+</script>
+
+</body>
+</html>

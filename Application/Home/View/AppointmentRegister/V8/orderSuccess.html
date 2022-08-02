@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>预约成功</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V8/orderSuccess.css?t={$time}"/>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V8/orderSuccess.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div style="padding: 60px 50px 0 50px">
+        <div class="main">
+            <div class="title">订单提交成功</div>
+
+            <div class="line"></div>
+
+            <div class="content">
+                <div class="label">预约医院：<span id="hospital-name"></span></div>
+                <div class="label">预约科室：<span id="depName"></span></div>
+                <div class="label">预约专家：<span id="name"></span></div>
+                <div class="label">就诊时间：<span id="time"></span></div>
+                <div class="label">联系电话：<span id="tel"></span></div>
+            </div>
+            <div class="tips">
+                <div>您预约的专家已经登记，请保持手机畅通，必要时我们将和您联系。</div>
+                <div>本功能由健康云app进行服务，服务热线:02583502133!</div>
+            </div>
+            <div class="btn-base" id="my-order">我的订单</div>
+            <div class="btn-base" style="bottom: 66px" id="go-home">返回主页</div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

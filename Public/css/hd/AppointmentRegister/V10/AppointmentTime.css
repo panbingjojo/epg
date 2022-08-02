@@ -1,0 +1,168 @@
+.doctorInfo {
+    position: absolute;
+    top: 60px;
+    left:80px;
+    height: 600px;
+    width: 340px;
+    background: url("../../../../../Public/img/hd/AppointmentRegister/V10/BtnBox/box_doctor.png");
+    border-radius: 12px;
+    /*border: 1px rgba(255,255,255,0.3) solid;*/
+    font-size: 28px;
+    text-align: center;
+}
+.photo{
+    position: absolute;
+    top: 40px;
+    left:80px;
+    width: 180px;
+    height: 220px;
+    border-radius: 10px;
+}
+
+.produce {
+    position: absolute;
+    top: 290px;
+    left: 0px;
+    width: 340px;
+    text-align: center;
+}
+.introduce{
+    /*width: 120px;*/
+   margin: 20px auto;
+    text-align: center;
+}
+
+.line-word {
+    color: #011025;
+    margin-top: 10px;
+    width: 920px;
+}
+
+.doctor-word{
+    margin-top: 13px;
+    font-size: 28px;
+    width: 340px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+.doctor-word2{
+    margin-top: 13px;
+    font-size: 36px;
+    width: 340px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+.appointment-time{
+    position: absolute;
+    top: 78px;
+    left: 438px;
+}
+
+.data {
+    position: absolute;
+    top: 58px;
+    left: 0px;
+    color: #FFFFFF;
+    font-size: 24px;
+    width: 800px;
+}
+
+.data-time {
+    width: 104px;
+    height: 104px;
+    text-align: center;
+    line-height: 64px;
+    border-radius: 10px;
+    margin-left: 5px;
+    float: left;
+}
+
+.data-time > P {
+    line-height: 10px;
+}
+.line2{
+    position: absolute;
+    top: 160px;
+    left:30px;
+    width: 740px;
+    font-size: 26px;
+}
+.choose-time{
+    font-size: 34px;
+    color: #FFFFFF;
+    line-height: 40px;
+    height: 40px;
+    margin-left: 25px;
+}
+.time-list{
+    position: absolute;
+    top: 168px;
+    left: -18px;
+    color: #FFFFFF;
+    font-size: 24px;
+    width: 800px;
+    height: 350px;
+    padding-bottom: 10px;
+    /*border: 1px red solid;*/
+    overflow: auto;
+}
+.data-detail-time{
+    width: 124px;
+    height: 104px;
+    text-align: center;
+    line-height: 65px;
+    margin-left: 33px;
+    margin-top: 10px;
+    background: url("../../../../../Public/img/hd/AppointmentRegister/V10/BtnBox/f_number.png");
+    float: left;
+}
+.data-detail-time>p{
+    line-height: 10px;
+}
+.tips{
+    position: absolute;
+    top: 550px;
+    width: 800px;
+    left:0px;
+    color: #ffee99;
+    font-size: 20px;
+    text-align: center;
+}
+.data-empty{
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    text-align: center;
+    width: 400px;
+}
+.icon-sad{
+    /*position: absolute;*/
+    /*top: 0px;*/
+    /*left: 0px;*/
+    width: 120px;
+    height: 120px;
+}
+.empty-title{
+    font-size: 36px;
+    color: #FFFFFF;
+    line-height: 70px;
+}
+.empty-time{
+    font-size: 28px;
+    color: #33ffdd;
+    line-height: 60px;
+}
+#m-next {
+    position: absolute;
+    top: 590px;
+    left: 810px;
+}
+.btn-hover{
+    font-weight: bold;
+}
+
+
+
+

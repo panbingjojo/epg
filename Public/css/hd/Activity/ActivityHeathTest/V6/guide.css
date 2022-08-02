@@ -1,0 +1,98 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../../img/hd/Activity/activityHeathTest/V6/bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+
+#icon-modify {
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 306px;
+    height: 186px;
+}
+#title-bg{
+    left: -970px;
+    top: 0;
+    width: 1280px;
+    height: 92px;
+}
+#activity-title {
+    left: 300px;
+    top: 20px;
+    width: 280px;
+    height: 42px;
+    position: absolute;
+}
+#activity-subtitle {
+    left: 732px;
+    top: 28px;
+    width: 262px;
+    height: 30px;
+}
+
+#activity-back {
+    left: 1102px;
+    top: 16px;
+    width: 116px;
+    height: 62px;
+}
+
+.test-icon {
+    width: 280px;
+    height: 200px;
+}
+
+#test-health,
+#test-disease,
+#test-weightLoss
+{
+    top: 140px;
+}
+
+#test-diet,
+#test-symptom,
+#test-cosmetology
+{
+    top: 400px;
+
+}
+#test-health {
+    left: 80px;
+}
+
+#test-disease {
+    left: 420px;
+}
+
+#test-weightLoss {
+    left: 760px;
+
+}
+
+#test-cosmetology {
+    left: 240px;
+
+}
+
+#test-diet {
+    left: 580px;
+
+}
+
+#test-symptom {
+    left: 920px;
+}

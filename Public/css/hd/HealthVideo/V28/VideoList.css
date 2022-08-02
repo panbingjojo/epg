@@ -1,0 +1,155 @@
+.title {
+    position: absolute;
+    left: 100px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 326px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+.pages{
+    position: absolute;
+    top:655px;
+    left: 1200px;
+    font-size: 20px;
+    line-height: 26px;
+}
+.center{
+    position: absolute;
+    top: 30px;
+    left: 314px;
+    width: 920px;
+}
+.recommended{
+    width: 280px;
+    display: inline-block;
+    margin-top: 18px;
+    margin-left: 15px;
+}
+.recommended_block{
+    position:relative;
+    top: 0px;
+    left: 0px;
+    width: 280px;
+    height: 180px;
+}
+.vip_icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 52px;
+    height: 52px;
+    z-index: 4;
+}
+
+.recommended_img{
+    position:absolute;
+    top: -42px;
+    left: -42px;
+    width: 280px;
+    height: 180px;
+    border-radius: 12px;
+    padding: 42px;
+    /*background: url("");*/
+}
+.recommended_title{
+    position:absolute;
+    top: 149px;
+    left: 0px;
+    width: 280px;
+    height: 31px;
+    font-size: 20px;
+    line-height: 31px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    text-indent: 30px;
+    white-space: nowrap;
+    background: url("/Public/img/hd/channel/V10/videolist_mask.png") no-repeat;
+    /*background: rgba(0,0,0,0.6);*/
+}
+.recommended_hover>.recommended_img{
+    top: -52px;
+    left: -62px;
+    /*-webkit-transform: scale(1.08);*/
+    /*-moz-transform: scale(1.08);*/
+    /*border-radius: 12px;*/
+    /*box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);*/
+    z-index: 996;
+}
+.recommended_hover>.recommended_title{
+    top: 156px;
+    left: -20px;
+    z-index: 996;
+}
+.recommended_hover>.vip_icon{
+    top: -17px;
+    left: -28px;
+    z-index: 996;
+}
+.arrow_pre{
+    position:absolute;
+    top: 300px;
+    left: 262px;
+    display: none;
+}
+.arrow_next{
+    position:absolute;
+    top: 300px;
+    left: 1215px;
+    display: none;
+}
+.nav{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.nav-bg{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#search{
+    position: absolute;
+    top: 28px;
+    left: 31px;
+}
+#list{
+    position: absolute;
+    top: 105px;
+    width: 240px;
+    left: 85px;
+}
+.nav-btn{
+    margin-top: 40px;
+    width: 180px;
+    height: 56px;
+}
+
+.nav_pre{
+    position:absolute;
+    top: 96px;
+    left: 130px;
+    display: none;
+}
+.nav_next{
+    position:absolute;
+    top: 495px;
+    left: 130px;
+    display: none;
+}
+.null-data{
+    top: 244px;
+    position: absolute;
+    left: 360px;
+    font-style: italic;
+    font-size:22px;
+}

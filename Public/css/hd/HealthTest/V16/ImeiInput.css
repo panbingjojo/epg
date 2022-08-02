@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    color: #000;
+    background-image: url(../../../../img/hd/Home/V16/Home/bg.png);
+}
+
+p.title {
+    position: absolute;
+    top: 30px;
+    left: 58px;
+    font-size: 35px;
+    color: #000;
+}
+
+#write-btn {
+    position: absolute;
+    top: 46px;
+    left: 1024px;
+}
+
+#input-wrapper {
+    position: absolute;
+    top: 174px;
+    left: 390px;
+    width: 666px;
+}
+
+#input-number {
+    width: 478px;
+    padding: 10px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    color: #000;
+    font-size: 24px;
+    background-image: url(../../../../img/hd/HealthTest/V16/imei_input.png);
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+}
+
+.btn-action-wrap {
+    position: absolute;
+    top: 62px;
+    right: 20px;
+}
+
+.number-title {
+    font-size: 30px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 500px;
+}
+
+#next-step {
+    position: absolute;
+    top: 374px;
+    left: 540px;
+}
+
+.warm-tips {
+    top: 462px;
+    left: 176px;
+    width: 926px;
+    height: 170px;
+    font-size: 24px;
+    text-align: left;
+    padding-top: 40px;
+    position: absolute;
+    background-image: url(../../../../img/hd/HealthTest/V16/tip_bg.png);
+}
+
+.warm-tips p {
+    margin-left: 68px;
+    margin-bottom: 5px;
+}
+
+.warm-title {
+    font-weight: bold;
+}
+#key-table{
+    top: -135px !important;
+    left: 38px !important;
+}

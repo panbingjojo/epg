@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>活动《社区医院》-主页-V6</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!-- 默认标签 -->
+    <a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCommunityHospital/V9/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--本地库-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Hospital/CommunityHospital/V6/index.js?t={$time}"></script>
+
+    <!--全局变量-->
+    <script type="text/javascript">
+        var RenderParam = {
+            userId: "{$userId}",
+            userAccount: "{$accountId}",
+            hospitalId: '{$hospitalId}',//医院id
+            hospitalName: '{$hospitalName}',
+            version: '{$version}',   //版本ID
+            functions: '{$function}',//jkzx健康咨询，yygh预约挂号，jksp健康视频，smyy上门预约，jkjy健康教育
+            currentPage: 1,
+            currentDeptId: "{$deptId}", //全部科室
+            resourcesUrl: "{$resourcesUrl}", // 文件服务链接地址
+            focusId: "{$focusId}", // 当前页面焦点
+            MAX_PAGE_STEP: 1,      //每页获取1个医生;
+            buttons: [{
+                id: 'btn-back',
+                name: '返回按钮',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'piece-1-btn',
+                click: 'onBack()',
+                focusChange: '',
+                backgroundImage: '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back.png',
+                focusImage: '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back_f.png'
+            }, {
+                id: 'piece-1-btn',
+                name: '一键问医',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'btn-back',
+                nextFocusDown: 'piece-2-btn',
+                click: 'goInquiry()',
+                focusChange: '',
+                backgroundImage: '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask.png',
+                focusImage: '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask_f.png'
+            },{
+                id: 'piece-2-btn',
+                name: '健康教育',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'piece-1-btn',
+                nextFocusDown: 'btn-back',
+                click: 'jumpEducation()',
+                focusChange: '',
+                backgroundImage: '/Public/img/hd/Activity/ActivityCommunityHospital/V4/bg_health.png',
+                focusImage: '/Public/img/hd/Activity/ActivityCommunityHospital/V4/bg_health_f.png'
+            }]
+        }
+    </script>
+</head>
+<body>
+<p id="title" class="txt"></p>
+<img id="btn-back" src="/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back.png" alt="">
+<div id="piece-0">
+    <p class="txt piece-0-txt" id="hosName-1"></p>
+    <img id="piece-0-pic" src="" alt="">
+    <div id="doctor-intro">
+        <marquee behavior="" scrollamount="3" direction="up" height="200px">
+            <span id="goods-call">医院简介：</span>
+            <span id="introduce">
+
+                </span>
+        </marquee>
+    </div>
+</div>
+<div id="piece-1">
+    <img id="piece-1-btn" src="/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask.png" alt="">
+    <img id="piece-2-btn" src="/Public/img/hd/Activity/ActivityCommunityHospital/V4/bg_health.png" alt="">
+<!--    <img id="piece-3-btn" src="/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_order.png" alt="">-->
+</div>
+<div id="piece-3">
+    <img id="piece-3-1" src="/Public/img/hd/Activity/ActivityCommunityHospital/V4/yuyuefuwu.png">
+</div>
+
+</body>
+<script type="text/javascript">
+    var focusId = "";
+    if (RenderParam.focusId === '') {
+        if(RenderParam.functions.indexOf('jkzx')>-1) {
+            focusId = 'piece-1-btn';
+        }else {
+            focusId = 'piece-2-btn';
+        }
+    } else {
+        focusId = RenderParam.focusId;
+    }
+    LMEPG.BM.init(focusId, RenderParam.buttons, '', true);
+    window.onload = function () {
+        // 通过医院ID来获取医生信息
+        CwsData.init();
+        //lmInitGo();
+    };
+</script>
+</html>

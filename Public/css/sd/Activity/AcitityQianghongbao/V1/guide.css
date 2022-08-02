@@ -1,0 +1,229 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-back {
+    position: absolute;
+    top: 29px;
+    left: 11px;
+    outline: none !important;
+    width: 115px;
+    height: 42px;
+
+}
+
+#btn-price {
+    position: absolute;
+    top: 29px;
+    left: 512px;
+    outline: none !important;
+    width: 115px;
+    height: 42px;
+}
+
+#btn-detail {
+    position: absolute;
+    top: 70px;
+    left: 512px;
+    outline: none !important;
+    width: 115px;
+    height: 42px;
+}
+
+#btn-setPhone {
+    position: absolute;
+    top: 110px;
+    left: 512px;
+    outline: none !important;
+    width: 115px;
+    height: 42px;
+}
+
+#focus-6-1 {
+    position: absolute;
+    top: 29px;
+    left: 503px;
+    outline: none !important;
+    width: 115px;
+    height: 42px;
+}
+
+#focus-7-1 {
+    position: absolute;
+    top: 334px;
+    left: 260px;
+    outline: none !important;
+    width: 115px;
+    height: 42px;
+}
+
+#focus-8-1 {
+    position: absolute;
+    top: 29px;
+    left: 503px;
+    outline: none !important;
+    width: 115px;
+    height: 42px;
+}
+
+#focus-10-1 {
+    position: absolute;
+    top: 334px;
+    left: 260px;
+    outline: none !important;
+    width: 115px;
+    height: 42px;
+}
+
+#remand {
+    position: fixed;
+    width: 163px;
+    height: 16px;
+    top: 268px;
+    left: 1099px;
+}
+
+#titel {
+    position: absolute;
+    left: 350px;
+    top: 10px;
+}
+
+#btn-start {
+    position: absolute;
+    width: 118px;
+    height: 175px;
+    top: 293px;
+    left: 259px
+}
+
+#times {
+    font-size: 20px;
+    color: #000;
+    position: absolute;
+    top: 485px;
+    left: 575px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 30px;
+    font-family: Source Han Sans CN;
+}
+
+#default_focus {
+    width: 644px;
+    height: 550px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#focus-9-1 {
+    width: 209px;
+    height: 36px;
+    z-index: 999;
+    position: absolute;
+    top: 255px;
+    left: 215px;
+    font-size: 26px;
+    background: transparent;
+    border: none;
+}
+
+#left_tree {
+    position: absolute;
+    left: 0px;
+    top: 200px
+}
+
+#left_could {
+    position: absolute;
+    top: 397px;
+    left: 0px;
+    z-index: 1
+}
+
+#right_tree {
+    position: absolute;
+    left: 1030px;
+    top: 290px
+}
+
+#right_could {
+    position: absolute;
+    top: 445px;
+    left: 1209px;
+    z-index: 1
+}
+
+#priceText {
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    top: 185px;
+    left: 310px;
+    font-size: 24px;
+    color: #000;
+    line-height: 40px;
+}
+
+#rule {
+    width: 635px;
+    height: 105px;
+    overflow: hidden;
+    position: relative;
+    top: 233px;
+    left: 2px;
+    color: #FFFFFF;
+}
+
+table tr td {
+    width: 211px;
+    text-align: center;
+    list-style: none;
+    font-size: 12px;
+    color: #FFFFFF;
+    height: 20px
+}
+
+.list2 li {
+    list-style: none
+}
+
+#myprice {
+    width: 635px;
+    height: 105px;
+    position: absolute;
+    top: 405px;
+    left: 2px;
+    overflow: hidden
+}
+
+#scoller {
+    height: 160px;
+    position: absolute;
+    top: 0px
+}
+
+#play {
+    font-size: 15px;
+    color: red;
+    position: absolute;
+    top: 520px;
+    left: 233px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 30px;
+    font-family: Source Han Sans CN;
+}

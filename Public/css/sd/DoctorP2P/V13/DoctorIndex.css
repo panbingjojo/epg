@@ -1,0 +1,264 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    background-image: url(../../../../img/sd/Home/V13/Home/bg.png);
+    background-size: 644px 530px;
+}
+
+#header {
+    position: absolute;
+    top: 67px;
+    left: 40px;
+    width: 600px;
+}
+
+#header img {
+    margin-right: 8px;
+    width: 124px;
+    height: 44px;
+}
+
+#department-name {
+    position: absolute;
+    top: 7px;
+    left: 40px;
+    font-weight: bold;
+    width: 78px;
+    height: 21px;
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+    color: #8b3b51;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/*医生item*/
+#doctor-container {
+    position: relative;
+    top: 130px;
+    left: 23px;
+    width: 629px;
+}
+
+/*#doctor-container .doctor-item {*/
+/*    width: 150px;*/
+/*    height: 298px;*/
+/*    float: left;*/
+/*}*/
+
+#doctor-container ul {
+    width: 150px;
+    height: 268px;
+    padding-top: 10px;
+    background-position: center;
+	float:left;
+    background-image: url(../../../../img/sd/Unclassified/V13/doctor_item_bg.png);
+}
+
+#doctor-container ul li {
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#doctor-container li.doctor-avatar {
+    margin-top: 10px;
+}
+
+#doctor-container .doctor-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+#doctor-container li.doctor-status {
+    margin-top: -15px;
+}
+
+#doctor-container li.doctor-status img{
+    width: 60px;
+    height: 22px;
+}
+
+#doctor-container li.doctor-name {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#doctor-container li.doctor-department,
+#doctor-container .doctor-job {
+    font-size: 14px;
+}
+
+#doctor-container li.doctor-reception-times {
+    font-size: 14px;
+    color: #b2deff;
+}
+
+.arrow {
+    position: absolute;
+    top: 253px;
+    width: 30px;
+    height: 41px;
+    /*visibility: hidden;*/
+}
+
+#doctor-prev-arrow {
+    left: 0;
+}
+
+#doctor-next-arrow {
+	right: 0;
+}
+
+.ask-doctor{
+    width: 148px;
+    height: 44px;
+    padding-top: 10px;
+}
+
+/*选择科室*/
+#department-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    display: none;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/dep_modal.png);
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+#department-wrap{
+    position: absolute;
+    top: 116px;
+    left: 20px;
+    width: 614px;
+}
+#department-wrap div.department-item {
+    width: 88px;
+    height: 50px;
+    background-color: rgba(0,0,0,0);
+    background-image: url(../../../../img/sd/DoctorP2P/V13/department.png);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
+    color: #8b3b51;
+    font-size: 16px;
+    float: left;
+    text-align: center;
+    line-height: 38px;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}
+.department-title {
+    font-size: 26px;
+    font-weight: bold;
+    position: relative;
+    top: 30px;
+    text-align: center;
+    color: #fff;
+}
+.department-arrow{
+    position: absolute;
+    left: 302px;
+    width: 40px;
+    height: 39px;
+}
+#department-prev-arrow{
+    top: 68px;
+}
+#department-next-arrow{
+    top: 468px;
+}
+
+/*呼叫等待医生页面*/
+.callDoctor {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.callDoctor #doctor-pic {
+    position: absolute;
+    top: 255px;
+    left: 852px;
+    width: 208px;
+    height: 208px;
+}
+
+.callDoctor .telephone-icon {
+    position: absolute;
+    top: 299px;
+    left: 224px;
+}
+
+.callDoctor .waiting-point {
+    position: absolute;
+    top: 333px;
+    left: 525px;
+}
+
+.callDoctor .waiting-text {
+    position: absolute;
+    top: 391px;
+    left: 545px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.callDoctor .notice-text {
+    position: absolute;
+    top: 606px;
+    left: 151px;
+    color: #fff;
+    font-size: 20px;
+    text-align: left;
+}
+
+#page-num {
+    position: absolute;
+    top: 467px;
+    left: 555px;
+    color: #b2deff;
+    font-size: 18px;
+}
+/*帮助*/
+
+#case-help-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* width: 644px; */
+}
+#case-help-wrap img{
+    position: absolute;
+    visibility: hidden;
+    width: 644px;
+    height: 530px;
+}
+
+/* 底部提示语 */
+#footer {
+    position: absolute;
+    color: #ffffff;
+    left: 23px;
+    top:484px;
+}

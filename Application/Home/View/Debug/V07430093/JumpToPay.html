@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+
+    <!--当前模块js-->
+    <script type="text/javascript">
+        // 监听返回键
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+    </script>
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<div id="debug" style=" display: block;color:white;z-index:999;"></div>
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+<script type="text/javascript">
+
+    !(function (win) {
+        function getUrlParamByName(url, name) {
+            var decodeUrl = decodeURIComponent(url);
+            LMEPG.Log.info("task::getUrlParamByName url:" + decodeUrl);
+            var hash = decodeUrl.slice(decodeUrl.indexOf("?") + 1).split('&');
+            LMEPG.Log.info("task::getUrlParamByName params:" + JSON.stringify(hash));
+            for (var i = 0; i < hash.length; i++) {
+                var params = hash[i].split("=");
+                if (params[0] == name) {
+                    return params[1];
+                }
+            }
+            return null;
+        };
+
+
+        function runTask() {
+            LMEPG.Log.info("runTask::runTask ---> start");
+            var payUrl ="http://202.99.114.14:35666/cap/h5/auth-hntv.html?account_id=073108885388A@tv&auth_no=159894660541919&cancel_address=http%3a%2f%2f119%2e39%2e13%2e155%3a8080%2fen%2fmy%5fmodule%2forder%5fv%5f2%2e0%2fchoose%5fpop%2ev%2e2%2e1%2ehtml%3fpage%5fdata%3deyJzdWJfZGF0YSI6eyJwcm9kdWN0X2lkIjoiNDQ2Iiwic291cmNlIjoidjUiLCJwcm9faWQiOiI0NDYiLCJwcm9fdHlwZSI6MSwicHJvZHVjdF9uYW1lIjoi6IqS5p6c5YGl5bq3IiwibXNnIjoiIn19&client_id=96597&confirm_address=http%3a%2f%2f3dpay%2ehn165%2ecom%3a39001%2fpceweb%2fpagejump%2fpage%2djump%21orderPage%3fBookPay%3dnull%26ContentName%3d%u8292%u679c%u5065%u5eb7%26NotifyURL%3dhttp%253A%252F%252F119%2e39%2e13%2e142%252Fnotifybylt%252Forder%5fresult%253Fuuid%253D202008311551589958925910%2526sign%253D64fa4e8146a6b067ecf501382ca303065e0c8d90%26ProductID%3d2574026600%26ReturnURL%3dhttp%253A%252F%252F119%2e39%2e13%2e155%253A8080%252Fen%252Fmy%5fmodule%252Forder%5fv%5f2%2e0%252Fchoose%5fpop%2ev%2e2%2e1%2ehtml%253Fpage%5fdata%253DeyJzdWJfZGF0YSI6eyJwcm9kdWN0X2lkIjoiNDQ2Iiwic291cmNlIjoidjUiLCJwcm9faWQiOiI0NDYiLCJwcm9fdHlwZSI6MSwicHJvZHVjdF9uYW1lIjoi6IqS5p6c5YGl5bq3IiwibXNnIjoiIn19%26SPID%3d43197%26UserID%3d073108885388A%40tv&product_id=2574026600&product_name=%u8292%u679c%u5065%u5eb7&product_price=18.0&product_type=1&token=0645c17f5a26c9116287fa88ce4b6cc8";
+                //= "http://119.39.13.155:8080/en/jump_order/index.html?product_list={%22product_id%22:%22446%22,%22video_name%22:%22%22,%22video_id%22:%22%22,%22video_type%22:%22%22,%22source%22:%22v5%22}&exitStr=http%3A%2F%2F116.129.244.18%3A10001%2Findex.php%2FHome%2FPay%2FpayCallback%2F%3FuserId%3D9600000%26tradeNo%3D202008311505054950515945615%26lmreason%3D102%26lmcid%3D07430093%26returnPageName%3D%26isPlaying%3D1%26videoInfo%3D";
+            task.initAndJump(payUrl);
+
+        }
+
+
+        var task = {
+            id: "exchange_iframe",
+            objIFrame: null,
+            url: "",
+            isReport: false,
+            lmTradeNo: "",
+            loadId: 0,
+
+            buildIFrameObject: function (id) {
+                if (!task.objIFrame) {
+                    task.objIFrame = document.createElement("iframe");
+                    task.objIFrame.name = id;
+                    task.objIFrame.id = id;
+
+                    task.objIFrame.style.overflow = "hidden";
+                    task.objIFrame.style.border = "none";
+                    task.objIFrame.style.zIndex = "9999";
+                    task.objIFrame.style.position = "absolute";
+                    task.objIFrame.style.top = "0px";
+                    task.objIFrame.style.left = "0px";
+                    task.objIFrame.width = "1280px";
+                    task.objIFrame.height = "720px";
+                    task.objIFrame.scrolling = "no";
+                    task.objIFrame.frameborder = "0";
+                }
+                return task.objIFrame;
+            },
+// 增加IFrame对象到body中
+            addIFrameToBody: function (obj) {
+                var body = document.body;
+                if (body){
+                    body.appendChild(obj);
+                }
+                return body;
+            },
+
+
+// 加载IFrame
+            loadIFrame: function (url) {
+                var state = 0;
+                if (task.objIFrame) {
+                    LMEPG.Log.info("task::loadIFrame ---> url:" + url);
+
+                    /*
+                    task.objIFrame.onload = function() {
+                    task.loadId = task.loadId + 1;
+                    var title = "";
+                    if (typeof task.objIFrame.contentWindow.document.title !== "undefined") {
+                    title = task.objIFrame.contentWindow.document.title;
+                    }
+
+                    // 设置分辨率，否则可能会出现页面放大的问题
+                    var meta = task.objIFrame.contentWindow.document.getElementsByTagName('meta');
+                    if (typeof meta !== "undefined") {
+                    if (task.platformType == "hd") {
+                    if (typeof meta["page-view-size"] !== "undefined") {
+                    meta["page-view-size"].setAttribute('content',"1280*720");
+                    LMEPG.Log.error("task::loadIFrame ---> meta set 1280*720");
+                    }
+                    }
+                    }
+                    // 抢回焦点
+                    var defaultId = window.document.getElementById('default_link');
+                    if (typeof defaultId !== "undefined"
+                    && typeof defaultId.focus !== "undefined") {
+                    defaultId.focus();
+                    }
+                    LMEPG.Log.info("task::loadIFrame ---> "+title+"URL:"+task.objIFrame.contentWindow.window.self.location.href);
+
+                    if (title == "订购选择页") {
+                    LMEPG.Log.info("task::loadIFrame ---> buy_order");
+                    task.objIFrame.contentWindow.buy_order();
+                    }else{
+                    LMEPG.Log.info("task::loadIFrame ---> 错误页面URL:"+task.objIFrame.contentWindow.window.self.location.href);
+                    }
+
+                    // 抢回焦点
+                    var defaultId = window.document.getElementById('default_link');
+                    if (typeof defaultId !== "undefined"
+                    && typeof defaultId.focus !== "undefined") {
+                    defaultId.focus();
+                    }
+                    };
+                    */
+
+                    LMEPG.Log.info("task::loadIFrame ---> task.objIFrame url: " + url);
+                    task.objIFrame.src = url;
+
+                    if (task.objIFrame.attachEvent){
+                        task.objIFrame.attachEvent("onload", function(){
+                            LMEPG.Log.info("Local iframe is now loaded.loadIFrame");
+                        });
+                    } else {
+                        task.objIFrame.onload = function(){
+                            LMEPG.Log.info("Local iframe is now loaded.loadIFrame 1");
+                            task.loadId = task.loadId + 1;
+                            LMEPG.Log.info("Local iframe is now loaded.loadIFrame 2");
+                            var title = "";
+
+                            try {
+                                LMEPG.Log.info("Local iframe is now loaded.loadIFrame 2.1");
+                                title = task.objIFrame.contentWindow.document.title;
+                                LMEPG.Log.info("Local iframe is now loaded.loadIFrame 2.2");
+                            }
+                            catch(err) {
+                                try {
+                                    LMEPG.Log.info("Local iframe is now loaded.loadIFrame 2.7");
+                                    task.objIFrame.contentWindow.buy_order();
+                                    LMEPG.Log.info("Local iframe is now loaded.loadIFrame 2.6");
+                                }
+                                catch(err) {
+                                    LMEPG.Log.info("Local iframe is now loaded.loadIFrame 2.5:"+JSON.stringify(err));
+                                }
+                                //task.objIFrame.contentWindow.buy_order();
+                                LMEPG.Log.info("Local iframe is now loaded.loadIFrame 2.4:"+JSON.stringify(err));
+                                LMEPG.Log.info("Local iframe is now loaded.loadIFrame 2.3:"+err.message);
+                            }
+
+                            LMEPG.Log.info("Local iframe is now loaded.loadIFrame 3");
+
+                            var meta = task.objIFrame.contentWindow.document.getElementsByTagName('meta');
+                            LMEPG.Log.info("Local iframe is now loaded.loadIFrame 4");
+                            if (typeof meta !== "undefined") {
+                                if (task.platformType == "hd") {
+                                    if (typeof meta["page-view-size"] !== "undefined") {
+                                        meta["page-view-size"].setAttribute('content',"1280*720");
+                                        LMEPG.Log.error("task::loadIFrame ---> meta set 1280*720");
+                                    }
+                                }
+                            }
+                            LMEPG.Log.info("Local iframe is now loaded.loadIFrame 5");
+// 抢回焦点
+                            var defaultId = window.document.getElementById('default_link');
+                            LMEPG.Log.info("Local iframe is now loaded.loadIFrame 6");
+                            if (typeof defaultId !== "undefined"
+                                && typeof defaultId.focus !== "undefined") {
+                                defaultId.focus();
+                                LMEPG.Log.info("Local iframe is now loaded.loadIFrame 7");
+                            }
+                            LMEPG.Log.info("task::loadIFrame ---> "+title+"URL:"+task.objIFrame.contentWindow.window.self.location.href);
+
+                            if (title == "订购选择页") {
+                                LMEPG.Log.info("task::loadIFrame ---> buy_order");
+                                task.objIFrame.contentWindow.buy_order();
+                            }else if (title == "CAP"){
+                                LMEPG.Log.info("task::loadIFrame ---> confirmClick");
+                                task.objIFrame.contentWindow.confirmClick();
+                            } else{
+                                LMEPG.Log.info("task::loadIFrame ---> 错误页面URL:"+task.objIFrame.contentWindow.window.self.location.href);
+                            }
+
+                            var defaultId = window.document.getElementById('default_link');
+                            if (typeof defaultId !== "undefined"
+                                && typeof defaultId.focus !== "undefined") {
+                                defaultId.focus();
+                            }
+                        };
+                    }
+                } else {
+                    LMEPG.Log.info("task::loadIFrame ---> task.objIFrame is null");
+                }
+            },
+
+            initAndJump: function (url) {
+                if (typeof url != "undefined") {
+                    task.url = url;
+                    task.lmTradeNo = getUrlParamByName(task.url, "lmTradeNo");
+                }
+                var obj = task.buildIFrameObject(task.id);
+                if (!obj) {
+                    setTimeout(task.initAndJump, 1000);
+                    return;
+                }
+                var body = task.addIFrameToBody(obj);
+                if (!body) {
+                    setTimeout(task.initAndJump, 1000);
+                    return;
+                }
+                task.loadIFrame(task.url);
+            },
+        };
+        win.initInjectTask = runTask;
+        win.initInjectTask(); // 加载后立即执行
+    })(window);
+
+</script>
+</body>
+</html>

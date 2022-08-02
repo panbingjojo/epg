@@ -1,0 +1,55 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #ffffff;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+div {
+    position: absolute;
+}
+
+.hos_img {
+    position: absolute;
+    width: 377px;
+    height: 668px;
+    top: 53px;
+    left: 50px;
+}
+.introduce_img{
+    position: absolute;
+    width: 770px;
+    height: 550px;
+    top: 60px;
+    left: 450px;
+}
+#prePages{
+    position: absolute;
+    width: 65px;
+    height: 26px;
+    top: 10px;
+    left: 803px;
+    display: none;
+}
+#nextPages{
+    position: absolute;
+    width: 65px;
+    height: 26px;
+    top: 660px;
+    left:803px;
+    display: none;
+}

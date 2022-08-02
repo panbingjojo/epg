@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>米奇之家-union-游戏页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCleaning/union/index.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityCleaning/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("demoTimes", "{$demoTimes}");
+            objDialog.setParam("activityId", "{$activityId}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示联合订购选择页
+         */
+        function jumpDialogUnionChoose() {
+            var context;
+            // 用户抽奖次数用完
+            context = ACTIVITY_UNION_CHOOSE;
+            jumpDialog(context);
+        }
+
+        /**
+         * 显示未抽中动物
+         */
+        function jumpNotDrawnPrizeDialog() {
+            jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            if (tipType == 1) {
+                tipType = 0;
+                G("showTip").style.visibility = "hidden";
+                return;
+            }
+            //回到活动界面
+            LMEPG.Intent.back();
+        }
+
+    </script>
+</head>
+<body style='background: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/play_bg.png") no-repeat;'>
+<!--垃圾整理工具栏-->
+<img id="sweep1_tool" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep1_bf_out.png" alt="" />
+<img id="sweep2_tool" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep2_bf_out.png" alt="" />
+<img id="sweep3_tool" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep3_bf_out.png" alt="" />
+<img id="sweep4_tool" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep4_bf_out.png" alt="" />
+
+<!--地上的垃圾-->
+<img id="rubbish1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep1_hw_out.png" alt="" />
+<img id="rubbish2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep2_hw_out.png" alt="" />
+<img id="rubbish3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep3_hw_out.png" alt="" />
+<img id="rubbish4" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep4_hw_out.png" alt="" />
+
+<!--焦点指向-->
+<img id="arrow1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/clean_left.png" alt="" />
+<img id="arrow2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/clean_left.png" alt="" />
+<img id="arrow3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/clean_right.png" alt="" />
+<img id="arrow4" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/clean_right.png" alt="" />
+
+<!--文字说明-->
+<img id="title1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep_title1.png" alt="" />
+<img id="title2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep_title2.png" alt="" />
+<img id="title3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep_title3.png" alt="" />
+<img id="title4" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/sweep_title4.png" alt="" />
+
+<div class="integral">当前积分:<span id="integral">{$score}</span></div>
+<div class="leave_time">剩余次数：<span id="leave_time" style="color: #ffffff">{$leftTimes}</span></div>
+<div class="introduce2">按“返回”键退出游戏</div>
+
+<div id="showTip">
+</div>
+<script type="text/javascript">
+    var cleanType = 0;//垃圾清理状态,0未清理，1已清理
+    var tipType = 0;//弹窗打开与关闭状态
+    var leftTimes = {$leftTimes};
+    var score = {$score};
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/';
+
+    var buttons = [
+        {
+            id: 'sweep1_tool',
+            name: '垃圾箱',
+            type: 'img',
+            nextFocusLeft: 'sweep4_tool',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            nextFocusRight: 'sweep2_tool',
+            click: onCleanClick,
+            focusChange: onFocus,
+            beforeMoveChange: "",
+            moveChange: "",
+            cBackgroundImageBF: imgPathPrefix + 'sweep1_bf_out.png',
+            cFocusImageBF: imgPathPrefix + 'sweep1_bf_in.gif',
+            cBackgroundImageAF: imgPathPrefix + 'sweep1_af_out.png',
+            cFocusImageAF: imgPathPrefix + 'sweep1_af_in.gif',
+            cRubbishImage: imgPathPrefix + 'sweep1_hw_out.png',
+            cRubbishFocusImage: imgPathPrefix + 'sweep1_hw_in.png',
+            cRubbishId: "rubbish1",
+            cCleanType: cleanType,
+            cArrow: "arrow1",
+            cTitle: "title1",
+            cName: "打扫地面"
+        },
+        {
+            id: 'sweep2_tool',
+            name: '衣柜',
+            type: 'img',
+            nextFocusLeft: 'sweep1_tool',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            nextFocusRight: 'sweep3_tool',
+            click: onCleanClick,
+            focusChange: onFocus,
+            beforeMoveChange: "",
+            moveChange: "",
+            cBackgroundImageBF: imgPathPrefix + 'sweep2_bf_out.png',
+            cFocusImageBF: imgPathPrefix + 'sweep2_bf_in.gif',
+            cBackgroundImageAF: imgPathPrefix + 'sweep2_af_out.png',
+            cFocusImageAF: imgPathPrefix + 'sweep2_af_in.gif',
+            cRubbishImage: imgPathPrefix + 'sweep2_hw_out.png',
+            cRubbishFocusImage: imgPathPrefix + 'sweep2_hw_in.png',
+            cRubbishId: "rubbish2",
+            cCleanType: cleanType,
+            cArrow: "arrow2",
+            cTitle: "title2",
+            cName: "收拾衣柜"
+        },
+        {
+            id: 'sweep3_tool',
+            name: '桌子',
+            type: 'img',
+            nextFocusLeft: 'sweep2_tool',
+            nextFocusRight: 'sweep4_tool',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            click: onCleanClick,
+            focusChange: onFocus,
+            beforeMoveChange: "",
+            moveChange: "",
+            cBackgroundImageBF: imgPathPrefix + 'sweep3_bf_out.png',
+            cFocusImageBF: imgPathPrefix + 'sweep3_bf_in.gif',
+            cBackgroundImageAF: imgPathPrefix + 'sweep3_af_out.png',
+            cFocusImageAF: imgPathPrefix + 'sweep3_af_in.gif',
+            cRubbishImage: imgPathPrefix + 'sweep3_hw_out.png',
+            cRubbishFocusImage: imgPathPrefix + 'sweep3_hw_in.png',
+            cRubbishId: "rubbish3",
+            cCleanType: cleanType,
+            cArrow: "arrow3",
+            cTitle: "title3",
+            cName: "整理桌子"
+        }, {
+            id: 'sweep4_tool',
+            name: '玩具箱',
+            type: 'img',
+            nextFocusLeft: 'sweep3_tool',
+            nextFocusRight: 'sweep1_tool',
+            nextFocusUp: 'back',
+            nextFocusDown: 'card2_btn',
+            click: onCleanClick,
+            focusChange: onFocus,
+            beforeMoveChange: "",
+            moveChange: "",
+            cBackgroundImageBF: imgPathPrefix + 'sweep4_bf_out.png',
+            cFocusImageBF: imgPathPrefix + 'sweep4_bf_in.gif',
+            cBackgroundImageAF: imgPathPrefix + 'sweep4_af_out.png',
+            cFocusImageAF: imgPathPrefix + 'sweep4_af_in.gif',
+            cRubbishImage: imgPathPrefix + 'sweep4_hw_out.png',
+            cRubbishFocusImage: imgPathPrefix + 'sweep4_hw_in.png',
+            cRubbishId: "rubbish4",
+            cCleanType: cleanType,
+            cArrow: "arrow4",
+            cTitle: "title4",
+            cName: "收拾玩具"
+        }];
+
+
+    /**
+     * 获得焦点
+     */
+    function onFocus(btn, hasFocus) {
+        if (hasFocus == true) {
+            if (btn.cCleanType == 0) {
+//                收拾前选中效果
+                G(btn.id).src = btn.cFocusImageBF;
+                G(btn.cRubbishId).src = btn.cRubbishFocusImage;
+                G(btn.cArrow).style.visibility = "visible";
+                G(btn.cTitle).style.visibility = "visible";
+            } else {
+                //                收拾后选中效果
+                G(btn.id).src = btn.cFocusImageAF;
+                G(btn.cRubbishId).style.visibility = "hidden";
+                G(btn.cArrow).src = "__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/clean_no.png";
+                G(btn.cArrow).style.visibility = "visible";
+                G(btn.cTitle).style.visibility = "hidden";
+            }
+        } else {
+            if (btn.cCleanType == 0) {
+                G(btn.id).src = btn.cBackgroundImageBF;
+                G(btn.cRubbishId).src = btn.cRubbishImage;
+                G(btn.cArrow).style.visibility = "hidden";
+                G(btn.cTitle).style.visibility = "hidden";
+            } else {
+                G(btn.id).src = btn.cBackgroundImageAF;
+                G(btn.cArrow).style.visibility = "hidden";
+            }
+        }
+
+    }
+
+    /* 按键清理事件 */
+    function onCleanClick(btn) {
+        if (tipType == 0) {
+            // if (leftTimes <= 0) {
+            //     jumpDialogUnionChoose();
+            //     return;
+            // }
+
+            if (leftTimes <= 0) {
+                // 隐藏弹窗
+                LMEPG.UI.showToast("您的游戏次数已用完！");
+                return;
+            }
+
+            if (btn.cCleanType == 0 && leftTimes > 0) {
+                // 未清扫、剩余次数大于0
+                LMEPG.UI.showWaitingDialog("");
+                var reqData = {
+                    'score': 10,
+                    'remark': '清扫垃圾获得积分'
+                };
+                LMEPG.ajax.postAPI('Activity/addUserScore', reqData,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            if (data.result == 0) {
+                                //增加积分,并上报积分
+                                score = score + 10;
+                                LMEPG.UI.showWaitingDialog("");
+                                LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+                                    function (rsp) {
+                                        LMEPG.UI.dismissWaitingDialog();
+                                        try {
+                                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                                            if (data.result == 0) {
+                                                //减少次数，并上报结果
+                                                leftTimes = leftTimes - 1;
+                                                // 修改清扫状态
+                                                btn.cCleanType = 1;
+                                                // 更新界面
+                                                G('leave_time').innerHTML = leftTimes;
+                                                G('integral').innerHTML = score;
+                                                LMEPG.ButtonManager.requestFocus(btn.id);  // 清扫垃圾
+                                                // 显示获得积分结果。
+                                                showToast(1, btn.cName);        // 如果没有打扫过弹出获得积分窗口
+                                            } else {
+                                                LMEPG.UI.showToast("上报结果失败!");
+                                                onBack();
+                                            }
+                                        } catch (e) {
+                                            LMEPG.UI.dismissWaitingDialog();
+                                            LMEPG.UI.showToast("上报游戏结果解析异常！");
+                                            onBack();
+                                        }
+                                    },
+                                    function (rsp) {
+                                        LMEPG.UI.dismissWaitingDialog();
+                                        LMEPG.UI.showToast("上报游戏结果发生错误！");
+                                        onBack();
+                                    }
+                                );
+                            } else {
+                                LMEPG.UI.dismissWaitingDialog();
+                                LMEPG.UI.showToast("上传积分失败!");
+                                onBack();
+                            }
+                        } catch (e) {
+                            LMEPG.UI.dismissWaitingDialog();
+                            LMEPG.UI.showToast("上传积分解析异常!");
+                            onBack();
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.dismissWaitingDialog();
+                        LMEPG.UI.showToast("上传积分请求失败!");
+                        onBack();
+                    }
+                );
+            } else {
+                showToast(2, "");           // 已经打扫过
+            }
+        } else {
+            // if (LMEPG.ButtonManager.getButtonById("sweep1_tool").cCleanType == 1
+            //     && LMEPG.ButtonManager.getButtonById("sweep2_tool").cCleanType == 1
+            //     && LMEPG.ButtonManager.getButtonById("sweep3_tool").cCleanType == 1
+            //     && LMEPG.ButtonManager.getButtonById("sweep4_tool").cCleanType == 1) {
+            //
+            //     // 隐藏弹窗
+            //     tipType = 0;
+            //     G("showTip").style.visibility = "hidden";
+            //     LMEPG.UI.showToast("您本次房间已打扫完成！");
+            //     return;
+            // }
+
+            // 隐藏弹窗
+            tipType = 0;
+            G("showTip").style.visibility = "hidden";
+            LMEPG.ButtonManager.requestFocus(btn.id);
+        }
+    }
+
+    /**
+     * 显示获得积分弹窗
+     * @param tostType
+     * @param name
+     */
+    function showToast(tostType, name) {
+        var shtml = "";
+        if (tostType == 1) {
+            //获得积分
+            shtml += '<div class="title">积分又上升啦！</div>';
+            shtml += '<div class="content">';
+            shtml += '恭喜您完成了&nbsp;&nbsp;<span id="cleanType" class="black">' + name + '</span>&nbsp;&nbsp;，<br/>';
+            shtml += '并获得&nbsp;&nbsp;<span id="code" class="black">10</span>&nbsp;&nbsp;积分 </div>';
+            shtml += '<img id="back_btn" src="' + imgPathPrefix + 'book_back_in.png"/>';
+        } else if (tostType == 2) {
+            // 不能重复整理
+            shtml += '<div class="title">换一个吧！</div>';
+            shtml += '<div class="introduce">这个已经收拾好啦！</div>';
+            shtml += '<img id="back_btn" src="' + imgPathPrefix + 'book_back_in.png"/>';
+        } else if (tostType == 3) {
+            // 订购失败
+            shtml += '<div class="title">恭喜您！</div>';
+            shtml += '<div class="introduce">订购成功！</div>';
+        } else if (tostType == 4) {
+            // 订购成功
+            shtml += '<div class="title">很抱歉！</div>';
+            shtml += '<div class="introduce">订购失败~</div>';
+        }
+        G("showTip").style.visibility = "visible";
+        G("showTip").innerHTML = shtml;
+        tipType = 1;
+    }
+    window.onload = function () {
+        LMEPG.ButtonManager.init(['sweep1_tool'], buttons, '', true);
+    }
+</script>
+</body>
+</html>

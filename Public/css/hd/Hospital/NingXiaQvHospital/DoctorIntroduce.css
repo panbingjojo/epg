@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    background-image: url("../../../../img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/bg1.png");
+}
+
+#back{
+    position: absolute;
+    top: 28px;
+    left: 32px;
+    width: 162px;
+    height: 72px;
+}
+
+#down-arrow{
+    position: absolute;
+    top: 688px;
+    left: 738px;
+}
+
+#nav-wrap{
+    position: absolute;
+    top: 171px;
+    left: 0;
+    width: 230px;
+}
+
+#nav-wrap img{
+    margin-bottom: 0px;
+}
+#content-wrap{
+    position: absolute;
+    top: 114px;
+    left: 274px;
+    width: 953px;
+    height: 574px;
+    overflow: hidden;
+}
+
+#null-data{
+    top: 234px;
+    position: absolute;
+    left: 420px;
+    font-style: italic;
+    color: #fff;
+    font-size: 22px;
+}
+.doc{
+    width: 958px;
+    height: 280px;
+    position: relative;
+    margin-top: 5px;
+}
+.hospital-detail{
+    position: absolute;
+    top: 33px;
+    left: 32px;
+}
+.hospital-photo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 200px;
+    border-radius: 5px;
+}
+.introduce{
+    position: absolute;
+    top: 0;
+    left: 170px;
+    font-size: 24px;
+}
+.doctor-word2{
+    width: 720px;
+    line-height: 45px;
+}
+.doctor-word{
+    width: 720px;
+    line-height: 30px;
+    margin-top: 5px;
+}
+#name{
+    font-size: 36px;
+    font-weight: bold;
+}
+#name > span{
+    font-size: 24px;
+}
+.content-detail{
+    margin-top: 10px;
+    width: 720px;
+    height: 125px;
+    line-height: 32px;
+    overflow: hidden;
+    /*border: 1px red solid;*/
+}
+
+.dep-comment{
+    /*width: 238px;*/
+    /*height: 72px;*/
+}
+
+.defalt-color{
+    color: #ffffff;
+}
+
+.select-color{
+    color: #000000;
+}
+
+.departName{
+    position: absolute;
+    width: 216px;
+    height: 44px;
+    left: 4px;
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 2px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-indent: 0px;
+    /*border: 1px red solid;*/
+}
+
+#departName-1{
+    top: 15px;
+}
+#departName-2{
+    top: 91px;
+}
+#departName-3{
+    top: 168px;
+}
+#departName-4{
+    top: 246px;
+}
+#departName-5{
+    top: 322px;
+}
+#departName-6{
+    top: 398px;
+}
+#departName-7{
+    top: 474px;
+}

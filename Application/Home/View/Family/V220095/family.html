@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>吉林电信改版--我的家</title>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Family/V220095/family.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            focusButton: '{$focusIndex}', // 当前初始化的焦点
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Family/V220095/family.js?t={$time}"></script>
+</head>
+<body>
+
+    <div class="title">我的家</div>
+
+    <img class="title-line" src="__ROOT__/Public/img/hd/Family/V220095/title_line.png" alt="标题分割线"/>
+
+    <div id="family-archives-box">
+        <img id="family-archives" src="__ROOT__/Public/img/hd/Family/V220095/family_archives.png" alt="家庭档案">
+    </div>
+
+    <div id="my-collection-box">
+        <img  id="my-collection" src="__ROOT__/Public/img/hd/Family/V220095/my_collection.png" alt="我的收藏">
+    </div>
+
+    <div id="expert-appointment-record-box">
+        <img id="expert-appointment-record" src="__ROOT__/Public/img/hd/Family/V220095/expert_appointment_record.png" alt="专家约诊记录">
+    </div>
+
+    <div id="about-us-box">
+        <img id="about-us" src="__ROOT__/Public/img/hd/Family/V220095/about_us.png" alt="关于我们">
+    </div>
+</body>
+<script type="text/javascript">
+   window.onload = function () {
+       Family.initButtons(); // 初始化按钮
+   }
+</script>
+</html>

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>2019nCoV</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/NCOV2019/NCOVTest.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/NCOV2019/keypad.css?t={$time}">
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            lmcid: '{$carrierId}',
+            carrierId: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            firstEnter: '{$firstEnter}',                          // 用户首次进入
+            historyLength: "{$historyLength}",
+            splashHistory: "{$splashHistory}", // 获取欢迎页在浏览器中的历史步长
+        };
+        window.onload = function () {
+            NCOV.init();
+        }
+        if (RenderParam.carrierId == "410092") {
+            try {
+                HybirdCallBackInterface.setCallFunction(function (param) {
+                    if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                        LMEPG.Intent.back();
+                    }
+                });
+            }catch (e){
+                LMEPG.UI.logPanel.show("e");
+            }
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/NCOV2019/NCOVTest.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/NCOV2019/NCOVsearch.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/NCOV2019/NVOVTestButtons.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<div id="question-container">
+    <p id="warm-tips">温馨提示：自测评估后，如可能为感染者，可直接在线咨询，请按自己的实际情况进行选择。</p>
+    <!--  自测评估题目1  -->
+    <div class="question" id="question-1">
+        <p class="question-title" id="title-1">
+            1.请回忆14天的行程，是否存在 "可以接触" 的情况？如果是请
+            <img src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option_s.png" alt="">
+            勾选， 如果不是请不要勾选。
+        </p>
+        <ul class="answer-option">
+            <li id="question-1-option-1">
+                <img id="question-1-option-1-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                近14日内，你去过或居住过疫情高风险地区。
+            </li>
+            <li id="question-1-option-2">
+                <img id="question-1-option-2-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                近14日内，你接触、探视、照顾过有发热咳嗽等症状的高危人群。
+            </li>
+            <li id="question-1-option-3">
+                <img id="question-1-option-3-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                近14日内，你接触可疑野生动物，比如：蝙蝠、果子狸、骆驼、野生老鼠、野生竹鼠、土拨鼠（旱獭）等。
+            </li>
+            <li id="question-1-option-4">
+                <img id="question-1-option-4-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                近14日内，与你接触的家人、同事、朋友中，至少有一个人有上述情况。
+            </li>
+        </ul>
+        <p class="step-wrap">
+            <img class="btn-img" id="question-1-next-step" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/next.png" alt="">
+        </p>
+    </div>
+    <!--  自测评估题目2  -->
+    <div class="question" id="question-2">
+        <p class="question-title" id="title-2">
+            2.请回忆过往14天的行程，是否乘坐下列交通工具（即同舱有确诊病人）？飞机、火车、轮船、长途汽车、地铁，如果有请填写，如果没有请不要填写
+        </p>
+        <ul class="select-option">
+            <!--选择日期-->
+            <li class="select-modal-wrap" id="select-date">
+                <span class="line-block select-title">选择日期：</span>
+                <p class="question-2-input-1 line-block" id="input-date"><span>按"确认"键选择日期</span></p>
+                <div class="select-modal" id="date-modal-wrap">
+                    <ul id="prev-date">
+                        <li class="year" id="prev-year">2020</li>
+                        <li class="month" id="prev-month">12</li>
+                        <li class="day" id="prev-day">31</li>
+                    </ul>
+                    <ul id="curr-date">
+                        <li  class="year" id="curr-year">2021</li>
+                        <li class="month" id="curr-month">01</li>
+                        <li class="day" id="curr-day">01</li>
+                    </ul>
+
+                    <ul id="next-date">
+                        <li  class="year" id="next-year"></li>
+                        <li class="month" id="next-month">02</li>
+                        <li class="day" id="next-day">02</li>
+                    </ul>
+                </div>
+            </li>
+            <!--选择交通工具-->
+            <li class="select-modal-wrap" id="select-traffic">
+                <span class="line-block select-title">交通工具：</span>
+                <p class="question-2-input-1 line-block" id="input-traffic"><span>按"确认"键选择交通工具</span></p>
+                <ul class="select-modal" id="traffic-modal-wrap"></ul>
+            </li>
+            <!--地铁、公交、其他公共场所-->
+            <li class="select-modal-wrap" id="select-area">
+                <span class="line-block select-title">线路：</span>
+                <div class="line-block" id="select-province">
+                    <p class="question-2-input-2" id="input-province">省/直辖市</p>
+                    <ul class="select-modal" id="province-modal-wrap"></ul>
+                </div>
+                <div class="line-block" id="select-city">
+                    <p class="question-2-input-2" id="input-city">市/区</p>
+                    <ul class="select-modal" id="city-modal-wrap"></ul>
+                </div>
+            </li>
+            <!--长途客车/大巴、出租车-->
+            <li class="select-modal-wrap" id="select-abbreviation">
+                <span class="line-block select-title">车牌号：</span>
+                <p class="line-block question-2-input-2" id="input-abbreviation">省简称</p>
+                <ul class=" select-modal" id="abbreviation-modal-wrap"></ul>
+            </li>
+            <!--轮船-->
+            <li class="select-modal-wrap" id="select-board">
+                <span class="line-block select-title">轮渡船号：</span>
+                <p class="line-block question-2-input-1" id="input-board"><span>按"确认"键选择轮船号</span></p>
+                <ul class="select-modal" id="board-modal-wrap"></ul>
+            </li>
+            <!--通用关键字检索-->
+            <li class="search-trip-number" id="search-text">
+                <span class="line-block select-title" id="search-title">查行程：</span>
+                <p val="" class="question-2-input-1 line-block" id="input-keyword"><span>输入同行程查询关键字如：CA8392</span></p>
+                <ul id="search-result"></ul>
+            </li>
+        </ul>
+        <p class="step-wrap">
+            <img id="question-2-prev-step" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/prev.png" alt="">
+            <img id="question-2-next-step" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/next.png" alt="">
+        </p>
+    </div>
+    <!--自测评估3-->
+    <div class="question" id="question-3">
+        <p class="question-title" id="title-3">
+            3.你现在是否有以下症状？如果有请
+            <img src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option_s.png" alt="">
+            勾选，如果没有不要勾选
+        </p>
+        <ul class="answer-option">
+            <li id="question-3-option-1">
+                <img id="question-3-option-1-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                体温升高。体温高于37.3℃（因活动进食或者大汗后体温会较正常波动，所以建议温度适宜的室内，平静10分钟后再测体温。腋窝测体温前要擦干汗。）
+            </li>
+            <li id="question-3-option-2">
+                <img id="question-3-option-2-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                咳嗽
+            </li>
+            <li id="question-3-option-3">
+                <img id="question-3-option-3-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                呼吸急促（青少年或成年人每分钟呼吸次数>30次/分钟；1-5岁每分钟呼吸次数>40次/分钟）
+            </li>
+            <li id="question-3-option-4">
+                <img id="question-3-option-4-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                轻微活动后气喘
+            </li>
+            <li id="question-3-option-5">
+                <img id="question-3-option-5-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                四肢无力，全身乏力
+            </li>
+            <li id="question-3-option-6">
+                <img id="question-3-option-6-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                肌肉酸痛
+            </li>
+            <li id="question-3-option-7">
+                <img id="question-3-option-7-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                头痛
+            </li>
+            <li id="question-3-option-8">
+                <img id="question-3-option-8-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                腹泻、恶心、呕吐、腹痛
+            </li>
+            <li id="question-3-option-9">
+                <img id="question-3-option-9-img" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/option.png" alt="">
+                身体其他特别不适，但不是以上几种
+            </li>
+        </ul>
+        <p class="step-wrap">
+            <img id="question-3-prev-step" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/prev.png" alt="">
+            <img id="question-3-next-step" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/next.png" alt="">
+        </p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+body{
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+    color: #fff;
+    font-size: 24px;
+}
+body>*{
+    position: absolute;
+}
+#btn-rules{
+    top: 40px;
+    left: 1054px;
+}
+#btn-lottery{
+    top: 270px;
+    left: 548px;
+    /*z-index: 1;*/
+}
+.total-score{
+    top:33px;
+    left: 70px;
+    height: 30px;
+    line-height: 30px;
+}
+.total-score img{
+
+margin-bottom: -8px;
+}
+.total-score b{
+    color: #ffdc19;
+    margin-left: 30px;
+}
+.tips{
+    top: 617px;
+    left: 262px;
+    width: 758px;
+    text-align: center;
+}
+.tips span{}
+.lottery-container{
+    top: 81px;
+    left: 262px;
+    width: 758px;
+    height: 513px;
+    background-image: url(../../../../img/hd/DateMark/lottery_bg.png);
+}
+.lottery-container #leave-times{
+    position: absolute;
+    top: 0;
+    left: 30px;
+    height: 40px;
+    line-height: 40px;
+    width: 260px;
+    text-align: center;
+}
+ #marquee-wrap{
+    position: absolute;
+    top: 0;
+    left: 334px;
+    width: 420px;
+    height: 40px;
+    line-height: 40px;
+    color: #b2deff;
+}
+.lottery-container .marquee-wrap #roll-info{
+}
+.prize-wrap{
+    position: absolute;
+    top: 60px;
+    left: 88px;
+}
+.prize-wrap img{
+    width: 182px;
+    height: 131px;
+    padding: 10px;
+    margin: -5px;
+    margin-bottom: 0;
+}
+.prize-wrap img.focus{
+    background-image: url(../../../../img/hd/DateMark/prize_f.png);
+}
+.occupied{}
+#key-table{
+    top: -115px !important;
+    left: 222px !important;
+}
+/*签到规则弹框*/
+div.rules {
+    height: 584px;
+    color: #fffefe;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+div.rules .title {
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    font-size: 30px;
+    position: absolute;
+    top: 46px;
+    left: 94px;
+    font-weight: bold;
+}
+
+.rules .rules-desc {
+    position: absolute;
+    top: 132px;
+    left: 94px;
+    font-size: 24px;
+}
+
+.rules p {
+    margin-bottom: 10px;
+}
+
+.rules .placeholder {
+    margin-top: 60px;
+}
+
+.spe{
+    position: relative;
+    display: inline-block;
+}
+
+.spe .text{
+    position: absolute;
+    bottom: 15px;
+    left: 11px;
+    font-size: 15px;
+    color: #999;
+}

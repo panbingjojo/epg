@@ -1,0 +1,511 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../img/hd/Home/V15/Home/bg.png);
+    background-position: left;
+}
+
+body > * {
+    position: absolute;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 260px;
+    height: 2px;
+}
+
+.title-line-2 {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 148px;
+    height: 2px;
+}
+
+#btn-go-inquiry-page{
+    right: 80px;
+    top: 38px;
+}
+#title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+#prev-arrow {
+    top: 360px;
+    left: 10px;
+    display: none;
+}
+
+#next-arrow {
+    top: 360px;
+    left: 1226px;
+    display: none;
+}
+
+#hospital-wrapper {
+    top: 120px;
+    left: 55px;
+}
+
+#page-number{
+    position: absolute;
+    top: 660px;
+    left: 1200px;
+    color:#fff;
+    font-size:22px;
+}
+#hospital-wrapper div{
+    display: inline-block;
+    position: relative;
+}
+#hospital-wrapper img {
+    width: 360px;
+    height: 220px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#hospital-wrapper img.focus {
+    background-image: url(../../../../img/hd/Home/V15/Home/register_bg.png) !important;
+}
+
+#hospital-wrapper p
+{
+    width: 360px;
+    position: absolute;
+    bottom: 18px;
+    height: 40px;
+    line-height: 40px;
+    left: 15px;
+    /*padding: 20px;*/
+    font-size: 26px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    /*border: 1px red solid;*/
+}
+/*框架集*/
+#level-2-container {
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    position: relative;
+    font-family: "SimHei", sans-serif;
+    background-image: url(../../../../img/hd/Home/V15/Home/bg.png);
+}
+
+#level-2-container > * {
+    position: absolute;
+
+}
+
+.btn-wrap-intro {
+
+    top: 294px;
+    left: 910px;
+    width: 179px;
+}
+
+.hos-pic {
+    top: 53px;
+    left: 50px;
+}
+
+#inner-wrapper {
+    top: 60px;
+    left: 450px;
+    width: 767px;
+    height: 600px;
+    background-image: url(../../../../img/hd/Menu/QHotherPages/detail_bg.png);
+}
+
+.level-3-arrow{
+    position: absolute;
+    left: 360px;
+}
+
+#hos-dep-prevPage{
+    top: 101px;
+}
+#hos-dep-nextPage{
+    bottom: 0;
+}
+#inner-wrapper > * {
+    position: absolute;
+}
+
+#dep-wrap{
+    overflow: scroll;
+}
+
+#hos-dep-page-number{
+    bottom: 30px;
+    right: 30px;
+    color: #fff;
+    font-size: 20px;
+}
+
+#inner-wrapper p.departments-hospital-title {top: 0px;width: 95%;text-align: center;position: static;}
+#inner-wrapper p.departments {
+    position: static;
+    display: inline-block;
+    margin: 22px 40px 10px 70px;
+    overflow: hidden;
+}
+
+.code {
+    width: 260px;
+    height: 260px;
+    top: 242px;
+    left: 57px;
+}
+
+.QRInfo {
+    font-size: 26px;
+    color: #fff;
+    text-indent: 52px;
+    width: 260px;
+    height: 260px;
+    top: 242px;
+    left: 57px;
+}
+
+.btn-wrap-intro {
+    top: 242px;
+    left: 457px;
+    width: 182px;
+    height: 72px;
+}
+
+.iframe-title {
+    top: 32px;
+    left: 47px;
+    overflow: hidden;
+    font-size: 45px;
+    width: 600px;
+}
+
+.iframe-address {
+    top: 106px;
+    left: 115px;
+    overflow: hidden;
+    font-size: 30px;
+    width: 620px;
+    text-align: left;
+
+}
+.icon-address{
+    top: 115px;
+    left: 50px;
+}
+.icon-tel{
+    top: 172px;
+    left: 50px;
+}
+.code-text{
+    top: 520px;
+    left: 76px;
+}
+.iframe-tel {
+    top: 166px;
+    left: 115px;
+    overflow: hidden;
+    font-size: 30px;
+    width: 600px;
+    text-align: left;
+}
+#hos-title{
+    width: 767px;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    z-index: 1200;
+}
+
+#hos-details {
+    margin-top: 66px;
+    width: 737px;
+    height: 520px;
+    font-size: 26px;
+    z-index: 99;
+    text-indent: 40px;
+    /*overflow: hidden;*/
+    padding: 0px 10px;
+    /*border: 1px red solid;*/
+    text-align: justify;
+}
+
+#hos-details-prevPage {
+    position: absolute;
+    top: -50px;
+    left: 350px;
+
+}
+
+#hos-details-nextPage {
+    position: absolute;
+    bottom: -50px;
+    left: 350px;
+}
+
+.departments {
+    width: 260px;
+    height: 86px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 92px;
+    background-image: url(../../../../img/hd/Home/V15/Home/departments_f.png);
+}
+
+.departments-hospital-title {
+    margin: 20px;
+    font-size: 38px;
+}
+
+.odd {
+    margin-left: 80px;
+}
+
+.even {
+    margin-left: 450px;
+    margin-top: -135px;
+}
+
+.doctors {
+    position: relative !important;
+    width: 719px;
+    height: 109px;
+    margin-top: 30px;
+    margin-left: 20px;
+
+}
+
+#doc-page-index {
+    position: absolute !important;
+    top: 80px;
+    left: 696px;
+    font-size: 28px;
+}
+
+#doctor-page-up {
+    top: 80px;
+    left: 350px;
+}
+
+#doctor-page-down {
+    bottom: 30px;
+    left: 350px;
+}
+
+.doctor-male {
+    background-image: url(../../../../img/hd/Home/V15/Home/doctor_male.png);
+}
+
+.doctor-female {
+    background-image: url(../../../../img/hd/Home/V15/Home/doctor_female.png);
+
+}
+
+#inner-wrapper p.doctor-name {
+    top: 30px;
+    left: 100px;
+    font-size: 32px;
+    margin-left: 120px;
+    margin-bottom: 0;
+}
+#inner-wrapper p .doctor-position {
+    font-size: 20px;
+    color: #80d4ff;
+    display: block;
+    left: 315px;
+    position: absolute;
+    top: 15px;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 3px;
+}
+#inner-wrapper p.doctor-subject-name {
+    height: 31px;
+    width: 600px;
+    overflow: hidden;
+    font-size: 24px;
+    margin-top: 15px;
+    margin-left: 120px;
+}
+#inner-wrapper p.doctor-subject-name span.doctor-good-at{
+    position: absolute;
+    display: block;
+    width: 400px;
+    overflow: hidden;
+    height: 30px;
+    top: 58px;
+    left: 315px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#inner-wrapper p.doctor-name {
+    top: 30px;
+    left: 100px;
+}
+
+.level-2-btn{
+    left: 440px;
+}
+
+#btn-detail{
+    top: 240px;
+}
+#btn-department{
+    top: 350px;
+}
+#btn-expert{
+    top: 450px;
+}
+#level4Wrapper{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    font-family: "SimHei", sans-serif;
+    background-image: url(../../../../img/hd/Home/V15/Home/bg.png);
+}
+
+.hospital-detail {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    border-radius: 12px;
+    border: 1px red solid;
+
+}
+
+.hospital-photo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 190px;
+    height: 220px;
+    border-radius: 10px;
+}
+.border {
+    background:url("../../../../img/hd/AppointmentRegister/V10/BtnBox/box_hospital.png");
+}
+
+.introduce {
+    position: absolute;
+    top: 13px;
+    left: 215px;
+    height: 200px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+.doctor-word{
+    margin-top: 10px;
+    font-size: 28px;
+    width: 620px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+.doctor-word2{
+    margin-top: 10px;
+    font-size: 36px;
+    width: 620px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+.line2{
+    position: absolute;
+    top: 280px;
+    left: 80px;
+    width: 1120px;
+    font-size: 26px;
+}
+.content{
+    position: absolute;
+    top: 300px;
+    left: 80px;
+    width: 1120px;
+    font-size: 28px;
+    height:380px;
+}
+.content-detail{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 1070px;
+    height: 320px;
+    overflow: auto;
+    /*text-indent: 40px;*/
+    font-size: 28px;
+    border: 1px transparent solid;
+}
+
+#btn-register {
+    position: absolute;
+    /*width: 120px;*/
+    /*height: 35px;*/
+    /*line-height: 35px;*/
+    top: 160px;
+    left: 940px;
+}
+.btn-hover{
+    font-weight: bold;
+}
+
+
+#btn-inquiry-wrap{
+    position:absolute;
+    top: 66px;
+    right: 100px;
+    font-size: 22px;
+    display: block;
+}
+
+#btn-inquiry-wrap p{
+    padding: 8px 10px;
+}
+
+#btn-inquiry-wrap p.focus{
+    
+}
+
+#btn-inquiry-wrap span{font-size:20px;margin-right: 20px;}
+
+#btn-inquiry-wrap span.btn-inquiry-tip{font-size:20px;color: #4CAF50;display: block;margin-bottom: 10px;margin-right: 0;text-align: center;}
+
+#inquiry-time{
+    font-size: 20px;
+    position: absolute;
+    top: 260px;
+    right: 130px;
+    display: none;
+}

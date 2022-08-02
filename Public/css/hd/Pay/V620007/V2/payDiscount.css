@@ -1,0 +1,131 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+.order_options {
+    width: 1280px;
+    height: 720px;
+    background-image: url("../../../../img/Pay/V620007/V2/bg_discount.png");
+}
+
+#order_item_1,
+#order_item_2,
+#order_item_3,
+#order_item_4{
+    padding: 25px;
+    position: absolute;
+    top: 444px;
+}
+
+#order_item_1 {
+    left: 146px;
+}
+
+#order_item_2 {
+    left: 390px;
+}
+
+#order_item_3 {
+    left: 634px;
+}
+
+#order_item_4 {
+    left: 877px;
+}
+
+.order_item_selected {
+    background-image: url("../../../../img/Pay/V620007/V2/bg_order_item.png");
+}
+
+#pay_container {
+    display: none;
+    width: 1280px;
+    height: 720px;
+    background-image: url("../../../../img/Pay/V620007/V2/bg_pay.png");
+}
+
+.order_item_desc {
+    position: absolute;
+    width: 225px;
+    height: 146px;
+    padding-top: 34px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 16px;
+    color: #3c3b39;
+    top: 152px;
+    line-height: 23px;
+}
+
+#desc_item_1 {
+    left: 232px;
+}
+
+#desc_item_2 {
+    left: 512px;
+}
+
+#desc_item_3 {
+    left: 790px;
+}
+
+.order_info {
+    position: absolute;
+    top: 411px;
+    left: 379px;
+    color: #3c3b39;
+    font-size: 18px;
+}
+
+.pay_item_detail {
+    position: absolute;
+    left: 1px;
+    width: 532px;
+    height: 145px;
+    background-color: #89ecba;
+}
+
+.pay_tips_container{
+    position: absolute;
+    top: 12px;
+    left: 30px;
+    width: 246px;
+}
+
+.pay_notice {
+    position: absolute;
+    top: 116px;
+    left: 102px;
+    font-size: 15px;
+}
+
+.row {
+    line-height: 34px;
+}
+
+#pay_code_img {
+    position: absolute;
+    top: 10px;
+    left: 364px;
+    width: 102px;
+    height: 102px;
+}
+
+#confirm {
+    position: absolute;
+    top: 604px;
+    left: 458px;
+}
+
+#cancel {
+    position: absolute;
+    top: 604px;
+    left: 681px;
+}
+
+

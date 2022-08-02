@@ -1,0 +1,256 @@
+#container {
+    height: 100%;
+    background: #0D8080;
+    color: #FFF;
+}
+
+.information {
+    position: absolute;
+    width: 1120px;
+    height: 465px;
+    top: 60px;
+    left: 80px;
+}
+
+.details {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    top: 30px;
+    left: 512px;
+}
+
+.hospital_name {
+    position: absolute;
+    font-size: 24px;
+    top: 91px;
+    left: 40px;
+    font-weight: 400;
+}
+
+.dep_name {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 400;
+    top: 91px;
+    left: 651px;
+}
+
+.doctor_name {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 400;
+    top: 141px;
+    left: 40px;
+}
+
+.title1 {
+    position: absolute;
+    width: 50px;
+    height: 24px;
+    font-size: 18px;
+    background: #F94C4C;
+    line-height: 24px;
+    text-align: center;
+    top: 146px;
+    left: 308px;
+}
+
+.dayTime {
+    position: absolute;
+    top: 141px;
+    left: 651px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.line {
+    position: absolute;
+    top: 204px;
+    left: 40px;
+    width: 1040px;
+    height: 1px;
+    opacity: 0.2;
+    background: #FFF;
+}
+
+.patient_name {
+    position: absolute;
+    top: 242px;
+    left: 40px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.gender {
+    position: absolute;
+    top: 242px;
+    left: 651px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.card_num {
+    position: absolute;
+    top: 292px;
+    left: 40px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.phone_num {
+    position: absolute;
+    top: 292px;
+    left: 651px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.payment {
+    position: absolute;
+    top: 342px;
+    left: 40px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.money {
+    position: absolute;
+    top: 342px;
+    left: 651px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.detail {
+    position: absolute;
+    top: 392px;
+    left: 40px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.payTime {
+    position: absolute;
+    top: 392px;
+    left: 651px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.back {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    top: 560px;
+    left: 400px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 60px;
+    background-image: url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    background-size: 100% 100%;
+    border-radius: 30px;
+}
+
+.cancel {
+    position: absolute;
+    top: 560px;
+    left: 680px;
+    width: 200px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 60px;
+    background-size: 100% 100%;
+    background-image: url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    border-radius: 30px;
+}
+
+#window1 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    text-align: center;
+    background-color: rgba(1, 1, 1, 0.5);
+    color: #FFF
+}
+
+#window1 .box3 {
+    position: absolute;
+    top: 275px;
+    left: 370px;
+}
+
+#window1 .information1 {
+    position: absolute;
+    top: 305px;
+    left: 532px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#window1 .common {
+    position: absolute;
+    top: 389px;
+    left: 420px;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 500;
+    background-image: url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    background-size: 100% 100%;
+    border-radius: 30px;
+}
+
+#window1 .cancel1 {
+    position: absolute;
+    top: 389px;
+    left: 660px;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 500;
+    background-image: url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    background-size: 100% 100%;
+    border-radius: 30px;
+}
+
+#money {
+    margin-left: 20px;
+    opacity: 0.5;
+}
+
+#window2 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    text-align: center;
+    background-color: rgba(1, 1, 1, 0.5);
+    color: #FFF
+}
+
+#window2 .window3 {
+    position: absolute;
+    top: 305px;
+    left: 390px;
+}
+
+#window2 .information2 {
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 348px;
+    left: 492px;
+}

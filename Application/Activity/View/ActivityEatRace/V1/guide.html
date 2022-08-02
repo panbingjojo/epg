@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>感恩节，谁是大胃王</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--处理background-img拿取图片fs地址-->
+    <include file="./Application/Activity/View/ActivityEatRace/V1/bgImage.html"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/{$platformType}/Activity/ActivityEatRace/guide.css?t={$time}">
+    <script type="text/javascript">
+        var ROOT = '__ROOT__';
+        var RenderParam = {
+            isVip: '{$isVip}',
+            userId: '{$userId}',
+            userTel: '{$userTel}',
+            lmcid: '{$carrierId}',
+            cdCount: '{$cdCount}',
+            beClickId: 'btn-eat-3',
+            isOrderBack: '{$isOrderBack}',
+            activityImg: '{$activityFsImg}{$platformType}/',
+            cOrderResult: '{$Think.cookie.c_order_result}',
+            loginUserAccount: '{$userAccount}',
+            platformType: '{$platformType}',
+            activityInfo: {$activityInfo},
+            extraTimes: '{$extraTimes}',
+            leftTimes: {$leftTimes},
+            score: '{$score}',
+            setExchangeList: {$setExchangeList},
+            exchangeRecords: {$exchangeRecords}
+        };
+
+        window.onload = function () {
+            Activity.init();
+        };
+    </script>
+</head>
+<body>
+
+<div id="debug"></div>
+<p id="times-count">XXX</p>
+<div class="jump-wrap">
+    <img id="jump-back" src="{$activityFsImg}{$platformType}/jump_back.png">
+    <img id="jump-rule" src="{$activityFsImg}{$platformType}/jump_rule.png">
+    <img id="jump-winner" src="{$activityFsImg}{$platformType}/jump_winner.png">
+</div>
+
+<div id="foods-wrapper">
+    <div class="food-item0">
+        <p>
+            <img id="btn-eat-0" src="{$activityFsImg}{$platformType}/eat_it.png" alt="">
+            <span id="food-count-0">0</span>
+        </p>
+        <img id="food-0" src="{$activityFsImg}{$platformType}/food0.png" alt="">
+    </div>
+    <div class="food-item1">
+        <p>
+            <img id="btn-eat-1" src="{$activityFsImg}{$platformType}/eat_it.png" alt="">
+            <span id="food-count-1">0</span>
+        </p>
+        <img id="food-1" src="{$activityFsImg}{$platformType}/food1.png" alt="">
+    </div>
+    <div class="food-item2">
+        <p>
+            <img id="btn-eat-2" src="{$activityFsImg}{$platformType}/eat_it.png" alt="">
+            <span id="food-count-2">0</span>
+        </p>
+        <img id="food-2" src="{$activityFsImg}{$platformType}/food2.png" alt="">
+    </div>
+    <div class="food-item3">
+        <p>
+            <img id="btn-eat-3" src="{$activityFsImg}{$platformType}/eat_it.png" alt="">
+            <span id="food-count-3">0</span>
+        </p>
+        <img id="food-3" src="{$activityFsImg}{$platformType}/food3.png" alt="">
+    </div>
+</div>
+
+<!--普通用户返回时进入触发返回倒计时UI-->
+<div id="modal-cd" class="modal">
+    <div class="count-down">
+        <span id="count-down">8</span>
+        <!--请等待：<span id="count-down">8</span>s<br/> 可以获得一次游戏机会哦~-->
+    </div>
+</div>
+
+<!--活动规则UI-->
+<div id="modal-rule" class="modal">
+    <!--    <img id="btn-rule-close" src="__ROOT__/Public/img/Common/spacer.gif">-->
+</div>
+
+<!--中奖名单UI-->
+<div id="modal-list" class="modal">
+    <div id="total-list" class="winner-list"></div>
+    <div id="my-list" class="winner-list"></div>
+    <div id="rewrite-tel" class="list-tel my">请输入有效的电话</div>
+    <img id="btn-list-submit" class="btn-list" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-list-cancel" class="btn-list" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--VIP没有游戏次数UI-->
+<div id="modal-vip-notimes" class="modal">
+    <img id="btn-one1" src="{$activityFsImg}{$platformType}/btn_sure.png">
+</div>
+
+<!--普通用户没有游戏次数UI-->
+<div id="modal-pay-notimes" class="modal">
+    <img id="btn-pay-sure" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-pay-cancel" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--支付反馈UI-->
+<div id="modal-pay" class="modal">
+    <img id="pay-back-tip" src="__ROOT__/Public/img/Common/spacer.gif">
+</div>
+
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<!--当前模块js-->
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/activityBase.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityEatRace/index.js?t={$time}"></script>
+</body>
+</html>

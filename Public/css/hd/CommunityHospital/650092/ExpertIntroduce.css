@@ -1,0 +1,94 @@
+body {
+    position: absolute;
+    color: #fff;
+    background-image: url("../../../../img/hd/CommunityHospital/bg.png");
+}
+
+p.title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 30px;
+}
+
+div#container {
+    height: 454px;
+    width: 1080px;
+    margin: 133px auto;
+    position: relative;
+    background-image: url("../../../../img/hd/CommunityHospital/expert-bg.png");
+}
+
+
+ul.expert-wrapper {
+    position: relative;
+    float: left;
+    top: 103px;
+    left: 34px;
+    width: 690px;
+    height: 254px;
+    background-repeat: no-repeat;
+    list-style: none;
+}
+
+/*ul.expert-wrapper:nth-child(3)*/
+ul#expert-2 {
+    margin-right: 0;
+}
+
+ul.expert-wrapper li {
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.expert-skillful{
+    height: 70px;
+    overflow: hidden;
+}
+img.expert-pic {
+    width: 254px;
+    height: 254px;
+    float: left;
+    margin-top: 103px;
+    margin-left: 54px;
+}
+
+ul.expert-wrapper li.expert-name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+ul.expert-wrapper .dep-and-pos {
+
+margin-bottom: 10px;
+}
+
+.skillful,
+.intro {
+    font-weight: bold;
+}
+.expert-intro{
+    height: 210px !important;
+}
+
+div.arrow-wrapper {
+    position: absolute;
+    width: 1280px;
+    top: 335px;
+    left: 0;
+}
+
+div.arrow-wrapper img {
+    position: absolute;
+    width: 27px;
+    height: 54px;
+}
+
+img#prev-arrow {
+    left: 32px;
+}
+
+img#next-arrow {
+    left: 1229px;
+}
+

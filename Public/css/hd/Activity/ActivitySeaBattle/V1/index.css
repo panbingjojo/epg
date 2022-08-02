@@ -1,0 +1,121 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+}
+
+.commonDialog {
+    width: 1280px;
+    height: 720px;
+    background: url(../../../../img/Activity/ActivitySeaBattle/V1/bg_dialog.png) no-repeat;
+}
+
+.marker {
+    width: 1280px;
+    height: 720px;
+    background-color: black;
+    opacity: 0.3;
+    position: relative;
+}
+
+img.dialogContext {
+    position: absolute;
+    left: 227px;
+    top: 94px;
+}
+
+body > * {
+    position: absolute;
+}
+
+.abs {
+    position: absolute;
+}
+
+#bg {
+    top: 38px;
+    left: 209px;
+}
+
+#water_drop {
+    top: 333px;
+    left: 209px;
+}
+
+#fishing_net {
+    top: 1px;
+    left: 1px;
+}
+
+#germ {
+    top: 413px;
+    left: 511px;
+}
+
+#theme {
+    top: 33px;
+    left: 121px;
+}
+
+#searchText {
+    position: absolute;
+    left: 36px;
+    z-index: 99;
+    width: 271px;
+    overflow: hidden;
+    color: #f41454;
+    text-align: left;
+    font-size: 24px;
+    height: 45px;
+    line-height: 45px;
+}
+
+#btn-one {
+    position: absolute;
+    top: 401px;
+    left: 572px;
+}
+
+/*+++++++++++++++常规弹框+++++++++++++++++*/
+.prize-intro{
+    position: absolute;
+    top: 253px;
+    left: 413px;
+    font-size: 32px;
+    color: #ff9036;
+}
+
+/*完成游戏*/
+.complete-submit {
+    top: 502px;
+    left: 484px;
+}
+
+.complete-cancel {
+    top: 502px !important;
+    left: 660px;
+}
+
+.tel-complete {
+    top: 433px;
+    left: 545px;
+}
+.tel-wrap {
+    position: absolute;
+    color: #000;
+    font-size: 24px;
+}
+
+#win-prize {
+    top: 171px;
+    left: 723px;
+}

@@ -1,0 +1,30 @@
+.bg{
+    width: inherit;
+    height: inherit;
+    position: relative;
+}
+.order{
+    position: absolute;
+    top: 473px;
+    left: 576px;
+}
+.back{
+    position: absolute;
+    top: 530px;
+    left: 1066px;
+}
+
+
+.g_waiting_dialog {
+    left: 593px;
+    top: 206px;
+    width: 105px;
+    height: 102px;
+
+}
+
+
+
+
+
+

@@ -1,0 +1,411 @@
+img {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+}
+
+#home_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/*应用logo*/
+.logo {
+    position: absolute;
+    left: 46px;
+    top: 19px;
+    width: 49px;
+    height: 41px;
+}
+
+/*公司名称*/
+#company-name {
+    position: absolute;
+    left: 45px;
+    top: 60px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.top_menu {
+    position: absolute;
+    top: 13px;
+    right: 0px;
+    width: 500px;
+    height: 53px;
+}
+
+.top_menu > div {
+    width: 223px;
+    height: 53px;
+    float: right;
+    margin: 0px 4px;
+}
+
+#vip_btn {
+    position: absolute;
+    top: -8px;
+    right: 460px;
+    width: 67px;
+    height: 67px;
+    visibility: hidden;
+}
+
+/*首页导航菜单栏*/
+.navs {
+    position: absolute;
+    left: 65px;
+    top: 55px;
+    width: 1170px;
+    height: 83px;
+}
+
+.navs > div {
+    width: 220px;
+    height: 83px;
+    float: left;
+    margin: 0px 4px;
+}
+
+.recommend_zoom_out {
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    width: 108%;
+    height: 108%;
+}
+
+.recommend_zoom_in {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#recommends {
+    position: absolute;
+    left: 0px;
+    top: 114px;
+    width: 1280px;
+    height: 568px;
+}
+
+.recommends {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 568px;
+}
+
+/*推荐位1焦点框*/
+#recommend_border_1 {
+    position: absolute;
+    left: 36px;
+    top: 0px;
+    width: 342px;
+    height: 569px;
+    z-index: 1;
+}
+
+/*推荐位图片放大时的容器*/
+.recommend_parent_1 {
+    position: absolute;
+    left: 74px;
+    top: 39px;
+    width: 280px;
+    height: 494px;
+}
+
+#recommend_border_2 {
+    position: absolute;
+    left: 331px;
+    top: 0px;
+    width: 599px;
+    height: 321px;
+    z-index: 4;
+}
+
+.recommend_parent_2 {
+    position: absolute;
+    left: 370px;
+    top: 39px;
+    width: 522px;
+    height: 260px;
+}
+
+#recommend_border_3 {
+    position: absolute;
+    left: 868px;
+    top: 0px;
+    width: 373px;
+    height: 321px;
+    z-index: 1;
+}
+
+.recommend_parent_3 {
+    position: absolute;
+    left: 906px;
+    top: 39px;
+    width: 307px;
+    height: 260px;
+}
+
+#recommend_border_4 {
+    position: absolute;
+    left: 331px;
+    top: 273px;
+    width: 258px;
+    height: 280px;
+    z-index: 1;
+}
+
+.recommend_parent_4 {
+    position: absolute;
+    left: 370px;
+    top: 311px;
+    width: 199px;
+    height: 222px;
+}
+
+#recommend_border_5 {
+    position: absolute;
+    left: 543px;
+    top: 273px;
+    width: 255px;
+    height: 280px;
+    z-index: 3;
+}
+
+.recommend_parent_5 {
+    position: absolute;
+    left: 582px;
+    top: 311px;
+    width: 196px;
+    height: 222px;
+    z-index: 2;
+}
+
+#recommend_border_6 {
+    position: absolute;
+    left: 752px;
+    top: 273px;
+    width: 259px;
+    height: 280px;
+    z-index: 5;
+}
+
+.recommend_parent_6 {
+    position: absolute;
+    left: 790px;
+    top: 311px;
+    width: 202px;
+    height: 222px;
+    z-index: 3;
+}
+
+#recommend_border_7 {
+    position: absolute;
+    left: 967px;
+    top: 273px;
+    width: 265px;
+    height: 281px;
+    z-index: 5;
+}
+
+.recommend_parent_7 {
+    position: absolute;
+    left: 1005px;
+    top: 311px;
+    width: 208px;
+    height: 222px;
+    z-index: 4;
+}
+
+
+/*字幕滚动消息*/
+#scroll_message {
+    position: absolute;
+    left: 74px;
+    top: 670px;
+    width: 1130px;
+    height: 30px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 29px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+}
+#home_btn{
+    width: 145px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 74px;
+}
+#main_btn{
+    width: 150px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 219px;
+}
+#back_btn{
+    width: 150px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 364px;
+}
+
+.menu_position_2 {
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    right: 223px;
+}
+
+.menu_position_1 {
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    right: 53px;
+}
+
+/*VIP角标样式*/
+.vip_img_1{
+    width: 100px;
+    height: 50px;
+    z-index: 4;
+    position: absolute;
+    top: 39px;
+    left: 254px;
+}
+
+.vip_img_1_out{
+    width: 100px;
+    height: 50px;
+    z-index: 4;
+    position: absolute;
+    top: 24px;
+    left: 255px;
+}
+
+.vip_img_2{
+    width: 100px;
+    height: 50px;
+    z-index: 1;
+    position: absolute;
+    top: 39px;
+    left: 792px;
+}
+
+.vip_img_2_out{
+    width: 100px;
+    height: 50px;
+    z-index: 4;
+    position: absolute;
+    top: 23px;
+    left: 809px;
+}
+
+.vip_img_3{
+    width: 100px;
+    height: 50px;
+    z-index: 2;
+    position: absolute;
+    top: 39px;
+    left: 1113px;
+}
+
+.vip_img_3_out{
+    width: 100px;
+    height: 50px;
+    z-index: 4;
+    position: absolute;
+    top: 23px;
+    left: 1116px;
+}
+
+.vip_img_4{
+    width: 100px;
+    height: 50px;
+    z-index: 1;
+    position: absolute;
+    top: 311px;
+    left: 468px;
+}
+
+.vip_img_4_out {
+    width: 100px;
+    height: 50px;
+    z-index: 4;
+    position: absolute;
+    top: 297px;
+    left: 466px;
+}
+
+.vip_img_5{
+    width: 100px;
+    height: 50px;
+    z-index: 3;
+    position: absolute;
+    top: 311px;
+    left: 678px;
+}
+
+.vip_img_5_out {
+    width: 100px;
+    height: 50px;
+    z-index: 4;
+    position: absolute;
+    top: 297px;
+    left: 674px;
+}
+
+.vip_img_6{
+    width: 100px;
+    height: 50px;
+    z-index: 4;
+    position: absolute;
+    top: 311px;
+    left: 892px;
+}
+
+.vip_img_6_out {
+    width: 100px;
+    height: 50px;
+    z-index: 4;
+    position: absolute;
+    top: 297px;
+    left: 889px;
+}
+
+.vip_img_7{
+    width: 100px;
+    height: 50px;
+    z-index: 5;
+    position: absolute;
+    top: 311px;
+    left: 1114px;
+}
+
+.vip_img_7_out {
+    width: 100px;
+    height: 50px;
+    z-index: 5;
+    position: absolute;
+    top: 296px;
+    left: 1110px;
+}

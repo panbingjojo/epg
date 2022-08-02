@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>抢红包活动首页V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/AcitityQianghongbao/V1/guide.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityQianghongbao/PopRule.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityQianghongbao/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 活动详情
+         */
+        function jumpActivityInfo() {
+            jumpDialog(ACTIVITY_RULE_DETAIL);
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         */
+        function jumpPlayUI() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            objActivityHome.setParam("userId", "{$userId}");
+            objActivityHome.setParam("inner", "{$inner}");
+            objActivityHome.setParam("leftTimes", leftTimes);
+
+            LMEPG.Intent.jump(objActivityHome, objCurrent);
+        }
+
+        /**
+         * 显示次数用尽弹窗，可能是答题次数用尽，也可能是抽奖次数用尽
+         */
+        function jumpTimesOutDialog() {
+            var context;
+            // 用户抽奖次数用完
+            if (!LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {
+                //不是vip，弹出订购弹窗
+                context = NOT_VIP_USER_PLAY_TIMES_OVER;
+            } else {
+                //是vip，提示用户今天次数用尽，明天再来
+                context = VIP_USER_PLAY_TIMES_OVER;
+            }
+            jumpDialog(context);
+        }
+
+        /**
+         * 页面跳转 - 显示中奖信息
+         */
+        function jumpPriceInfo() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityWinList = LMEPG.Intent.createIntent("activity-common-winList");
+            objActivityWinList.setParam("userId", "{$userId}");
+            objActivityWinList.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityWinList, objCurrent);
+        }
+
+        /**
+         * 设置号码页
+         */
+        function jumpSetPhoneNum() {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeIdx", "{$prizeIdx}");
+            objDialog.setParam("prizeName", "{$prizeName}");
+            objDialog.setParam("context", INPUT_USER_PHONE_NUMBER);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+
+    </script>
+</head>
+<body style='background-image: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/guide_bg_.png")'>
+<div id="default_tip"></div>
+<div>
+    <img id="btn-back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/back_out.png" alt=""/>
+    <img id="btn-price" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/price_message_out.png" alt=""/>
+    <img id="btn-detail" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/rule_out.png" alt=""/>
+    <img id="btn-setPhone" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/price_phone_out.png"
+         alt=""/>
+    <img id="btn-start" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/hand_.gif" alt=""/>
+    <if condition="$platformType eq hd">
+        <!--下面是高清分辨率的内容-->
+        <img id="titel" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/titel.png" alt=""/>
+        <img id="remand" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/remand.png" alt=""/>
+        <img id="left_tree" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/left_tree.gif" alt=""/>
+        <img id="left_could" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/left_could.png" alt=""/>
+        <img id="right_tree" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/right_tree.gif" alt=""/>
+        <img id="right_could" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/right_could.png" alt=""/>
+    </if>
+    <div id="times">0</div>
+    <div id="play">遥控器按“OK”键开始抢红包</div>
+</div>
+<script type="text/javascript">
+    var leftTimes = 0;//剩余抽奖次数
+    var prizeIdx = "{$prizeIdx}"; // 奖品ID
+    var isVip = {$isVip};//是否是vip
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/';
+
+    buttons = [
+        {
+            id: 'btn-back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-price',
+            nextFocusUp: '',
+            nextFocusDown: 'btn-start',
+            backgroundImage: imgPathPrefix + 'back_out.png',
+            focusImage: imgPathPrefix + 'back_in.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'btn-price',
+            name: '中奖名单',
+            type: 'img',
+            nextFocusLeft: 'btn-back',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'btn-detail',
+            backgroundImage: imgPathPrefix + 'price_message_out.png',
+            focusImage: imgPathPrefix + 'price_message_in.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'btn-detail',
+            name: '活动详情',
+            type: 'img',
+            nextFocusLeft: 'btn-start',
+            nextFocusRight: '',
+            nextFocusUp: 'btn-price',
+            nextFocusDown: 'btn-setPhone',
+            backgroundImage: imgPathPrefix + 'rule_out.png',
+            focusImage: imgPathPrefix + 'rule_in.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'btn-setPhone',
+            name: '设置电话号码',
+            type: 'img',
+            nextFocusLeft: 'btn-start',
+            nextFocusRight: '',
+            nextFocusUp: 'btn-detail',
+            nextFocusDown: 'btn-start',
+            backgroundImage: imgPathPrefix + 'price_phone_out.png',
+            focusImage: imgPathPrefix + 'price_phone_in.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'btn-start',
+            name: '开始游戏',
+            type: 'img',
+            nextFocusLeft: 'btn-back',
+            nextFocusRight: 'btn-setPhone',
+            nextFocusUp: 'btn-setPhone',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'hand_.png',
+            focusImage: imgPathPrefix + 'hand_.gif',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }
+    ];
+
+    window.onload = function () {
+        LMEPG.ButtonManager.init(['btn-start'], buttons, '', true);
+        selectParticipationNum();
+    };
+
+    function onClick(btn) {
+        var id = btn.id;
+        if (id == "btn-back") {
+            onBack();
+        } else if (id == "btn-price") {
+            jumpPriceInfo();
+        } else if (id == "focus-2-1") {
+            onBack();
+        } else if (id == "btn-detail") {
+            // 活动规则
+            jumpActivityInfo();
+        } else if (id == "btn-setPhone") {
+            // 如果没有抽中奖，不能进入填写电话号码
+            if (prizeIdx == 0 || prizeIdx == "0") {
+                LMEPG.UI.showToast("十分抱歉，您还未中奖！", 3);
+            } else {
+                jumpSetPhoneNum();
+            }
+        } else if (id == "btn-start") {
+            // 判断还有没有次数，如果没有抽奖次数，就提示次数用完
+            if (leftTimes == 0) {
+                jumpTimesOutDialog();
+            } else {
+                jumpPlayUI();
+            }
+        }
+
+    }
+
+    //拉取抽奖剩余次数
+    function selectParticipationNum() {
+        LMEPG.ajax.postAPI('Activity/canAnswer', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        leftTimes = data.leftTimes;
+                        if (leftTimes == null) {
+                            leftTimes = 0;
+                        }
+                    } else {
+                        LMEPG.UI.showToast("获取剩余抽奖次数失败！" + result);
+                    }
+                    setPrizeNum(leftTimes);
+                } catch (e) {
+                    LMEPG.UI.showToast("获取剩余抽奖次数，解析异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("获取剩余抽奖次数失败");
+            }
+        );
+    }
+
+    /**
+     * 设置剩余抽奖次数
+     * @param num
+     */
+    function setPrizeNum(leftTimes) {
+        G("times").innerHTML = leftTimes;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<div id="first-content-row">
+    <img id="video-TV" src="__ROOT__/Public/img/Common/spacer.gif">
+    <!-- 辽宁、山东电信小窗位置为推荐位 -->
+    <img id="link-0"/>
+
+    <img id="small-video-bg" src="__ROOT__/Public/img/hd/Home/V13/Home/smp_bg.png">
+    <img id="free-area"/>
+
+
+    <if condition="$carrierId eq '440004' ">
+        <div id="link-1-wrapper" style="display: none">
+            <img id="icon-modify1" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_hot.png">
+            <img id="link-1">
+        </div>
+
+        <!--轮播组件-->
+        <div id="carousel-wrapper" class="temp-x">
+            <div id="link-2"></div>
+            <img id="link-2-0" style="width: 464px" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+            <img id="link-2-1" style="width: 464px" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+            <img id="icon-modify2" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_new.png">
+            <div id="point-wrapper" style="left: 110px !important;"></div>
+        </div>
+        <else/>
+        <div id="link-1-wrapper">
+            <img id="icon-modify1" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_hot.png">
+            <img id="link-1">
+        </div>
+        <!--轮播组件-->
+        <div id="carousel-wrapper">
+            <div id="link-2"></div>
+            <img id="link-2-1" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+            <img id="link-2-0">
+            <img id="icon-modify2" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_new.png">
+            <div id="point-wrapper"></div>
+        </div>
+    </if>
+
+
+    <div id="keep-watch-wrapper">
+        <div id="keep-watch-title">
+            <marquee id="lately-video-title">您还没有点播过视频哦！</marquee>
+        </div>
+        <img id="keep-watch" src="__ROOT__/Public/img/Common/spacer.gif">
+    </div>
+    <div id="link-3-wrapper">
+        <img id="link-3">
+        <if condition="$carrierId eq '440001' ">
+            <img id="icon-modify3" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_new.png">
+        </if>
+    </div>
+</div>
+<div id="second-content-row">
+    <div><img id="b-link-0"></div>
+    <div><img id="b-link-1"></div>
+    <div><img id="b-link-2"></div>
+    <div><img id="b-link-3"></div>
+    <div><img id="b-link-4"></div>
+</div>
+<div id="tab0-help" class="tab-help-wrap">
+    <img id="tab0-help0" style="width: 1280px; height: 720px" src="__ROOT__/Public/img/hd/Help/V13/tab0_help0.png">
+    <img id="tab0-help1" style="width: 1280px; height: 720px" src="__ROOT__/Public/img/hd/Help/V13/tab0_help1.png">
+    <img id="tab0-help2" style="width: 1280px; height: 720px" src="__ROOT__/Public/img/hd/Help/V13/tab0_help2.png">
+    <img id="tab0-help3" style="width: 1280px; height: 720px" src="__ROOT__/Public/img/hd/Help/V13/tab0_help3.png">
+</div>
+<script type="text/javascript">
+
+    var Tab0 = {
+        hideSmallVideoCarriers: ['220001','440004'],
+        isHideSmallVideo: false,
+        init: function () {
+            Tab0.isHideSmallVideo = Tab0.hideSmallVideoCarriers.indexOf(RenderParam.carrierId) > -1;
+            if (!Tab0.isHideSmallVideo) {
+                Hide('link-0'); // link-0标签替换小窗口的推荐位，隐藏小窗口的地区需要显示图片，覆盖小窗口播放
+            }
+            this.renderTab0();
+            Tab0.fadeToggle.points();
+            this.createBtns();
+
+            if (RenderParam.carrierId == "440004") {
+                G("link-2-0").style.backgroundImage = 'url("__ROOT__/Public/img/hd/Home/V13/Home/a_link_x.png")'
+                G("link-2-1").style.backgroundImage = 'url("__ROOT__/Public/img/hd/Home/V13/Home/a_link_x.png")'
+            }
+        },
+        /**
+         * 渲染Tab0
+         */
+        renderTab0: function() {
+            var list = RenderParam.configInfo.data.entry_list;
+            for (var i = 0; i < list.length; i++) {
+                var data = list[i].item_data;
+                switch (parseInt(list[i].position)) {
+                    case 11:
+                        G('free-area').src = Page.getImg(data[0].img_url);
+                        break;
+                    case 12:
+                        G('link-0').src = Page.getImg(data[0].img_url);
+                        break;
+                    case 13:
+                        G('link-1').src = Page.getImg(data[0].img_url);
+                        break;
+                    // banner
+                    case 14:
+                        carouselDataList0 = data;
+                        Tab0.data = [];
+                        for (var j = 0; j < carouselDataList0.length; j++) {
+                            var tmp = {};
+                            tmp.id = j;
+                            tmp.src = Page.getImg(carouselDataList0[j].img_url);
+                            Tab0.data.push(tmp);
+                        }
+                        if (Tab0.data[0])
+                            G('link-2-0').src = Tab0.data[0].src;
+                        if (Tab0.data[1])
+                            G('link-2-1').src = Tab0.data[1].src;
+                        break;
+                    case 15:
+                        G('link-3').src = Page.getImg(data[0].img_url);
+                        break;
+                    case 16:
+                        for (var k = 0; k < data.length; k++) {
+                            G('b-link-' + k).src = Page.getImg(data[k].img_url);
+                        }
+                        break;
+                }
+            }
+            // 最近播放的视频
+            if (RenderParam.latestVideoInfo.result == 0) {
+                var videoInfo = JSON.parse(RenderParam.latestVideoInfo.val);
+                G('keep-watch-title').innerHTML = '<marquee>' + videoInfo.title + '</marquee>';
+            }
+        },
+
+
+        /**
+         * 当前页面元素获得失去焦点
+         * 修饰图标“热门”，“最新”跟随寄生元素得失焦点变化
+         * 轮播获得焦点与通用元素变化一致
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusIn: function (btn, hasFocus) {
+            var _this = Tab0;
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+            _this.modifyOnFocus(btn.id, hasFocus);
+            _this.link2OnFocus(btn, hasFocus, btnElement);
+        },
+        /**
+         * 轮播推荐位得失焦点处理
+         * 轮询切换
+         * @param btn
+         * @param hasFocus
+         */
+        link2OnFocus: function (btn, hasFocus) {
+            if (btn.id != 'link-2') {
+                return;
+            }
+            var carousel_0 = G(btn.id + '-0');
+            var carousel_1 = G(btn.id + '-1');
+            var carousel_modify = G('icon-modify2');
+            if (hasFocus) {
+                carousel_0.setAttribute('class', 'focus');
+                carousel_1.setAttribute('class', 'focus');
+                carousel_modify.setAttribute('class', 'focus');
+            } else {
+                carousel_0.removeAttribute('class');
+                carousel_1.removeAttribute('class');
+                carousel_modify.removeAttribute('class');
+            }
+        },
+        /**
+         * 修饰图标得失焦点
+         * @param id
+         * @param hasFocus
+         */
+        modifyOnFocus: function (id, hasFocus) {
+            if (id != 'link-1' && id != 'link-2-1') {
+                return;
+            }
+            var prevModifyElementId = 'icon-modify' + (id == 'link-1' ? 1 : 2);
+            if (hasFocus) {
+                G(prevModifyElementId).setAttribute('class', 'focus');
+            } else {
+                G(prevModifyElementId).removeAttribute('class');
+            }
+        },
+        /*=====处理轮播对象封装=====*/
+        data: [], // 配置推荐位轮播数据
+        fadeToggle: {
+            reverseStatus: false,
+            loop: function () {
+                if (Tab0.data.length < 2) {
+                    H('point-wrapper');
+                    return;
+                }
+                this.data = Tab0.data;
+                this.img1 = document.getElementById('link-2-0');
+                this.img2 = document.getElementById('link-2-1');
+                this.timer = setInterval(this.update, 4333);
+            },
+            toggle: function (e, n, c) {
+                var oS = n;
+                var oC = oS;
+                var oE = Math.abs(n - 1);
+                (function op() {
+                    n ? oC -= 0.1 : oC += 0.1;
+                    oC = +(oC.toFixed(1));
+                    e.style.opacity = oC;
+                    var opTimer = setTimeout(op, 50);
+                    if (oC == oE) {
+                        clearTimeout(opTimer);
+                        c && c();
+                    }
+                }());
+            },
+            update: function () {
+                var self = Tab0.fadeToggle;
+                var data = self.data;
+                var runTag = self.getTag();
+                self.toggle(runTag.hideTag, 1, function () {
+                    runTag.hideTag.src = data[1].src;
+                    curTab0CarouselId = data[0].id;
+                });
+                self.toggle(runTag.showTag, 0);
+                self.switchDot(); // 不阻塞切换
+                data.push(data.shift());
+                self.shuffle(data[0].id);
+            },
+            points: function () {
+                var htm = [];
+                var len = Tab0.data.length;
+                while (len--) {
+                    if (len == 0) {
+                        htm.push('<img src="' + ROOT + '/Public/img/Common/transparent.png" id="point-' + len + '" class="focus">');
+                    } else {
+                        htm.push('<img src="' + ROOT + '/Public/img/Common/transparent.png"  id=point-' + len + '>');
+                    }
+                }
+                document.getElementById('point-wrapper').innerHTML = htm.reverse().join('');
+            },
+            getTag: function () {
+                this.reverseStatus = !this.reverseStatus;
+                return this.reverseStatus ? {hideTag: this.img1, showTag: this.img2} : {
+                    hideTag: this.img2,
+                    showTag: this.img1
+                };
+                this.toggle();
+            },
+            shuffle: function (id) {
+                var self = this;
+                self.data.sort(function (a, b) {
+                    var sum = a.id - b.id;
+                    if (id == self.data.length - 1) {
+                        return -sum;
+                    } else if (id == 0) {
+                        return sum;
+                    }
+                });
+            },
+            switchDot: function () {
+                document.getElementById('point-' + this.data[0].id).removeAttribute('class');
+                document.getElementById('point-' + this.data[1].id).setAttribute('class', 'focus');
+            }
+        },
+        createBtns: function () {
+            buttons.push({
+                id: 'video-TV',
+                name: '小窗视频',
+                type: 'img',
+                nextFocusRight: RenderParam.carrierId == "440004" ? 'link-2' : 'link-1',
+                nextFocusUp: 'search',
+                nextFocusDown: 'free-area',
+                backgroundImage: ROOT + '/Public/img/Common/spacer.gif',
+                focusImage: ROOT + '/Public/img/hd/Home/V13/Home/video_f.png',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 12
+            }, {
+                id: 'free-area',
+                name: '免费专区',
+                type: 'img',
+                nextFocusRight: RenderParam.carrierId == "440004" ? 'link-2' : 'link-1',
+                nextFocusUp: 'video-TV',
+                nextFocusDown: 'b-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 11
+            }, {
+                id: 'link-1',
+                name: '推荐位1',
+                type: 'img',
+                nextFocusLeft: 'video-TV',
+                nextFocusRight: 'link-2',
+                nextFocusUp: 'search',
+                nextFocusDown: 'b-link-2',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 13
+            }, {
+                id: 'link-2',
+                name: '推荐为2（由轮播映射）',
+                type: 'others',
+                nextFocusLeft: RenderParam.carrierId == "440004" ? 'video-TV' : 'link-1',
+                nextFocusRight: 'keep-watch',
+                nextFocusUp: 'search',
+                nextFocusDown: 'b-link-3',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 14
+            }, {
+                id: 'keep-watch',
+                name: '继续观看',
+                type: 'img',
+                nextFocusLeft: 'link-2',
+                nextFocusRight: '',
+                nextFocusUp: 'search',
+                nextFocusDown: 'link-3',
+                backgroundImage: ROOT + '/Public/img/Common/spacer.gif',
+                focusImage: RenderParam.platformType == 'sd'
+                    ? ROOT + '/Public/sd/img/unclassified/V13/keep_watch_f.png'
+                    : ROOT + '/Public/img/hd/Home/V13/Home/keep_watch_f.png',
+                click: PageJump.jumpContinuePlay,
+                focusChange: this.onFocusIn,
+                cNavId: 2
+            }, {
+                id: 'link-3',
+                name: '推荐位3',
+                type: 'img',
+                nextFocusLeft: 'link-2',
+                nextFocusUp: 'keep-watch',
+                nextFocusDown: 'b-link-4',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 15
+            }, {
+                id: 'b-link-0',
+                name: '第一个功能区',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'b-link-1',
+                nextFocusUp: 'free-area',
+                nextFocusDown: 'tab1-link',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: ScrollControl.moveChange,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-1',
+                name: '第二个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-0',
+                nextFocusRight: 'b-link-2',
+                nextFocusUp: 'free-area',
+                nextFocusDown: 'tab1-link',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: ScrollControl.moveChange,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-2',
+                name: '第三个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-1',
+                nextFocusRight: 'b-link-3',
+                nextFocusUp: 'link-1',
+                nextFocusDown: '',
+                nextFocusDown: 'tab1-link',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: ScrollControl.moveChange,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-3',
+                name: '第四个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-2',
+                nextFocusRight: 'b-link-4',
+                nextFocusUp: 'link-2',
+                nextFocusDown: 'tab1-link',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: ScrollControl.moveChange,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-4',
+                name: '第五个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-3',
+                nextFocusRight: '',
+                nextFocusUp: 'link-3',
+                nextFocusDown: 'tab1-link',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: ScrollControl.moveChange,
+                cNavId: 2,
+                cPosition: 16
+            });
+        }
+    };
+</script>

@@ -1,0 +1,112 @@
+#container{
+    height: 100%;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.content{
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg4.png") no-repeat;
+    background-size: 1180px 626px;
+    width: 1180px;
+    height: 626px;
+    padding: 30px;
+    position: relative;
+}
+.info{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 50px;
+    color: #FFFFFF;
+}
+.line{
+    height: 2px;
+    width: 1120px;
+    background: #fff;
+    margin-top: 20px;
+
+}
+.add{
+    position: absolute;
+    width: 284px;
+    height: 74px;
+    left: 448px;
+    top: 326px;
+    text-align: center;
+    background: url("../../../../img/hd/AppointmentRegister/V8/has_choose_long.png") no-repeat;
+    background-size: 284px 74px;
+    font-size: 26px;
+
+    font-weight: bold;
+    line-height: 68px;
+    color: #FFFFFF;
+}
+.no-tips{
+    position: absolute;
+    top: 397px;
+    left: 440px;
+    font-size: 24px;
+
+    font-weight: 400;
+    line-height: 41px;
+    color: #5ACEF4;
+}
+
+.next{
+    position: absolute;
+    top: 482px;
+    left: 460px;
+    width: 260px;
+    height: 75px;
+    text-align: center;
+    font-size: 26px;
+
+    font-weight: 400;
+    line-height: 70px;
+    color: #FFFFFF;
+    background: url("../../../../img/hd/AppointmentRegister/V8/no_choose_long.png") no-repeat;
+    background-size: 260px 75px;
+}
+.people-item{
+    margin-top: 30px;
+}
+.people-info{
+    display: inline-block;
+    width: 905px;
+    height: 74px;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg-item.png") no-repeat;
+    background-size: 905px 74px;
+    font-size: 30px;
+
+    font-weight: 400;
+    line-height: 2;
+    color: #FFFFFF;
+    padding: 5px 0;
+}
+.people-info .name{
+    display: inline-block;
+    width: 260px;
+    margin-left: 30px;
+
+}
+.people-info .gender{
+    display: inline-block;
+    width: 30px;
+}
+.people-info .card-id{
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.exchange{
+    display: inline-block;
+    width: 194px;
+    height: 74px;
+    font-size:26px;
+
+    font-weight: bold;
+    line-height:70px;
+    color: #FFFFFF;
+    background: url("../../../../img/hd/AppointmentRegister/V8/no_choose_long.png") no-repeat;
+    background-size: 194px 74px;
+    text-align: center;
+}

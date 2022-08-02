@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>数据统计</title>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <if condition="$carrierId eq 520094">
+        <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/OutbreakReport/V1/AreaDataPrev.css?t={$time}">
+        <else/>
+        <link rel="stylesheet" type="text/css"
+              href="__ROOT__/Public/css/hd/OutbreakReport/V1/AreaDataPrev.css?t={$time}">
+    </if>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V1/AreaDataPrev.js?t={$time}"></script>
+    <script>
+        Root = "__ROOT__";
+        var RenderParam = {
+            vip: {$isVip},  //当前用户是否VIP
+            userId: '{$userId}',    // 当前用户ID
+            platformType: '{$platformType}',     // hd--高清 sd--标清
+            lmcid: '{$carrierId}',  // 所属地区Id
+            domainUrl: '{$domainUrl}',           // 江苏电信需要使用的第三方播放器前缀地址\
+            areaCode: "{$areaCode}",          // 省份地区码
+            epidemicStats: {$epidemicStats}, // 疫情详情
+            detailTitle: "{$detailTitle}", // 疫情详情
+            epidemicDetails: {$epidemicDetails}, // 疫情详情
+            isExitApp: '{$isExitApp}',                   // 是否需要退出应用
+        };
+    </script>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+</head>
+<body>
+<div class="title">数据统计 (数据来源：腾讯)  <span style="font-size: 22px;vertical-align: middle;display: none" id="is-show">更新频率：每天1次 更新至：<span id="update-time">2022-02-21</span>  00:00:00  </span>    </div>
+<div class="data-area">
+    <div id="scroll">
+        <div id="local-data"></div>
+        <div id="total-data" class="total-data" style="background: url('__ROOT__/Public/img/hd/OutbreakReport/V1/data_box.png')">
+        </div>
+
+    </div>
+</div>
+
+<img class="down" id="down" src="__ROOT__/Public/img/hd/New39hospital/down.png"/>
+<script>
+    /**
+     * 返回事件
+     */
+    function onBack() {
+        if (RenderParam.lmcid == '450001' && RenderParam.isExitApp == '1') {
+            LMAndroid.JSCallAndroid.doExitApp(); // 直接退出应用
+        } else {
+            //回到活动界面
+            LMEPG.Intent.back();
+        }
+    }
+
+    if (RenderParam.lmcid == "410092") {
+        LMEPG.Log.info('init HybirdCallBackInterface !!!!!');
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                LMEPG.Log.info('HybirdCallBackInterface param : ' + JSON.stringify(param));
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+
+    window.onload = function () {
+        window.unPreventDefault = true;
+        Page.init();
+    }
+</script>
+</body>
+</html>

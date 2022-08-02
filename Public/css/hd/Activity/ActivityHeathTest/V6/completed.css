@@ -1,0 +1,76 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../../img/hd/Activity/activityHeathTest/V6/bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+#activity-back {
+    left: 1102px;
+    top: 16px;
+    width: 116px;
+    height: 62px;
+}
+#video-intro{
+    left: 576px;
+    top: 616px;
+    width: 168px;
+    height: 62px;
+}
+#icon-modify {
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 306px;
+    height: 186px;
+}
+#title-bg{
+    left: -570px;
+    top: 0;
+    width: 1280px;
+    height: 92px;
+}
+#page-title {
+    left: 300px;
+    top: 24px;
+    font-size: 36px;
+    color: #f0f0f0;
+    z-index: 1;
+}
+#result-container{
+    top: 180px;
+    left: 160px;
+    width: 880px;
+    height: 440px;
+    overflow: hidden;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    font-size: 28px;
+    color: #66474c;
+    list-style: none;
+}
+#result-container li{
+    position: relative;
+    margin-bottom: 50px;
+}
+#result-container li img{
+    /*margin-right: 20px;*/
+}
+#result-container li p{
+    position: absolute;
+    top: 0;
+    left: 80px;
+}
+#test-result{
+}

@@ -1,0 +1,128 @@
+<img id="tab2-prev-arrow" class="tab2-arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/left.png" alt="">
+<img id="tab2-next-arrow" class="tab2-arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/right.png" alt="">
+<div id="tab2-carousel-wrapper"></div>
+<div id="tab2-help" class="tab-help-wrap">
+    <img id="tab2-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab2_help0.png">
+</div>
+<script type="text/javascript">
+    var Tab3 = {
+        isLoad:false,
+        n: 0,
+        Nc: 0,
+        preloaderImg: [],
+        prevBtn: document.getElementById('tab2-prev-arrow'),
+        nextBtn: document.getElementById('tab2-next-arrow'),
+        httpImg: [],
+        init: function () {
+            this.tab2KeepData(Page.tab2CarouselId);
+            Tab3.httpImg = [];
+            for (var i = 0; i < albumList.length; i++) {
+                var tmp = {};
+                tmp.src = Page.getImg(albumList[i].list_image_url.large);
+                tmp.link = i;
+                Tab3.httpImg.push(tmp);
+            }
+            this.renderImg();
+            this.createBtns();
+        },
+
+        tab2KeepData: function (tab2CarouselId) {
+            // 如果是tab2，专辑数据保持
+            if (this.tabId == 'tab-3') {
+                curTab2CarouselId = tab2CarouselId;
+                if (tab2CarouselId == 0) {
+                    Tab3.onMoveChange('left');
+                    Tab3.onMoveChange('left');
+                } else if (tab2CarouselId == 1) {
+                    Tab3.onMoveChange('left');
+                } else if (tab2CarouselId > 2) {
+                    for (var i = 2; i < tab2CarouselId; i++) {
+                        Tab3.onMoveChange('right');
+                    }
+                }
+            }
+        },
+
+        carousel: function () {
+            this.timer = setInterval(this.loop, 3222);
+        },
+        loop: function (direction) {
+            Tab3.key = direction;
+            Tab3.getDirection();
+        },
+        /**
+         * 循环载入图片到文档中
+         * Np：当前图片数组长度
+         * data-link: 跳转参数索引
+         */
+        renderImg: function () {
+            var loopData = this.httpImg;
+            var Np = loopData.length < 5 ? loopData.length : 5; // 一次渲染最大长度
+            var htm = '<div>';
+            while (Np--) {
+                if (!loopData[Np]) continue;
+                var currentImage = loopData[Np].src;
+                var isLoaderCurrentImage = !/.*\.(jpg|png)/.test(loopData[Np].src) ? g_appRootPath+'/Public/img/Common/default.png' : currentImage;
+                if (Np == 2) {
+                    htm += '<div id="item-center"><img onerror="this.src=\'__ROOT__/Public/img/Common/default.png\'" id="sift-' + Np + '" class="lv-' + Np + '" src=' +
+                            isLoaderCurrentImage + '></div>';
+                } else {
+                    htm += '<img onerror="this.src=\'__ROOT__/Public/img/Common/default.png\'"  id="sift-' + Np + '" class="lv-' + Np + '" src=' + isLoaderCurrentImage + '>';
+                }
+            }
+
+            G('tab2-carousel-wrapper').innerHTML = htm;
+            if (loopData[2]) {
+                G('sift-2').setAttribute('data-link', this.httpImg[2].link);
+            }
+        },
+        /**
+         * 更新当前图片数组
+         */
+        updateImg: function () {
+            if (this.key == 'left') {
+                this.httpImg.unshift(this.httpImg.pop());
+            } else {
+                this.httpImg.push(this.httpImg.shift());
+            }
+            this.renderImg();
+            curTab2CarouselId = Tab3.httpImg[2].link;
+        },
+        /**
+         * 实时解析得到的方向
+         */
+        getDirection: function () {
+            this.n == 4 ? this.Nc = 1 : (this.n == 0 ? this.Nc = 0 : null);
+            !this.key ? (this.key = this.Nc == 0 ? 'right' : 'left') : null;
+            this.updateImg();
+        },
+
+        createBtns: function () {
+            buttons.push({
+                id: 'sift-2',
+                type: 'others',
+                nextFocusUp: 'tab-3',
+                click: Page.onClickTab2Album,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onMoveChange
+            });
+        },
+        onFocusIn: function (btn, hasFocus) {
+            var focusElement = G('item-center');
+            if (hasFocus) {
+                focusElement.className = 'focus';
+            } else {
+                focusElement.className = '';
+            }
+        },
+        onMoveChange: function (direction, btn) {
+            if (direction == 'left' || direction == 'right') {
+                Tab3.loop(direction);
+                LMEPG.BM.requestFocus('sift-2');
+                return false;
+            }
+        }
+    };
+    // Tab2.init();
+</script>
+

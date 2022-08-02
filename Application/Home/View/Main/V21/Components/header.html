@@ -1,0 +1,259 @@
+<div class="nav-content">
+    <div class="nav-tool">
+        <div class="tool-list">
+            <img id="vip" class="btn" src="__ROOT__/Public/img/hd/Home/V21/Nav/vip.png"/>
+            <img id="search" class="btn" src="__ROOT__/Public/img/hd/Home/V21/Nav/search.png"/>
+            <img id="history" class="btn" src="__ROOT__/Public/img/hd/Home/V21/Nav/history.png"/>
+            <img id="collection" class="btn" src="__ROOT__/Public/img/hd/Home/V21/Nav/collect.png"/>
+        </div>
+    </div>
+
+    <img class="logo" src="__ROOT__/Public/img/hd/Home/V21/Nav/logo.png"/>
+    <div id="nav-content-tabs">
+        <img id="tab-0" src="">
+        <img id="tab-1" src="">
+        <img id="tab-2" src="">
+    </div>
+</div>
+<script type="text/javascript">
+    var smallVideoTimer = null; // 小窗播放定时器
+    var getJumpKeepFocusTabId = LMEPG.Func.getLocationString('tabId');  // 得到跳转页面回来的tab焦点
+    var pathPrefix = '__ROOT__/Public/img/hd/Home/V21/Nav/';
+    var previousTabIndex="";
+
+    /*导航栏得失焦点回调操作*/
+    function tabGetFocus(btn, hasFocus) {
+        LMEPG.ButtonManager.setSelected(btn.id, true);
+        // 当前导航条的索引
+        var currentTabIndex = btn.id.slice(-1);
+        if (hasFocus) {
+            // reBuildSmallVideo(currentTabIndex);
+            // 调用内容块控制器
+            tabContentController(currentTabIndex);
+            // 设置不同内容块背景图
+            setBodyBackgroundImage(currentTabIndex);
+            // 初始化变量
+            initializationVariable(btn);
+        } else {
+            tabLoseFocus(btn, currentTabIndex);
+        }
+    }
+
+    /*销毁/重启小窗播放*/
+    function reBuildSmallVideo(index) {
+        if (RenderParam.carrierId == '210092' || RenderParam.carrierId == '370092') {
+            return;
+        }
+        clearInterval(smallVideoTimer);
+        if (!+index) {
+            if (index == previousTabIndex) return;
+            // 每次加载Tab0页面，开启小窗播放
+            Play.startPollPlay();
+            // LMEPG.UI.logPanel.a("closeOpen");
+        } else {
+            LMEPG.mp.destroy();
+            G('iframe_small_screen').src = g_appRootPath+'/Public/img/Common/spacer.gif';
+        }
+    }
+
+    /*内容块显隐控制器*/
+    function tabContentController(index) {
+        var isShowDisplay = G('content-' + index).style.display;
+        if (isShowDisplay === 'none' || !isShowDisplay) {
+            Hide('content-' + previousTabIndex); // 隐藏上一个tabContent
+            Show('content-' + index); // 显示当前tabContent
+            LMEPG.ButtonManager.performMoveChange('down');//选中第一个box
+        }
+    }
+
+    /*导航栏失去焦点*/
+    function tabLoseFocus(btn, index) {
+        // 焦点离开导航设置焦点保持
+        previousTabIndex = index;
+    }
+
+    /*得到焦点初始化*/
+    function initializationVariable(btn) {
+        thisNavID = btn.id; // 标记当前焦点的ID
+    }
+
+    /*为不同tab设置不同背景图，主要是tab0有小窗，背景图为镂空的*/
+    function setBodyBackgroundImage(index) {
+        var imgPrefix = '/Public/img/hd/Home/V21/Common/';
+        document.body.style.backgroundImage = 'url(' + (index == 0 ? imgPrefix + 'bg_video.png' : imgPrefix + 'bg.png') + ')';
+    }
+
+    /*小图标功能区得失焦点*/
+    function onFocusIn(btn, hasFocus) {
+        initDownFocusObj(btn);
+    }
+
+    /*小图标下移（搜索左移动）到当前对应内容块导航焦点上*/
+    function initDownFocusObj(btn) {
+        LMEPG.BM.getButtonById(btn.id).nextFocusDown = 'tab-' + previousTabIndex;
+        if (btn.id == 'vip') {
+            LMEPG.BM.getButtonById('vip').nextFocusLeft = 'tab-' + previousTabIndex;
+        }
+    }
+
+
+    /*获取当前页*/
+    function getCurPageObj() {
+        var objCurrent = LMEPG.Intent.createIntent('home');
+        objCurrent.setParam('focusId', LMEPG.BM.getCurrentButton().id);
+        objCurrent.setParam('tabId', thisNavID);
+        objCurrent.setParam('bottomPage', +Tab1.bottomPage);
+        return objCurrent;
+    }
+
+    function jumpPageUI(btn) {
+        var currentObj = getCurPageObj(btn);
+        // 通过点击对象id,设置跳转页面对象
+        var jumpPageObj = {
+            'search': 'search',
+            'vip': 'orderHome',
+            'collection': 'collect',
+            'history': 'historyPlay',
+            'data': 'familyEdit'
+        };
+        var jumpAgreementObj = LMEPG.Intent.createIntent(jumpPageObj[btn.id]);
+        // 跳转的订购页面
+        if (jumpPageObj[btn.id] == 'orderHome') {
+            Page.jumpBuyVipWithNormal('HomeMenu');
+        }
+        LMEPG.Intent.jump(jumpAgreementObj, currentObj);
+    }
+
+    var buttons = [];
+
+    var Head = {
+        init: function () {
+            try {
+                this.createHtml();
+                Head.initButton();
+            } catch (e) {
+                LMEPG.UI.showToast("导航栏组件异常运行！"+e)
+            }
+        },
+        createHtml: function () {
+            if (RenderParam.navConfig && RenderParam.navConfig.length > 0) {
+                G("nav-content-tabs").innerHTML = "";
+                var strHtml = "";
+                for (var i = 0; i < RenderParam.navConfig.length; i++) {
+                    strHtml += '<img id="tab-' + i + '" src="' + RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[i].img_url).normal + '">'
+                }
+                G("nav-content-tabs").innerHTML = strHtml;
+            } else {
+                LMEPG.UI.showToast("导航栏数据拉取失败！")
+            }
+        },
+
+        initButton: function () {
+            buttons.push({
+                id: 'vip',
+                name: 'VIP图标',
+                type: 'img',
+                nextFocusLeft: 'tab-2',
+                nextFocusRight: 'search',
+                nextFocusDown: 'tab-0',
+                backgroundImage: pathPrefix + 'vip.png',
+                focusImage: pathPrefix + 'vip_f.png',
+                click: jumpPageUI,
+                focusChange: onFocusIn
+            })
+            buttons.push({
+                id: 'search',
+                name: '搜索图标',
+                type: 'img',
+                nextFocusLeft: 'vip',
+                nextFocusRight: 'history',
+                nextFocusDown: 'tab-0',
+                backgroundImage: pathPrefix + 'search.png',
+                focusImage: pathPrefix + 'search_f.png',
+                click: jumpPageUI,
+                focusChange: onFocusIn
+            })
+            buttons.push({
+                id: 'history',
+                name: '历史',
+                type: 'img',
+                nextFocusLeft: 'search',
+                nextFocusRight: "collection",
+                nextFocusUp: '',
+                nextFocusDown: 'tab-0',
+                backgroundImage: pathPrefix + 'history.png',
+                focusImage: pathPrefix + 'history_f.png',
+                click: jumpPageUI,
+                focusChange: onFocusIn
+            })
+            buttons.push({
+                id: 'collection',
+                name: '收藏',
+                type: 'img',
+                nextFocusLeft: 'history',
+                nextFocusRight: 'vip',
+                nextFocusDown: 'tab-0',
+                backgroundImage: pathPrefix + 'collect.png',
+                focusImage: pathPrefix + 'btn_collect_f.png',
+                click: jumpPageUI,
+                focusChange: onFocusIn
+            })
+            buttons.push({
+                id: 'tab-0',
+                name: '第一个导航',
+                type: 'img',
+                nextFocusLeft: 'tab-2',
+                nextFocusRight: 'tab-1',
+                nextFocusUp: 'vip',
+                nextFocusDown: 'tab0-recommended-1',
+                backgroundImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[0].img_url).normal,
+                focusImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[0].img_url).focus_in,
+                selectedImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[0].img_url).focus_out,
+                groupId: "nav",
+                focusChange: tabGetFocus,
+            })
+            buttons.push({
+                id: 'tab-1',
+                name: '第二个导航',
+                type: 'img',
+                nextFocusLeft: 'tab-0',
+                nextFocusRight: 'tab-2',
+                nextFocusUp: 'vip',
+                nextFocusDown: 'tab1-recommended-1',
+                backgroundImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[1].img_url).normal,
+                focusImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[1].img_url).focus_in,
+                selectedImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[1].img_url).focus_out,
+                groupId: "nav",
+                focusChange: tabGetFocus,
+            })
+            buttons.push({
+                id: 'tab-2',
+                name: '第三个导航',
+                type: 'img',
+                nextFocusLeft: 'tab-1',
+                nextFocusRight: 'vip',
+                nextFocusUp: 'vip',
+                nextFocusDown: 'tab2-recommended-1',
+                backgroundImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[2].img_url).normal,
+                focusImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[2].img_url).focus_in,
+                selectedImage: RenderParam.fsUrl + JSON.parse(RenderParam.navConfig[2].img_url).focus_out,
+                groupId: "nav",
+                focusChange: tabGetFocus,
+            })
+        },
+        recdFocus:function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if(btn.show_title){
+                LMEPG.UI.Marquee.stop();
+                LMEPG.UI.Marquee.start(btn.id + "-title", btn.show_num, 5, 50, "left", "scroll");
+            }
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                LMEPG.UI.Marquee.stop();
+                btnElement.setAttribute('class', 'recommended-img');
+            }
+        },
+
+    }
+</script>

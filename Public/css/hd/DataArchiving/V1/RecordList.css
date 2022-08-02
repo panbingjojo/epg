@@ -1,0 +1,109 @@
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    color: #ffffff
+}
+
+/*顶部按钮：输入数据和数据归档*/
+#write-btn {
+    position: absolute;
+    width: 200px;
+    height: 72px;
+    top: 8px;
+    left: 852px;
+}
+
+#arching-btn {
+    position: absolute;
+    width: 200px;
+    height: 72px;
+    top: 8px;
+    left: 1062px;
+}
+
+/*未归档数目红点*/
+#count {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 4px;
+    left: 1218px;
+    border-radius: 50%;
+    background: #ff6666;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 40px;
+    font-size: 28px;
+    display: none;
+}
+
+.center {
+    position: absolute;
+    top: 180px;
+    width: 1120px;
+    left: 60px;
+}
+
+.card {
+    position: relative;
+    width: 284px;
+    height: 404px;
+    background: url("../../../../../Public/img/hd/HealthTest/bg_card.png");
+    float: left;
+    margin-left: 80px;
+}
+
+.photo {
+    position: absolute;
+    width: 178px;
+    height: 178px;
+    top: 73px;
+    left: 53px;
+}
+
+.intro-info {
+    position: absolute;
+    width: 284px;
+    text-align: center;
+    top: 274px;
+    font-size: 34px;
+    color: black;
+}
+
+.font-s {
+    font-size: 28px;
+}
+
+#arrow-left {
+    width: 36px;
+    height: 69px;
+    position: absolute;
+    top: 362px;
+    left: 25px;
+    display: none;
+}
+
+#arrow-right {
+    width: 36px;
+    height: 69px;
+    position: absolute;
+    top: 362px;
+    left: 1220px;
+    display: none;
+}
+
+#data_full {
+    display: none;
+}
+
+#data_null {
+    position: relative;
+    top: 50%;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 36px;
+    margin: 0 auto;
+    display: none;
+}

@@ -1,0 +1,390 @@
+body {
+    width: 1280px;
+    height: 720px;
+    /*background-repeat: no-repeat;*/
+}
+body > *,
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: hidden;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+#bg_1{
+    display: block;
+}
+#bg_2{
+    display: none;
+}
+
+#btn_back{
+    position: absolute;
+    top: 20px;
+    left: 1140px;
+}
+#btn_activity_rule{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+#btn_winner_list{
+    position: absolute;
+    left: 960px;
+    top: 20px;
+}
+#btn_exchange_prize{
+    position: absolute;
+    left: 200px;
+    top: 20px;
+}
+#btn_start{
+    position: absolute;
+    left: 530px;
+    top: 600px;
+}
+#bg_times{
+    position: absolute;
+    left: 710px;
+    top: 610px;
+}
+#exchange_prize_1 {
+    left: 260px;
+    top: 520px;
+}
+#exchange_prize_2 {
+    left: 580px;
+    top: 520px;
+}
+#exchange_prize_3 {
+    left: 900px;
+    top: 520px;
+}
+.total_integral {
+    color: #fff;
+    font-weight: normal;
+    font-size: 30px;
+}
+#exchange_point_1 {
+    position: absolute;
+    left: 350px;
+    top: 452px;
+}
+#exchange_point_2 {
+    position: absolute;
+    left: 673px;
+    top: 452px;
+}
+#exchange_point_3 {
+    position: absolute;
+    left: 996px;
+    top: 452px;
+}
+
+#btn_lottery_cancel_1 {
+    position: absolute;
+    top: 465px;
+    left: 693px;
+    height: 56px;
+    width: 167px;
+}
+
+
+#score{
+    position: absolute;
+    top: 267px;
+    left: 637px;
+    text-align: center;
+    color: #3f2b10;
+    width: 80px;
+    height: 36px;
+    font-size: 36px;
+
+}
+
+/*活动规则*/
+#btn_close_rule, #btn_close_exchange {
+    top: 20px;
+    left: 1160px;
+    display: block;
+}
+
+/*中奖名单*/
+#total_list {
+    top: 260px;
+    left: 220px;
+    height: 130px;
+    width: 840px;
+    font-size: 26px;
+    /*border: 1px red solid;*/
+}
+#btn_list_submit {
+    top: 560px;
+    left: 770px;
+}
+#btn_exchange_submit {
+    top: 440px;
+    left: 710px;
+}
+
+#btn_list_cancel {
+    top: 560px;
+    left: 900px;
+}
+#btn_exchange_cancel {
+    top: 440px;
+    left: 840px;
+}
+
+#all_marquee {
+    width: 840px;
+    height: 120px;
+}
+
+#my_marquee {
+    height: 40px;
+}
+
+table.marquee_table {
+    width: 848px;
+}
+
+table#all_table tr {
+    height: 30px;
+}
+.winner_account{
+    width: 240px;
+}
+.winner_time{
+    width: 360px;
+}
+
+table.marquee_table td {
+    /* left: 240px; */
+    margin-right: 40px;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    font-weight: normal;
+    /*border: 1px red solid;*/
+}
+
+#my_list {
+    top: 500px;
+    left: 220px;
+    height: 40px;
+    width: 840px;
+    font-size: 23px;
+    text-align: center;
+}
+
+#reset_tel {
+    /*line-height: 18px;*/
+    top: 582px;
+    left: 430px;
+    width: 320px;
+    font-size: 26px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.3);
+    /*font-style: SourceHanSansCN-Medium;*/
+    border-radius: 5px;
+    /*text-align: center;*/
+    font-weight: normal;
+    /*background: #8e551d;*/
+    /*border: 1px red solid;*/
+}
+
+/*游戏页*/
+#game_container{
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+#game_countdown {
+    top: 30px;
+    left: 40px;
+    width: 50px;
+    font-size: 34px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/*抽奖失败*/
+#btn_lottery_fail{
+    top: 444px;
+    left: 534px;
+}
+
+#answer_true_option {
+    line-height: 48px;
+    top: 364px;
+    left: 742px;
+    font-size: 62px;
+    color: #4d4d4d;
+    font-weight: normal;
+}
+
+.result {
+    position: absolute;
+    top: 350px;
+    height: 30px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+}
+#score_result {
+    position: absolute;
+    left: 780px;
+    width: 60px;
+    text-align: center;
+}
+#my_dispatch_num {
+    position: absolute;
+    left: 520px;
+    width: 60px;
+    text-align: center;
+}
+
+#btn_exchange_submit_fail, #btn_game_over_sure,
+#btn_result_submit, #game_over_sure {
+    top: 435px;
+    left: 580px;
+}
+
+#exchange_tel {
+    top: 462px;
+    left: 360px;
+    width: 320px;
+    font-size: 26px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: normal;
+}
+
+/* 游戏页 */
+#big-turntable * {
+    position: absolute;
+}
+
+#bg_surplus_num {
+    top: 108px;
+    left: 478px;
+}
+#bg_shopping_bag {
+    top: 220px;
+    left: 530px;
+}
+#before_pack_goods_big {
+    top: 110px;
+    left: 530px;
+}
+#before_pack_goods_small {
+    width: 120px;
+    height: 120px;
+    top: 210px;
+    left: 360px;
+}
+#after_pack_goods {
+    width: 120px;
+    height: 120px;
+    top: 210px;
+    left: 800px;
+}
+#btn_dispatch {
+    top: 600px;
+    left: 530px;
+}
+.num_text {
+    font-weight: bold;
+}
+#count_down {
+    top: 48px;
+    left: 48px;
+    width: 30px;
+    text-align: center;
+    font-size: 26px;
+    color: #e64552;
+}
+#dispatch_num {
+    top: 118px;
+    left: 482px;
+    width: 50px;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+}
+
+/*抽奖成功*/
+#prize_image {
+    top: 166px;
+    left: 525px;
+}
+
+
+/*订购VIP*/
+#btn_order_submit {
+    top: 440px;
+    left: 490px;
+}
+
+#btn_order_cancel {
+    top: 440px;
+    left: 670px;
+}
+#btn_game_confirm{
+    top: 528px;
+    left: 713px;
+}
+#btn_game_cancel{
+    top: 528px;
+    left: 984px;
+}
+
+#game_score_index {
+    position: absolute;
+    left: 119px;
+    top: 647px;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: normal;
+}
+#game_score {
+    position: absolute;
+    left: 117px;
+    top: 647px;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+#activityTimes {
+    position: absolute;
+    left: 720px;
+    top: 607px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+#turntable{
+    top: 113px;
+    left: 403px;
+}

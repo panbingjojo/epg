@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>健康码服务热线</title>
+    <!--公用库-->
+    <script>
+        Root = "__ROOT__";
+        var RenderParam = {
+            isVip: {$isVip},  //当前用户是否VIP
+            userId: '{$userId}',    // 当前用户ID
+            carrierId: "{$carrierId}",          // 地区id
+            platformType: '{$platformType}',     // hd--高清 sd--标清
+            areaId:"{$firstAreaId}",                  //根据来源地区显示第一个
+            provinceName:"{$provinceName}"
+        };
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/OutbreakReport/V1/hotline.css?t={$time}">
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V1/hotline.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/common/Pagination.js?t={$time}"></script>
+</head>
+<body>
+<!--背景-->
+<img id="indexBg"/>
+<div id="title">健康码服务热线</div>
+<img class="title-line" src="__ROOT__/Public/img/{$platformType}/OutbreakReport/V1/title_line.png"/>
+<div id="container">
+    <div id="tab-container"></div>
+    <div id="nav-container">
+        <img id="pre-page" src="__ROOT__/Public/img/{$platformType}/OutbreakReport/V1/pre_page_normal.png" alt="">
+        <img id="next-page" src="__ROOT__/Public/img/{$platformType}/OutbreakReport/V1/next_page_normal.png" alt="">
+    </div>
+</div>
+<p id="page-number">0/0</p>
+
+</body>
+<script>
+    window.onload = function () {
+        Controller.init();
+    }
+
+    if (RenderParam.carrierId == "410092") {
+        LMEPG.Log.info('init HybirdCallBackInterface !!!!!');
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                LMEPG.Log.info('HybirdCallBackInterface param : ' + JSON.stringify(param));
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</html>

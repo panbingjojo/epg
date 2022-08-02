@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>计费页 -- 吉林广电新媒体移动版本</title>
+    <!--样式文件-->
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Pay/V220001/pay.css?t={$time}"/>
+    <script type="application/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // ------------- 公共参数 ----------------
+            userId: "{$userId}",
+            carrierId: "{$carrierId}", // 地区id
+
+            // ------------- 计费模块通用参数 ---------------
+            orderItems: {$orderItems},
+            isPlaying: "{$isPlaying}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            returnPageName: "{$returnPageName}",
+
+            // ------------- 当前模块参数 ---------------
+            extraData: {$extraData}
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-1.7.2.min.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V{$carrierId}/pay.js?t={$time}"></script>
+</head>
+<body>
+<!--计费套餐选项-->
+<div id="order_package_container">
+    <!-- 计费套餐选项 -- 续包月 -->
+    <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/package_1_selected.png" id="order_package_1">
+    <!-- 计费套餐选项 -- 月卡 -->
+    <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/package_2_unselected.png" id="order_package_2">
+    <!-- 计费套餐选项 -- 年卡 -->
+    <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/package_3_unselected.png" id="order_package_3">
+</div>
+
+<!--支付方式选项-->
+<div id="payment_container" class="hide">
+    <div id="bill_payment_container1" class="hide">
+        <!-- 账单支付 -- 标题 -->
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/bill_payment_title.png" class="bill_payment_title">
+        <div class="content_container">
+            <div class="pay_tips">支付提醒:
+                “电视家庭医生会员"连续包月产品，每月<span id="bill_fee"></span>订购后立即生效,不支持退费。<br/>
+                退续订方式:订购48小时后可进入“我的订购”取消次月续订。</div>
+            <div id="account_info1"></div>
+            <div >账户余额：<span id="account_balance1"></span></div>
+        </div>
+
+        <div id="product_fee1"></div>
+        <div class="fee_title">付费金额</div>
+
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/btn_bill_sure_unselect.png" id="btn_bill_sure1">
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/btn_charge_unselect.png" id="btn_charge1" class="hide">
+    </div>
+
+    <!-- 多种支付方式 -- 内容 -->
+    <div id="multi_payment_container" class="hide">
+        <!-- 多种支付方式 -- 标题 -->
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/wechat_payment_focus.png" id="wechat_payment"><img
+            src="__ROOT__/Public/img/{$platformType}/Pay/V220001/ali_payment_unselected.png" id="ali_payment"><img
+            src="__ROOT__/Public/img/{$platformType}/Pay/V220001/bill_payment_unselected.png" id="bill_payment">
+
+        <div id="QRCode_payment_content" class="hide">
+            <div class="content_container2">
+                <div>您正在通过<span id="qr_code_name">微信</span>支付购买“电视家庭医生会员”<span id="qr_code_cycle"></span>个月产品,价格为<span id="qr_code_price"></span>元。</div>
+                <div>资费信息：<span id="package_price"></span></div>
+            </div>
+
+            <img src="" id="qr_code" >
+        </div>
+
+        <div id="bill_payment_container2" class="hide">
+            <div class="content_container3">
+                <div>您正在通过移动手机账户支付购买“电视家庭医生会员”<span id="bill_cycle"></span>个月产品,价格为<span id="bill_price"></span>元。</div>
+                <div id="account_info2"></div>
+                <div >账户余额：<span id="account_balance2"></span></div>
+            </div>
+
+            <div id="product_fee2"></div>
+            <div class="fee_title">付费金额</div>
+
+            <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/btn_bill_sure_unselect.png" id="btn_bill_sure2">
+            <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/btn_charge_unselect.png" id="btn_charge2" class="hide">
+        </div>
+    </div>
+
+    <div id="check_code_container" class="hide">
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/check_code_title.png">
+
+        <div class="content_container">
+            <div id="check_code_tips"></div>
+            <div id="check_code"></div>
+        </div>
+        <!-- 按钮 -- 确定 -->
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/btn_sure_unselected.png" id="btn_check_sure">
+        <!-- 按钮 -- 取消 -->
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/btn_cancel_unselected.png" id="btn_check_cancel">
+    </div>
+
+    <div id="charge_container" class="hide">
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/charge_title.png">
+        <div class="content_container3">
+            <div>支付提醒: 您正在购买“电视家庭医生会员”<span id="charge_cycle"></span>个月产品<span id="charge_price"></span>元,您当前账户余额为<span id="charge_balance"></span>元，请先扫码完成帐户充值</div>
+            <div id="account_info3"></div>
+            <div >账户余额：<span id="account_balance3"></span></div>
+            <img src="" id="charge_qr_code" >
+        </div>
+
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V220001/btn_charge_cancel.png" id="btn_charge_cancel">
+    </div>
+</div>
+<script type="application/javascript">
+    window.onload = function () {
+        try {
+            PayController220001.init();
+        }catch (e) {
+            LMEPG.Log.debug("pay.js 220001-->init_error-->" + e);
+        }
+    }
+</script>
+</body>
+</html>

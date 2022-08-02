@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>活动-在线问诊-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCupidArrow/V1/index.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <style type="text/css">
+        body {
+            background-image: url("__ROOT__/Public/img/{$platformType}/OutbreakReport/V1/no_inquiry_show.jpg");
+        }
+    </style>
+
+    <script>var carrierId = {$carrierId};</script>
+    <if condition="$carrierId eq '07430093' ">
+        <!--湖南联通芒果TV 07430093js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/mongoTV/webview.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            keyTraffic: "{$keyTraffic}",
+            splashHistory: {$splashHistory},
+        };
+    </script>
+
+</head>
+<body>
+<div id="debug"></div>
+
+<img id="">
+<!--本地库-->
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityOnlineInquiry/V1/index.js?t={$time}"></script>
+<script>
+    var keys=new Array();
+    var i = 0;
+    window.onload = function () {
+        //lmInitGo();
+        Activity.init();
+    };
+
+    Webview.stopVideo();
+    Webview.setKeyEventHandler(function (action, keyCode, keyName, metaState) {
+        if(keyCode == KEY_MANGGUOTV_BACK){
+            Page.onBack();
+        }
+
+        if(keyCode == KEY_MANGGUOTV_UP){
+            i=0;
+            keys[i]=keyCode;
+            i++;
+        }else{
+            keys[i]=keyCode;
+            i++;
+        }
+
+        if(keys[1] == KEY_MANGGUOTV_DOWN){
+            if(keys[2] == KEY_MANGGUOTV_LEFT){
+                if(keys[3] == KEY_MANGGUOTV_RIGHT){
+                    //上左下右
+                    var objCurrent = LMEPG.Intent.createIntent('Home');
+                    objCurrent.setParam('userId', RenderParam.userId);
+                    objCurrent.setParam('inner', RenderParam.inner);
+
+                    var objHomeTab = LMEPG.Intent.createIntent('testEntrySet');
+                    LMEPG.Intent.jump(objHomeTab, objCurrent);
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

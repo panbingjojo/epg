@@ -1,0 +1,132 @@
+.recommended-1 {
+    position: absolute;
+    top: 376px;
+    left: 372px;
+    width: 288px;
+    height: 264px;
+    /*z-index: 3;*/
+}
+.recommended-2 {
+    position: absolute;
+    top: 140px;
+    left: 80px;
+    width: 280px;
+    height: 500px;
+    /*z-index: 3;*/
+}
+.recommended-3 {
+    position: absolute;
+    top: 140px;
+    left: 372px;
+    width: 488px;
+    height: 224px;
+    /*z-index: 3;*/
+}
+
+.recommended-4 {
+    position: absolute;
+    top: 376px;
+    left: 672px;
+    width: 528px;
+    height: 264px;
+    /*z-index: 3;*/
+}
+.recommended-5 {
+    position: absolute;
+    top: 140px;
+    left: 872px;
+    width: 328px;
+    height: 224px;
+    /*z-index: 3;*/
+}
+.recommended-6 {
+    position: absolute;
+    top: 486px;
+    left: 922px;
+    width: 278px;
+    height: 174px;
+    /*z-index: 3;*/
+}
+
+.recommended-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+
+/*挽留页*/
+.retain {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 10000;
+}
+
+.retain > .hold-bg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+
+.retain > .continue-btn {
+    position: absolute;
+    left: 167px;
+    top: 597px;
+    width: 199px;
+    height: 77px;
+
+}
+
+.retain > .close-btn {
+    position: absolute;
+    left: 428px;
+    top: 597px;
+    width: 199px;
+    height: 77px;
+
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+
+/*复写样式*/
+.title{
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    font-size: 38px;
+    color: #fff;
+    font-weight: bold;
+    background-image: url(../../../../img/hd/Home/V11/line.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+
+}
+.recommended-hover img.recommended-bg{
+    width: 110%;
+    height: 110%;
+    border: 5px solid #fff !important;
+    border-radius: 20px;
+    transition: .1s all;
+    top: -20px;
+    left: -20px;
+    z-index: 33;
+}
+.recommended-hover img.vip-icon{
+    top: -25px;
+    left: -25px;
+    z-index: 33;
+}
+
+.vip-icon{
+    top: -3px;
+    left: 0;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <title>搜索页面V9</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Search/V9/search.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        if (typeof iPanel == 'object') {  //广西广电需要师父返回键、退出键有页面来控制
+            iPanel.setGlobalVar('SEND_RETURN_KEY_TO_PAGE', 1);
+            iPanel.setGlobalVar('SEND_EXIT_KEY_TO_PAGE', 1);
+        }
+        var RenderParam = {
+            // 共用参数
+            isVip: {$isVip},          // 地区id
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+            accountId: '{$accountId}',          // 用户账号
+            focusIndex: '{$focusIndex}',        // 用户账号
+            modeTitle: '{$modeTitle}'          // 用户账号
+
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+</head>
+<body>
+<!--键盘容器-->
+<div id="input-key-wrapper">
+    <!--输入框-->
+    <p id="search-value" val=""></p>
+    <div class="key-container">
+        <div class="row-key-1 col-key-1"><img id="key-0" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_0.png" alt=""></div>
+        <div class="row-key-1 col-key-2"><img id="key-1" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_1.png" alt=""></div>
+        <div class="row-key-1 col-key-3"><img id="key-2" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_2.png" alt=""></div>
+        <div class="row-key-2 col-key-1"><img id="key-3" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_3.png" alt=""></div>
+        <div class="row-key-2 col-key-2"><img id="key-4" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_4.png" alt=""></div>
+        <div class="row-key-2 col-key-3"><img id="key-5" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_5.png" alt=""></div>
+        <div class="row-key-3 col-key-1"><img id="key-6" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_6.png" alt=""></div>
+        <div class="row-key-3 col-key-2"><img id="key-7" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_7.png" alt=""></div>
+        <div class="row-key-3 col-key-3"><img id="key-8" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_8.png" alt=""></div>
+        <div class="row-key-4 col-key-1"><img id="key-9" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_9.png" alt=""></div>
+        <div class="row-key-4 col-key-2"><img id="key-10" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_10.png" alt=""></div>
+        <div class="row-key-4 col-key-3"><img id="key-11" src="__ROOT__/Public/img/{$platformType}/Search/V9/key_11.png" alt=""></div>
+    </div>
+</div>
+<img id="prev-arrow" src="__ROOT__/Public/img/{$platformType}/Search/V9/prev.png" alt="">
+<img id="next-arrow" src="__ROOT__/Public/img/{$platformType}/Search/V9/next.png" alt="">
+<p id="title">大家都在看</p>
+<div id="page-index">0/0</div>
+<!--搜索结果容器-->
+<div id="content-container"></div>
+
+<script type="text/javascript" src="__ROOT__/Public/js/Search/V9/search.js?t={$time}"></script>
+</body>
+</html>

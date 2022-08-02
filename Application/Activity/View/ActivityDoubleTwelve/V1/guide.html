@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>回血双12，疯狂刷宝洞</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--处理background-img拿取图片fs地址-->
+    <include file="./Application/Activity/View/ActivityDoubleTwelve/V1/bgImage.html"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/{$platformType}/Activity/ActivityDoubleTwelve/guide.css?t={$time}">
+    <script type="text/javascript">
+        var ROOT = '__ROOT__';
+        var RenderParam = {
+            isVip: '{$isVip}',
+            userId: '{$userId}',
+            userTel: '{$userTel}',
+            lmcid: '{$carrierId}',
+            cdCount: '{$cdCount}',
+            beClickId: 'jump-start',
+            isOrderBack: '{$isOrderBack}',
+            activityImg: '{$activityFsImg}{$platformType}/',
+            cOrderResult: '{$Think.cookie.c_order_result}',
+            loginUserAccount: '{$userAccount}',
+            platformType: '{$platformType}',
+            activityInfo: {$activityInfo},
+            extraTimes: '{$extraTimes}',
+            leftTimes: {$leftTimes},
+            AllUserPrizeList:{$AllUserPrizeList},
+            myPrizeList:{$myPrizeList},
+            score: '{$score}'
+        };
+
+        window.onload = function () {
+            G('default_link').focus();
+            Activity.init();
+            lmInitGo();
+        };
+    </script>
+</head>
+<body>
+
+<div id="debug"></div>
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+<!--<p id="score-count">积分：XXX</p>-->
+<img id="jump-start" src="{$activityFsImg}{$platformType}/jump_start.png">
+<p id="times-count">XXX</p>
+<img id="jump-knowledge" src="{$activityFsImg}{$platformType}/jump_knowledge.png">
+<div class="jump-wrap">
+    <img id="jump-back" src="{$activityFsImg}{$platformType}/jump_back.png">
+    <img id="jump-rule" src="{$activityFsImg}{$platformType}/jump_rule.png">
+    <img id="jump-winner" src="{$activityFsImg}{$platformType}/jump_winner.png">
+<!--    <img id="jump-exchange" src="{$activityFsImg}{$platformType}/jump_exchange.png">-->
+</div>
+
+<!--游戏容器-->
+<div id="game-wrapper">
+    <p class="game-cd">倒计时：<br/><span id="game-cd">15s</span></p>
+    <ul id="hole">
+        <li id="hole-0">
+            <img id="hole-focus-0" src="__ROOT__/Public/img/hd/Common/transparent.png">
+        </li>
+        <li id="hole-1">
+            <img id="hole-focus-1" src="__ROOT__/Public/img/hd/Common/transparent.png">
+        </li>
+        <li id="hole-2">
+            <img id="hole-focus-2" src="__ROOT__/Public/img/hd/Common/transparent.png">
+        </li>
+        <li id="hole-3">
+            <img id="hole-focus-3" src="__ROOT__/Public/img/hd/Common/transparent.png">
+        </li>
+        <li id="hole-4">
+            <img id="hole-focus-4" src="__ROOT__/Public/img/hd/Common/transparent.png">
+        </li>
+        <li id="hole-5">
+            <img id="hole-focus-5" src="__ROOT__/Public/img/hd/Common/transparent.png">
+        </li>
+    </ul>
+</div>
+
+<!--完成游戏UI-->
+<div id="modal-game-success" class="modal">
+    <p id="game-success-score">0</p>
+    <img id="btn-game-success" src="{$activityFsImg}{$platformType}/btn_lottery_f.png">
+</div>
+
+<!--没能完成游戏UI-->
+<div id="modal-game-lose" class="modal">
+    <p id="game-lose-score">0</p>
+    <img id="btn-game-lose" src="{$activityFsImg}{$platformType}/btn_sure.png">
+</div>
+
+<!--常识UI-->
+<div id="modal-knowledge" class="modal">
+    <img id="knowledge-pic" src="{$activityFsImg}{$platformType}/txt0.png">
+    <img id="knowledge-next" src="__ROOT__/Public/img/hd/Common/transparent.png">
+    <img id="knowledge-back" src="__ROOT__/Public/img/hd/Common/transparent.png">
+</div>
+
+<!--活动规则UI-->
+<div id="modal-rule" class="modal">
+    <img id="btn-rule-close" src="__ROOT__/Public/img/hd/Common/transparent.png">
+</div>
+
+<!--中奖名单UI-->
+<div id="modal-list" class="modal">
+    <div id="total-list" class="winner-list"></div>
+    <div id="my-list" class="winner-list"></div>
+    <div id="rewrite-tel" class="list-tel my">请输入有效的电话</div>
+    <img id="btn-list-submit" class="btn-list" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-list-cancel" class="btn-list" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--VIP没有游戏次数UI-->
+<div id="modal-vip-notimes" class="modal">
+    <img id="btn-one1" src="{$activityFsImg}{$platformType}/btn_sure.png">
+</div>
+
+<!--普通用户没有游戏次数UI-->
+<div id="modal-pay-notimes" class="modal">
+    <img id="btn-pay-sure" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-pay-cancel" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--奖品抽中UI-->
+<div id="modal-lottery-success" class="modal">
+    <img id="accomplish-prize" src="">
+    <div id="accomplish-tel">请输入有效的电话</div>
+    <img id="btn-accomplish-submit" class="btn-win" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-accomplish-cancel" class="btn-win" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<div id="modal-lottery-lose" class="modal">
+    <img id="btn-lottery-lose" class="btn-win" src="{$activityFsImg}{$platformType}/btn_sure.png">
+</div>
+
+<!--支付反馈UI-->
+<div id="modal-pay" class="modal">
+    <img id="pay-back-tip" src="__ROOT__/Public/img/Common/spacer.gif">
+</div>
+
+
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/activityBase.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityDoubleTwelve/index.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+</body>
+</html>

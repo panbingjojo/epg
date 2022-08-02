@@ -1,0 +1,181 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    color: #000;
+    background-image: url(../../../../img/hd/Home/V16/Home/Common/bg.png);
+    background-repeat: no-repeat;
+    background-size: 644px 530px;
+}
+
+.title {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    height: 66px;
+    line-height: 66px;
+    color: #000;
+}
+
+#person-pic {
+    width: 66px;
+    height: 66px;
+    padding-bottom: 20px;
+}
+
+#test-item {
+    position: absolute;
+    top: 24px;
+    left: 342px;
+    width: 144px;
+    height: 44px;
+}
+
+#write-data {
+    position: absolute;
+    top: 24px;
+    left: 500px;
+    width: 144px;
+    height: 44px;
+}
+
+#tab-wrap {
+    position: absolute;
+    top: 133px;
+    left: 58px;
+    height: 38px;
+    width: 500px;
+    /*background-image: url(../../../../img/sd/Unclassified/V13/nav_bg.png);*/
+    background-image: url(../../../../img/hd/HealthTest/V16/test_tab_bg.png);
+    background-size: 100% 100%;
+}
+
+#tab-wrap li {
+    float: left;
+    width: 108px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    height: 32px;
+    line-height: 30px;
+    padding-bottom: 8px;
+    background-repeat: no-repeat;
+    background-size: 100% 106%;
+}
+
+
+#record-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#table-wrap {
+    position: absolute;
+    top: 200px;
+    left: 12px;
+    width: 600px;
+    height: 280px;
+    padding: 10px;
+    background-image: url(../../../../img/hd/HealthTest/V16/container_bg.png);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: 100% 100%;
+}
+
+#record-container table {
+    position: absolute;
+    width: 600px;
+    height: 230px;
+    border-collapse: collapse;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.thead-title {
+    color: #000;
+}
+
+#record-container table thead {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+}
+
+#record-container table thead th {
+    width: 18%;
+}
+
+#record-container table tbody {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#record-container table tbody tr {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    padding: 0 5px;
+    background-position: center;
+}
+
+tr.even {
+    color: goldenrod;
+}
+
+tr.odd {
+
+}
+
+#record-container table tbody tr td {
+    /* position: relative; */
+    /* width: 20%; */
+    /* padding: 0 10px; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+    line-height: 1;
+}
+#record-container table tbody tr td.test-result{
+    width: 11%;
+}
+#record-container table tbody tr td.test-time {
+    width: 33%;
+}
+
+/*滚动条*/
+#scroll-wrap {
+    width: 6px;
+    height: 288px;
+    position: absolute;
+    top: 210px;
+    left: 610px;
+    border-radius: 6px;
+    background-color: #89adf4;
+}
+
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 10px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #32cfe0;
+}
+
+#null-data-000051{
+    color: #000;
+}
+/*sd新增*/
+.test-delete img{/* position: absolute; *//* left: 0; *//* top: 0; *//* margin-left: -20px; *//* margin-bottom: -8px; */}
+
+

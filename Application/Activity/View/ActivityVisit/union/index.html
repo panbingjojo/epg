@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>名医下基层-union-游戏页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityVisit/union/index.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <!--当前用到的自定义js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityVisit/PopRule.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityVisit/union/DialogMoreThree.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+
+        function onBack() {
+            LMEPG.Intent.back("activity-common-guide");
+        }
+
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text, prizeName, prizeIdx) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeName", prizeName);
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+    </script>
+</head>
+<body>
+<img id="tip_bg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityVisit/union/tip1.png" alt="" />
+<img id="play" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityVisit/union/play_btn_out.png" alt="" />
+<script type="text/javascript">
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityVisit/union/';
+
+    var buttons = [
+        {
+            id: 'play',
+            name: '抽奖',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'play_btn_out.png',
+            focusImage: imgPathPrefix + 'play_btn_in.gif',
+            click: 'uploadAnswerResult()',
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }];
+
+    function rand()//生成随机数1~10
+    {
+        return (Math.floor(Math.random() * 10 + 1));
+    }
+
+    window.onload = function (ev) {
+        // 山西联通某款盒子焦点会有问题，对方提供的
+        var stbModel = LMEPG.STBUtil.getSTBModel();
+        if (stbModel == "B700V5C") {
+            if (top.location !== self.location) {
+                top.location = self.location;
+            }
+        }
+
+        var num = rand();
+        G("tip_bg").src = imgPathPrefix + '/tip' + num + ".png";
+        LMEPG.ButtonManager.init(['play'], buttons, '', true);
+    };
+
+    /**
+     * <pre>
+     *     上报答题结果。
+     *     -------------
+     *     “天下名医，服务基层”的联合活动，没有答题环节，只有抽奖。但是抽奖前，还是要上报答题结果，只是这里默认都
+     *  上传答题结果，以保证后台接口记录并变更次数。
+     * </pre>
+     */
+    function uploadAnswerResult() {
+        LMEPG.UI.showWaitingDialog("");
+        LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+            function (rsp) {    // success
+                console.log("---------uploadAnswerResult.success------------rsp: " + rsp);
+                participationActivity(); // 无论上报成功与否，都直接进入抽奖环节
+            },
+            function (rsp) {    // error
+                console.log("---------uploadAnswerResult.error------------rsp: " + rsp);
+                participationActivity(); // 无论上报成功与否，都直接进入抽奖环节
+            }
+        );
+    }
+
+    //参与抽奖
+    function participationActivity() {
+        LMEPG.ajax.postAPI('Activity/participateActivity', null,
+            function (rsp) {    // success
+                LMEPG.UI.dismissWaitingDialog();
+
+                var context = 0;
+                var prizeName = "";
+                var prizeIdx = 0;
+
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    switch (data.result) {
+                        case 0:     // 没有抽中奖品
+                            context = USER_NOT_DRAWN_PRIZE_TIPS;// 没有中奖
+                            return;
+                        case 1:     // 抽中奖品
+                            context = VIP_USER_DRAWN_PRIZE;
+                            prizeName = data.prize_name;
+                            prizeIdx = data.prize_idx;
+                            break;
+                        case -108:  // vip参与活动次数已满
+                            context = VIP_USER_PLAY_TIMES_OVER;
+                            break;
+                        case -109:  // 非会员试玩后提示
+                            context = NOT_VIP_USER_PLAY_TIMES_OVER;
+                            break;
+                        default:
+                            context = USER_NOT_DRAWN_PRIZE_TIPS;
+                            LMEPG.UI.showToast('抽奖失败[' + data.result + ']');
+                            setTimeout("onBack()", 3000);
+                            return;
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("抽奖结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                    return;
+                }
+
+                jumpDialog(context,prizeName,prizeIdx);
+            },
+            function (rsp) {    // error
+                LMEPG.UI.dismissWaitingDialog();
+                LMEPG.UI.showToast("请求抽奖发生错误！");
+            }
+        );
+    }
+</script>
+</body>
+</html>

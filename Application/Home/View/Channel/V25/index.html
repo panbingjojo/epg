@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>一级视频栏目-中国联通V16</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Channel/V25/index.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+            accountId: '{$accountId}',          // 用户账号
+            isVip: '{$isVip}',
+
+            //当前页渲染
+            firstModelType: {$firstModelType},  // 一级分类类型
+            secondClass: {$secondClass},        // 二级分类数组
+            modelName: "{$modelName}", // 标题
+            skin: {$skin},      // 用户自定义背景
+            // 焦点保持
+            keepNavFocusId: "{$keepNavFocusId}",
+            focusId: "{$focusId}",
+            page: "{$page}",
+            navPage: "{$navPage}",
+            navIndex: "{$navIndex}",
+            backgroundImage:"{$themePicture}"
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Channel/V25/index.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+
+<img id="nav-prev-arrow" class="nav-arrow" src="__ROOT__/Public/img/hd/Common/V13/p_arrow.png">
+<img id="nav-next-arrow" class="nav-arrow" src="__ROOT__/Public/img/hd/Common/V13/n_arrow.png">
+<div id="nav-container">
+    <p id="nav-0"></p>
+    <p id="nav-1"></p>
+    <p id="nav-2"></p>
+    <p id="nav-3"></p>
+    <p id="nav-4"></p>
+</div>
+<div id="list-container">
+    <img id="prev-arrow" class="arrow" src="__ROOT__/Public/img/hd/Channel/V25/left-arrow.png">
+    <img id="next-arrow" class="arrow" src="__ROOT__/Public/img/hd/Channel/V25/right-arrow.png">
+    <ul id="list-wrapper"></ul>
+</div>
+<div id="page-wrapper">
+    <img id="first-page" src="__ROOT__/Public/img/hd/Channel/V25/first_page.png">
+    <img id="prev-page" src="__ROOT__/Public/img/hd/Channel/V25/prev_page.png" style="margin-left: 20px">
+    <p id="page-index">0/0</p>
+    <img id="next-page" src="__ROOT__/Public/img/hd/Channel/V25/next_page.png">
+    <img id="last-page" src="__ROOT__/Public/img/hd/Channel/V25/last_page.png" style="margin-left: 20px">
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        var bgImg = RenderParam.fsUrl + RenderParam.backgroundImage;
+        document.body.style.backgroundImage = 'url(' + bgImg + ')';
+
+
+        Level2.init();
+        LmOrderConf.init({
+            getCurrentPage: Level2.getCurPageObj,
+        });
+    };
+
+</script>
+<script type="text/javascript" src="__ROOT__/Public/js/Unclassified/ByCarrierIdSet.js?t={$time}"></script>
+</body>
+</html>

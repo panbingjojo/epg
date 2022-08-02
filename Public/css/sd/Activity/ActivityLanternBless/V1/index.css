@@ -1,0 +1,334 @@
+body {
+    width: 644px;
+    height: 530px;
+}
+body > *,
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*活动首页*/
+#btn_activity_rule {
+    top: 88px;
+    left: 544px;
+}
+
+#btn_start {
+    bottom: 0px;
+    right: 0px;
+}
+
+
+#btn_back {
+    top: 28px;
+    left: 544px;
+}
+
+#btn_winner_list {
+    top: 148px;
+    left: 544px;
+}
+
+#btn_exchange_prize {
+    top: 207px;
+    left: 544px;
+}
+
+
+/*材料数量   依次为：浆糊、蜡烛、纸张、颜料、竹子、灯笼 */
+#prize_num{
+    font-size: 20px;
+    color: white;
+}
+#prize_num>div{
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    /*border: 1px red solid;*/
+}
+#num_1{
+    position: absolute;
+    top: 250px;
+    left: 285px;
+}
+#num_2{
+    position: absolute;
+    top:250px;
+    left: 377px;
+}
+#num_3{
+    position: absolute;
+    top:250px;
+    left: 470px;
+}
+#num_4{
+    position: absolute;
+    top:352px;
+    left: 310px;
+}
+#num_5{
+    position: absolute;
+    top:352px;
+    left: 408px;
+}
+#lantern{
+    position: absolute;
+    top:325px;
+    left: 195px;
+}
+#score{
+    display: none;
+}
+
+
+#left_times {
+    top: 287px;
+    left: 580px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/*活动规则*/
+#bg_activity_rule{
+    position: absolute;
+    top: 30px;
+    left: 15px;
+}
+
+#btn_close_rule {
+    top: 28px;
+    left: 544px;
+    display:none;
+}
+
+/*中奖名单*/
+#total_list {
+    top: 120px;
+    left: 70px;
+}
+
+#all_marquee {
+    height: 70px;
+}
+
+#my_marquee {
+    height: 30px;
+}
+
+table.marquee_table {
+    width: 480px;
+}
+
+table#all_table tr {
+    height: 40px;
+}
+
+table.marquee_table td {
+    width: 150px;
+    margin-right: 15px;
+    text-align: center;
+    color: #fff;
+    font-size: 17px;
+}
+
+#my_list {
+    top: 275px;
+    left: 65px;
+    font-size: 17px;
+    color: #fff;
+    text-align: center;
+}
+
+#reset_tel {
+    color: #a3a3a3;
+    top: 325px;
+    left: 250px;
+    width: 222px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 17px;
+    text-align: left;
+}
+
+
+#btn_list_submit {
+    top: 370px;
+    left: 150px;
+}
+
+#btn_list_cancel {
+    top: 370px;
+    left: 350px;
+}
+
+
+/*兑换奖品-详情页面*/
+#exchange_prize_num{
+    font-size: 20px;
+    color: white;
+}
+#exchange_prize_num>div{
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    /*border: 1px red solid;*/
+}
+
+/*材料数量*/
+#exchange_num_1{
+    position: absolute;
+    top: 155px;
+    left: 209px;
+}
+#exchange_num_2{
+    position: absolute;
+    top: 155px;
+    left: 302px;
+}
+#exchange_num_3{
+    position: absolute;
+    top: 155px;
+    left: 396px;
+}
+#exchange_num_4{
+    position: absolute;
+    top: 155px;
+    left: 487px;
+}
+#exchange_num_5{
+    position: absolute;
+    top: 155px;
+    left: 581px;
+}
+
+#game_score{
+    display: none;
+}
+
+/*灯笼*/
+#exchange_lantern{
+    position: absolute;
+    top: 300px;
+    left: 107px;
+}
+
+
+
+/*兑换需要灯笼数*/
+#exchange_point_1{
+    position: absolute;
+    top: 312px;
+    left:224px;
+}
+#exchange_point_2{
+    position: absolute;
+    top: 312px;
+    left:389px;
+}
+#exchange_point_3{
+    position: absolute;
+    top: 312px;
+    left: 550px;
+}
+/*兑换按钮*/
+#exchange_prize_1{
+    position: absolute;
+    top:365px;
+    left:142px;
+}
+#exchange_prize_2{
+    position: absolute;
+    top:365px;
+    left:302px;
+}
+#exchange_prize_3{
+    position: absolute;
+    top:365px;
+    left:465px;
+}
+#exchange_prize_4{
+    display: none;
+}
+
+/*兑换成功页*/
+#btn_exchange_submit {
+    top: 291px;
+    left: 174px;
+}
+
+#btn_exchange_cancel {
+    top: 291px;
+    left: 326px;
+}
+#exchange_tel {
+    top: 245px;
+    left: 320px;
+    font-size: 15px;
+    color: #a3a3a3;
+    text-align: left;
+}
+
+
+/*游戏结束*/
+#btn_game_over_sure {
+    top: 329px;
+    left: 275px;
+}
+
+/*游戏页*/
+#prize_image{
+    position: absolute;
+    width: 80px;
+    top: 160px;
+    left: 390px;
+}
+
+#btn_lottery_submit{
+    position: absolute;
+    top: 291px;
+    left: 250px;
+    height: 61px;
+}
+
+
+/*订购VIP*/
+#btn_order_submit {
+    top: 260px;
+    left: 200px;
+    width: 120px;
+}
+
+#btn_order_cancel {
+    top: 260px;
+    left: 333px;
+    width: 120px;
+}
+
+/*倒计时弹窗*/
+#count {
+    top: 192px;
+    left: 336px;
+    color: #d61d1d;
+    font-size: 26px;
+    font-weight: bold;
+}

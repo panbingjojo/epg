@@ -1,0 +1,179 @@
+<div class="tab2-box">
+    <div class="tab2-recommended-1-box">
+        <img id="tab2-recommended-1" class="recommended-img"
+             src="http://202.99.114.152:30214/fs/mofang/imgs/1000051/faster_entry/20200605092905.png"
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab2-recommended-1-title"></p>
+    </div>
+
+    <div class="tab2-recommended-2-box">
+        <img id="tab2-recommended-2" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab2-recommended-2-title"></p>
+    </div>
+
+    <div class="tab2-recommended-3-box">
+        <img id="tab2-recommended-3" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab2-recommended-3-title"></p>
+    </div>
+    <div class="tab2-recommended-4-box">
+        <img id="tab2-recommended-4" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab2-recommended-4-title"></p>
+    </div>
+
+    <div class="tab2-recommended-5-box">
+        <img id="tab2-recommended-5" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab2-recommended-5-title"></p>
+    </div>
+
+    <div class="tab2-recommended-6-box">
+        <img id="tab2-recommended-6" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab2-recommended-6-title" class="hidden"></p>
+    </div>
+</div>
+
+<script>
+    Tab2 = {
+        initButton: function () {
+            buttons.push({
+                id: 'tab2-recommended-1',
+                type: 'img',
+                nextFocusRight: 'tab2-recommended-2',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: 'tab2-recommended-4',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                show_title: true,
+                show_num: 20,
+                cPosition: 31,
+                cBanner:"",
+            })
+            buttons.push({
+                id: 'tab2-recommended-2',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-1',
+                nextFocusRight: 'tab2-recommended-3',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: 'tab2-recommended-6',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 32
+            })
+            buttons.push({
+                id: 'tab2-recommended-3',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-2',
+                nextFocusRight: '',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 33,
+                cBanner:"",
+            })
+            buttons.push({
+                id: 'tab2-recommended-4',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'tab2-recommended-5',
+                nextFocusUp: 'tab2-recommended-1',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 34
+            })
+            buttons.push({
+                id: 'tab2-recommended-5',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-4',
+                nextFocusRight: 'tab2-recommended-6',
+                nextFocusUp: 'tab2-recommended-1',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 35
+            })
+            buttons.push({
+                id: 'tab2-recommended-6',
+                type: 'img',
+                nextFocusLeft: 'tab2-recommended-5',
+                nextFocusRight: 'tab2-recommended-3',
+                nextFocusUp: 'tab2-recommended-2',
+                nextFocusDown: '',
+                show_title: true,
+                show_num: 10,
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                cPosition: 36
+            })
+        },
+        createHtml: function () {
+            var list = RenderParam.homeConfigInfo.data.entry_list;
+            var id = '';
+            for (var i = 0; i < list.length; i++) {
+                id = 0;
+                var item = list[i];
+                switch (parseInt(item.position)) {
+                        // banner
+                    case 31:
+                        id = 'tab2-recommended-1';
+                        this.banner5 = new Banner('tab2-recommended-1',item.item_data);
+                        this.banner5.banner();
+                        break;
+                    case 32:
+                        id = 'tab2-recommended-2';
+                        break;
+                    case 33:
+                        id = 'tab2-recommended-3';
+                        this.banner6 = new Banner('tab2-recommended-3',item.item_data);
+                        this.banner6.banner();
+                        break;
+                    case 34:
+                        id = 'tab2-recommended-4';
+                        break;
+                    case 35:
+                        id = 'tab2-recommended-5';
+                        break;
+                    case 36:
+                        id = 'tab2-recommended-6';
+                        break;
+                }
+                if (id) {
+                    G(id).src = RenderParam.fsUrl + JSON.parse(item.item_data[0].img_url).normal;
+                    G(id + '-title').innerHTML = JSON.parse(item.item_data[0].inner_parameters).title;
+                }
+            }
+        },
+        init: function () {
+            try {
+                Tab2.initButton();
+                Tab2.createHtml();
+            } catch (e) {
+                LMEPG.UI.showToast("健康知识组件异常运行" + e)
+            }
+        },
+    }
+</script>

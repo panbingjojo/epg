@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="http://180.141.207.157:33200/EPG/jsp/AAAHD/en/js/md5.js"></script>
+    <!--当前模块js-->
+    <script type="text/javascript">
+        // 监听返回键
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+    </script>
+</head>
+<body style="background-image: url('__ROOT__/Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<div id="debug" style=" display: block;color:white;z-index:999;"></div>
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+<script type="text/javascript">
+    !(function (win) {
+
+
+
+        function runTask() {
+            //setPageSize();
+            LMEPG.Log.info("runTask::runTask ---> start");
+            var url = "http://113.12.94.49:8090/test/h5v2/activity/20200713/index.html?returnurl=http://180.141.207.157:33200/EPG/jsp/AAAHD/en/index.jsp&recommCollectId=Portal07$815db386a1d3d3aed491e6ba086ad67c";
+            task.initAndJump(url);
+            //获取目标地址
+            /**
+            LMEPG.ajax.postAPI("Pay/buildDirectPayUrlForPage", null, function (data) {
+                try {
+                    data = data instanceof Object ? data : JSON.parse(data);
+                    if (data && data.result == 0) {
+                        LMEPG.Log.info("runTask::runTask ---> get url:" + data.payUrl);
+                        task.initAndJump(data.payUrl);
+                    } else {
+                        LMEPG.Log.error("runTask::runTask ---> get url: failed!");
+                    }
+                } catch (e) {
+                    LMEPG.Log.error("runTask::runTask ---> get url: exception(" + e.toString() + ")");
+                }
+            });
+            **/
+        }
+
+        function reportOrderInfo(orderId, status, msg){
+            LMEPG.Log.info("runTask::runTask ---> start");
+            var postData = {
+                "orderId": orderId,
+                "status": status,
+                "msg": msg,
+            };
+            // 获取目标地址
+            LMEPG.ajax.postAPI("Pay/reportOrderInfo", postData, function (data) {
+                try {
+                    data = data instanceof Object ? data : JSON.parse(data);
+                    if (data) {
+                        LMEPG.Log.info("reportOrderInfo::reportOrderInfo ---> result:" + data.result);
+                    }
+                } catch (e) {
+                    LMEPG.Log.error("reportOrderInfo::reportOrderInfo ---> exception(" + e.toString() + ")");
+                }
+            });
+        }
+
+
+        var task = {
+            id: "inject_iframe",
+            objIFrame: null,
+            url: "",
+            isReport: false,
+            lmTradeNo: "",
+            loadId: 0,
+            // 构建IFrame对象
+            buildIFrameObject: function (id) {
+                if (!task.objIFrame) {
+                    task.objIFrame = document.createElement("iframe");
+                    task.objIFrame.name = id;
+                    task.objIFrame.id = id;
+                    //设置iframe的样式
+                    task.objIFrame.style.overflow = "hidden";
+                    task.objIFrame.style.border = "none";
+                    task.objIFrame.style.zIndex = "-1";
+                    task.objIFrame.style.position = "absolute";
+                    task.objIFrame.style.top = "0px";
+                    task.objIFrame.style.left = "0px";
+                    task.objIFrame.width = "1280";
+                    task.objIFrame.height = "720px";
+                    task.objIFrame.scrolling = "no";
+                    task.objIFrame.frameborder = "0";
+                }
+                return task.objIFrame;
+            },
+            // 增加IFrame对象到body中
+            addIFrameToBody: function (obj) {
+                var body = document.body;
+                if (body){
+                    body.appendChild(obj);
+                }
+                return body;
+            },
+            // 加载IFrame
+            loadIFrame: function (url) {
+                if (task.objIFrame) {
+                    LMEPG.Log.info("task::loadIFrame ---> url:" + url);
+                    task.objIFrame.onload = function() {
+                        task.loadId = task.loadId + 1;
+                        var title = "";
+                        var iframe=document.getElementById("showlast").innerHTML="123";
+                        LMEPG.Log.info("task::loadIFrame ---> iframe:" + iframe);
+                        if (typeof task.objIFrame.contentWindow.document.title !== "undefined") {
+                            title = task.objIFrame.contentWindow.document.title;
+                        }
+                        LMEPG.Log.info("task::loadIFrame ---> onload finish loadId:" + task.loadId + ",title:" + title);
+                        var msg = "页面加载成功 --- taskId:" + task.loadId + ",title:" + title;
+                        reportOrderInfo(task.lmTradeNo, 2, msg);
+
+                        // 设置分辨率，否则可能会出现页面放大的问题
+                        var meta = task.objIFrame.contentWindow.document.getElementsByTagName('meta');
+                        if (typeof meta !== "undefined") {
+                            if (task.platformType == "hd") {
+                                if (typeof meta["page-view-size"] !== "undefined") {
+                                    meta["page-view-size"].setAttribute('content',"1280*720");
+                                    LMEPG.Log.error("task::loadIFrame ---> meta set 1280*720");
+                                }
+                            }
+                        }
+                        // 抢回焦点
+                        var defaultId = window.document.getElementById('default_link');
+                        if (typeof defaultId !== "undefined"
+                            && typeof defaultId.focus !== "undefined") {
+                            defaultId.focus();
+                        }
+
+                        if (title == "Insert title here") {
+                            if (typeof task.objIFrame.contentWindow.showFirstOrderPage !== "undefined") {
+                                task.objIFrame.contentWindow.showFirstOrderPage = "0"; //设置为自动跳转
+                                LMEPG.Log.info("task::loadIFrame ---> set showFirstOrderPage == 0");
+                            }
+                            if (typeof task.objIFrame.contentWindow.init !== "undefined") {
+                                task.objIFrame.contentWindow.init.apply(task.objIFrame.contentWindow, []);
+                            }
+                        }
+                        // 抢回焦点
+                        var defaultId = window.document.getElementById('default_link');
+                        if (typeof defaultId !== "undefined"
+                            && typeof defaultId.focus !== "undefined") {
+                            defaultId.focus();
+                        }
+                    };
+                    var msg = "loadIFrame: url:" + escape(url);
+                    reportOrderInfo(task.lmTradeNo, 1, msg);
+                    task.objIFrame.src = url;
+                } else {
+                    LMEPG.Log.info("task::loadIFrame ---> task.objIFrame is null");
+                }
+            },
+            // 启动任务
+            startTask: function () {
+                setTimeout(task.run, 1000);
+            },
+            // 任务处理
+            run: function () {
+                LMEPG.Log.info("task::run ---> start");
+                printObjInfo(task.objIFrame, "task.objIFrame");
+
+                if (typeof task.objIFrame.contentWindow !== "undefined" && typeof task.objIFrame.contentWindow.goOk !== "undefined") {
+                    task.objIFrame.contentWindow.goLeft();
+                    setTimeout(function(){
+                        var msg = "{\"msg\":\"点击支付确认按钮\"}";
+                        reportOrderInfo(task.lmTradeNo, 3, msg);
+
+                        task.objIFrame.contentWindow.goOk();
+                        task.clickConfirmButton();
+                    }, 500);
+                } else {
+                    setTimeout(task.run, 1000);
+                }
+            },
+            clickConfirmButton: function(){
+                if (typeof task.objIFrame.contentWindow !== "undefined" && typeof task.objIFrame.contentWindow.elementClick !== "undefined") {
+                    setTimeout(function(){
+                        var msg = "{\"msg\":\"点击支付结果确认按钮\"}";
+                        reportOrderInfo(task.lmTradeNo, 4, msg);
+                        var btn = {
+                            "id": "btn_ok_focus"
+                        };
+                        task.objIFrame.contentWindow.elementClick(btn);
+                    }, 1000);
+                } else {
+                    setTimeout(task.clickConfirmButton, 1000);
+                }
+            },
+            initAndJump: function (url) {
+                if (typeof url != "undefined") {
+                    task.url = url;
+                    //task.lmTradeNo = getUrlParamByName(task.url, "lmTradeNo");
+                }
+                var obj = task.buildIFrameObject(task.id);
+                if (!obj) {
+                    setTimeout(task.initAndJump, 1000);
+                    return;
+                }
+                var body = task.addIFrameToBody(obj);
+                if (!body) {
+                    setTimeout(task.initAndJump, 1000);
+                    return;
+                }
+                task.loadIFrame(task.url);
+                //task.startTask();
+            },
+        };
+        win.initInjectTask = runTask;
+        win.initInjectTask(); // 加载后立即执行
+    })(window);
+</script>
+</body>
+</html>

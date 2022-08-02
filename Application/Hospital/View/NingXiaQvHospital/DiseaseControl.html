@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>医生简介</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/Hospital/NingXiaQvHospital/DiseaseControl.css?t={$time}"/>
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            firstEnter: '{$firstEnter}',                          // 用户首次进入
+        };
+        window.onload = function () {
+            LMEPG.BM.init('', [], '', true);
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+</body>
+</html>

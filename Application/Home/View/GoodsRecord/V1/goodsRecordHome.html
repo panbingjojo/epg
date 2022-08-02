@@ -1,0 +1,544 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>挂号记录-V1</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/V8/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/BuyRecord/V8/buyRecordHome.css?t={$time}">
+
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",            // 页面尺寸
+            stbModel: "{$stbModel}",                            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",                // 用户Id
+
+            focusIndex: "{$focusIndex}",                        // 焦点ID
+            scrollTop: "{$scrollTop}",                          // 滚动距离
+            isVip: {$isVip},                                    // 用户是否是vip
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmplayer_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmstbutils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmfocustype.js?t={$time}"></script>
+    <!--模块-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Goods/GoodsAPI.js?t={$time}"></script>
+    <script src="__ROOT__/Public/ThirdParty/js/jquery-1.7.2.min.js"></script>
+    <script src="__ROOT__/Public/ThirdParty/js/jquery.qrcode.min.js"></script>
+</head>
+<body>
+<!--背景-->
+<img id="body" class="bg" src="__ROOT__/Public/img/Common/V8/bg.png"/>
+<div class="title">
+    设备购买记录
+</div>
+<img class="title-line" id="default" src="__ROOT__/Public/img/Common/V3/title_line.png"/>
+<div id="center" class="center"></div>
+
+<div id="delivery" style='background-image: url("__ROOT__/Public/img/Common/V8/delivery_bg.png")'></div>
+
+<div id="null-data">暂无设备购买记录</div>
+
+
+<script type="text/javascript">
+
+    // 定义全局按钮
+    var buttons = [];
+
+    var scroll = "center";
+
+    function onBack() {
+        if (G("delivery").style.display == "block") {
+            Home.closeDelivery();
+        } else {
+            Page.onBack();
+        }
+    }
+
+    var Page = {
+        //获取当前页面对象
+        getCurrentPage: function () {
+            var currentPage = LMEPG.Intent.createIntent("goodsRecordHome");
+            currentPage.setParam("focusIndex", LMEPG.BM.getCurrentButton().id);
+            currentPage.setParam('scrollTop', G("center").scrollTop);
+            return currentPage;
+        },
+
+        //跳转到二维码支付界面
+        jumpPay: function (orderId, payUrl, goodInfo) {
+            var objCurr = Page.getCurrentPage();
+            var objPay = LMEPG.Intent.createIntent("goodsPay");
+            objPay.setParam("goodInfo", goodInfo);
+            objPay.setParam("orderId", orderId);
+            objPay.setParam("payUrl", payUrl);
+            LMEPG.Intent.jump(objPay, objCurr);
+        },
+
+        onBack: function () {
+            LMEPG.Intent.back();
+        }
+    };
+
+    var Home = {
+        defaultFocusId: "btn-detail-1",
+        //页面初始化操作
+        init: function () {
+            RecordList.init();
+        },
+
+        initButtons: function () {
+            buttons.push({
+                id: 'default',
+                name: '默认焦点',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                backgroundImage: "",
+                focusImage: "",
+                click: "",
+                focusChange: "",
+                beforeMoveChange: "",
+            });
+
+            buttons.push({
+                id: 'delivery',
+                name: '快递弹窗',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                backgroundImage: "",
+                focusImage: "",
+                click: Home.closeDelivery,
+                focusChange: "",
+                beforeMoveChange: "",
+            });
+        },
+
+        departFocus: function (btn, hasFocus) {
+            if (hasFocus) {
+                LMEPG.CssManager.addClass(btn.id, "btn-hover");
+            } else {
+                LMEPG.CssManager.removeClass(btn.id, "btn-hover");
+            }
+        },
+
+        eventOnclick: function (btn) {
+            var tempRecordData = btn.cRecordData;
+            switch (btn.cBtnTips) {
+                case "删除订单":
+                    LMEPG.UI.commonDialog.show(" 您确定要删除此条记录吗？？", ["确定", "取消"], function (btnIndex) {
+                        switch (btnIndex) {
+                            case 0:
+                                DataHandle.delOrder(tempRecordData.order_id);
+                                return true;
+                            default:
+                                break;
+                        }
+                    });
+                    break;
+                case "付款":
+                    DataHandle.getOrderId(btn);
+                    break;
+                case "取消订单":
+                    LMEPG.UI.commonDialog.show("确定要取消该笔订单吗？", ["确定", "取消"], function (btnIndex) {
+                        switch (btnIndex) {
+                            case 0:
+                                DataHandle.cancelOrder(tempRecordData.order_id);
+                                return true;
+                            default:
+                                break;
+                        }
+                    });
+                    break;
+                case "提醒发货":
+                    DataHandle.getWarnState(tempRecordData.order_id);
+                    break;
+                case "查看物流":
+                    DataHandle.getGoodsLogisticsInfo(tempRecordData, btn);
+                    break;
+                case "联系我们":
+                    LMEPG.UI.commonDialog.show("若您对本次购物有任何疑问，请随时与我们联系，联系方式:0771-5854165", ["确定"], function () {
+
+                    });
+                    break;
+                default:
+                    LMEPG.ui.showToast("不存在此订单")
+                    break;
+            }
+
+        },
+
+        closeDelivery: function () {
+            Hide("delivery");
+            G("center").style.overflow = "auto";
+            LMEPG.ButtonManager.requestFocus(Home.defaultFocusId);
+        },
+
+        // 焦点方向移动
+        onBeforeMoveChange: function (dir, current) {
+            switch (dir) {
+                case 'up':
+                    var upBtn = LMEPG.BM.getButtonById(current.nextFocusUp);
+                    if (null == upBtn) {
+                        return;
+                    }
+                    if (upBtn.focusable) {
+                        LMEPG.ui.showScrollTop(current.id, "up", -256.5);
+                    } else {
+                        LMEPG.BM.requestFocus(current.cNextUpAlternateBtnId);
+                        LMEPG.ui.showScrollTop(current.id, "up", -256.5);
+                        return;
+                    }
+                    break;
+                case 'down':
+                    var downBtn = LMEPG.BM.getButtonById(current.nextFocusDown);
+                    if (null == downBtn) {
+                        return;
+                    }
+                    if (!downBtn.focusable) {
+                        LMEPG.BM.requestFocus(current.cNextDownAlternateBtnId);
+                    }
+                    LMEPG.ui.showScrollTop(current.id, "down", -256.5);
+                    break;
+            }
+        },
+    };
+
+
+    var DataHandle = {
+        getRecordInfo: function () {
+            GoodsAPI.getRecordInfo("0", 1, 9999, function (data) {
+                RecordList.createHtml(data);
+            });
+        },
+        getWarnState: function (orderId) {
+            LMEPG.ui.showWaitingDialog();
+            GoodsAPI.getWarnState(orderId, function (data) {
+                LMEPG.ui.dismissWaitingDialog();
+                var warnState = data.result;
+                if (warnState == 0) {
+                    LMEPG.UI.commonDialog.show("提醒成功！我们将尽快为您发货，订单若有问题，我们的工作人员将会与您联系！", ["确定"], function () {
+
+                    });
+                } else if (warnState == -102) {
+                    LMEPG.ui.showToast("今天已经提醒过了哦");
+                } else {
+                    LMEPG.ui.showToast("网络不给力，请稍后重试！");
+                }
+            });
+        },
+        cancelOrder: function (orderId) {
+            LMEPG.ui.showWaitingDialog();
+            GoodsAPI.cancelOrder(orderId, function (data) {
+                LMEPG.ui.dismissWaitingDialog();
+                var result = data.result;
+                if (result == 0) {
+                    RenderParam.focusIndex = "";
+                    window.location.reload();
+                } else {
+                    LMEPG.ui.showToast("网络不给力，请稍后重试！");
+                }
+            });
+        },
+        delOrder: function (orderId) {
+            LMEPG.ui.showWaitingDialog();
+            GoodsAPI.delOrder(orderId, function (data) {
+                LMEPG.ui.dismissWaitingDialog();
+                var result = data.result;
+                if (result == 0) {
+                    RenderParam.focusIndex = "";
+                    window.location.reload();
+                } else {
+                    LMEPG.ui.showToast("网络不给力，请稍后重试！");
+                }
+            });
+        },
+        getOrderId: function (btn) {
+            var tempRecordData = btn.cRecordData;
+            var tempGoodsId = tempRecordData.goods_id;
+            var tempUserTel = tempRecordData.recipient_tel;
+            var goodInfo = tempRecordData;
+            GoodsAPI.getOrderId(tempGoodsId, tempUserTel, function (data) {
+                if (data.result == "0") {
+                    var orderId = data.order_id;
+                    var payUrl = data.pay_url;
+                    Page.jumpPay(orderId, payUrl, goodInfo);
+                } else if (data.result == "-101") {
+                    LMEPG.ui.showToast("抱歉，商品已售完！看看其他商品吧！");
+                } else {
+                    LMEPG.ui.showToast("网络不给力，请稍后重试！");
+                }
+            });
+        },
+        getGoodsLogisticsInfo: function (cRecordData, btn) {
+            Show("delivery");
+            G("center").style.overflow = "hidden";
+            LMEPG.ButtonManager.requestFocus("delivery");
+            Home.defaultFocusId = btn.id;
+            G("delivery").innerHTML = "";
+            RecordList.createProcess("", cRecordData);
+        }
+    };
+
+
+    var RecordList = {
+        init: function () {
+            DataHandle.getRecordInfo();
+        },
+
+        createHtml: function (data) {
+            console.log("d::" + JSON.stringify(data))
+            var tempServiceTel = data.service_tel;
+            var tempList = data.list;
+            var tempCount = data.count;
+            var tempResult = data.result;
+
+            if (tempResult != "0") {
+                LMEPG.ui.showToast("获取数据异常");
+                G("null-data").style.display = "block";
+                LMEPG.ButtonManager.init("", buttons, "", true);
+                return;
+            }
+
+            if (tempList.length < 1) {
+                G("null-data").style.display = "block";
+                LMEPG.ButtonManager.init("", buttons, "", true);
+                return;
+            }
+
+            var sHtml = "";
+            for (var i = 0; i < tempList.length; i++) {
+                var itemRecordInfo = tempList[i];
+
+
+                var RecordData = {
+                    order_id: itemRecordInfo.order_id,
+                    user_id: itemRecordInfo.user_tel,
+                    goods_name: itemRecordInfo.goods_name,
+                    goods_type: itemRecordInfo.goods_type,
+                    goods_img_url: itemRecordInfo.goods_img_url,
+                    goods_id: itemRecordInfo.goods_id,
+                    goods_price: itemRecordInfo.goods_price,
+                    pay_state: itemRecordInfo.pay_state,
+                    payment_fee: itemRecordInfo.payment_fee,
+                    expire: itemRecordInfo.expire,
+                    del_state: itemRecordInfo.del_state,
+                    remind: itemRecordInfo.remind,
+                    remind_dt: itemRecordInfo.remind_dt,
+                    express_name: itemRecordInfo.express_name,
+                    express_id: itemRecordInfo.express_id,
+                    recipient: itemRecordInfo.recipient,
+                    recipient_tel: itemRecordInfo.recipient_tel,
+                    address: itemRecordInfo.address,
+                    sign: itemRecordInfo.sign,
+                    insert_dt: itemRecordInfo.insert_dt,
+                    service_tel: tempServiceTel,
+                    express_code: itemRecordInfo.express_code
+
+                };
+
+
+                var tempOrderTips = "";
+                var tempOrderTipsColor = "yellow";
+                var tempLeftBtnIsShow = false;
+                var tempLeftBtnTips = "";
+                var tempRightBtnIsShow = false;
+                var tempRightBtnTips = "";
+
+                if (RecordData.expire == "0") {
+                    tempOrderTips = "订单已取消";
+                    tempLeftBtnIsShow = false;
+                    tempRightBtnIsShow = true;
+                    tempRightBtnTips = "删除订单";
+                } else {
+                    switch (parseInt(RecordData.pay_state)) {
+                        case 0://未付款
+                            switch (parseInt(RecordData.sign)) {
+                                case 0://未签收
+                                    tempOrderTips = "等待付款";
+                                    tempLeftBtnIsShow = true;
+                                    tempRightBtnIsShow = true;
+                                    tempLeftBtnTips = "付款";
+                                    tempRightBtnTips = "取消订单";
+                                    break;
+                                case 1://已签收
+                                    break;
+                            }
+                            break;
+                        case 1://已付款
+                            switch (parseInt(RecordData.sign)) {
+                                case 0://未签收
+                                    if (null == RecordData.express_id || RecordData.express_id == "") {
+                                        tempOrderTips = "待发货";
+                                        tempLeftBtnIsShow = false;
+                                        tempRightBtnIsShow = true;
+                                        tempRightBtnTips = "提醒发货";
+                                    } else {
+                                        tempOrderTips = "已发货";
+                                        tempLeftBtnIsShow = true;
+                                        tempRightBtnIsShow = true;
+                                        tempLeftBtnTips = "查看物流";
+                                        tempRightBtnTips = "联系我们";
+                                        tempOrderTipsColor = "blue";
+                                    }
+                                    break;
+                                case 1://已签收
+                                    tempOrderTips = "交易成功";
+                                    tempLeftBtnIsShow = true;
+                                    tempRightBtnIsShow = true;
+                                    tempLeftBtnTips = "查看物流";
+                                    tempRightBtnTips = "联系我们";
+                                    tempOrderTipsColor = "blue";
+                                    break;
+                            }
+                            break;
+                    }
+                }
+
+
+                sHtml += '<div class="detail-info">';
+                sHtml += '<dl> <dt>' + RecordData.insert_dt + '<div class="status ' + tempOrderTipsColor + '">' + tempOrderTips + '</div></dt>';
+                sHtml += '<dd>收件人：' + RecordData.recipient + '<div class="phone">' + RecordData.recipient_tel + '</div></dd>';
+                sHtml += '<dd>地址：' + RecordData.address + '</dd></dl>';
+                sHtml += '<div class="good-box"><img class="good_img" src="' + (RenderParam.fsUrl + RecordData.goods_img_url) + '"/>';
+                sHtml += '<div class="good-detail">' + RecordData.goods_name + '<br/>￥' + (RecordData.goods_price / 100).toFixed(2) + '</div></div>';
+                if (tempLeftBtnIsShow) {
+                    sHtml += '<div id="btn-detail-' + (i + 1) + '" class="btn-detail btn-bg" style="display: block">' + tempLeftBtnTips + '</div>';
+                } else {
+                    sHtml += '<div id="btn-detail-' + (i + 1) + '" class="btn-detail btn-bg" style="display: none">' + tempLeftBtnTips + '</div>';
+                }
+
+                sHtml += '<div id="btn-contact-' + (i + 1) + '" class="btn-contact btn-bg" style="display: block">' + tempRightBtnTips + '</div>';
+
+                sHtml += '</div>';
+                buttons.push({
+                    id: 'btn-detail-' + (i + 1),
+                    name: '科室',
+                    type: 'img',
+                    nextFocusLeft: "",
+                    nextFocusRight: 'btn-contact-' + (i + 1),
+                    nextFocusUp: 'btn-detail-' + i,
+                    nextFocusDown: 'btn-detail-' + (i + 2),
+                    cNextUpAlternateBtnId: 'btn-contact-' + 1,
+                    cNextDownAlternateBtnId: 'btn-contact-' + (i + 2),
+                    backgroundImage: "",
+                    focusImage: "",
+                    click: Home.eventOnclick,
+                    focusChange: Home.departFocus,
+                    focusable: tempLeftBtnIsShow,
+                    beforeMoveChange: Home.onBeforeMoveChange,
+                    cRecordData: RecordData,
+                    cBtnTips: tempLeftBtnTips
+                });
+                buttons.push({
+                    id: 'btn-contact-' + (i + 1),
+                    name: '科室',
+                    type: 'img',
+                    nextFocusLeft: 'btn-detail-' + (i + 1),
+                    nextFocusRight: "",
+                    nextFocusUp: 'btn-contact-' + i,
+                    nextFocusDown: 'btn-contact-' + (i + 2),
+                    backgroundImage: "",
+                    focusImage: "",
+                    focusable: true,
+                    click: Home.eventOnclick,
+                    focusChange: Home.departFocus,
+                    beforeMoveChange: Home.onBeforeMoveChange,
+                    cRecordData: RecordData,
+                    cBtnTips: tempRightBtnTips
+                });
+            }
+            sHtml += '</div>';
+            G("center").innerHTML = sHtml;
+
+            Home.initButtons();
+            var lastFocusId = RenderParam.focusIndex;
+
+            var initBtnId = "btn-contact-1";
+            var initBtn = LMEPG.BM.getButtonById("btn-detail-1");
+            if (lastFocusId) {
+                initBtnId = lastFocusId;
+            } else {
+                if (null != initBtn && initBtn.focusable) {
+                    initBtnId = "btn-detail-1";
+                }
+            }
+
+            LMEPG.ButtonManager.init(initBtnId, buttons, "", true);
+            LMEPG.ui.initScrollTop(RenderParam.scrollTop);
+        },
+
+        //物流详情
+        createProcess: function (listArr, cRecordData) {
+            var expressId = cRecordData.express_id;  //订单号
+            var expressName = cRecordData.express_name; //物流名称
+
+//            var mGoodsLogisticsInfo = listArr[0];
+//            var tempStatusTips = "";
+//            if (mGoodsLogisticsInfo.sign == "0") {
+//                tempStatusTips = "派送中";
+//            } else {
+//                tempStatusTips = "已发货";
+//            }
+
+            var sHtml = "";
+            sHtml += ' <div class="deliveryTitle">';
+//            sHtml += '<div class="deliveryStatus">' + tempStatusTips + '</div>';
+            sHtml += '<div class="trackingNumber">' + expressName + '<br/>' + expressId + ' </div></div>';
+            sHtml += ' <div class="deliveryInfo" style="background: #fff">';
+
+//            for (var i = 0; i < listArr.length; i++) {
+//                var tempTime = listArr[0].time;
+//                var context = listArr[0].context;
+//                sHtml += '<ul><li>' + tempTime + '</li> <li>' + context + '</li> </ul>';
+//            }
+            sHtml += ' <div id="qrcode" style="position: absolute;top: 40px; left: 320px; " ></div>';
+            sHtml += '<div style="position: absolute;top: 210px; left: 120px; width: 560px;font-size: 25px;color: black ;text-align: center">扫码查看物流信息<br/>' +
+                    '如有显示异常，请在快递官网输入单号查询。</div>';
+            sHtml += '</div>';
+            var expressCode = cRecordData.express_code;
+            G("delivery").innerHTML = sHtml;
+//            var code="348428981290";
+//            alert("name>>>"+expressCode+"number>>>"+expressId)
+            $("#qrcode").qrcode({
+                width: 164,
+                height: 164,
+                text: "https://m.kuaidi100.com/result.jsp?com=" + expressCode + "&nu=" + expressId + "&ordersource=pc_result&w=90&h=90",
+            })
+        }
+    };
+
+    window.onload = function () {
+        Home.init();
+    }
+
+</script>
+</body>
+</html>

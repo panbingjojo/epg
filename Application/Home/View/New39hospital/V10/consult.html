@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>立即咨询-V10</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/New39hospital/V10/consult.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <switch name="carrierId">
+        <case value="520094">     <!--贵州广电js文件-->
+            <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+        </case>
+    </switch>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer_gzgd.js?t={$time}"></script>
+</head>
+<body>
+<img id="bodyDefaultImg" src="__ROOT__/Public/img/hd/New39hospital/V10/bg.png"/>
+
+<div id="container-left">
+    <div id="logo"></div>
+    <ul id="nav">
+        <li id="tab-home">首页</li>
+        <li id="tab-experts">顶级专家</li>
+        <li id="tab-guide">就诊指南</li>
+        <li id="tab-case">患者案例</li>
+        <div id="tab-order">立即咨询</div>
+    </ul>
+    <div id="qr-code">
+        <img align="bottom" src="__ROOT__/Public/img/hd/New39hospital/V10/qr_code.png" alt="">
+        <p id="qr-code-desc">扫描下载39互联网医院手机应用</p>
+    </div>
+</div>
+<img src="__ROOT__/Public/img/hd/New39hospital/V10/up.png" id="pre-arrow" alt="">
+<div id="debug" style="position: absolute;z-index: 100; top: 0px"></div>
+
+<div id="container-right">
+    <!--立即咨询-->
+    <div id="content-order">
+        <img id="order-img" src="__ROOT__/Public/img/hd/New39hospital/order_bg.png" alt="就诊指南介绍背景"/>
+    </div>
+</div>
+<img src="__ROOT__/Public/img/hd/New39hospital/V10/down.png" id="next-arrow" alt="">
+<p id="service-tel">全国免费客服热线：400-061-3939</p>
+
+<script type="text/javascript">
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    var Constat = {
+        fileIndex: "__ROOT__/Public/img/hd/New39hospital/V10/",
+    };
+    var buttons = [
+        {
+            id: "tab-home",
+            name: "首页",
+            type: 'div',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'tab-experts',
+            backgroundImage: Constat.fileIndex + "home.png",
+            focusImage: Constat.fileIndex + "home_hover.png",
+            selectedImage: Constat.fileIndex + "home_active.png",
+            bigImg: "",
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+            groupId: "department",
+            moveChange: ""
+        }, {
+            id: "tab-experts",
+            name: "顶级专家",
+            type: 'div',
+            nextFocusUp: 'tab-home',
+            nextFocusDown: 'tab-guide',
+            backgroundImage: Constat.fileIndex + "experts.png",
+            focusImage: Constat.fileIndex + "experts_hover.png",
+            selectedImage: Constat.fileIndex + 'experts_active.png',
+            active: false,
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+            groupId: "department",
+        }, {
+            id: "tab-guide",
+            name: "就诊指南",
+            type: 'div',
+            nextFocusUp: 'tab-experts',
+            nextFocusDown: 'tab-case',
+            backgroundImage: Constat.fileIndex + "guide.png",
+            focusImage: Constat.fileIndex + "guide_hover.png",
+            selectedImage: Constat.fileIndex + 'guide_active.png',
+            active: false,
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+            groupId: "department",
+        }, {
+            id: "tab-case",
+            name: "患者案例",
+            type: 'div',
+            nextFocusUp: 'tab-guide',
+            nextFocusDown: 'tab-order',
+            backgroundImage: Constat.fileIndex + "case.png",
+            focusImage: Constat.fileIndex + "case_hover.png",
+            selectedImage: Constat.fileIndex + "case_active.png",
+            active: false,
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+            groupId: "department",
+        }, {
+            id: "tab-order",
+            name: "立即咨询按钮",
+            type: 'div',
+            nextFocusUp: 'tab-case',
+            backgroundImage: Constat.fileIndex + "order.png",
+            focusImage: Constat.fileIndex + "order_hover.png",
+            selectedImage: Constat.fileIndex + "order_active.png",
+            focusChange: onFocus,
+            click: startInquiryAssistantDoctor,
+            beforeMoveChange: onBeforeMoveChange,
+            groupId: "department",
+        }, {
+            id: "container-right",
+            name: "右边内容视图",
+            type: 'img',
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+        }, {
+            id: "case_detail",
+            name: "患者案例详情",
+            type: 'img',
+            focusChange: '',
+            click: '',
+            beforeMoveChange: onBeforeMoveChange,
+        }];
+
+
+    /**
+     * 咨询助理医生
+     * */
+    function startInquiryAssistantDoctor() {
+        LMEPG.Inquiry.p2p.inquiryAssistantDoctor(function () {
+            LMEPG.UI.showToast("助理医生不在线");
+        });
+    }
+
+    /**
+     * 获取焦点后操作
+     * */
+    function onFocus(btn, hasFocus) {
+        var pdname = btn.id.slice(0, 3);
+        if (hasFocus) {
+            G(btn.id).style.color = "#ffffff";
+        } else {
+            var currentId = LMEPG.ButtonManager.getSelectedButton("department").id;
+            G(currentId).style.color = "#000";
+        }
+    }
+
+    /**
+     * 焦点移动后的操作
+     */
+    function onBeforeMoveChange(direction, current) {
+        switch (direction) {
+            case "up":
+                jumpGuideUI();
+                break;
+            case "down":
+                break;
+            case "left":
+                break;
+            case "right":
+                break;
+        }
+    }
+
+    function getCurrentPageUI() {
+        return LMEPG.Intent.createIntent("Hospital39Consult");
+    }
+
+    function jumpGuideUI() {
+        var nextPage = LMEPG.Intent.createIntent("Hospital39Case");
+        LMEPG.Intent.jump(nextPage, getCurrentPageUI(), LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+
+
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init("tab-order", buttons, "", true);
+        LMEPG.ButtonManager.setSelected("tab-order", true);
+    };
+</script>
+
+</body>
+</html>

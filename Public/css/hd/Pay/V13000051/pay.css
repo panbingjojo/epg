@@ -1,0 +1,39 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 微软雅黑;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+.tab1 {
+    width: 414px;
+    height: 199px;
+    position: absolute;
+    top: 230px;
+    left: 810px
+}
+
+.tab2 {
+    width: 414px;
+    height: 199px;
+    position: absolute;
+    top: 467px;
+    left: 810px
+}
+
+.tab3 {
+    display: none;
+    width: 184px;
+    height: 85px;
+    position: absolute;
+    left: 1064px;
+    top: 530px
+}

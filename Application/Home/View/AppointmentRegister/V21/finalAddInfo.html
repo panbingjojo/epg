@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提交订单</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V21/finalAddInfo.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            hospitalName:'{$hospitalName}',
+            docName:'{$docName}',
+            depName:'{$depName}',
+            doctorName:'{$docName}',
+            startTime:'{$appointment_start}',
+            endTime:'{$appointment_end}',
+            backDepIndex : "{$backDepIndex}",
+            dateTime: '{$dateTime}',
+            title1: '{$title1}',
+            patient: '{$patient}',
+            cost: '{$cost}',
+            tickId:'{$tickId}',
+            id_sch:'{$id_sch}',
+            patientId: '{$patientId}',
+            docNum: '{$docNum}',
+            depCode: '{$depCode}'
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V21/finalAddInfo.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div class="appointment">我的预约</div>
+    <div class="hospital-name" id="hospital-name"></div>
+    <div class="dep" id="dep"></div>
+    <div class="doctor-name" id="doctor-name"></div>
+    <div class="dayTime" id="dayTime"></div>
+    <div class="title1" id="title1" style="display: none;">专家</div>
+
+    <div class="line"></div>
+
+    <div class="second">第二步 支付</div>
+    <div class="pay" id="pay">您需要支付：</div>
+    <div class="money" id="money"></div>
+    <div class="choose">请选择支付方式</div>
+
+    <div id="weixin_btn" class="btn"></div>
+    <div id="zhifubao_btn" class="btn"></div>
+    <div class="weixin">微信</div>
+    <div class="zhifubao">支付宝</div>
+    <div id="weixin" class="img" style="display: block;"></div>
+    <div id="zhifubao" class="img" style="display: none"></div>
+    <div id="qr_code" class="img"></div>
+    <div class="common" id="common">确定</div>
+    <span class="tips">若支付完成后页面未跳转，请在订单记录中查看!</span>
+
+</div>
+
+<div id="window1">
+    <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/window3.png" alt="" class="img1">
+    <div class="information">恭喜您，预约成功！</div>
+</div>
+<div id="isBack" style="display: none;">
+    <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/window1.png">
+    <div class="information1">当前支付未完成，是否返回!</div>
+    <div class="common1" id="common1">确定</div>
+    <div class="cancel1" id="cancel1">取消</div>
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

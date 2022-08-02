@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>米奇之家-union-奖品兑换</title>
+
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCleaning/union/exchange.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityCleaning/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+</head>
+<body style='background: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/bg_exchange.png") no-repeat;'>
+<img id="back" class="btn-only" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/list_back_out.png" alt=""/>
+<img id="exchange1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/exchange1_out.png" alt=""/>
+<img id="exchange2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/exchange2_out.png" alt=""/>
+<img id="exchange3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/exchange3_out.png" alt=""/>
+<div class="title">当前积分</div>
+<div id="mypoint">80</div>
+
+<div class="exchange1_point">消耗<span id="exchange1_point"></span>积分</div>
+<div class="exchange2_point">消耗<span id="exchange2_point"></span>积分</div>
+<div class="exchange3_point">消耗<span id="exchange3_point"></span>积分</div>
+
+<div class="introduce">确定键后消耗积分抽奖，有机会获得相应奖品</div>
+<!--渲染参数-->
+<script type="text/javascript">
+    var RenderParam = {
+        userId: "{$userId}",
+        styleName: "{$styleName}",
+        size: "{$size}",
+        platformType: "{$platformType}",
+        prizeConfigItems: <?php echo json_decode($prizeConfigItems) ?>,
+        score: "{$score}",
+        activityName: "{$activityName}",
+        time: "{$time}",
+    };
+
+</script>
+<!--页面跳转-->
+<script type="text/javascript">
+    /**
+     * 获取当前页对象
+     */
+    function getCurrentPage() {
+        var objCurrent = LMEPG.Intent.createIntent("activity-common-exchange");
+        objCurrent.setParam("userId", "{$userId}");
+        objCurrent.setParam("inner", "{$inner}");
+
+        return objCurrent;
+    }
+
+    /**
+     * 跳转到弹框页
+     */
+    function jumpDialog(text) {
+        var objCurrent = getCurrentPage();
+
+        var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+        objDialog.setParam("userId", "{$userId}");
+        objDialog.setParam("inner", "{$inner}");
+        objDialog.setParam("leftTimes", "{$leftTimes}");
+        objDialog.setParam("demoTimes", "{$demoTimes}");
+        objDialog.setParam("context", text);
+
+        LMEPG.Intent.jump(objDialog, objCurrent);
+    }
+
+    /**
+     * 跳转到中奖页
+     */
+    function jumpHoldPrize(text, prizeName, prizeIdx) {
+        var objCurrent = getCurrentPage();
+
+        var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+        objDialog.setParam("userId", "{$userId}");
+        objDialog.setParam("inner", "{$inner}");
+        objDialog.setParam("leftTimes", "{$leftTimes}");
+        objDialog.setParam("demoTimes", "{$demoTimes}");
+        objDialog.setParam("context", text);
+        objDialog.setParam("prizeName", prizeName);
+        objDialog.setParam("prizeIdx", prizeIdx);
+        objDialog.setParam("bg", "play");
+
+        LMEPG.Intent.jump(objDialog, objCurrent);
+    }
+
+    /**
+     * 跳转弹窗
+     */
+    function jumpNotDrawnPrizeDialog() {
+        jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS);
+    }
+
+
+    /**
+     * 返回事件
+     */
+    function onBack() {
+        //回到活动界面
+        LMEPG.Intent.back();
+    }
+
+</script>
+<!--界面更新-->
+<script type="text/javascript">
+    /**
+     * 更新我的积分
+     */
+    function updateMyScore() {
+        G('mypoint').innerHTML = RenderParam.score;
+    }
+
+    /**
+     * 更新产品积分
+     */
+    function updatePrizeInfo() {
+        //for(prizeConfigItems.length)
+        var listPrizes = RenderParam.prizeConfigItems.list;
+        for (var i = 0; i < listPrizes.length; i++) {
+            G('exchange' + eval(i + 1) + '_point').innerHTML = listPrizes[i].consume_score;
+        }
+    }
+</script>
+<!--事件监听-->
+<script type="text/javascript">
+    /**
+     * 产品被点击
+     * @param btn
+     */
+    function onPrizeClick(btn) {
+        switch (btn.id) {
+            case "exchange1":
+                if (verifyScore(0)) {
+                    startDrawPrize(RenderParam.prizeConfigItems.list[0].prize_idx);//开始抽奖
+                } else {
+                    // 积分不足
+                    jumpDialog(NO_POINTS);
+                }
+                break;
+            case "exchange2":
+                if (verifyScore(1)) {
+                    startDrawPrize(RenderParam.prizeConfigItems.list[1].prize_idx);//开始抽奖
+                } else {
+                    // 积分不足
+                    jumpDialog(NO_POINTS);
+                }
+                break;
+            case "exchange3":
+                if (verifyScore(2)) {
+                    startDrawPrize(RenderParam.prizeConfigItems.list[2].prize_idx);//开始抽奖
+                } else {
+                    // 积分不足
+                    jumpDialog(NO_POINTS);
+                }
+                break;
+        }
+    }
+</script>
+<!--页面逻辑-->
+<script type="text/javascript">
+
+    /**
+     * 校验积分是否能够参与抽奖
+     * @param index 产品序号
+     */
+    function verifyScore(index) {
+        if (parseInt(RenderParam.score) < parseInt(RenderParam.prizeConfigItems.list[index].consume_score)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 开始抽奖
+     */
+    function startDrawPrize(prizeIdx) {
+        LMEPG.UI.showWaitingDialog("");
+        LMEPG.ajax.postAPI('Activity/participateActivity', {"prizeIdx": prizeIdx},
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                var context = 0;
+                var prizeName = "";
+                var prizeIdx = 0;
+
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    switch (result) {
+                        case 0:
+                            // 没有抽中奖品
+                            context = USER_NOT_DRAWN_PRIZE_TIPS; // 未中奖
+                            break;
+                        case 1:
+                            //抽中奖品
+                            context = VIP_USER_DRAWN_PRIZE;
+                            prizeName = data.prize_name;
+                            prizeIdx = data.prize_idx;
+                            jumpHoldPrize(context, prizeName, prizeIdx);
+                            return;
+                        case -108:
+                            //vip参与活动次数已满
+                            context = VIP_USER_PLAY_TIMES_OVER;
+                            break;
+                        case -109:
+                            //非会员试玩后提示
+                            context = NOT_VIP_USER_PLAY_TIMES_OVER;
+                            break;
+                        default:
+                            LMEPG.UI.showToast("抽奖出错！:" + result, 3);
+                            setTimeout(function () {
+                                onBack();
+                            }, 3000);
+                            return;
+                    }
+
+                    jumpDialog(context);
+                } catch (e) {
+                    LMEPG.UI.showToast("抽奖结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                LMEPG.UI.showToast("请求抽奖发生错误！");
+            }
+        );
+    }
+
+</script>
+<script type="text/javascript">
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityCleaning/union/';
+
+    var buttons = [
+        {
+            id: 'back',
+            name: '退出',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusUp: '',
+            nextFocusDown: 'exchange3',
+            nextFocusRight: '',
+            backgroundImage: imgPathPrefix + 'list_back_out.png',
+            focusImage: imgPathPrefix + 'list_back_in.gif',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'exchange1',
+            name: '兑换奖品1',
+            type: 'img',
+            nextFocusLeft: 'exchange3',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            nextFocusRight: 'exchange2',
+            backgroundImage: imgPathPrefix + 'exchange1_out.png',
+            focusImage: imgPathPrefix + 'exchange1_in.png',
+            click: onPrizeClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'exchange2',
+            name: '兑换奖品2',
+            type: 'img',
+            nextFocusLeft: 'exchange1',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            nextFocusRight: 'exchange3',
+            backgroundImage: imgPathPrefix + 'exchange2_out.png',
+            focusImage: imgPathPrefix + 'exchange2_in.png',
+            click: onPrizeClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'exchange3',
+            name: '兑换奖品3',
+            type: 'img',
+            nextFocusLeft: 'exchange2',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            nextFocusRight: 'exchange1',
+            backgroundImage: imgPathPrefix + 'exchange3_out.png',
+            focusImage: imgPathPrefix + 'exchange3_in.png',
+            click: onPrizeClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }];
+
+    window.onload = function (ev) {
+        updateMyScore();
+        updatePrizeInfo();
+        LMEPG.ButtonManager.init(['exchange1'], buttons, '', true);
+    }
+</script>
+</body>
+</html>

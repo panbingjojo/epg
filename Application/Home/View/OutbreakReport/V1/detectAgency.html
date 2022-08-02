@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <title>核酸检测机构预约</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <script>
+        var RenderParam = {
+            fsUrl: "{$resourcesUrl}",         // fs 地址
+            userId:"{$userId}",
+            lmcid:"{$carrierId}",
+            carrierId:"{$carrierId}",
+            inner:"{$inner}",
+            platformType: '{$platformType}',     // hd--高清 sd--标清
+            areaId:"{$areaId}",
+            hospitalDataPath:"{$hospitalDataPath}" // 检测医院相关数据对应到文件中的路径标识，包括引入的医院静态数据和图片路径
+        };
+        window.onload = function (ev) {
+            Controller.init();
+        }
+    </script>
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}">
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <link rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/OutbreakReport/V1/detectAgency.css">
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/common/Pagination.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/{$hospitalDataPath}/hospital.js?t={$time}"></script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V450094/hospitalList.js?t={$time}"></script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V1/detectAgency.js?t={$time}"></script>
+</head>
+<body id="indexBg">
+<div id="debug"></div>
+<div id="title">核酸检测机构预约</div>
+<img class="title-line" src="__ROOT__/Public/img/{$platformType}/OutbreakReport/V1/title_line.png"/>
+<img id="prev-arrow" src="__ROOT__/Public/img/{$platformType}/OutbreakReport/common/prev.png" alt="">
+<img id="next-arrow" src="__ROOT__/Public/img/{$platformType}/OutbreakReport/common/next.png" alt="">
+<div id="hospital-wrapper"></div>
+<div id="page-number"></div>
+<div id="inner-wrapper-test"></div>
+</body>
+<script>
+    if (RenderParam.carrierId == "410092") {
+        LMEPG.Log.info('init HybirdCallBackInterface !!!!!');
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                LMEPG.Log.info('HybirdCallBackInterface param : ' + JSON.stringify(param));
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</html>

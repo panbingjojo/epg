@@ -1,0 +1,123 @@
+body {
+    color: #fff;
+    background-image: url("../../../../../Public/img/hd/DonateBlood/V1/bg_content.png");
+    background-repeat: no-repeat;
+}
+p.title {
+    position: absolute;
+    top: 20px;
+    left: 80px;
+    font-size: 38px;
+    color: #FFFFFF;
+}
+#title_line{
+    position: absolute;
+    top: 88px;
+    left: 80px;
+    width: 152px;
+}
+#bg_frame{
+    position: absolute;
+    top: 120px;
+    left: 80px;
+    width: 1120px;
+    height: 368px;
+}
+
+#step_text{
+    position: absolute;
+    top: 150px;
+    left: 130px;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+#step_1{
+    position: absolute;
+    top: 215px;
+    left: 185px;
+}
+#arrow_1{
+    position: absolute;
+    top: 232px;
+    left: 310px;
+}
+#step_2{
+    position: absolute;
+    top: 215px;
+    left: 433px;
+}
+#arrow_2{
+    position: absolute;
+    top: 232px;
+    left: 608px;
+}
+#step_3{
+    position: absolute;
+    top: 215px;
+    left: 731px;
+}
+#arrow_3{
+    position: absolute;
+    top: 232px;
+    left: 856px;
+}
+#step_4{
+    position: absolute;
+    top: 215px;
+    left: 979px;
+}
+#arrow_4{
+    position: absolute;
+    top: 290px;
+    left: 1021px;
+}
+#step_5{
+    position: absolute;
+    top: 343px;
+    left: 833px;
+}
+#arrow_5{
+    position: absolute;
+    top: 385px;
+    left: 710px;
+}
+#step_6{
+    position: absolute;
+    top: 366px;
+    left: 585px;
+}
+#arrow_6{
+    position: absolute;
+    top: 385px;
+    left: 462px;
+}
+#step_7{
+    position: absolute;
+    top: 343px;
+    left: 197px;
+}
+#btn_zxwy{
+    position: absolute;
+    top: 528px;
+    left: 80px;
+}
+#btn_xxxz{
+    position: absolute;
+    top: 528px;
+    left: 308px;
+}
+#btn_xxlc{
+    position: absolute;
+    top: 528px;
+    left: 536px;
+}
+#btn_bxzy{
+    position: absolute;
+    top: 528px;
+    left: 764px;
+}
+#btn_yyxx{
+    position: absolute;
+    top: 528px;
+    left: 992px;
+}

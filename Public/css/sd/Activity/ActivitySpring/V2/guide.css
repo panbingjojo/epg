@@ -1,0 +1,123 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+#btn-back {
+    position: absolute;
+    top: 9px;
+    left: 540px;
+    outline: none !important;
+    width: 100px;
+    height: 97px;
+
+}
+
+#btn-goHome2 {
+    position: absolute;
+    top: 25px;
+    left: 26px;
+    outline: none !important;
+    width: 129px;
+    height: 61px;
+}
+
+#btn-start {
+    position: absolute;
+    top: 252px;
+    left: 183px;
+    outline: none !important;
+    width: 297px;
+    height: 108px;
+}
+#btn-price{
+    position: absolute;
+    top: 467px;
+    left: 388px;
+    outline: none !important;
+    width: 101px;
+    height: 38px;
+}
+
+#btn-detail {
+    position: absolute;
+    top: 467px;
+    left: 518px;
+    outline: none !important;
+    width: 101px;
+    height: 38px;
+}
+#focus-4-3 {
+    position: absolute;
+    top: 467px;
+    left: 528px;
+    outline: none !important;
+    width: 101px;
+    height: 38px;
+}
+#focus-6-1 {
+    position: absolute;
+    top: 348px;
+    left: 254px;
+    outline: none !important;
+    width: 133px;
+    height: 35px;
+}
+#focus-7-1 {
+    position: absolute;
+    top: 424px;
+    left: 305px;
+    outline: none !important;
+    width: 46px;
+    height: 46px;
+}
+#focus-8-1 {
+    width: 134px;height: 26px; z-index:999; position: absolute;top: 247px;left: 330px;font-size:12px; background: transparent; border: none;
+}
+#focus-10-1{
+    position: absolute;
+    top: 424px;
+    left: 305px;
+    outline: none !important;
+    width: 46px;
+    height: 46px;
+}
+#price{font-size: 22px;color: #fe3087;; position: absolute; left: 360px; top: 193px}
+#remand{position: fixed; width: 163px; height: 16px; top: 268px;
+    left: 1099px;}
+#titel{position:absolute; left:350px; top:10px;}
+/*#btn-price{position:absolute; width: 118px; height: 175px; top: 293px; left: 259px}*/
+#times{font-size: 20px;color: #ff5103; position: absolute; top: 234px; left: 313px; font-weight: 600; line-height: 30px; height: 30px;font-family: Source Han Sans CN;}
+#default_focus{width: 644px;height: 550px; position: absolute;top: 0px;left: 0px;}
+#focus-9-1{  position: absolute;
+    top: 294px;
+    left: 300px;
+    outline: none !important;
+    width: 54px;
+    height: 32px;}
+#left_tree{position: absolute; left: 0px; top: 200px}
+#left_could{position: absolute; top: 397px; left: 0px; z-index: 1}
+#right_tree{position: absolute; left: 1030px; top: 290px}
+#right_could{position: absolute; top: 445px; left:1209px; z-index: 1}
+#priceText{ width: 280px; height:40px;position: absolute;top: 308px; left: 350px;font-size: 24px;color: #fe3087; line-height: 40px;z-index: 3;  }
+
+#rule{ width: 525px; height: 85px; overflow:hidden;  position: relative; top: 183px; left:52px; color: #FFFFFF;}
+table tr td{width: 171px; text-align: center; list-style: none;font-size: 14px;color: #666666;  height: 20px; }
+.list2 li{ list-style: none}
+#myprice{width: 525px; height: 75px;  position: absolute; top: 335px; left:52px; overflow: hidden}
+#scoller{ height: 160px;position: absolute; top: 0px}
+#play{font-size: 15px;color:red; position: absolute; top: 520px; left: 233px; font-weight: 600; line-height: 30px; height: 30px;font-family: Source Han Sans CN;}
+#tips{position: absolute; top: 103px; left: 30px; z-index: 1; width: 586px; height: 189px}
+#price_name{ font-size: 12px; color:#ff1975; position: absolute; top:195px; left: 140px; font-weight: 600;  width: 370px; text-align: center}

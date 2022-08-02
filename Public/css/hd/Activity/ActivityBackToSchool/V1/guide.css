@@ -1,0 +1,363 @@
+
+body {
+    width: 1280px;
+    height: 720px;
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/bg_home.png");
+}
+
+.jump-wrap {
+    position: absolute;
+    top: 18px;
+    left: 1064px;
+    width: 196px;
+}
+
+#jump-game {
+    position: absolute;
+    left: 461px;
+    bottom: 0;
+}
+
+#times-count {
+    position: absolute;
+    left: 679px;
+    bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #0d6184;
+}
+
+#modify-cd {
+    position: absolute;
+    top: 560px;
+    left: 1040px;
+}
+
+#total-score {
+    position: absolute;
+    top: 620px;
+    left: 1149px;
+    font-size: 33px;
+    width: 58px;
+    text-align: center;
+    color: #fff;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*====倒计时====*/
+#modal-cd {
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/cd_bg.png");
+}
+
+#count-down {
+    position: absolute;
+    color: #e55231;
+    font-size: 43px;
+    top: 292px;
+    left: 656px;
+    font-weight: bold;
+}
+
+/*====活动规则====*/
+#modal-rule {
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/m_rule.png");
+}
+
+#btn-rule-close {
+    position: absolute;
+    top: 56px;
+    left: 947px;
+}
+
+/*====中奖名单====*/
+#modal-list {
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/m_win_list.png");
+}
+
+#total-list {
+    top: 210px;
+    left: 292px;
+    position: absolute;
+}
+
+#all-marquee {
+    height: 166px;
+}
+
+#my-marquee {
+    height: 58px;
+}
+
+table.marquee-table {
+    width: 710px;
+}
+
+table#all-table tr {
+    height: 40px;
+}
+
+table.marquee-table td {
+    width: 33%;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+}
+
+#my-list {
+    position: absolute;
+    top: 470px;
+    left: 285px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.list-tel {
+    position: absolute;
+    color: #999999;
+    top: 535px;
+    left: 600px;
+    width: 280px;
+    font-size: 22px;
+    text-align: center;
+}
+
+img.btn-list {
+    position: absolute;
+    top: 580px;
+}
+
+#btn-list-submit {
+    left: 480px;
+}
+
+#btn-list-cancel {
+    left: 708px;
+}
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/m_no_times.png");
+}
+
+#btn-one0 {
+    position: absolute;
+    top: 418px;
+    left: 536px;
+}
+
+/*====普通用户没有游戏次数====*/
+#modal-pay-notimes {
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/m_pay_vip.png");
+}
+
+img.btn-pay {
+    position: absolute;
+    top: 411px;
+    width: 196px;
+    height: 78px;
+}
+
+#btn-pay-sure {
+    left: 441px;
+}
+
+#btn-pay-cancel {
+    left: 657px;
+}
+
+/*====兑换成功====*/
+#modal-accomplish {
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/m_exchange_success.png");
+}
+
+#accomplish-prize {
+    position: absolute;
+    top: 188px;
+    left: 525px;
+    width: 244px;
+    height: 185px;
+}
+
+#accomplish-tel {
+    position: absolute;
+    top: 397px;
+    left: 626px;
+    width: 250px;
+    text-align: center;
+    font-size: 24px;
+}
+
+img.btn-win {
+    position: absolute;
+    top: 535px;
+    width: 196px;
+    height: 78px;
+}
+
+#btn-accomplish-submit {
+    left: 374px;
+}
+
+#btn-accomplish-cancel {
+    left: 678px;
+}
+
+/*====游戏主界面====*/
+#modal-game {
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/bg_game_0.png");
+}
+
+.bg-img{
+    position: absolute;
+}
+
+#warn-tips{
+    position: absolute;
+    top: 530px;
+    left: 360px;
+    font-size: 22px;
+    color: #dde20f;
+    background-color: black;
+    border-radius: 10px;
+    text-align: left;
+    width: 200px;
+    padding: 10px;
+}
+
+#game-start {
+    position: absolute;
+    top: 616px;
+    left: 558px;
+}
+
+
+#person {
+    position: absolute;
+    top: 100px;
+    left: 450px;
+}
+
+.obs {
+    position: absolute;
+    visibility: hidden;
+}
+
+#obs_0 {
+    width: 99px;
+    height: 91px;
+}
+
+#obs_1 {
+    width: 149px;
+    height: 240px;
+}
+
+#obs_2 {
+    width: 171px;
+    height: 146px;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+#game-cd {
+    position: absolute;
+    top: 575px;
+    left: 1135px;
+    font-size: 26px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    width: 35px;
+}
+
+/*====增加积分界面===*/
+#modal-add-score {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/m_add_score.png");
+}
+
+#p-add-score {
+    position: absolute;
+    top: 314px;
+    left: 640px;
+    font-size: 40px;
+    color: #fff;
+    width: 80px;
+    text-align: center;
+}
+
+#btn-one-add{
+    position: absolute;
+    top: 412px;
+    left: 538px;
+}
+
+/*====兑换界面====*/
+#modal-exchange {
+    background-image: url("../../../../img/Activity/ActivityBackToSchool/V1/m_exchange.png");
+}
+
+.exchange-user-score {
+    position: absolute;
+    top: 99px;
+    left: 333px;
+    color: #fff;
+    font-size: 42px;
+    width: 75px;
+    text-align: center;
+}
+
+.require-score-wrap {
+    position: absolute;
+    top: 442px;
+    left: 0;
+    color: #fff;
+    font-size: 32px;
+    width: 100%;
+    text-align: center;
+}
+
+.require-score-wrap span {
+    margin-left: 166px;
+    margin-right: 70px;
+}
+
+.exchange-btn-wrap {
+    position: absolute;
+    top: 510px;
+    width: 100%;
+    text-align: center;
+}
+
+.exchange-btn-wrap img {
+    margin-right: 55px;
+    margin-left: 50px;
+}
+
+#btn-close-exchange {
+    position: absolute;
+    top: 78px;
+    left: 916px;
+}
+
+
+
+

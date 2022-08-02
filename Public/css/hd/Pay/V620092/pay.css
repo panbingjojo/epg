@@ -1,0 +1,43 @@
+
+#container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#pay_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#back {
+    position: absolute;
+    left: 1080px;
+    top: 53px;
+    width: 165px;
+    height: 55px;
+}
+
+/*订购项1-包月*/
+#pay_item_0 {
+    position: absolute;
+    left: 69px;
+    top: 458px;
+    width: 256px;
+    height: 76px;
+}
+
+/*订购项2 - 单月*/
+#pay_item_1 {
+    position: absolute;
+    left: 410px;
+    top: 458px;
+    width: 256px;
+    height: 76px;
+    visibility: hidden;
+}

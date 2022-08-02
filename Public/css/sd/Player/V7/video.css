@@ -1,0 +1,258 @@
+a {
+    border: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+#smallvod {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+}
+
+#smallscreen {
+    width: 1px;
+    height: 1px
+}
+
+#backg {
+    position: relative;
+    width: 644px;
+    height: 530px;
+}
+
+/*播放进度底层背景蒙层图片*/
+#video-progress-bottom-background {
+    position: absolute;
+    width: 644px;
+    top: 445px;
+    left: 0;
+}
+
+/*当前播放时刻*/
+#video-current-play-time {
+    position: absolute;
+    color: #fff;
+    left: 25px;
+    top: 475px;
+    /*font-weight: bold;*/
+}
+
+/*视频总时长*/
+#video-total-time {
+    position: absolute;
+    color: #fff;
+    top: 475px;
+    left: 578px;
+    /*font-weight: bold;*/
+}
+
+/*视频标题*/
+#video-title {
+    position: absolute;
+    left: 25px;
+    top: 502px;
+    font-size: 15px;
+    color: #E1DFDF;
+}
+
+/*底部播放进度整个最外层容器div*/
+#playUI {
+    /*z-index: 800;*/
+}
+
+/*播放进度条父容器*/
+#play-progressbar-container {
+    position: absolute;
+    height: 5px;
+    width: 482px;
+    top: 486px;
+    left: 83px;
+}
+
+/*播放进度条*/
+#play-progressbar {
+    height: 1px;
+    width: 0;
+    left: 0px;
+    bottom: 20px;
+    background-color: #FFFFFF;
+}
+
+/*播放进度条上的进度小球*/
+#play-progressbar-ball {
+    position: relative;
+    width: 11px;
+    height: 11px;
+    bottom: 6px;
+    left: 0px;
+}
+
+/*播放进度条上悬浮的当前播放时间：父容器*/
+#floating-play-time-container {
+    position: relative;
+    width: 71px;
+    height: 23px;
+    top: 420px;
+    left: 50px; /*起始左偏移值*/
+    visibility: hidden;
+}
+
+/*播放进度条上悬浮的当前播放时间：背景图*/
+#floating-play-time-container > .floating-playing-time-bg {
+    position: absolute;
+    width: 71px;
+    height: 23px;
+}
+
+/*播放进度条上悬浮的当前播放时间：当前播放时间*/
+#floating-play-time-container > #floating-play-time-text {
+    position: absolute;
+    width: 71px;
+    height: 23px;
+    line-height: 23px; /*让行内文字垂直居中*/
+    font-size: 13px;
+    color: #FFFFFF;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*挽留页背景div*/
+#detain-page {
+    position: relative;
+    width: 644px;
+    height: 530px;
+    background-image: url("../../../../img/hd/Player/V7/detain_page_bg_playing.png");
+}
+
+/*挽留页操作按钮外层容器*/
+#operate-btn-container {
+    position: relative;
+    width: 644px;
+    height: 101px;
+    top: 208px;
+    text-align: center;
+}
+
+/*挽留页操作按钮图片*/
+.operate-btn-img {
+    width: 101px;
+    height: 101px;
+}
+
+/*挽留页视频推荐位外层容器*/
+#recommend-video-container {
+    position: relative;
+    width: 100%;
+    top: 367px;
+}
+
+/*推荐视频标题*/
+.recommend-video-title {
+    position: absolute;
+    width: 126px;
+    height: 26px;
+    line-height: 26px; /*让行内文字垂直居中*/
+    background-image: url("../../../../img/hd/Player/V7/recommend_video_title_bg.png");
+    top: 80px;
+    left: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+/*推荐位视频图片*/
+.recommend-video-img {
+    position: absolute;
+    top: 15px;
+    left: 14px;
+    width: 126px;
+    height: 91px;
+}
+
+/*推荐视频最外层div容器*/
+.recommend-video-container {
+    position: absolute;
+    width: 154px;
+    height: 119px;
+    background-image: url("../../../../img/hd/Player/V7/recommend_video_bg_unfocused.png");
+}
+
+/*recommend-video-1~recommend-video-4为视频推荐位*/
+#recommend-video-1 {
+    left: 30px;
+}
+
+#recommend-video-2 {
+    left: 177px;
+}
+
+#recommend-video-3 {
+    left: 325px;
+}
+
+#recommend-video-4 {
+    left: 475px;
+}
+
+/*播放暂停、倍速图标外层容器*/
+#play-indicator-container {
+    position: relative;
+    width: 100px;
+    height: 31px;
+    left: 480px;
+    top: 37px;
+    visibility: hidden;
+}
+
+/*播放暂停、倍速图标*/
+#play-indicator-bg {
+    position: absolute;
+}
+
+/*倍速文本*/
+#play-indicator-text {
+    position: absolute;
+    left: 40px;
+    top: 1px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 24px; /*让行内文字垂直居中*/
+    color: #FFFFFF;
+}
+
+#debug1 {
+    border: 1px red solid;
+    color: red;
+    top: 20px;
+    left: 30px;
+    width: 550px;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 100;
+    font-size: 15px;
+    display: none;
+}
+
+#debug2 {
+    border: 1px deeppink solid;
+    text-align: left;
+    color: deeppink;
+    top: 230px;
+    left: 30px;
+    width: 550px;
+    max-height: 20%;
+    overflow: auto;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 100;
+    font-size: 15px;
+    display: none;
+}

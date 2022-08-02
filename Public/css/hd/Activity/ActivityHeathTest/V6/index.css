@@ -1,0 +1,133 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../../img/hd/Activity/activityHeathTest/V6/bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+
+#icon-modify {
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 306px;
+    height: 186px;
+}
+#topic-title{
+    left: 300px;
+    top: 24px;
+    font-size: 36px;
+    color: #f0f0f0;
+}
+
+#title-bg {
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 92px;
+}
+.arrow {
+    top: 360px;
+    /*visibility: hidden;*/
+}
+
+#prev-arrow {
+    left: 100px;
+}
+
+#next-arrow {
+    left: 1132px;
+}
+#question-container{
+    left: 140px;
+    top: 188px;
+    width: 960px;
+    font-size: 28px;
+    color: #66474c;
+    text-align: left;
+}
+#question-index{
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #8ec41e;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+}
+
+#question-title{
+    position: absolute;
+    left: 80px;
+    top: -8px;
+}
+#question-key{
+    top: 342px;
+    left: 238px;
+    list-style: none;
+}
+#question-key li{
+    height: 80px;
+    top: 0;
+    overflow: hidden;
+}
+.item{
+    width: 460px;
+    position: absolute;
+}
+.even{
+    left: 0;
+}
+.odd{
+    left: 470px;
+}
+.key-bg,.key-text{
+    vertical-align: middle;
+}
+.key-bg{
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    background-image: url(../../../../../img/hd/Activity/activityHeathTest/V6/option.png);
+    border: none;
+
+}
+.key-text{
+    color: #66474c;
+    font-size: 24px;
+    padding-left: 15px;
+}
+#points-container{
+    top: 692px;
+    left: 130px;
+    width: 1100px;
+    list-style: none;
+}
+#points-container li{
+    width: 80px;
+    height: 20px;
+    display: inline-block;
+    background-image: url(../../../../../img/hd/Activity/activityHeathTest/V6/uncompleted.png);
+}
+
+/*当前*/
+#points-container li.active{
+    background-image: url(../../../../../img/hd/Activity/activityHeathTest/V6/active.png);
+
+}
+/*访问过的*/
+#points-container li.completed{
+    background-image: url(../../../../../img/hd/Activity/activityHeathTest/V6/completed.png);
+}

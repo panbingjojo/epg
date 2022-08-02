@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+}
+
+body {
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    font-family: 'Source Han Sans CN';
+    background-image: url("../../../../img/hd/AppointmentRegister/V3/bg.png");
+}
+
+body > * {
+    position: absolute;
+}
+
+p.title {
+    top: 40px;
+    left: 80px;
+    font-size: 36px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+#left-wrap {
+    position: absolute;
+    top: 120px;
+    left: 140px;
+    width: 320px;
+    height: 480px;
+    text-align: center;
+    background-image: url("../../../../img/hd/AppointmentRegister/V3/left_bg.png");
+}
+
+#left-wrap img {
+    width: 260px;
+    height: 260px;
+    margin-top: 30px;
+}
+
+#left-wrap p {
+    color: #fff;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+#prev-arrow {
+    top: 45px;
+    left: 759px;
+}
+
+#next-arrow {
+    top: 625px;
+    left: 759px;
+}
+
+#hospital-title-wrap {
+    top: 120px;
+    left: 500px;
+    list-style: none;
+    color: #fff;
+    font-family: 'Source Han Sans CN';
+    font-size: 24px;
+    width: 590px;
+    height: 450px;
+    padding: 30px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V3/right_bg.png');
+}
+
+#hospital-title-wrap li {
+    margin-bottom: 25px;
+}
+
+.hos-intro {
+    float: left;
+    margin-right: 15px;
+}
+
+.doc-txt {
+    text-indent: 50px;
+}

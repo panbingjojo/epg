@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>医生列表-V10</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/DoctorP2P/V10/DoctorIndex.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",             // 地区id
+            areaCode: "{$areaCode}",               // 省份地区码
+            subAreaCode: "{$subAreaCode}",         // 省份下的子区域
+            platformType: "{$platformType}",       // 平台类型
+            debug: "{$debug}",                     // 调试模式
+            pageSize: "{$size}",                   // 页面尺寸
+            stbModel: "{$stbModel}",               // 盒子的型号
+            fsUrl: "{$resourcesUrl}",              // fs 地址
+            time: "{$time}",                       // 开始渲染时间
+            userId: "{$userId}",                   // 用户Id
+            accountId: "{$accountId}",             // 用户Id
+            isVip: {$isVip},                       // 用户是否是vip
+
+            //当前页渲染
+            skin: {$skin},                         // 用户自定义背景
+            firstHandle:"{$firstHandle}",          // 是否第一次访问当前模块
+            firstHandleName:"f_p2p",               // 当前模块名称
+            departmentId: "{$departmentId}",       // 科室Id
+            departmentIndex: "{$departmentIndex}", // 科室索引
+            departmentName: "{$departmentName}",   // 科室名称
+            scrollTop: "{$scrollTop}",             // 科室列表滚动高度
+            focusIndex: "{$focusIndex}",           // 焦点ID
+            page: "{$pageCurrent}",                // 页码
+            cwsHlwyyUrl:"{$cwsHlwyyUrl}",          // cws互联网医院接口地址
+            lmp:'{$lmp}',                          //入口编号
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/DoctorP2P/V10/DoctorIndex2.js?t={$time}"></script>
+</head>
+
+<!--背景-->
+<body>
+
+<!--科室选择-->
+<div id="department" >&nbsp;<span id="department-name">请选择科室</span>
+</div>
+<!--页面标题-->
+<if condition="$carrierId eq 440004">
+    <p class="title">健康咨询</p>
+<else/>
+    <p class="title">视频问诊</p>
+</if>
+<!--推荐位-->
+<div id="center">
+    <!--医生列表-->
+    <div id="table-list"></div>
+</div>
+<!-- 向下翻页箭头 -->
+<img id="m-next"  src="__ROOT__/Public/img/hd/Home/V10/HomeBox/icon_page_down.png"/>
+<!--当前显示页码-->
+<div id="pages"></div>
+
+<!--底部提示文案-->
+<div class="footer">医生接诊时间集中在08:00～22:00，请在该时间段进行问诊哦~</div>
+
+<div id="doctor-tel" >客服电话：400-016-0700</div>
+
+<script type="application/javascript">
+    window.onload = function () {
+        try {
+            // 设置背景为管理后台配置皮肤
+            LMEPG.UI.setBackGround();
+
+            if(RenderParam.carrierId == "10000051" && RenderParam.lmp == "266"){
+                G("doctor-tel").style.display = "block";
+            }
+
+            // 医生列表初始化
+            doctorIndexController.init();
+            lmInitGo();
+        } catch (e) {
+            console.log(e);
+        }
+    };
+</script>
+
+</body>
+</html>

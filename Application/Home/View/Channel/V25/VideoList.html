@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>三级视频栏目(视频集)-中国联通V16</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Channel/V25/VideoList.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+                //公共渲染
+                carrierId: '{$carrierId}',          // 地区id
+                areaCode: '{$areaCode}',            // 省份地区码
+                platformType: '{$platformType}',    // 平台类型
+                debug: '{$debug}',                  // 调试模式
+                pageSize: '{$size}',                // 页面尺寸
+                stbModel: '{$stbModel}',            // 盒子的型号
+                fsUrl: '{$resourcesUrl}',           // fs 地址
+                time: '{$time}',                    // 开始渲染时间
+                userId: '{$userId}',                // 用户Id
+                accountId: '{$accountId}',          // 用户账号
+
+                //当前页渲染
+                detail: {$detail | json_encode},        // 详情
+                isCollect: {$isCollect},                // 是否收藏（0-未收藏 1-已收藏）
+                isVip: {$isVip},                        // 用户是否是vip
+                latestVideoInfo: {$latestVideoInfo},    // 最近播放的视频
+                thirdPlayerUrl: "{$domainUrl}",         // 第三方播放器根路径地址
+
+                skin: {$skin},      // 用户自定义背景
+
+                // 焦点保持
+                focusId: "{$focusId}",
+                listPage: "{$listPage}",
+                tabPage: "{$tabPage}",
+                keepFocusId: "{$keepFocusId}",
+                videolist:"videolist",
+                backgroundImage:"{$themePicture}"
+            };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Channel/V25/VideoList.js?t={$time}"></script>
+</head>
+<body bgcolor="transparent">
+<div id="debug"></div>
+<a href="#" id="default_link"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif" alt=""/></a>
+<img id="video-TV" src="__ROOT__/Public/img/Common/spacer.gif" alt="">
+<!-- 小窗（江苏电信） -->
+<div class="small_screen_player">
+    <iframe id="iframe_small_screen" frameborder="0" scrolling="no"></iframe>
+</div>
+<!-- 辽宁电信小窗位置为推荐位 -->
+<if condition="$carrierId eq '210092' ">
+    <img id="cover-img" src="" alt=""/>
+</if>
+
+<div class="cover-area">
+    <img src="" id="cover" style="width: 100%;height: 100%">
+    <div id="how-num" class="how-num"></div>
+</div>
+
+<ul id="video-desc-wrapper">
+    <li class="desc-title" id="desc-title"></li>
+    <li class="desc-text" id="desc-text"></li>
+    <li class="desc-icon" id="desc-icon">
+        <img id="collect" src="__ROOT__/Public/img/hd/Channel/V25/collect.png" alt="" style="width: 140px;height: 50px">
+        <if condition="$carrierId neq '320092' and $carrierId neq '000051' and $carrierId neq '000006'">
+            <img id="one-key-inquiry" src="__ROOT__/Public/img/hd/Channel/V16/one_key_inquiry.png" alt="">
+        </if>
+    </li>
+</ul>
+
+<div id="container">
+    <ul id="tab-wrap"></ul>
+    <img id="nav-next" src="__ROOT__/Public/img/hd/Channel/V16/nav_next.png" alt="">
+    <div id="content-wrap"></div>
+    <img id="prev-arrow" class="arrow" src="__ROOT__/Public/img/hd/Channel/V25/left-arrow.png" alt="上页箭头">
+    <img id="next-arrow" class="arrow" src="__ROOT__/Public/img/hd/Channel/V25/right-arrow.png" alt="下页箭头">
+</div>
+<!-- 无数据 -->
+<div id="null-data-000051">无视频数据~</div>
+</body>
+<script type="text/javascript">
+	window.onload = function() {
+        // 设置皮肤（视频集背景图）
+        var bgImg = RenderParam.fsUrl + RenderParam.backgroundImage;
+        document.body.style.backgroundImage = 'url(' + bgImg + ')';
+
+		Level3.init();
+	};
+</script>
+</html>

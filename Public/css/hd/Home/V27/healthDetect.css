@@ -1,0 +1,145 @@
+
+body > * {
+    position: absolute;
+}
+
+#help-introduce {
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+/*上*/
+#top-icon {
+    position: absolute;
+    display: inline;
+    height: 55px;
+    line-height: 60px;
+    /*top: 5px;*/
+    right: 0;
+}
+
+#top-icon > img {
+    top: 20px;
+    margin-right: 22px;
+    vertical-align: middle;
+}
+
+.logo {
+    left: 30px;
+    top:12px;
+}
+
+/*导航*/
+#nav {
+    top: 70px;
+    left: 180px;
+}
+
+#nav > img {
+    margin-right: 1px;
+    width: 214px;
+    height: 60px;
+}
+
+.center {
+    position: absolute;
+}
+
+.recommended-1 {
+    position: absolute;
+    top: 170px;
+    left: 80px;
+    width: 428px;
+    height: 514px;
+}
+#recommend-1-border,
+#recommend-2-border,
+#recommend-3-border,
+#recommend-4-border{
+    position: absolute;
+    top: -19px;
+    left: -20px;
+}
+.recommended-1>#recommend-1-border{
+    display: none;
+}
+.recommended-1.focus>#recommend-1-border{
+    display: block;
+}
+
+.recommended-2 {
+    position: absolute;
+    top: 170px;
+    left: 522px;
+    width: 680px;
+    height: 357px;
+}
+.recommended-2>#recommend-2-border{
+    display: none;
+}
+.recommended-2.focus>#recommend-2-border{
+    display: block;
+}
+
+.recommended-3 {
+    position: absolute;
+    top: 539px;
+    left: 521px;
+    width: 334px;
+    height: 145px;
+}
+.recommended-3>#recommend-3-border{
+    display: none;
+}
+.recommended-3.focus>#recommend-3-border{
+    display: block;
+}
+.recommended-4 {
+    position: absolute;
+    top: 539px;
+    left: 867px;
+    width: 334px;
+    height: 145px;
+}
+.recommended-4>#recommend-4-border{
+    display: none;
+}
+.recommended-4.focus>#recommend-4-border{
+    display: block;
+}
+
+.recommended-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/*推荐位*/
+.recommended-hover {
+    position: absolute;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);
+    /*border: 1px solid black;*/
+    border-radius: 12px;
+    z-index: 996;
+    /*-webkit-transition: all 0.1s;*/
+    /*-moz-transition: all 0.1s;*/
+}
+
+.recommended-hover-no-scale {
+    position: absolute;
+    /*-webkit-transform: scale(1.1);*/
+    /*-moz-transform: scale(1.1);*/
+    box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    border-radius: 12px;
+    z-index: 996;
+    /*-webkit-transition: all 0.1s;*/
+    /*-moz-transition: all 0.1s;*/
+}
+

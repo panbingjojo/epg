@@ -1,0 +1,373 @@
+
+body > *,
+.modal > * {
+    position: absolute;
+}
+
+
+#img_index {
+    position: relative;
+}
+
+#act_rule {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 241px;
+    height: 115px;
+    margin: auto;
+}
+
+#btn_back {
+    position: absolute;
+    left: 500px;
+    top: 20px;
+    margin: auto;
+}
+
+#btn_activity_rule{
+    position: absolute;
+    top:20px;
+    left: 12px;
+}
+
+#btn_winner_list {
+    position: absolute;
+    left: 500px;
+    top: 80px;
+    margin: auto;
+}
+#begin_game{
+    position: absolute;
+    bottom: 25px;
+    left: 111px
+}
+#exchange-gift{
+    position: absolute;
+    top: 80px;
+    left: 12px;
+}
+#id_waiting_dialog{
+    opacity: 0;
+}
+
+#frequency {
+    position: absolute;
+    color: white;
+    bottom: 7px;
+    left: 232px;
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.clwon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.sure {
+    position: absolute;
+    left: 423px;
+    top: 415px;
+}
+
+.cancel {
+    position: absolute;
+    left: 354px;
+    top: 295px;
+}
+.up{
+    position: absolute;
+    left: 182px;
+    top: 295px;
+}
+
+.lottersure {
+    position: absolute;
+    left: 423px;
+    top: 520px;
+}
+.lottercancel {
+    position: absolute;
+    left: 653px;
+    top: 520px;
+}
+#gid_keyboard_container{
+    position: absolute;
+    left: 100px;
+    top: 246px;
+    width: 360px;
+    height: 120px;
+    z-index: 9999;
+}
+.nuisure {
+    position: absolute;
+    left: 525px;
+    top: 415px;
+}
+#lottery_tel {
+    POSITION: absolute;
+    TOP: 470PX;
+    left: 588px;
+    font-size: 26px;
+}
+#reset_tel{
+    position: absolute;
+    left: 275px;
+    top: 389px;
+    font-size: 26px;
+}
+#lottery_tel:empty:not(:focus):before{
+    content:attr(data-text);
+    font-size: 26px;
+    color: rgba(0,0,0,0.5);
+}
+#reset_tel:empty:not(:focus):before{
+    content:attr(data-text);
+    font-size: 26px;
+    color: rgba(0,0,0,0.5);
+}
+.awsure{
+    position: absolute;
+    left: 243px;
+    top: 442px;
+}
+.awcancel{
+    position: absolute;
+    left: 390px;
+    top: 442px;
+}
+.card_img_div{
+    float: left;
+    width: 230px;
+    height: 357px;
+}
+.sp_1{
+    position: absolute;
+    left: 15px;
+    top: 555px;
+}
+.sp_2{
+    position: absolute;
+    left: 145px;
+    top: 555px;
+}
+.sp_3{
+    position: absolute;
+    left: 989px;
+    top: 555px;
+}
+.sp_4{
+    position: absolute;
+    left: 1119px;
+    top: 555px;
+}
+#second{
+    position: absolute;
+    left: 680px;
+    top: 255px;
+    font-size: 32px;
+}
+#wining_{
+    position: absolute;
+    left: 520px;
+    top: 200px;
+    width: 210px;
+    height: 176px;
+}
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 99;
+    display: none;
+    overflow: hidden;
+}
+#car_one{
+    position: absolute;
+    left: 316px;
+    top: 211px;
+    width: 220px;
+    height: 347px;
+    margin: auto;
+}
+#car_two{
+    position: absolute;
+    left: 513px;
+    top: 211px;
+    width: 220px;
+    height: 347px;
+    margin: auto;
+
+}
+#car_three{
+    position: absolute;
+    left: 714px;
+    top: 211px;
+    width: 220px;
+    height: 347px;
+    margin: auto;
+}
+#count {
+    position: absolute;
+    left: 377px;
+    top: 172px;
+    font-size: 45px;
+    z-index: 99;
+    color: #fc4933;
+}
+.card_img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 220px;
+    height: 347px;
+    margin: auto;
+    z-index: -1;
+}
+
+#all_marquee {
+    height: 68px;
+}
+
+#my_marquee {
+    height: 40px;
+}
+
+table#all_table tr {
+    height: 30px;
+}
+
+table{
+    width: 100%;
+}
+table td{
+    /*margin-right: 60px;*/
+    text-align: center;
+    color: #622e1e;
+    font-size: 24px;
+}
+table td:nth-child(1){
+    text-align: left;
+    padding-left: 28px;
+    width: 172px;
+}
+table td:nth-child(2){
+    /*padding-right: 112px;*/
+    /* padding-left: 0px; */
+    width: 172px;
+}
+.winner_prize{
+    width: 150px;
+}
+/*中奖名单*/
+#total_list {
+    top: 129px;
+    left: 87px;
+}
+
+#my_list {
+    top: 308px;
+    left: 78px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+
+#renew-value{
+    position: absolute;
+    left: 400px;
+    top: 234px;
+    color: #632822;
+    font-size: 35px;
+}
+
+.renew-value{
+    color: #fc4933;
+    font-size: 33px;
+    position: absolute;
+    top: 330px;
+}
+.i-have-value{
+    color: #fc4933;
+    font-size: 33px;
+    position: absolute;
+    top: 111px;
+    left: 240px;
+}
+.exchange-btn{
+    position: absolute;
+    bottom: 60px;
+}
+
+.game-ok{
+    position: absolute;
+    bottom: 155px;
+    left: 264px;
+}
+
+#btn_exchange_submit{
+    position: absolute;
+    top: 305px;
+    left: 208px;
+}
+
+#btn_exchange_cancel{
+    position: absolute;
+    top: 305px;
+    left: 375px;
+}
+
+#exchange_tel{
+    position: absolute;
+    left: 320px;
+    top: 235px;
+    font-size: 14px;
+    color: #999;
+}
+
+#on-gift-ok{
+    position: absolute;
+    bottom: 225px;
+    left: 515px;
+}
+
+#close_prize{
+    position: absolute;
+    top: 49px;
+    right: 34px;
+}
+
+#renew-value-1{
+    left: 175px
+}
+
+#renew-value-2{
+    left: 355px
+}
+
+#renew-value-3{
+    left: 537px
+}
+
+#exchange-btn-0{
+    left: 78px
+}
+
+#exchange-btn-1{
+    left: 253px
+}
+
+#exchange-btn-2{
+    left: 452px
+}

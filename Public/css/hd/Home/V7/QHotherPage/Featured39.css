@@ -1,0 +1,101 @@
+/*==>css/img目录结构调整*/
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../../img/hd/Menu/QHotherPages/39_featured_bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+
+#back {
+    top: 18px;
+    left: 1208px;
+}
+
+#container {
+    top: 39px;
+    left: 660px;
+    width: 544px;
+    height: 637px;
+    background-image: url(../../../../../img/hd/Menu/QHotherPages/wrap_bg.png);
+}
+
+#container ul {
+    margin-top: 100px;
+    list-style-position: inside;
+    /*margin-left: 25px;*/
+}
+
+#container li {
+    width: 440px;
+    margin-top: 7px;
+    margin-left: 11px;
+    padding: 10px;
+    padding-right: 70px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*text-align: center;*/
+    text-indent: 30px;
+    font-size: 28px;
+    color: #fff;
+}
+
+#container li marquee {
+    margin-right: 66px;
+}
+
+#container li.focus {
+    background-image: url(../../../../../img/hd/Menu/QHotherPages/item_f.png);
+    /*background-size: 100% 100%;*/
+}
+
+#page-index {
+    top: 675px;
+    left: 918px;
+    font-size: 21px;
+    color: #fff;
+}
+
+#iframe {
+    width: 1280px;
+    height: 720px;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: none;
+    background-image: url(../../../../../img/hd/Menu/QHotherPages/bg_waiting_dialog.gif);
+}
+
+#img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#left-arrow {
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+}
+
+#right-arrow {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+}

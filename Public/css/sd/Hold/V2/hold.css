@@ -1,0 +1,24 @@
+/*背景图*/
+.splash_background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+}
+
+.btn_position_1 {
+    position: absolute;
+    left: 170px;
+    top: 355px;
+    width: 295px;
+    height: 90px;
+}
+
+.btn_position_2 {
+    position: absolute;
+    left: 546px;
+    top: 11px;
+    width: 90px;
+    height: 50px;
+}

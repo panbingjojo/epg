@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>关于我们-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/V10/general.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/About/V1/about.css?t={$time}">
+
+    <script type="text/javascript">
+        var RenderParam = {
+            carrierId: "{$carrierId}",
+            isVip: "{$isVip}",         //是否是vip
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+<body>
+<!--背景-->
+<img id="body" class="bg" src="__ROOT__/Public/img/hd/Home/V10/bg.png" alt=""/>
+<div class="title">
+    关于我们
+</div>
+<img class="title-line" src="__ROOT__/Public/img/hd/Home/V10/title_line.png" style="width: 150px" alt=""/>
+
+<!--医院科室-->
+<div id="default" class="content border">
+    <div class="content-detail">
+        <ul>
+            <li>版本号：1.0.0</li>
+            <li class="tips">客服联系电话：400-016-0700</li>
+            <li class="tips">
+                智慧健康以关注每位家庭成员的健康为己任，通过信息化手段，为用户提供优质的健康监护服务。为家庭成员的疾病预防、发现治疗提供全程、专业、个性的“家庭医生”式服务。并丰富电子健康档案的日常体征数据收集。
+<!--                39健康以关注每位家庭成员的健康为己任，通过信息化手段，为用户提供优质的健康监护服务。为家庭成员的疾病预防、发现治疗提供全程、专业、个性的“家庭医生”式服务。并丰富电子健康档案的日常体征数据收集。目前支持在线检测血糖、胆固醇和尿酸这3项数据，还提供视频问诊、名医讲座、疑难重症二次诊断等功能。-->
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    window.onload = function () {
+        LMEPG.BM.init("", [], "", true);
+    };
+
+</script>
+</body>
+</html>

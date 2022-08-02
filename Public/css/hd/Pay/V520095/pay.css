@@ -1,0 +1,54 @@
+* {
+    font-family: Source Han Sans CN;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url("../../../img/1280/520002/paybg.png");
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+#title {
+    position: relative;
+    top: 96px;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 37px;
+    color: #010101
+}
+
+#choose {
+    width: 600px;
+    position: relative;
+    top: 190px;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 30px;
+    color:  #515151
+}
+
+#orderList {
+    width: 1280px;
+    height: 302px;
+    top: 350px;
+    position: absolute;
+    text-align: center;
+
+}
+
+ .order{
+    width: 232px;
+    height: 100%;
+}
+
+.order + .order {
+    width: 232px;
+    height: 100%;
+    margin-left: 42px;
+}

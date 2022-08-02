@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>全平台专辑133-出游季—劳逸结合，开心畅游</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/Album/album133.css?t={$time}"/>
+
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <if condition="$carrierId eq '520092'"><!--贵州广电引用-->
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <if condition="$carrierId eq '450094' ">
+        <!-- 广西广电小窗视频播放 -->
+        <script type="text/javascript" src="http://10.1.15.25/webJS/gxgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Album/album.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+
+    <script type="text/javascript">
+		var TP = {
+			vip: {$isVip},
+			listMovePages: {$moveNum},           // 页数
+			albumMovePages: {$moveAlbumNum},
+			userId: '{$userId}',
+			focusIDName: '{$focus_index}' == 'focus-1-1' ? 'focus-1' : '{$focus_index}',
+			videoData: {$data}.data.video_list,  // 专题节目列表
+			platformType: '{$platformType}',     // hd--高清 sd--标清
+			lmcid: '{$carrierId}',
+			carrierId: '{$carrierId}',
+			inner: '{$inner}',
+            areaCode: "{$areaCode}",
+            fromLaunch:"{$fromLaunch}",
+			albumName: '{$albumName}',          // 专辑名称
+			domainUrl: '{$domainUrl}'           // 江苏电信需要使用的第三方播放器前缀地址\
+		};
+    </script>
+    <!--<script type="text/javascript" src="__ROOT__/Public/js/Album/AlbumSMP4.1.01.js?t={$time}"></script>-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Album/album.1.02.js?t={$time}"></script>
+</head>
+<body id="body" class="{$platformType}-body">
+<div id="debug"></div>
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+
+<if condition="$platformType eq 'hd' ">
+    <div id="smallvod">
+        <iframe id="smallscreen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+    </div>
+    <img id="videoTv" class="hd-videoTv" useType="video" data-v="0"
+         src="__ROOT__/Public/img/hd/Album/album133/bg_small_video.png"/>
+    <img id="imgFree" class="hd-free" src="__ROOT__/Public/img/hd/Album/album133/free.png" alt="">
+</if>
+<div id="tab-content" class="{$platformType}-tab-content"></div>
+<img id="v-prev" class="{$platformType}-v-arrow {$platformType}-v-prev" src="__ROOT__/Public/img/hd/Album/album133/icon_prev_page.png"/>
+<img id="v-next" class="{$platformType}-v-arrow {$platformType}-v-next" src="__ROOT__/Public/img/hd/Album/album133/icon_next_page.png"/>
+<img id="more" class="{$platformType}-more" src="__ROOT__/Public/img/hd/Album/album133/bg_more_video.png"/>
+<img id="back" class="{$platformType}-back" useType="back" src="__ROOT__/Public/img/hd/Album/album133/bg_back.png"/>
+<script type="text/javascript">
+	/**小窗播放
+	 * 广西广电没有小窗
+	 * */
+	var smallPlayEPG = function(hasSmallVideo) {
+		if (TP.platformType == 'hd' && parseInt(hasSmallVideo)) {
+            LMSmallPlayer.initParam({
+                carrierId: TP.lmcid,
+                playerUrl: TP.domainUrl,
+                position: {
+                    top: 377,    // 小窗播放距离上
+                    left: 453,   // 距离左
+                    width: 288,  // 宽
+                    height: 157  // 高
+                },
+                playerScreenId: 'smallscreen',
+                platformType: TP.platformType,
+                videoData: TP.videoData
+            });
+            LMSmallPlayer.startPlayVideo();
+			//虚拟按键触发，轮询播放
+			LMEPG.KeyEventManager.addKeyEvent({
+				EVENT_MEDIA_END: smallPlayEPG,	         //视频播放结束
+				EVENT_MEDIA_ERROR: smallPlayEPG         //视频播放错误
+			});
+		}
+	};
+	/**本专辑参数控制器传递*/
+	var param = {
+		imgPrefixIndex: '__ROOT__/Public/img/hd/Album/album133/',
+		V: 5,                        // 渲染视频列表个数
+		allVideoLength: 6,           // 视频列表的总个数
+		hasSmallVideo: 1,            // 是否有小窗播放
+		listVideoDirection: 'down',  // Video列表下一个翻页方向
+		// 视频列表焦点移动方向
+		videoListItemMove: {
+			prev: 'back',
+			next: '',
+			up: '',
+			down: '',
+			left: 'videoTv',
+			right: ''
+		},
+		// 更多精彩焦点移动方向
+		moreItemMove: {
+			up: '',
+			down: 'focus-1',
+			left: '',
+			right: 'back'
+		},
+		// 返回焦点移动方向
+		backItemMove: {
+			up: '',
+			down: 'focus-1',
+			left: 'more',
+			right: ''
+		},
+		// 小窗视频焦点移动方向
+		videoTvItemMove: {
+			up: '',
+			down: '',
+			left: '',
+			right: 'focus-1'
+		},
+		backPage: 'home',
+		backHomeTabNumber: '6',
+		morePageName: 'channel' // 设置查看更多跳转路径
+	};
+	/**解决不同地区差异化*/
+	var differentEPG = function(param) {
+		var bodyBg = 'bg_album.png';
+		switch (TP.lmcid) {
+			case '000051': // 中国联通
+				param.backPage = 'homeTab4';
+				break;
+			case '350092': // 福建电信
+				param.allVideoLength =6;
+				break;
+			case '420092': // 湖北电信
+				S('imgFree'); // 显示免费角标
+				param.allVideoLength = 6;
+				break;
+			case '450092': // 广西电信
+				break;
+			case '450094': // 广西广电
+				param.allVideoLength = 5;
+				param.hasSmallVideo = 0;// 去除小窗标识
+				bodyBg = 'bg_album_full.png';
+				G('videoTv').parentNode.removeChild(G('videoTv')); // 删掉dom
+				break;
+			case '460092': // 海南电信
+				param.allVideoLength = 6;
+                param.backHomeTabNumber = 4;
+				break;
+			case '520094': // 贵州广电
+                S('imgFree'); // 显示免费角标
+				param.morePageName = 'healthVideoList';
+				break;
+			case '630092': // 青海电信
+				param.allVideoLength = 6;
+				bodyBg = 'bg_album_qinghai.png';
+				param.morePageName = 'MenuTabLevelThree'; // 青海电信查看更多跳转地址
+				break;
+			case '640092': // 宁夏电信
+				bodyBg = 'bg_album.png';
+				param.imgPrefixIndex = '__ROOT__/Public/img/hd/Album/album133/ningxia/';
+				param.morePageName = 'MenuTabLevelThree'; // 宁夏电信查看更多跳转地址
+				break;
+			case '650092': // 新疆电信
+				param.allVideoLength = 6;
+                param.backHomeTabNumber = 4;
+				break;
+		}
+		G('body').style.backgroundImage = 'url(' + param.imgPrefixIndex + (TP.platformType == 'sd' ? 'bg_album_sd.png' : bodyBg) + ')';
+	};
+
+	differentEPG(param);
+	smallPlayEPG(param.hasSmallVideo);
+	EPGAlbum.init(param);
+    lmInitGo();
+</script>
+</body>
+</html>

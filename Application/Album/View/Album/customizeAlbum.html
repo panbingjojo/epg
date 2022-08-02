@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>定制专辑</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/Common/Album/customizeAlbum.css?t={$time}"/>
+
+    <script type="text/javascript">
+        // TP框架控制器返回数据应用
+        var RenderParam = {
+            vip: {$isVip},  //当前用户是否VIP
+            payMethod: {$payMethod}, // 订购配置数据
+            firstVideoIndex: {$moveNum},    // 当前视频列表显示的第一条视频下标
+            userId: '{$userId}',    // 当前用户ID
+            focusId: '{$focus_index}',  // 当前页面焦点ID
+            videoData: {$data}.data.video_list,  // 当前专辑视频信息列表
+            platformType: '{$platformType}',     // hd--高清 sd--标清
+            lmcid: '{$carrierId}',  // 所属地区Id
+            inner: '{$inner}',  // 当前专辑是否从应用内跳转 1--应用内部跳转 2--外部局方大厅跳转
+            fromLaunch:"{$fromLaunch}",
+            albumName: '{$albumName}',          // 专辑名称
+            domainUrl: '{$domainUrl}',           // 江苏电信需要使用的第三方播放器前缀地址\
+            commonImgPath: '__ROOT__/Public/img/{$platformType}/Album/common/', // 公用图片文件地址
+            commonHDImgPath: '__ROOT__/Public/img/hd/Album/common/', //  公用高清图片文件地址
+            albumImgPath: '__ROOT__/Public/img/hd/Album/album167/', // 当前专辑图片文件地址
+            splashHistory: {$splashHistory},
+            keyCountdown: "{$keyCountdown}", // 是否挽留页弹窗弹出键值
+            valueCountdown: {$valueCountdown}, // 是否挽留页弹窗弹出值
+            isVideoFree: {$isVideoFree}, // 判断当前专辑普通用户是否可以免费观看所有视频 1--免费观看 0--不能免费观看
+            atFreeTime: {$atFreeTime}, // 当前专辑跳转视频播放页面是否已经观看完免费时长 1--已观看 0--未观看
+            videoTitle: "{$videoTitle}", // 当前专辑跳转视频标题 订购页面需要
+            resourceUrl: "{$resourceUrl}", // 服务器文件地址
+            templateInfo: {$templateInfo}, // 当前专辑配置模板
+            areaCode: "{$areaCode}",          // 省份地区码
+            cornerMarkUrl: "{$cornerMarkUrl}" ,// 免费角标链接
+            templatePageInfo: {$templatePageInfo},
+            nowData:'{$nowData}',
+            lmp:'{$lmp}',
+            isRunOnAndroid:"{$isRunOnAndroid}"
+        };
+    </script>
+
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+
+    <if condition="$carrierId eq '520092'"><!--贵州广电引用-->
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    </if>
+
+    <if condition="$carrierId eq '07430093' ">
+        <!--湖南联通芒果TV 07430093js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/mongoTV/webview.js?t={$time}"></script>
+    </if>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+
+    <if condition="$carrierId eq '440004' ">
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/440004/WebViewJavascriptBridge.js"></script>
+    </if>
+
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmPayFrame.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Album/Common/customizeLMAlbum.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            LMAlbum.showVideoLength = parseInt(LMAlbum.eleInfo.video_list_number.value);  // 视频显示个数
+            LMAlbum.videoLayout =parseInt(LMAlbum.eleInfo.video_list_layout.value);  // 视频摆放方向
+
+            // 专辑相关参数预处理
+            LMAlbum.initPretreatment({
+                albumAlias: [151, 152, 153, 155]
+            });
+
+            LMAlbum.videoMoveConfig = {
+                up: LMAlbum.eleInfo.focus_cfg.video_list.focus_up.replace(/video_list/g,'video-1'),
+                down:LMAlbum.eleInfo.focus_cfg.video_list.focus_down.replace(/video_list/g,'video-1'),
+                right: LMAlbum.eleInfo.focus_cfg.video_list.focus_right.replace(/video_list/g,'video-1'),
+                left:LMAlbum.eleInfo.focus_cfg.video_list.focus_left.replace(/video_list/g,'video-1'),
+            };
+
+            LMAlbum.backMoveConfig = {
+                up: LMAlbum.eleInfo.focus_cfg.back.focus_up.replace(/video_list/g,'video-1'),
+                down:LMAlbum.eleInfo.focus_cfg.back.focus_down.replace(/video_list/g,'video-1'),
+                right: LMAlbum.eleInfo.focus_cfg.back.focus_right.replace(/video_list/g,'video-1'),
+                left:LMAlbum.eleInfo.focus_cfg.back.focus_left.replace(/video_list/g,'video-1')
+            };
+
+            LMAlbum.viewMoreMoveConfig = {
+                up: LMAlbum.eleInfo.focus_cfg.more.focus_up.replace(/video_list/g,'video-1'),
+                down:LMAlbum.eleInfo.focus_cfg.more.focus_down.replace(/video_list/g,'video-1'),
+                left: LMAlbum.eleInfo.focus_cfg.more.focus_left.replace(/video_list/g,'video-1'),
+                right: LMAlbum.eleInfo.focus_cfg.more.focus_right.replace(/video_list/g,'video-1')
+            };
+
+            LMAlbum.smallVideoPosition = {
+                top: LMAlbum.eleInfo.position.small_video.top,  // 小窗播放距离上
+                left: LMAlbum.eleInfo.position.small_video.left,   // 距离左
+                width: LMAlbum.eleInfo.small_video_size.width,  // 宽
+                height: LMAlbum.eleInfo.small_video_size.height // 高
+            };
+
+            LMAlbum.smallVideoMoveConfig = {
+                up: LMAlbum.eleInfo.focus_cfg.small_video.focus_up.replace(/video_list/g,'video-1'),
+                down: LMAlbum.eleInfo.focus_cfg.small_video.focus_down.replace(/video_list/g,'video-1'),
+                left: LMAlbum.eleInfo.focus_cfg.small_video.focus_left.replace(/video_list/g,'video-1'),
+                right: LMAlbum.eleInfo.focus_cfg.small_video.focus_right.replace(/video_list/g,'video-1')
+            };
+
+            try {
+                LMAlbum.init();
+                lmInitGo();
+                if(RenderParam.lmcid === "440001"){
+                    uploadVideoData();
+                }
+            } catch (err) {
+                G('debug').innerHTML += err + '</br>';
+            }
+        };
+
+        /**
+         * 释放iframe资源
+         */
+        function releaseFrame() {
+            LMEPG.PayFrame.releaseFrame();
+        }
+
+        function uploadVideoData(){
+            LMEPG.ajax.postAPI('Player/getRecommendVideoInfo', null, function (rsp) {
+                if(rsp.result === 0){
+                    var val = JSON.parse(rsp.data[0].ftp_url);
+                    var data = {
+                        startTime:getNowDate() ,
+                        contentId:val.gq_ftp_url,
+                        contentName:rsp.data[0].title,
+                    };
+                    LMEPG.Log.info("uploadData data:"+JSON.stringify(data));
+                    LMAndroid.jsCallAndroid('doExportContentDetail', JSON.stringify(data), '');
+                }
+            });
+        }
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function getNowDate() {
+            var dateTime=new Date();
+            dateTime=dateTime.setSeconds(dateTime.getSeconds()- getRandom(40,120));
+            var date = new Date(dateTime);
+            var year = date.getFullYear() // 年
+            var month = date.getMonth() + 1; // 月
+            var day  = date.getDate(); // 日
+            var hour = date.getHours(); // 时
+            var minutes = date.getMinutes(); // 分
+            var seconds = date.getSeconds() //秒
+            // 给一位数数据前面加 “0”
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (day >= 0 && day <= 9) {
+                day = "0" + day;
+            }
+            if (hour >= 0 && hour <= 9) {
+                hour = "0" + hour;
+            }
+            if (minutes >= 0 && minutes <= 9) {
+                minutes = "0" + minutes;
+            }
+            if (seconds >= 0 && seconds <= 9) {
+                seconds = "0" + seconds;
+            }
+            var currentdate = year  + month  + day +  hour  + minutes  + seconds;
+            return currentdate;
+        }
+    </script>
+</head>
+<body id="body" class="{$platformType}-body">
+<div id="debug"></div>
+<img src="" alt="" id="background" class="{$platformType}-bg">
+
+<img id="more" class="{$platformType}-view-more" src=""/>
+<!--返回按钮-->
+<img id="back" class="{$platformType}-back"/>
+
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+
+<if condition="$platformType eq 'hd' ">
+    <div id="small-video-wrap" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+        <iframe id="small-screen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+    </div>
+    <img id="small_video" src=""/>
+    <img id="corner-mark" class="{$platformType}-corner-mark" src="" alt="">
+    <else/>
+</if>
+
+<!--视频列表翻页箭头-->
+<img id="image-prev-arrow" class="{$platformType}-v-arrow {$platformType}-v-prev"/>
+<img id="image-next-arrow" class="{$platformType}-v-arrow {$platformType}-v-next"/>
+
+<img id="more-wonderful" src="__ROOT__/Public/img/hd/Album/common/btn_more_album.png"
+     class="{$platformType}-more-wonderful" style="visibility:hidden"/>
+
+<!--视频列表渲染容器-->
+<div id="video-list" class="{$platformType}-video-list"></div>
+
+<div id="history-album" class="{$platformType}-history-album"></div>
+
+</body>
+</html>

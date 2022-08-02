@@ -1,0 +1,102 @@
+body {
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    background-image: url("../../../../img/sd/Home/V13/Home/bg.png");
+}
+
+p#title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+div#container {
+    position: relative;
+    width: 644px;
+    margin: 0 auto;
+    top: 100px;
+}
+
+#icon-arrow {
+    position: absolute;
+    top: 180px;
+    left: 0;
+}
+
+#icon-next {
+    position: absolute;
+    top: 0;
+    left: 562px;
+}
+
+#list-wrap {
+    margin: 0 auto;
+    width: 524px;
+}
+
+.house-item {
+    width: 220px;
+    height: 340px;
+    background-image: url("../../../../img/sd/Unclassified/V13/pharmacyHouse.png");
+    background-position: top;
+    float: left;
+    color: #fff;
+    font-size: 18px;
+    text-align: left;
+    padding: 10px;
+}
+
+#house-0 {
+    margin-right: 24px;
+}
+
+.house-item div {
+    margin-top: 20px;
+    padding-left: 30px;
+}
+
+.house-item div.house-name {
+    font-size: 24px;
+    margin-top: 200px;
+    padding-left: 0;
+    height: 30px;
+    overflow: hidden;
+}
+.house-item div.house-tel{
+    background-image: url("../../../../img/sd/Unclassified/V13/icon_tel.png");
+    background-position: left;
+    height: 24px;
+    overflow: hidden;
+}
+.house-item div.house-addr{
+    background-image: url("../../../../img/sd/Unclassified/V13/icon_addr.png");
+    background-position: left;
+    height: 24px;
+    overflow: hidden;
+}
+.house-item.focus {
+    border: 5px solid gold;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px goldenrod;
+}
+
+
+
+img.icon-tel,
+img.icon-addr {
+    margin-bottom: -6px;
+    margin-right: 6px;
+    width: 24px;
+    height: 24px;
+}
+
+#page-count {
+    position: absolute;
+    top: 388px;
+    left: 538px;
+    font-size: 18px;
+}

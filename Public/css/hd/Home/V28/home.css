@@ -1,0 +1,1149 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+/*导航栏*/
+.nav-content {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.nav-tool {
+    position: absolute;
+    top: 30px;
+    left: 100px;
+    width: 1120px;
+    /*border: 1px red solid;*/
+}
+
+.logo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 234px;
+    height: 70px;
+}
+
+.notice {
+    position: absolute;
+    top: 645px;
+    left: 0px;
+    width: 1100px;
+    /*background-image: url("/Public/img/hd/Home/V20/Nav/bg.png");*/
+    /*border: 1px red solid;*/
+    height: 40px;
+}
+
+#notice {
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: 570px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.notice-icon {
+    position: absolute;
+    top: 9px;
+    left: 0px;
+}
+
+.tool-list {
+    position: absolute;
+    top: 10px;
+    left: 670px;
+    width: 520px;
+    /*overflow: hidden;*/
+    /*border: 1px red solid;*/
+    height: 51px;
+}
+
+.btn {
+    margin-left: 20px;
+}
+
+#nav-content-tabs {
+    position: absolute;
+    top: 144px;
+    left: 73px;
+    width: 1030px;
+    /*border: 1px red solid;*/
+}
+
+#nav-content-tabs > img {
+    height: 60px;
+    margin-left: 27px;
+}
+
+#content-container {
+    position: absolute;
+    left: 0px;
+    top: 200px;
+    width: 1280px;
+    height: 500px;
+    overflow: hidden;
+    /*border: 1px red solid;*/
+}
+
+#scroll-1 {
+    /*position: absolute;*/
+    /*left: 100px;*/
+    /*top: 0px;*/
+    /*border: 1px red solid;*/
+}
+
+.content {
+    display: none;
+}
+
+.tab0-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+/*首页*/
+.classify{
+    position: absolute;
+    width: 200px;
+    left: 0;
+    z-index: 555;
+}
+
+.tab0-recommended-1-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 420px;
+    height: 230px;
+}
+
+.tab0-recommended-2-box{
+    position: absolute;
+    left: 440px;
+    top: 0;
+    width: 200px;
+    height: 230px;
+}
+
+.tab0-recommended-3-box{
+    position: absolute;
+    left: 660px;
+    top: 0;
+    width: 260px;
+    height: 120px;
+}
+
+.tab0-recommended-4-box{
+    position: absolute;
+    left: 660px;
+    top: 140px;
+    width: 260px;
+    height: 260px;
+}
+
+.tab0-recommended-2-list {
+    position: absolute;
+    left: 0px;
+    top: 250px;
+}
+
+.tab0-recommended-2-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 200px;
+    height: 150px;
+}
+
+.tab0-recommended-2-list-2-box {
+    position: absolute;
+    left: 220px;
+    width: 200px;
+    height: 150px;
+}
+
+.tab0-recommended-2-list-3-box {
+    position: absolute;
+    left: 440px;
+    width: 200px;
+    height: 150px;
+}
+
+.tab0-recommended-3-list {
+    position: absolute;
+    left: 940px;
+    top: 0;
+}
+
+.tab0-recommended-3-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab0-recommended-3-list-2-box {
+    position: absolute;
+    left: 280px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab0-recommended-3-list-3-box {
+    position: absolute;
+    left: 560px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab0-recommended-3-list-4-box {
+    position: absolute;
+    left: 840px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab0-recommended-3-list-5-box {
+    position: absolute;
+    left: 1120px;
+    width: 240px;
+    height: 400px;
+}
+
+#tab0-recommended-1.focus {
+    position: absolute;
+    top: -44px;
+    left: -74px;
+    width: 120%;
+    height: 120%;
+    padding: 10px;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_1.png) no-repeat center;
+    background-size: 561px 362px;
+    z-index: 888;
+}
+
+#tab0-recommended-1.small-video-focus {
+    position: absolute;
+    top: -7px;
+    left: -6px;
+    width: 98%;
+    height: 95%;
+    padding: 10px;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_1.png) no-repeat center;
+    background-size: 561px 362px;
+    z-index: 888;
+    border: 2px solid #fff;
+    border-radius: 20px;
+}
+
+#tab0-recommended-2.focus {
+    position: absolute;
+    top: -44px;
+    left: -35px;
+    width: 120%;
+    height: 120%;
+    padding: 10px;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    background-size: 307px 327px;
+    z-index: 888;
+}
+
+#tab0-recommended-3.focus {
+    position: absolute;
+    top: -20px;
+    left: -35px;
+    width: 120%;
+    height: 120%;
+    padding: 10px;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_1.png) no-repeat center;
+    background-size: 347px 190px;
+    z-index: 888;
+}
+
+#tab0-recommended-4.focus {
+    position: absolute;
+    top: -35px;
+    left: -35px;
+    width: 120%;
+    height: 120%;
+    padding: 10px;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    background-size: 398px 369px;
+    z-index: 888;
+}
+
+#tab0-recommended-2-list-1.focus, #tab0-recommended-2-list-2.focus, #tab0-recommended-2-list-3.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 240px;
+    height: 180px;
+    padding: 40px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_2.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab0-recommended-3-list-1.focus, #tab0-recommended-3-list-2.focus, #tab0-recommended-3-list-3.focus, #tab0-recommended-3-list-4.focus, #tab0-recommended-3-list-5.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+}
+
+
+/*健康视频*/
+.classify img{
+    margin-top: 20px;
+}
+
+.classify img:first-child{
+    margin-top: 0;
+}
+#classify-0{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#classify-1{
+    position: absolute;
+    left: 0;
+    top: 65px;
+}
+#classify-2{
+    position: absolute;
+    left: 0;
+    top: 148px;
+}
+#classify-3{
+    position: absolute;
+    left: 0;
+    top: 230px;
+}
+#classify-4{
+    position: absolute;
+    left: 0;
+    top: 315px;
+}
+
+.classify .focus{
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_3.png) no-repeat center;
+    background-size: 259px 90px;
+    width: 120%;
+    margin-left: -16px;
+    top: 0;
+}
+
+.tab1-recommended-1-box {
+    position: absolute;
+    left: 220px;
+    top: 0px;
+    width: 420px;
+    height: 210px;
+}
+
+.tab1-recommended-2-list {
+    position: absolute;
+    left: 220px;
+    top: 230px;
+}
+
+.tab1-recommended-2-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 200px;
+    height: 170px;
+}
+
+.tab1-recommended-2-list-2-box {
+    position: absolute;
+    left: 220px;
+    width: 200px;
+    height: 170px;
+}
+
+
+.tab1-recommended-3-list {
+    position: absolute;
+    left: 660px;
+    top: 0;
+}
+
+.tab1-recommended-3-list-1-box {
+    position: absolute;
+    top: 0px;
+    width: 260px;
+    height: 210px;
+}
+
+.tab1-recommended-3-list-2-box {
+    position: absolute;
+    top: 230px;
+    width: 260px;
+    height: 210px;
+}
+
+.tab1-recommended-4-list {
+    position: absolute;
+    left: 940px;
+    top: 0px;
+}
+
+.tab1-recommended-4-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab1-recommended-4-list-2-box {
+    position: absolute;
+    left: 280px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab1-recommended-4-list-3-box {
+    position: absolute;
+    left: 560px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab1-recommended-4-list-4-box {
+    position: absolute;
+    left: 840px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab1-recommended-4-list-5-box {
+    position: absolute;
+    left: 1120px;
+    width: 240px;
+    height: 400px;
+}
+
+
+#tab1-recommended-1.focus {
+    position: absolute;
+    top: -44px;
+    left: -54px;
+    width: 119%;
+    height: 118%;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_1.png) no-repeat center;
+    z-index: 888;
+
+}
+
+#tab1-recommended-2-list-1.focus, #tab1-recommended-2-list-2.focus {
+    position: absolute;
+    top: -53px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 34px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_2.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab1-recommended-3-list-1.focus, #tab1-recommended-3-list-2.focus {
+    position: absolute;
+    top: -65px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 34px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_3.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab1-recommended-4-list-1.focus, #tab1-recommended-4-list-2.focus, #tab1-recommended-4-list-3.focus, #tab1-recommended-4-list-4.focus, #tab1-recommended-4-list-5.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+}
+
+/*健康知识*/
+
+.tab2-recommended-1-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab2-recommended-2-box {
+    position: absolute;
+    left: 280px;
+    top: 0px;
+    width: 420px;
+    height: 210px;
+}
+
+.tab2-recommended-3-list {
+    position: absolute;
+    left: 280px;
+    top: 230px;
+}
+
+.tab2-recommended-3-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 200px;
+    height: 170px;
+}
+
+.tab2-recommended-3-list-2-box {
+    position: absolute;
+    left: 220px;
+    width: 200px;
+    height: 170px;
+}
+
+.tab2-recommended-4-list {
+    position: absolute;
+    left: 720px;
+    top: 0px;
+}
+
+.tab2-recommended-4-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab2-recommended-4-list-2-box {
+    position: absolute;
+    left: 280px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab2-recommended-4-list-3-box {
+    position: absolute;
+    left: 560px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab2-recommended-4-list-4-box {
+    position: absolute;
+    left: 840px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab2-recommended-4-list-5-box {
+    position: absolute;
+    left: 1120px;
+    width: 240px;
+    height: 400px;
+}
+
+
+#tab2-recommended-1.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+
+}
+
+#tab2-recommended-2.focus {
+    position: absolute;
+    top: -44px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_1.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab2-recommended-3-list-1.focus, #tab2-recommended-3-list-2.focus {
+    position: absolute;
+    top: -53px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 34px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_2.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab2-recommended-4-list-1.focus, #tab2-recommended-4-list-2.focus, #tab2-recommended-4-list-3.focus, #tab2-recommended-4-list-4.focus, #tab2-recommended-4-list-5.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+}
+
+
+/*健康自测*/
+.tab3-recommended-1-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 420px;
+    height: 210px;
+}
+
+.tab3-recommended-2-list {
+    position: absolute;
+    left: 0px;
+    top: 230px;
+}
+
+.tab3-recommended-2-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 200px;
+    height: 170px;
+}
+
+.tab3-recommended-2-list-2-box {
+    position: absolute;
+    left: 220px;
+    width: 200px;
+    height: 170px;
+}
+
+
+.tab3-recommended-3-list {
+    position: absolute;
+    left: 440px;
+    top: 0px;
+}
+
+.tab3-recommended-3-list-1-box {
+    position: absolute;
+    top: 0px;
+    width: 260px;
+    height: 210px;
+}
+
+.tab3-recommended-3-list-2-box {
+    position: absolute;
+    top: 230px;
+    width: 260px;
+    height: 210px;
+}
+
+.tab3-recommended-4-list {
+    position: absolute;
+    left: 720px;
+    top: 0px;
+}
+
+.tab3-recommended-4-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab3-recommended-4-list-2-box {
+    position: absolute;
+    left: 280px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab3-recommended-4-list-3-box {
+    position: absolute;
+    left: 560px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab3-recommended-4-list-4-box {
+    position: absolute;
+    left: 840px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab3-recommended-4-list-5-box {
+    position: absolute;
+    left: 1120px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab3-recommended-4-list-6-box {
+    position: absolute;
+    left: 1400px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab3-recommended-4-list-7-box {
+    position: absolute;
+    left: 1680px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab3-recommended-4-list-8-box {
+    position: absolute;
+    left: 1960px;
+    width: 240px;
+    height: 400px;
+}
+
+
+#tab3-recommended-1.focus {
+    position: absolute;
+    top: -44px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_1.png) no-repeat center;
+    z-index: 888;
+
+}
+
+#tab3-recommended-2-list-1.focus, #tab3-recommended-2-list-2.focus {
+    position: absolute;
+    top: -53px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 34px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_2.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab3-recommended-3-list-1.focus, #tab3-recommended-3-list-2.focus {
+    position: absolute;
+    top: -65px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 34px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_3.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab3-recommended-4-list-1.focus, #tab3-recommended-4-list-2.focus, #tab3-recommended-4-list-3.focus, #tab3-recommended-4-list-4.focus, #tab3-recommended-4-list-5.focus, #tab3-recommended-4-list-6.focus, #tab3-recommended-4-list-7.focus, #tab3-recommended-4-list-8.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+}
+
+.album-list {
+    position: absolute;
+    width: 240px;
+    height: 400px;
+}
+
+.album-list-focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+}
+
+
+.tab4-recommended-4-list {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+/*}*/
+.hidden {
+    display: none;
+}
+
+
+/*.active {*/
+/*top: 300px*/
+/*}*/
+
+/** 养生 -- start */
+.tab4-recommended-1-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 420px;
+    height: 210px;
+}
+
+.tab4-recommended-2-list {
+    position: absolute;
+    left: 0px;
+    top: 230px;
+}
+
+.tab4-recommended-2-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 200px;
+    height: 170px;
+}
+
+.tab4-recommended-2-list-2-box {
+    position: absolute;
+    left: 220px;
+    width: 200px;
+    height: 170px;
+}
+
+
+.tab4-recommended-3-list {
+    position: absolute;
+    left: 440px;
+    top: 0px;
+}
+
+.tab4-recommended-3-list-1-box {
+    position: absolute;
+    top: 0px;
+    width: 260px;
+    height: 210px;
+}
+
+.tab4-recommended-3-list-2-box {
+    position: absolute;
+    top: 230px;
+    width: 260px;
+    height: 210px;
+}
+
+.tab4-recommended-4-list {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.tab4-recommended-4-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab4-recommended-4-list-2-box {
+    position: absolute;
+    left: 280px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab4-recommended-4-list-3-box {
+    position: absolute;
+    left: 560px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab4-recommended-4-list-4-box {
+    position: absolute;
+    left: 840px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab4-recommended-4-list-5-box {
+    position: absolute;
+    left: 1120px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab4-recommended-4-list-6-box {
+    position: absolute;
+    left: 1400px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab4-recommended-4-list-7-box {
+    position: absolute;
+    left: 1680px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab4-recommended-4-list-8-box {
+    position: absolute;
+    left: 1960px;
+    width: 240px;
+    height: 400px;
+}
+
+
+#tab4-recommended-1.focus {
+    position: absolute;
+    top: -44px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_1.png) no-repeat center;
+    z-index: 888;
+
+}
+
+#tab4-recommended-2-list-1.focus, #tab4-recommended-2-list-2.focus {
+    position: absolute;
+    top: -53px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 34px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_2.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab4-recommended-3-list-1.focus, #tab4-recommended-3-list-2.focus {
+    position: absolute;
+    top: -65px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 34px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_3.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab4-recommended-4-list-1.focus, #tab4-recommended-4-list-2.focus, #tab4-recommended-4-list-3.focus, #tab4-recommended-4-list-4.focus, #tab4-recommended-4-list-5.focus, #tab4-recommended-4-list-6.focus, #tab4-recommended-4-list-7.focus, #tab4-recommended-4-list-8.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+}
+/** 养生 -- end */
+
+/** 创意手工 -- start */
+.tab5-recommended-1-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab5-recommended-2-box {
+    position: absolute;
+    left: 280px;
+    top: 0px;
+    width: 420px;
+    height: 210px;
+}
+
+.tab5-recommended-3-list {
+    position: absolute;
+    left: 280px;
+    top: 230px;
+}
+
+.tab5-recommended-3-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 200px;
+    height: 170px;
+}
+
+.tab5-recommended-3-list-2-box {
+    position: absolute;
+    left: 220px;
+    width: 200px;
+    height: 170px;
+}
+
+.tab5-recommended-4-list {
+    position: absolute;
+    left: 720px;
+    top: 0px;
+}
+
+.tab5-recommended-4-list-1-box {
+    position: absolute;
+    left: 0px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab5-recommended-4-list-2-box {
+    position: absolute;
+    left: 280px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab5-recommended-4-list-3-box {
+    position: absolute;
+    left: 560px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab5-recommended-4-list-4-box {
+    position: absolute;
+    left: 840px;
+    width: 240px;
+    height: 400px;
+}
+
+.tab5-recommended-4-list-5-box {
+    position: absolute;
+    left: 1120px;
+    width: 240px;
+    height: 400px;
+}
+
+
+#tab5-recommended-1.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+
+}
+
+#tab5-recommended-2.focus {
+    position: absolute;
+    top: -44px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_1.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab5-recommended-3-list-1.focus, #tab5-recommended-3-list-2.focus {
+    position: absolute;
+    top: -53px;
+    left: -54px;
+    width: 119%;
+    height: 119%;
+    padding: 34px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_2_box_2.png) no-repeat center;
+    z-index: 888;
+}
+
+#tab5-recommended-4-list-1.focus, #tab5-recommended-4-list-2.focus, #tab5-recommended-4-list-3.focus, #tab5-recommended-4-list-4.focus, #tab5-recommended-4-list-5.focus {
+    position: absolute;
+    top: -53px;
+    left: -53px;
+    width: 310px;
+    height: 480px;
+    padding: 20px;
+    background-position: center;
+    background: url(/Public/img/hd/Home/V22/Home/tab_1_box_3.png) no-repeat center;
+    z-index: 888;
+}
+/** 养生 -- end */
+.point-area{
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+    z-index: 999;
+}
+
+.pop{
+    position: absolute;
+    background: url("/Public/img/hd/Home/V25/pop-bg.png");
+    width: 1280px;
+    height: 720px;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    z-index: 9999;
+}
+
+.pop-back{
+    position: absolute;
+    bottom: 150px;
+    left: 395px;
+}
+
+.pop-continue{
+    position: absolute;
+    bottom: 150px;
+    right: 395px;
+}
+
+.cut-down{
+    position: absolute;
+    font-size: 50px;
+    color: #fff;
+    right: 303px;
+    top: 186px;
+}

@@ -1,0 +1,149 @@
+
+body {
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    background-image: url(../../../../img/sd/Common/V13/mark_bg.png);
+    background-size: 644px 530px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#btn-rules {
+    top: 24px;
+    left: 475px;
+    width: 144px;
+    height: 44px;
+}
+
+#btn-lottery {
+    top: 206px;
+    left: 489px;
+    width: 138px;
+    height: 138px;
+}
+
+#btn-mark {
+    top: 437px;
+    left: 108px;
+    width: 422px;
+    height: 93px;
+}
+
+/*分数*/
+.score-wrapper {
+    top: 53px;
+    left: 46px;
+    font-size: 18px;
+}
+
+.keep-mark-day {
+    /* padding-top: 5px; */
+    width: 150px;
+    text-align: center;
+}
+
+.score-content {
+    margin-top: 42px;
+}
+
+.score-content p {
+    width: 195px;
+    height: 27px;
+    line-height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.score-content img {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-bottom: -6px;
+}
+
+.score-content span {
+}
+
+.score-content b {
+    color: #ffdc19;
+    margin-left: 30px;
+}
+
+.score-content .today-score {
+}
+
+.score-content .total-score {
+    margin-top: 14px;
+}
+
+/*日期*/
+#date-wrapper {
+    top: 370px;
+    left: 18px;
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    font-size: 14px;
+    text-align: center;
+    list-style: none;
+}
+
+#date-wrapper li {
+    width: 48px;
+    height: 54px;
+    line-height: 50px;
+    float: left;
+    margin-right: 22px;
+    background-repeat: no-repeat;
+    /* background-position: 0 8px; */
+}
+
+/*mark-had:已经签到，mark-miss:漏签，mark-will:待签到*/
+#date-wrapper li.mark-had {
+    background-image: url(../../../../img/sd/Unclassified/V13/mark_had.png);
+}
+
+#date-wrapper li.mark-miss {
+    background-image: url(../../../../img/sd/Unclassified/V13/mark_miss.png);
+}
+
+#date-wrapper li.mark-will {
+    color: #000;
+    background-image: url(../../../../img/sd/Unclassified/V13/mark_will.png);
+}
+
+/*签到规则弹框*/
+div.rules {
+    height: 444px;
+    color: #fffefe;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+div.rules .title {
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    font-size: 22px;
+    position: absolute;
+    top: 46px;
+    left: 44px;
+    font-weight: bold;
+}
+
+.rules .rules-desc {
+    position: absolute;
+    top: 102px;
+    left: 44px;
+    font-size: 18px;
+}
+
+.rules p {
+    margin-bottom: 6px;
+}
+
+.rules .placeholder {
+    margin-top: 10px;
+}

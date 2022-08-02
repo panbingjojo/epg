@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/sd/Home/V13/Home/bg.png);
+    background-size: 644px 530px;
+    font-size: 18px;
+}
+
+body > * {
+    position: absolute;
+}
+
+p.title {
+    top: 20px;
+    left: 38px;
+    font-size: 22px;
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+}
+
+span.bold {
+    font-weight: bold;
+}
+
+#container {
+    position: absolute;
+    top: 80px;
+    left: 42px;
+}
+
+#container ul.data-wrapper {
+    position: relative;
+}
+
+#container ul.data-wrapper > li {
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+}
+
+li img {
+    width: 45px;
+    height: 45px;
+}
+
+#type-prev {
+    margin-left: 18px;
+}
+
+#container ul.data-wrapper li img.prev-arrow {
+    margin-left: 18px;
+}
+
+#container ul.data-wrapper li.test-time {
+    position: relative;
+}
+
+li.test-time p#input-time {
+    position: absolute;
+    top: 14px;
+    left: 100px;
+    width: 402px;
+    height: 25px;
+    line-height: 25px;
+    padding: 6px;
+    text-align: center;
+    background-image: url(../../../../img/sd/Unclassified/V13/test_time.png);
+}
+
+.test-time ul#date-modal {
+    position: absolute;
+    top: 50px;
+    left: 110px;
+    width: 388px;
+    height: 220px;
+    visibility: hidden;
+    z-index: 1;
+    background-image: url(../../../../img/sd/Unclassified/V13/bg_date.png);
+}
+
+.test-time ul#date-modal li {
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.test-time ul#date-modal li span {
+    margin: 0 10px;
+    color: #ef9f07;
+}
+.test-time ul#date-modal li i {
+    margin-left: 50px;
+}
+
+.test-time ul#date-modal li.date-inner-center {
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.test-time ul#date-modal li.date-inner-center span.focus {
+    color: #ef6188;
+    border-bottom: 1px solid #ef6188;
+}
+
+#container ul.data-wrapper li.test-number {
+    position: relative;
+}
+
+.test-number p#input-number {
+    position: absolute;
+    top: 12px;
+    left: 100px;
+    width: 198px;
+    height: 25px;
+    line-height: 20px;
+    padding: 6px;
+    text-align: center;
+    background-image: url(../../../../img/sd/Unclassified/V13/test_number.png);
+}
+
+.test-number span#number-name {
+    /* margin-left: 248px; */
+    position: absolute;
+    left: 328px;
+    width: 66px;
+    top: 0;
+}
+
+.test-number ul#number-modal {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    width: 218px;
+    height: 194px;
+    visibility: hidden;
+    background-image: url(../../../../img/hd/HealthTest/V13/bg_number.png);
+}
+
+ul#number-modal li {
+    height: 65px;
+    line-height: 65px;
+    text-align: center;
+}
+
+ul#number-modal li.number-center {
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+ul#number-modal li span {
+    margin: 0 10px;
+    position: relative;
+    color: #ef9f07;
+}
+
+ul#number-modal li.number-center span.focus {
+    color: #ef6188;
+    border-bottom: 1px solid #ef6188;
+}
+
+li.test-submit {
+    width: 155px;
+    text-align: center;
+}
+
+img#test-submit {
+    width: 144px;
+    height: 44px;
+    margin-left: 205px;
+    margin-top: 50px;
+}
+img#member-add{
+    width: 44px;
+    height: 44px;
+}
+.number-placeholder b{
+    border:none;
+    background-color: transparent;
+}

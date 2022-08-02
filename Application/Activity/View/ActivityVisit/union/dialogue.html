@@ -1,0 +1,667 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>名医下基层-union-对话框</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityVisit/union/dailog.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <!--当前用到的自定义js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityVisit/PopRule.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityVisit/union/DialogMoreThree.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/keyboard.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-dialog");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * @func 进行购买操作
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip(contentId) {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("directPay", "1");
+            objOrderHome.setParam("orderReason", "101");
+            objOrderHome.setParam("contentId", contentId); // sp订购的内容id
+            objOrderHome.setParam("isJointActivity", "1"); // 表示联合活动
+            objOrderHome.setParam("remark", "{$activityName}");
+
+            var objActivityGuide = LMEPG.Intent.createIntent("activity-common-guide");
+            objActivityGuide.setParam("userId", "{$userId}");
+            objActivityGuide.setParam("inner", "{$inner}");
+            objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+        }
+
+        /**
+         * 跳转到其他第三方sp
+         */
+        function jumpThirdPartySP(spContentId) {
+            var objCurrent = getCurrentPage();
+            var objThirdPartySP = LMEPG.Intent.createIntent("activity-common-thirdPartySP");
+
+            objThirdPartySP.setParam("userId", "{$userId}");
+            objThirdPartySP.setParam("contentId", spContentId);
+
+            LMEPG.Intent.jump(objThirdPartySP, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         */
+        function jumpPlayUI() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            objActivityHome.setParam("userId", "{$userId}");
+            objActivityHome.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityHome, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        function onBack() {
+            LMEPG.Intent.back("activity-common-guide");
+        }
+
+    </script>
+
+</head>
+<body>
+<div id="dialog">
+
+</div>
+<script type="text/javascript">
+    var keyWordX = '<?php echo ($platformType === "hd" ? 450 : 180)?>';//呼出键盘的X坐标
+    var keyWordY = '<?php echo ($platformType === "hd" ? 550 : 390)?>';//呼出键盘的Y坐标
+    var searchTextTips = "请输入有效的电话号码"; //搜索框中的文字提示
+
+    var bookType = "{$spDesc}";//订购类型
+    var contentId = "{$contentId}";
+    var context = "{$context}";
+    var platformType = "{$platformType}";
+    var buttons;
+    var prizeName = "{$prizeName}"; // 奖品名称
+    var prizeIdx = "{$prizeIdx}"; // 奖品id
+    var leftTimes = {$leftTimes}; // 剩余次数
+    var spMap = {$spMap}; // 内容通过onload-->canAnswer方法异步加载过来的
+
+    var isOrderBack = "{$isOrderBack}"; // 是否为订购返回
+    var cOrderResult = "{$Think.cookie.c_order_result}";
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityVisit/union/';
+    var paySuccessUrl = imgPathPrefix + 'book_success.png';//订购成功弹窗背景
+    var payFailedUrl = imgPathPrefix + 'book_false.png';//订购失败弹窗背景
+
+    var defaultFocusId = "btn-one"; // 弹窗初始化默认焦点
+    var LM39_PRODUCT = { // 朗玛39健康产品
+        "productId": "product1",    // 自定义属性：表示当前html元素展示的是第几个产品
+        "elementId": "btn-one"      // html元素id
+    };
+
+    function initBtn(num) {
+        if (num == 1) {
+            buttons = [
+                {
+                    id: 'btn-one',
+                    name: '操作一',
+                    type: 'img',
+                    nextFocusLeft: '',
+                    nextFocusRight: 'btn-two',
+                    nextFocusUp: 'back',
+                    nextFocusDown: '',
+                    backgroundImage: '',
+                    focusImage: '',
+                    click: "onClick('btn-one')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: ""
+                }
+            ];
+        } else if (num == 2) {
+            var btnUrl1 = G("btn-one").getAttribute('onfocusurl');
+            var btnUrlConfirm1 = G("btn-one").getAttribute('confirmurl');
+            var btnUrl2 = G("btn-two").getAttribute('onfocusurl');
+            var btnUrlConfirm2 = G("btn-two").getAttribute('confirmurl');
+            buttons = [
+                {
+                    id: 'btn-one',
+                    name: '操作一',
+                    type: 'img',
+                    nextFocusLeft: 'btn-two',
+                    nextFocusRight: 'btn-two',
+                    nextFocusUp: 'back',
+                    nextFocusDown: '',
+                    backgroundImage: '' + btnUrlConfirm1 + '',
+                    focusImage: '' + btnUrl1 + '',
+                    click: "onClick('btn-one')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: ""
+                },
+                {
+                    id: 'btn-two',
+                    name: '操作二',
+                    type: 'img',
+                    nextFocusLeft: 'btn-one',
+                    nextFocusRight: 'btn-one',
+                    nextFocusUp: 'back',
+                    nextFocusDown: '',
+                    backgroundImage: '' + btnUrlConfirm2 + '',
+                    focusImage: '' + btnUrl2 + '',
+                    click: "onClick('btn-two')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: "",
+                }
+            ];
+        } else if (num == 3) {
+            var btnUrl1 = G("btn-one").getAttribute('onfocusurl');
+            var btnUrlConfirm1 = G("btn-one").getAttribute('confirmurl');
+            var btnUrl2 = G("btn-two").getAttribute('onfocusurl');
+            var btnUrlConfirm2 = G("btn-two").getAttribute('confirmurl');
+            buttons = [
+                {
+                    id: 'btn-one',
+                    name: '操作一',
+                    type: 'img',
+                    nextFocusLeft: 'btn-two',
+                    nextFocusRight: 'btn-two',
+                    nextFocusUp: 'searchText',
+                    nextFocusDown: '',
+                    backgroundImage: '' + btnUrlConfirm1 + '',
+                    focusImage: '' + btnUrl1 + '',
+                    click: "onClick('btn-one')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: "",
+                },
+                {
+                    id: 'btn-two',
+                    name: '操作二',
+                    type: 'img',
+                    nextFocusLeft: 'btn-one',
+                    nextFocusRight: 'btn-one',
+                    nextFocusUp: 'back',
+                    nextFocusDown: '',
+                    backgroundImage: '' + btnUrlConfirm2 + '',
+                    focusImage: '' + btnUrl2 + '',
+                    click: "onClick('btn-two')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: ""
+                },
+                {
+                    id: 'searchText',
+                    name: '号码框',
+                    type: 'img',
+                    nextFocusLeft: '',
+                    nextFocusRight: '',
+                    nextFocusUp: '',
+                    nextFocusDown: 'submit',
+                    backgroundImage: '',
+                    focusImage: '',
+                    click: "",
+                    focusChange: "KeyBtn.init(keyWordY, keyWordX, 'searchText', 'btn-one')",
+                    beforeMoveChange: "onCommonMoveChange",
+                    moveChange: ""
+                }
+            ];
+        } else {
+            var btnUrl1 = G("btn-one").getAttribute('onfocusurl');
+            var btnUrlConfirm1 = G("btn-one").getAttribute('confirmurl');
+            var btnUrl2 = G("pay-two").getAttribute('onfocusurl');
+            var btnUrlConfirm2 = G("pay-two").getAttribute('confirmurl');
+            var btnUrl3 = G("pay-three").getAttribute('onfocusurl');
+            var btnUrlConfirm3 = G("pay-three").getAttribute('confirmurl');
+            var btnUrl4 = G("pay-four").getAttribute('onfocusurl');
+            var btnUrlConfirm4 = G("pay-four").getAttribute('confirmurl');
+
+            //根据商品productId来确定sp信息 --> [39健康 智慧星球 风车乐园 乐享音乐]
+            var spinfo1 = {$spMap[0]};
+            //如果订购类型等于1代表订购过产品1,2代表产品2已订购，3,4依次
+            if (spinfo1.status == 1) {
+                btnUrl1 = btnUrl1.replace("in", "in_booked");
+            }
+
+            var spinfo2 = {$spMap[2]};
+            if (spinfo2.status == 1) {
+                btnUrl2 = btnUrl2.replace("in", "in_booked");
+            }
+
+            var spinfo3 = {$spMap[1]};
+            if (spinfo3.status == 1) {
+                btnUrl3 = btnUrl3.replace("in", "in_booked");
+            }
+
+            var spinfo4 = {$spMap[3]};
+            if (spinfo4.status == 1) {
+                btnUrl4 = btnUrl4.replace("in", "in_booked");
+            }
+
+            buttons = [
+                {
+                    id: 'btn-one',
+                    name: '订购1',
+                    type: 'img',
+                    nextFocusLeft: 'pay-four',
+                    nextFocusRight: 'pay-two',
+                    nextFocusUp: 'searchText',
+                    nextFocusDown: 'pay-back',
+                    backgroundImage: '' + btnUrlConfirm1 + '',
+                    focusImage: '' + btnUrl1 + '',
+                    productId: 'product1',
+                    click: "bookUnion('product1')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: "",
+                },
+                {
+                    id: 'pay-two',
+                    name: '订购2',
+                    type: 'img',
+                    nextFocusLeft: 'btn-one',
+                    nextFocusRight: 'pay-three',
+                    nextFocusUp: 'back',
+                    nextFocusDown: 'pay-back',
+                    backgroundImage: '' + btnUrlConfirm2 + '',
+                    focusImage: '' + btnUrl2 + '',
+                    productId: 'product2',
+                    click: "bookUnion('product2')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: ""
+                },
+                {
+                    id: 'pay-three',
+                    name: '订购3',
+                    type: 'img',
+                    nextFocusLeft: 'pay-two',
+                    nextFocusRight: 'pay-four',
+                    nextFocusUp: 'back',
+                    nextFocusDown: 'pay-back',
+                    backgroundImage: '' + btnUrlConfirm3 + '',
+                    focusImage: '' + btnUrl3 + '',
+                    productId: 'product3',
+                    click: "bookUnion('product3')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: ""
+                },
+                {
+                    id: 'pay-four',
+                    name: '订购4',
+                    type: 'img',
+                    nextFocusLeft: 'pay-three',
+                    nextFocusRight: 'btn-one',
+                    nextFocusUp: 'back',
+                    nextFocusDown: 'pay-back',
+                    backgroundImage: '' + btnUrlConfirm4 + '',
+                    focusImage: '' + btnUrl4 + '',
+                    productId: 'product4',
+                    click: "bookUnion('product4')",
+                    focusChange: "",
+                    beforeMoveChange: "",
+                    moveChange: ""
+                }, {
+                    id: 'pay-back',
+                    name: '返回',
+                    type: 'img',
+                    nextFocusLeft: '',
+                    nextFocusRight: '',
+                    nextFocusUp: 'btn-one',
+                    nextFocusDown: '',
+                    backgroundImage: imgPathPrefix + 'pay_out.png',
+                    focusImage: imgPathPrefix + 'pay_in.gif',
+                    click: "onBack()",
+                    focusChange: '',
+                    beforeMoveChange: "",
+                    moveChange: ""
+                }
+            ];
+        }
+
+        return num;
+    }
+
+    window.onload = function (ev) {
+        // 山西联通某款盒子焦点会有问题，对方提供的
+        var stbModel = LMEPG.STBUtil.getSTBModel();
+        if (stbModel == "B700V5C") {
+            if (top.location !== self.location) {
+                top.location = self.location;
+            }
+        }
+
+        // 弹出订购结果的提示框
+        showOrderResult();
+
+        var num = -1;
+        if (context == VIP_USER_PLAY_TIMES_OVER) {
+            // 会员次数用尽
+            dialogCreateTime.show(platformType);
+            num = initBtn(4);
+        } else if (context == NOT_VIP_USER_PLAY_TIMES_OVER) {
+            //非会员次数用尽
+            dialogCreateUnVip.show(platformType);
+            num = initBtn(2);
+        } else if (context == VIP_USER_TIMES_OVER) {
+            //次数用尽
+            dialogCreateTimeOver.show(platformType);
+            num = initBtn(1);
+        } else if (context == ACTIVITY_RULE_DETAIL) {
+            //活动规则
+            dialogCreateActivity.show(platformType);
+            num = initBtn(1);
+        } else if (context == VIP_USER_DRAWN_PRIZE) {
+            //中奖
+            dialogCreatePhone.show(platformType, prizeName);
+            num = initBtn(3);
+        } else if (context == USER_NOT_DRAWN_PRIZE_TIPS) {
+            dialogCreateFalse.show(platformType, true); // 没有中奖
+            num = initBtn(1);
+        } else if (context == ORDER_SUCCES) {
+            //订购成功
+            dialogCreateBookSucces.show(platformType);
+            num = initBtn(1);
+        } else if (context == ORDER_FAILED) {
+            //订购失败
+            dialogCreateBookFalse.show(platformType);
+            num = initBtn(1);
+        } else if (context == ACTIVITY_UNION_BOOK) {
+            //跳转联合订购
+            dialogUnionBook.show(platformType, bookType);
+            num = initBtn(2);
+        }
+
+        // 除了1，2，3情况外，都需要去查看可玩次数，再决定默认焦点放在哪个联合产品之上
+        if (num != 1 && num != 2 && num != 3) {
+            // 先检查“是否有可玩次数”和“联合产品订购关系”，再初始化默认焦点。否则，异步初始化默认焦点和调用接口按
+            // 规则再默认第几个联合产品为焦点状态，可能因为异步时序会导致从已有焦点跳到计算后的焦点位置。
+            canAnswer();
+            console.log("-------dialog#window.onload()------- Check available demoTimes and order relationship first --> init default focus view!!!");
+        } else {
+            // 不用先检查“是否有可玩次数”和“联合产品订购关系”，接着初始化默认焦点。
+            LMEPG.ButtonManager.init([defaultFocusId], buttons, '', true);
+            console.log("-------dialog#window.onload()------- Directly init default focus view!!!");
+        }
+    };
+
+    /**
+     * 点击事件
+     */
+    function onClick(btnId) {
+        if (focusType == "back") {
+            onBack();
+        } else if (focusType == "book") {
+            //订购页
+            if (btnId == "btn-one") {
+                jumpBuyVip(contentId);
+            } else if (btnId == "btn-two") {
+                onBack();
+            }
+        } else if (focusType == "bookUnion") {
+            //联合定购
+            if (btnId == "btn-one") {
+                jumpDialog(VIP_USER_PLAY_TIMES_OVER);
+            } else if (btnId == "btn-two") {
+                onBack();
+            }
+        } else if (focusType == "save") {
+            //填写手机号码页面
+            if (btnId == "btn-one") {
+                //去设置电话号码
+                goSetPhoneNumber();
+            } else if (btnId == "btn-two") {
+                onBack();
+            }
+        } else if (focusType == "continueAnswer") {
+            //继续答题
+            jumpPlayUI();
+        } else if (focusType == "drawn") {
+            doDrawnProcess();
+        } else {
+            LMEPG.Log.error("--------onClick(btnId)--------btnId: " + btnId + ", focusType: " + focusType);
+            console.log("--------onClick(btnId)--------btnId: " + btnId + ", focusType: " + focusType);
+            onBack();
+        }
+    }
+
+    /**
+     * 显示订购结果
+     */
+    function showOrderResult() {
+        if (isOrderBack == "1") {
+            LMEPG.UI.showToastBig(3, cOrderResult == "1" ? paySuccessUrl : payFailedUrl);
+        }
+    }
+
+    //联合订购页跳转
+    function bookUnion(productId) {
+        try {
+            var spInfo = getSpInfoByProductId(productId);
+            spInfo = spInfo instanceof Object ? spInfo : JSON.parse(spInfo);
+
+            // 当status==1时，表示已经订购该产品
+            if (spInfo.status == 1) {
+                jumpThirdPartySP(spInfo.contentId); //跳转到其他第三方sp
+            } else {
+                jumpBuyVip(spInfo.contentId); // 直接跳转到局方订购页
+            }
+        } catch (e) {
+            LMEPG.UI.showToast("判断用户是否订购出现异常！");
+            LMEPG.Log.error(e.toString());
+        }
+    }
+
+    /**
+     * 去设置中奖电话号码
+     */
+    function goSetPhoneNumber() {
+        //获取用户填写的手机号
+        var phoneTex = G("searchText");
+        var userTel = phoneTex.innerHTML;
+        var myPrices = '{$prizeName}';
+        var prizeIdx = '{$prizeIdx}';
+        if (prizeIdx == null) {
+            LMEPG.UI.showToast("没有中奖！");
+            return;
+        }
+        if (!LMEPG.Func.isTelPhoneMatched(userTel)) {
+            LMEPG.UI.showToast("请输入有效的手机号码");
+            return;
+        }
+
+        var reqData = {
+            "phoneNumber": userTel,
+            "prizeIdx": prizeIdx
+        };
+        LMEPG.ajax.postAPI('Activity/setPhoneNumber', reqData,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {  // 设置号码成功
+                        LMEPG.UI.showToast("提交成功", 1);
+                        setTimeout(function () {
+                            onBack();
+                        }, 1000);
+                    } else { // 设置号码失败
+                        LMEPG.UI.showToast("提交失败，请重试！");
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("保存手机号结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("请求保存手机号发生错误！");
+            }
+        );
+    }
+
+    /**
+     * 判断用户是否可以答题
+     */
+    function canAnswer() {
+        LMEPG.ajax.postAPI('Activity/canAnswer', null,
+            function (rsp) { // success
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    if (data.result == 0) {
+                        leftTimes = data.leftTimes;
+                        spMap = data.spMap;
+                    }
+                    defaultFocusId = getFirstUnByVIPUnionProduct();
+                } catch (e) {
+                    defaultFocusId = 'pay-back';
+                    LMEPG.UI.showToast("判断用户是否可以抽奖，结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+
+                // 无论成功与否，设置默认焦点
+                LMEPG.ButtonManager.init([defaultFocusId], buttons, '', true);
+            },
+            function (rsp) { // error
+                defaultFocusId = 'pay-back';
+                LMEPG.ButtonManager.init([defaultFocusId], buttons, '', true);
+                LMEPG.UI.showToast("请求判断用户是否可以抽奖，发生错误！");
+                console.log("-----------canAnswer().error-----------")
+            });
+    }
+
+    /**
+     * 按产品定制规则，筛选出符合条件的、按既定顺序的、第一个未订购的产品。如果没有，默认为39健康产品。
+     */
+    function getFirstUnByVIPUnionProduct() {
+        var btnArray = [];
+        btnArray["product1"] = "btn-one";
+        btnArray["product2"] = "pay-two";
+        btnArray["product3"] = "pay-three";
+        btnArray["product4"] = "pay-four";
+
+        for (var productId in btnArray) {
+            var product = getProductItemObj(productId);
+            if (typeof product != "undefined" && null != product) {
+                if (product.status != 1) { // 未订购过的产品
+                    return btnArray[productId];
+                }
+            }
+        }
+
+        return LM39_PRODUCT.elementId; // 默认情况焦点位于39健康产品
+    }
+
+    /**
+     * 根据html排列元素自定义属性“productId”，找到一一对应的相应联合产品。
+     * @param productId 自定义属性“productId”，表示的是第几个产品
+     */
+    function getProductItemObj(productId) {
+        var spInfoTemp = getSpInfoByProductId(productId);
+        try {
+            if (spInfoTemp instanceof Object) {
+            } else {
+                spInfoTemp = JSON.parse(spInfoTemp);
+            }
+
+            return spInfoTemp;
+        } catch (e) {
+            console.log("--------getFirstUnbookedProduct()-------" + e.toString());
+            return null;
+        }
+    }
+
+    /**
+     * 根据商品productId来确定sp信息 --> [39健康 智慧星球 风车乐园 乐享音乐]
+     */
+    function getSpInfoByProductId(productId) {
+        if (productId == 'product1') {              // 39健康 sjjklinux
+            return spMap[0];
+        } else if (productId == 'product2') {      // 智慧星球 zhxq
+            return spMap[2];
+        } else if (productId == 'product3') {      // 风车乐园 xcfcly
+            return spMap[1];
+        } else if (productId == 'product4') {      // 乐享音乐 drlxyy
+            return spMap[3];
+        }
+    }
+
+    function doDrawnProcess() {
+        // 如果没有次数，就要作如下操作
+        // 1、 判断是否还有未订购的其它SP厂家，如果有，就启动订购列表
+        // 2、 如果都已经订购完成，则返回到引导页
+        if (hasNoOrderSp()) {
+            // 启动订购列表
+            jumpDialog(VIP_USER_PLAY_TIMES_OVER);
+        } else {
+            jumpDialog(VIP_USER_TIMES_OVER);
+        }
+    }
+
+    /**
+     * 判断是否还有未订购的sp
+     */
+    function hasNoOrderSp() {
+        var spItem = {$spMap[0]};
+        if (0 == spItem.status) {
+            return true;
+        }
+
+        var spItem = {$spMap[1]};
+        if (0 == spItem.status) {
+            return true;
+        }
+
+        var spItem = {$spMap[2]};
+        if (0 == spItem.status) {
+            return true;
+        }
+
+        var spItem = {$spMap[3]};
+        if (0 == spItem.status) {
+            return true;
+        }
+        return false;
+    }
+
+</script>
+</body>
+</html>

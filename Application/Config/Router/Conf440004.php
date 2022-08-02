@@ -1,0 +1,79 @@
+<?php
+/**
+ * Created by longmaster.
+ * Date: 2018-09-12
+ * Time: 10:20
+ * Brief: 此文件（或类）用于存放广东广电特有路由配置，它在应用运行时，将会与DefaultConf里的配置进行合并，
+ *        并且会覆盖掉原来同名的配置。
+ */
+/**
+ * 注册系统中的页面, 进行路由配置
+ * 所有页面需要注册配置
+ */
+define("SPECIAL_VIEW_PAGES", "return array(
+    /** 主页模块 */
+    'home' => '/Home/Main/homeV13',                                        // 主页 - 推荐页
+    
+    /** 订购模块 */
+    'directPay' => '/Home/Pay/directPay',                                 // 订购直接支付通过本地post的方式
+    'orderVip' => '/Home/Pay/orderVip',                                   // 退订-用户不是vip-订购页
+    'unsubscribeVip' => '/Home/Pay/unsubscribeVip',                       // 退订-用户是vip-退订页
+    'secondUnsubscribeVip' => '/Home/Pay/secondUnsubscribeVip',           // 退订-二次确定退订页
+    'unsubscribeResult' => '/Home/Pay/unsubscribeResult',                 // 退订-结果页面
+    'payCallback' => '/Home/Pay/payCallback',                             // 订购结果回调
+    'payShowResult' => '/Home/Pay/payShowResult',                         // 订购结果显示界面 
+    'dateMark' => '/Home/DateMark/indexV1',                               // 签到 - 主页
+    'custom' => '/Home/Custom/customV1',                                  // 自定义背景图
+    'searchOrder' => '/Home/Pay/searchOrder',                             // 查询及退订                   
+    'lottery' => '/Home/DateMark/lotteryV1',                              // 签到 - 抽奖页
+    
+    /** 帮助 */
+    'helpIndex' => '/Home/Help/helpV1',
+    
+    /** 在线问医模块 */ 
+    'doctorIndex' => '/Home/DoctorP2P/doctorIndexV13',                     // 视频问诊首页
+    'doctorDepartment' => '/Home/DoctorP2P/doctorDepartmentV13',           // 视频问诊 - 医生科室选择页
+    'doctorDetails' => '/Home/DoctorP2P/doctorDetailsV13',                 // 视频问诊 - 医生详情页
+    'inquiryCall' => '/Home/DoctorP2P/inquiryCallV1',                      // 视频问诊 - 小程序问诊页面
+        
+      /** 39互联网医院模块 */
+    '39hospital' => '/Home/Hospital39/index',                                 // 39互联网医院模块
+    
+     /** 预约挂号模块 */
+     'appointmentRegister' => '/Home/AppointmentRegister/indexV1',            //预约挂号主界面
+      /** 静态预约挂号 */
+    'indexStatic' => '/Home/AppointmentRegister/indexStaticV1',               
+    'areaListStatic' => '/Home/AppointmentRegister/areaListStaticV1',                
+    'doctorStatic' => '/Home/AppointmentRegister/doctorStaticV1',                
+    'doctorDetailStatic' => '/Home/AppointmentRegister/doctorDetailStaticV1',                
+    'moreHospitalStatic' => '/Home/AppointmentRegister/moreHospitalStaticV1',  
+
+    /**更多视频（视频集）*/
+    'channelIndex' => '/Home/Channel/channelIndexV13',
+    'channelList' => '/Home/Channel/videoListV13',
+    
+    /** 收藏模块 */
+    'collect' => '/Home/Collect/indexV1',                                 // 收藏主页
+    
+    /*我的模块*/
+    'playRecord'=>'/Home/Channel/historyPlayV1',
+    'familyEdit'=>'/Home/Family/myHomeV2',
+    'familyMembersEdit'=>'/Home/Family/familyMembersAddEditV1',
+    'orderExpertRecord'=>'/Home/Channel/historyPlayV1',
+    'debook'=>'/Home/Pay/searchOrder', 
+    
+    /** 播放历史 */
+    'historyPlay'=>'/Home/HistoryPlay/historyPlayV1', 
+    
+    /** 问诊记录模块 */
+    'doctorRecordDetail' => '/Home/DoctorP2PRecord/recordDetailV13',      // 问诊记录 - 记录详情页
+    'doctorRecordArchive' => '/Home/DoctorP2PRecord/recordArchiveV1',     // 问诊记录 - 记录归档页  
+);");
+
+
+// 暂时存放，后面修改机制
+define('COMMON_IMGS_VIEW', "V6");     //使用的公用图片套装
+define('COMMON_ACTIVITY_VIEW', 'V1'); // 活动页面的模块
+define('COMMON_ORDER_VIEW', 'V2'); // 自定义订购页面的模块
+define('COMMON_PLAYER_VIEW', 'V6'); // 使用播放器的模式
+define('COMMON_HOLD_PAGE_VIEW', 'V1'); // 退出拘留页的模式

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>疫情播报</title>
+    <meta charset="utf-8" name="page-view-size" content='1280*720'/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/OutbreakReport/V2/live.css?t={$time}">
+
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        Root = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            userId: "{$userId}",                // 用户Id
+            thirdPlayerUrl: "{$domainUrl}",                     // 第三方播放器根路径地址
+            focusIndex: "{$focusIndex2}",                        // 焦点ID
+            isVip: {$isVip},
+            backUrl: "{$indexUrl}",
+
+            // 电视频道
+            channelVideo: {
+                "sourceId": "8126",
+                "title": "雷神山 频道",
+                "userType": "0",
+                "modelType": "14",
+                "freeSeconds": "0",
+                "unionCode": "lss",
+                "videoUrl": "18",
+                "videoType": "channel",
+            },
+            playPosition: [parseInt(41), parseInt(179), parseInt(788), parseInt(444)], //默认为高清正常播放位置
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/CommunityHospital/V630092/function.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V2/LiveChannelL.js?t={$time}"></script>
+
+</head>
+<body>
+<!-- 默认标签 -->
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+<div id="small-video-wrap" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+    <iframe id="iframe_small_screen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+</div>
+
+<div class="list">
+    <div class="btn-video">
+        <img id="btn-box-video" class="btn-img" src="__ROOT__/Public/img/hd/OutbreakReport/V2/live_box.png"/>
+    </div>
+    <div class="list-info">
+        <div id="title" class="title">
+            直播武雷神山医院建设过程
+        </div>
+        <div id="content-1" class="content">
+            天翼超高清4路直播镜头每天24小时不间断，实时全方位呈现建设现场画面。
+        </div>
+
+
+        <div id="introduce" class="title" style="margin-top: 30px">
+            直播简介
+        </div>
+        <div id="content-2" class="content">
+            为抗击新型冠状病毒感染的肺炎疫情，集中对感染病人进行更好的医治，武汉火神山医院、雷神山医院相继开建。工地上，工人们争分夺秒鏖战正酣；工地外，我们可以通过观看网络直播密切关注医院建设进度，引发对中国速度的情感共鸣。
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+<!--音量控制器容器-->
+<div id="volume_container"></div>
+
+<script>
+    window.onload = function () {
+        Page.init();
+        // 启动小窗口播放
+//        Play.startPollPlay();
+        Page.playChannel();
+    }
+</script>
+</body>
+</html>

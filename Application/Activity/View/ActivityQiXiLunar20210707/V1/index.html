@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>七夕揽福运</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityQiXiLunar20210707/index.css?t={$time}">
+    <style type="text/css">
+        body {
+            background: url("{$activityFsImg}{$platformType}/bg_home.png") no-repeat;
+        }
+        #left_times{
+            background-image: url("{$activityFsImg}{$platformType}/leftTimes.png");
+        }
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown},
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: '{$score}',
+            fromLaunch: '{$fromLaunch}',
+            lotteryRecordList: {$lotteryRecordList},
+            myLotteryRecord: {$myLotteryRecord},
+            exchangeRecordList: {$exchangeRecordList},
+            exchangePrizeList: {$exchangePrizeList},
+            endDt: '{$endDt}',
+        };
+        window.onload = function () {
+            G('default_link').focus();
+            Activity.init();
+            lmInitGo();
+        };
+    </script>
+
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityQiXiLunar20210707/index.js?t={$time}"></script>
+
+</head>
+<body id="body">
+<div id="debug"></div>
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+<img id="bg_1" src="{$activityFsImg}{$platformType}/bg_home.png" alt="">
+<
+<div id="btn_container">
+    <img src="{$activityFsImg}{$platformType}/btn_activity_rule.png" id="btn_activity_rule">
+    <img src="{$activityFsImg}{$platformType}/btn_winner_list.png" id="btn_winner_list">
+    <img src="{$activityFsImg}{$platformType}/btn_back.png" id="btn_back">
+    <div class=" id=lipstick">
+        <img src="{$activityFsImg}{$platformType}/btn_start.png" alt="" id="lipstick1">
+    </div>
+</div>
+<!--游戏剩余次数-->
+<div id="left_times">{$activityTimes}</div>
+<!--活动规则-->
+<div id="activity_rule" class="modal">
+    <!--活动规则图素js写入-->
+    <img src="" id="bg_activity_rule">
+    <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_rule">
+</div>
+
+<!--中奖名单-->
+<div id="winner_list" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_winner_list.png">
+    <div id="total_list"></div>
+    <div id="my_list"></div>
+    <div id="reset_tel">请输入手机号</div>
+    <img id="btn_list_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_list_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<!--游戏——抽奖成功-->
+<div id="lottery_success" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_make_success.png">
+    <img id="prize_image" src="">
+    <div id="lottery_tel">请输入有效的电话</div>
+    <img id="btn_lottery_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_lottery_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<!--游戏——抽奖失败页面-->
+<div id="lottery_fail" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_make_fail.png">
+    <img id="btn_lottery_fail" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+</div>
+
+
+<!--游戏结束-->
+<div id="game_over" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_no_times.png">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_game_over_sure">
+</div>
+
+<!--游戏次数耗尽，订购VIP-->
+<div id="order_vip" class="modal">
+    <if condition="$carrierId eq '450092'">
+        <img id="order_vip_bg" src="{$activityFsImg}{$platformType}/bg_order_vip_g.png">
+        <else/>
+        <img id="order_vip_bg" src="{$activityFsImg}{$platformType}/bg_order_vip.png">
+    </if>
+
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_order_submit">
+    <img src="{$activityFsImg}{$platformType}/btn_common_cancel.png" id="btn_order_cancel">
+</div>
+
+<!--订购状态-->
+<div id="order_status" class="modal"></div>
+
+<!--游戏界面-->
+<div class="modal" id="game-area">
+    <img id="game-bg" src="{$activityFsImg}{$platformType}/bg_game.png">
+    <img src="{$activityFsImg}{$platformType}/prop_basket.png" id="game-basket">
+    <img src="{$activityFsImg}{$platformType}/game_leftTime.png" id="game_countdown">
+    <div id="count-down-text">20</div>
+
+</div>
+
+<!--游戏成功-->
+<div id="game-success" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_game_success.png">
+    <img src="{$activityFsImg}{$platformType}/btn_lottery.png" id="do-lottery">
+    <img src="{$activityFsImg}{$platformType}/btn_abandon.png" id="do-cancel">
+</div>
+
+<!--游戏失败-->
+<div id="game-fail" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_game_fail.png">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="game_over_sure">
+</div>
+
+<!--活动结束-->
+<div id="bg_game_over" class="modal">
+    <img src="{$activityFsImg}{$platformType}/game-over.png">
+</div>
+
+</body>
+</html>

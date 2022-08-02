@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>抢红包活动 - dialogV1</title>
+    <meta charset="utf-8" name="page-view-size"  content="{$size}" >
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/AcitityQianghongbao/V1/guide.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityQianghongbao/V1/DialogMoreThree.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityQianghongbao/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 得到当前页对象
+         * @returns {*|{name, param, setPageName, setParam}}
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent('activity-common-dialog');
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * @func 进行购买操作
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip() {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("directPay", "1");
+            objOrderHome.setParam("orderReason", "101");
+            objOrderHome.setParam("remark", "{$activityName}");
+
+            var objActivityGuide = LMEPG.Intent.createIntent("activity-common-guide");
+            objActivityGuide.setParam("userId", "{$userId}");
+            objActivityGuide.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back("activity-common-guide");
+        }
+
+    </script>
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<div id="default_tip"></div>
+<div id="dialog">
+
+</div>
+<script type="text/javascript">
+    var isVip = {$isVip};//是否是vip
+    var inner = "{$inner}";
+    var context = "{$context}";
+    var platformType = "hd";
+    var prizeName = "{$prizeName}"; // 奖品名称
+    var prizeIdx = "{$prizeIdx}"; // 奖品id
+    var leftTimes = parseInt("{$leftTimes}"); // 抽奖剩余次数
+    var carrierId = "{$carrierId}"; // 区域id
+    var dialogFocusId;
+
+    function initBtn(){
+        var focus61 = G("focus-6-1");
+        var focus71 = G("focus-7-1");
+        var focus81 = G("focus-8-1");
+        var focus91 = G("focus-9-1");
+        var focus101 = G("focus-10-1");
+        buttons = [
+            {
+                id: 'default_focus',
+                name: 'default_focus',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                backgroundImage: '',
+                focusImage: '',
+                click: "onBack()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-6-1',
+                name: 'focus-6-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'focus-7-1',
+                backgroundImage: focus61 != null ? focus61.getAttribute('confirmurl'): '',
+                focusImage: focus61 != null ? focus61.getAttribute('onfocusurl'): '',
+                click: "onClick()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-7-1',
+                name: 'focus-7-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-6-1',
+                nextFocusDown: 'focus-8-1',
+                backgroundImage: focus71 != null ? focus71.getAttribute('confirmurl'): '',
+                focusImage: focus71 != null ? focus71.getAttribute('onfocusurl'): '',
+                click: "onClick()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-8-1',
+                name: 'focus-8-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-7-1',
+                nextFocusDown: 'focus-9-1',
+                backgroundImage: focus81 != null ? focus81.getAttribute('confirmurl'): '',
+                focusImage: focus81 != null ? focus81.getAttribute('onfocusurl'): '',
+                click: "onClick()",
+                focusChange: _onFocus,
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-9-1',
+                name: 'focus-9-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-8-1',
+                nextFocusDown: 'focus-10-1',
+                backgroundImage: '',
+                focusImage: '',
+                click: "onClick()",
+                focusChange: _onFocus,
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-10-1',
+                name: 'focus-10-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-9-1',
+                nextFocusDown: '',
+                backgroundImage: focus101 != null ? focus101.getAttribute('confirmurl'): '',
+                focusImage: focus101 != null ? focus101.getAttribute('onfocusurl'): '',
+                click: "onClick()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+        ];
+    }
+
+    //号码框焦点事件
+    function _onFocus(btn,HasFocus) {
+        dom = G(btn.id);
+        if(HasFocus){
+            dom.disabled=false;
+            dom.focus();
+        } else {
+            dom.disabled=true;
+            dom.blur();
+        }
+    }
+
+    window.onload = function () {
+        /**
+         * 初始化焦点
+         */
+        if (context == ORDER_FAILED) {
+            // 订购不成功
+            dialogCreateBookFalse.show(platformType);
+        } else if (context == NOT_VIP_USER_PLAY_TIMES_OVER){
+            // 非会员试玩次数用尽提示 中国联通与江苏电信不一样
+            if (carrierId == "320092") {
+                var isHd = "{$platformType}";
+                dialogCreateUnVip320092.show(isHd);
+            } else {
+                dialogCreateUnVip.show(platformType);
+            }
+        } else if (context == NOT_VIP_USER_PLAYER_TIPS) {
+            // 非会员试玩后提示
+            dialogCreatePlay.show(platformType);
+        } else if (context == VIP_USER_PLAY_TIMES_OVER){
+            // 会员次数用尽
+            dialogCreateTime.show(platformType);
+        } else if (context == USER_NOT_DRAWN_PRIZE_TIPS) {
+            // 未中奖
+            dialogCreatePlay.show(platformType);
+        } else if (context == VIP_USER_DRAWN_PRIZE){
+            // 会员中奖
+            dialogCreatePrice.show(platformType, prizeName);
+        } else if (context == ACTIVITY_RULE_DETAIL) {
+            // 活动规则
+            dialogCreateActivity.show(platformType);
+        } else if (context == INPUT_USER_PHONE_NUMBER){
+            // 联系方式
+            dialogCreatePhone.show(platformType);
+        } else if (context == USER_DRAWN_PRIZE_DETAIL) {
+            // 中奖信息
+            dialogCreatePrice.show(platformType);
+        } else {
+            LMEPG.UI.showToast("系统参数不正确！context: " + context, 5);
+            LMEPG.Intent.back();
+            return;
+        }
+        initBtn();
+        LMEPG.ButtonManager.init([dialogFocusId], buttons, '', true);
+    }
+
+    function onClick() {
+        var currentButton = LMEPG.ButtonManager.getCurrentButton();
+        if (currentButton != null) {
+            var id = currentButton.id;
+        } else {
+            return;
+        }
+        if (id == "focus-6-1" || id == "focus-8-1") {
+            LMEPG.Intent.back();
+        } else if (id == "focus-7-1") {
+            goRouter(); // 跳转到其他路由
+        } else if (id == "focus-10-1") {
+            var phoneTex = G("focus-9-1");
+            var userTel = phoneTex.value;
+            if (LMEPG.Func.isTelPhoneMatched(userTel)) {
+                if(prizeIdx == null || prizeIdx ==""){
+                    LMEPG.UI.showToast("还没有中奖！", 3);
+                }else{
+                    setPhoneNumber(userTel, prizeIdx);
+                }
+            }else {
+                LMEPG.UI.showToast("请输入正确的电话号码！", 3);
+            }
+        } else if (id == "default_focus") {
+            if (focusType == "back") {
+                LMEPG.Intent.back();
+            }
+        }
+
+    }
+
+    // 跳转到其他路由
+    function goRouter() {
+        if (focusType == "play") {
+            if (leftTimes == 0 || leftTimes == "0") {
+                if (!LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {
+                    dialogCreateUnVip.show(platformType);
+                } else {
+                    dialogCreateTime.show(platformType);
+                }
+            } else {
+                LMEPG.Intent.back();
+            }
+        } else if (focusType == "book") {
+            // 当次数用完后，非vip用户去订购页，vip用户就去引导页
+            if (!LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {
+                jumpBuyVip();
+            } else {
+                LMEPG.Intent.back();
+            }
+        }
+    }
+
+    // 去设置中奖电话号码
+    function setPhoneNumber(userTel, prizeIdx) {
+        var reqData = {
+            "phoneNumber": userTel,
+            "prizeIdx": prizeIdx
+        };
+        LMEPG.ajax.postAPI('Activity/setPhoneNumber', reqData,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {  // 设置号码成功
+                        LMEPG.UI.showToast("提交成功");
+                        setTimeout(onBack(), 1000);
+                    } else { // 设置号码失败
+                        LMEPG.UI.showToast("提交失败，请重试！");
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("保存手机号结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("请求保存手机号发生错误！");
+            }
+        );
+    }
+</script>
+</body>
+</html>

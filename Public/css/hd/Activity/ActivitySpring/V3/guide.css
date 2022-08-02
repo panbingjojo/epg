@@ -1,0 +1,327 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-back {
+    position: absolute;
+    top: 6px;
+    left: 1126px;
+    outline: none !important;
+    width: 144px;
+    height: 142px;
+    z-index: -1;
+
+}
+#btn-goHome2 {
+    position: absolute;
+    top: 36px;
+    left: 46px;
+    outline: none !important;
+    width: 119px;
+    height: 50px;
+    z-index: -1;
+
+}
+
+#focus-2-1 {
+    position: absolute;
+    top: 164px;
+    left: 1126px;
+    outline: none !important;
+    width: 119px;
+    height: 50px;
+    z-index: -1;
+}
+
+#btn-start {
+    position: absolute;
+    top: 333px;
+    left: 413px;
+    outline: none !important;
+    width: 463px;
+    height: 181px;
+    z-index: -1;
+}
+
+#btn-price {
+    position: absolute;
+    top: 640px;
+    left: 949px;
+    outline: none !important;
+    width: 139px;
+    height: 55px;
+    z-index: -1;
+}
+
+#btn-detail {
+    position: absolute;
+    top: 640px;
+    left: 1125px;
+    outline: none !important;
+    width: 139px;
+    height: 55px;
+    z-index: -1;
+}
+
+#focus-4-3 {
+    position: absolute;
+    top: 640px;
+    left: 1114px;
+    outline: none !important;
+    width: 139px;
+    height: 55px;
+    z-index: -1;
+}
+
+#focus-6-1 {
+    position: absolute;
+    top: 531px;
+    left: 520px;
+    outline: none !important;
+    width: 240px;
+    height: 63px;
+}
+
+#focus-7-1 {
+    position: absolute;
+    top: 633px;
+    left: 610px;
+    outline: none !important;
+    width: 60px;
+    height: 60px;
+}
+
+
+
+
+
+#remand {
+    position: fixed;
+    width: 163px;
+    height: 16px;
+    top: 268px;
+    left: 1099px;
+}
+
+#titel {
+    position: absolute;
+    left: 350px;
+    top: 10px;
+}
+
+/*#focus-4-1{position:absolute; width: 158px; height: 234px; top: 383px; left: 559px}*/
+#times {
+    font-size: 24px;
+    color: #ff5103;
+    position: absolute;
+    top: 328px;
+    left: 541px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 30px;
+    font-family: Source Han Sans CN;
+}
+
+#default_focus {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+
+/*#left_tree{position: absolute; left: 0px; top: 200px}*/
+/*#left_could{position: absolute; top: 397px; left: 0px; z-index: 1}*/
+/*#right_tree{position: absolute; left: 1030px; top: 290px}*/
+/*#right_could{position: absolute; top: 445px; left:1209px; z-index: 1}*/
+#priceText {
+    width: 500px;
+    height: 50px;
+    position: absolute;
+    top: 465px;
+    left: 680px;
+    font-size: 42px;
+    color: #fe3087;
+    line-height: 50px;
+    z-index: 3;
+}
+
+#rule {
+    width: 970px;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    top: 210px;
+    left: 150px;
+}
+
+table tr td {
+    width: 322px;
+    text-align: center;
+    list-style: none;
+    font-size: 20px;
+    color: #666666 !important;
+    height: 30px;
+}
+
+.list2 li {
+    list-style: none;
+}
+
+#myprice {
+    width: 970px;
+    height: 40px;
+    position: absolute;
+    top: 525px;
+    left: 150px;
+    overflow: hidden;
+}
+
+#scoller {
+    position: absolute;
+    top: 0px;
+}
+
+#play {
+    font-size: 20px;
+    color: red;
+    position: absolute;
+    top: 680px;
+    left: 513px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 30px;
+    font-family: Source Han Sans CN;
+}
+
+#tips {
+    position: absolute;
+    top: 83px;
+    left: 86px;
+    z-index: 1;
+    width: 1108px;
+    height: 347px
+}
+#price_name{ font-size: 20px;color:#ff1975; position: absolute; top:290px; left: 306px; font-weight: 100; width: 664px; text-align: center; z-index: -1}
+#scoller_box{ width: 690px; height: 40px; position: absolute; top: 285px; left: 300px; z-index: -1}
+#sound{ width: 162px; height: 156px; position: absolute; top: 210px; left: 195px; z-index: -1}
+.none{display: none}
+
+#win_price_box{width: 441px; height: 55px; position: absolute; top: 560px; left: 423px}
+#myPhone{position: absolute; top: 560px; left: 423px; font-size: 30px;color: #fe6b13;top: 565px; left: 233px}
+
+#focus-5-1 {
+    position: absolute;
+    top: 60px;
+    left: 1053px;
+    outline: none !important;
+    width: 159px;
+    height: 67px;
+}
+
+#titel_introduce {
+    position: absolute;
+    width: 1090px;
+    height: 40px;
+    font-size: 34px;
+    color: #fe7727;
+    text-align: center;
+    top: 469px;
+    left: 95px
+}
+
+#focus-8-1 {
+    width: 270px;
+    height: 46px;
+    z-index: 999;
+    position: absolute;
+    top: 322px;
+    left: 598px;
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    outline: none;
+    line-height: 46px;
+}
+
+#phone_name {
+    position: absolute;
+    top: 323px;
+    left: 450px;
+    font-size: 30px;
+    color: #FFFFFF
+}
+
+#price_name_text {
+    position: absolute;
+    top: 243px;
+    left: 450px;
+    font-size: 30px;
+    color: #FFFFFF
+}
+
+#price {
+    position: absolute;
+    top: 238px;
+    left: 620px;
+    font-size: 42px;
+    color: #f8ff39;
+    width: 530px;
+    overflow: hidden
+}
+
+#price_box {
+    width: 298px;
+    height: 52px;
+    position: absolute;
+    top: 322px;
+    left: 585px;
+    border: none;
+    outline: none;
+}
+
+#focus-9-1 {
+    position: absolute;
+    top: 397px;
+    left: 596px;
+    outline: none !important;
+    width: 89px;
+    height: 49px;
+}
+
+#focus-10-1 {
+
+    position: absolute;
+    top: 633px;
+    left: 610px;
+    outline: none !important;
+    width: 60px;
+    height: 60px;
+}
+
+#priceText {
+    width: 500px;
+    height: 50px;
+    position: absolute;
+    top: 475px;
+    left: 680px;
+    font-size: 42px;
+    color: #fe3087;
+    line-height: 50px;
+    z-index: 3;
+}
+#rule_content{position: absolute;top: 178px; left: 183px; width: 913px; height: 215px; color: #666666; font-size: 18px}
+p{height: 70px}

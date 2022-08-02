@@ -1,0 +1,220 @@
+.region {
+    position: absolute;
+    top: 118px;
+    left: 80px;
+    font-size: 24px;
+    height: 68px;
+    width: 1000px;
+    color: #FFFFFF;
+}
+
+.region-name {
+    height: 68px;
+    line-height: 68px;
+}
+
+.region-title {
+    position: absolute;
+    top: 0px;
+    left: 100px;
+    width: 124px;
+    height: 68px;
+    padding: 0px 10px;
+    text-align: center;
+    line-height: 68px;
+    background: url("../../../../../Public/img/hd/Home/V10/HomeBox/bg_btn_2.png");
+    border-radius: 25px;
+}
+
+.arrow-pre {
+    position: absolute;
+    top: 28px;
+    left: 256px;
+    width: 20px;
+    height: 16px;
+}
+
+.arrow-next {
+    position: absolute;
+    top: 28px;
+    left: 1085px;
+    width: 20px;
+    height: 16px;
+}
+
+.region-list {
+    position: absolute;
+    top:0px;
+    left: 270px;
+    width: 800px;
+    height: 68px;
+}
+
+.region-btn {
+    width: 124px;
+    height: 68px;
+    line-height:68px;
+    text-align: center;
+    border-radius: 25px;
+    margin-left: 10px;
+    padding: 0px 10px;
+    background: url("../../../../../Public/img/hd/Home/V10/HomeBox/bg_btn_null.png");
+    float: left;
+    overflow: hidden;
+}
+
+.center{
+    position: absolute;
+    top: 192px;
+    left: 80px;
+    width: 1160px;
+    height: 515px;
+    /*border: 1px red solid;*/
+}
+.recommended{
+    position: absolute;
+    top: -30px;
+    width: 360px;
+    height: 220px;
+    /*float: left;*/
+    /*margin-left: 22px;*/
+    /*margin-top: 50px;*/
+
+}
+.recommended-bg{
+    position: absolute;
+    top:-42px;
+    left:-42px;
+    width: 100%;
+    height: 100%;
+    padding: 42px;
+    border-radius: 50px;
+}
+.recommended-title{
+    position: absolute;
+    top: 184px;
+    left: 0px;
+    width: 360px;
+    height: 36px;
+    font-size: 24px;
+    line-height: 36px;
+    color: #FFFFFF;
+    background:url("../../../../../Public/img/hd/AppointmentRegister/V10/tab_bg.png") no-repeat;
+    background-size:360px 36px;
+    text-align: center;
+    border-radius: 10px;
+    border-top-left-radius:0em;
+    border-top-right-radius:0em;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.table-list{
+    width: 97.5%;
+}
+
+.line{
+    position: absolute;
+    top: 13px;
+    left: 243px;
+    font-size: 30px;
+    color: #898F94;
+}
+#region-content{
+    display: none;
+}
+
+#recommended-1{
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#recommended-2{
+    position:absolute;
+    top: 0px;
+    left: 390px;
+}
+#recommended-3{
+    position:absolute;
+    top: 0px;
+    left: 780px;
+}
+
+#recommended-4{
+    position:absolute;
+    top: 240px;
+    left: 0px;
+}
+
+#recommended-5{
+    position:absolute;
+    top: 240px;
+    left: 390px;
+}
+#recommended-6{
+    position:absolute;
+    top: 240px;
+    left: 780px;
+}
+#pages{
+    position: absolute;
+    top: 675px;
+    left: 1050px;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+.titleClass{
+    position: absolute;
+    top: 210px;
+    left: -10px;
+    width: 396px;
+    height: 36px;
+    font-size: 24px;
+    line-height: 36px;
+    color: #FFFFFF;
+    background: url(../../../../../Public/img/hd/Home/V10/HomeBox/bg_title.png) no-repeat;
+    background-size:396px 36px;
+    text-align: center;
+    border-radius: 10px;
+    border-top-left-radius: 0em;
+    border-top-right-radius: 0em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#m-pre{
+    position: absolute;
+    top: 410px;
+    left: 10px;
+    display: none;
+}
+#m-next {
+    position: absolute;
+    top: 680px;
+    left: 620px;
+}
+
+/*--------------------------------------------------
+         按钮选中效果
+ ---------------------------------------------------*/
+/*推荐位*/
+.recommended-hover {
+    position: absolute;
+    z-index: 996;
+}
+.recommended-hover>.recommended-bg{
+    position: absolute;
+    /*top: -30px;*/
+    top:-42px;
+    left:-52px;
+}
+
+/*.recommended-hover>.recommended-title{*/
+    /*position: absolute;*/
+    /*top: 164px;*/
+    /*left: 0px;*/
+    /*ba*/
+/*}*/
+
+

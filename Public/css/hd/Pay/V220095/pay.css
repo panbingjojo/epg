@@ -1,0 +1,157 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url("../../../../img/hd/Pay/V220095/bg_pay.png");
+}
+
+#order_items_container {
+    position: absolute;
+    top: 333px;
+    left: 321px;
+}
+
+#order_items_container img {
+    margin-right: 49px;
+}
+
+#pay_type_container {
+    position: absolute;
+    top: 347px;
+    left: 373px;
+    width: 534px;
+}
+
+#pay_type_nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#btn_pay_sure {
+    position: absolute;
+    left: 95px;
+    top: 234px;
+}
+
+#btn_pay_cancel {
+    position: absolute;
+    left: 314px;
+    top: 234px;
+}
+
+#pay_type_detail {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    padding-top: 36px;
+    padding-left: 50px;
+    width: 484px;
+    height: 126px;
+    background-color: #89ecba;
+}
+
+#pay_type_detail .row {
+    margin-bottom: 22px;
+}
+
+#pay_qr_code {
+    position: absolute;
+    left: 354px;
+    top: 30px;
+    width: 120px;
+    height: 120px;
+}
+
+#user_phone {
+    position: absolute;
+    background-image: url("../../../../img/hd/Pay/V220095/bg_user_phone.png");
+    top: 30px;
+    left: 250px;
+    width: 190px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 22px;
+    color: #999;
+}
+
+#check_code {
+    position: absolute;
+    background-image: url("../../../../img/hd/Pay/V220095/bg_check_code.png");
+    top: 88px;
+    left: 398px;
+    width: 120px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 20px;
+    color: #999;
+}
+
+#btn_check_code {
+    position: absolute;
+    background-image: url("../../../../img/hd/Pay/V220095/check_code.png");
+    top: 82px;
+    left: 248px;
+    font-size: 20px;
+    color: #fff;
+    width: 140px;
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+}
+
+#input_verify {
+    position: absolute;
+    width: 110px;
+    height: 38px;
+    text-align: center;
+    line-height: 38px;
+    top: 94px;
+    left: 308px;
+    font-size: 24px;
+    color: black;
+    background: transparent;
+    border: none;
+    background: url("../../../../img/hd/Pay/V220095/input_verify.png");
+}
+
+#verify_code {
+    position: absolute;
+    width: 190px;
+    height: 48px;
+    background: #ebecde;
+    color: black;
+    line-height: 48px;
+    top: 30px;
+    font-size: 24px;
+    text-align: center;
+    left: 306px;
+}
+
+#delete_verify_code {
+    position: absolute;
+    top: 94px;
+    left: 434px;
+}
+
+.dismiss {
+    visibility: hidden;
+}
+
+
+
+
+
+
+

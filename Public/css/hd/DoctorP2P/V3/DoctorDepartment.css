@@ -1,0 +1,104 @@
+.title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 40px;
+    line-height: 40px;
+    width: 300px;
+    color: #FFFFFF;
+}
+
+.module_name {
+    position: absolute;
+    left: 60px;
+    top: 26px;
+    font-size: 32px;
+    color: #ffffff;
+}
+
+.split_line {
+    position: absolute;
+    left: 41px;
+    top: 87px;
+}
+
+img#split_line {
+    width: 1200px;
+    height: 3px;
+}
+
+div.top_arrows {
+    position: absolute;
+    left: 854px;
+    top: 70px;
+}
+
+img#top_arrows {
+    width: 60px;
+    height: 30px;
+}
+
+
+div.bg_content {
+    position: absolute;
+    left: 45px;
+    top: 134px;
+}
+
+img#bg_content {
+    width: 1188px;
+    height: 531px;
+}
+
+div.bottom_arrows {
+    position: absolute;
+    top: 627px;
+    left: 854px;
+}
+
+img#bottom_arrows {
+    width: 60px;
+    height: 30px;
+}
+
+div#dept_container {
+    position: absolute;
+    left: 559px;
+    top: 134px;
+    text-align: center;
+}
+
+.dept_text {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    line-height: 67px; /* 如果行高和height一样高，安徽盒子不能居中*/
+    width: 180px;
+    height: 67px;
+    font-size: 30px;
+    color: #FFFFFF;
+    overflow: hidden;
+    overflow: hidden;
+}
+
+.focus_text_color {
+    color: white;
+    font-size: 30px;
+}
+
+.unfocus_text_color {
+    color: black;
+    font-size: 30px;
+}
+
+.no_data {
+    width: 100%;
+    height: 720px;
+    line-height: 720px;
+    text-align: center;
+    font-size: 36px;
+    z-index: 3;
+    color: #ffffff;
+    visibility: hidden;
+}

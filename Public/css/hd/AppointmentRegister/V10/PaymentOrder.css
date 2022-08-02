@@ -1,0 +1,121 @@
+
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 190px;
+    height: 2px;
+}
+
+.code {
+    position: absolute;
+    top: 120px;
+    left: 80px;
+    width: 506px;
+    height: 556px;
+    background: url("../../../../../Public/img/hd/AppointmentRegister/V10/BtnBox/code_bg.png");
+}
+
+.code-img {
+    position: absolute;
+    width: 296px;
+    height: 296px;
+    top: 140px;
+    left: 105px;
+}
+
+.time {
+    position: absolute;
+    top: 15px;
+    font-size: 28px;
+    width: 506px;
+    text-align: center;
+    line-height: 45px;
+}
+
+#timer {
+    color: #ff834c;
+}
+.price {
+    position: absolute;
+    top: 455px;
+    font-size: 28px;
+    width: 506px;
+    text-align: center;
+    line-height: 45px;
+    color: #40ffeb;
+}
+.white{
+    color: #FFFFFF;
+}
+#default2{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.infoList{
+    position: absolute;
+    top: 101px;
+    left: 610px;
+    width: 619px;
+    height: 595px;
+    overflow: hidden;
+    /*border: 1px red solid;*/
+}
+.form{
+    position: relative;
+    margin-top: 19px;
+    width: 599px;
+    height: 332px;
+    text-align: center;
+    font-size: 28px;
+    background: url("../../../../../Public/img/hd/AppointmentRegister/V10/BtnBox/box_pay.png");
+}
+.form-box{
+    position: relative;
+    top: 25px;
+    text-align: left;
+    width: 520px;
+    margin:0px auto;
+}
+.form-title{
+    font-size: 32px;
+    line-height: 50px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.form-row{
+    line-height: 47px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.icon-img{
+    position: relative;
+    width: 37px;
+    height: 37px;
+    top: 7px;
+}
+.status-info{
+    width: 600px;
+    text-align: center;
+    font-size: 26px;
+    color: #FFFFFF;
+    line-height: 35px;
+    padding: 20px 0px;
+    text-align: left;
+}
+.btn-hover{
+    font-weight: bold;
+}

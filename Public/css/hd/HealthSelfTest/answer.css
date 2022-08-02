@@ -1,0 +1,290 @@
+body {
+    color: #fff;
+}
+#content_container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.prompt_title {
+    position: absolute;
+    top: 43px;
+    left: 36px;
+    width: 250px;
+    height: 256px;
+}
+
+.prompt_icon {
+    position: absolute;
+    top: 320px;
+    left: 91px;
+    width: 150px;
+    height: 380px;
+}
+
+.total_time {
+    position: absolute;
+    width: 30px;
+    top: 155px;
+    left: 140px;
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+/*收藏/取消收藏按钮*/
+.collect_btn {
+    position: absolute;
+    left: 70px;
+    top: 200px;
+    width: 185px;
+    height: 66px;
+    line-height: 66px;
+    text-align: center;
+    font-size: 26px;
+}
+
+.collect_btn_bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 185px;
+    height: 66px;
+}
+
+#collect_btn_title {
+    position: absolute;
+    width: 185px;
+    height: 66px;
+}
+
+.title {
+    position: absolute;
+    top: 40px;
+    left: 317px;
+    width: 908px;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.prompt_block {
+    position: absolute;
+    left: 317px;
+    top: 96px;
+    width: 908px;
+    height: 576px;
+    -moz-background-size: 908px 576px; /* 老版本的 Firefox */
+    background-size: 908px 576px;
+    background-repeat: no-repeat;
+}
+
+.topic_index {
+    position: absolute;
+    left: 38px;
+    top: 46px;
+    width: 34px;
+    height: 34px;
+    -moz-background-size: 34px 34px; /* 老版本的 Firefox */
+    background-size: 34px 34px;
+    background-repeat: no-repeat;
+    color: black;
+    font-size: 18px;
+    line-height: 34px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.topic_title {
+    position: absolute;
+    left: 81px;
+    top: 53px;
+    width: 800px;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.answer {
+    position: absolute;
+    top: 78px;
+    left: 38px;
+}
+
+.answer_bg {
+    position: relative;
+    top: 5px;
+    left: 0px;
+    width: 835px;
+    height: 60px;
+    font-size: 24px;
+    line-height: 60px;
+    text-indent: 66px;
+    text-align: left;
+    margin-top: 22px;
+}
+
+.answer_img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 835px;
+    height: 60px;
+}
+
+.answer_name {
+    position: absolute;
+}
+
+.progress_produce {
+    position: absolute;
+    left: 38px;
+    top: 440px;
+    width: 800px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.yellow {
+    color: yellow
+}
+
+.progress_bar {
+    position: absolute;
+    left: 38px;
+    top: 506px;
+    width: 835px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.progress_box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 835px;
+    height: 26px;
+}
+
+.progress_step {
+    position: absolute;
+    left: 0px;
+    top: 1px;
+    width: 0px;
+    height: 23px;
+    border-radius: 20px;
+    background: #8bc53f;
+}
+
+.progress_arrow {
+    position: absolute;
+    left: 0px;
+    top: -30px;
+    width: 16px;
+    height: 26px;
+}
+
+.introduce {
+    position: absolute;
+    left: 317px;
+    top: 683px;
+    width: 908px;
+    height: 26px;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/*蒙层*/
+.layer {
+    width: 1280px;
+    height: 720px;
+    background: black;
+    opacity: 0.9;
+    position: absolute;
+    top: 0px;
+    z-index: 990;
+    display: none;
+}
+
+.show_layer {
+    position: absolute;
+    z-index: 993;
+    height: 433px;
+}
+
+.layerTitle {
+    position: absolute;
+    font-size: 28px;
+    line-height: 38px;
+    color: #FFFFFF;
+}
+
+.arrow {
+    position: absolute;
+    width: 38px;
+    height: 123px;
+}
+
+.step1_title_2 {
+    top: 550px;
+    left: 350px;
+    width: 733px;
+}
+
+.step2_arrow {
+    top: 480px;
+    left: 1025px;
+    -webkit-transform: rotate(35deg);
+    -moz-transform: rotate(35deg);
+}
+
+.start_step {
+    position: absolute;
+    top: 580px;
+    left: 1078px;
+    width: 166px;
+    height: 88px;
+}
+
+.step_btn_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 166px;
+    height: 88px;
+}
+
+.step_btn_title {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 146px;
+    text-align: center;
+    font-size: 28px;
+
+}
+
+.step2_icon {
+    position: absolute;
+    top: 546px;
+    left: 211px;
+    width: 119px;
+    height: 119px;
+}
+
+/*拉取空数据占位*/
+#empty_data {
+    position: absolute;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    font-size: 40px;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    color: rgba(255, 255, 255, 0.6);
+    display: none;
+}

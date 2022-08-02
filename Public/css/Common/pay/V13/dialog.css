@@ -1,0 +1,242 @@
+#modal {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    text-align: center;
+    font-size: 24px;
+    background-color: rgba(1, 1, 1, .5);
+}
+
+#modal div.dialog_wrapper {
+    width: 774px;
+    height: 584px;
+    position: relative;
+    top: 60px;
+    left: 254px;
+}
+
+/*通用提示弹框*/
+.dialog_wrapper .msg_text {
+    position: absolute;
+    top: 308px;
+    width: 100%;
+    height: 188px;
+    color: #000;
+}
+
+.dialog_wrapper .msg_text div {
+    height: 50px;
+    line-height: 50px;
+}
+
+.dialog_wrapper .btn_wrap {
+    margin-top: -90px;
+}
+
+.dialog_wrapper .btn_wrap img {
+    margin: 0 50px;
+}
+
+/*通用填写电话弹框*/
+.tel-number {
+    background-image: url(../../../../Public/img/HomePage/V13/home/common/telphone.png);
+    background-repeat: no-repeat;
+    background-position: 260px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.tel-number span.tel-name {
+    margin-left: 170px;
+}
+
+#modal-loading {
+    margin-top: 25%;
+}
+
+/*微信小程序弹框*/
+.wechat-bg, .wechat-video-bg {
+    margin-top: 124px;
+}
+
+.dialog_wechat_qrcode_bg {
+    margin-top: 124px;
+    margin-left: 280px;
+}
+
+.pic-item {
+    position: absolute;
+    top: 368px;
+    left: 360px;
+    width: 180px;
+    height: 180px;
+}
+
+.pic-item1 {
+    position: absolute;
+    top: 193px;
+    left: 331px;
+    width: 250px;
+    height: 250px;
+}
+
+.dialog_wechat_qrcode_image {
+    position: absolute;
+    top: 240px;
+    left: 550px;
+    width: 250px;
+    height: 250px;
+}
+
+.wechat-title {
+    position: absolute;
+    top: 143px;
+    left: 582px;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: left;
+}
+
+.wechat-info1 {
+    position: absolute;
+    top: 254px;
+    left: 351px;
+    width: 600px;
+    color: #ef6188;
+    font-size: 24px;
+    text-align: left;
+}
+
+.wechat-info2 {
+    position: absolute;
+    top: 401px;
+    left: 575px;
+    color: #000;
+    font-size: 24px;
+    text-align: left;
+}
+
+.wechat-info3 {
+    position: absolute;
+    top: 284px;
+    left: 509px;
+    width: 600px;
+    color: #ef6188;
+    font-size: 30px;
+    /*text-align: center;*/
+}
+
+.dialog_wechat_qrcode_title {
+    position: absolute;
+    top: 160px;
+    left: 509px;
+    width: 600px;
+    color: #ef6188;
+    font-size: 30px;
+    /*text-align: center;*/
+}
+
+.left-item {
+    position: absolute;
+    top: 330px;
+    left: 100px;
+}
+
+.right-item {
+    position: absolute;
+    top: 330px;
+    left: 1100px;
+}
+
+#input-click-div {
+    position: absolute;
+    top: 359px;
+    left: 260px;
+    /*background-color: red;*/
+    width: 339px;
+    height: 49px;
+}
+
+
+.modal-sure {
+    position: absolute;
+    top: 485px;
+    left: 552px;
+}
+
+.modal-sure-single {
+    position: absolute;
+    top: 485px;
+    left: 297px;
+}
+
+.inquiry-choose-text {
+    position: absolute;
+    top: 225px;
+    left: 456px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#dialog_ask_doc_tv_video {
+    position: absolute;
+    top: 354px;
+    left: 465px;
+}
+
+#dialog_ask_doc_tv_phone {
+    position: absolute;
+    top: 354px;
+    left: 644px;
+}
+
+#dialog_ask_doc_wechat_teletext {
+    position: absolute;
+    top: 438px;
+    left: 465px;
+}
+
+#dialog_ask_doc_wechat_video {
+    position: absolute;
+    top: 438px;
+    left: 644px;
+}
+
+
+/*通用填写短信input*/
+.sms label.sms-label {
+    margin-left: 170px;
+}
+.sms {
+    background-repeat: no-repeat;
+    background-position: 260px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 20px;
+    text-align: left;
+    position: relative;
+}
+.sms-value{
+    width: 195px;
+    overflow: hidden;
+}
+
+.get-ver-Code{
+    height: 50px;
+    width: 144px;
+    padding-left: 6px;
+    position: absolute;
+    top: -2px;
+    right: 159px;
+}
+
+.float-left{
+    float: left;
+}
+

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>搜索页面-遇见生活-V22</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Search/V22/search.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            focusIndex: '{$focusIndex}',
+            userId: '{$userId}',
+            platformType: '{$platformType}',    // 平台类型
+            cwsHlwyyUrl: '{$cwsHlwyyUrl}',
+            cws39HospitalUrl: '{$cws39HospitalUrl}',
+            carrierId: '{$carrierId}',
+            isVip: '{$isVip}',
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+
+            // 焦点保持
+            keepFocusId: '{$curSelectedTabId}',
+            searchWord: '{$searchWord}',
+            isReturnFlag: "{$isReturn}", // 0--表示直接进来，1--表示购买返回，2--表示播放返回
+            keyWords: "{$keyWords}", // 搜索的关键字
+            fromId: "{$fromId}",
+            focusId: "{$focusIndex}",
+            page: '{$currentPage}',
+            modeTitle: '{$modeTitle}',
+            themePicture:'{$themePicture}'
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+</head>
+<body style="background-image: url('../../../../../Public/img/hd/Home/V22/Common/bg_1.png');">
+<div class="tab1">
+    <img id="focus-1-1" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword1_out.png"/>
+</div>
+<div class="tab2">
+    <img id="focus-1-2" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword2_out.png"/>
+</div>
+<div class="tab3">
+    <img id="focus-1-3" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword3_out.png"/>
+</div>
+<div class="tab4">
+    <img id="focus-2-1" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword4_out.png"/>
+</div>
+<div class="tab5">
+    <img id="focus-2-2" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword5_out.png"/>
+</div>
+<div class="tab6">
+    <img id="focus-2-3" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword6_out.png"/>
+</div>
+<div class="tab7">
+    <img id="focus-3-1" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword7_out.png"/>
+</div>
+<div class="tab8">
+    <img id="focus-3-2" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword8_out.png"/>
+</div>
+<div class="tab9">
+    <img id="focus-3-3" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword9_out.png"/>
+</div>
+
+
+<img id="focus-4-1" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/del_btn_out.png"/>
+<img id="focus-4-2" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/keyword0_out.png"/>
+<img id="focus-4-3" class="key_btn" src="__ROOT__/Public/img/hd/Search/V21/back_btn_out.png"/>
+
+<div id="left">
+    <div id="searchText">请输入首字母进行搜索</div>
+<!--    <hr class="line"/>-->
+</div>
+
+<img id="topArrow" src="__ROOT__/Public/img/hd/Home/V28/icon_up.png">
+<img id="bottomArrow" src="__ROOT__/Public/img/hd/Home/V28/icon_down.png"/>
+<div id="searchTitle">大家都在看</div>
+<div id="pagePlag" style="color: #fff"></div>
+<div class="rightWrap" id="rightWrap"></div>
+<!--字幕层-->
+<!--<div id="scroll_div" class="scroll_div">-->
+<!--    <if condition="$platformType eq 'sd' ">-->
+<!--        <marquee direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1"  width="588">-->
+<!--            <else />-->
+<!--            <marquee  direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1"  width="1130">-->
+<!--    </if>-->
+<!--    <span id="hljltMarquee"><?php echo $marqueeText ?></span>-->
+<!--    </marquee>-->
+<!--</div>-->
+<!-- 默认标签 -->
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+<!--初始化焦点模块 -->
+<script type="text/javascript" src="__ROOT__/Public/js/Search/V22/search.js?t={$time}"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>中国联通--订购结果显示</title>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            carrierId: "{$carrierId}",          // 地区id
+            fsUrl: '{$resourcesUrl}',           // fs地址
+            isSuccess: "{$isSuccess}",          // 是否订购成功
+            msg: "{$msg}",                      // 订购提示信息
+            skin: {$skin},                      // 用户自定义背景
+        };
+
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+</head>
+<body>
+<img id="btn-ok" />
+
+<script type="text/javascript">
+
+    var buttons = [];
+
+    /**
+     * 返回事件
+     */
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    function GetRequest()
+    {
+        var url = location.search;   //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1)
+        {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++)
+            {
+                theRequest[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    /**
+     * 焦点初始化
+     */
+    function initButtons() {
+        buttons.push(
+            {
+                id: 'btn-ok',
+                name: "确定按键",
+                type: "img",
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                backgroundImage: '',
+                focusImage: '',
+                click: 'onBack()',
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange:  '',
+            }
+        );
+    }
+
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        if (!LMEPG.Func.isEmpty(RenderParam.skin.cpbjt)) {
+            var bgImg = RenderParam.fsUrl + RenderParam.skin.cpbjt;
+            document.body.style.backgroundImage = 'url(' + bgImg + ')';
+        } else {
+            document.body.style.backgroundImage = 'url(' + ROOT + '/Public/img/hd/Home/V13/Home/bg.png' + ')';
+        }
+
+        initButtons();
+        LMEPG.ButtonManager.init(["btn-ok"], buttons, '', true);
+        var Request = GetRequest();
+        if(LMEPG.Func.isEmpty(RenderParam.msg) || LMEPG.Func.isEmpty(RenderParam.isSuccess)){
+            RenderParam.isSuccess = Request.isSuccess;
+            RenderParam.msg = Request.msg;
+        }
+        modal.commonDialog({onClick: onBack, onCancel: onBack, onBack: onBack}, '', RenderParam.msg, '');
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>挽留页--直接离开</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Hold/hold.js?t={$time}"></script>
+
+    <!--全局渲染变量-->
+    <script type="text/javascript" >
+        var RenderParam = {$renderParam | json_encode}; // 把控制器传过来的参数进行解析，并进行json编码
+        var accountId = "{$accountId}";
+    </script>
+</head>
+<style>
+    body{
+        background-color:black;
+    }
+</style>
+<body>
+
+<script type="text/javascript">
+    window.onload = function () {
+        setTimeout(function () {
+            Page.exitAppHome();
+        }, 100);
+    }
+</script>
+</body>
+</html>

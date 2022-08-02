@@ -1,0 +1,108 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    font-size: 22px;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background: url("../../../../../Public/img/hd/OutbreakReport/V1/bg.jpg") no-repeat;
+    color: #fff;
+}
+
+.title {
+    position: absolute;
+    top: 30px;
+    left: 36px;
+    font-size: 36px;
+}
+.total-data {
+    position: relative;
+    top: 100px;
+    left: 125px;
+    width: 1030px;
+    height: 570px;
+}
+.data-td{
+    position: absolute;
+    top: 78px;
+    left: 15px;
+    width: 1000px;
+    /*border: 1px red solid;*/
+
+}
+#data-td-2{
+    position: absolute;
+    top: 418px !important;
+    left: 15px;
+    width: 1000px;
+    /*border: 1px gold solid;*/
+}
+.data-td tr td{
+    width: 250px;
+    height: 132px;
+    /*border: 1px red solid;*/
+    color: #333333;
+    text-align: center;
+}
+.data-td tr td p.p-1{
+    font-size: 20px;
+}
+.data-td tr td p.p-2{
+    font-size: 45px;
+    font-weight: bold;
+}
+.data-td tr td p.p-3{
+    font-size: 24px;
+}
+.cols-1{
+    color: #ff6958;
+}
+.cols-2{
+    color: #e73032;
+}
+.cols-3{
+    color: #ef4575;
+}
+.cols-4{
+    color: #3f92f4;
+}
+.cols-5{
+    color: #ff6c00;
+}
+.cols-6{
+    color: #ec9217;
+}
+.cols-7{
+    color: #4d5055;
+}
+.cols-8{
+    color: #0eb0b5;
+}
+.g-title{
+   position: absolute;
+    font-size: 36px;
+    color: #0eb0b5;
+    font-weight: bold;
+    top: 118px;
+    left: 168px;
+}
+.o-title{
+    position: absolute;
+    font-size: 36px;
+    color: #0eb0b5;
+    font-weight: bold;
+    top: 457px;
+    left: 168px;
+}
+.down{
+    position: absolute;
+    top: 680px;
+    left: 628px;
+}

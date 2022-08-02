@@ -1,0 +1,265 @@
+body {
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+body > *,
+.modal > * {
+    position: absolute;
+}
+
+
+#img_index {
+    position: relative;
+}
+
+#act_rule {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 241px;
+    height: 115px;
+    margin: auto;
+}
+
+#btn_back {
+    position: absolute;
+    left: 1033px;
+    top: 6px;
+    width: 241px;
+    height: 115px;
+    margin: auto;
+}
+
+#btn_winner_list {
+    position: absolute;
+    left: 1033px;
+    top: 95px;
+    width: 241px;
+    height: 115px;
+    margin: auto;
+}
+#id_waiting_dialog{
+    opacity: 0;
+}
+
+#frequency {
+    position: absolute;
+    color: white;
+    top: 610px;
+    left: 569px;
+    font-size: 32px;
+    width: 200px;
+    line-height: 40px;
+}
+
+.clwon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.sure {
+    position: absolute;
+    left: 423px;
+    top: 415px;
+}
+.cancel {
+    position: absolute;
+    left: 653px;
+    top: 415px;
+}
+
+.lottersure {
+    position: absolute;
+    left: 423px;
+    top: 520px;
+}
+.lottercancel {
+    position: absolute;
+    left: 653px;
+    top: 520px;
+}
+#gid_keyboard_container{
+    position: absolute;
+    left: 100px;
+    top: 246px;
+    width: 360px;
+    height: 120px;
+    z-index: 9999;
+}
+.nuisure {
+    position: absolute;
+    left: 525px;
+    top: 415px;
+}
+#lottery_tel {
+    POSITION: absolute;
+    TOP: 470PX;
+    left: 588px;
+    font-size: 26px;
+}
+#reset_tel{
+    position: absolute;
+    left: 361px;
+    top: 595px;
+    font-size: 26px;
+}
+#lottery_tel:empty:not(:focus):before{
+    content:attr(data-text);
+    font-size: 26px;
+    color: rgba(0,0,0,0.5);
+}
+#reset_tel:empty:not(:focus):before{
+    content:attr(data-text);
+    font-size: 26px;
+    color: rgba(0,0,0,0.5);
+}
+.awsure{
+    position: absolute;
+    left: 661px;
+    top: 555px;
+}
+.awcancel{
+    position: absolute;
+    left: 876px;
+    top: 555px;
+}
+.card_img_div{
+    float: left;
+    width: 230px;
+    height: 357px;
+}
+.sp_1{
+    position: absolute;
+    left: 15px;
+    top: 555px;
+}
+.sp_2{
+    position: absolute;
+    left: 145px;
+    top: 555px;
+}
+.sp_3{
+    position: absolute;
+    left: 989px;
+    top: 555px;
+}
+.sp_4{
+    position: absolute;
+    left: 1119px;
+    top: 555px;
+}
+#second{
+position: absolute;
+    left: 680px;
+    top: 255px;
+    font-size: 32px;
+}
+#wining_{
+position: absolute;
+    left: 520px;
+    top: 200px;
+    width: 210px;
+    height: 176px;
+}
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+#car_one{
+    position: absolute;
+    left: 316px;
+    top: 211px;
+    width: 220px;
+    height: 347px;
+    margin: auto;
+}
+#car_two{
+    position: absolute;
+    left: 513px;
+    top: 211px;
+    width: 220px;
+    height: 347px;
+
+    margin: auto;
+}
+#car_three{
+    position: absolute;
+    left: 714px;
+    top: 211px;
+    width: 220px;
+    height: 347px;
+    margin: auto;
+}
+
+.card_img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 220px;
+    height: 347px;
+    margin: auto;
+    z-index: -1;
+}
+
+#all_marquee {
+    height: 96px;
+}
+
+#my_marquee {
+    height: 40px;
+}
+
+table#all_table tr {
+    height: 30px;
+}
+
+table{
+    width: 1100px;
+}
+table td{
+    margin-right: 60px;
+    text-align: center;
+    color: #622e1e;
+    font-size: 24px;
+}
+table td:nth-child(1){
+    text-align: left;
+    padding-left: 35px;
+    width: 352px;
+}
+table td:nth-child(2){
+    padding-right: 112px;
+    /* padding-left: 0px; */
+    width: 251px;
+}
+/*中奖名单*/
+#total_list {
+    top: 210px;
+    left: 139px;
+}
+
+#my_list {
+    top: 430px;
+    left: 139px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    /*border: 1px red solid;*/
+}

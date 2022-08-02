@@ -1,0 +1,114 @@
+body {
+    background-image: url(../../../../../img/hd/Home/V13/Home/bg.png);
+    color: #000;
+}
+p.title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+.arrow {
+    position: absolute;
+    top: 325px;
+}
+
+#prev-arrow {
+    left: 50px;
+}
+
+#next-arrow {
+    left: 1160px;
+}
+
+#order-container {
+    position: absolute;
+    top: 126px;
+    left: 136px;
+    width: 1088px;
+    height: 455px;
+}
+
+#order-container div {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    float: left;
+}
+
+#order-container ul {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    line-height: 36px;
+    background-color: #fff;
+    font-family: 'Source Han Sans CN';
+    border-radius: 10px;
+    list-style: none;
+}
+
+/*焦点选中*/
+#order-container ul.focus {
+    width: 115%;
+    height: 115%;
+    line-height: 44px;
+    top: -17px;
+    left: -27px;
+    border: 5px solid gold;
+}
+
+#order-container ul li {
+    font-size: 20px;
+    padding-left: 30px;
+}
+
+#order-container ul li.title {
+    font-size: 24px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+li.pay-time {
+}
+
+li.pay-price {
+}
+
+li.keep-order-price {
+}
+
+#order-container ul li.btn-order {
+    padding: 0;
+    height: 49px;
+    width: 300px;
+    line-height: 49px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #2bf3ff;
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+/*可操作焦点选中*/
+#order-container ul li.focus {
+    background-color: #ff5b1e;
+}
+
+#order-container ul li.pay-debook {
+    background-color: #ccc;
+}
+
+#order-container ul li.focus {
+    width: 100%;
+}
+
+#null-data {
+
+}

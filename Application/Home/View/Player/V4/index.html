@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>贵州广电EPG播放器</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V10/video.css?t={$time}"/>
+
+    <!--全局通用变量-->
+    <script type="text/javascript">
+        var RenderParam = {
+            carrierId: "{$carrierId}",                      // 地区id
+            videoUrl: "{$videoUrl}",                        // 视频url
+            videoTitle: "{$title}",                         // 视频标题
+            returnIP: "{$ENTER_IP}",                        //视频播放完后的返回地址
+            isBack: "{isBack}",
+            recommendVideoUrl: '',                           // 推荐视频播放地址
+            isForbidOrder: "{$Think.cookie.c_is_forbided_order}", // 是否禁止订购 1--
+            areaCode: "{$areaCode}",                        // 省份地区码
+            platformType: "{$platformType}",                // 平台类型（hd--高清 sd--标清）
+            debug: "{$debug}",                              // 调试模式
+            pageSize: "{$pageSize}",                        // 页面尺寸
+            collectStatus: "{$collectStatus}",              // 判断是否收藏 0表示收藏 1表示未收藏
+            sourceId: "{$sourceId}",                        // 视频ID
+            returnUrl: "{$returnUrl}",                      // 返回地址
+            userId: "{$userId}",                            // 用户ID
+            imgHost: "{$resourcesUrl}",                     // 图片host
+            isVip: {$isVip},                                // 用户是不是vip，1 -- 是vip
+            freeSeconds: {$freeSeconds},                    // 免费观看时长
+            currentPlayTimes: 0,                            // 记录当前播放的时间进度
+            userType: {$userType},                          // 视频的播放策略（0-不限，1-普通用户可看, 2-vip可看）
+            videoInfo: {$videoInfo},                        // 视频信息
+            allVideoInfo: {$allVideoInfo},                  // 视频剧
+            albumArr: {$albumArr},
+            subjectId: "{$subjectId}",
+            domainUrl: "{$domainUrl}",                      // 江苏电信需要使用的第三方播放器前缀地址
+            albumName: "{$albumName}",                      //专辑跳转传入专辑别名参数
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--<script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>-->
+    <!--<script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer_gzgd.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/PlayerFocus.js?t={$time}"></script>
+
+</head>
+<body id="hold" style=" background-color:transparent;margin:0; padding:0;">
+
+<!--播放挽留页面-->
+<div id="collectback" style="display:none;">
+    <!--标题-->
+    <div id="titletext">为您推荐更多视频</div>
+    <!--四个推荐位-->
+    <div id="focus-1-1" class="imgback">
+        <img id="img0" class="picture" src="" alt="">
+        <img id="img1-border" src="__ROOT__/Public/img/hd/Player/V10/border.png" class="img-border" alt=""/>
+        <div class="imgtitle">
+        </div>
+    </div>
+    <div id="focus-1-2" class="imgback">
+        <img src="" alt="" id="img1" class="picture">
+        <img id="img2-border" src="__ROOT__/Public/img/hd/Player/V10/border.png" class="img-border" alt=""/>
+        <div class="imgtitle">
+        </div>
+    </div>
+    <div id="focus-1-3" class="imgback">
+        <img src="" alt="" id="img2" class="picture">
+        <img id="img3-border" src="__ROOT__/Public/img/hd/Player/V10/border.png" class="img-border" alt=""/>
+        <div class="imgtitle">
+        </div>
+    </div>
+    <!--操作按键-->
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div><img id="focus-2-3" class="navimg" src="__ROOT__/Public/img/{$platformType}/Player/V10/Exit.png" alt=""></div>
+</div>
+
+<img id="tips" src="__ROOT__/Public/img/hd/Player/V10/tips.png" alt=""/>
+
+<!--底部UI条-->
+<div id="playUI">
+    <div class="title_bg" style="">
+        <div class="title">{$title}</div>
+    </div>
+    <img id="videoback" src="__ROOT__/Public/img/hd/Player/V10/p_bg.png" alt=""/>
+    <div id="ptime">00:00</div>
+    <div id="progressbar">
+        <div id="fill" style="width:0;"></div>
+        <img id="fill_bg" src="__ROOT__/Public/img/hd/Player/V10/p_bg_1.png" alt=""/>
+
+        <img id="ball" src="__ROOT__/Public/img/hd/Player/V10/ball.png" alt=""/>
+    </div>
+    <div id="totaltime">00:00</div>
+</div>
+<!-- 默认标签：防止焦点丢失 -->
+<img id="default_link" src="__ROOT__/Public/img/Common/spacer.gif" alt=""/>
+
+<script type="" src="__ROOT__/Public/js/Player/V4/index.js"></script>
+
+<script type="text/javascript">
+    window.onload = function () {
+        LMEPG.BM.init("default_link", buttons, '', true);
+        var fromLaunch = LMEPG.Cookie.getCookie('c_from_launch') || "0";
+        if (fromLaunch == "1") {
+            APKPlayer();
+            return;
+        }
+        UIPlayer.init();
+    };
+    function APKPlayer() {
+        var objCurrent = LMEPG.Intent.createIntent("player")
+        var objHome = LMEPG.Intent.createIntent("APKPlay");
+        objHome.setParam("apkUrl", RenderParam.videoInfo.videoUrl);
+        LMEPG.Intent.jump(objHome, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+</script>
+
+</body>
+</html>
+
+

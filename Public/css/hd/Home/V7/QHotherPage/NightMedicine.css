@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../../img/hd/Menu/Common/bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+
+#title {
+    top: 20px;
+    left: 80px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+}
+
+#prev-arrow {
+    top: 345px;
+    left: 86px;
+}
+
+#next-arrow {
+    top: 345px;
+    left: 1150px;
+}
+
+#container {
+    width: 950px;
+    height: 500px;
+    top: 125px;
+    left: 194px;
+}
+
+#container > div {
+    display: inline-block;
+}
+
+#page-index {
+    top: 80px;
+    left: 1160px;
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#focus-1, #focus-2 {
+    width: 400px;
+    height: 500px;
+    padding: 20px;
+}
+
+.active {
+    background-image: url(../../../../../img/hd/Menu/QHotherPages/medicineHouse_f.png);
+}
+
+.house-bg {
+    width: 400px;
+}
+
+#container .medicine-house-wrapper {
+    background: #fff;
+    width: 400px;
+    height: 500px;
+    border-radius: 12px;
+}
+
+ul.medicine-house-desc {
+    width: 360px;
+    height: 150px;
+    padding: 20px;
+}
+
+ul.medicine-house-desc li {
+    width: 360px;
+    padding-top: 3px;
+    line-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 22px;
+    vertical-align: middle;
+}
+
+ul.medicine-house-desc li.house-name {
+    font-size: 30px;
+}
+
+li.house-addr {
+    background-image: url(../../../../../img/hd/Menu/QHotherPages/icon_addr.png);
+    background-position: 4px 10px;
+}
+
+li.house-tel {
+    background-image: url(../../../../../img/hd/Menu/QHotherPages/icon_tel.png);
+    background-position: 0 7px;
+}
+
+ul.medicine-house-desc li {
+    height: 43px;
+}
+
+ul.medicine-house-desc li span,
+ul.medicine-house-desc li marquee {
+    margin-left: 35px;
+}
+
+ul.medicine-house-desc li.house-name span,
+ul.medicine-house-desc li.house-name marquee {
+    margin-left: 0;
+}

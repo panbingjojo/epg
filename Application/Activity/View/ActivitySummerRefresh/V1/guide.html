@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>消除小夏 清爽UPUP!</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivitySummerRefresh/V1/guide.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+
+</head>
+<body>
+<div class="btn-group">
+    <img id="back" class="btnInfo"
+         src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/bg_back.png"/>
+    <img id="btn-rule" class="btnInfo"
+         src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/bg_rule.png"/>
+    <img id="btn-price" class="btnInfo"
+         src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/bg_list.png"/>
+    <img id="btn-produce" class="btnInfo"
+         src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/bg_produce.png"/>
+</div>
+<img id="frog-status" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/frog_normal.png"/>
+<div id="energy-status-box"
+     style=" background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/energy_value.png');"></div>
+<img id="btn-start" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/bg_start.png"/>
+<img id="btn-walk-through" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/bg_walk_through.png"/>
+<img id="akys" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/btn_akys.png"/>
+<img id="slh" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/btn_slh.png"/>
+<img id="jkmf" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/btn_jkmf.png"/>
+<div class="show-box">剩余次数：<span id="show-box">03</span></div>
+<div id="dialog_wrap"></div>
+
+<script type="text/javascript">
+    var RenderParam = {
+        isVip: {$isVip}, // 是否是vip（0-非vip 1-vip）
+        energyValue: {$getUserScore},
+        lmcid: "{$carrierId}",
+        platformType: "{$platformType}",
+
+        userAccount: "{$userAccount}",
+
+        isOrderBack: "{$isOrderBack}", // 是否为订购返回
+        cOrderResult: "{$Think.cookie.c_order_result}",
+
+        bgImagePrefix: '__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/',
+        imgPathPrefix: '__ROOT__/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/', // 当前页面使用图片路径目录
+        successUrl:  g_appRootPath+ "/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1/book_success.png",//订购成功弹窗背景
+        falseUrl:  g_appRootPath+ "/Public/img/{$platformType}/Activity/ActivitySummerRefresh/V1//book_false.png",//订购失败弹窗背景
+        // 兑换物品信息
+        setExchangeList: {$setExchangeList},
+        exchangeRecord: {$ExchangeRecord},
+        keyCountdown: "{$keyCountdown}",
+        valueCountdown: {$valueCountdown},
+        extraTimes:  {$extraTimes},
+        inner: "{$inner}",
+        userId: "{$userId}",
+        activityName: "{$activityName}"
+    };
+</script>
+
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/activity1.01.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivitySummerRefresh/guide.js?t={$time}"></script>
+<script type="text/javascript">
+    (function (w, undefined) {
+        var guide = new Guide();
+
+        guide.renderBackgroundImg();
+        guide.setEnergyValue();
+        guide.initButtons();
+        w.guide = guide;
+        // 展示订购弹窗
+        guide.showOrderResult();
+
+        AjaxHelper.getLeftTimes();
+        lmInitGo();
+    })(window, undefined);
+
+</script>
+</body>
+</html>

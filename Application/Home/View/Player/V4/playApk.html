@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>三方接入播放器-启动APK</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V10/video.css?t={$time}"/>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer_gzgd.js?t={$time}"></script>
+</head>
+<body id="player-contr" style=" background-color:transparent;margin:0; padding:0;">
+
+
+<script type="text/javascript">
+    var buttons = [];
+    Player = {
+        isPlayer: true,
+        init: function (apkUrl) {
+            buttons.push({
+                id: 'player-contr',
+                name: '电视视频',
+                type: 'img',
+                click: Player.start,
+                focusChange: "",
+                beforeMoveChange: Player.playerSet
+            });
+            LMEPG.BM.init("player-contr", buttons, '', true);
+            Player.getUrl(apkUrl,function (url) {
+                // LMEPG.UI.showToast("地址"+url)
+                hstMedia.play(url);
+                hstMedia.setPosition(0, 0, 1280, 720);
+            })
+        },
+        playerSet: function (dir, cur) {
+            if (dir == "left") {
+                hstMedia.seekDown();
+            } else if (dir == "right") {
+                hstMedia.seekUp();
+            }
+        },
+        start: function () {
+            // hstMedia.setLoop(true);  //设置是否循环
+            Player.isPlayer = !Player.isPlayer
+            Player.isPlayer == true ? hstMedia.resume() : hstMedia.pause();
+            hstMedia.isShowLayout(!Player.isPlayer); //设置是否显示操作界面
+        },
+        getUrl: function (videoUrl, callback) {
+            LMEPG.UI.showToast(videoUrl)
+            var getVideoIdParams = {
+                "nns_ids": videoUrl,
+                'nns_mode': 0,
+                'nns_type': 'video'
+            };
+            starcorCom.transformat_keys(getVideoIdParams, function (data) {
+                var videoId = data.l.il[0].id;
+                var geturl_params = {
+                    nns_video_id: videoId,
+                    nns_video_type: "0"
+                };
+                starcorCom.apply_play(geturl_params, function (resp) {
+                    if ("0" == resp.result.state) {
+                        var url = resp.playurl != undefined ? resp.playurl : resp.video.index.media.url;
+                        // playURl=url.split("?");
+                        // var tempURl=url.replace("rtsp","http");
+                        LMEPG.Log.info("guizhougd player--------url2:" + url);
+                        callback(url);
+                    } else { //错误提示
+                        // LMEPG.Log.error("guizhougd player--------url:" + resp.result.state);
+                    }
+                });
+            });
+        },
+
+    }
+    window.onload = function () {
+        var apkUrl = LMEPG.Func.getLocationString('apkUrl') || '';
+        Player.init(apkUrl);
+    };
+
+    function onBack() {
+        hstMedia.stop()
+        LMEPG.Intent.back();
+    }
+</script>
+
+</body>
+</html>
+
+

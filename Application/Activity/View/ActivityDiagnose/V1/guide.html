@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>联通0元问诊</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Activity/ActivityDiagnose/V1/guide.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmBase64.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <script>
+        var RenderParam = {
+            carrierId: "{$carrierId}",
+            areaCode: "{$areaCode}",
+            userId: "{$userId}",                // 用户Id
+            platformType: "{$platformType}",    // 平台类型
+            activityId: "{$activityId}",        // 活动id
+        };
+    </script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+        /**
+         * @func 进行购买操作
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip(contentId) {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("directPay", "1");
+            objOrderHome.setParam("orderReason", "101");
+            objOrderHome.setParam("contentId", contentId); // sp订购的内容id
+            objOrderHome.setParam("isJointActivity", 0); // 表示联合活动
+            objOrderHome.setParam("remark", "{$activityName}");
+
+            var objActivityGuide = LMEPG.Intent.createIntent("activity-common-guide");
+            objActivityGuide.setParam("userId", "{$userId}");
+            objActivityGuide.setParam("inner", "{$inner}");
+            objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+        }
+
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            if (G("dialog-success").style.display == "block") {
+                Hide("dialog-success");
+                LMEPG.ButtonManager.requestFocus("rule");
+            } else {
+                LMEPG.Intent.back("home");
+            }
+        }
+    </script>
+</head>
+<body style="background: url('../../../../../Public/img/{$platformType}/Activity/ActivityDiagnose/V1/guide_bg.png') no-repeat;">
+<img id="start" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiagnose/V1/bg_confirm.png" alt="">
+<img id="rule" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiagnose/V1/bg_rule.png" alt="">
+<div id="dialog-success"
+     style="background: url('../../../../../Public/img/{$platformType}/Activity/ActivityDiagnose/V1/rule_bg.png') no-repeat;">
+</div>
+
+<div id="time"></div>
+<script>
+    var buttons = [];
+    var isVip = {$isVip}; // 是否是vip（0-非vip 1-vip）
+    var contentId = "{$contentId}";
+    var Focus = {
+        initButton: function () {
+            buttons.push(
+                    {
+                        id: 'start',
+                        name: '开始',
+                        type: 'img',
+                        nextFocusLeft: '',
+                        nextFocusRight: 'rule',
+                        backgroundImage: g_appRootPath+'/Public/img/{$platformType}/Activity/ActivityDiagnose/V1/bg_confirm.png',
+                        focusImage: g_appRootPath+'/Public/img/{$platformType}/Activity/ActivityDiagnose/V1/f_confirm.png',
+                        click: Focus.goPhoneDialog,
+                        focusChange: "",
+                        beforeMoveChange: "",
+                        moveChange: ""
+                    }
+            )
+            buttons.push(
+                    {
+                        id: 'rule',
+                        name: '关闭',
+                        type: 'img',
+                        nextFocusLeft: 'start',
+                        nextFocusRight: '',
+                        backgroundImage: '',
+                        focusImage: '',
+                        click: Focus.openDialog,
+                        focusChange: "",
+                        backgroundImage: g_appRootPath+'/Public/img/{$platformType}/Activity/ActivityDiagnose/V1/bg_rule.png',
+                        focusImage: g_appRootPath+'/Public/img/{$platformType}/Activity/ActivityDiagnose/V1/f_rule.png',
+                        moveChange: "",
+                    }
+            )
+            buttons.push(
+                    {
+                        id: 'dialog-success',
+                        name: '关闭',
+                        type: 'img',
+                        nextFocusLeft: '',
+                        nextFocusRight: '',
+                        backgroundImage: '',
+                        focusImage: '',
+                        click: onBack,
+                        focusChange: "",
+                        moveChange: "",
+                    }
+            )
+        },
+        goPhoneDialog: function () {
+            if (isVip) {     // VIP跳转大专家
+                Focus.jumpExpertHome();
+            } else {                // 非VIP用户次数用尽，弹窗提示订购VIP
+                jumpBuyVip();
+            }
+
+        },
+
+        openDialog: function () {
+            Show("dialog-success");
+            LMEPG.ButtonManager.requestFocus("dialog-success");
+        },
+
+        /**
+         * 跳转 - 大专家主页
+         * @param id
+         */
+        jumpExpertHome: function () {
+            var objCurrent = getCurrentPage();
+            var objExpert = {};
+
+            // 如果是标清盒子和已经表明不支持的盒子，不支持视频问诊
+            if (RenderParam.platformType == 'sd') {
+                LMEPG.UI.showToast("标清站暂不支持该功能!");
+            } else {
+                // 支持视频问诊，直接进入
+                objCurrent.setParam("userId", RenderParam.userId);
+                objCurrent.setParam("position", "inquiry");
+                objCurrent.setParam("fromId", "0");
+                objCurrent.setParam("page", 0);
+
+                objExpert = LMEPG.Intent.createIntent("expertHome");
+                objExpert.setParam("activityId", RenderParam.activityId);
+                LMEPG.Intent.jump(objExpert, objCurrent);
+            }
+        },
+
+    }
+    window.onload = function () {
+        Focus.initButton();
+        LMEPG.ButtonManager.init(["start"], buttons, "", true);
+    }
+</script>
+</body>
+</html>

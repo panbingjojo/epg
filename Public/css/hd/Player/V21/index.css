@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    color: #fff;
+    overflow: hidden;
+}
+
+#player-container {
+}
+
+/*上边标题层*/
+#top-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 92px;
+    background-image: url(../../../../img/hd/Player/V21/bg_top.png);
+    visibility: hidden;
+}
+
+/*下边弹出导航层*/
+#bottom-navigation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1280px;
+    height: 92px;
+    background-image: url(../../../../img/hd/Player/V21/bg_bottom.png);
+    visibility: hidden;
+}
+
+p#video-title,
+div#play-time,
+div.bottom-action-wrap {
+    position: absolute;
+    height: 92px;
+    top: 0;
+}
+
+div.bottom-action-wrap {
+    left: 463px;
+    font-size: 18px;
+}
+
+div.bottom-action-wrap div {
+    float: left;
+}
+
+div.bottom-action-wrap img {
+    width: 62px;
+    height: 62px;
+    padding-top: 10px;
+    margin-bottom: -10px;
+}
+
+#bottom-navigation p.tip-msg {
+    position: absolute;
+    bottom: 95px;
+    right: 35px;
+    color: #000;
+    font-size: 30px;
+}
+
+div#play-time,
+p#video-title {
+    line-height: 92px;
+}
+
+div.fast-backward,
+div.toggle-play,
+div.fast-forward {
+    width: 62px;
+    margin-right: 85px;
+    text-align: center;
+}
+
+p#video-title {
+    left: 50px;
+    top: 19px;
+    font-size: 24px;
+    width: 214px;
+    height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: black;
+}
+
+div#play-time {
+    right: 30px;
+    font-size: 24px;
+}
+
+div.fast-backward {
+}
+
+div.toggle-play {
+}
+
+div.fast-forward {
+}
+
+/*中间弹出层*/
+#center-navigation {
+    position: absolute;
+    top: 160px;
+    left: 277px;
+    width: 726px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, .4);
+    border-radius: 10px;
+    /*background-image: url();*/
+    visibility: hidden;
+    font-size: 24px;
+    color: #fff;
+}
+
+div.center-action-wrap {
+    position: absolute;
+    top: 123px;
+    left: 172px;
+}
+
+div.center-action-wrap div {
+    float: left;
+    margin-left: 25px;
+    text-align: center;
+}
+
+div.center-action-wrap img {
+    width: 92px;
+    height: 92px;
+}
+
+p.center-tip {
+    position: absolute;
+    top: 330px;
+    left: 231px;
+}
+
+p.center-tip span {
+    color: gold;
+}
+
+/*按确认订购*/
+.tip-press-sure-pay {
+    position: absolute;
+    width: 446px;
+    height: 62px;
+    top: 517px;
+    left: 53px;
+    line-height: 62px;
+    font-size: 30px;
+    color: #000;
+    visibility: hidden;
+}
+
+.tip-press-sure-pay img {
+    width: 394px;
+    height: 95px;
+    vertical-align: middle;
+}
+
+.tip-press-sure-pay-2 {
+    position: absolute;
+    top: 467px;
+    left: 19px;
+    visibility: hidden;
+}
+
+/*推荐视频*/
+#recommend-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background-color: rgba(0, 0, 0, .4);
+    /*background-image: url();*/
+    visibility: hidden;
+    font-size: 24px;
+    color: #fff;
+}
+
+#recommend-page p.title-text {
+    position: absolute;
+    top: 96px;
+    left: -25px;
+    width: 1280px;
+    text-align: center;
+    font-size: 32px;
+    color: #fff;
+}
+
+#recommend-list {
+    position: absolute;
+    top: 197px;
+    left: 60px;
+    font-size: 24px;
+}
+
+#recommend-list div {
+    position: relative;
+    width: 379px;
+    height: 256px;
+    float: left;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+#recommend-list div.focus {
+    background-image: url(../../../../img/hd/Player/V21/video_f.png);
+}
+
+#recommend-list img {
+    width: 336px;
+    height: 216px;
+    margin: 20px;
+    border-radius: 8px;
+    /* text-align: center; */
+}
+
+#recommend-list p {
+    position: absolute;
+    top: 204px;
+    left: 21px;
+    bottom: 9px;
+    width: 338px;
+    height: 32px;
+    font-size: 24px;
+    overflow: hidden;
+    line-height: 32px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 0 0 8px 8px;
+    background-image: url(../../../../img/hd/Home/V21/Common/title_bg.png);
+    background-size: 100% 100%;
+}
+
+/*.recommended_title{*/
+    /*position:absolute;*/
+    /*top: 204px;*/
+    /*left: -1px;*/
+    /*width: 337px;*/
+    /*height: 36px;*/
+    /*font-size: 22px;*/
+    /*line-height:36px;*/
+    /*text-align: left;*/
+    /*overflow: hidden;*/
+    /*text-overflow:ellipsis;*/
+    /*text-indent: 30px;*/
+    /*white-space: nowrap;*/
+    /*background-image: url(../../../../img/hd/Home/V21/Common/title_bg.png);*/
+    /*!*background: rgba(0,0,0,0.6);*!*/
+/*}*/
+
+.btn-action-wrap {
+    position: absolute;
+    top: 477px;
+    left: 337.5px;
+}
+
+.btn-action-wrap div {
+    width: 118px;
+    height: 118px;
+    float: left;
+    text-align: center;
+    margin-right: 90px;
+}
+
+.btn-action-wrap img {
+    width: 118px;
+    height: 118px;
+}
+
+.speed {
+    position: absolute;
+    top: 329px;
+    left: 558px;
+    width: 164px;
+    height: 62px;
+    display: none;
+}
+
+.speed_rewind {
+    position: absolute;
+    top: 348px;
+    left: 492px;
+    width: 49px;
+    height: 29px;
+    display: none;
+}
+
+.speed_forward {
+    position: absolute;
+    top: 348px;
+    left: 739px;
+    display: none;
+}
+
+#debug1 {
+    border: 1px red solid;
+    color: red;
+    top: 50px;
+    left: 30px;
+    width: 680px;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 100;
+    font-size: 20px;
+    display: none;
+}
+
+#debug2 {
+    border: 1px deeppink solid;
+    text-align: left;
+    color: deeppink;
+    top: 50px;
+    right: 30px;
+    width: 480px;
+    max-height: 40%;
+    overflow: auto;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 100;
+    font-size: 20px;
+    display: none;
+}

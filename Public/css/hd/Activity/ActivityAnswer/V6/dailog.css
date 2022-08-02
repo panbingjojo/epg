@@ -1,0 +1,255 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+#default_focus {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 1280px;
+    height: 720px;
+}
+
+.btn-only {
+    position: absolute;
+    top: 456px;
+    left: 680px;
+    outline: none !important;
+    width: 187px;
+    height: 74px;
+}
+
+.btn-success {
+    position: absolute;
+    top: 476px;
+    left: 660px;
+    outline: none !important;
+    width: 187px;
+    height: 74px;
+}
+
+.btn-only {
+    position: absolute;
+    top: 456px;
+    left: 680px;
+    outline: none !important;
+    width: 187px;
+    height: 74px;
+}
+
+.introduce {
+    position: absolute;
+    top: 300px;
+    left: 588px;
+    outline: none !important;
+    width: 400px;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+    line-height: 55px;
+}
+
+.introduce-success {
+    position: absolute;
+    top: 234px;
+    left: 499px;
+    outline: none !important;
+    width: 480px;
+    font-size: 29px;
+    color: #414141;
+    text-align: center;
+    line-height: 55px;
+}
+
+.btn-one {
+    position: absolute;
+    top: 461px;
+    left: 572px;
+    outline: none !important;
+    width: 187px;
+    height: 74px;
+}
+
+.btn-two {
+    position: absolute;
+    top: 461px;
+    left: 778px;
+    outline: none !important;
+    width: 187px;
+    height: 74px;
+}
+
+#searchText {
+    width: 310px;
+    height: 40px;
+    z-index: 999;
+    position: absolute;
+    top: 388px;
+    left: 598px;
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    outline: none;
+    line-height: 40px;
+    color: #e16d1e;
+    border: 1px red solid;
+    border-radius: 5px;
+    overflow: hidden;
+    text-indent: 10px;
+}
+
+.introduce-price-text {
+    position: absolute;
+    top: 266px;
+    left: 510px;
+    outline: none !important;
+    font-size: 40px;
+    color: #ff850d
+
+}
+
+#myPhone {
+    position: absolute;
+    font-size: 18px;
+    color: #414141;
+    top: 355px;
+    left: 597px
+}
+
+.introduce-price-name {
+    font-size: 47px;
+    color: #fc5f1a;
+}
+
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+    font-size: 30px
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}
+
+.detail-table {
+    position: absolute;
+    top: 216px;
+    left: 180px;
+    width: 950px;
+    outline: none !important;
+}
+
+#row1 {
+    position: absolute;
+    top: 216px;
+    left: 180px;
+    width: 950px;
+    height: 15px;
+    font-size: 18px;
+    color: #FFFFFF;
+    width: 950px;
+}
+
+#row2 {
+    position: absolute;
+    top: 256px;
+    left: 180px;
+    width: 950px;
+    height: 15px;
+    font-size: 18px;
+    color: #FFFFFF;
+    width: 950px;
+}
+
+#row3 {
+    position: absolute;
+    top: 296px;
+    left: 180px;
+    width: 950px;
+    height: 15px;
+    font-size: 18px;
+    color: #FFFFFF;
+    width: 950px;
+}
+
+#row4 {
+    position: absolute;
+    top: 366px;
+    left: 180px;
+    width: 950px;
+    height: 15px;
+    font-size: 18px;
+    color: #FFFFFF;
+    width: 950px;
+}
+
+#row5 {
+    position: absolute;
+    top: 406px;
+    left: 180px;
+    width: 950px;
+    height: 15px;
+    font-size: 18px;
+    color: #FFFFFF;
+    width: 950px;
+}
+
+.btn_back {
+    position: absolute;
+    top: 61px;
+    left: 1156px;
+    outline: none !important;
+    width: 73px;
+    height: 84px;
+}
+
+.price_one {
+    position: absolute;
+    top: 488px;
+    left: 137px;
+    outline: none !important;
+    width: 151px;
+    height: 126px;
+}
+
+.price_two {
+    position: absolute;
+    top: 488px;
+    left: 369px;
+    outline: none !important;
+    width: 92px;
+    height: 126px;
+}
+
+.price_three {
+    position: absolute;
+    top: 488px;
+    left: 547px;
+    outline: none !important;
+    width: 108px;
+    height: 126px;
+}
+
+.price_four {
+    position: absolute;
+    top: 488px;
+    left: 738px;
+    outline: none !important;
+    width: 134px;
+    height: 126px;
+}
+
+.price_five {
+    position: absolute;
+    top: 488px;
+    left: 927px;
+    outline: none !important;
+    width: 211px;
+    height: 126px;
+}

@@ -1,0 +1,117 @@
+body {
+    font-size: 24px;
+    background-image: url("../../../../../img/hd/Activity/ActivityCommunityHospital/V4/bg.png");
+}
+#title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #ccc;
+}
+#btn-back{
+    position: absolute;
+    top: 1200px;
+    top: 20px;
+    left: 1100px;
+}
+.txt {
+    color: #08a8b6;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 20px;
+    font-family: "Noto Sans CJK SC", "Source Han Sans CN";
+}
+
+#piece-0 {
+    position: absolute;
+    top: 96px;
+    left: 150px;
+    /*text-align: center;*/
+}
+
+.piece-0-txt {
+    width: 600px;
+}
+
+#piece-0-pic {
+    width: 460px;
+    height: 271px;
+}
+#doctor-intro{
+   text-align: left;
+   width: 460px;
+   line-height: 35px;
+   margin-top: 10px;
+   height: 200px;
+   overflow: hidden;
+}
+
+#piece-1 {
+    position: absolute;
+    left: 703px;
+    width: 210px;
+}
+/*预约挂号*/
+#piece-3{
+    display:none;
+    position: absolute;
+    top: 0px;
+    left: 0px;;
+    /*z-index: 999;*/
+}
+
+#piece-1-btn {
+    margin-top: 190px;
+    width: 130px;
+    height: 130px;
+}
+
+#piece-2-btn {
+    position: absolute;
+    margin-top: 398px;
+    left:12px;
+    width: 130px;
+    height: 130px;
+}
+
+#dialog {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    background-image: url("../../../../../img/hd/Activity/ActivityCommunityHospital/V4/win_bg.png");
+    display: none;
+}
+#dialog p{
+    position: absolute;
+    top: 307px;
+    left:410px;
+    font-size: 36px;
+    color: #000000;
+    font-family: SourceHanSansCN-Regular;
+}
+#dialog img{
+    position: absolute;
+    top: 439px;
+    left: 560px;
+}
+
+#doctor-name,
+#goods-title,
+#goods-call{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#doctor-position {
+
+}
+
+#doctor-dep {
+
+}
+
+#doctor-goods {
+}

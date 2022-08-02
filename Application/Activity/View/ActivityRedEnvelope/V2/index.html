@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>瓜分万元翼支付红包活动</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/Activity/ActivityRedEnvelope/V2/index.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前活动-->
+    <script type="text/javascript">
+
+        var RenderParam = {
+            isVip: '{$isVip}', // 是否是vip（0-非vip 1-vip）
+            inner: '{$inner}',
+            userId: '{$userId}',
+            activityName: 'ActivityRedEnvelope20201109',
+            lmcid: '420092',
+            platformType: 'hd',
+            imgPathPrefix: '{$activityFsImg}{$platformType}/',
+        };
+        window.onload = function () {
+            if(RenderParam.inner == "0" && (RenderParam.userId == "" || RenderParam.userId == 0)) {
+                LMEPG.UI.showWaitingDialog();
+                LMEPG.AuthUser.authUser(function (respData) {
+                    LMEPG.UI.dismissWaitingDialog();
+                    RenderParam.isVip = respData.isVip;
+                    RenderParam.userId = respData.userId;
+                    Activity.init();
+                }, function (errData) {
+                    LMEPG.UI.dismissWaitingDialog();
+                    LMEPG.Log.info("authUserFailed errData:" + errData);
+                    LMEPG.UI.showToast("页面初始化失败！");
+                }, LMEPG.AuthUser.authNodeActivity);
+            }else {
+                Activity.init();
+            }
+
+            lmInitGo();
+        };
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityRedEnvelope/V2/index.js?t={$time}"></script>
+
+</head>
+<body>
+<a href="#" id="default_link" style="width: 1px;height: 1px; position: absolute; left: 80px; top: 200px">.</a>
+<div class="container_wrap">
+    <div id="btn_container" style="background-image: url('{$activityFsImg}{$platformType}/bg_home.png');">
+        <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close">
+        <img src="{$activityFsImg}{$platformType}/btn_sure.png" id="btn_sure">
+        <img src="{$activityFsImg}{$platformType}/btn_cancel.png" id="btn_cancel">
+
+        <div id="reset_tel">请输入有效的手机号</div>
+    </div>
+
+    <div id="btn_notice" style="background-image: url('{$activityFsImg}{$platformType}/bg_notice.png');">
+        <img src="{$activityFsImg}{$platformType}/btn_sure.png" id="btn_notice_sure">
+    </div>
+
+    <div id="start_bg" style="background-image: url('{$activityFsImg}{$platformType}/start_bg.png');">
+        <div id="count_down" class="count_down">10</div>
+        <img src="{$activityFsImg}{$platformType}/start.png" id="btn_start">
+    </div>
+</div>
+</body>
+</html>

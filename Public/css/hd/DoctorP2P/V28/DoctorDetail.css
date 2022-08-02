@@ -1,0 +1,160 @@
+body{
+    color: white;
+}
+
+.doctor_detail {
+    position: absolute;
+    top: 23px;
+    left: 40px;
+    width: 1200px;
+    height: 300px;
+}
+
+.doctor_photo {
+    position: absolute;
+    top: 46px;
+    left: 42px;
+    width: 208px;
+    height: 208px;
+    border-radius: 10px;
+}
+
+#status {
+    position: absolute;
+    top: 222px;
+    left: 41px;
+}
+
+#inquiry_num_bg {
+    position: absolute;
+    top: 222px;
+    left: 105px;
+    width: 145px;
+    height: 32px;
+}
+
+.number {
+    position: absolute;
+    width: 220px;
+    height: 30px;
+    line-height: 30px;
+    top: 223px;
+    font-size: 20px;
+    color: #fff;
+}
+
+#number {
+    position: absolute;
+    left: 112px;
+    width: 138px;
+    text-align: center;
+}
+
+.border {
+    background:url("../../../../../Public/img/hd/DoctorP2P/V28/bg_1.png");
+}
+
+#name {
+    position: absolute;
+    left: 308px;
+    top: 65px;
+    width: 138px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.doc_info {
+    position: absolute;
+    left: 269px;
+    top: 124px;
+    width: 168px;
+    height: 102px;
+    font-size: 24px;
+    font-weight: 300;
+    color: #FFFFFF;
+    line-height: 41px;
+}
+#department {
+    text-align: center;
+}
+#position {
+    font-size: 20px;
+    color: #B2DEFF;
+}
+
+#split_line {
+    position: absolute;
+    left: 467px;
+    top: 2px;
+}
+
+.content {
+    position: absolute;
+    left: 498px;
+    top: 23px;
+    width: 623px;
+    height: 236px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 43px;
+}
+.context {
+    height: 205px;
+    overflow: hidden;,
+}
+#introduction {
+    position: relative;
+    font-weight: normal;
+    top: 0;
+}
+
+#inquiry_mode {
+    position: absolute;
+    top: 343px;
+    left: 40px;
+    width: 1200px;
+    height: 360px;
+    background:url("../../../../../Public/img/hd/DoctorP2P/V28/bg_2.png");
+}
+
+#tv_phone_tips {
+    position: absolute;
+    top: 36px;
+    left: 37px;
+}
+#tv_video_tips {
+    position: absolute;
+    top: 25px;
+    left: 37px;
+}
+
+#tv_video_tips_item {
+    position: absolute;
+    top: 25px;
+    left: 37px;
+}
+
+#btn-video-inquiry {
+    position: absolute;
+    top: 272px;
+    left: 482px;
+}
+
+#btn-phone-inquiry {
+    position: absolute;
+    top: 272px;
+    left: 482px;
+}
+
+#scroll_bar {
+    position: absolute;
+    top: 81px;
+    left: 1152px;
+}
+#scroll_bar_f {
+    position: absolute;
+    top: 81px;
+    left: 1150px;
+    width: 10px;
+}

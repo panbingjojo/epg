@@ -1,0 +1,121 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-detail {
+    position: absolute;
+    top: 119px;
+    left: 1045px;
+    outline: none !important;
+    width: 197px;
+    height: 83px;
+
+}
+
+#btn-start {
+    position: absolute;
+    top: 550px;
+    left: 467px;
+    outline: none !important;
+    width: 346px;
+    height: 164px;
+}
+
+#btn-price {
+    position: absolute;
+    top: 201px;
+    left: 1045px;
+    outline: none !important;
+    width: 197px;
+    height: 83px;
+}
+
+#back {
+    position: absolute;
+    top: 40px;
+    left: 1045px;
+    outline: none !important;
+    width: 197px;
+    height: 83px;
+}
+.jump{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 1280px;
+    height: 720px;
+}
+
+/*提示窗样式*/
+#default_tip
+{
+    position: absolute;
+    left: 450px;
+    top: 210px;
+    width: 370px;
+    height: 81px;
+    line-height:106px;
+    text-align: center;
+    font-size: 30px;
+    color: #090609;
+    visibility: hidden;
+    z-index: 1000;
+}
+#btn-book1{
+    position: absolute;
+    top: 490px;
+    left: 20px;
+    outline: none !important;
+    width: 196px;
+    height: 210px;
+}
+#btn-book2{
+    position: absolute;
+    top: 490px;
+    left: 238px;
+    outline: none !important;
+    width: 196px;
+    height: 210px;
+}
+#btn-book3{
+    position: absolute;
+    top: 490px;
+    left: 846px;
+    outline: none !important;
+    width: 196px;
+    height: 210px;
+}
+#btn-book4{
+    position: absolute;
+    top: 490px;
+    left: 1064px;
+    outline: none !important;
+    width: 196px;
+    height: 210px;
+}
+#show-box{
+    position: absolute;
+    top: 576px;
+    left: 739px;
+    outline: none !important;
+    width: 52px;
+    height: 54px;
+    z-index: 999;
+    line-height: 54px;
+    text-align: center;
+    font-size: 34px;
+    color: #662400;
+}

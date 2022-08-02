@@ -1,0 +1,131 @@
+
+body {
+    width: 644px;
+    height: 530px;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+
+#jump-back {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#jump-rule {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#btn-rule-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#score-count {
+    position: absolute;
+    top: 250px;
+    left: 26px;
+    font-size: 13px;
+    color: #fff;
+}
+
+#exchange-wrap {
+    position: absolute;
+    top: 298px;
+    left: 101px;
+}
+
+
+div.exchange-wrap {
+    position: absolute;
+    height: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+    padding-left: 10px;
+}
+
+div.exchange-wrap img {
+    margin-top: 10px;
+    margin-left: -10px;
+}
+
+div.exchange-wrap-0 {
+    left: 63px
+}
+
+div.exchange-wrap-1 {
+    top: 101px;
+    left: 5px;
+}
+
+div.exchange-wrap-2 {
+    top: 101px;
+    left: 106px;
+}
+
+#task-wrap {
+    position: absolute;
+    top: 243px;
+    left: 367px;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#task-wrap > div {
+    margin-bottom: 20px;
+}
+
+#task-wrap img {
+    margin-top: 6px;
+    margin-left: 180px;
+}
+
+#task-wrap p {
+}
+
+.btn-win{
+    position: absolute;
+    top: 1px;
+}
+#btn-accomplish-submit{}
+#btn-accomplish-cancel{
+    left: 400px;
+}
+#accomplish-tel{
+    position: absolute;
+    top: 293px;
+    left: 310px;
+    font-size: 16px;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+body{
+    background-image: url(../../../img/hd/Home/V13/Home/bg.png);
+    color: #ffff;
+    font-size: 24px;
+}
+body>*{
+    position: absolute;
+}
+#my-score{
+    top: 39px;
+    left: 32px;
+}
+.btn-switch{
+    top: 24px;
+    left: 888px;
+}
+.btn-switch span{
+    margin-right: 15px;
+    color: #fff;
+}
+.btn-switch img{
+
+margin-bottom: -25px;
+}
+#small-tab-bg-wrap{
+    top: 106px;
+    left: 66px;
+    width: 318px;
+}
+#small-tab-bg-wrap div{
+    width: 318px;
+    background-repeat: no-repeat;
+    padding:10px 20px;
+    background-position: center;
+    text-align: center;
+    position: relative;
+}
+#small-tab-bg-wrap img{
+}
+
+#big-bg-preview{
+    top: 142px;
+    left: 405px;
+}
+.btn-exchange-wap{
+    top: 594px;
+    left: 405px;
+    width: 768px;
+    text-align: center;
+    line-height: 68px;
+    height: 68px;
+    /* vertical-align: middle; */
+}
+.btn-exchange-wap span{
+    margin-left: 15px;
+    color: #b2deff;
+    font-size: 24px;
+    /* margin-bottom: 60px; */
+}
+.btn-exchange-wap img{
+    margin-bottom: -25px;
+}
+#current-icon{
+    position: absolute;
+    top: 10px;
+    left: 247px;
+}
+
+#prev-arrow {
+    position: absolute;
+    top: 39px;
+    left: 214px;
+}
+
+#next-arrow {
+    top: 655px;
+    left: 214px;
+}
+
+#skin-name {
+    position: absolute;
+    top: 106px;
+    left: 440px;
+    font-size: 24px;
+    color: #FFFFFF;
+}

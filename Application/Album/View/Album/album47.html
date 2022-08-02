@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>专辑47-有种钻心的痛叫口腔溃疡</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/Album/album47.css?t={$time}"/>
+
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <if condition="$carrierId eq '520092'"><!--贵州广电引用-->
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <if condition="$carrierId eq '450094' ">
+        <!-- 广西广电小窗视频播放 -->
+        <script type="text/javascript" src="http://10.1.15.25/webJS/gxgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Album/AlbumSMP4.1.01.js?t={$time}"></script>
+
+</head>
+<body id="body" class="{$platformType}-body">
+<div id="debug"></div>
+<if condition="$carrierId neq 640094">
+    <if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+</if>
+<if condition="$platformType eq 'hd' ">
+    <div id="smallvod" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+        <iframe id="smallscreen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+    </div>
+    <img id="videoTv" class="hd-videoTv" useType="video" data-v="0"
+         src="__ROOT__/Public/img/{$platformType}/Album/album47/bg_small_video.png" alt=""/>
+    <else/>
+</if>
+<div id="tab-content" class="{$platformType}-tab-content"></div>
+<img id="v-prev" class="{$platformType}-v-arrow {$platformType}-v-prev"
+     src="__ROOT__/Public/img/hd/Album/album47/icon_prev_page.png"/>
+<img id="v-next" class="{$platformType}-v-arrow {$platformType}-v-next"
+     src="__ROOT__/Public/img/hd/Album/album47/icon_next_page.png"/>
+<img id="back" class="{$platformType}-back" useType="back"
+     src="__ROOT__/Public/img/hd/Album/album47/bg_back.png"/>
+<script type="text/javascript">
+	// TP框架控制器返回数据应用
+	var TP = {
+		vip: {$isVip},
+		listMovePages: {$moveNum},           // 页数
+		albumMovePages: {$moveAlbumNum},
+		userId: '{$userId}',
+		focusIDName: '{$focus_index}' == 'focus-1-1' ? 'focus-1' : '{$focus_index}',
+		videoData: {$data}.data.video_list,  // 专题节目列表
+		platformType: '{$platformType}',     // hd--高清 sd--标清
+		lmcid: '{$carrierId}',
+		inner: '{$inner}',
+		albumName: '{$albumName}',          // 专辑名称
+		domainUrl: '{$domainUrl}'           // 江苏电信需要使用的第三方播放器前缀地址\
+	};
+	var moveNum = {$moveNum};                 // 页数
+	var moveAlbumNum = {$moveAlbumNum};
+	var userId = '{$userId}';
+	var focusIDName = '{$focus_index}' == 'focus-1-1' ? 'focus-1' : '{$focus_index}';
+	var videoData = {$data}.data.video_list;  // 专题节目列表
+	var platformType = '{$platformType}';     // hd--高清 sd--标清
+	var lmcid = '{$carrierId}';
+	var inner = '{$inner}';
+	var stbModel = 'test';
+	var albumName = '{$albumName}';           // 专辑名称
+	var domainUrl = '{$domainUrl}';           // 江苏电信需要使用的第三方播放器前缀地址\
+	var currentAlbum;
+	var fileIndex =g_appRootPath+ '/Public/img/hd/Album/album47/';
+
+	var buttons = [];
+
+	var small = {
+		T: 501, // 小窗播放距离上
+		L: 33, // 距离左
+		W: 333, // 宽
+		H: 187 // 高
+	};
+
+	window.onload = function() {
+
+		$.init({
+			V: 5,   // 渲染视频列表的个数
+			A: 4,   // 渲染往期专辑的个数
+			direction: 'down',   // Video列表下一个翻页方向
+			allVideoList: 8, // 所有视频个数
+			mockVideoIndex: function() {
+				var arr = [];
+				for (var i = 0; i < this.allVideoList; i++) {
+					arr.push(i);
+				}
+				platformType == 'hd' && arr.shift();
+				return arr;
+			},
+			mockAlbumIndex: function() {
+				// 跳转往期专辑索引
+				var a = 94,
+					b = 97,
+					c = 99;
+				if (lmcid == '340092') { //安徽电信跳转专辑
+					a = 94;
+					b = 97;
+					c = 99;
+				}
+				return [
+					{index: a, album: 'album' + a},
+					{index: b, album: 'album' + b},
+					{index: c, album: 'album' + c},
+					{index: 'more', album: 'more'}];
+			},
+			different: function() {
+				if (platformType == 'hd') {
+					var bodyBg = 'bg_album.png';
+					G('body').style.backgroundImage = 'url(' + fileIndex + bodyBg + ')';
+				}
+				if (platformType == 'sd') {
+					document.body.style.backgroundImage = 'url(' + fileIndex + 'bg_album_sd.png)';
+				}
+			}
+		});
+	};
+	/** 结束页面 */
+	window.onunload = function() {
+		LMEPG.mp.destroy();  //释放播放器
+	};
+
+	(function(w) {
+		function AlbumObj() {
+		}
+
+		AlbumObj.prototype = {
+			// 设置当前页面上的视频列表、专辑个数
+			set: function(arr, atMove, count) {
+				return arr.slice(atMove, atMove + count);
+			},
+			init: function(opt) {
+				for (var item in opt) {
+					if (typeof opt[item] == 'function') {
+						this[item] = opt[item]();
+					} else{
+						this[item] = opt[item];
+					}
+				}
+				this.videoList(moveNum);
+				this.buttons();
+				LMEPG.ButtonManager.init(focusIDName, buttons, '', true);
+			},
+			// 视频列表
+			videoList: function(atMove) {
+
+				var insertDom = '';
+				var videoList = this.set(this.mockVideoIndex, atMove, this.V);
+				for (var i = 0; i < videoList.length; i++) {
+					insertDom += '<p id="focus-' + (i + 1) + '" useType="video" data-v="' + videoList[i] + '"  />' +
+						videoData[videoList[i]].title + '</p>';
+				}
+				this.arrowToggle();
+				G('tab-content').innerHTML = insertDom;
+			},
+			// 框架焦点虚拟按钮
+			buttons: function() {
+				var videoList = this.set(this.mockVideoIndex, 0, this.V);
+				var AlbumList = this.set(this.mockAlbumIndex, moveAlbumNum, this.A);
+
+				// 视频列表按钮
+				for (var j = 0; j < videoList.length; j++) {
+					var up = 'back', down = '', left = 'videoTv', right = 'back';
+					if ($.direction == 'right') {
+						left = 'focus-' + j;
+						right = 'focus-' + (j + 2);
+					} else{
+						up = 'focus-' + j;
+						down = 'focus-' + (j + 2);
+					}
+					buttons.push({
+						id: 'focus-' + (j + 1),
+						name: '视频' + (j + 1),
+						type: 'div',
+						nextFocusUp: up,
+						nextFocusDown: down,
+						nextFocusLeft: left,
+						nextFocusRight: right,
+						backgroundImage: fileIndex + 'focus.png',
+						focusImage: fileIndex + 'focus_in.png',
+						click: this.keyEnter,
+						focusChange: this.onFocus,
+						beforeMoveChange: this.beforeFocusMove
+					});
+				}
+				// 往期专辑按钮
+				for (var i = 0; i < AlbumList.length; i++) {
+					buttons.push({
+						id: 'album' + (i + 1),
+						name: AlbumList[i].album,
+						type: 'img',
+						nextFocusLeft: 'album' + i,
+						nextFocusRight: 'album' + (i + 2),
+						nextFocusUp: 'focus-5',
+						click: this.goAlbum,
+						focusChange: this.onFocus,
+						beforeMoveChange: this.beforeFocusMove
+					});
+				}
+				buttons.push({
+					id: 'back',
+					name: '返回',
+					type: 'img',
+					nextFocusLeft: 'focus-1',
+					nextFocusRight: 'more',
+					nextFocusDown: 'focus-1',
+					backgroundImage: fileIndex + 'bg_back.png',
+					focusImage: fileIndex + 'f_back.png',
+					click: this.onBack
+				}, {
+					id: 'more',
+					name: '更多精彩',
+					type: 'img',
+					nextFocusLeft: 'back',
+					nextFocusRight: 'back',
+					nextFocusDown: 'focus-1',
+					nextFocusUp: '',
+					backgroundImage: fileIndex + 'bg_more_video.png',
+					focusImage: fileIndex + 'f_more_video.png',
+					click: this.jumpVideoMore
+				}, {
+					id: 'videoTv',
+					name: '视频小窗',
+					type: 'img',
+					nextFocusLeft: '',
+					nextFocusRight: 'focus-1',
+					nextFocusDown: '',
+					nextFocusUp: 'focus-1',
+					backgroundImage: fileIndex + 'bg_small_video.png',
+					focusImage: fileIndex + 'f_small_video.png',
+					click: this.keyEnter
+				});
+			},
+			// 指示箭头切换
+			arrowToggle: function() {
+				var videoList = (this.mockVideoIndex.length) - moveNum;
+				var albumList = (this.mockAlbumIndex.length) - moveAlbumNum;
+				Hide('v-prev');
+				Hide('v-next');
+				Hide('a-prev');
+				Hide('a-next');
+				moveNum > 0 && Show('v-prev');
+				videoList > this.V && Show('v-next');
+
+				moveAlbumNum > 0 && Show('a-prev');
+				albumList > this.A && Show('a-next');
+
+			},
+			// 焦点移动前回调
+			beforeFocusMove: function(direction, current) {
+				var nextDirection = $.direction;
+				var prevDirection = nextDirection == 'right' ? 'left' : 'up';
+				switch (direction) {
+					case prevDirection:
+						current.id == 'focus-1' && $.prev(current.id);
+						break;
+					case nextDirection:
+						current.id == 'focus-' + $.V && $.next(current.id);
+						break;
+				}
+			},
+			// 上一页
+			prev: function(id) {
+				var cutId = id.slice(0, 1);
+				switch (cutId) {
+					case 'f':
+						if (moveNum > 0) {
+							moveNum--;
+							this.videoList(moveNum);
+							LMEPG.ButtonManager.requestFocus('focus-1');
+						} else{
+							LMEPG.ButtonManager.requestFocus('back');
+						}
+						break;
+					case 'a':
+						if (moveAlbumNum > 0) {
+							moveAlbumNum--;
+							$.historyAlbumList(moveAlbumNum);
+							LMEPG.ButtonManager.requestFocus('album1');
+						} else{
+							LMEPG.ButtonManager.requestFocus('videoTv');
+						}
+						break;
+				}
+			},
+			// 下一页
+			next: function(id) {
+				var cutId = id.slice(0, 1);
+				var videoList = (this.mockVideoIndex.length) - moveNum;
+				var albumList = (this.mockAlbumIndex.length) - moveAlbumNum;
+				switch (cutId) {
+					case 'f':
+						if (videoList > this.V) {
+							moveNum++;
+							this.videoList(moveNum);
+							LMEPG.ButtonManager.requestFocus('focus-' + $.V);
+						}
+						break;
+					case 'a':
+						if (albumList > this.A) {
+							moveAlbumNum++;
+							$.historyAlbumList(moveAlbumNum);
+							LMEPG.ButtonManager.requestFocus('album' + this.A);
+						}
+						break;
+				}
+			},
+			// 获得焦点、失去焦点添加样式
+			onFocus: function(btn, hasFocus) {
+				if (hasFocus) {
+					G('debug').innerHTML = '.'; // 防止焦点丢失
+					G(btn.id).src = G(btn.id).getAttribute('onfocusurl');//获取焦点
+				} else{
+					G('debug').innerHTML = '';
+					G(btn.id).src = G(btn.id).getAttribute('confirmurl');//获取焦点
+				}
+			},
+			// 键入事件
+			keyEnter: function(btn) {
+				var useType = G(btn.id).getAttribute('useType');
+				var videoDataIndex = G(btn.id).getAttribute('data-v');
+
+				switch (true) {
+					case useType == 'video':
+						try {
+							var videoInfo = videoData[videoDataIndex];
+							console.log(videoData,videoDataIndex)
+							$.onClickVideoItem(btn.id, videoInfo);
+						} catch (e) {
+							console.log(e)
+							LMEPG.UI.showToast('系统报错！' + e.toString());
+						}
+						break;
+					case btn.id == 'back':
+						this.onBack();
+						break;
+				}
+			},
+			onClickVideoItem: function(id, videoInfo) {
+				var that = this;
+				var ftp_url_json, play_id;
+				var userType = videoInfo.user_type;//播放视频是否需要vip权限
+				if (videoInfo.ftp_url instanceof Object) {
+					ftp_url_json = videoInfo.ftp_url;
+				} else{
+					ftp_url_json = JSON.parse(videoInfo.ftp_url);
+				}
+
+				// 视频ID
+				if (platformType == 'hd') {
+					play_id = ftp_url_json.gq_ftp_url;
+				} else{
+					play_id = ftp_url_json.bq_ftp_url;
+				}
+				var paramJson = {
+					'sourceId': videoInfo.source_id,
+					'videoUrl': play_id,
+					'title': videoInfo.title,
+					'type': 2,
+					'entryType': 4,
+					'entryTypeName': albumName,
+					'userType': videoInfo.user_type,
+					'freeSeconds': videoInfo.free_seconds,
+					'focusIdx': id,
+					'durationTime': videoInfo.duration
+				};
+				if (LMEPG.Func.isAllowAccess('{$isVip}', ACCESS_PLAY_VIDEO_TYPE, paramJson)) {
+					that.jumpVideoPlay(paramJson);
+				} else{
+					var postData = {'videoInfo': JSON.stringify(paramJson)};
+					LMEPG.ajax.postAPI('Player/storeVideoInfo', postData, function(data) {
+						if (data.result == 0) {
+							that.jumpBuyVip(paramJson.focusIdx, paramJson.title);
+						} else{
+							LMEPG.UI.showToast('系统报错', 3);
+						}
+					});
+				}
+			},
+			jumpBuyVip: function(focusIdx, remark) {
+				var objCurrent = $.getCurrentPage();
+				objCurrent.setParam('fromId', 1);
+				objCurrent.setParam('focus_index', focusIdx);
+				objCurrent.setParam('page', 0);
+				objCurrent.setParam('moveNum', moveNum);
+
+				var objOrderHome = LMEPG.Intent.createIntent('orderHome');
+				objOrderHome.setParam('userId', userId);
+				objOrderHome.setParam('isPlaying', '1');
+				objOrderHome.setParam('remark', remark);
+
+				LMEPG.Intent.jump(objOrderHome, objCurrent);
+			},
+			jumpVideoPlay: function(paramJson) {
+				var objCurrent = $.getCurrentPage();
+				objCurrent.setParam('fromId', 2);
+				objCurrent.setParam('focus_index', paramJson.focusIdx);
+				objCurrent.setParam('moveNum', moveNum);
+
+				var objPlayer = LMEPG.Intent.createIntent('player');
+				objPlayer.setParam('userId', userId);
+				objPlayer.setParam('videoInfo', JSON.stringify(paramJson));
+
+				LMEPG.Intent.jump(objPlayer, objCurrent);
+			},
+			/** 跳转到其他专辑*/
+			goAlbum: function(btn) {
+				var objCurrent = $.getCurrentPage();
+				var objAlbum = LMEPG.Intent.createIntent('album');
+				var currentAlbum = G(btn.id).getAttribute('album');
+				objAlbum.setParam('userId', userId);
+				objAlbum.setParam('albumName', currentAlbum);
+				objAlbum.setParam('inner', '1');
+				objCurrent.setParam('focus_index', btn.id);
+				objCurrent.setParam('moveAlbumNum', moveAlbumNum);
+				if (currentAlbum === 'more') {
+					$.jumpHomeTab('home');
+				} else{
+					LMEPG.Intent.jump(objAlbum, objCurrent);
+				}
+			},
+			jumpHomeTab: function(tabName, focusIndex) {
+				var objCurrent = $.getCurrentPage();
+
+				var objHomeTab = LMEPG.Intent.createIntent(tabName);
+				objHomeTab.setParam('userId', userId);
+				objHomeTab.setParam('classifyId', '');
+				objHomeTab.setParam('focusIndex', focusIndex);
+
+				LMEPG.Intent.jump(objHomeTab, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+			},
+			getCurrentPage: function() {
+				var objCurrent = LMEPG.Intent.createIntent('album');
+				objCurrent.setParam('userId', userId);
+				objCurrent.setParam('albumName', albumName);
+				objCurrent.setParam('focus_index', focusIDName);
+				objCurrent.setParam('fromId', 1);
+				objCurrent.setParam('inner', inner);
+				return objCurrent;
+			},
+
+			jumpVideoMore: function() {
+				var objMoreVideo = LMEPG.Intent.createIntent('channel');
+				objMoreVideo.setParam('userId', '{$userId}');
+				objMoreVideo.setParam('modeTitle', '更多精彩');
+				objMoreVideo.setParam('classifyId', '1');
+				objMoreVideo.setParam('modeType', '4');
+
+				var objBack = LMEPG.Intent.createIntent('home');
+				objBack.setParam('userId', '{$userId}');
+				LMEPG.Intent.jump(objMoreVideo, objBack);
+			},
+			onBack: function() {
+				LMEPG.Intent.back();
+			}
+		};
+		w.$ = new AlbumObj();
+		w.onBack = $.onBack;
+	}(window));
+
+	// 小窗播放
+	function pollPlay() {
+		platformType == 'hd' && smallVideo.startPollPlay(
+			{
+				top: 434,
+				left: 176,
+				width: 340,
+				height: 193
+			});
+	}
+
+	pollPlay();
+	//虚拟按键触发，轮询播放
+	LMEPG.KeyEventManager.addKeyEvent(
+		{
+			EVENT_MEDIA_END: pollPlay,	        //视频播放结束
+			EVENT_MEDIA_ERROR: pollPlay        //视频播放错误
+		});
+</script>
+</body>
+</html>

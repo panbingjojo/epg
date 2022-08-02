@@ -1,0 +1,302 @@
+
+body {
+    width: 644px;
+    height: 530px;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.jump-wrap img {
+    position: absolute;
+}
+
+#jump-back{
+    top: 50px;
+    left: 40px;
+}
+
+#jump-rule {
+    top: 34px;
+    left: 110px;
+}
+
+#jump-winner{
+    top: 26px;
+    left: 190px;
+}
+
+#jump-game {
+    position: absolute;
+    top: 460px;
+    left: 40px;
+}
+
+#times-count {
+    position: absolute;
+    top: 460px;
+    left: 108px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    z-index: 1;
+    width: 30px;
+    text-align: center;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*====倒计时====*/
+#modal-cd {
+}
+
+#count-down {
+    position: absolute;
+    color: #e55231;
+    font-size: 43px;
+    top: 218px;
+    left: 338px;
+    font-weight: bold;
+}
+
+/*====活动规则====*/
+#modal-rule {
+}
+
+#btn-rule-close {
+    position: absolute;
+    top: 58px;
+    left: 520px;
+}
+
+/*====中奖名单====*/
+#modal-list {
+}
+
+#total-list {
+    top: 128px;
+    left: 22px;
+    position: absolute;
+}
+
+#all-marquee {
+    height: 138px;
+}
+
+#my-marquee {
+    height: 50px;
+}
+
+table.marquee-table {
+    width: 600px;
+}
+
+table#all-table tr {
+    height: 40px;
+}
+
+table.marquee-table td {
+    width: 33%;
+    text-align: center;
+    color: #333;
+    font-size: 18px;
+}
+
+#my-list {
+    position: absolute;
+    top: 300px;
+    left: 22px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.list-tel {
+    position: absolute;
+    color: #6b6868;
+    top: 366px;
+    left: 260px;
+    width: 200px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
+img.btn-list {
+    position: absolute;
+    top: 410px;
+}
+
+#btn-list-submit {
+    left: 190px;
+}
+
+#btn-list-cancel {
+    left: 370px;
+}
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+}
+
+#btn-one0 {
+    position: absolute;
+    top: 418px;
+    left: 536px;
+}
+
+/*====普通用户没有游戏次数====*/
+#modal-pay-notimes {
+}
+
+img.btn-pay {
+    position: absolute;
+    top: 280px;
+}
+
+#btn-pay-sure {
+    left: 266px;
+}
+
+#btn-pay-cancel {
+    left: 350px;
+}
+
+/*====兑换/抽奖成功====*/
+#modal-accomplish {
+}
+
+#accomplish-prize {
+    position: absolute;
+    top: 188px;
+    left: 366px;
+}
+
+#accomplish-tel {
+    position: absolute;
+    top: 365px;
+    left: 238px;
+    width: 250px;
+    text-align: center;
+    font-size: 18px;
+}
+
+img.btn-win {
+    position: absolute;
+    top: 430px;
+}
+
+#btn-accomplish-submit {
+    left: 190px;
+}
+
+#btn-accomplish-cancel {
+    left: 370px;
+}
+
+/*====游戏主界面====*/
+#modal-game {
+}
+
+
+#game-start {
+    position: absolute;
+    top: 458px;
+    left: 58px;
+    background-position: center;
+    background-size: 100%;
+    width: 64px;
+    height: 64px;
+}
+
+#get-fruit{
+    position: absolute;
+    top: 50px;
+    left: 515px;
+    font-size: 26px;
+    color: #ee4a8d;
+    text-align: center;
+    font-weight: bold;
+    width: 35px;
+}
+#tree{
+    position:absolute;
+    bottom: 0;
+    left: 100px;
+}
+
+#modify-cloud{
+    position:absolute;
+    bottom: 0;
+}
+
+#game-cd {
+    position: absolute;
+    top: 90px;
+    left: 515px;
+    font-size: 26px;
+    color: #ee4a8d;
+    text-align: center;
+    font-weight: bold;
+    width: 35px;
+}
+
+
+/*====增加积分界面===*/
+#modal-add-score {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#p-add-score {
+    position: absolute;
+    top: 238px;
+    left: 340px;
+    font-size: 26px;
+    color: #d56000;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#ready-txt{
+    position: absolute;
+    top: 600px;
+    left: 500px;
+    font-size: 16px;
+    color: #969696;
+    width: 280px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#btn-one-add {
+    position: absolute;
+    top: 466px;
+    left: 574px;
+}
+#go-lottery,
+#go-again {
+    position: absolute;
+    top: 338px;
+    left: 258px;
+}
+
+
+
+
+

@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body {
+    width: 640px;
+    height: 530px;
+    position: relative;
+    background-image: url(/Public/img/hd/Home/V22/Common/bg_1.png);
+    background-position: left;
+    color: #000;
+    overflow: hidden;
+    background-size: 644px 530px;
+}
+
+.title {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: 160px;
+    height: 40px;
+    font-size: 30px;
+    font-family: Source Han Sans CN;
+    font-weight: bold;
+    line-height: 68px;
+    color: #FFFFFF;
+}
+
+#clear-record {
+    position: absolute;
+    top: 17px;
+    right: 25px;
+}
+
+.arrow {
+    position: absolute;
+    top: 50px;
+    visibility: visible;
+}
+
+#prev-arrow {
+    left: 5px;
+    width: 20px;
+}
+
+#next-arrow {
+    left: 617px;
+    width: 20px;
+}
+
+
+#list-container {
+    position: absolute;
+    top: 160px;
+    width: 1280px;
+}
+
+ #list-container.arrow {
+    position: absolute;
+    top: 50px;
+}
+
+#list-container #prev-arrow {
+    left: 5px;
+}
+
+#list-container #next-arrow {
+    right: 50px;
+}
+
+#list-container {
+    position: absolute;
+    top: 180px;
+    width: 640px;
+}
+
+#list-container .arrow {
+    position: absolute;
+    top: 50px;
+    visibility: hidden;
+}
+
+#list-container #prev-arrow {
+    left: 5px;
+}
+
+#list-container #next-arrow {
+    right: 50px;
+}
+
+ul#list-wrapper {
+    position: absolute;
+    top: -70px;
+    left: 10px;
+    list-style: none;
+    /*border: 1px red solid;*/
+}
+
+ul#list-wrapper li {
+    position: relative;
+    float: left;
+    width: 120px;
+    height: 100px;
+    text-align: center;
+    margin-bottom: 15px;
+    background-position: center;
+    background-size: 100% 100%;
+    margin-left: 15px;
+}
+.kod{
+    border: 7px transparent solid;
+}
+
+.focus {
+    width: 135px !important;
+    height:  100px !important;
+    border: 7px #fff solid;
+    border-radius: 17px;
+    box-shadow: 2px 2px 5px #000;
+    transform: scale(1.1);
+}
+
+ul#list-wrapper li img {
+    width: 135px;
+    height: 100px;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+ul#list-wrapper li p {
+    position: absolute;
+    top: 170px;
+    left: 15px;
+    font-size: 24px;
+    color: #fff;
+    width: 215px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    /* background-image: url(/Public/img/hd/Collect/V13/number_bg.png); */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#page-wrapper {
+    position: absolute;
+    top: 602px;
+    left: 329px;
+    height: 62px;
+}
+
+#page-wrapper img {
+    vertical-align: middle;
+}
+
+#page-wrapper p {
+    width: 81px;
+    height: 62px;
+    line-height: 62px;
+    color: #b2deff;
+    text-align: center;
+    display: inline-block;
+}
+
+#page-index {
+    position: absolute;
+    top: 658px;
+    left: 1125px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.null-data {
+    position: absolute;
+    top: 70px;
+    left: 170px;
+    margin-left: -60px;
+    font-size: 20px;
+    font-style: italic;
+    color: #fff;
+    text-align: center;
+    width: 400px;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>活动规则2</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityConsultation/V1/ActivityRules.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+</head>
+<body style=" background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V2/bg_rule.jpg')">
+<img id="back_btn" class="btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png"/>
+<img id="tab1" style="display: none" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/tab1_in.png"/>
+<!--<img id="tab2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/tab2_out.png"/>-->
+<div style ="display: none" class="common_bg">
+    <div id="content">
+        1.用户在活动期间可享受一次免费问诊北上广名医的机会。在可预约期间内预约成功后，约定问诊前20分钟医生助理会与用户取得联系并安排问诊。
+        <br/>2.专家出诊时间以预约结果为准，如遇专家无法出诊，则安排同级别其他医生出诊，预约视为同意该条款。
+        <br/>3.在确定出诊时间后，用户需提前20分钟从39健康-首页-活动入口中进入候诊室，根据候诊顺序等待医生通过电视诊室进行沟通。
+        <br/>4.咨询中，为达成良好的咨询效果，用户需向就诊医生如实详尽提供相关病情资料，如因用户故意隐瞒或提供虚假资料而造成的任何不良后果由用户自行承担。
+        <br/>5.如因用户迟到导致错过咨询，不再安排其他时间，相当于放弃本次问诊机会。
+        <br/> 6.医生咨询仅为建议，具体诊疗需前往医院进行，最终采纳请结合临床，39健康不承担因选择治疗方案而导致的所有法律责任。
+        <br/> 7.问诊需要安卓系统4.0以上机顶盒，且需安装视频插件，并配备视频设备，配置过低有可能无法实现预约。
+        <br/> 8.39健康保留未尽事宜的合理解释权。
+    </div>
+</div>
+<script type="text/javascript">
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    var buttons = [
+        {
+            id: 'tab1',
+            name: '选项卡1',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusUp: '',
+            nextFocusRight: '',
+            nextFocusDown: '',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/tab1_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/tab1_in.png',
+            click: "",
+            focusChange: onFocusBtn,
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'back_btn',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusUp: '',
+            nextFocusRight: '',
+            nextFocusDown: 'reservation_btn',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_in.png',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        }]
+
+    /**
+     *  按钮获得焦点
+     */
+    function onFocusBtn(btn, hasFocus) {
+        var html2 = "";
+        html2 += "1.VIP用户在活动期间可享受一次免费问诊北上广名医的机会。在可预约期间内预约成功后，约定问诊前20分钟医生助理会与用户取得联系并安排问诊。";
+        html2 += "<br/>2.专家出诊时间以预约结果为准，如遇专家无法出诊，则安排同级别其他医生出诊，预约视为同意该条款。";
+        html2 += "<br/>3.在确定出诊时间后，用户需提前20分钟从39健康-首页-活动入口中进入候诊室，根据候诊顺序等待医生通过电视诊室进行沟通。";
+        html2 += "<br/>4.咨询中，为达成良好的咨询效果，用户需向就诊医生如实详尽提供相关病情资料，如因用户故意隐瞒或提供虚假资料而造成的任何不良后果由用户自行承担。";
+        html2 += "<br/>5.如因用户迟到导致错过咨询，不再安排其他时间，相当于放弃本次问诊机会。";
+        html2 += "<br/>6.医生咨询仅为建议，具体诊疗需前往医院进行，最终采纳请结合临床，39健康不承担因选择治疗方案而导致的所有法律责任。";
+        html2 += "<br/>7.问诊需要安卓系统4.0以上机顶盒，且需安装视频插件，并配备视频设备，配置过低有可能无法实现预约。";
+        html2 += "<br/>8.39健康保留未尽事宜的合理解释权。";
+        if (hasFocus == true) {
+            if (btn.id == "tab1") {
+                G("content").innerHTML = html2;
+            } else {
+                G("content").innerHTML = '<img id="photo_img" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V2/photo_img.png"/>';
+            }
+            G(btn.id).src = btn.focusImage;
+        } else {
+            G(btn.id).src = btn.backgroundImage;
+        }
+    }
+
+</script>
+
+<script type="text/javascript">
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init(['back_btn'], buttons, '', true);
+    }
+</script>
+</body>
+</html>

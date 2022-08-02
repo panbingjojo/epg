@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>健康测一测活动V9(新疆电信)</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/Activity/ActivityHeathTest/V9/guide.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript">
+
+        var RenderParam = {
+            isVip: '{$isVip}', // 是否是vip（0-非vip 1-vip）
+            inner: '{$inner}',
+            splashHistory: '{$splashHistory}',
+            isOrderBack: '{$isOrderBack}',                        // 是否为订购返回
+            cOrderResult: '{$Think.cookie.c_order_result}',
+            nPrizeIdx: 0,
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            cdNumber: '{$cdNumber}',
+            keyCountdown: '{$keyCountdown}',
+            valueCountdown: '{$valueCountdown}',
+            firstEnter: '{$firstEnter}',                          // 用户首次进入
+            userTel: '{$userTel}',                                // 中奖电话
+            leftTimes: {$leftTimes},                              // 剩余次数
+            activityInfo: {$activityInfo},                        // 活动信息
+            myPrizeList: {$myPrizeList},                          // 我的中奖记录
+            AllUserPrizeLis: {$AllUserPrizeLis},                  // 所用中奖信息
+            imgPathPrefix: '{$activityFsImg}{$platformType}/',
+            beClickId: 'test-0'
+        };
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+
+
+</head>
+<body style="background-image:url('{$activityFsImg}{$platformType}/bg_home.png') ">
+<p id="times-count">0</p>
+<div class="btn-wrap">
+    <img id="btn-back" src="{$activityFsImg}{$platformType}/bt_back_no_select.png">
+    <img id="btn-rules" src="{$activityFsImg}{$platformType}/bt_activity_rule-no-select.png">
+    <!--    <img id="btn-winner" src="__ROOT__/Public/img/hd/Activity/ActivityHeathTest/V9/btn_winner.png">-->
+</div>
+<div class="test-wrap">
+    <img id="test-0" src="{$activityFsImg}{$platformType}/bt_start_test_no_select.png">
+    <img id="test-1" src="{$activityFsImg}{$platformType}/bt_start_test_no_select.png">
+    <!--    <img id="test-2" src="__ROOT__/Public/img/hd/Activity/ActivityHeathTest/V9/btn_start.png">-->
+</div>
+</body>
+<script type="text/javascript">
+    var App = {
+        userFirstEnter: 0,
+        buttons: [],
+        init: function () {
+            this.initKeyEvent();
+            this.createBtn();
+            this.initInfo();
+            LMEPG.BM.init('test-0', this.buttons, '', true);
+        },
+
+        /*首次进入鉴权倒计时功能*/
+        checkUserInfo: function (isExitActivity) {
+            // 不是首次进入且
+            if (JSON.parse(RenderParam.valueCountdown).showDialog == '0' || +RenderParam.isVip) return true;
+            App.isExitActivity = isExitActivity;
+            App.clickMapModal({id: 'addTimes'});
+            var cdCount = 8;
+            var cdElement = G('count-down');
+            (function cd() {
+                cdElement.innerHTML = cdCount-- + 's';
+                if (cdCount >= 0) {
+                    RenderParam.cdNumber = cdCount;
+                    App.timer = setTimeout(cd, 1000);
+                } else {
+                    clearTimeout(App.timer);
+                    App.addUserTimesUpdate(function () {
+                        App.storeCDToVerify(cdCount, function () {
+                            App.reload();
+                        });
+                    });
+                }
+            }());
+            //App.cdState = true;
+        },
+
+
+        /**
+         * 上报参与记录（上报答题结果）
+         */
+        uploadAnswerResult: function (btn) {
+            LMEPG.UI.showWaitingDialog();
+            LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+                function (rsp) {
+                    try {
+                        var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                        var result = data.result;
+                        App.answerResult = [];
+
+                        if (result===0){
+                            App.clickMapModal(btn);
+                            App.getTestSubject(btn.cIdx);
+                        }else {
+                            LMEPG.UI.showToast('请求拉去题目发生错误！');
+                        }
+
+                        console.log('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                        LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                    } catch (e) {
+                        LMEPG.UI.showToast('请求拉去题目发生错误！');
+                        console.log('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                        LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                    }
+                },
+                function (rsp) {
+                    LMEPG.UI.showToast('请求拉去题目发生错误！');
+                    console.log('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                }
+            );
+
+        },
+
+        /*增加游戏次数*/
+        storeCDToVerify: function (num, callBack) {
+            LMEPG.UI.showWaitingDialog();
+            var value = {
+                showDialog: 0
+            };
+            var postData = {
+                key: RenderParam.keyCountdown,
+                value: JSON.stringify(value)
+            };
+            console.log(postData);
+            LMEPG.ajax.postAPI('Activity/saveStoreData', postData,
+                function (rsp) {
+                    try {
+                        var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                        console.log(data);
+                        callBack();
+                    } catch (e) {
+                        LMEPG.UI.showToast('存储失败！');
+                        console.log(e);
+                        LMEPG.Log.error(e.toString());
+                    }
+                },
+                function (rsp) {
+                    LMEPG.UI.showToast('结果发生错误！');
+                }
+            );
+        },
+
+
+        /*初始化信息*/
+        initInfo: function () {
+            G('times-count').innerHTML = RenderParam.leftTimes.leftTimes;
+            this.checkPayAction();
+        },
+
+        /*检查支付状态*/
+        checkPayAction: function () {
+            if (RenderParam.isOrderBack == '1') {
+                var IdIndex = RenderParam.cOrderResult == '1' ? 'orderSuccess' : 'orderFailed';
+                App.clickMapModal({id: IdIndex});
+            }
+        },
+
+        /*设置当前页参数*/
+        getCurrentPage: function () {
+            var objCurrent = LMEPG.Intent.createIntent('activity-common-guide');
+            objCurrent.setParam('userId', '{$userId}');
+            objCurrent.setParam('inner', '{$inner}');
+            return objCurrent;
+        },
+
+        /*进行订购跳转操作*/
+        jumpBuyVip: function () {
+            var objCurrent = App.getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent('orderHome');
+            objOrderHome.setParam('userId', '{$userId}');
+            objOrderHome.setParam('directPay', '1');
+            objOrderHome.setParam('orderReason', '101');
+            objOrderHome.setParam('hasVerifyCode', '1');
+            objOrderHome.setParam('remark', '{$activityName}');
+
+            var objActivityGuide = App.getCurrentPage();
+            objActivityGuide.setParam('isOrderBack', '1'); // 表示订购回来
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+        },
+
+        /*点击开始测试按钮*/
+        clickTestBtn: function (btn) {
+            RenderParam.beClickId = btn.id;
+            // 健康自测有次数显示，必须是vip，健康问答任何用户都可以测试
+            if( btn.id==='test-0'){
+                if (App.checkTimesCount()) {
+                    // 扣除游戏次数，次数减一
+                    App.uploadAnswerResult(btn);
+                } else {
+                    App.clickMapModal({id: 'noTimeCount'});
+                }
+            }else {
+                App.clickMapModal(btn);
+                App.getTestSubject(btn.cIdx);
+            }
+
+        },
+
+        /*检查剩余抽奖次数*/
+        checkTimesCount: function () {
+            return RenderParam.leftTimes.leftTimes > 0;
+        },
+
+        /*ajax 拉取测试结果*/
+        getTestResult: function (answersType, callBack) {
+            LMEPG.UI.showWaitingDialog();
+            LMEPG.ajax.postAPI('Activity/getAnswersResult', {answersType: answersType},
+                function (rsp) {
+                    try {
+                        var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                        callBack(data);
+                        LMEPG.UI.dismissWaitingDialog();
+                    } catch (e) {
+                        LMEPG.UI.showToast('拉去测试结果处理异常！');
+                        console.log(e);
+                        LMEPG.Log.error(e.toString());
+                    }
+                },
+                function (rsp) {
+                    LMEPG.UI.showToast('请求拉去测试结果发生错误！');
+                }
+            );
+        },
+
+        /*ajax请求拉取题库*/
+        getTestSubject: function (answersType) {
+            LMEPG.UI.showWaitingDialog();
+            LMEPG.ajax.postAPI('Activity/getActivitySubject', {answersType: answersType},function (rsp) {
+                    try {
+                        RenderParam.data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                        Modal.subjectTest();
+                        LMEPG.UI.dismissWaitingDialog();
+                    } catch (e) {
+                        LMEPG.UI.showToast('拉去题目结果处理异常！');
+                        LMEPG.Log.error(e.toString());
+                    }
+                },
+                function (rsp) {
+                    LMEPG.UI.showToast('请求拉去题目发生错误！');
+                }
+            );
+        },
+
+        /*切换到下一个测试题目*/
+        jumpNextSubject: function (btn) {
+            App.checkAnswer(btn.cIdx, function () {
+                LMEPG.UI.showWaitingDialog('', 0.2, function () {
+                    Modal.subjectTest();
+                });
+            });
+        },
+
+        answerResult: [],
+        /*检查答题情况，记录答题数据*/
+        checkAnswer: function (id, callBack) {
+            var result = RenderParam.data[Modal.subjectCount - 1];
+            // 趣味小常识提示是否答对
+            if (id == result.rightAnswer) {
+                LMEPG.UI.showToast('回答正确！', 1, function () {
+                    App.answerResult.push(id);
+                    callBack();
+                });
+            } else {
+                // 趣味小常识提示是否答对
+                if (RenderParam.data.length == 2) {
+                    LMEPG.UI.showToast('回答错误！正确答案为：' + result.rightAnswer, 2, function () {
+                        App.answerResult.push(id);
+                        callBack();
+                    });
+                } else {
+                    LMEPG.UI.showToast('你选择了:' + id, 1, function () {
+                        App.answerResult.push(id);
+                        callBack();
+                    });
+                }
+            }
+        },
+
+        /*通过答题结果规则设置测试结果文本*/
+        setTxtByRule: function (resultData) {
+            // 默认为趣味小常识测试
+            var levelResult = 'level_1';
+            var countArr = App.sortAnswerCount();
+            var oP1 = countArr[1]; // 第二项
+            var oP2 = countArr[2]; // 最多项
+            switch (resultData.type) {
+                case 2:
+                case 3:
+                case 4:
+                    if (oP2.name == 'B') {
+                        //	B 多
+                        levelResult = 'level_2';
+                    } else if (oP1.name == 'A') {
+                        levelResult = 'level_3';
+                        //	A 多
+                    } else {
+                        //	C 多
+                        levelResult = 'level_1';
+                    }
+                    break;
+                case 5:
+                case 6:
+                case 7:
+                    if (oP1.count == oP2.count) {
+                        //	A、B参半
+                        levelResult = 'level_3';
+                    } else if (oP2.name == 'A') {
+                        //	A 多
+                        levelResult = 'level_2';
+                    } else {
+                        //	B 多
+                        levelResult = 'level_1';
+                    }
+                    break;
+            }
+            return resultData[levelResult];
+        },
+
+        /*对答题结果进行整理*/
+        sortAnswerCount: function () {
+            // 心理测试结果规则、亚健康测试结果规则
+            var countArr = [
+                {name: 'A', count: 0},
+                {name: 'B', count: 0},
+                {name: 'C', count: 0}];
+            App.answerResult.forEach(function (t, i) {
+                if (t == 'A') {
+                    countArr[0].count += 1;
+                } else if (t == 'B') {
+                    countArr[1].count += 1;
+                } else if (t == 'C') {
+                    countArr[2].count += 1;
+                }
+            });
+            countArr.sort(function (a, b) {
+                return a.count - b.count;
+            });
+            console.log(countArr);
+            return countArr;
+        },
+
+        /*映射模板*/
+        clickMapModal: function (btn) {
+            switch (btn.id) {
+                case 'btn-close':
+                case 'tel-cancel':
+                    Modal.hideModal();
+                    break;
+                case 'btn-cancel':
+                    Modal.hideModal();
+                    // App.checkUserInfo(false) && Modal.hideModal();
+                    break;
+                case 'btn-rules':
+                    Modal.rules();
+                    break;
+                case 'test-0':
+                case 'test-1':
+                case 'test-2':
+                    Modal.subjectCount = 0;
+                    break;
+                case 'orderSuccess':
+                    Modal.successPay();
+                    break;
+                case 'orderFailed':
+                    Modal.failedPay();
+                    break;
+                case 'noTimeCount':
+                    Modal.noTimesCount();
+                    break;
+                case 'addTimes':
+                    Modal.countDown();
+                    break;
+                default:
+                    LMEPG.UI.showToast('出错了！即将返回。', 2, function () {
+                        App.reload();
+                    });
+                    break;
+            }
+        },
+
+        goOnlineInquiriy:function(){
+            var objHome = App.getCurrentPage();
+
+            objDoctorP2P = LMEPG.Intent.createIntent('doctorList');
+            objDoctorP2P.setParam('userId', '{$userId}');
+
+            LMEPG.Intent.jump(objDoctorP2P, objHome);
+        },
+
+        /*决定是否跳转订购*/
+        judgeIsJumpBuy: function () {
+            if (+RenderParam.isVip) {
+                Modal.hideModal();
+            } else {
+                App.jumpBuyVip();
+            }
+        },
+
+        /*数字小键盘*/
+        showKeypad: function (btn, hasFocus) {
+            if (hasFocus) {
+                JJKye.init({
+                    buttons: App.buttons, // 虚拟按钮数组
+                    action: 'tel',
+                    input: 'input-tel', //  输入框ID
+                    backFocus: 'tel-submit', // 返回ID
+                    resolution: 'hd' // 盒子分辨率
+                });
+            }
+        },
+
+        /*清空输入框*/
+        clearTelNumber: function (btn) {
+            G('input-tel').innerHTML = '请输入有效电话号码';
+        },
+
+        /*重载当前界面*/
+        reload: function () {
+            // 页面加载中阻止键盘事件触发
+            LMEPG.ButtonManager.setKeyEventPause(true);
+            LMEPG.UI.showWaitingDialog('', 0.5, function () {
+                LMEPG.Intent.jump(App.getCurrentPage());
+            });
+        },
+
+        /*截取时间格式："yyyy-MM-dd"*/
+        formatDate: function (dateStr) {
+            return dateStr.slice(0, dateStr.indexOf(' '));
+        },
+
+        /*敏感信息处理*/
+        formatAccount: function (str) {
+            return str.substring(0, 3) + '***' + str.substring(str.length - 3);
+        },
+
+        // 手动处理按键返回
+        initKeyEvent: function () {
+            if (typeof iPanel == "object") {  //广西广电需要赋值返回键、退出键有页面来控制
+                iPanel.setGlobalVar("SEND_RETURN_KEY_TO_PAGE", 1);
+                iPanel.setGlobalVar("SEND_EXIT_KEY_TO_PAGE", 1);
+            }
+            LMEPG.KeyEventManager.addKeyEvent(
+                {
+                    KEY_399: function () { //广西广电返回键
+                        LMEPG.Log.info('--->activity History KEY_399: 广西广电返回键');
+                        onBack();
+                    },
+                    KEY_514: function () {  //广西广电退出键
+                        LMEPG.Log.info('--->activity History KEY_514: 广西广电退出键');
+                        onBack();
+                    }
+                }
+            )
+        },
+
+        /*创建虚拟按钮数组*/
+        createBtn: function () {
+            this.buttons.push({
+                id: 'btn-back',
+                name: '返回按钮',
+                type: 'img',
+                nextFocusDown: 'btn-rules',
+                nextFocusLeft: 'test-0',
+                backgroundImage: RenderParam.imgPathPrefix + 'bt_back_no_select.png',
+                focusImage: RenderParam.imgPathPrefix + 'bt_back_selected.png',
+                click: onBack,
+                cIdx: 'back'
+            }, {
+                id: 'btn-close',
+                name: '关闭按钮',
+                type: 'img',
+                nextFocusUp: 'btn-close',
+                nextFocusDown: 'btn-lottery',
+                nextFocusLeft: 'tel-rewrite',
+                backgroundImage: RenderParam.imgPathPrefix + 'btn_close.png',
+                focusImage: RenderParam.imgPathPrefix + 'btn_close_f.gif',
+                click: this.clickMapModal
+            }, {
+                id: 'btn-rules',
+                name: '活动规则按钮',
+                type: 'img',
+                nextFocusUp: 'btn-back',
+                nextFocusDown: 'test-1',
+                nextFocusLeft: 'test-0',
+                backgroundImage: RenderParam.imgPathPrefix + 'bt_activity_rule-no-select.png',
+                focusImage: RenderParam.imgPathPrefix + 'bt_activity-rule_selected.png',
+                click: this.clickMapModal,
+                cIdx: 'rules'
+            }, {
+                id: 'test-0',
+                name: '健康自测',
+                nextFocusUp: 'btn-rules',
+                nextFocusRight: 'test-1',
+                backgroundImage: RenderParam.imgPathPrefix + 'bt_start_test_no_select.png',
+                focusImage: RenderParam.imgPathPrefix + 'bt_start_test_selected.png',
+                click: this.clickTestBtn,
+                cIdx: 4
+            }, {
+                id: 'test-1',
+                name: '健康回答',
+                type: 'img',
+                nextFocusUp: 'btn-rules',
+                nextFocusLeft: 'test-0',
+                nextFocusRight: 'btn-rules',
+                backgroundImage: RenderParam.imgPathPrefix + 'bt_start_test_no_select.png',
+                focusImage: RenderParam.imgPathPrefix + 'bt_start_test_selected.png',
+                click: this.clickTestBtn,
+                cIdx: 0
+            }, {
+                id: 'option-0',
+                name: '选项0',
+                type: 'div',
+                nextFocusDown: 'option-1',
+                backgroundImage: RenderParam.imgPathPrefix + 'bg_option.png',
+                focusImage: RenderParam.imgPathPrefix + 'bg_option_f.png',
+                click: this.jumpNextSubject,
+                cIdx: 'A'
+            }, {
+                id: 'option-1',
+                name: '选项1',
+                type: 'div',
+                nextFocusUp: 'option-0',
+                nextFocusDown: 'option-2',
+                backgroundImage: RenderParam.imgPathPrefix + 'bg_option.png',
+                focusImage: RenderParam.imgPathPrefix + 'bg_option_f.png',
+                click: this.jumpNextSubject,
+                cIdx: 'B'
+            }, {
+                id: 'option-2',
+                name: '选项2',
+                type: 'div',
+                nextFocusUp: 'option-1',
+                backgroundImage: RenderParam.imgPathPrefix + 'bg_option.png',
+                focusImage: RenderParam.imgPathPrefix + 'bg_option_f.png',
+                click: this.jumpNextSubject,
+                cIdx: 'C'
+            }, {
+                id: 'btn-lottery',
+                name: '立即前往在线问诊',
+                type: 'img',
+                nextFocusUp: 'btn-close',
+                backgroundImage: RenderParam.imgPathPrefix + 'bt_immediately_to_selected.png',
+                focusImage: RenderParam.imgPathPrefix + 'bt_immediately_to_selected.png',
+                click: this.goOnlineInquiriy
+            }
+            , {
+                id: 'btn-sure',
+                name: '关闭弹框(VIP)/去订购(普通用户)',
+                type: 'img',
+                nextFocusRight: 'btn-cancel',
+                backgroundImage: RenderParam.imgPathPrefix + 'bt_sure_no_select.png',
+                focusImage: RenderParam.imgPathPrefix + 'bt_sure_selected.png',
+                click: this.judgeIsJumpBuy
+            }, {
+                id: 'btn-cancel',
+                name: '关闭弹框',
+                type: 'img',
+                nextFocusLeft: 'btn-sure',
+                backgroundImage: RenderParam.imgPathPrefix + 'bt_cancel_no_select.png',
+                focusImage: RenderParam.imgPathPrefix + 'bt_cancel_selected.png',
+                click: this.clickMapModal
+            });
+        },
+
+        goBack: function () {
+            if (RenderParam.inner == '0') {
+                // 广西广电局方大厅进入返回逻辑
+                var albumHistoryLength = history.length;
+                var backLength = albumHistoryLength + 1 - parseInt(RenderParam.splashHistory);
+                history.go(-backLength);
+            } else {
+                LMEPG.Intent.back();
+            }
+        }
+    };
+
+    var Modal = {
+
+        /*设置模板公用参数*/
+        setPath: function (focusId, htm, bol) {
+            var modalElement = document.getElementById('modal');
+            if (modalElement) {
+                modalElement.innerHTML = htm;
+            } else {
+                modalElement = document.createElement('div');
+                modalElement.id = 'modal';
+                modalElement.innerHTML = htm;
+                document.body.appendChild(modalElement);
+            }
+            LMEPG.BM.requestFocus(focusId);
+            this.isReload = bol;
+            this.isModal = true;
+            // 不传ID重载当前页面
+            if (focusId == '') {
+                LMEPG.BM.setKeyEventPause(true);
+                LMEPG.UI.showWaitingDialog('', 2, function () {
+                    App.reload();
+                });
+            }
+        },
+
+        /*隐藏模板*/
+        hideModal: function () {
+            if (this.isModal) {
+                if (G('count-down')) {
+                    // 关闭倒计时弹窗
+                    clearTimeout(App.timer);
+                    RenderParam.cdNumber = '';
+                    // 检测是否需要退出活动
+                    if (App.isExitActivity) {
+                        App.goBack();
+                    }
+                }
+                var modalElement = document.getElementById('modal');
+                document.body.removeChild(modalElement);
+                this.isModal = false;
+                LMEPG.BM.requestFocus(RenderParam.beClickId);
+                if (this.isReload) {
+                    LMEPG.BM.setKeyEventPause(true);
+                    App.reload();
+                }
+            }
+        },
+
+        /*活动规则*/
+        rules: function () {
+            var htm = '<img class="bg-rule" src="{$activityFsImg}{$platformType}/activity-rule.png">';
+            this.setPath('btn-close', htm);
+        },
+
+
+        /*没有游戏次数*/
+        noTimesCount: function () {
+            // vip 与 普通用户共用一个确定按钮
+            var htm = '';
+            if (+RenderParam.isVip) {
+                // vip用户
+                htm += '<img src="{$activityFsImg}{$platformType}/tips_bg.png">';
+                htm += '<div id="btn-center-wrap"><img id="btn-sure" src="{$activityFsImg}{$platformType}/bt_sure_selected.png"></div>';
+            } else {
+                // 普通用户
+                htm += '<img src="{$activityFsImg}{$platformType}/get_lottery_chance.png">'
+                    + '<div id="btn-center-wrap" ><img id="btn-sure" class="btn_sure_mar_r" src="{$activityFsImg}{$platformType}/bt_sure_selected.png">'
+                    + '<img id="btn-cancel" class="btn_sure_mar_l" src="{$activityFsImg}{$platformType}/bt_cancel_no_select.png"></div>';
+            }
+            this.setPath('btn-sure', htm);
+        },
+
+        /*测试结果界面
+        * resultData.type为2，3，4，5，6，7是健康自测的题目，其他为健康问答的题目
+        * */
+
+        testResult: function (resultData) {
+            if (resultData.type ==2 ||resultData.type ==3 ||resultData.type ==4 ||resultData.type ==5 ||resultData.type ==6 ||resultData.type ==7 ) {
+
+                htm = '<img class="bg-result" src="{$activityFsImg}{$platformType}/test_result_popover.png">';
+                htm += '<p id="result-txt">' + App.setTxtByRule(resultData) + '</p>';
+            } else {
+                var htm = '<img class="bg-result" src="{$activityFsImg}/{$platformType}/finish_test.png">';
+
+            }
+            htm += '<img id="btn-lottery" src="{$activityFsImg}{$platformType}/bt_immediately_to_selected.png">';
+            this.setPath('btn-lottery', htm);
+        },
+
+        subjectCount: 0,
+        /*题目测试界面*/
+        subjectTest: function () {
+            if (this.subjectCount == RenderParam.data.length) {
+                App.getTestResult(RenderParam.data[this.subjectCount - 1].type, function (resultData) {
+                    Modal.testResult(resultData);
+                });
+                return;
+            }
+            var data = RenderParam.data[this.subjectCount];
+            var htm = '<div id="subject-test" style="background-image: url({$activityFsImg}{$platformType}/questions_bg.png)">' +
+                '<p id="topic-title">'+data.subject+'</p>' +
+                '<p id="test-intro">' + data.subjectDesc + '</p>' +
+                '<p id="subject-title"><span class="title-num">' + (this.subjectCount + 1) + '</span>' + data.question + '</p>' +
+                '<ul id="subject-options">' +
+                '<li id="option-0">' + data.answerA + '</li>' +
+                '<li id="option-1">' + data.answerB + '</li>';
+            htm += data.answerC ? '<li id="option-2">' + data.answerC + '</li>' : '';
+            htm += '</ul>';
+
+            htm += '<ul id="subject-index">';
+            for (var i = 0; i < RenderParam.data.length; i++) {
+                htm += '<li id="index-' + i + '">';
+                if ( i===0&&this.subjectCount==0){
+                    htm += '<img id="count-' + i + '" src="{$activityFsImg}{$platformType}/position_dot.png">';
+                }else {
+
+                    if (i===0){
+                        htm += '<img id="count-' + i + '" src="{$activityFsImg}{$platformType}/dot.png">';
+                    }else if (i<this.subjectCount){
+                        htm += '<img id="count-' + i + '" src="{$activityFsImg}{$platformType}/dot_right.png">';
+                    }else  if (i==this.subjectCount){
+                        htm += '<img id="count-' + i + '" src="{$activityFsImg}{$platformType}/selected_topic.png">';
+                    }else if (i>this.subjectCount){
+                        htm += '<img id="count-' + i + '" src="{$activityFsImg}{$platformType}/no_answer_bg.png">';
+                    }
+                }
+                htm += '</li>';
+            }
+
+            this.setPath('option-0', htm);
+            // 自增题目索引
+            this.subjectCount += 1;
+        },
+
+        /*订购成功*/
+        successPay: function () {
+            var htm = '';
+            htm += '<div >'
+                + '<img id="" class="loading" src="' + RenderParam.imgPathPrefix + 'pay_success.png"/>'
+                + '</div>';
+            this.setPath('', htm, true);
+        },
+
+        /*订购失败*/
+        failedPay: function () {
+            var htm = '';
+            htm += '<div >'
+                + '<img id="" class="loading" src="' + RenderParam.imgPathPrefix + 'pay_failed.png"/>'
+                + '</div>';
+            this.setPath('', htm, true);
+        },
+
+        /*倒计时*/
+        countDown: function () {
+            var htm = '<img src="' + RenderParam.imgPathPrefix + 'cd_bg.png"/>'
+                + '<div id="count-down">8s';
+            this.setPath(null, htm, false);
+            this.isModal = true;
+        }
+    };
+
+    var onBack = function () {
+        var keyPad = G('key-table');
+        if (keyPad) {
+            keyPad.parentNode.removeChild(keyPad);
+            LMEPG.BM.requestFocus('tel-submit');
+        } else if (Modal.isModal) {
+            App.reload();
+            Modal.hideModal();
+        } else {
+             App.goBack();
+        }
+    };
+
+    App.init();
+</script>
+</html>

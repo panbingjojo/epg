@@ -1,0 +1,266 @@
+<div class="tab1-box">
+    <div id="tab-1-scroll" style="position: absolute;top: 40px;left: 100px;transition: left 0.5s">
+
+        <div class="classify" id="classify"></div>
+
+        <div class="tab1-recommended-1-box">
+            <img id="tab1-recommended-1" class="recommended-img"
+                 src=""
+                 onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            <!--        <p id="tab1-recommended-1-title"></p>-->
+        </div>
+
+        <div class="tab1-recommended-2-list">
+            <div class="tab1-recommended-2-list-1-box">
+                <img id="tab1-recommended-2-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab1-recommended-2-list-2-box">
+                <img id="tab1-recommended-2-list-2" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+        </div>
+
+        <div class="tab1-recommended-3-list">
+            <div class="tab1-recommended-3-list-1-box">
+                <img id="tab1-recommended-3-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab1-recommended-3-list-2-box">
+                <img id="tab1-recommended-3-list-2" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+        </div>
+
+
+        <div class="tab1-recommended-4-list">
+            <div class="tab1-recommended-4-list-1-box">
+                <img id="tab1-recommended-4-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab1-recommended-4-list-2-box">
+                <img id="tab1-recommended-4-list-2" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+            <div class="tab1-recommended-4-list-3-box">
+                <img id="tab1-recommended-4-list-3" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab1-recommended-4-list-4-box">
+                <img id="tab1-recommended-4-list-4" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab1-recommended-4-list-5-box">
+                <img id="tab1-recommended-4-list-5" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+
+    Tab1 = {
+        scrollArray:  RenderParam.platformType === 'hd'?[100, -20,-1100]:[100, -20,-580],
+        initButton: function () {
+            buttons.push({
+                id: 'tab1-recommended-1',
+                type: 'img',
+                nextFocusRight: 'tab1-recommended-3-list-1',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: 'tab1-recommended-2-list-1',
+                nextFocusLeft:"classify-0",
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                show_title: true,
+                beforeMoveChange: Tab1.beforeMoveChange,
+                show_num: 10,
+                cPosition: 21,
+            })
+            var i = 2;
+            while (i--) {
+                buttons.push({
+                        id: 'tab1-recommended-2-list-' + (i + 1),
+                        type: 'img',
+                        nextFocusLeft:i===0?'classify-4': 'tab1-recommended-2-list-' + i,
+                        nextFocusRight: 'tab1-recommended-2-list-' + (i + 2),
+                        nextFocusUp: 'tab1-recommended-1',
+                        nextFocusDown: '',
+                        click: Page.onClickRecommendPosition,
+                        focusChange: Head.recdFocus,
+                        cPosition: 22,
+                        beforeMoveChange: Tab1.beforeMoveChange,
+                        cBanner: i,
+                    }
+                )
+                buttons.push({
+                        id: 'tab1-recommended-3-list-' + (i + 1),
+                        type: 'img',
+                        nextFocusUp: 'tab1-recommended-3-list-' + i,
+                        nextFocusDown: 'tab1-recommended-3-list-' + (i + 2),
+                        nextFocusLeft: i===1?'tab1-recommended-2-list-2':'tab1-recommended-1',
+                        nextFocusRight: 'tab1-recommended-4-list-1',
+                        click: Page.onClickRecommendPosition,
+                        focusChange: Head.recdFocus,
+                        cPosition: 23,
+                        beforeMoveChange: Tab1.beforeMoveChange,
+                        cBanner: i,
+                    }
+                )
+            }
+
+            var j = 5;
+            while (j--) {
+                buttons.push({
+                        id: 'tab1-recommended-4-list-' + (j + 1),
+                        type: 'img',
+                        nextFocusLeft: 'tab1-recommended-4-list-' + j,
+                        nextFocusRight: 'tab1-recommended-4-list-' + (j + 2),
+                        nextFocusUp: 'tab-1',
+                        nextFocusDown: '',
+                        click: Page.onClickRecommendPosition,
+                        focusChange: Head.recdFocus,
+                        beforeMoveChange: Tab1.beforeMoveChange,
+                        cPosition: 24,
+                        cBanner: j,
+                    }
+                )
+            }
+
+
+        },
+        /*导航栏得失焦点回调操作*/
+        showTabContent: function (index) {
+            G("tab-1-scroll").style.left = this.scrollArray[index] + "px";
+        },
+        /**
+         * 通用位置获得焦点
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.setAttribute('class', 'recommended-img');
+            }
+        },
+        beforeMoveChange: function (dir, cur) {
+            switch (dir) {
+                case "up":
+                    if (cur.id == "tab1-recommended-3-list-1") {
+                        LMEPG.BM.requestFocus("tab-1");
+                        LMEPG.BM.getButtonById("tab-1").nextFocusDown = cur.id;
+                        return false
+                    } else {
+                        LMEPG.BM.getButtonById("tab-1").nextFocusDown = cur.id;
+                    }
+                    break;
+                case "left":
+                    if (cur.id == "tab1-recommended-4-list-1") {
+                        LMEPG.BM.requestFocus("tab1-recommended-3-list-1");
+                        Tab1.showTabContent(0);
+                        return false
+                    } else if (cur.id == "tab1-recommended-4-list-2") {
+                        Tab1.showTabContent(1);
+                    }
+                    break;
+                case "right":
+                    if (cur.id == "tab1-recommended-2-list-2") {
+                        LMEPG.BM.requestFocus("tab1-recommended-3-list-2");
+                        return false
+                    } else if (cur.id == "tab1-recommended-3-list-1" || cur.id == "tab1-recommended-3-list-2") {
+                        Tab1.showTabContent(1);
+                    }else if(cur.id == "tab1-recommended-4-list-1"){
+                        Tab1.showTabContent(2);
+                    }
+                    break;
+
+            }
+        },
+        createHtml: function () {
+            var list = RenderParam.homeConfigInfo.data.entry_list;
+            var id = '';
+            for (var i = 0; i < list.length; i++) {
+                id = 0;
+                var item = list[i];
+                switch (parseInt(item.position)) {
+                    // banner
+                    case 21:
+                        id = 'tab1-recommended-1';
+                        break;
+                    case 22:
+                        id = '';
+                        Head.renderList(item.item_data, "tab1-recommended-2-list-")
+                        break;
+                    case 23:
+                        id = '';
+                        Head.renderList(item.item_data, "tab1-recommended-3-list-")
+                        break;
+                    case 24:
+                        id = '';
+                        Head.renderList(item.item_data, "tab1-recommended-4-list-")
+                        break;
+                    case 25:
+                        Tab1.renderClassify(item.item_data)
+                        break
+                }
+                if (id) {
+                    G(id).src = RenderParam.fsUrl + JSON.parse(item.item_data[0].img_url).normal;
+                }
+            }
+        },
+
+        renderClassify:function(list){
+            var html = ''
+            list.forEach(function (i,num) {
+                html+='<img src="'+RenderParam.fsUrl + JSON.parse(i.img_url).normal+'" id="classify-'+num+'"/>'
+
+                buttons.push({
+                    id: "classify-"+num,
+                    type: 'img',
+                    nextFocusLeft: '',
+                    nextFocusRight:num <2? 'tab1-recommended-1':'tab1-recommended-2-list-1',
+                    nextFocusUp: num===0? 'tab-1':"classify-"+(num-1),
+                    nextFocusDown: "classify-"+(num+1),
+                    click: Page.onClickRecommendPosition,
+                    focusChange: Head.recdFocus,
+                    beforeMoveChange: Tab1.beforeMoveChange,
+                    cPosition: 25,
+                    cBanner: num,
+                })
+            })
+            G('classify').innerHTML = html
+        },
+
+        init: function () {
+            try {
+                Tab1.initButton();
+                Tab1.createHtml();
+            } catch (e) {
+                LMEPG.UI.showToast("健康视频异常运行！" + e)
+            }
+        },
+    }
+</script>

@@ -1,0 +1,596 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>测试结果及建议V2</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/{$platformType}/css/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/{$platformType}/css/HealthSelfTest/V2/testResults.css?t={$time}">
+
+    <script type="text/javascript">
+        var RenderParam = {
+            // 公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            isVip: {$isVip},                    // 用户是否是vip(1-vip 0-非vip)
+            focusIndex: "{$focusIndex}",        // 记录保持的焦点ID
+            settingsInfo: {$settingsInfo},      // 设置信息（背景音乐、语音提示开关）
+            sysAudioInfo: {$sysAudioInfo},      // 特殊页面语音配置信息
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-1.7.2.min.js"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/audio.js?t={$time}"></script>
+    <!--当前模块-->
+    <script type="text/javascript" src="__ROOT__/Public/js/DoctorP2P/V1/inquiry.js?t={$time}"></script>
+</head>
+<body style='background-image: url("__ROOT__/Public/hd/img/Common/common_bg.png")'>
+<!--选项按钮模块-->
+<div class="tab_menu" style='background-image: url("__ROOT__/Public/hd/img/TestList/tab_menu_bg.png")'>
+    <div id="tab_list" class="tab_list">
+    </div>
+    <img id="menu_pre" src="__ROOT__/Public/hd/img/Common/menu_prev.png" alt=""/>
+    <img id="menu_next" src="__ROOT__/Public/hd/img/Common/menu_next.png" alt=""/>
+</div>
+
+<div class="right_panel">
+    <img class="finished_icon" src="__ROOT__/Public/hd/img/TestList/finished_icon.png" alt=""/>
+    <div class="finished_title"><!--测试结果：--><span id="disease_name"></span></div>
+    <div class="collect_btn">
+        <img id="collect_btn" class="collect_btn_bg" src="__ROOT__/Public/hd/img/DrugInquiry/bg_key.png" alt=""/>
+        <div id="collect_btn_title"></div>
+    </div>
+    <div id="content_bg" class="content">
+        <div id="content" class="content_size"></div>
+    </div>
+    <div class="prompt">
+        <!--TODO 黑龙江移动无疾病症状药品相关，不显示左面导航-->
+        <img class="prompt_icon" style="display: none" src="__ROOT__/Public/hd/img/TestList/hand_arrow.gif" alt=""/>
+        <!--<div class="prompt_title">如需了解更多相关知识，请选择左侧按钮的相应内容。本测试仅供参考，有关疾病和相关诊断请咨询医生。</div>-->
+        <div class="prompt_title">本测试仅供参考，有关疾病和相关诊断请咨询医生。</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    //获取当前页面对象
+    function getCurrentObj() {
+        var currentPage = LMEPG.Intent.createIntent("testResults");
+        currentPage.setParam("topicId", InitData.topicId);
+        currentPage.setParam("score", InitData.score);
+        return currentPage;
+    }
+
+    //问诊结束，调整到服务评价页
+    function jumpDoctorEvaluation(str) {
+        var objSrc = getCurrentObj();
+        var objDst = LMEPG.Intent.createIntent("doctorEvaluation");
+        objDst.setParam("InquiryData", str);
+        LMEPG.Intent.jump(objDst, objSrc);
+    }
+
+    /**
+     * 问诊助理医生
+     */
+    function startInquiryAssistant() {
+        LMEPG.FPC.limitFastPressClick(function () {
+            P2PInstantInquiry.start(function (jsonFromAndroid) {
+                jumpDoctorEvaluation(jsonFromAndroid);
+            });
+        });
+    }
+
+    function startOneKeyInquiry() {
+        LMEPG.FPC.limitFastPressClick(function () {
+            startInquiryAssistant();
+        });
+    }
+
+    /**
+     * 跳转到疾病或者症状
+     * @param btn
+     */
+    function jumpDisease(btn) {
+        var tempItemData = btn.cItemData;
+
+        if (tempItemData.column_name === "一键问医") { //跳转视频问诊
+            startOneKeyInquiry();
+        } else {
+            var jumpFlag = "symptomDetails"; //跳转症状详情页面的标识符
+            if (InitData.diseaseType === "1") { // 跳转疾病自查详情标识符
+                jumpFlag = "diseaseDetails";
+            }
+            var objCurrent = getCurrentObj(); //得到当前页
+            objCurrent.setParam("focusPropertyId", tempItemData.link_property_ids);
+
+            var objJump = LMEPG.Intent.createIntent(jumpFlag);
+            objJump.setParam("diseaseId", InitData.diseaseId);
+            objJump.setParam("focusPropertyId", tempItemData.link_property_ids);
+            objJump.setParam("columnId", tempItemData.column_id);
+            objJump.setParam("columnName", tempItemData.column_name);
+            objJump.setParam("focusPropertyName", tempItemData.link_property_name);
+            LMEPG.Intent.jump(objJump, objCurrent);
+        }
+
+    }
+
+    // 0-收藏 / 1-取消收藏
+    function setCollectStatus() {
+        var postData = {
+            'itemId': InitData.topicId,
+            'collectStatus': InitData.collectStatus == 1 ? 1 : 0, // 0-收藏 1-取消收藏
+            'itemType': 4 // 4-健康自测项目
+        };
+        LMEPG.ajax.postAPI('User/setCollectStatus', postData, function (data) {
+            if (data.result === 0) {
+                InitData.collectStatus = InitData.collectStatus == 1 ? 0 : 1;
+                G('collect_btn_title').innerHTML = InitData.collectStatus == 1 ? '取消收藏' : '收藏';
+            }
+        });
+    }
+
+</script>
+<script type="text/javascript">
+    // 当前页面的播报语音：收藏/取消收藏
+    var audio_btn_collect = to_real_url(get_obj_value_by(RenderParam.sysAudioInfo, "collection_btn_collect"));
+    var audio_btn_uncollect = to_real_url(get_obj_value_by(RenderParam.sysAudioInfo, "collection_btn_uncollect"));
+    var audio_one_key_inquiry = to_real_url(get_obj_value_by(RenderParam.sysAudioInfo, "dr_one_key_inquiry"));
+    var audio_self_result_tip = to_real_url(get_obj_value_by(RenderParam.sysAudioInfo, "self_test_result_tip"));
+    var isPlayingResultAudio = true; //标志是否正在读测试结果，用于控制焦点移动到其它按钮时，是否切换到其语音。"测试结果语音" -> 其它按钮，以加强体验！
+
+    var NAV_GROUP_ID = "health_self_test_nav"; // 左侧栏目导航group_id
+    var buttons = [];       // 定义全局按钮
+    var PAGE_MAX_NUM = 8;   // 每页最大的子项
+    var pageCurrent = 1;    // 当前页码
+
+    var InitData = {
+        topicId: {$topicId},
+        score: {$score},
+        diseaseType: "{$diseaseType}",
+        diseaseId: "{$diseaseId}",
+        collectStatus: "{$collectStatus}", // 收藏状态（1-收藏 0-未收藏）
+        navDataList: {$navDataList},
+        testResult: {$testResult},
+        focusPropertyId: '{$focusPropertyId}', //默认初始化选中的栏目导航id，是一个数组，例如：'["122", "334"]'
+        initFocusId: "tab_list_1", //默认初始化时选中焦点id
+    };
+
+    window.onload = function (ev) {
+        console.log(InitData)
+        PageStart.init();
+    };
+
+    var Focus = {
+        // 初始化按钮
+        initBottom: function () {
+            // 菜单
+            buttons.push({
+                id: 'tab_list_1',
+                name: '菜单1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'collect_btn',
+                nextFocusUp: '',
+                nextFocusDown: 'tab_list_2',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/f_test_result_1.gif',
+                click: jumpDisease,
+                cItemData: "",
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: Focus.onBeforeMoveChange,
+                groupId: NAV_GROUP_ID,
+            });
+            buttons.push({
+                id: 'tab_list_2',
+                name: '菜单1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'collect_btn',
+                nextFocusUp: 'tab_list_1',
+                nextFocusDown: 'tab_list_3',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/f_test_result_1.gif',
+                click: jumpDisease,
+                cItemData: "",
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: "",
+                groupId: NAV_GROUP_ID,
+            });
+            buttons.push({
+                id: 'tab_list_3',
+                name: '菜单1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'collect_btn',
+                nextFocusUp: 'tab_list_2',
+                nextFocusDown: 'tab_list_4',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/f_test_result_1.gif',
+                click: jumpDisease,
+                cItemData: "",
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: "",
+                groupId: NAV_GROUP_ID,
+            });
+            buttons.push({
+                id: 'tab_list_4',
+                name: '菜单1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'collect_btn',
+                nextFocusUp: 'tab_list_3',
+                nextFocusDown: 'tab_list_5',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/f_test_result_1.gif',
+                click: jumpDisease,
+                cItemData: "",
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: "",
+                groupId: NAV_GROUP_ID,
+            });
+            buttons.push({
+                id: 'tab_list_5',
+                name: '菜单1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'collect_btn',
+                nextFocusUp: 'tab_list_4',
+                nextFocusDown: 'tab_list_6',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/f_test_result_1.gif',
+                click: jumpDisease,
+                cItemData: "",
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: "",
+                groupId: NAV_GROUP_ID,
+            });
+            buttons.push({
+                id: 'tab_list_6',
+                name: '菜单1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'collect_btn',
+                nextFocusUp: 'tab_list_5',
+                nextFocusDown: 'tab_list_7',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/f_test_result_1.gif',
+                click: jumpDisease,
+                cItemData: "",
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: "",
+                groupId: NAV_GROUP_ID,
+            });
+            buttons.push({
+                id: 'tab_list_7',
+                name: '菜单1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'collect_btn',
+                nextFocusUp: 'tab_list_6',
+                nextFocusDown: 'tab_list_8',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/f_test_result_1.gif',
+                click: jumpDisease,
+                cItemData: "",
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: Focus.onBeforeMoveChange,
+            });
+            buttons.push({
+                id: 'tab_list_8',
+                name: '菜单1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'collect_btn',
+                nextFocusUp: 'tab_list_7',
+                nextFocusDown: '',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/f_test_result_1.gif',
+                click: jumpDisease,
+                cItemData: "",
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: Focus.onBeforeMoveChange,
+                groupId: NAV_GROUP_ID,
+            });
+            buttons.push({
+                id: 'collect_btn',
+                name: '收藏',
+                type: 'img',
+                focusable: true,
+                nextFocusLeft: 'tab_list_1',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/DrugInquiry/bg_key.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/hd/img/DrugInquiry/f_key.gif',
+                // TODO 黑龙江移动无疾病症状药品相关，暂去掉“收藏/取消收藏”按钮，替换为“一键问医”
+                // click: setCollectStatus,
+                click: startOneKeyInquiry,
+                focusChange: Focus.menuFocus,
+                beforeMoveChange: Focus.onBeforeMoveChange,
+            });
+
+            // 初始化默认UI状态
+            // TODO 黑龙江移动无疾病症状药品相关，暂去掉“收藏/取消收藏”按钮，替换为“一键问医”
+            // G('collect_btn_title').innerHTML = (InitData.collectStatus == 1 ? "取消收藏" : "收藏");
+            G('collect_btn_title').innerHTML = "一键问医";
+        },
+
+        // 菜单选中效果
+        menuFocus: function (btn, hasFocus) {
+            if (hasFocus) {
+                $("#" + btn.id).attr("src", btn.focusImage);
+                LMEPG.BM.setSelected(btn.id, true);//记录当前选中的左侧导航按钮
+
+                //当前为收藏/未收藏状态（1-收藏 0-未收藏），则显示及语音为反选状态
+                if (!isPlayingResultAudio) {
+                    if (btn.id === "collect_btn") {
+                        // TODO 黑龙江移动无疾病症状药品相关，暂去掉“收藏/取消收藏”按钮，替换为“一键问医”
+                        // AudioPlayer.fgm.play(InitData.collectStatus == 1 ? audio_btn_uncollect : audio_btn_collect);
+                        // AudioPlayer.fgm.play(audio_one_key_inquiry);//TODO 产品说暂时不上！！！
+                    }
+                    else AudioPlayer.fgm.play(to_real_url(btn.cItemData.audio_url));
+                }
+            } else {
+                $("#" + btn.id).attr("src", btn.backgroundImage);
+                // if (!isPlayingResultAudio) AudioPlayer.fgm.stop();
+            }
+        },
+        onBeforeMoveChange: function (direction, current) {
+            //翻页
+            switch (direction) {
+                case "up":
+                    if (current.id == "tab_list_1") {
+                        preMenu();
+                    }
+                    break;
+                case "down":
+                    if (current.id == "tab_list_8") {
+                        nextMenu();
+                    }
+                    break;
+                case "left":
+                    if (current.id === "collect_btn") { // 焦点返回保持
+                        // TODO 黑龙江移动无疾病症状药品相关，不显示左面导航
+                        if (RenderParam.carrierId === LMEPG.CID.CHINAUNICOM
+                        ) {
+                            return false;
+                        }
+                        var selectedNavBtn = LMEPG.BM.getSelectedButton(NAV_GROUP_ID);
+                        if (selectedNavBtn && selectedNavBtn.id && selectedNavBtn.id.startWith("tab_list_")) {
+                            LMEPG.BM.requestFocus(selectedNavBtn.id);
+                            return false;
+                        }
+                    }
+                    break;
+            }
+        }
+    };
+
+    //遥控器左按键翻页
+    function preMenu() {
+        if (hasPrev()) {
+            pageCurrent--;
+            createMenu();
+            LMEPG.ButtonManager.requestFocus("tab_list_1");
+        }
+    }
+
+    //向下翻页事件
+    function nextMenu() {
+        if (hasMore()) {
+            pageCurrent++;
+            createMenu();
+            LMEPG.ButtonManager.requestFocus("tab_list_8");
+        }
+    }
+
+    // 判断是否还可上翻页
+    function hasPrev() {
+        return pageCurrent > 1;
+    }
+
+    // 判断是否还可下翻页-更多数据
+    function hasMore() {
+        var curPageEndPos = pageCurrent - 1 + PAGE_MAX_NUM;
+        return curPageEndPos < InitData.navDataList.length;
+    }
+
+    function createMenu() {
+        var start = pageCurrent - 1; //数组截取起始位置
+        var end = start + PAGE_MAX_NUM; //数组截取终止位置
+
+        var htmlStr = '';
+        var initCol = 0;
+        var newArr = InitData.navDataList.slice(start, end);
+        for (var i = 0; i < newArr.length; i++) {
+            var tempItem = newArr[i];
+            buttons[i].cItemData = tempItem;
+            initCol++;
+            var btnId = "tab_list_" + initCol;
+
+            // 记录当前哪个导航按钮为默认选中状态
+            if (is_array_equals(tempItem.link_property_ids, InitData.focusPropertyId)) {
+                InitData.initFocusId = btnId;
+            }
+
+            htmlStr += '<div class="tab_list_block">';
+            htmlStr += '<div class="tab_list_icon">' + tempItem.column_name + '</div>';
+            htmlStr += '<img id="' + btnId + '" class="tab_list_img" alt="" src="' + LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/bg_test_result_1.png"/>';
+            if (i < newArr.length - 1) {
+                htmlStr += '<img id="tab_list_' + initCol + '_light"  class="light" src="' + LMEPG.App.getAppRootPath() + '/Public/hd/img/TestList/light.png"/> ';
+            }
+            htmlStr += '</div>';
+        }
+
+        G("tab_list").innerHTML = htmlStr;
+
+        updateArrows();
+    }
+
+    // 更新指示箭头
+    function updateArrows() {
+        if (this.hasPrev()) {
+            Show('menu_pre');
+        } else {
+            Hide('menu_pre');
+        }
+
+        if (this.hasMore()) {
+            Show('menu_next');
+        } else {
+            Hide('menu_next');
+        }
+    }
+
+    function initUI() {
+        if (InitData.testResult.result === 0) {
+            var tempData = InitData.testResult.data;
+            var tempTitle = tempData.result_title;
+            var tempBgUrl = tempData.bk_img_url;
+            var tempDetailArr = tempData.detail_list;
+
+            var contentHtmlStr = '';
+            for (var i = 0; i < tempDetailArr.length; i++) {
+                var tempDetailObj = tempDetailArr[i];
+                // var tempUrlObj = JSON.parse(tempDetailObj.img_url);
+                // var imgMain = to_real_url(get_obj_value_by(tempUrlObj, "main"));
+                var formattedContent = !is_empty(tempDetailObj.content) ? tempDetailObj.content.replace(/\n/g, '<br>') : '暂无';
+
+                contentHtmlStr += '<div class="content_block">';
+                // TODO 屏蔽掉每段分析结果里的小图，无视
+                // if (!is_empty(imgMain)) {
+                //     contentHtmlStr += '<div class="title_icon_container"><img class="title_icon" src="' + imgMain + '"/></div>';
+                // }
+                contentHtmlStr += '<div class="content_title">' + formattedContent + '</div>';
+                contentHtmlStr += '</div>';
+            }
+
+            G("disease_name").innerHTML = tempTitle;
+            G("content").innerHTML = contentHtmlStr;
+            // 永久使用本地背景图。添加缘由：运营每次批量新增题及结果时，都要上传一张以当前日期命名路径的图片（手动上传fs/img），不易于运营单方面管理。
+            // 所以忽略后台配置的背景图，保证所有新增的题结果背景一样，要改直接由研发人员在工程里替换（一般情况背景边框图不会怎么频繁改变）
+            // ------- Last modified by Songhui on 2019-07-12
+            var isUsedLocalBgPermanently = true;
+            if (isUsedLocalBgPermanently || tempBgUrl === "" || tempBgUrl === undefined || tempBgUrl == null) {
+                tempBgUrl = "__ROOT__/Public/hd/img/TestList/answer_bg.png";
+            } else {
+                tempBgUrl = to_real_url(tempBgUrl);
+            }
+            G("content_bg").style.backgroundImage = "url('" + tempBgUrl + "')";
+        } else {
+            LMEPG.ui.showToast("获取测试结果失败");
+        }
+    }
+
+    /**
+     * 计算方法：根据页面跳转回来后，是否存在左侧栏目唯一id：InitData.focusPropertyId，存在则计算相关的焦点、
+     * 页码位置。并保存当前页码以及默认焦点值。拉取数据后，让指定位置获取焦点
+     */
+    function calcCurrentPage() {
+        if (InitData.focusPropertyId === undefined || InitData.focusPropertyId === null || InitData.focusPropertyId === "") {
+            InitData.initFocusId = "tab_list_1";
+            return;
+        }
+
+        // 找到左侧导航栏对应当前选中分类所在的位置，并定位焦点及分页
+        for (var i = 0; i < InitData.navDataList.length; i++) {
+            var tempItemObj = InitData.navDataList[i];
+            if (is_array_equals(tempItemObj.link_property_ids, InitData.focusPropertyId)) {
+                if (i >= PAGE_MAX_NUM) {
+                    pageCurrent = i - PAGE_MAX_NUM + 2;
+                    console.log('[testResults.html]---[calcCurrentPage]--->Recovery last saved page: {1}'.format(pageCurrent));
+                }
+                break;
+            }
+        }
+    }
+
+
+    // 依次播报分析结果的语音。
+    var ResultAudio = {
+        playIndex: 0,
+        detailList: [],
+
+        startPlay: function () {
+            this.detailList = get_obj_value_by(InitData.testResult, "data.detail_list");
+            this.detailList = is_array(this.detailList) ? this.detailList : [];
+            this.playIndex = -1;
+            this.autoPlayNextInQueue();
+        },
+
+        autoPlayNextInQueue: function () {
+            this.playCurrent(function () {
+                isPlayingResultAudio = true;
+                ResultAudio.autoPlayNextInQueue();
+            }, function () {
+                isPlayingResultAudio = false;//表示所有结果提示语音已全部读完
+                AudioPlayer.fgm.play(audio_self_result_tip);
+                // var focusingBtn = LMEPG.BM.getCurrentButton();
+                // if (is_exist(focusingBtn)) LMEPG.BM.requestFocus(focusingBtn.id);
+            });
+        },
+
+        playCurrent: function (playCurrentEndCallback, playAllEndCallback) {
+            var audioUrl = this.getNextAvailableAudioUrl();
+            if (!is_empty(audioUrl)) {
+                AudioPlayer.fgm.play(audioUrl, function () {
+                    LMEPG.call(playCurrentEndCallback);
+                }, true);
+            } else {
+                LMEPG.call(playAllEndCallback);
+            }
+        },
+
+        getNextAvailableAudioUrl: function () {
+            ResultAudio.playIndex++;
+            if (ResultAudio.playIndex >= 0 && ResultAudio.playIndex < ResultAudio.detailList.length) {
+                while (ResultAudio.playIndex < ResultAudio.detailList.length) {
+                    var audioUrl = to_real_url(ResultAudio.detailList[ResultAudio.playIndex].audio_url);
+                    if (is_empty(audioUrl)) {
+                        ResultAudio.playIndex++;
+                    } else {
+                        return audioUrl;
+                    }
+                }
+            }
+        }
+    };
+
+    var PageStart = {
+        init: function () {
+            InitData.navDataList.shift();
+            Focus.initBottom();
+            calcCurrentPage();
+            createMenu();
+            initUI();
+            ResultAudio.startPlay();
+            // TODO 黑龙江移动无疾病症状药品相关，不显示左面导航
+            LMEPG.ButtonManager.init("collect_btn"/*InitData.initFocusId*/, buttons, "", true);
+        }
+    }
+
+</script>
+</body>
+</html>

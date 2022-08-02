@@ -1,0 +1,281 @@
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-image: url("../../../../img/Activity/ActivityHeathTest/V8/bg_home.png");
+}
+
+ul {
+    list-style: none;
+}
+#count-down{
+    font-size: 28px;
+    color: #fff;
+    width: 55px;
+    position: absolute;
+    top: 238px;
+    left: 686px;
+    text-align: center;
+}
+#times-count {
+    position: absolute;
+    top: 233px;
+    left: 255px;
+    font-size: 36px;
+    color: #fff;
+    text-align: center;
+    width: 42px;
+}
+
+div.btn-wrap {
+    position: absolute;
+    top: 128px;
+    left: 946px;
+    width: 200px;
+}
+
+div.btn-wrap img {
+    margin-top: -10px;
+}
+
+div.test-wrap {
+    position: absolute;
+    top: 548px;
+    left: 190px;
+}
+
+div.test-wrap img {
+    margin-right: 105px;
+}
+
+/********弹框*********/
+div#modal {
+    position: relative;
+    top: 0;
+    left: 0;
+    /*基础层级为1*/
+    z-index: 1;
+}
+
+div#modal > * {
+    position: absolute;
+}
+
+.bg-rule,
+bg-result {
+    top: 0;
+    left: 0;
+}
+
+#btn-close {
+    top: 70px;
+    left: 1146px;
+}
+
+/*中奖名单*/
+#winners-wrap {
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    color: #000;
+    font-size: 20px;
+    background-image: url("../../../../img/Activity/ActivityHeathTest/V1/bg_win_list.png");
+}
+
+#winners-wrap > * {
+    position: absolute;
+}
+
+marquee {
+    left: 325px;
+    width: 630px;
+}
+
+#all-marquee {
+    top: 170px;
+    height: 170px;
+}
+
+#curr-marquee {
+    top: 456px;
+    height: 88px;
+}
+
+#modal table {
+    width: 630px;
+    text-align: center;
+}
+
+table#all-list {
+}
+
+table#curr-list {
+}
+
+table#all-list tr {
+    height: 35px;
+}
+table#curr-list tr{height: 30px;}
+td.winner-account {
+    width: 30%;
+}
+
+td.winner-time {
+    width: 39%;
+
+}
+
+td.winner-prize {
+    width: 31%;
+}
+
+#input-tel {
+    top: 572px;
+    left: 610px;
+    width: 240px;
+    text-align: center;
+    color: #777570;
+}
+
+#tel-submit.win-submit {
+    top: 619px;
+    left: 431px;
+}
+
+#tel-rewrite {
+    top: 619px;
+    left: 681px;
+}
+
+/*测试题目*/
+div#subject-test {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background-image: url("../../../../img/Activity/ActivityHeathTest/V1/bg_play.png");
+}
+
+#subject-test > * {
+    position: absolute;
+}
+
+p#subject-title,
+ul#subject-options,
+ul#subject-index {
+    left: 225px;
+}
+
+p#test-intro {
+    top: 147px;
+    left: 220px;
+    font-size: 20px;
+    color: #00524c;
+    width: 840px;
+}
+
+p#subject-title {
+    top: 221px;
+    font-size: 24px;
+    color: #000;
+    width: 850px;
+}
+
+p#subject-title span.title-num {
+    width: 32px;
+    margin-right: 16px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    float: left;
+    height: 60px;
+    padding-top: 3px;
+}
+
+ul#subject-options {
+    top: 285px;
+}
+
+ul#subject-options li {
+    width: 774px;
+    padding: 32px 32px 36px 60px;
+    margin-top: -15px;
+    background-image: url("../../../../img/Activity/ActivityHeathTest/V1/bg_option.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    font-size: 24px;
+    color: #fff;
+}
+
+ul#subject-index {
+    top: 566px;
+}
+
+ul#subject-index li {
+    float: left;
+    position: relative;
+}
+
+li span.index-num {
+    position: absolute;
+    color: #fff;
+    top: 24px;
+    left: 8px;
+}
+
+p#topic-title {
+    position: absolute;
+    top: 32px;
+    width: 1280px;
+    text-align: center;
+}
+
+#btn-lottery {
+    position: absolute;
+    top: 525px;
+    left: 545px;
+}
+
+#result-txt {
+    top: 179px;
+    left: 191px;
+    font-size: 28px;
+    width: 870px;
+    text-align: left;
+}
+
+#win-prize {
+    top: 187px;
+    left: 733px;
+}
+
+div.tel-complete {
+    top: 438px;
+    left: 610px;
+}
+
+#tel-submit {
+    top: 527px;
+    left: 448px;
+}
+
+#tel-cancel {
+    top: 527px;
+    left: 665px;
+}
+#btn-center-wrap{
+    position: absolute;
+    top: 542px;
+    left: 0;
+    width: 1280px;
+    text-align: center;
+}
+
+#winners-wrap table#key-table {
+     top: 388px !important;
+     left: 455px !important;
+}

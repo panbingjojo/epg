@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityApril/V1/index.css?t={$time}">
+    <!--活动公共的js-->
+    <script>
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            areaCode:"{$areaCode}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown},
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: '{$score}',
+            fromLaunch: '{$fromLaunch}',
+            lotteryRecordList: {$lotteryRecordList},
+            myLotteryRecord: {$myLotteryRecord},
+            exchangeRecordList: {$exchangeRecordList},
+            exchangePrizeList: {$exchangePrizeList},
+            spMap: {$spMap},
+        };
+    </script>
+<!--    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>-->
+</head>
+<body id="body" ><!--style="background-image: url('{$activityFsImg}{$platformType}/bg_game_container_1.png')"-->
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+<!--默认首页-->
+<br id="img_index">
+<img id="btn_activity_rule" src="{$activityFsImg}{$platformType}/act_rule.png"/>
+<img id="btn_back" src="{$activityFsImg}{$platformType}/act_back.png"/>
+<img id="btn_winner_list" src="{$activityFsImg}{$platformType}/act_award_list.png"/>
+    <!--卡片-->
+<div id="car_one" class="card_img_div"><img id="card_left" class="card_img" src="{$activityFsImg}{$platformType}/style_1.png"/></div>
+<div id="car_two" class="card_img_div"><img id="card_middle" class="card_img" src="{$activityFsImg}{$platformType}/style_1.png"/></div>
+<div id="car_three" class="card_img_div"><img id="card_right"class="card_img" src="{$activityFsImg}{$platformType}/style_1.png"/></div>
+    <!--剩余次数-->
+<div id="frequency">
+   {$activityTimes}
+    </div>
+</div>
+<!--活动规则-->
+<div id="activity_rule" style="display: none;position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;">
+<img  id="btn_close_rule" src="{$activityFsImg}{$platformType}/V000051/union_rule.png"/>
+</div>
+
+<!--返回-->
+<div id="activity_back" style="display: none">
+</div>
+
+<div id="winner_list" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_winner_list.png"/>
+    <div id="total_list"></div>
+    <div id="my_list"></div>
+    <div id="reset_tel">请输入手机号</div>
+    <img id="btn_list_submit" class="awsure"  src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_list_cancel"  class="awcancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<!--抽到小丑div-->
+<div id="opt_clwon_div" class="clwon" style="display: none">
+    <img src="{$activityFsImg}{$platformType}/get_chance.png"/>
+    <img id="opt_clown" class="sure"  src="{$activityFsImg}{$platformType}/btn_start_f.png"/>
+    <img id="opt_cancel" class="cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png"/>
+</div>
+<!--没有抽到小丑-->
+<div id="no_clwon_div"  class="clwon" style="display: none">
+    <img src="{$activityFsImg}{$platformType}/bg_make_fail.png"/>
+    <img id="no_sure" class="nuisure" src="{$activityFsImg}{$platformType}/btn_common_sure_f.png"/>
+</div>
+<!--用小丑抽到奖品-->
+<div id="clw_opt_clwon_div" class="clwon" style="display: none">
+    <img src="{$activityFsImg}{$platformType}/bg_make_success.png"/>
+    <div id="lottery_tel" data-text="">请输入兑奖有效的电话</div>
+    <img id="wining_" src=""/>
+    <img id="btn_lottery_submit" class="lottersure"  src="{$activityFsImg}{$platformType}/btn_common_sure.png"/>
+    <img id="btn_lottery_cancel" class="lottercancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png"/>
+</div>
+<!--用小丑没有抽到奖品-->
+<div id="clw_opt_nolotter_div" class="clwon" style="display: none">
+    <img src="{$activityFsImg}{$platformType}/bg_make_fail_1.png"/>
+    <img id="clw_opt_nolotter" class="nuisure"  src="{$activityFsImg}{$platformType}/btn_common_sure_f.png"/>
+</div>
+
+<!--可以订购-->
+<div id="order_vip" class="clwon" style="display: none">
+    <!--应用内图片-->
+        <img id="order_vip_bg" src="{$activityFsImg}{$platformType}/bg_no_times.png"/>
+    <img id="btn_order_submit" class="sure"  src="{$activityFsImg}{$platformType}/btn_common_sure.png"/>
+     <img id="btn_order_cancel" class="cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png"/>
+</div>
+
+<!--订购成功-->
+<div id="purchase_succeed_div" class="clwon" style="display: none">
+    <img src="{$activityFsImg}{$platformType}/bg_order_success.png"/>
+    <img id="purchase_succeed_sure" class="nuisure"  src="{$activityFsImg}{$platformType}/btn_common_sure_f.png"/>
+</div>
+<!--订购失败-->
+<div id="purchase_fail_div" class="clwon" style="display: none">
+    <img src="{$activityFsImg}{$platformType}/bg_no_times.png"/>
+    <img id="purchase_fail_sure" class="nuisure"  src="{$activityFsImg}{$platformType}/btn_common_sure_f.png"/>
+</div>
+
+<!--不可以订购-->
+<div id="purchase_false_div" class="clwon" style="display: none">
+    <img src="{$activityFsImg}{$platformType}/no_order.png" />
+    <img id="purchase_false" class="nuisure"  src="{$activityFsImg}{$platformType}/btn_common_sure_f.png"/>
+</div>
+
+<!--额外一次订购机会-->
+<div id="extra_div" class="clwon" style="display: none">
+    <img src="{$activityFsImg}{$platformType}/extra_once.png" />
+<!--    <img id="extra_ensure" class="nuisure"  src="{$activityFsImg}{$platformType}/btn_common_sure_f.png" />-->
+</div>
+
+<!--倒计时-->
+<div id="dun_down_div" class="clwon" style="display: none">
+    <!--请稍后:--><span id="second">8</span>
+</div>
+<!--订购状态-->
+<div id="order_status" class="modal"></div>
+<!--倒计时-->
+
+<div id="countdown" class="modal" style="background-image: url('{$activityFsImg}{$platformType}/extra_once.png')">
+    <div id="count"></div>
+</div>
+</body>
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+<!--自己的js-->
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityApril/V1/index.js?t={$time}"></script>
+</html>

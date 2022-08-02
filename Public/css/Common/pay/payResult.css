@@ -1,0 +1,47 @@
+/*==>css/img目录结构调整*/
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#dialog-phone, #dialog-success {
+    top: 190px;
+    left: 340px;
+    width: 616px;
+    height: 389px;
+    display: none;
+}
+
+#phoneText {
+    position: absolute;
+    top: 146px;
+    left: 275px;
+    width: 270px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 30px;
+    overflow: hidden;
+    color: black;
+    /*border: 1px red solid;*/
+}
+
+#submit {
+    position: absolute;
+    top: 240px;
+    left: 100px;
+}
+
+#clear {
+    position: absolute;
+    top: 240px;
+    left: 350px;
+}
+
+#top {
+    position: absolute;
+}

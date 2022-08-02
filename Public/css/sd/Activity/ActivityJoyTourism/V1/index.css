@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    margin: 0 auto;
+}
+
+body > * {
+    position: absolute;
+}
+
+img.loading {
+    background: url(../../../../../img/Common/loading.gif) no-repeat center;
+}
+
+.abs {
+    position: absolute;
+}
+
+#bg {
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+}
+#back{
+    position: absolute;
+    top: 19px;
+    left: 556px;
+}
+#travel-place img{
+    position: absolute;
+    width: 194px;
+    height: 195px;
+}
+#travel0 {
+    top: 81px;
+    left: 48px;
+}
+#travel1 {
+    top: 276px;
+    left: 12px;
+}
+#travel2 {
+    top: 152px;
+    left: 233px;
+}
+#travel3 {
+    top: 85px;
+    left: 433px;
+}
+#travel4 {
+    top: 276px;
+    left: 433px;
+}
+#userTel {
+    position: absolute;
+    z-index: 99;
+    width: 250px;
+    overflow: hidden;
+    color: #92ff7d;
+}
+
+#btn-one {
+    position: absolute;
+    top: 430px;
+    left: 248px;
+}
+
+.tel-wrap {
+    position: absolute;
+    color: #92ff7d;
+    font-size: 16px;
+}
+
+/*订购相关*/
+#btn-sure-pay,
+.complete-submit{
+    top: 430px;
+    left: 139px;
+}
+
+#btn-cancel,
+.complete-cance{
+    top: 430px;
+    left: 357px;
+}
+
+/*完成游戏*/
+.complete-submit {
+}
+
+.complete-cancel {
+}
+
+.tel-complete {
+    top: 370px;
+    left: 248px;
+    font-size: 16px;
+}
+#lose-prize{
+    position: absolute;
+    z-index: 33;
+}
+#win-prize {
+    top: 162px;
+    left: 206px;
+    width: 226px;
+    height: 181px;
+    z-index: 33;
+}

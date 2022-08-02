@@ -1,0 +1,47 @@
+/*背景图*/
+#splash {
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+
+/*开屏广告根容器*/
+#ad_container_div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    display: none;
+}
+
+/*开屏广告图片*/
+#ad_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    background-repeat: no-repeat;
+}
+
+/*显示广告倒计时长背景*/
+.ad_showTime_bg {
+    position: absolute;
+    right: 40px;
+    top: 20px;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /*半透明背景*/
+    border-radius: 30px;
+    padding: 15px;
+}
+
+/*开屏广告倒计时长*/
+#ad_showTime {
+    color: white;
+}

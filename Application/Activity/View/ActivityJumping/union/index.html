@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>跳跳床-union-游戏页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityJumping/union/index.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityJumping/PopRule.js?t={$time}"></script>
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("demoTimes", "{$demoTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示获得抽奖机会弹窗
+         */
+        function jumpAnswerRightDialog() {
+            jumpDialog(ANSWER_SUCCESS);
+        }
+
+        /**
+         * 显示没有获得抽奖机会弹窗
+         */
+        function jumpAnswerErrorDialog() {
+            jumpDialog(ANSWER_ERROR);
+        }
+
+        /**
+         * 显示非会员答题次数用尽
+         */
+        function jumpNoVipTimesOverDialog() {
+            jumpDialog(NOT_VIP_USER_PLAY_TIMES_OVER);
+        }
+
+        /**
+         * 显示中奖
+         */
+        function jumpDrawnPrizeDialog(prizeName, prizeIdx) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeName", prizeName);
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("context", VIP_USER_DRAWN_PRIZE);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示未中奖
+         */
+        function jumpNotDrawnPrizeDialog() {
+            jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+
+    </script>
+</head>
+<body style='background: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/play_bg.png") no-repeat;'>
+<img id="jump1" class="jump" style="visibility: visible" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump1.png" alt="" />
+<img id="jump2" class="jump" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump2.png" alt="" />
+<img id="jump3" class="jump" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump3.png" alt="" />
+<img id="jump4" class="jump" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump4.png" alt="" />
+<img id="jump5" class="jump" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump5.png" alt="" />
+<img id="jump6" class="jump" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump6.png" alt="" />
+<img id="jump7" class="jump" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump7.png" alt="" />
+<img id="jump8" class="jump" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump8.png" alt="" />
+<img id="jump9" class="jump" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/jump9.png" alt="" />
+
+<img class="title" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/title.gif" alt="" />
+<div class="start">
+    <img id="start" style="top: 0px" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/start.png" alt="" />
+</div>
+
+<img id="stop" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/stop_out.png" alt="" />
+<img id="play_back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/play_back_out.png" alt="" />
+<div id="tip_text">当星星停在绿色区域就有机会获得精美大奖哦～</div>
+<div class="show-box">剩余游戏次数：{$leftTimes}<span id="show-box"></span></div>
+<script type="text/javascript">
+    var jumpNUm = 1;//跳跃图片替换参数
+    var timerID1;//跳跃定时器
+    var platformType = "{$platformType}";
+    var startLength = platformType == "hd" ? 10 : 0;//星星位移量
+    var startDir = platformType == "hd" ? 225 : 133;//星星初始位置
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityJumping/union/';
+
+    var buttons = [
+        {
+            id: 'stop',
+            name: '停止',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusUp: 'play_back',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'stop_out.png',
+            focusImage: imgPathPrefix + 'stop_in.gif',
+            click: " stop()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'play_back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'stop',
+            backgroundImage: imgPathPrefix + 'play_back_out.png',
+            focusImage: imgPathPrefix + 'play_back_in.gif',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }
+    ];
+
+    window.onload = function () {
+        bearMove();
+        starMove();
+        LMEPG.ButtonManager.init(['stop'], buttons, '', true);
+    };
+
+    /**
+     * 点击停止按钮
+     */
+    function stop() {
+        LMEPG.UI.showWaitingDialog();
+        if (parseInt(start.style.top) / startDir <= 0.3) {
+            //如果星星跑到蓝色部分获得抽奖机会弹窗
+            clearInterval(timerID1);
+            uploadAnswerResult();
+        } else {
+            //如果星星在其他部分没有获得抽奖机会弹窗
+            clearInterval(timerID1);
+            jumpAnswerErrorDialog()
+        }
+    }
+
+
+    /**
+     * 熊移动
+     */
+    function bearMove() {
+        try {
+            bearAnimate();
+            timerID1 = setTimeout("bearMove()", 160);
+        } catch (e) {
+        }
+    }
+
+    /**
+     * 星星移动
+     */
+    function starMove() {
+        try {
+            start = G("start");
+            start.style.top = parseInt(start.style.top) - 10 + "px";
+            if (parseInt(start.style.top) < startLength) {
+                start.style.top = startDir + "px";
+            }
+            timerID1 = setTimeout(" starMove()", 160);
+        } catch (e) {
+        }
+    }
+
+    /**
+     * 熊跳跃动画
+     */
+    function bearAnimate() {
+        //当气任务图片完成第四帧时循环
+        jumpId = G("jump" + jumpNUm);
+        jumpId.style.visibility = "hidden";
+        jumpNUm++;
+        if (jumpNUm == 9) {
+            jumpNUm = 1
+        }
+        jumpId = G("jump" + jumpNUm);
+        jumpId.style.visibility = "visible";
+    }
+
+    /**
+     * 上报参与记录（上报答题结果）
+     */
+    function uploadAnswerResult() {
+        LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) { //上报参与记录成功
+                        jumpAnswerRightDialog();
+                    } else {
+                        //上报答题结果失败
+                        LMEPG.UI.showToast("上报参与记录失败:" + result + ",请稍后重试！", 5);
+                        setTimeout(onBack, 5);
+                    }
+                } catch (e) {
+                    //上报答题结果失败
+                    LMEPG.UI.showToast("上报参与记录异常:" + e.toString(), 5);
+                    setTimeout(onBack, 5);
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                LMEPG.UI.showToast("上报参与记录异常,请稍后重试！", 5);
+                setTimeout(onBack, 5);
+            }
+        );
+    }
+
+</script>
+</body>
+</html>

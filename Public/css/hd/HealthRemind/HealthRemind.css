@@ -1,0 +1,118 @@
+#container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#head_title {
+    position: absolute;
+    left: 136px;
+    top: 127px;
+    font-size: 39px;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 35px;
+}
+#head_context {
+    position: absolute;
+    left: 139px;
+    top: 189px;
+    width: 533px;
+    font-size: 21px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+#btn_select {
+    position: absolute;
+    left: 598px;
+    top: 293px;
+}
+#tel_num {
+    position: absolute;
+    left: 140px;
+    top: 284px;
+    width: 550px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 28px;
+    color: #FFFFFF;
+    text-align: center;
+}
+.phone_line {
+    position: absolute;
+    left: 140px;
+    width: 550px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding-left: 19px;
+    z-index: 1;
+}
+#phone_line_0 {
+    top: 343px;
+    visibility: hidden;
+}
+#phone_line_1 {
+    top: 393px;
+    visibility: hidden;
+}
+#tel_code {
+    position: absolute;
+    left: 140px;
+    top: 364px;
+    width: 265px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 28px;
+    color: #FFFFFF;
+    text-align: center;
+}
+#btn_code {
+    position: absolute;
+    left: 425px;
+    top: 364px;
+}
+#code_text {
+    position: absolute;
+    left: 425px;
+    top: 364px;
+    width: 265px;
+    text-align: center;
+    line-height: 60px;
+    color: #FFFFFF;
+    font-size: 26px;
+}
+#btn_sure, #btn_update {
+    position: absolute;
+    left: 141px;
+    top: 466px;
+}
+#btn_back {
+    position: absolute;
+    left: 355px;
+    top: 466px;
+}
+
+#tel_title {
+    position: absolute;
+    left: 140px;
+    top: 279px;
+    font-size: 28px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 42px;
+}
+#tel_context {
+    position: absolute;
+    left: 141px;
+    top: 330px;
+    width: 179px;
+    height: 21px;
+    font-size: 27px;
+    font-weight: 400;
+    color: #FFFFFF;
+}

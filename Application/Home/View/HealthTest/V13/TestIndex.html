@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康检测-V13</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/HealthTest/V13/TestIndex.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V13/TestIndex.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+<switch name="carrierId">
+    <case value="000051">
+        <p class="title">健康管理</p>
+    </case>
+    <default />
+        <p class="title">健康检测</p>
+</switch>
+<div class="container">
+    <img id="left-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/left.png" alt="上页箭头">
+    <img id="right-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/right.png" alt="下页箭头">
+    <div id="list-wrapper"></div>
+</div>
+<p class="text-sure">请按<span>确定</span>键</p>
+<script type="text/javascript">
+	window.onload = function() {
+	    // 设置皮肤（产品背景图）
+        if (!LMEPG.Func.isEmpty(RenderParam.skin.cpbjt)) {
+            var bgImg = RenderParam.fsUrl + RenderParam.skin.cpbjt;
+            document.body.style.backgroundImage = 'url(' + bgImg + ')';
+        }
+
+		Test.init();
+        LmOrderConf.init({
+            getCurrentPage: Test.getCurrentPage,
+        });
+	};
+</script>
+</body>
+</html>

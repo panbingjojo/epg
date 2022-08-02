@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>历史播放记录-中国联通</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/HistoryPlay/V13/index.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isVip: "{$isVip}",                  // 是否是vip
+
+            skin: {$skin},      // 用户自定义背景
+
+            // 焦点保持
+            focusId: "{$focusId}",
+            page: "{$page}",
+        };
+    </script>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/HistoryPlay/V13/index.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<switch name="carrierId">
+    <case value="000051">
+        <p class="title">播放记录</p>
+    </case>
+    <default />
+        <p class="title">观看历史</p>
+</switch>
+<img id="clear-record" src="__ROOT__/Public/img/hd/HistoryPlay/V13/clear.png" alt="清空记录">
+<div id="list-container">
+    <img id="prev-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/left.png" alt="">
+    <img id="next-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/right.png" alt="">
+    <ul id="list-wrapper"></ul>
+</div>
+<div id="page-wrapper">
+    <img id="first-page" src="__ROOT__/Public/img/hd/HistoryPlay/V13/first_page.png" alt="">
+    <img id="prev-page" src="__ROOT__/Public/img/hd/HistoryPlay/V13/prev_page.png" alt="">
+    <p id="page-index">0/0</p>
+    <img id="next-page" src="__ROOT__/Public/img/hd/HistoryPlay/V13/next_page.png" alt="">
+    <img id="last-page" src="__ROOT__/Public/img/hd/HistoryPlay/V13/last_page.png" alt="">
+</div>
+<script type="text/javascript">
+    window.onload =function() {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+
+        // 设置背景图，兼容怡伴健康EPG、乐动传奇EPG
+        if (RenderParam.carrierId == '09000051' || RenderParam.carrierId == '11000051'){
+            var backgroundImg = g_appRootPath+'/Public/img/hd/Common/V11/bg.png';
+            document.body.style.backgroundImage = 'url(' + backgroundImg + ')';
+        }
+
+        // 设置背景图，兼容怡伴健康EPG、乐动传奇EPG
+        /*
+        if (RenderParam.carrierId == '440004' ){
+            var backgroundImg = '__ROOT__/Public/img/hd/Common/V11/bg.png';
+            document.body.style.backgroundImage = 'url(' + backgroundImg + ')';
+        }
+        */
+	    HistoryPlay.init();
+
+        LmOrderConf.init({
+            getCurrentPage: PageJump.getCurrentPage,
+        });
+    }
+
+    if (RenderParam.carrierId == "410092") {
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</body>
+</html>

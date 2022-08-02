@@ -1,0 +1,32 @@
+.pay {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 100;
+}
+
+.pay > .pay_bg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+
+.pay > .btn-1 {
+    position: absolute;
+    left: 402px;
+    top: 577px;
+    width: 232px;
+    height: 90px;
+
+}
+
+.pay > .btn-2 {
+    position: absolute;
+    left: 724px;
+    top: 577px;
+    width: 232px;
+    height: 90px;
+
+}

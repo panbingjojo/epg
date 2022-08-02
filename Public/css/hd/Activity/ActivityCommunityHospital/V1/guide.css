@@ -1,0 +1,101 @@
+body {
+    font-size: 24px;
+    background-image: url("../../../../../img/hd/Activity/ActivityCommunityHospital/V1/bg.png");
+}
+#title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #ccc;
+}
+#btn-back{
+    position: absolute;
+    top: 1200px;
+    top: 20px;
+    left: 1100px;
+}
+.txt {
+    color: #08a8b6;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+#piece-0 {
+    position: absolute;
+    top: 96px;
+    left: 150px;
+    text-align: center;
+}
+
+.piece-0-txt {
+    width: 427px;
+}
+
+#piece-0-pic {
+    width: 427px;
+    height: 271px;
+}
+#doctor-intro{
+   text-align: left;
+   width: 427px;
+   line-height: 35px;
+   margin-top: 10px;
+   height: 200px;
+   overflow: hidden;
+}
+
+#piece-1 {
+    position: absolute;
+    top: 96px;
+    left: 653px;
+    text-align: center;
+    width: 210px;
+}
+
+.piece-1-txt {
+    width: 210px;
+}
+
+#piece-1-pic {
+    width: 210px;
+    height: 274px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 3px 2px #ccc;
+}
+
+#piece-1-btn {
+    margin-top: 31px;
+    width: 210px;
+    height: 60px;
+}
+
+#piece-2 {
+    position: absolute;
+    top: 150px;
+    left: 896px;
+    width: 302px;
+}
+#piece-2 p{
+    margin-top: 10px;
+}
+#doctor-name,
+#goods-title,
+#goods-call{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#doctor-position {
+
+}
+
+#doctor-dep {
+
+}
+
+#doctor-goods {
+}

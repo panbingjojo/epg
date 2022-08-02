@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+    background-repeat: no-repeat;
+}
+
+.title {
+    position: absolute;
+    top: 66px;
+    left: 107px;
+    font-size: 36px;
+    font-weight: bold;
+    height: 38px;
+    line-height: 38px;
+    color: #fff;
+}
+
+#btn_report_data {
+    position: absolute;
+    top: 274px;
+    left: 540px;
+}
+
+.disclaimer {
+    position: absolute;
+    top: 371px;
+    left: 107px;
+    font-size: 18px;
+    color: #fff;
+    width: 1015px;
+    height: 303px;
+    padding: 32px;
+    line-height: 36px;
+    background-image: url(../../../../img/hd/HealthTest/V13/bg_disclaimer.png);
+    background-repeat: no-repeat;
+}
+
+.table_head {
+    color: #fff;
+    font-size: 30px;
+}
+
+.table_content {
+    color: #fff;
+    font-size: 24px;
+}
+
+#measure_weight {
+    background-image: url("../../../../img/hd/HealthTest/V13/measure_weight_n.png");
+    background-repeat: no-repeat;
+}
+
+.weight {
+    position: absolute;
+    top: 115px;
+    left: 218px;
+    width: 882px;
+    height: 120px;
+    text-align: center;
+}
+
+.blood_pressure, .blood_sugar {
+    position: absolute;
+    top: 115px;
+    left: 107px;
+    width: 1066px;
+    height: 120px;
+    text-align: center;
+}
+
+.blood_pressure_content,.blood_sugar_content {
+    background-image: url("../../../../img/hd/HealthTest/V13/bg_measure_data.png");
+    background-repeat: no-repeat;
+}

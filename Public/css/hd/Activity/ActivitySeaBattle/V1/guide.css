@@ -1,0 +1,335 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    top: 0;
+    left: 0;
+}
+
+body > * {
+    position: absolute;
+}
+
+.commonDialog {
+    width: 1280px;
+    height: 720px;
+    /*background: url(../../../../../img/Activity/ActivitySeaBattle/hd/bg_dialog.png) no-repeat;*/
+}
+
+.marker {
+    width: 1280px;
+    height: 720px;
+    background-color: black;
+    opacity: 0.3;
+    position: relative;
+}
+
+img.dialogContext {
+    position: absolute;
+    left: 227px;
+    top: 94px;
+}
+
+.abs {
+    position: absolute;
+}
+
+#bg {
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+.right-btn-wrapper {
+    top: 31px;
+    left: 1085px;
+}
+
+.right-btn-wrapper img {
+    display: block;
+    margin-bottom: 14px;
+}
+
+.left-prize-wrapper {
+    top: 80px;
+    left: 31px;
+}
+
+.left-prize-wrapper img {
+    display: block;
+    margin-bottom: 14px;
+}
+
+#activity-time {
+    top: 258px;
+    left: 535px;
+    font-size: 25px;
+    line-height: 25px;
+    color: #e4581e;
+    width: 305px;
+}
+
+#game-time {
+    top: 14px;
+    left: 1096px;
+    font-size: 24px;
+    position: absolute;
+}
+
+#go-gamePage-count {
+    top: 661px;
+    left: 571px;
+    font-size: 24px;
+    line-height: 24px;
+    color: #000;
+}
+
+#go-gamePage {
+    top: 483px;
+    left: 563px;
+}
+
+#goLottery {
+    top: 367px;
+    left: 765px;
+}
+
+#lottery-dialog {
+    top: 366px;
+    left: 938px;
+    visibility: hidden;
+}
+
+#modify,
+#count-down {
+    position: absolute;
+    top: 555px;
+    left: 1048px;
+    font-size: 24px;
+    width: 213px;
+    height: 156px;
+    line-height: 258px;
+    text-align: center;
+    /*background-image: url(../../../../../img/hd/Activity/ActivityScissors/V1/count_down.png);*/
+}
+
+#game-intro {
+    position: absolute;
+    width: 1280px;
+    text-align: center;
+    font-size: 24px;
+    top: 675px;
+    left: 0;
+}
+
+#searchText {
+    position: absolute;
+    z-index: 99;
+    width: 307px;
+    height: 45px;
+    left: 0px;
+    text-align: center;
+    line-height: 45px;
+    overflow: hidden;
+    color: #808080;
+    font-size: 24px;
+}
+
+#btn-one {
+    position: absolute;
+    top: 401px;
+    left: 572px;
+}
+
+/*+++++++++++++++常规弹框+++++++++++++++++*/
+
+/*中奖名单*/
+
+table {
+    width: 780px;
+}
+
+#win-table {
+    top: 228px;
+    left: 341px;
+    height: 120px;
+    color: #033542;
+}
+
+#win-table tr {
+}
+
+#win-table tr td {
+    text-align: left;
+    padding: 10px 0;
+    font-size: 20px;
+    overflow: hidden;
+    color: #033542;
+}
+
+/*中奖名单排版*/
+#win-table tr td.col_1,
+.single-table tr td.col_1 {
+    width: 30%;
+}
+
+#win-table tr td.col_2,
+.single-table tr td.col_2 {
+    width: 30%;
+}
+
+#win-table tr td.col_3,
+.single-table tr td.col_3 {
+    width: 40%;
+}
+
+.list-submit {
+    top: 525px;
+    left: 484px;
+}
+
+.list-cancel {
+    top: 525px !important;
+    left: 660px !important;
+}
+
+.tel-wrap {
+    position: absolute;
+    color: #251505;
+    font-size: 20px;
+}
+
+.tel-list {
+    top: 468px;
+    left: 491px;
+}
+
+.single-table {
+    top: 435px;
+    left: 341px;
+    width: 800px;
+    height: 30px;
+    font-size: 20px;
+    color: #033542;
+    text-align: left;
+}
+
+/*活动规则*/
+
+#rule-close {
+    top: 12px;
+    left: 1067px;
+}
+
+/*订购相关*/
+#btn-sure-pay {
+    top: 406px;
+    left: 484px;
+}
+
+#btn-cancel {
+    top: 406px;
+    left: 660px;
+}
+
+.my-noPrize {
+    position: absolute;
+    top: 435px;
+    left: 560px;
+    font-size: 20px;
+    color: #251505;
+}
+
+.g_waiting_dialog {
+    position: absolute;
+    left: 590px;
+    top: 310px;
+    width: 100px;
+    height: 100px;
+    line-height: 220px;
+    font-size: 1px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url(../../../../../img/hd/Common/bg_waiting_dialog.gif) no-repeat center;
+}
+
+#count {
+    position: absolute;
+    top: 291px;
+    left: 663px;
+    font-size: 36px;
+    color: #ff9036;
+}
+
+#water_drop {
+    top: 333px;
+    left: 209px;
+}
+
+#fishing_net {
+    top: 1px;
+    left: 1px;
+}
+
+#germ {
+    top: 413px;
+    left: 511px;
+}
+
+#theme {
+    top: 33px;
+    left: 121px;
+}
+
+#prizePhone {
+    position: absolute;
+    left: 36px;
+    z-index: 99;
+    width: 271px;
+    overflow: hidden;
+    color: #f41454;
+    text-align: left;
+    font-size: 24px;
+    height: 45px;
+    line-height: 45px;
+}
+
+.complete-submit {
+    position: absolute;
+    top: 502px;
+    left: 484px;
+}
+
+.complete-cancel {
+    position: absolute;
+    top: 502px !important;
+    left: 660px;
+}
+
+.tel-complete {
+    position: absolute;
+    top: 433px;
+    left: 545px;
+}
+.tel-wrap {
+    position: absolute;
+    color: #000;
+    font-size: 24px;
+}
+
+#win-prize {
+    position: absolute;
+    top: 171px;
+    left: 723px;
+}

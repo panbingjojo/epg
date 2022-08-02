@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>517世界电信日</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityWorldTelecommunicationsDay/V1/index.css?t={$time}">
+    <style type="text/css">
+        body {
+            background-image: url("{$activityFsImg}{$platformType}/EPG/bg_home.png");
+        }
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown},
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: '{$score}',
+            exchangeRecordList: {$exchangeRecordList},
+            exchangePrizeList: {$exchangePrizeList},
+        };
+        window.onload = function () {
+            Activity.init();
+            lmInitGo();
+        };
+    </script>
+
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityWorldTelecommunicationsDay/V1/index.js?t={$time}"></script>
+
+</head>
+<body id="body">
+    <div id="debug"></div>
+
+    <img src="{$activityFsImg}{$platformType}/btn_buy.png" id="btn_start">
+
+    <!--订购状态-->
+    <div id="order_status" class="modal"></div>
+
+    <!--倒计时-->
+    <div id="countdown" class="modal">
+        <div id="count"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>月饼欢乐送V000051-V1-游戏页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/index.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityMidAutumn/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("demoTimes", "{$demoTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示非会员答题次数用尽
+         */
+        function jumpNoVipTimesOverDialog() {
+            jumpDialog(NOT_VIP_USER_PLAY_TIMES_OVER);
+        }
+
+        /**
+         * 显示中奖
+         */
+        function jumpDrawnPrizeDialog(prizeName, prizeIdx) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeName", prizeName);
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("context", VIP_USER_DRAWN_PRIZE);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示未中奖
+         */
+        function jumpNotDrawnPrizeDialog() {
+            jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+
+    </script>
+
+</head>
+<body style='background: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/play_bg.png") no-repeat;'>
+<div id="debug" style=" position:absolute; color: red"></div>
+<div id="content">
+    <img id="hand" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/hand_run.png" alt="" />
+    <div id="balloon-container" style="position: absolute; ">
+        <!-- window.onload中自定义动态添加允许月饼个数：形如下<div id="price1">...</div> -->
+        <!--<div id="price1" class="balloon" style="display: none">-->
+            <!--<img class="priceimg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/moon_cake.png"alt="" />-->
+        <!--</div>-->
+    </div>
+    <img id="add" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/add.png" style="left: 0px" alt="" />
+</div>
+
+<div id="score">0</div>
+<div id="timer">0</div>
+
+<div id="default_tip"></div>
+<script type="text/javascript">
+    var platformType = "{$platformType}";
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/';
+
+    /**
+     * 初始化抓手位置
+     */
+    var newTop = platformType === "hd" ? 480 : 240;                 // 高清：360，标清：240
+    var position = platformType === "hd" ? 120 : 80;                // 抓手移动距离，向右正数，向左负数：高清120，标清：80（保证）
+    var dropMoveOffsetY = platformType === "hd" ? 10 : 20;          // 月饼每次下落的Y距离。高清：10，标清：5
+    var winPrizeDropOffsetY = platformType === "hd" ? 125 : 70;     // 通过位移去判断月饼掉落的位置，当月饼的位置到达底部时判断是否等于手的位置，如果相等判断中奖，弹窗,125是月饼自身高度；
+    var winWithinHandY = platformType === "hd" ? 50  : 30;          // 抓手接盘与月饼处于同一轨道时，在抓手接盘的判断距离Y之内可接中：若超出这个距离，则接不中；在此距离中，可接中。
+    var ALLOW_MAX_BALLOON = 3;                                      // 允许下落月饼最大个数
+
+    /**
+     * 焦点移动前事件回调
+     */
+    function onBeforeMoveChange(dir, current) {
+        //实现翻页
+        if ((dir === 'left')) {
+            /**
+             * 月饼抓手移动函数向左移动的范围
+             */
+            if ((newTop > position)) {
+                hand(-position);
+            }
+
+            return false;
+        }
+        if (dir === 'right') {
+            /**
+             * 月饼抓手移动函数向右移动的范围
+             */
+            if ((newTop < G("content").clientWidth - position)) {
+                hand(position);
+            }
+
+            return false;
+        }
+    }
+
+    var buttons = [
+        {
+            id: 'hand',
+            name: '接手',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            click: "",
+            focusChange: "",
+            beforeMoveChange: onBeforeMoveChange,
+            moveChange: ""
+        }, {
+            id: 'start_btn',
+            name: '开始抽奖',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'back_btn',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'start_out.png',
+            focusImage: imgPathPrefix + 'start_in.png',
+            click: 'participationActivity()',
+            focusChange: "",
+            moveChange: ""
+        }, {
+            id: 'back_btn',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'start_btn',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'back_out.png',
+            focusImage: imgPathPrefix + 'back_in.png',
+            click: "onBack()",
+            focusChange: "",
+            moveChange: ""
+        }, {
+            id: 'confirm_btn',
+            name: '确定',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'confirm_out.png',
+            focusImage: imgPathPrefix + 'confirm_in.png',
+            click: "onBack()",
+            focusChange: "",
+            moveChange: ""
+        }
+    ]
+</script>
+<script type="text/javascript">
+    var dropTimer; // 月饼下落定时器
+    var countdown = 30; // 游戏倒计时
+
+    /**
+     * 初始化月饼对象
+     */
+    window.onload = function () {
+        // 山西联通某款盒子焦点会有问题，对方提供的
+        if ('<?php echo ($carrierId == "000051") ?>') {
+            var stbModel = LMEPG.STBUtil.getSTBModel();
+            if (stbModel === "B700V5C") {
+                if (top.location !== self.location) {
+                    top.location = self.location;
+                }
+            }
+        }
+
+        // 上报参与记录
+        uploadAnswerResult();
+
+        G("hand").style.left = newTop + "px";
+        setTimer("timer");
+
+        var balloonContainer = G('balloon-container');
+        balloonContainer.innerHTML = '';
+        for (var i = 1; i <= ALLOW_MAX_BALLOON; i++) {
+            balloonContainer.innerHTML += '<div id="price' + i + '" class="balloon" style="display: none"><img class="priceimg" src="' + imgPathPrefix + 'moon_cake.png" alt="" /></div>';
+        }
+
+        /**
+         * 保证每次进入应用钱包掉落位置不一样
+         */
+        for (var j = 1; j <= ALLOW_MAX_BALLOON; j++) {
+            var dom = G('price' + j);
+            dom.style.display = 'block';
+            dom.style.top = [0, 175, 350][j - 1] + 'px';
+            dom.style.left = Math.ceil(Math.random() * 5) * position + "px";
+            new balloon('price' + j);
+        }
+
+        LMEPG.ButtonManager.init(['hand'], buttons, '', true);
+    };
+
+    window.onerror = function (message, filename, lineno) {
+        // if (debug) {
+        //     var errorLog = "发生错误>>> " +
+        //         "\nmessage:" + message +
+        //         "\nfile_name:" + filename +
+        //         "\nline_NO:" + lineno;
+        //     LMEPG.UI.showToast(errorLog, 5);
+        // }
+        LMEPG.UI.dismissWaitingDialog();
+    };
+
+    /**
+     * 将月饼掉落对象实例化，转变成对象，并给对象赋值属性
+     * y代表月饼沿着竖直方向掉落的值
+     * x代表月饼沿着x方向掉落的值；
+     * amplifier代表月饼下落过程中的随机偏移量
+     * angle代表初始方位
+     */
+    var balloon = function (balloonId) {
+        this.oWrapper = G("content");
+        this.oBalloon = {
+            obj: G(balloonId),
+            //x: Math.random() * this.oWrapper.clientWidth,
+            y: Math.random() * 100
+        };
+
+        this.dropTimer();
+    };
+
+    balloon.prototype.randomRegion = {
+        region: [0, 175, 350],
+        index: 0,
+        randomLoop: function () {
+            if (this.index > this.region.length - 1) this.index = 0;
+            return this.region[this.index++];
+        }
+    };
+
+    /**
+     * 月饼掉落定时器事件
+     */
+    balloon.prototype.dropTimer = function () {
+        this.move();
+        var oSelf = this;
+        setTimeout(function () {
+            dropTimer = oSelf.dropTimer();
+        }, 40);
+    };
+
+    /**
+     * 通过位移去判断月饼掉落的位置，当月饼的位置到达底部时判断是否等于手的位置，如果相等判断中奖，弹窗,125是月饼自身高度；
+     */
+    balloon.prototype.move = function () {
+        var oBalloon = this.oBalloon;
+        oBalloon.y += dropMoveOffsetY;
+
+        if (oBalloon.y + winPrizeDropOffsetY > this.oWrapper.clientHeight) {
+            /**
+             * 判断月饼位置是否与抓手相等： oBalloon.obj.style.left) === newTop
+             * 判断月饼是否已经超出抓手接盘：oBalloon.y + withinHandY < this.oWrapper.clientHeight --->在接中范围之内
+             */
+
+            if (parseInt(oBalloon.obj.style.left) === newTop && ((oBalloon.y + winWithinHandY) < this.oWrapper.clientHeight)) {
+                /**
+                 * 中奖提示
+                 */
+                G("score").innerHTML = parseInt(G("score").innerHTML) + 1 + "";
+                G("add").style.display = "block";
+                window.setTimeout(hiddenAdd, 350);
+                G("add").style.left = newTop + 50 + "px";
+                oBalloon.y = 0;
+                oBalloon.obj.style.left = Math.ceil(Math.random() * 5) * position + "px";//随机产生1到5的数乘以位置移动量去实现每次掉落不同的位置
+            } else {
+                var bottomLength = platformType === "hd" ? 120 : 120;//下落最低点位置
+                if (oBalloon.y + winPrizeDropOffsetY > parseInt(this.oWrapper.clientHeight) + bottomLength) {
+                    oBalloon.y = 0;
+                    oBalloon.obj.style.left = Math.ceil(Math.random() * 5) * position + "px";//随机产生1到5的数乘以位置移动量去实现每次掉落不同的位置
+                }
+            }
+        }
+
+        function hiddenAdd() {
+            G("add").style.display = "none"
+        }
+
+        /**
+         * 月饼下落抖动
+         */
+        oBalloon.obj.style.top = oBalloon.y + "px";
+    };
+
+    /**
+     * 月饼抓手移动函数，通过键盘的左右键去控制抓手左右移动
+     *
+     */
+    function hand(width) {
+        var hand = G("hand");
+        newTop = parseInt(hand.style.left) + width;
+        hand.style.left = newTop + 'px';
+    }
+
+    function setTimer(val) {
+        if (countdown === -1) {
+            balloon.prototype.dropTimer = function () {
+                clearTimeout(dropTimer);
+                showScore();
+            };
+        } else {
+            G(val).innerHTML = countdown + '';
+            countdown--;
+            setTimeout(function () {
+                setTimer(val);
+            }, 1000);
+        }
+    }
+
+    // 显示接种月饼数量
+    function showScore() {
+        var sHtml = "";
+        if (parseInt(G("score").innerHTML) >= 10) {
+            sHtml += '<img class="showTost" src="' + imgPathPrefix + 'get_chance.png" alt="" />';
+            sHtml += '<div class="score_tip"> ' + G("score").innerHTML + '</div>';
+            sHtml += '<img id="start_btn" src="' + imgPathPrefix + 'start_out.png" alt="" />';
+            sHtml += '<img id="back_btn" src="' + imgPathPrefix + 'back_out.png" alt="" />';
+            G("default_tip").innerHTML = sHtml;
+            LMEPG.ButtonManager.requestFocus('start_btn');
+        } else {
+            sHtml += '<img class="showTost" src="' + imgPathPrefix + 'no_chance.png" alt="" />';
+            sHtml += '<div class="score_tip"> ' + G("score").innerHTML + '</div>';
+            sHtml += '<img id="confirm_btn" src="' + imgPathPrefix + 'confirm_out.png" alt="" />';
+            G("default_tip").innerHTML = sHtml;
+            LMEPG.ButtonManager.requestFocus("confirm_btn");
+        }
+    }
+
+
+    //参与抽奖
+    function participationActivity() {
+        LMEPG.KeyEventManager.setAllowFlag(false);
+        setTimeout("LMEPG.KeyEventManager.setAllowFlag(true)", 1000);
+        LMEPG.UI.showWaitingDialog("");
+        LMEPG.ajax.postAPI('Activity/participateActivity', null,
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    switch (data.result) {
+                        // 没有抽中奖品
+                        case 0:
+                            jumpNotDrawnPrizeDialog();
+                            break;
+
+                        // 抽中奖品
+                        case 1:
+                            jumpDrawnPrizeDialog(data.prize_name, data.prize_idx);
+                            break;
+
+                        default:
+                            LMEPG.UI.showToast('抽奖失败[' + data.result + ']');
+                            setTimeout("onBack()", 3000);
+                            return;
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("抽奖结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                LMEPG.UI.showToast("请求抽奖发生错误！");
+            }
+        );
+    }
+
+    /**
+     * 上报参与记录（上报答题结果）
+     */
+    function uploadAnswerResult() {
+        LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    console.log('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                } catch (e) {
+                    console.log('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                }
+            },
+            function (rsp) {
+                console.log('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+            }
+        );
+    }
+
+
+</script>
+</body>
+</html>

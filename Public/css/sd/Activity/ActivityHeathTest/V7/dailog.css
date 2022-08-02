@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#btn-close {
+    top: 100px;
+    left: 596px;
+}
+
+#btn-open {
+    top: 346px;
+    left: 270px;
+}
+
+#btn-sure {
+    top: 355px;
+    left: 214px;
+}
+
+#btn-cancle {
+    top: 355px;
+    left: 339px;
+}
+
+#goods {
+    top: 164px;
+    left: 372px;
+}
+
+#searchText {
+    top: 297px;
+    left: 310px;
+    font-size: 12px;
+    width: 130px;
+    white-space: nowrap;
+}
+
+#btn-one {
+    top: 347px;
+    left: 270px;
+}

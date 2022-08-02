@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>39精选男</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/Album/featured.css?t={$time}"/>
+
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+<img id="back" src="__ROOT__/Public/img/hd/Menu/QHotherPages/back.png" alt="">
+<div id="container">
+    <ul id="item-wrapper">
+
+    </ul>
+</div>
+<img src="__ROOT__/Public/img/hd/Menu/QHotherPages/prevArrow.png" id="prev-arrow"/>
+<img src="__ROOT__/Public/img/hd/Menu/QHotherPages/nextArrow.png" id="next-arrow"/>
+<div id="page-index" style="color: black;font-weight: bold">0/0</div>
+<div id="iframe">
+    <img src="__ROOT__/Public/img/hd/Menu/QHotherPages/prevArrow.png" id="left-arrow"/>
+    <div id="img-container">
+        <img id="img-current" src="">
+    </div>
+    <img src="__ROOT__/Public/img/hd/Menu/QHotherPages/nextArrow.png" id="right-arrow"/>
+</div>
+<script type="text/javascript" src="__ROOT__/Public/js/Album/featured.js"></script>
+<script>
+    var page = {$moveNum};
+    var resourcesUrl = "{$resourcesUrl}";
+    var userId = "{$userId}";
+    var saveCurrentId = "{$focus_index}" == "focus-1-1" ? "focus-1" : "{$focus_index}";
+    var dataList = JSON.parse('{$data}').data.video_list; //专题节目列表;
+    var data = JSON.parse('{$data}').data.video_list;
+    document.body.style.backgroundImage = "url(__ROOT__/Public/img/hd/QHotherPages/male_bg.png)";
+    window.onload = function () {
+        renderList();
+        LMEPG.ButtonManager.init(saveCurrentId, buttons, '', true);
+    };
+</script>
+</body>
+</html>

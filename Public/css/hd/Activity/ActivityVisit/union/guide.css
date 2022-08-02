@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-detail {
+    position: absolute;
+    top: 41px;
+    left: 173px;
+    outline: none !important;
+    width: 203px;
+    height: 79px;
+
+}
+
+#btn-start {
+    position: absolute;
+    top: 566px;
+    left: 452px;
+    outline: none !important;
+    width: 357px;
+    height: 116px;
+}
+
+#btn-price {
+    position: absolute;
+    top: 41px;
+    left: 918px;
+    outline: none !important;
+    width: 203px;
+    height: 79px;
+}
+
+#back {
+    position: absolute;
+    top: 6px;
+    left: 1179px;
+    outline: none !important;
+    width: 96px;
+    height: 133px;
+}
+
+/*提示窗样式*/
+#default_tip
+{
+    position: absolute;
+    left: 450px;
+    top: 210px;
+    width: 370px;
+    height: 81px;
+    line-height:106px;
+    text-align: center;
+    font-size: 30px;
+    color: #090609;
+    visibility: hidden;
+    z-index: 1000;
+}
+#btn-book1{
+    position: absolute;
+    top: 530px;
+    left: 76px;
+    outline: none !important;
+    width: 152px;
+    height: 164px;
+}
+#btn-book2{
+    position: absolute;
+    top: 530px;
+    left: 262px;
+    outline: none !important;
+    width: 152px;
+    height: 164px;
+}
+#btn-book3{
+    position: absolute;
+    top: 530px;
+    left: 846px;
+    outline: none !important;
+    width: 152px;
+    height: 164px;
+}
+#btn-book4{
+    position: absolute;
+    top: 530px;
+    left: 1048px;
+    outline: none !important;
+    width: 152px;
+    height: 164px;
+}
+#show-box{
+    position: absolute;
+    top: 550px;
+    left: 735px;
+    outline: none !important;
+    width: 52px;
+    height: 54px;
+    z-index: 999;
+    background: url("../../../../../img/hd/Activity/ActivityAnswer/union/show_box.png");
+    line-height: 54px;
+    text-align: center;
+    font-size: 34px;
+    color: #662400;
+}

@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    /*position:absolute;;*/
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    top: 0px
+}
+
+#small-video-wrap{
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#small-video {
+    top: 498px;
+    left: 758px;
+}
+
+.hd-corner-mark{
+    top: 517px;
+    left: 737px;
+    visibility: hidden;
+}
+
+.hd-back {
+    top: 29px;
+    left: 1147px;
+}
+
+.hd-view-more {
+    top: 29px;
+    left: 989px;
+}
+
+.hd-video-list {
+    top: 120px;
+    left: 187px;
+    width: 500px;
+    /*border: 1px red solid;*/
+}
+.hd-video-list img{
+    margin-right: 64px;
+}
+
+.hd-v-arrow {
+    top: 468px;
+}
+
+.hd-v-prev {
+    top: 321px;
+    left: 86px;
+    visibility: hidden;
+}
+
+.hd-v-next {
+    top: 321px;
+    left: 678px;
+}
+
+/*==============SD==================*/
+.sd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+.sd-body{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    /*border: 1px solid red;*/
+}
+.sd-view-more {
+    position:absolute;
+    top: 15px;
+    left: 480px;
+    width: 80px;
+    height: 30px;
+}
+
+.sd-back {
+    position: absolute;
+    top: 15px;
+    left: 570px;
+    width: 54px;
+    height: 30px;
+}
+
+.sd-video-list {
+    position:absolute;
+    top: 168px;
+    left: 333px;
+    width: 388px;
+    height: 282px;
+    /*border: 1px red solid;*/
+}
+
+.sd-video-list img {
+    /*position: absolute;*/
+    width: 44px;
+    height: 280px;
+    margin-left: 26px;
+}
+
+.sd-v-arrow {
+    position:absolute;
+    top: 332px;
+    width: 20px;
+    height: 34px;
+}
+
+.sd-v-prev {
+    top:295px;
+    left: 334px;
+    visibility: hidden;
+}
+
+.sd-v-next {
+    top:295px;
+    left: 623px;
+}
+
+

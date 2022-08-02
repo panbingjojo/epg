@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>就诊指南-V10</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/New39hospital/V10/guide.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            accountId: "{$accountId}",          // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: "{$isVip}",                  // 用户是否是vip
+            userId: "{$userId}",                // 用户Id
+        }
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <switch name="carrierId">
+        <case value="520094">     <!--贵州广电js文件-->
+            <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+        </case>
+    </switch>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer_gzgd.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/New39hospital/V10/data.js?t={$time}"></script>
+</head>
+<body>
+<img id="bodyImg" src="__ROOT__/Public/img/hd/New39hospital/V10/bg-002.png"/>
+<img id="bodyDefaultImg" src="__ROOT__/Public/img/hd/New39hospital/V10/bg.png"/>
+
+<div id="container-left">
+    <div id="logo"></div>
+    <ul id="nav">
+        <li id="tab-home">首页</li>
+        <li id="tab-experts">顶级专家</li>
+        <li id="tab-guide">就诊指南</li>
+        <li id="tab-case">患者案例</li>
+        <div id="tab-order">立即咨询</div>
+    </ul>
+    <div id="qr-code">
+        <img align="bottom" src="__ROOT__/Public/img/hd/New39hospital/V10/qr_code.png" alt="">
+        <p id="qr-code-desc">扫描下载39互联网医院手机应用</p>
+    </div>
+</div>
+<img src="__ROOT__/Public/img/hd/New39hospital/V10/up.png" id="pre-arrow" alt="">
+<div id="debug" style="position: absolute;z-index: 100; top: 0px"></div>
+
+<div id="container-right">
+    <!--就诊指南-->
+    <div id="content-guide">
+        <div id="content-guide-video"></div>
+    </div>
+
+</div>
+
+<img src="__ROOT__/Public/img/hd/New39hospital/V10/down.png" id="next-arrow" alt="">
+<p id="service-tel">全国免费客服热线：400-061-3939</p>
+
+<script type="text/javascript">
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    var index = 0;
+    var fileIndex = "__ROOT__/Public/img/hd/New39hospital/V10/";
+    var Constat = {
+        fileIndex: "__ROOT__/Public/img/hd/New39hospital/V10/",
+    };
+    var buttons = [
+        {
+            id: "tab-guide",
+            name: "就诊指南",
+            type: 'div',
+            nextFocusUp: 'tab-experts',
+            nextFocusDown: 'tab-case',
+            nextFocusRight: 'content-guide',
+            backgroundImage: Constat.fileIndex + "guide.png",
+            focusImage: Constat.fileIndex + "guide_hover.png",
+            selectedImage: Constat.fileIndex + 'guide_active.png',
+            active: false,
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+            groupId: "department",
+        }, {
+            id: "content-guide",
+            name: "右边内容视图",
+            type: 'div',
+            nextFocusLeft: 'tab-guide',
+            backgroundImage: LMEPG.App.getAppRootPath() + "/Public/img/hd/Home/V10/HomeBox/bg_btn_null.png",
+            focusImage: fileIndex + "guide_selected.png",
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+        }];
+
+
+    /**
+     * 获取焦点后操作
+     * */
+    function onFocus(btn, hasFocus) {
+        var pdname = btn.id.slice(0, 3);
+        if (hasFocus) {
+            G(btn.id).style.color = "#ffffff";
+        } else {
+            var currentId = LMEPG.ButtonManager.getSelectedButton("department").id;
+            G(currentId).style.color = "#000";
+        }
+    }
+
+    /**
+     * 焦点移动后的操作
+     */
+    function onBeforeMoveChange(direction, current) {
+        switch (direction) {
+            case "up":
+                if (current.id == "content-guide") {
+                    prevPage();
+                    index === 0 ? setStyle(G("content-guide"), fileIndex + "guide_selected.png", "#000") : setStyle(G("content-guide"), '');
+                } else {
+                    jumpExpertUI();
+                }
+                break;
+            case "down":
+                if (current.id == "content-guide") {
+                    nextPage();
+                    index === 0 ? setStyle(G("content-guide"), fileIndex + "guide_selected.png", "#000") : setStyle(G("content-guide"), '');
+                } else {
+                    jumpCaseUI();
+                }
+                break;
+            case "left":
+                break;
+            case "right":
+                break;
+        }
+    }
+
+    function getCurrentPageUI() {
+        return LMEPG.Intent.createIntent("Hospital39Guide");
+    }
+
+    function jumpExpertUI() {
+        var nextPage = LMEPG.Intent.createIntent("Hospital39Expert");
+        LMEPG.Intent.jump(nextPage, getCurrentPageUI(), LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+
+    function jumpCaseUI() {
+        var nextPage = LMEPG.Intent.createIntent("Hospital39Case");
+        LMEPG.Intent.jump(nextPage, getCurrentPageUI(), LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+
+
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init("tab-guide", buttons, "", true);
+        LMEPG.ButtonManager.setSelected("tab-guide", true);
+        getHomeVideo();
+    };
+
+    function getHomeVideo() {
+        LMEPG.ajax.postAPI("Hospital39/getTopExpert", {}, function (data) {
+            var a = data;
+        });
+    }
+
+
+    function prevPage() {
+        if (index == 1) {
+            index--;
+            guideSickView();
+            arrow();
+        } else {
+
+        }
+    }
+
+    function nextPage() {
+        if (index == 0) {
+            index++;
+            guideSickView();
+            arrow();
+        } else {
+
+        }
+    }
+    //箭头指示
+    function arrow() {
+        setDisplay(G("pre-arrow"), 'none');
+        setDisplay(G("next-arrow"), 'none');
+        if (index == 1) {
+            setDisplay(G("pre-arrow"), 'block');
+            G("bodyDefaultImg").style.display="block";
+            G("bodyImg").style.display="none";
+        }
+        if (index == 0) {
+            setDisplay(G("next-arrow"), 'block');
+            G("bodyDefaultImg").style.display="none";
+            G("bodyImg").style.display="block";
+        }
+    }
+    function setDisplay(el, val) {
+        el.style.display = val;
+    }
+
+    /**
+     * 样式切换
+     * */
+    function setStyle(el, bgVal, colorVal) {
+        if (!LMEPG.Func.isEmpty(el)) {
+            el.style.backgroundImage = "url(" + bgVal + ")";
+            el.style.color = colorVal;
+        }
+    }
+
+    /**
+     * 就诊指南视图
+     * */
+    function guideSickView() {
+        var dataGuide = hospitalData.guide;
+        var guideText = hospitalData.guide[1].introduce;
+        var guideViewHtml;
+//        guidePage === 0 ? setStyle(G("content-guide"), fileIndex + "guide_selected.png", "#000") : setStyle(G("content-guide"), '');
+        if (index === 0) {
+            guideViewHtml = '';
+//            Play.startPollPlay();
+        } else if (index === 1) {
+//            Play.pausePlay();
+            guideViewHtml = '<div class="guide-title">' + guideText.topTitle +
+                    '    <span class="guide-title-right">' + guideText.introDesc + '</span></div>' +
+                    '    <img id="guide-img" src= "' + guideText.imgUrl + '" alt="就诊指南介绍背景"/>' +
+                    '    <div id="answer-guide-q">' +
+                    '    <p style="font-size: 18px;padding-bottom: 10px">' + guideText.text.title + '</p>';
+            var afterText = [];
+            for (var i = 0; i < guideText.text.content.length; i++) {
+                if (i < 3) {
+                    guideViewHtml += '<p class="guide-desc">' + guideText.text.content[i] + '</p>'
+                } else {
+
+                    afterText.push(guideText.text.content[i])
+                }
+
+            }
+            guideViewHtml += '<div class="afterThreeText">';
+            for (var j = 0; j < afterText.length; j++) {
+                guideViewHtml += '<p class="guide-desc">' + afterText[j] + '</p>';
+            }
+            guideViewHtml += '</div>' + '</div>';
+            G("content-guide-video").innerHTML = guideViewHtml;
+            G("answer-guide-q").style.backgroundImage = 'url("__ROOT__/Public/img/hd/New39hospital/guide_text_bg.png")';
+            return;
+        }
+        guideViewHtml += '</div>' + '</div>';
+        G("content-guide-video").innerHTML = guideViewHtml;
+    }
+
+</script>
+
+</body>
+</html>

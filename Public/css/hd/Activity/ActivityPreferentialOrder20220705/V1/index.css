@@ -1,0 +1,102 @@
+body {
+    width: 1280px;
+    height: 720px;
+    /*background-repeat: no-repeat;*/
+}
+/*body > *,*/
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: hidden;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+#bg_1{
+    display: block;
+}
+#bg_2{
+    display: none;
+}
+
+
+/*活动首页*/
+#btn_back{
+    position: absolute;
+    left: 1109px;
+    top: 93px;
+}
+
+#btn_activity_rule{
+    position: absolute;
+    top: 164px;
+    left: 1109px;
+}
+
+#btn_start{
+    position: absolute;
+    left: 539px;
+    top: 564px;
+}
+
+/*活动规则*/
+#btn_close_rule {
+    top: 28px;
+    left: 1170px;
+}
+
+/*订购VIP*/
+#btn_order_submit {
+    top: 393px;
+    left: 355px;
+}
+
+#btn_order_cancel {
+    top: 393px;
+    left: 612px;
+}
+/*游戏结束*/
+#btn_no_score {
+    top: 528px;
+    left: 713px;
+}
+#cutDown{
+    position: absolute;
+    top: 625px;
+    left: 125px;
+    text-align: center;
+    color: #fff;
+    width: 80px;
+    height: 30px;
+    font-size: 30px;
+    /*border: 1px red solid;*/
+}
+#skin-list{
+    position: absolute;
+    top: 343px;
+    left: 738px;
+    width: 450px;
+    overflow: hidden;
+}
+#skin-list>img{
+    margin-left: -10px;
+}
+#play{
+    position: absolute;
+    top: 583px;
+    left: 933px;
+}

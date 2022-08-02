@@ -1,0 +1,116 @@
+body {
+    color: #fff;
+    background-image: url("../../../../../Public/img/hd/DonateBlood/V1/bg_content.png");
+    background-repeat: no-repeat;
+}
+p.title {
+    position: absolute;
+    top: 20px;
+    left: 102px;
+    font-size: 38px;
+    color: #FFFFFF;
+}
+
+#logo{
+    position: absolute;
+    top: 30px;
+    left: 40px;
+}
+.photo{
+    position: absolute;
+    top: 130px;
+    left: 80px;
+    width: 528px;
+    height: 300px;
+    /*border: 1px red solid;*/
+}
+#bar_content{
+    position: absolute;
+    top: 405px;
+    left: 80px;
+    width: 528px;
+    height: 26px;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    justify-content: center
+}
+#bar_list{
+    position: absolute;
+    left: 190px;
+    width: 200px;
+    height: 26px;
+}
+.bar_hide{
+    float: left;
+    width: 16px;
+    height: 16px;
+    border-radius: 20px;
+    margin-left: 10px;
+    opacity: 0.6;
+    background-color: rgba(255,255,255,0.3);
+}
+.bar_show{
+    float: left;
+    width: 16px;
+    height: 16px;
+    border-radius: 20px;
+    margin-left: 10px;
+    opacity: 0.6;
+    background-color: #FFFFFF;
+}
+
+#introduce{
+    position: absolute;
+    top: 130px;
+    left: 667px;
+    width: 530px;
+    height: 274px;
+    font-size: 24px;
+    color: #FFFFFF;
+    text-indent:48px;
+    /*border: 1px red solid;*/
+}
+#btn_blood_ask{
+    position: absolute;
+    top: 480px;
+    left: 80px;
+}
+#btn_blood_step{
+    position: absolute;
+    top: 480px;
+    left: 370px;
+}
+#btn_blood_order{
+    position: absolute;
+    top: 480px;
+    left: 660px;
+}
+#btn_personal{
+    position: absolute;
+    top: 480px;
+    left: 950px;
+}
+#btn_f_1{
+    position: absolute;
+    top: 444px;
+    left: 44px;
+    display: none;
+}
+#btn_f_2{
+    position: absolute;
+    top: 444px;
+    left: 334px;
+    display: none;
+}
+#btn_f_3{
+    position: absolute;
+    top: 444px;
+    left: 624px;
+    display: none;
+}
+#btn_f_4{
+    position: absolute;
+    top: 444px;
+    left: 914px;
+    display: none;
+}

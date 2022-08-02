@@ -1,0 +1,33 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+body > *,
+.modal > * {
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: hidden;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+#btn_start {
+    position: absolute;
+    top: 590px;
+    left: 865px;
+}

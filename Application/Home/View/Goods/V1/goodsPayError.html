@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>支付异常</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/Goods/V1/rule.css?t={$time}">
+
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUI.js?t={$time}"></script>
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/AppointmentRegister/V1/reservationRule.js?t={$time}"></script>
+</head>
+<body>
+<div class="title">
+    支付异常
+</div>
+<img class="title-line" src="__ROOT__/Public/img/Common/V3/title_line.png" style="width: 150px"/>
+<!--医院科室-->
+<div id="default" class="content border">
+    <div class="content-detail">
+        支付出现问题！您可以到健康检测-设备商城-设备购<br/>买记录种查询记录！<br/>如有疑问，请拨打********
+    </div>
+    <div id="confirm" class="btn-bg btn-hover">确&nbsp;&nbsp;定</div>
+</div>
+
+<script>
+    // 返回按键
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+    //页面跳转控制
+    var Jump = {
+        /**
+         * 获取当前页面对象
+         */
+        getCurrentPage: function () {
+            var currentPage = LMEPG.Intent.createIntent("goodsDetail");
+            currentPage.setParam("scrollTop", G("center").scrollTop);
+            return currentPage;
+        },
+        /**
+         * 跳转到弹框页
+         */
+        jumpBuy: function (btn) {
+            var objCurrent = Jump.getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("goodsBuy");
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+    }
+
+    var buttons = [
+        {
+            id: "confirm",
+            name: '确认',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            click:onBack,
+            focusChange: "",
+            beforeMoveChange: "",
+        }
+    ];
+
+    window.onload = function () {
+        document.body.style.backgroundImage = 'url(__ROOT__/Public/img/hd/Home/V15/Home/bg.png)';
+        LMEPG.ButtonManager.init("confirm", buttons, "", true);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #fff;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+/*背景图*/
+#indexBg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 300px;
+    height: 2px;
+}
+#title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+#container {
+    width: 1121px;
+    height: 535px;
+    left: 79px;
+    top: 129px;
+    position: absolute;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    z-index: 1;
+}
+
+#tab-container {
+    width: 1089px;
+    height: 420px;
+    position: relative;
+    top: 21px;
+    left: 16px;
+    right: 16px;
+}
+
+#nav-container {
+    width: 1089px;
+    height: 94px;
+    position: relative;
+    left: 16px;
+    top: 20px;
+    right: 16px;
+}
+
+#nav-container img {
+    width: 154px;
+    height: 54px;
+    position: relative;
+}
+
+#pre-page {
+    left: 307px;
+    top: 20px;
+}
+
+#next-page {
+    left: 475px;
+    top: 20px;
+}
+
+
+
+
+#page-number{
+    position: absolute;
+    top: 670px;
+    left: 625px;
+    color:#fff;
+    font-size:25px;
+}
+.phone-item{
+    width: 350px;
+    height: 130px;
+    background-color: rgb(33,125,235);
+    border-radius: 10px;
+    position: absolute;
+}
+.phone-item-title{
+    position: relative;
+    width: 350px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    font-size: 23px;
+    letter-spacing: 2px;
+    font-family: SourceHanSansCN-Regular;
+    background-color: rgb(14,53,100);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+.phone-item-content{
+    width: 350px;
+    height: 90px;
+    position: relative;
+}
+
+.phone-item-left{
+    width: 90px;
+    line-height: 30px;
+    font-size: 23px;
+    letter-spacing: 1px;
+    font-family: SourceHanSansCN-Regular;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.phone-item-line{
+    width: 2px;
+    height: 68px;
+    left: 66px;
+    position: absolute;
+    background-color: #FFFFFF;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.phone-item-right{
+    width: 260px;
+    font-size: 22px;
+    font-family: SourceHanSansCN-Regular;
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+
+
+
+
+

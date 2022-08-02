@@ -1,0 +1,111 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 530px;
+    width: 644px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.btn {
+    position: absolute;
+    width: 80px;
+    height: 26px;
+    outline: none;
+}
+
+#back_btn {
+    top: 28px;
+    left: 541px;
+}
+
+#doctor {
+    position: absolute;
+    top: 93px;
+    left: 329px;
+    color: #08a8b6;
+    font-size: 14px;
+    font-weight: bold;
+}
+#job_name {
+    position: absolute;
+    top: 115px;
+    left: 329px;
+    color: #08a8b6;
+    font-size: 14px;
+}
+#hospital {
+    position: absolute;
+    top: 138px;
+    left: 329px;
+    color: #08a8b6;
+    font-size: 14px;
+}
+
+.common_bg {
+    position: absolute;
+    top: 102px;
+    left: 47px;
+    width: 550px;
+    height: 182px;
+    background: #ececec;
+}
+
+#photo_img {
+    top: -9px;
+    left: 34px;
+    position: absolute;
+    width: 144px;
+    height: 194px;
+    outline: none;
+}
+
+#photo_box {
+    top: -12px;
+    left: 31px;
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    outline: none;
+}
+
+.introdece {
+    top: 13px;
+    left: 206px;
+    position: absolute;
+    letter-spacing: 1px;
+    font-size: 14px;
+    line-height: 20px;
+    color: black;
+
+}
+
+.grenn {
+    font-size: 14px;
+    color: #08a8b6;
+    font-weight: bold;
+}
+#code {
+    top: 58px;
+    left: 206px;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    outline: none;
+}
+.introdece2{
+    top: 322px;
+    left:82px;
+    position: absolute;
+    outline: none;
+    font-size: 12px;
+    line-height: 20px;
+    color:black;
+    width: 680px;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>播放器界面V20</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'>
+
+    <!--    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/V16/common.css?t={$time}"/>-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V16/PlayerCollect.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V16/player.css?t={$time}">
+
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公共渲染
+            carrierId: '{$carrierId}',                      // 地区id
+            areaCode: '{$areaCode}',                        // 省份地区码
+            platformType: '{$platformType}',                // 平台类型（hd--高清 sd--标清）
+            debug: '{$debug}',                              // 调试模式
+            pageSize: '{$pageSize}',                        // 页面尺寸
+            collectStatus: '{$collectStatus}',              // 判断是否收藏 0表示收藏 1表示未收藏
+            sourceId: '{$sourceId}',                        // 视频ID
+            returnUrl: '{$returnUrl}',                      // 返回地址 unescape("{$returnUrl}")
+            userId: '{$userId}',                            // 用户ID
+            imgHost: '{$resourcesUrl}',                     // 图片host
+            isVip: {$isVip},                                // 用户是不是vip，1 -- 是vip
+            freeSeconds: {$freeSeconds},                    // 免费观看时长
+            durationTime: '{$durationTime}',                // 视频总时长
+            currentPlayTimes: 0,                            // 记录当前播放的时间进度
+            userType: {$userType},                          // 视频的播放策略（0-不限，1-普通用户可看, 2-vip可看）
+            videoInfo: {$videoInfo},                        // 视频信息
+            domainUrl: '{$domainUrl}',                      // 江苏电信需要使用的第三方播放器前缀地址
+            videoUrl: '{$videoUrl}',                        // 视频url：中国联通的高清视频地址http 转换成为rtsp进行播放。
+            recommendVideoUrl: '',                            // 推荐视频播放地址
+            isForbidOrder: '{$Think.cookie.c_is_forbided_order}', // 是否禁止订购 1--表示禁止订购
+
+            allVideoInfo: {$albumArr},    // 从视频集进入，这里是所有的视频，用于上下集切换
+            subjectId: "{$subjectId}",    // 从视频集进入，需要传入视频集id
+            PLUGIN_APP_NAME: '{$pluginVideoName}',
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--模块-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/PlayerFocus.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/V20/Player.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Home/V20/home.jst={$time}"></script>
+</head>
+<body bgcolor="transparent">
+<div id="debug1"></div>
+<div id="debug2"></div>
+<!-- 默认标签：防止焦点丢失 -->
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+<div id="recommend-page">
+    <p class="title-text">为你推荐更多精彩视频</p>
+
+    <div id="recommend-list">
+        <div id="focus-0">
+            <img id="recommend-img-0" src="" onerror="this.src='__ROOT__/Public/img/Common/default.png'" alt="">
+            <p id="recommend-title-0" style="display: none"></p>
+        </div>
+        <div id="focus-1">
+            <img id="recommend-img-1" src="" onerror="this.src='__ROOT__/Public/img/Common/default.png'" alt="">
+            <p id="recommend-title-1" style="display: none"></p>
+        </div>
+        <div id="focus-2">
+            <img id="recommend-img-2" src="" onerror="this.src='__ROOT__/Public/img/Common/default.png'" alt="">
+            <p id="recommend-title-2" style="display: none"></p>
+        </div>
+
+    </div>
+
+    <div class="btn-action-wrap">
+        <div class="collect">
+            <img id="collect" src="__ROOT__/Public/img/hd/Player/V13/btn_collect.png" alt="">
+            <p id="collectStatus"></p>
+        </div>
+        <div class="replay">
+            <img id="replay" src="__ROOT__/Public/img/hd/Player/V13/btn_replay.png" alt="">
+            <p id="playText">继续播放</p>
+        </div>
+        <div class="back">
+            <img id="back" src="__ROOT__/Public/img/hd/Player/V13/btn_back.png" alt="">
+            <p>退出</p>
+        </div>
+    </div>
+</div>
+
+<!--    视频标题-->
+<div id="video-title"></div>
+
+<!--底部UI条-->
+<div id="controller">
+    <!--    暂停播放按键-->
+    <img id="play-status" src="__ROOT__/Public/img/{$platformType}/Player/V16/img_pause.png"/>
+    <!--    当前时间/总时长  -->
+    <div id="time-info">
+        <span id="play-time">00:00</span><span id="time-divider">/</span><span id="duration">00:00</span>
+    </div>
+    <!--    进度条-->
+    <div id="progress-bar">
+        <div id="progress-layer">
+            <img id="progress-indicator" src='__ROOT__/Public/img/{$platformType}/Player/V16/progress_indicator.png'/>
+        </div>
+    </div>
+</div>
+
+<div id="time-preview">
+    <span id="preview-play-time"></span>/<span id="preview-duration"></span>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        Player.init();
+        if(RenderParam.carrierId == '11000051'){
+            lmInitGo();
+        }
+    }
+</script>
+</body>
+</html>

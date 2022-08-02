@@ -1,0 +1,151 @@
+<div id="user-container">
+    <img id="user-pic" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/unvip.png">
+    <p id="user-account"></p>
+    <img id="join-vip" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/join_vip.png">
+</div>
+<div id="record-container">
+    <img id="collect-record" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/collect_record.png">
+    <img id="play-record" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/play_record.png">
+    <img id="family-record" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/family_record.png">
+    <!--<img id="seek-record" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/seek_record.png">-->
+    <img id="order-record" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/order_record.png">
+<!--    <img id="debook-record" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/debook_record.png">-->
+</div>
+<div id="tab3-help" class="tab-help-wrap">
+    <img id="tab3-help0" src="__ROOT__/Public/img/hd/Help/V13/tab3_help0.png">
+    <img id="tab3-help1" src="__ROOT__/Public/img/hd/Help/V13/tab3_help1.png">
+    <img id="tab3-help2" src="__ROOT__/Public/img/hd/Help/V13/tab3_help2.png">
+    <img id="tab3-help3" src="__ROOT__/Public/img/hd/Help/V13/tab3_help3.png">
+    <img id="tab3-help4" src="__ROOT__/Public/img/hd/Help/V13/tab3_help4.png">
+</div>
+<script type="text/javascript">
+    window.lmcid = window.lmcid || LMEPG.App.getCarrierId();
+    var Tab3 = {
+        init: function () {
+            this.renderTab3();
+            this.createBtns();
+        },
+        /**
+         * 渲染Tab3
+         */
+        renderTab3: function () {
+            G('user-account').innerHTML = '账户ID：' + RenderParam.accountId;
+            // 如果是vip，隐藏加入会员按钮
+            if (RenderParam.isVip == 1) {
+                H('join-vip');
+                G('user-pic').src = ROOT + '/Public/img/hd/Home/V13/Home/Tab3/vip.png';
+            }
+        },
+        onClickJumpPage: function (btn) {
+            var curObj = getCurPageObj();
+            var jumpId = {
+                'collect-record': 'collect',
+                'play-record': 'historyPlay',
+                'family-record': 'familyEdit',
+                'seek-record': 'doctorRecordHome',//'seekOnLineRecord'
+                'order-record': 'expertRecordHome',
+                'debook-record': 'debook'
+            };
+            if (RenderParam.platformType == 'sd' && btn.id == "order-record") {
+                LMEPG.UI.showToast('不支持的盒子类型！', 1.5);
+                return;
+            }
+            var dstObj = LMEPG.Intent.createIntent(jumpId[btn.id]);
+            LMEPG.Intent.jump(dstObj, curObj);
+        },
+        createBtns: function () {
+            buttons.push({
+                id: 'join-vip',
+                type: 'img',
+                name: '加入会员',
+                nextFocusUp: 'sift-2',
+                nextFocusRight: 'collect-record',
+                backgroundImage: ROOT + '/Public/img/hd/Home/V13/Home/Tab3/join_vip.png',
+                focusImage: ROOT + '/Public/img/hd/Home/V13/Home/Tab3/join_vip_f.png',
+                click: PageJump.jumpBuyVip,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onBeforeMoveChange
+            }, {
+                id: 'collect-record',
+                type: 'img',
+                name: '我的收藏',
+                nextFocusUp: 'sift-2',
+                nextFocusDown: 'order-record',
+                nextFocusLeft: RenderParam.isVip == 0 ? 'join-vip' : "",
+                nextFocusRight: 'play-record',
+                click: this.onClickJumpPage,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onBeforeMoveChange
+            }, {
+                id: 'play-record',
+                type: 'img',
+                name: '播放记录',
+                nextFocusUp: 'sift-2',
+                nextFocusDown: 'order-record',
+                nextFocusLeft: 'collect-record',
+                nextFocusRight: 'family-record',
+                click: this.onClickJumpPage,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onBeforeMoveChange
+            }, {
+                id: 'family-record',
+                type: 'img',
+                name: '家庭档案',
+                nextFocusUp: 'sift-2',
+                nextFocusDown: 'order-record',
+                nextFocusLeft: 'play-record',
+                nextFocusRight: 'order-record',
+                click: this.onClickJumpPage,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onBeforeMoveChange
+            }, {
+                id: 'seek-record',
+                type: 'img',
+                name: '在线问医记录',
+                nextFocusUp: 'collect-record',
+                nextFocusLeft: RenderParam.isVip == 0 ? 'join-vip' : "",
+                nextFocusRight: 'order-record',
+                click: this.onClickJumpPage,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onBeforeMoveChange
+            }, {
+                id: 'order-record',
+                type: 'img',
+                name: '专家约诊记录',
+                nextFocusUp: 'collect-record',
+                nextFocusLeft: RenderParam.isVip == 0 ? 'join-vip' : "",
+                nextFocusRight: 'debook-record',
+                click: this.onClickJumpPage,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onBeforeMoveChange
+            }, {
+                id: 'debook-record',
+                type: 'img',
+                name: '查询及退订',
+                nextFocusUp: 'play-record',
+                nextFocusLeft: 'order-record',
+                click: this.onClickJumpPage,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onBeforeMoveChange
+            });
+        },
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+        },
+        onBeforeMoveChange: function (dir, current) {
+            if (dir == "up" && (current.id == "join-vip" || current.id == "collect-record" || current.id == "play-record" || current.id == "family-record")) {
+                showTabContent("tab-2");
+                LMEPG.BM.requestFocus('sift-2');
+                return false;
+            }
+            if (window.lmcid === '220001' && (current.id == 'family-record' || current.id == 'play-record') && dir == 'down') {
+                LMEPG.ButtonManager.requestFocus('order-record');
+            }
+        },
+    };
+</script>

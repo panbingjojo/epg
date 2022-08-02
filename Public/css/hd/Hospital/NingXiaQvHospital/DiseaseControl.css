@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    background-image: url("../../../../img/hd/Hospital/NingXiaQvHospital/DiseaseControl/bg.jpg");
+}

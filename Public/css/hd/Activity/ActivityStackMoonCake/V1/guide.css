@@ -1,0 +1,377 @@
+
+body {
+    width: 1280px;
+    height: 720px;
+    /*background-image: url("../../../../../img/Activity/ActivityStackMoonCake/V1/bg_home.png");*/
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.jump-wrap {
+    position: absolute;
+    top: 18px;
+    right: 44px;
+    width: 132px;
+}
+
+#jump-rule,
+#jump-exchange {
+    margin-left: -70px;
+}
+
+#jump-game {
+    position: absolute;
+    top: 339px;
+    left: 491px;
+}
+
+#times-count {
+    position: absolute;
+    top: 363px;
+    left: 682px;
+    font-size: 33px;
+    font-weight: bold;
+    color: #e75481;
+    z-index: 1;
+    width: 60px;
+    text-align: center;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*====倒计时====*/
+#modal-cd {
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/m_cd_bg.png");*/
+}
+
+#count-down {
+    position: absolute;
+    color: #e55231;
+    font-size: 43px;
+    top: 252px;
+    left: 676px;
+    font-weight: bold;
+}
+
+/*====活动规则====*/
+#modal-rule {
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/m_rule.png");*/
+}
+
+#btn-rule-close {
+    position: absolute;
+    top: 56px;
+    left: 947px;
+}
+
+/*====中奖名单====*/
+#modal-list {
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/m_win_list.png");*/
+}
+
+#total-list {
+    top: 210px;
+    left: 222px;
+    position: absolute;
+}
+
+#all-marquee {
+    height: 166px;
+}
+
+#my-marquee {
+    height: 58px;
+}
+
+table.marquee-table {
+    width: 870px;
+}
+
+table#all-table tr {
+    height: 40px;
+}
+
+table.marquee-table td {
+    width: 33%;
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+}
+
+#my-list {
+    position: absolute;
+    top: 450px;
+    left: 225px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.list-tel {
+    position: absolute;
+    color: #e86e14;
+    top: 537px;
+    left: 450px;
+    width: 280px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+}
+
+img.btn-list {
+    position: absolute;
+    top: 500px;
+}
+
+#btn-list-submit {
+    left: 780px;
+}
+
+#btn-list-cancel {
+    left: 938px;
+}
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/m_no_times.png");*/
+}
+
+#btn-one0 {
+    position: absolute;
+    top: 418px;
+    left: 536px;
+}
+
+/*====普通用户没有游戏次数====*/
+#modal-pay-notimes {
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/m_pay_vip.png");*/
+}
+
+img.btn-pay {
+    position: absolute;
+    top: 411px;
+}
+
+#btn-pay-sure {
+    left: 441px;
+}
+
+#btn-pay-cancel {
+    left: 687px;
+}
+
+/*====兑换成功====*/
+#modal-accomplish {
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/m_exchange_success.png");*/
+}
+
+#accomplish-prize {
+    position: absolute;
+    top: 188px;
+    left: 525px;
+    width: 244px;
+    height: 185px;
+}
+
+#accomplish-tel {
+    position: absolute;
+    top: 383px;
+    left: 606px;
+    width: 250px;
+    text-align: center;
+    font-size: 24px;
+}
+
+img.btn-win {
+    position: absolute;
+    top: 476px;
+}
+
+#btn-accomplish-submit {
+    left: 424px;
+}
+
+#btn-accomplish-cancel {
+    left: 765px;
+}
+
+/*====游戏主界面====*/
+#modal-game {
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/bg_game.png");*/
+}
+
+
+#game-start {
+    position: absolute;
+    top: 601px;
+    left: 517px;
+}
+
+
+#game-cd {
+    position: absolute;
+    top: 43px;
+    left: 153px;
+    font-size: 36px;
+    color: #ee4a8d;
+    text-align: center;
+    font-weight: bold;
+    width: 75px;
+}
+
+#cake-wrap {
+    position: absolute;
+    top: 0;
+    left: 358px;
+    width: 566px;
+    height: 575px;
+}
+
+#cake-wrap img {
+    position: absolute;
+    /* visibility: hidden; */
+}
+
+#c_0 {
+    z-index: 10;
+}
+
+#c_1 {
+    z-index: 9;
+}
+
+#c_2 {
+    z-index: 8;
+}
+
+#c_3 {
+    z-index: 7;
+}
+
+#c_4 {
+    z-index: 6;
+}
+
+#c_5 {
+    z-index: 5;
+}
+
+#c_6 {
+    z-index: 4;
+}
+
+#c_7 {
+    z-index: 3;
+}
+
+#c_8 {
+    z-index: 2;
+}
+
+#c_9 {
+    z-index: 1;
+}
+
+/*====增加积分界面===*/
+#modal-add-score {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/m_add_score.png");*/
+}
+
+#p-add-score {
+    position: absolute;
+    top: 324px;
+    left: 710px;
+    font-size: 56px;
+    color: #d56000;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#btn-one-add {
+    position: absolute;
+    top: 476px;
+    left: 574px;
+}
+
+/*====兑换界面====*/
+#modal-exchange {
+    /*background-image: url("../../../../img/Activity/ActivityStackMoonCake/V1/m_exchange.png");*/
+}
+.require-score-wrap{
+    position: absolute;
+    top: 560px;
+    width: 100%;
+    font-size: 33px;
+    text-align: center;
+    color: #fff;
+}
+
+.require-score-wrap span{
+    position: absolute;
+}
+
+span.require-0{
+    left: 260px;
+}
+span.require-1{
+    margin-top: -47px;
+    left: 626px;
+}
+span.require-2{
+    left: 975px;
+}
+
+.exchange-user-score {
+    position: absolute;
+    top: 34px;
+    left: 84px;
+    color: #fff;
+    font-size: 33px;
+    font-weight: bold;
+    width: 175px;
+    text-align: center;
+}
+
+.exchange-btn-wrap {
+    position: absolute;
+    top: 232px;
+    width: 100%;
+    text-align: center;
+}
+
+.exchange-btn-wrap img {
+    margin-right: 105px;
+    margin-left: 140px;
+}
+
+img#btn-exchange_1{
+    /* margin-top: -50px; */
+    margin-bottom: 50px;
+}
+#btn-close-exchange {
+    position: absolute;
+    top: 28px;
+    left: 1116px;
+}
+
+
+
+

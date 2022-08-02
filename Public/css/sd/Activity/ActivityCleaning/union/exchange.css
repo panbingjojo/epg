@@ -1,0 +1,105 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+#back {
+    position: absolute;
+    top: 45px;
+    left: 520px;
+    outline: none !important;
+    width: 40px;
+    height: 40px;
+}
+.title{
+    position: absolute;
+    top: 84px;
+    left: 286px;
+    font-size: 20px;
+    line-height: 20px;
+    outline: none !important;
+}
+#mypoint{
+    position: absolute;
+    top: 122px;
+    left: 272px;
+    font-size: 20px;
+    line-height: 20px;
+    width: 100px;
+    outline: none !important;
+    text-align: center;
+}
+#exchange1{
+    position: absolute;
+    top: 170px;
+    left: 75px;
+    outline: none !important;
+    width: 132px;
+    height: 132px;
+}
+#exchange2{
+    position: absolute;
+    top: 170px;
+    left: 258px;
+    outline: none !important;
+    width: 132px;
+    height: 132px;
+}
+#exchange3{
+    position: absolute;
+    top: 170px;
+    left: 422px;
+    outline: none !important;
+    width: 132px;
+    height: 132px;
+}
+.exchange1_point{
+    position: absolute;
+    top: 334px;
+    left: 89px;
+    font-size: 16px;
+    line-height: 16px;
+    width: 100px;
+    text-align: center;
+    outline: none !important;
+}
+.exchange2_point{
+    position: absolute;
+    top: 334px;
+    left: 273px;
+    font-size: 16px;
+    line-height: 16px;
+    width: 100px;
+    text-align: center;
+    outline: none !important;
+}
+.exchange3_point{
+    position: absolute;
+    top: 334px;
+    left: 455px;
+    font-size: 16px;
+    line-height: 16px;
+    width: 100px;
+    text-align: center;
+    outline: none !important;
+}
+.introduce{
+    position: absolute;
+    top: 378px;
+    left: 144px;
+    font-size: 20px;
+    line-height: 20px;
+    outline: none !important;
+    color: #666666;
+}

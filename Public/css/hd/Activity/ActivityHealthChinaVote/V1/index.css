@@ -1,0 +1,509 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+body > *,
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: hidden;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+#btn_back {
+    position: absolute;
+    top: 39px;
+    left: 1088px;
+}
+
+#btn_activity_rule {
+    position: absolute;
+    top: 108px;
+    left: 1088px;
+}
+
+#btn_rank {
+    position: absolute;
+    top: 177px;
+    left: 1088px;
+}
+
+#btn_more {
+    position: absolute;
+    top: 247px;
+    left: 1088px;
+}
+
+#btn_start {
+    position: absolute;
+    top: 392px;
+    left: 481px;
+}
+
+#left_times {
+    top: 632px;
+    left: 1168px;
+    width: 43px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: #795548;
+}
+
+/*游戏机会用完*/
+/*#game_over{*/
+    /*visibility: hidden;*/
+/*}*/
+
+#btn_game_over_sure{
+    position: absolute;
+    top: 482px;
+    left: 557px;
+}
+
+#dialog_wrap {
+    z-index: 3;
+}
+
+#dialog_wrap *{
+    position: absolute;
+}
+
+.table_left {
+    left: 159px;
+}
+
+.table_right {
+    left: 652px;
+}
+
+table {
+    position: ABSOLUTE;
+    top: -10px;
+    left: 80px;
+}
+
+table tr{
+    POSITION: absolute;
+    height: 318px;
+    display: block;
+}
+
+table tr td {
+    text-align: center;
+}
+
+table .table_col1 {
+    width: 57px;
+}
+
+table .table_col2 {
+    width: 329px;
+}
+
+table .table_col3 {
+    width: 42px;
+}
+
+.business {
+    font-size: 18px;
+}
+
+.add_one_left{
+    left: 593px;
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+    color: blue;
+}
+.add_one_right{
+    left: 1085px;
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+    color: blue;
+}
+
+/*投票专区*/
+.btn_close{
+    position:absolute;
+    left: 1186px;
+    top: 31px;
+}
+
+#btn_close_vote{
+    position: absolute;
+    left: 1186px;
+    top: 31px;
+}
+
+.rank-container{
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+.vote-wrap{
+    left: 68px;
+    top: 131px;
+    height: 600px;
+}
+
+.vote-table{
+    left: 68px;
+    top: 131px;
+    height: 600px;
+}
+
+.td-vote-1{
+    POSITION: relative;
+    /* left: 0px; */
+    top: 0px;
+}
+
+.vote-img-1{
+    position: absolute;
+    top: 144px;
+    padding-left: 9px;
+    border-radius: 8px;
+}
+
+.vote-box-1{
+    position: relative;
+    /* left: -5px; */
+    top: 135px;
+    border-radius: 8px;
+}
+
+.btn-vote-1{
+    POSITION: RELATIVE;
+    /* Z-INDEX: 99; */
+    top: -113px;
+}
+
+.add-vote-1{
+    position: absolute;
+    top: 212px;
+    left: 75px;
+    z-index: 8;
+    /*visibility: hidden;*/
+}
+
+.td-vote-2{
+    POSITION: RELATIVE;
+    left:0px;
+    top: 315px;
+    height: 50px;
+}
+
+.vote-img-2{
+    position: ABSOLUTE;
+    top: 74px;
+    padding-left: 9px;
+    border-radius: 8px;
+}
+
+.vote-box-2{
+    POSITION: RELATIVE;
+    /* left:0px; */
+    top: 71px;
+    border-radius: 8px;
+}
+
+.btn-vote-2{
+    POSITION: RELATIVE;
+    LEFT: 0PX;
+    top: -177PX;
+}
+
+.add-vote-2{
+    position: absolute;
+    top: 146px;
+    left: 75px;
+    z-index: 8;
+    /*visibility: hidden;*/
+}
+
+.vote-num-1{
+    position: relative;
+    left: 83px;
+    top: -258px;
+    font-size: 36px;
+    color: #67483d;
+    font-weight: bold;
+    /* z-index: 9; */
+    padding-top: 72px;
+}
+
+.vote-num-2{
+    position: relative;
+    left: 83px;
+    top: -326px;
+    font-size: 36px;
+    color: #67483d;
+    font-weight: bold;
+    /* z-index: 9; */
+    padding-top: 72px;
+}
+
+#page-wrapper {
+    position: absolute;
+    top: 653px;
+    left: 440px;
+    height: 62px;
+}
+
+#page-wrapper img {
+    vertical-align: middle;
+}
+
+#page-wrapper p {
+    width: 81px;
+    height: 62px;
+    line-height: 62px;
+    color: #b2deff;
+    text-align: center;
+    display: inline-block;
+}
+
+#btn_prev_page_vote{
+    /* position: absolute; */
+    /* left:404px */
+}
+
+#btn_next_page_vote{
+    /* position: absolute; */
+    /* left:670px; */
+}
+
+p#vote-page-index{
+    /* position: absolute; */
+    left: 580px;
+    top: 12px;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    color: #060606;
+}
+
+/*更多精彩*/
+/*.btn_close{*/
+    /*position:absolute;*/
+    /*left: 1186px;*/
+    /*top: 31px;*/
+/*}*/
+
+#btn_close_more{
+    position: absolute;
+    left: 1186px;
+    top: 31px;
+}
+
+.more-wrap{
+    left: 68px;
+    top: 131px;
+    height: 600px;
+}
+
+.more-table{
+    left: 68px;
+    top: 131px;
+    height: 600px;
+}
+
+.td-more-1{
+    POSITION: relative;
+    left: -26px;
+    padding-right: 291px;
+    margin-right: 20px;
+    top: 0px;
+}
+
+.more-img-1{
+    position: absolute;
+    left: 5px;
+    top: 144px;
+    border-radius: 8px;
+}
+
+.more-box-1{
+    position: absolute;
+    top: 135px;
+    border-radius: 8px;
+}
+
+.btn-more-1{
+    POSITION: RELATIVE;
+    /* Z-INDEX: 99; */
+    top: -113px;
+}
+
+.td-more-2{
+    POSITION: relative;
+    left: -26px;
+    padding-right: 291px;
+    margin-right: 20px;
+    top: 307px;
+}
+
+.more-img-2{
+    position: absolute;
+    left: 5px;
+    top: 87px;
+    border-radius: 8px;
+}
+
+.more-box-2{
+    POSITION: absolute;
+    top: 80px;
+    border-radius: 8px;
+}
+
+.btn-more-2{
+    POSITION: RELATIVE;
+    LEFT: 0PX;
+    top: -177PX;
+}
+
+#more-page-wrapper {
+    position: absolute;
+    top: 653px;
+    left: 440px;
+    height: 62px;
+}
+
+#more-page-wrapper img {
+    vertical-align: middle;
+}
+
+#more-page-wrapper p {
+    width: 81px;
+    height: 62px;
+    line-height: 62px;
+    color: #b2deff;
+    text-align: center;
+    display: inline-block;
+}
+
+#btn_prev_page_more{
+    /* position: absolute; */
+    /* left:404px */
+}
+
+#btn_next_page_more{
+    /* position: absolute; */
+    /* left:670px; */
+}
+
+p#more-page-index{
+    /* position: absolute; */
+    left: 580px;
+    top: 12px;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    color: #060606;
+}
+
+/*排行榜*/
+.rank-wrap{
+    left: 68px;
+    top: 131px;
+    height: 600px;
+}
+
+.rank-table{
+    left: 68px;
+    top: 131px;
+    height: 600px;
+}
+
+.rank-tr{
+    position: relative;
+    left: 160px;
+    top: 240px;
+    height: 42px;
+    width: 900px;
+}
+
+.rank-td-1{
+    position: relative;
+    width: 100px;
+}
+
+.rank-num{
+    position:relative;
+    font-size: 30px;
+}
+
+.rank-name{
+    position:relative;
+    font-size: 26px;
+}
+
+.rank-td-2{
+    position: relative;
+    width: 600px;
+    left: 370px;
+    text-align: left;
+}
+
+#arrow-wrapper {
+    position: absolute;
+    top: 391px;
+    left: 25px;
+    height: 80px;
+}
+
+#arrow-wrapper img {
+    vertical-align: middle;
+}
+
+#btn_prev_page_rank{
+    position: absolute;
+    left: 60px;
+}
+
+#btn_next_page_rank{
+    position: absolute;
+    left: 1100px;
+}
+
+p#rank-page-index{
+    position: absolute;
+    left: 580px;
+    top: 650px;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    color: #060606;
+}
+
+/*倒计时弹窗*/
+/*#count {*/
+    /*top: 288px;*/
+    /*left: 668px;*/
+    /*color: #000;*/
+    /*font-size: 60px;*/
+    /*font-weight: bold;*/
+/*}*/

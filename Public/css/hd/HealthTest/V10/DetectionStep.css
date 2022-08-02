@@ -1,0 +1,88 @@
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+
+.show_box {
+    position: absolute;
+    left: 80px;
+    top: 120px;
+    width: 1120px;
+    height: 522px;
+}
+
+#step_1 {
+    position: absolute;
+    left: 128px;
+    top: 44px;
+    width: 386px;
+    height: 169px;
+    display: none;
+}
+
+#step_2 {
+    position: absolute;
+    left: 532px;
+    top: 117px;
+    width: 40px;
+    height: 42px;
+    display: none;
+}
+
+#step_3 {
+    position: absolute;
+    left: 645px;
+    top: 44px;
+    width: 386px;
+    height: 169px;
+    display: none;
+}
+
+#step_4 {
+    position: absolute;
+    left: 850px;
+    top: 222px;
+    width: 42px;
+    height: 40px;
+    display: none;
+}
+
+#step_5 {
+    position: absolute;
+    left: 645px;
+    top: 278px;
+    width: 386px;
+    height: 169px;
+    display: none;
+}
+
+#step_6 {
+    position: absolute;
+    left: 532px;
+    top: 347px;
+    width: 40px;
+    height: 42px;
+    display: none;
+}
+
+#step_7 {
+    position: absolute;
+    left: 128px;
+    top: 278px;
+    width: 386px;
+    height: 169px;
+    display: none;
+}

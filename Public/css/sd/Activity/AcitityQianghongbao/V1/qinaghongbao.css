@@ -1,0 +1,20 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background: url("../../../../img/Activity/ActivityQianghongbao/V1/play_bg_.png") no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+#content{position:absolute;width:460px;height:470px;margin:0 auto; left: 20px;}
+#price{position:absolute;top:0; left:0px; z-index: 999; width: 160px; text-align: center; width: 115px; height: 89px; }
+#hand{position:absolute; width: 118px; height: 175px; top: 293px;}
+#warm{ color: red; width: 400px; height: 20px; position:absolute; top:500px; left: 130px; font-size: 16px;}
+#priceimg{width: 58px; height: 102px;}

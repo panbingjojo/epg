@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    margin: 0 auto;
+}
+
+body > * {
+    position: absolute;
+}
+#modal{
+    z-index: 33;
+}
+img.loading {
+    background: url(../../../../../img/Common/loading.gif) no-repeat center;
+}
+
+.abs {
+    position: absolute;
+}
+
+#bg {
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+}
+#back{
+    position: absolute;
+    top: 26px;
+    left: 1173px;
+}
+#travel-place img{
+    position: absolute;
+    width: 334px;
+    height: 336px;
+}
+#travel0 {
+    top: 38px;
+    left: 172px;
+}
+#travel1 {
+    top: 376px;
+    left: 110px;
+}
+#travel2 {
+    top: 162px;
+    left: 493px;
+}
+#travel3 {
+    top: 46px;
+    left: 839px;
+}
+#travel4 {
+    top: 377px;
+    left: 839px;
+}
+#userTel {
+    position: absolute;
+    z-index: 99;
+    width: 250px;
+    overflow: hidden;
+    color: #92ff7d;
+}
+
+#btn-one {
+    position: absolute;
+    top: 608px;
+    left: 533px;
+}
+
+.tel-wrap {
+    position: absolute;
+    color: #92ff7d;
+    font-size: 20px;
+}
+
+/*订购相关*/
+#btn-sure-pay {
+    top: 608px;
+    left: 370px;
+}
+
+#btn-cancel {
+    top: 608px;
+    left: 696px;
+}
+
+/*完成游戏*/
+.complete-submit {
+    top: 608px;
+    left: 370px;
+}
+
+.complete-cancel {
+    top: 608px !important;
+    left: 696px;
+}
+
+.tel-complete {
+    top: 520px;
+    left: 533px;
+    font-size: 24px;
+}
+#lose-prize{
+    position: absolute;
+    z-index: 33;
+}
+#win-prize {
+    top: 207px;
+    left: 470px;
+    width: 338px;
+    height: 271px;
+    z-index: 33;
+}
+
+.g_waiting_dialog {
+    position: absolute;
+    left: 590px;
+    top: 310px;
+    width: 100px;
+    height: 100px;
+    line-height: 220px;
+    font-size: 1px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url(../../../../../img/hd/Common/bg_waiting_dialog.gif) no-repeat center;
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>答题活动V1-游戏页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityAnswer/V1/index.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityAnswer/V1/DialogMoreThree.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityAnswer/PopRule.js?t={$time}"></script>
+
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示答题正确弹窗
+         */
+        function jumpAnswerRightDialog() {
+            jumpDialog(ANSWER_SUCCESS);
+        }
+
+        /**
+         * 显示答题错误弹窗
+         */
+        function jumpAnswerErrorDialog() {
+            jumpDialog(ANSWER_ERROR);
+        }
+
+        /**
+         * 显示非会员答题次数用尽
+         */
+        function jumpNoVipTimesOverDialog() {
+            jumpDialog(NOT_VIP_USER_PLAY_TIMES_OVER);
+        }
+    </script>
+</head>
+<body style="background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/index_bg.png');">
+<img class="toy" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/toy.gif"/>
+<img class="topic"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/<?php echo $answer['index']?>.png"/>
+<div class="topicName"><?php echo $answer['question']?></div>
+<div class="answerA"><?php echo $answer['answerA']?></div>
+<div class="answerB"><?php echo $answer['answerB']?></div>
+<div class="answerC"><?php echo $answer['answerC']?></div>
+<img id="replayA" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectA_out.png"
+     onfocusurl="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectA_error.png"
+     confirmurl="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectA_ok.png"/>
+<img id="replayB" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectB_out.png"
+     onfocusurl="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectB_error.png"
+     confirmurl="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectB_ok.png"/>
+<img id="replayC" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectC_out.png"
+     onfocusurl="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectC_error.png"
+     confirmurl="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectC_ok.png"/>
+<img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/play_out.png"/>
+<script type="text/javascript">
+    var buttons;
+    var isVip = {$isVip};//是否是vip
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init(['replayA'], buttons, '', true);
+    }
+
+    buttons = [
+        {
+            id: 'replayA',
+            name: '选择A',
+            type: 'img',
+            nextFocusLeft: 'replayC',
+            nextFocusRight: 'replayB',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectA_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectA_in.gif',
+            click: 'answer("A")',
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'replayB',
+            name: '选择B',
+            type: 'img',
+            nextFocusLeft: 'replayA',
+            nextFocusRight: 'replayC',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectB_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectB_in.gif',
+            click: 'answer("B")',
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'replayC',
+            name: '选择C',
+            type: 'img',
+            nextFocusLeft: 'replayB',
+            nextFocusRight: 'replayA',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectC_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/selectC_in.gif',
+            click: 'answer("C")',
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'replayC',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/play_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/play_in.gif',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        }
+    ];
+
+    function answer(value) {
+        LMEPG.ButtonManager.setKeyEventPause(true); //暂停点击事件
+        var rightAnswer = "<?php echo $answer['rightAnswer']?>";
+        var isAnswerRight = rightAnswer == value ? true : false;
+        if (isAnswerRight) {
+            //用户回答正确
+            G("replay" + value).src = G("replay" + value).getAttribute('confirmurl');
+            LMEPG.UI.showToast("回答正确",3);
+        } else {
+            //用户回答错误
+            G("replay" + value).src = G("replay" + value).getAttribute('onfocusurl');
+            LMEPG.UI.showToast("回答错误,正确答案:" + rightAnswer,3);
+        }
+        //上报答题结果
+        setTimeout(function () {
+            uploadAnswerResult(isAnswerRight, value);
+        }, 1000);
+    }
+
+    function onBack() {
+        //回到活动界面
+        LMEPG.Intent.back();
+    }
+
+    /**
+     * 上报答题结果
+     * @param isAnswerRight 是否回答正确
+     * @param choose  用户选择的答案
+     */
+    function uploadAnswerResult(isAnswerRight, choose) {
+        var reqData = {
+            "isAnswerRight": isAnswerRight,
+            "choose": choose
+        };
+        LMEPG.ajax.postAPI('Activity/uploadAnswerResult', reqData,
+            function (rsp) {    // success
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        //上报答题结果成功
+                        if(LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)){
+                            //是vip
+                            if(isAnswerRight){
+                                //答案正确
+                                jumpAnswerRightDialog();
+                            } else{
+                                //答案错误
+                                jumpAnswerErrorDialog();
+                            }
+                        } else{
+                            //普通用户不管答题正确与否都，显示非会员答题次数用尽
+                            jumpNoVipTimesOverDialog();
+                        }
+
+                    } else {
+                        //上报答题结果失败
+                        LMEPG.UI.showToast("上报答题结果失败:" + result, 3);
+                        LMEPG.ButtonManager.setKeyEventPause(false); //恢复点击事件
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("上报答题结果解析异常！" + result, 3);
+                    LMEPG.ButtonManager.setKeyEventPause(false); //恢复点击事件
+                }
+            },
+            function (rsp) {    // error
+                LMEPG.UI.showToast("上报答题结果请求错误！");
+                LMEPG.ButtonManager.setKeyEventPause(false); //恢复点击事件
+            }
+        );
+    }
+
+</script>
+</body>
+</html>

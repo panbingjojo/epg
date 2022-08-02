@@ -1,0 +1,188 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V20/Common/bg.png);
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    font-size: 40px;
+    font-weight: bold;
+    width: 200px;
+    color: #fff;
+}
+
+#ask-doctor-record {
+    position: absolute;
+    top: 24px;
+    left: 842px;
+}
+
+#test-record {
+    position: absolute;
+    top: 24px;
+    left: 1066px;
+}
+
+#record-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#page-arrow {
+    visibility: hidden;
+}
+
+#page-arrow img {
+    position: absolute;
+    left: 627px;
+}
+
+#page-arrow #prev-arrow {
+    top: 183px;
+}
+
+#page-arrow #next-arrow {
+    top: 625px;
+}
+
+#record-container table {
+    position: absolute;
+    top: 111px;
+    left: 151px;
+    width: 1018px;
+    height: 350px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.thead-title {
+    color: #fff;
+}
+
+#record-container table thead {
+    font-size: 30px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#record-container table thead th {
+    vertical-align: top;
+    height: 113px;
+}
+
+#record-container table tbody {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+tr.thead-txt {
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    padding: 5px;
+    background-position: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 30px;
+}
+tr.tbody-txt {
+    height: 84px;
+    line-height: 84px;
+    text-align: center;
+    padding: 5px;
+    background-position: center;
+    background-image: url("../../../../img/hd/Family/V20/btn_long.png");
+}
+
+
+#record-container table tbody tr td {
+    width: 100%;
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+#choice-inner {
+    position: absolute;
+    top: 189px;
+    left: 131px;
+    width: 1018px;
+    height: 342px;
+    background-image: url(../../../../img/hd/DataArchiving/V16/choice_inner_bg.png);
+    background-position: center;
+    z-index: 2;
+    font-size: 24px;
+    color: #238dfd;
+    text-align: center;
+    visibility: hidden;
+}
+
+#member-title,
+#food-title {
+    position: absolute;
+    top: 49px;
+    font-size: 20px;
+    color: #fff;
+    width: 88px;
+}
+#member-title{
+    left: 164px;
+}
+#food-title{
+    left: 494px;
+}
+ul#test-member{
+    position: absolute;
+    top: 100px;
+    left: 164px;
+    width: 88px;
+}
+ul#food-status {
+    position: absolute;
+    top: 100px;
+    left: 494px;
+    width: 88px;
+}
+#btn-submit{
+    position: absolute;
+    top: 98px;
+    left: 825px;
+}
+#btn-delete{
+    position: absolute;
+    top: 185px;
+    left: 825px;
+}
+#choice-inner ul li{
+    margin-bottom: 45px;
+}
+ul {
+    list-style: none;
+}
+#choice-inner ul li.focus{
+    color: red;
+    border-bottom: 1px solid red;
+}
+.bg-box{
+    position: absolute;
+    top: 103px;
+    left: 66px;
+    /*width: 152px;*/
+    /*height: 152px;*/
+}

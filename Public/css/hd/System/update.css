@@ -1,0 +1,24 @@
+/*背景图*/
+#update_background {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#update_text {
+    position: absolute;
+    left: 380px;
+    width: 450px;
+    height: 100px;
+    top: 408px;
+}
+
+#update_round {
+    position: absolute;
+    left: 540px;
+    width: 160px;
+    height: 160px;
+    top: 203px;
+}

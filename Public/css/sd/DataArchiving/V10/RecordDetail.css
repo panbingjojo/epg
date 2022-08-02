@@ -1,0 +1,98 @@
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+
+.center {
+    position: absolute;
+    top: 120px;
+    left: 388px;
+    width: 732px;
+    height: 448px;
+    padding: 40px;
+    border: 1px transparent solid;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card {
+    position: absolute;
+    width: 288px;
+    height: 528px;
+    left: 80px;
+    top: 120px;
+    border-radius: 12px;
+}
+
+.photo {
+    position: absolute;
+    width: 152px;
+    height: 152px;
+    border-radius: 50%;
+    top: 40px;
+    left: 62px;
+}
+
+.intro-info {
+    position: absolute;
+    width: 284px;
+    text-align: center;
+    top: 226px;
+    font-size: 34px;
+}
+
+.font-s {
+    font-size: 28px;
+}
+.btn-middle {
+    /*width: 172px;*/
+    /*height: 45px;*/
+    /*line-height: 45px;*/
+    text-align: center;
+    margin: 0px auto;
+    /*margin-top: 15px;*/
+}
+.border{
+    background:url("../../../../../Public/img/hd/DataArchiving/V10/box_photo.png");
+}
+.border2{
+    background:url("../../../../../Public/img/hd/DataArchiving/V10/box_data.png");
+}
+
+table{
+    width: 100%;
+    font-size: 28px;
+}
+table tr td{
+    height: 50px;
+}
+#m-next {
+    position: absolute;
+    top: 680px;
+    left: 780px;
+}
+
+#null-data {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    width: 500px;
+    margin-left: -250px;
+    text-align: center;
+    /*font-size: 28px;*/
+    font-size: 36px;
+    display: none;
+}

@@ -1,0 +1,135 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../img/hd/Home/V16/Home/bg.png);
+    background-position: left;
+    color: #000;
+    overflow: hidden;
+    perspective: 800px;
+}
+
+ul {
+    list-style: none;
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+    clear: both;
+    width: 700px;
+    height: 75px;
+    line-height: 75px;
+}
+
+#title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+}
+
+#member-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#icon-member {
+    position: absolute;
+    top: 130px;
+    left: 155px;
+    width: 140px;
+    height: 140px;
+}
+
+#call-wrap {
+    position: absolute;
+    top: 292px;
+    left: 147px;
+}
+
+#call-wrap li {
+    width: 148px;
+    height: 58px;
+    line-height: 58px;
+    padding-bottom: 7px;
+    margin-bottom: 10px;
+}
+
+#call-wrap li.edit-member {
+    font-size: 30px;
+}
+
+/*身体特征输入*/
+.body-characteristic {
+    position: absolute;
+    top: 162px;
+    left: 388px;
+}
+
+.body-characteristic ul li {
+    float: left;
+    text-align: center;
+}
+
+.age {
+    width: 100px;
+}
+
+.height {
+    width: 400px
+}
+
+.weight {
+    width: 100px;
+}
+
+ul#prev-wrap,
+ul#select-wrap,
+ul#next-wrap{
+    padding-left: 90px;
+    margin-left: -90px;
+}
+ul#prev-wrap{
+    margin-top: -25px;
+}
+ul#select-wrap{
+    background-image: url(../../../../img/hd/Family/V13/select_bg.png);
+}
+ul#prev-wrap li {
+    padding-top: 60px;
+}
+
+ul#select-wrap li span.focus {
+    color: #ef6188;
+    border-bottom: 1px solid #ef6188;
+}
+
+#submit {
+    position: absolute;
+    top: 372px;
+    left: 1092px;
+}
+
+#delete-member {
+    position: absolute;
+    top: 282px;
+    left: 1092px;
+}
+
+.text-info {
+    position: absolute;
+    top: 606px;
+    left: 330px;
+    font-size: 20px;
+}

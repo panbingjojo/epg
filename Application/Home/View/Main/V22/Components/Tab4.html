@@ -1,0 +1,237 @@
+<div class="tab3-box">
+    <div id="tab-3-scroll" style="position: absolute;top: 40px;left: 100px;transition: left 0.5s;">
+        <div class="tab3-recommended-1-box">
+            <img id="tab3-recommended-1" class="recommended-img"
+                 src="http://202.99.114.152:30214/fs/mofang/imgs/1000051/faster_entry/20200605092905.png"
+                 onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            <!--        <p id="tab3-recommended-1-title"></p>-->
+        </div>
+
+        <div class="tab3-recommended-2-list">
+            <div class="tab3-recommended-2-list-1-box">
+                <img id="tab3-recommended-2-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab3-recommended-2-list-2-box">
+                <img id="tab3-recommended-2-list-2" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+        </div>
+
+        <div class="tab3-recommended-3-list">
+            <div class="tab3-recommended-3-list-1-box">
+                <img id="tab3-recommended-3-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab3-recommended-3-list-2-box">
+                <img id="tab3-recommended-3-list-2" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+        </div>
+
+
+        <div class="tab3-recommended-4-list">
+            <div class="tab3-recommended-4-list-1-box">
+                <img id="tab3-recommended-4-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab3-recommended-4-list-2-box">
+                <img id="tab3-recommended-4-list-2" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+            <div class="tab3-recommended-4-list-3-box">
+                <img id="tab3-recommended-4-list-3" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab3-recommended-4-list-4-box">
+                <img id="tab3-recommended-4-list-4" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab3-recommended-4-list-5-box">
+                <img id="tab3-recommended-4-list-5" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+            <div class="tab3-recommended-4-list-6-box">
+                <img id="tab3-recommended-4-list-6" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+            <div class="tab3-recommended-4-list-7-box">
+                <img id="tab3-recommended-4-list-7" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+<!--            <div class="tab3-recommended-4-list-8-box">-->
+<!--                <img id="tab3-recommended-4-list-8" class="recommended-img"-->
+<!--                     src=""-->
+<!--                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">-->
+<!--            </div>-->
+
+        </div>
+    </div>
+</div>
+
+<script>
+    Tab3 = {
+        scrollArray: [100, -855,-1685],
+        initButton: function () {
+            buttons.push({
+                id: 'tab3-recommended-1',
+                type: 'img',
+                nextFocusRight: 'tab3-recommended-3-list-1',
+                nextFocusUp: 'tab-3',
+                nextFocusDown: 'tab3-recommended-2-list-1',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                beforeMoveChange: Tab3.beforeMoveChange,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 41,
+            })
+            var i = 2;
+            while (i--) {
+                buttons.push({
+                        id: 'tab3-recommended-2-list-' + (i + 1),
+                        type: 'img',
+                        nextFocusLeft: 'tab3-recommended-2-list-' + i,
+                        nextFocusRight: 'tab3-recommended-2-list-' + (i + 2),
+                        nextFocusUp: 'tab3-recommended-1',
+                        nextFocusDown: '',
+                        click: Page.onClickRecommendPosition,
+                        focusChange: Head.recdFocus,
+                        cPosition: 42,
+                        beforeMoveChange: Tab3.beforeMoveChange,
+                        cBanner: i,
+                    }
+                )
+                buttons.push({
+                        id: 'tab3-recommended-3-list-' + (i + 1),
+                        type: 'img',
+                        nextFocusUp: 'tab3-recommended-3-list-' + i,
+                        nextFocusDown: 'tab3-recommended-3-list-' + (i + 2),
+                        nextFocusLeft: 'tab3-recommended-1',
+                        nextFocusRight: 'tab3-recommended-4-list-1',
+                        click: Page.onClickRecommendPosition,
+                        focusChange: Head.recdFocus,
+                        cPosition: 43,
+                        beforeMoveChange: Tab3.beforeMoveChange,
+                        cBanner: i,
+                    }
+                )
+            }
+
+            var j = 7;
+            while (j--) {
+                buttons.push({
+                        id: 'tab3-recommended-4-list-' + (j + 1),
+                        type: 'img',
+                        nextFocusLeft: 'tab3-recommended-4-list-' + j,
+                        nextFocusRight: 'tab3-recommended-4-list-' + (j + 2),
+                        nextFocusUp: 'tab-3',
+                        nextFocusDown: '',
+                        click: Page.onClickRecommendPosition,
+                        focusChange: Head.recdFocus,
+                        beforeMoveChange: Tab3.beforeMoveChange,
+                        cPosition: 44,
+                        cBanner: j,
+                    }
+                )
+            }
+
+
+        },
+        beforeMoveChange: function (dir, cur) {
+            switch (dir) {
+                case "up":
+                    if (cur.id == "tab3-recommended-3-list-1") {
+                        LMEPG.BM.requestFocus("tab-3");
+                        LMEPG.BM.getButtonById("tab-3").nextFocusDown = cur.id;
+                        return false
+                    } else {
+                        LMEPG.BM.getButtonById("tab-3").nextFocusDown = cur.id;
+                    }
+                    break;
+                case "left":
+                    if (cur.id == "tab3-recommended-4-list-1") {
+                        LMEPG.BM.requestFocus("tab3-recommended-3-list-1");
+                        return false
+                    } else if (cur.id == "tab3-recommended-4-list-2") {
+                        Tab3.showTabContent(0);
+                    }else if (cur.id == "tab3-recommended-4-list-5") {
+                        Tab3.showTabContent(1);
+                    }
+                    break;
+                case "right":
+                    if (cur.id == "tab3-recommended-2-list-2") {
+                        LMEPG.BM.requestFocus("tab3-recommended-3-list-2");
+                        return false
+                    } else if (cur.id == "tab3-recommended-4-list-1") {
+                        Tab3.showTabContent(1);
+                    }else if (cur.id == "tab3-recommended-4-list-5") {
+                        Tab3.showTabContent(2);
+                    }
+                    break;
+
+            }
+        },
+        /*导航栏得失焦点回调操作*/
+        showTabContent: function (index) {
+            G("tab-3-scroll").style.left = Tab3.scrollArray[index] + "px";
+            // alert( G("scroll-3").style.left)
+        },
+        createHtml: function () {
+            var list = RenderParam.homeConfigInfo.data.entry_list;
+            var id = '';
+            for (var i = 0; i < list.length; i++) {
+                id = 0;
+                var item = list[i];
+                switch (parseInt(item.position)) {
+                    // banner
+                    case 41:
+                        id = 'tab3-recommended-1';
+                        break;
+                    case 42:
+                        id = '';
+                        Head.renderList(item.item_data, "tab3-recommended-2-list-")
+                        break;
+                    case 43:
+                        id = '';
+                        Head.renderList(item.item_data, "tab3-recommended-3-list-")
+                        break;
+                    case 44:
+                        id = '';
+                        Head.renderList(item.item_data, "tab3-recommended-4-list-")
+                        break;
+                }
+                if (id) {
+                    G(id).src = RenderParam.fsUrl + item.item_data[0].img_url;
+                }
+            }
+        },
+        init: function () {
+            try {
+                Tab3.initButton();
+                Tab3.createHtml();
+            } catch (e) {
+                LMEPG.UI.showToast("健康知识组件异常运行" + e)
+            }
+        },
+    }
+</script>

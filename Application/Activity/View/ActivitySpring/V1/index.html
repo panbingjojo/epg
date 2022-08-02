@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>春天活动-游戏页V1</title>
+    <meta charset="utf-8" name="page-view-size"  content="{$size}" >
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivitySpring/V1/index.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivitySpring/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 奖品对话框
+         * @param text
+         * @param prizeIdx
+         * @param prizeName
+         * @param bg
+         */
+        function jumpPrizeDialog(text, prizeIdx, prizeName, bg) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("prizeName", prizeName);
+            objDialog.setParam("bg", typeof bg === "undefined" ? "" : bg);
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+
+    </script>
+</head>
+<body>
+<!--提示弹框-->
+<div id="debug" style=" position:absolute; color: red"></div>
+
+<img id="btn-back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V1/tab1_out.png" alt="" />
+<img id="btn-area1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V1/tab1_out.png" alt="" />
+<img id="btn-area2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V1/tab1_out.png" alt="" />
+<img id="btn-area3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V1/tab1_out.png" alt="" />
+<img id="btn-area4" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V1/tab1_out.png" alt="" />
+<img id="btn-area5" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V1/tab1_out.png" alt="" />
+
+<script type="text/javascript">
+    var platformType = "{$platformType}";
+    var leftTimes = {$leftTimes};//剩余抽奖次数
+    var isVip = {$isVip};//是否是vip
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V1/';
+
+    var buttons = [
+        {
+            id: 'btn-back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'btn-area2',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'btn-area2',
+            backgroundImage: imgPathPrefix + 'tab1_out.png',
+            focusImage: imgPathPrefix + 'excit_unicom.png',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        },
+        {
+            id: 'btn-area1',
+            name: '区域1',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-area2',
+            nextFocusUp: 'btn-back',
+            nextFocusDown: 'btn-area3',
+            backgroundImage: imgPathPrefix + 'tab1_out.png',
+            focusImage: imgPathPrefix + 'tab_box.png',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        },
+        {
+            id: 'btn-area2',
+            name: '区域2',
+            type: 'img',
+            nextFocusLeft: 'btn-area1',
+            nextFocusRight: 'btn-back',
+            nextFocusUp: 'btn-back',
+            nextFocusDown: 'btn-area5',
+            backgroundImage: imgPathPrefix + 'tab1_out.png',
+            focusImage: imgPathPrefix + 'tab_box.png',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        },
+        {
+            id: 'btn-area3',
+            name: '区域3',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-area4',
+            nextFocusUp: 'btn-area1',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'tab1_out.png',
+            focusImage: imgPathPrefix + 'tab_box.png',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        },
+        {
+            id: 'btn-area4',
+            name: '区域4',
+            type: 'img',
+            nextFocusLeft: 'btn-area3',
+            nextFocusRight: 'btn-area5',
+            nextFocusUp: 'btn-area2',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'tab1_out.png',
+            focusImage: imgPathPrefix + 'tab_box.png',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        },
+        {
+            id: 'btn-area5',
+            name: '区域5',
+            type: 'img',
+            nextFocusLeft: 'btn-area4',
+            nextFocusRight: '',
+            nextFocusUp: 'btn-area2',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'tab1_out.png',
+            focusImage: imgPathPrefix + 'tab_box.png',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        }
+    ];
+
+    window.onload = function () {
+        var chooseItem = "{$chooseItem}";
+        if (chooseItem != null && chooseItem != "" &&  chooseItem.indexOf("btn") >= 0) {
+            LMEPG.ButtonManager.init([chooseItem], buttons, '', true);
+        } else {
+            LMEPG.ButtonManager.init(['btn-area4'], buttons, '', true);
+        }
+    };
+
+    function onClick() {
+        uploadAnswerResult();
+        participationActivity();
+    }
+
+    /**
+     * 上报参与记录（上报答题结果）
+     */
+    function uploadAnswerResult() {
+        LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    console.log('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                } catch (e) {
+                    console.log('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                }
+            },
+            function (rsp) {
+                console.log('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+            }
+        );
+    }
+
+    //参与抽奖
+    function participationActivity() {
+        LMEPG.ajax.postAPI('Activity/participateActivity', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        //没有抽中奖品
+                        context = USER_NOT_DRAWN_PRIZE_TIPS;
+                        jumpPrizeDialog(context, "", "", "");
+                    } else if (result == 1) {
+                        //抽中奖品
+                        context = VIP_USER_DRAWN_PRIZE;
+                        prizeName = data.prize_name;
+                        prizeIdx = data.prize_idx;
+                        jumpPrizeDialog(context, prizeIdx, prizeName, "");
+                    } else if (result == -108) {
+                        //vip参与活动次数已满
+                        context = VIP_USER_PLAY_TIMES_OVER;
+                        jumpPrizeDialog(context, "", "", "");
+                    } else if (result == -109) {
+                        //非会员试玩后提示
+                        context = NOT_VIP_USER_PLAY_TIMES_OVER;
+                        jumpPrizeDialog(context, "", "", "");
+                    } else {
+                        LMEPG.Intent.back();
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("抽奖结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("请求抽奖发生错误！");
+            }
+        );
+    }
+</script>
+</body>
+</html>

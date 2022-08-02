@@ -1,0 +1,175 @@
+/*菜单选项*/
+.tab_menu {
+    position: absolute;
+    left: 13px;
+    top: 0px;
+    width: 233px;
+    height: 720px;
+    -moz-background-size: 233px 720px; /* 老版本的 Firefox */
+    background-size: 233px 720px;
+    background-repeat: no-repeat;
+}
+
+.tab_list {
+    position: absolute;
+    left: 13px;
+    top: 54px;
+}
+
+.tab_list_block {
+    position: relative;
+    top: 0px;
+    left: 13px;
+    width: 179px;
+    height: 73px;
+    margin-top: 3px;
+}
+
+.tab_list_img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 179px;
+    height: 66px;
+}
+
+.tab_list_icon {
+    position: absolute;
+    top: 18px;
+    left: 0px;
+    width: 179px;
+    height: 27px;
+    font-size: 25px;
+    text-align: center;
+    line-height: 27px;
+    overflow: hidden;
+    z-index: 55;
+}
+
+/*右侧面板*/
+.right_panel {
+    position: absolute;
+    width: 1034px;
+    height: 720px;
+    left: 120px;
+    /*border: 1px red solid;*/
+}
+
+.light {
+    position: absolute;
+    top: 70px;
+    left: 40px;
+    width: 97px;
+    height: 3px;
+}
+
+.finished_icon {
+    position: absolute;
+    top: 30px;
+    left: 16px;
+    width: 355px;
+    height: 84px;
+    font-size: 42px;
+    line-height: 42px;
+    color: #fff;
+    font-weight: bold
+}
+
+.finished_title {
+    position: absolute;
+    top: 113px;
+    left: 16px;
+    width: 963px;
+    height: 40px;
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: bold
+}
+
+#disease_name {
+    color: #eee13f;
+    font-size: 40px;
+}
+
+.content {
+    position: absolute;
+    top: 173px;
+    width: 1000px;
+    height: 480px;
+    -moz-background-size: 1000px 480px; /* 老版本的 Firefox */
+    background-size: 1000px 480px;
+    background-repeat: no-repeat;
+    left: 16px;
+}
+
+.content_size {
+    position: absolute;
+    top: 6px;
+    height: 460px;
+    width: 1000px;
+    overflow: auto;
+    color: #fff;
+}
+
+.content_block {
+    margin: 0px 53px;
+    width: 900px;
+}
+
+.title_icon {
+    width: 138px;
+    height: 30px;
+}
+
+.content_title {
+    margin-top: 18px;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: left;
+}
+
+/*收藏/取消收藏按钮*/
+.collect_btn {
+    position: absolute;
+    right: 5px;
+    top: 30px;
+    width: 193px;
+    height: 92px;
+    line-height: 88px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.collect_btn_bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 193px;
+    height: 92px;
+}
+
+#collect_btn_title {
+    position: absolute;
+    width: 193px;
+    height: 92px;
+    line-height: 92px;
+}
+
+/*右侧底部*/
+.prompt {
+    position: absolute;
+    top: 669px;
+    left: 16px;
+    width: 1000px;
+    height: 22px;
+    color: #fff;
+    font-size: 22px;
+    line-height: 22px;
+}
+
+.prompt_icon {
+    width: 51px;
+    height: 22px;
+}

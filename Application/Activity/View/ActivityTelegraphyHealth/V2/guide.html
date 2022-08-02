@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>点亮新春，筑梦2020-青海电信EPG</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!-- 默认标签 -->
+    <a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+    
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityTelegraphyHealth/V2/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<!--    <script type="text/javascript" src="__ROOT__/Public/Common/js/keypad.js?t={$time}"></script>-->
+    <script type="text/javascript">
+        var RenderParam = {
+            "imagePathPrefix": "__ROOT__/Public/img/hd/Activity/ActivityTelegraphyHealth/V2/",
+            "voteDetail": {$voteDetail},
+        //    "voteDetail": {"result":0,"today_point":0,"total_point":0,"list":[{"player_id":"1001","total_point":"27","today_point":0},{"player_id":"1002","total_point":"11","today_point":0},{"player_id":"1003","total_point":"36","today_point":0},{"player_id":"1004","total_point":"13","today_point":0},{"player_id":"1005","total_point":"23","today_point":0},{"player_id":"1006","total_point":"12","today_point":0},{"player_id":"1007","total_point":"25","today_point":0},{"player_id":"1008","total_point":"28","today_point":0},{"player_id":"1009","total_point":"8","today_point":0},{"player_id":"1010","total_point":"38","today_point":0},{"player_id":"1011","total_point":"23","today_point":0}]},
+            "userId":"{$userId}",
+            leftTimes: "{$activityTimes}",
+            currBtnIndex:"",
+        };
+    </script>
+</head>
+<body>
+<img class="background_image" src="__ROOT__/Public/img/hd/Activity/ActivityTelegraphyHealth/V2/bg_home.png">
+<img id="btn_back" src="__ROOT__/Public/img/hd/Activity/ActivityTelegraphyHealth/V2/btn_back.png" alt="">
+<img id="btn_rule" src="__ROOT__/Public/img/hd/Activity/ActivityTelegraphyHealth/V2/btn_rule.png" alt="">
+<!--<img id="btn_past" src="__ROOT__/Public/img/hd/Activity/ActivityTelegraphyHealth/V2/btn_past.png" alt="">-->
+<div id="rank_wrap">
+
+</div>
+<div id="dialog_wrap" class="modal">
+
+</div>
+
+<p id="add_one_0" class="add_one_left">+1</p>
+<p id="add_one_1" class="add_one_left">+1</p>
+<p id="add_one_2" class="add_one_left">+1</p>
+<p id="add_one_3" class="add_one_left">+1</p>
+<p id="add_one_4" class="add_one_left">+1</p>
+<p id="add_one_5" class="add_one_right">+1</p>
+<p id="add_one_6" class="add_one_right">+1</p>
+<p id="add_one_7" class="add_one_right">+1</p>
+<p id="add_one_8" class="add_one_right">+1</p>
+<p id="add_one_9" class="add_one_right">+1</p>
+
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityTelegraphyHealth/V2/guide.js?t={$time}"></script>
+
+
+<script>
+    window.onload = function () {
+        //lmInitGo();
+        Activity.init();
+    };
+</script>
+
+</body>
+</html>

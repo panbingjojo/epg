@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+.container {
+    position: absolute;
+    left: 90px;
+    top: 149px;
+    text-align: center;
+    /*border: 1px red solid;*/
+    height: 550px;
+    overflow: auto;
+    width: 1160px;
+}
+
+.time {
+    margin-top: 0px;
+    font-size: 32px;
+}
+
+.sleep-status {
+    margin-top: 25px;
+    width: 1100px;
+    height: 450px;
+    background: url(../../../../../img/hd/HealthTest/V8/Wristband/sleep_show_box.png);
+    /*border: 1px red solid;*/
+    /*box-sizing: border-box;*/
+}
+
+ul li {
+    font-size: 30px;
+    float: left;
+    list-style: none;
+    margin-left: 100px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+ul li .list-bg {
+    position: relative;
+    top: 0px;
+    width: 225px;
+    height: 225px;
+    text-align: center;
+    background: url(../../../../../img/hd/HealthTest/V8/Wristband/t_box.png);
+}
+
+ul li .list-content {
+    width: 225px;
+    text-align: center;
+    position: absolute;
+    top: 75px;
+    font-size: 48px;
+    line-height: 45px;
+}
+
+.low-font {
+    font-size: 25px !important;
+}
+
+ul li p {
+    margin-top: 10px;
+}
+
+.sleep-bar {
+    width: 100%;
+    clear: left;
+    position: relative;
+    top: 50px;
+    font-size: 30px;
+}
+
+#fall-sleep {
+    position: absolute;
+    left: 90px;
+}
+
+#un-sleep {
+    position: absolute;
+    left: 630px;
+}
+
+.sleep-compare {
+    margin-top: 30px;
+    width: 1100px;
+    height: 90px;
+    background: url(../../../../../img/hd/HealthTest/V8/Wristband/sleep_compare.png);
+    font-size: 24px;
+}
+
+#sleep-compare-content {
+    line-height: 90px;
+    float: left;
+    margin-left: 20px;
+}
+
+#sleep-compare-status {
+    border: 1px #fff solid;
+    width: 80px;
+    float: left;
+    /*padding: 10px;*/
+    font-size: 24px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.sleep-level-box {
+    margin-top: 30px;
+    width: 1100px;
+    height: 201px;
+    background: url(../../../../../img/hd/HealthTest/V8/Wristband/sleep_level.png);
+    /*border: 1px red solid;*/
+    text-align: left;
+    color: #5a6174;
+}
+
+.sleep-level-info {
+    margin-left: 160px;
+    width: 920px;
+    /*border: 1px red solid;*/
+    font-weight: bold;
+    position: relative;
+    top: 10px;
+}
+
+.sleep-level-title {
+    font-size: 28px;
+    margin-top: 15px;
+    /*height: 28px;*/
+}
+
+.level-name {
+    float: left;
+}
+
+#level {
+    font-size: 18px;
+    color: #4CAF50;
+    border: 1px #4CAF50 solid;
+    /*font-weight: normal;*/
+    width: 40px;
+    text-align: center;
+    border-radius: 5px;
+    float: left;
+    position: relative;
+    margin: 6px 10px;
+}
+
+#sleep-level-content {
+    font-weight: normal;
+    clear: both;
+    font-size: 28px;
+    /*border: 1px #4CAF50 solid;*/
+    position: relative;
+    top: 10px;
+    height: 130px;
+    overflow: hidden;
+}
+
+.seven-data {
+    margin-top: 30px;
+    width: 1100px;
+    height: 90px;
+    background: url(../../../../../img/hd/HealthTest/V8/Wristband/seven_bg.png);
+    /*border: 1px red solid;*/
+    text-align: center;
+}
+
+.seven-table {
+    margin-left: 30px;
+}
+
+.seven-table tr td {
+    width: 230px;
+    /*border:1px red solid;*/
+    font-size: 25px;
+    height: 90px;
+    line-height: 90px;
+}
+
+
+.sleep-time {
+    margin-top: 30px;
+    width: 1100px;
+    height: 130px;
+    background: url(../../../../../img/hd/HealthTest/V8/Wristband/sleep_time_bg.png);
+    /*border: 1px red solid;*/
+    text-align: center;
+}
+
+.sleep-time-table {
+    position: relative;
+    top: 23px;
+}
+
+.sleep-time-table tr td {
+    width: 270px;
+    /*border:1px red solid;*/
+    font-size: 25px;
+    /*height: 90px;*/
+    /*line-height: 90px;*/
+}
+
+.sleep-time-table tr td span {
+    font-size: 35px;
+}
+
+.arrow {
+    position: absolute;
+    top: 353px;
+}
+
+img#left-arrow {
+    left: 18px;
+    width: 80px;
+    height: 80px;
+}
+
+img#right-arrow {
+    left: 1187px;
+    width: 80px;
+    height: 80px;
+}
+

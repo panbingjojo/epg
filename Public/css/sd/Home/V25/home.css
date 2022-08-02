@@ -1,0 +1,469 @@
+#app{
+    width: 644px;
+    height: 530px;
+    background-size: 644px 530px;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+.container{
+    padding: 20px 0 20px 20px;
+}
+.scroll-area{
+    position: relative;
+    height: 258px;
+    width: 624px;
+    overflow: hidden;
+}
+.scroll-area-2{
+    position: relative;
+    height: 318px;
+    width: 624px;
+    overflow: hidden;
+}
+.head-func{
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+
+.classify{
+    margin-top: 20px;
+}
+
+.classify img {
+    width: 107px;
+    height: 39px;
+}
+
+.content{
+    margin-top: 10px;
+}
+
+.classify img{
+    margin-left: 20px;
+}
+
+.tab1-left-area{
+    display: inline-block;
+    width: 120px;
+    height: 255px;
+    vertical-align: bottom;
+    position: relative;
+    overflow: hidden;
+}
+.tab1-left-area .left-absolute{
+    position: absolute;
+}
+
+.tab1-left-area .hot-title{
+    color: #fff;
+    background: url("../../../../img/hd/Home/V25/hot-head.png");
+    width: 110px;
+    height: 35px;
+    margin-left: 10px;
+    background-size: 115px 35px;
+}
+
+.tab1-left-area .hot-item{
+    color: #fff;
+    padding: 2px 5px ;
+    font-size: 12px;
+    background: url("../../../../img/hd/Home/V25/hot-title-bg.png");
+    position: relative;
+    margin-left: 10px;
+    width: 118px;
+    background-size: 118px 40px;
+    line-height: 30px;
+}
+
+.tab1-left-area .hot-item img{
+    position: absolute;
+    right: 27px;
+    top:9px;
+    width: 15px;
+    height: 15px;
+}
+
+.tab1-left-area .hot-item .hot-text{
+    overflow: hidden;
+    width: 75px;
+    height: 28px;
+}
+
+.tab1-left-area .hot-line{
+    height: 1px;
+    background: url("../../../../img/hd/Home/V25/hot-line.png");
+    margin-left: 10px;
+    width: 118px;
+}
+
+.tab1-right-area{
+    width: 9999px;
+    height: 255px;
+    overflow: hidden;
+    display: inline-block;
+    position: absolute;
+}
+
+.tab1-right-area .first-recommend{
+    position: absolute;
+    width: 387px;
+    height: 430px;
+}
+
+.tab1-right-area .first-recommend .recommend-position-0{
+    width: 247px;
+    height: 127px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: 259px 143px;
+    padding: 10px;
+    background-position: 3px 2px;
+}
+
+.tab1-right-area .first-recommend .recommend-position-0 img{
+    width: 246px;
+    height: 130px;
+}
+
+.tab1-right-area .first-recommend  .recommend-position-1{
+    position: absolute;
+    width: 119px;
+    height: 127px;
+    top: 0;
+    left: 258px;
+    background-size: 128px 140px;
+    background-position: 5px 5px;
+    padding: 10px;
+}
+
+.tab1-right-area .first-recommend  .recommend-position-1 img{
+    width: 118px;
+    height: 130px;
+}
+
+.tab1-right-area .first-recommend .recommend-position-base{
+    position: absolute;
+    width:118px ;
+    height: 94px;
+    top: 143px;
+    padding: 10px;
+    background-size: 128px 105px;
+    background-position: 5px 5px;
+}
+
+.tab1-right-area .first-recommend .recommend-position-base img{
+    width: 118px;
+    height: 94px;
+}
+
+.other-recommend{
+    padding: 10px;
+    width: 110px;
+    height: 94px;
+    margin-top: 5px;
+    background-size: 115px 104px;
+    background-position: 5px 5px;
+    position: relative;
+}
+.other-recommend img{
+    width: 106px;
+    height: 94px;
+}
+.tab1-right-area .recommend-item{
+    width: 168px;
+    height: 238px;
+    display: inline-block;
+    position: absolute;
+    padding: 10px;
+    background-size: 171px 248px;
+    background-position: 5px 5px;
+}
+
+.tab1-right-area .recommend-item img{
+    width: 160px;
+    height:238px
+}
+
+.tab1-bottom-area{
+    height: 40px;
+    width: 615px;
+    overflow: hidden;
+    margin-left: 10px;
+    padding-top: 20px;
+}
+
+.tab1-bottom-area .bottom-item{
+    display: inline-block;
+    width:102px;
+    height: 40px;
+    background: url("../../../../img/hd/Home/V25/tab1-bottom-no-choose.png");
+    text-align: center;
+    color: #fff;
+    line-height: 70px;
+    margin-left: 20px;
+}
+.tab1-bottom-area .bottom-item:first-child{
+    margin-left: 0;
+}
+
+.scroll-wrapper{
+    background:url("../../../../img/hd/Home/V25/lamp-bg.png") no-repeat;
+    background-size: 575px 50px;
+    height: 30px;
+    color: #fff;
+    font-size: 16px;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+/*tab2区域*/
+
+.tab2-main-area .food-position-0{
+    position: absolute;
+    width: 145px;
+    height: 250px;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    background-size: 145px 254px;
+    background-position: 5px 5px;
+
+}
+.tab2-main-area .food-position-0 .pos-img,
+.tab2-main-area .food-position-4 .pos-img{
+    width: 135px ;
+    height: 245px;
+}
+
+.tab2-main-area .food-position-1{
+    position: absolute;
+    width: 246px;
+    height: 120px;
+    left: 145px;
+    top: 0;
+    padding: 10px;
+    background-size: 257px 133px;
+    background-position: 5px 5px;
+}
+
+.tab2-main-area .food-position-1 .pos-img{
+    width: 246px;
+    height: 123px;
+}
+
+.tab2-main-area .food-position-2{
+    position: absolute;
+    width: 118px;
+    height: 105px;
+    left: 145px;
+    top: 140px;
+    padding: 10px;
+    background-size: 128px 114px;
+    background-position: 5px 5px;
+}
+
+.tab2-main-area .food-position-3{
+    position: absolute;
+    width: 118px;
+    height: 105px;
+    left: 270px;
+    top: 140px;
+    padding: 10px;
+    background-size: 127px 114px;
+    background-position: 5px 5px;
+}
+
+.tab2-main-area .food-position-3 .pos-img,
+.tab2-main-area .food-position-2 .pos-img{
+    width: 118px;
+    height: 105px;
+}
+
+.tab2-main-area .food-position-4{
+    position: absolute;
+    width: 135px;
+    height: 245px;
+    left: 400px;
+    top: 0;
+    padding: 10px;
+    background-size: 145px 254px;
+    background-position: 5px 5px;
+}
+
+.tab2-main-area .food-item{
+    position: absolute;
+    top: 0;
+    width: 135px;
+    height: 261px;
+    padding: 10px;
+    background-size: 145px 255px;
+    background-position: 5px 5px;
+}
+
+.tab2-main-area .food-item img{
+    width: 100%;
+    height: 94%
+}
+
+/*tab3区域*/
+.tab3-main-area{
+    margin-top: 30px;
+}
+
+.tab3-main-area .food-position-0{
+    position: absolute;
+    width: 246px;
+    height: 114px;
+    left: 0;
+    top: 30px;
+    padding: 10px;
+    background-size: 257px 124px;
+    background-position: 5px 5px;
+}
+.tab3-main-area .food-position-0 img{
+    width: 246px;
+    height: 114px;
+}
+
+.tab3-main-area .food-position-1{
+    position: absolute;
+    width: 118px;
+    height: 94px;
+    left: 0;
+    top: 166px;
+    padding: 10px;
+    background-size: 127px 103px;
+    background-position: 5px 5px;
+}
+
+.tab3-main-area .food-position-2{
+    position: absolute;
+    width: 118px;
+    height: 94px;
+    left: 128px;
+    top: 166px;
+    padding: 10px;
+    background-size: 127px 103px;
+    background-position: 5px 5px;
+}
+
+.tab3-main-area .food-position-1 img,
+.tab3-main-area .food-position-2 img{
+    width: 118px;
+    height: 94px;
+}
+
+.tab3-main-area .food-position-3{
+    position: absolute;
+    width: 102px;
+    height: 174px;
+    left: 260px;
+    top: 30px;
+    padding: 10px;
+    background-size: 111px 183px;
+    background-position: 5px 5px;
+}
+
+.tab3-main-area .food-position-3 img{
+    width: 102px;
+    height: 174px;
+}
+
+.tab3-main-area .food-position-4{
+    position: absolute;
+    width: 80px;
+    height: 35px;
+    left: 280px;
+    top: 233px;
+    background-size: 80px 35px;
+}
+
+.tab3-main-area .food-position-4 img{
+    width: 80px;
+    height: 35px;
+}
+.tab3-main-area .food-item{
+    position: absolute;
+    width: 128px;
+    height: 230px;
+    padding: 10px;
+    background-size: 138px 241px;
+    background-position: 5px 5px;
+}
+.tab3-main-area .food-item img{
+    width: 128px;
+    height: 230px;
+}
+/*tab4区域*/
+
+.tab4-main-area .album-list{
+    position: absolute;
+    width: 128px;
+    height: 218px;
+    padding: 10px;
+    background-position: 5px 5px;
+    background-size: 138px 228px;
+}
+
+.tab4-main-area {
+    margin-top: 20px;
+}
+
+.pop{
+    position: absolute;
+    background: url("../../../../img/hd/Home/V25/pop-bg.png") no-repeat;
+    background-size: 644px 530px;
+    width: 644px;
+    height: 530px;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.pop-back{
+    position: absolute;
+    bottom: 110px;
+    left: 180px;
+    width: 120px;
+}
+
+.pop-continue{
+    position: absolute;
+    bottom: 110px;
+    right: 180px;
+    width: 120px;
+
+}
+
+.cut-down{
+    position: absolute;
+    font-size: 40px;
+    color: #fff;
+    right:148px;
+    top: 137px;
+}
+
+.sign{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 30px !important;
+    height: 25px !important;
+}
+
+.point-area{
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 85%;
+}
+.point-area img{
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+}
+
+

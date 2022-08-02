@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>《春新萌动，欢乐出游》-主页-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityJoyTourism/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/keypad.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityJoyTourism/dialog.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/ActivityTools.js?t={$time}"></script>
+</head>
+<body>
+<img id="bg" src="" class="loading">
+<p id="btn-go-count">0</p>
+
+<div class="right-btn-wrapper">
+    <img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/btn_back.png">
+    <img id="rules" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/btn_rule.png">
+    <img id="winners" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/btn_prize.png">
+</div>
+<img id="btn-go" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/btn_go.png" alt="">
+<div id="custom-message">
+    <p id="modify"></p>
+</div>
+
+<!--模态框-->
+<div id="modal">
+
+</div>
+<script type="text/javascript">
+
+	var A,          // 参数数据模块
+		App,        // 函数功能模块
+		ImgV,       // 区域id拿去图片版本
+		onBack,     // 公用返回
+		buttons;    // 虚拟按钮模块
+
+	A = {
+		isVip: '{$isVip}',                                              // 是否是vip（0-非vip 1-vip）
+		isOrderBack: '{$isOrderBack}',                                  // 是否为订购返回
+		cOrderResult: '{$Think.cookie.c_order_result}',
+		nPrizeIdx: 0,
+		ROOT: '__ROOT__',
+		currentAddr: 'activity-common-guide',
+		modal: G('modal'),
+		isModal: false,
+		platformType: '{$platformType}',
+		activityInfo: LMTools.isNull({$activityInfo}),                        // 活动信息
+		fishStore: LMTools.toJson(LMTools.isNull({$storeFish}).val),                // 收集鱼的个数
+		leftTimes: LMTools.isNull({$leftTimes}).leftTimes,                    // 剩余次数
+		userTel: '{$userTel}',                                          // 中奖电话
+		myPrizeList: LMTools.isNull({$myPrizeList}),                          // 我的中奖记录
+		AllUserPrizeLis: LMTools.isNull({$AllUserPrizeLis}),                  // 所用中奖信息
+		prize_idx: LMTools.isNull({$prize_idx}),
+		vipList: LMTools.isNull({$vipList}),
+		imgPathPrefix: '__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/',
+		reload: false,
+		beClickBtnId: 'btn-go',
+	};
+	ImgV = function() {
+		// 该活动不同{$carrierId}地区使用图素区分（背景、活动规则、奖品1,2,3）
+		var bgIndex = '';
+		var homeBg = 'V1';
+		switch ('{$carrierId}') {
+			case '630092':// 青海电信
+				bgIndex = 'V4';
+				homeBg = 'V4';
+				break;
+			case '640092':// 宁夏电信
+				bgIndex = 'V3';
+				break;
+			case '420092':// 湖北电信
+				bgIndex = 'V2';
+				break;
+			case '000051':// 开发模式
+			case '350092':// 福建电信
+				bgIndex = 'V1';
+				break;
+		}
+		document.getElementById('bg').src = '__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/' +
+			homeBg +
+			'/bg_home.png';
+		return bgIndex;
+	}();
+	// 公用返回函数
+	onBack = function() {
+		var keypad = G('key-table');
+		switch (true) {
+			// 遥控器返回键关闭虚拟小键盘
+			case !!keypad:
+				keypad.parentNode.removeChild(keypad);
+				LMEPG.ButtonManager.requestFocus('btn-submit');
+				break;
+			// 如果是弹框即关闭弹框
+			case A.isModal:
+				A.modal.innerHTML = '';
+				A.isModal = false;
+				LMEPG.ButtonManager.requestFocus(A.beClickBtnId);
+				A.reload && LMTools.reload(A.currentAddr);
+				break;
+			// 应用内活动，直接返回上一级页面
+			default:
+				LMEPG.Intent.back();
+				break;
+		}
+	};
+	/**
+	 * 单例应用模式
+	 */
+	App = function(doc, param) {
+		var times = doc.getElementById('btn-go-count');
+		var Obj = {
+			init: function() {
+				Obj.getTimes();
+				Obj.initButton('btn-go');
+			},
+			// 剩余次数
+			getTimes: function() {
+				times.innerText = A.leftTimes;
+			},
+			/**
+			 * 中奖名单
+			 */
+			winnersList: function() {
+				clearTimeout(A.homeCDTimer);
+				var myInfo = [];
+				var recordData = [];
+				var currentUser = '{$userAccount}';
+				A.AllUserPrizeLis.list.forEach(function(item) {
+					// 总获奖列表
+					recordData.push({
+						user: LMTools.formatAccount(item.user_account),
+						winTime: LMTools.getDate(item.prize_dt),
+						prize: item.prize_name,
+					});
+					// 当前登录User中奖记录
+					if (item.user_account == currentUser) {
+						myInfo.push({
+							user: LMTools.formatAccount('{$userAccount}'),
+							winTime: LMTools.getDate(item.prize_dt),
+							prize: item.prize_name,
+						});
+					}
+				});
+				dialogShow.rankList(recordData, myInfo);
+			},
+
+			/**
+			 * 保存用户电话号码
+			 * 1.判断是否中过奖品
+			 *      a.未中过提示未中信息，返回
+			 *      b.中过执行2
+			 * 2.判断电话号码是否输入正确
+			 * 3.提交电话接口处理
+			 */
+			setPhoneNumber: function() {
+				var userTel = G('userTel').innerHTML;
+				// 判断是否抽到过奖品
+				if (A.beClickBtnId == 'winners' && !+A.myPrizeList.list.length) {
+					LMEPG.UI.showToast('您尚未中奖！', 1);
+					return;
+				}
+				//判断手机号是否正确
+				if (!LMEPG.Func.isTelPhoneMatched(userTel)) {
+					LMEPG.UI.showToast('请输入有效电话号码!', 1);
+					return;
+				}
+
+				var reqData = {
+					'phoneNumber': userTel,
+				};
+				LMEPG.ajax.postAPI('Activity/setPhoneNumber', reqData,
+					function(rsp) {
+						try {
+							var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+							var result = data.result;
+							if (result == 0) {
+								LMEPG.UI.showToast('提交电话成功！');
+								LMTools.reload(A.currentAddr);
+							}
+							else {
+								LMEPG.UI.showToast('提交失败，请重试！');
+							}
+						}
+						catch (e) {
+							LMEPG.UI.showToast('保存手机号结果处理异常！');
+							LMEPG.Log.error(e.toString());
+							console.log(e.toString());
+						}
+					},
+					function(rsp) {
+						LMEPG.UI.showToast('请求保存手机号发生错误！');
+					});
+			},
+			/**
+			 * @func 进行购买操作
+			 */
+			jumpBuyVip: function() {
+				var objCurrent = LMTools.getCurrentPage(A.currentAddr);
+
+				var objOrderHome = LMEPG.Intent.createIntent('orderHome');
+				objOrderHome.setParam('userId', '{$userId}');
+				objOrderHome.setParam('directPay', '1');
+				objOrderHome.setParam('orderReason', '101');
+				objOrderHome.setParam('hasVerifyCode', '1');
+				objOrderHome.setParam('remark', '{$activityName}');
+
+				var objActivityGuide = LMTools.getCurrentPage(A.currentAddr);
+				objActivityGuide.setParam('isOrderBack', '1'); // 表示订购回来
+
+				LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+			},
+
+			/**
+			 * 显示次数用尽弹窗
+			 */
+			checkLotteryTimes: function() {
+				// 用户抽奖次数用完
+				if (+A.leftTimes) {
+					return true;
+				}
+				else {
+					if (+A.isVip) {
+						//vip用户，提示用户今天次数用尽，明天再来
+						dialogShow.vipTimes();
+					}
+					else {
+
+						//普通用户，弹出订购弹窗
+						dialogShow.timeOver();
+					}
+					return false;
+				}
+			},
+
+			/**
+			 * @func 跳转游戏页面
+			 */
+			jumpIndexPage: function() {
+				if (Obj.checkLotteryTimes()) {
+					var objCurrent = LMTools.getCurrentPage(A.currentAddr);
+
+					var objOrderHome = LMEPG.Intent.createIntent('activity-common-home');
+
+					LMEPG.Intent.jump(objOrderHome, objCurrent);
+				}
+			},
+
+			initButton: function(id) {
+				LMEPG.ButtonManager.init(id, buttons, '', true);
+			},
+			reLoad: function() {
+				location.reload(false);
+			},
+		};
+		return Obj;
+	}(document, App || {});
+
+	buttons = [
+		{
+			id: 'btn-go',
+			name: '抽奖',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: 'back',
+			nextFocusUp: 'back',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'btn_go.png',
+			focusImage: A.imgPathPrefix + 'btn_go_f.gif',
+			click: App.jumpIndexPage,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'back',
+			name: '返回',
+			type: 'img',
+			nextFocusLeft: 'btn-go',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: 'rules',
+			backgroundImage: A.imgPathPrefix + 'btn_back.png',
+			focusImage: A.imgPathPrefix + 'btn_back_f.png',
+			click: onBack,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'rules',
+			name: '活动详情',
+			type: 'img',
+			nextFocusLeft: 'btn-go',
+			nextFocusRight: '',
+			nextFocusUp: 'back',
+			nextFocusDown: 'winners',
+			backgroundImage: A.imgPathPrefix + 'btn_rule.png',
+			focusImage: A.imgPathPrefix + 'btn_rule_f.png',
+			click: dialogShow.rule,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'rule-close',
+			name: '活动规则-关闭',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			backgroundImage: '',
+			focusImage: '',
+			click: onBack,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'winners',
+			name: '中奖名单',
+			type: 'img',
+			nextFocusLeft: 'btn-go',
+			nextFocusRight: '',
+			nextFocusUp: 'rules',
+			nextFocusDown: G('debook') ? 'debook' : 'btn-go',
+			backgroundImage: A.imgPathPrefix + 'btn_prize.png',
+			focusImage: A.imgPathPrefix + 'btn_prize_f.png',
+			click: App.winnersList,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'userTel',
+			name: '号码框',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			backgroundImage: '',
+			focusImage: '',
+			click: '',
+			focusChange: LMTools.keyPad,
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'btn-submit',
+			name: '中奖名单-确认',
+			type: 'img',
+			nextFocusLeft: 'userTel',
+			nextFocusRight: 'btn-cancel',
+			nextFocusUp: 'userTel',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'btn_sure.png',
+			focusImage: A.imgPathPrefix + 'btn_sure_f.png',
+			click: App.setPhoneNumber,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'btn-cancel',
+			name: '中奖名单-取消',
+			type: 'img',
+			nextFocusLeft: 'btn-submit',
+			nextFocusRight: 'btn-submit',
+			nextFocusUp: 'userTel',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'btn_cancel.png',
+			focusImage: A.imgPathPrefix + 'btn_cancel_f.png',
+			click: onBack,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'btn-sure-pay',
+			name: '次数玩-订购',
+			type: 'img',
+			nextFocusLeft: 'btn-cancel',
+			nextFocusRight: 'btn-cancel',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'btn_sure.png',
+			focusImage: A.imgPathPrefix + 'btn_sure_f.png',
+			click: App.jumpBuyVip,//  支付接口
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'btn-one',
+			name: '活动规则-关闭',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			backgroundImage: '',
+			focusImage: '',
+			click: App.reLoad,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}];
+
+	window.onload = function() {
+		App.init();
+		LMTools.showOrderResult();
+	};
+</script>
+</body>
+</html>

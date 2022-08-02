@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WSDL:definitions xmlns:tns="http://localhost:80/Service.wsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:VA="http://webservice.iptv3a.shtel.com" xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://localhost:80/Service.wsdl" name="Service">
+	<WSDL:types>
+		<schema targetNamespace="http://webservice.iptv3a.shtel.com" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:VA="http://webservice.iptv3a.shtel.com" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<complexType name="ProductList">
+				<sequence>
+					<element name="ProductID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ProductName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="Fee" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<element name="PurchaseType" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<element name="ProductDesc" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ListPrice" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<element name="RentalTerm" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<element name="LimitTimes" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfProduct">
+				<sequence>
+					<element name="ProductMO" type="VA:ProductList" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+				</sequence>
+			</complexType>
+			<complexType name="ServiceAuthIn">
+				<sequence>
+					<element name="SPID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="UserID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="UserToken" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ProductID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ServiceID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ContentID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="TimeStamp" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="IP" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="MAC" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="TransactionID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+				</sequence>
+			</complexType>
+			<element name="ServiceAuth">
+				<complexType>
+					<sequence>
+						<element name="ServiceAuthIn" type="VA:ServiceAuthIn" minOccurs="0" maxOccurs="1" nillable="true"/>
+					</sequence>
+				</complexType>
+			</element>
+			<complexType name="ServiceAuthReturn">
+				<sequence>
+					<element name="Result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="UserID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ProductID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ServiceID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ContentID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="STBID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="IP" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="MAC" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="TransactionID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ExpiredTime" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="Balance" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<element name="Productlist" type="VA:ArrayOfProduct" minOccurs="0" maxOccurs="1" nillable="true"/>
+				</sequence>
+			</complexType>
+			<element name="ServiceAuthResponse">
+				<complexType>
+					<sequence>
+						<element name="ServiceAuthReturn" type="VA:ServiceAuthReturn" minOccurs="0" maxOccurs="1" nillable="true"/>
+					</sequence>
+				</complexType>
+			</element>
+			<complexType name="req">
+				<sequence>
+					<element name="SPID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="Action" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ContentID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ProductID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ServiceID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="UserID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="UserToken" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+				</sequence>
+			</complexType>
+			<element name="instantSubscribe">
+				<complexType>
+					<sequence>
+						<element name="req" type="VA:req" minOccurs="0" maxOccurs="1" nillable="true"/>
+					</sequence>
+				</complexType>
+			</element>
+			<complexType name="instantSubscribeReturn">
+				<sequence>
+					<element name="Result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="Description" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="SPID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="Balance" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<element name="ContentID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="ExpiredTime" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="Fee" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<element name="ProductID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="PurchaseType" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<element name="ServiceID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="TransactionID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="UserID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+					<element name="UserToken" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+				</sequence>
+			</complexType>
+			<element name="instantSubscribeResponse">
+				<complexType>
+					<sequence>
+						<element name="instantSubscribeReturn" type="VA:instantSubscribeReturn" minOccurs="0" maxOccurs="1" nillable="true"/>
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</WSDL:types>
+	<message name="ServiceAuth">
+		<part name="parameters" element="VA:ServiceAuth"/>
+	</message>
+	<message name="ServiceAuthResponse">
+		<part name="parameters" element="VA:ServiceAuthResponse"/>
+	</message>
+	<message name="instantSubscribe">
+		<part name="parameters" element="VA:instantSubscribe"/>
+	</message>
+	<message name="instantSubscribeResponse">
+		<part name="parameters" element="VA:instantSubscribeResponse"/>
+	</message>
+	<portType name="ServicePortType">
+		<operation name="ServiceAuth">
+			<documentation>Service definition of function ServiceAuth</documentation>
+			<input message="tns:ServiceAuth"/>
+			<output message="tns:ServiceAuthResponse"/>
+		</operation>
+		<operation name="Subscribe">
+			<documentation>Service definition of function Subscribe</documentation>
+			<input message="tns:instantSubscribe"/>
+			<output message="tns:instantSubscribeResponse"/>
+		</operation>
+	</portType>
+	<binding name="Service" type="tns:ServicePortType">
+		<SOAP:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="ServiceAuth">
+			<SOAP:operation/>
+			<input>
+				<SOAP:body parts="parameters" use="literal"/>
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal"/>
+			</output>
+		</operation>
+		<operation name="Subscribe">
+			<SOAP:operation/>
+			<input>
+				<SOAP:body parts="parameters" use="literal"/>
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="Service">
+		<documentation>VA</documentation>
+		<port name="Service" binding="tns:Service">
+			<SOAP:address location="http://121.60.255.2:9347/VaServiceAuthReq"/>
+		</port>
+	</service>
+</WSDL:definitions>
+

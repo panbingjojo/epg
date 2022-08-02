@@ -1,0 +1,126 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #ffffff;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+div {
+    position: absolute;
+}
+
+div.title {
+    top: 49px;
+    left: 558px;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+div#appoint_btn {
+    width: 247px;
+    height: 77px;
+    left: 964px;
+    top: 29px;
+    font-size: 19px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/more_btn_out.png');
+    line-height: 77px;
+    text-align: center;
+}
+
+div.detail_card1 {
+    width: 973px;
+    height: 230px;
+    left: 148px;
+    top: 124px;
+    font-size: 19px;
+    line-height: 77px;
+    text-align: center;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/card_bg.png');
+}
+
+div.detail_card2 {
+    width: 973px;
+    height: 230px;
+    left: 148px;
+    top: 408px;
+    font-size: 19px;
+    line-height: 77px;
+    text-align: center;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/card_bg.png');
+}
+
+div.card_title {
+    left: 24px;
+    top: 12px;
+    font-size: 26px;
+    line-height: 24px;
+}
+
+div.card_name {
+    left: 24px;
+    top: 65px;
+    font-size: 19px;
+    line-height: 19px;
+}
+
+div.card_doctor {
+    left: 24px;
+    top: 101px;
+    font-size: 19px;
+    line-height: 19px;
+}
+
+div.card_time {
+    left: 24px;
+    top: 138px;
+    font-size: 19px;
+    line-height: 19px;
+}
+
+div.card_money {
+    left: 24px;
+    top: 175px;
+    font-size: 19px;
+    line-height: 19px;
+}
+
+div.btn_detail {
+    width: 168px;
+    height: 78px;
+    left: 800px;
+    top: 150px;
+    font-size: 19px;
+    line-height: 78px;
+    text-align: center;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/detail_btn_out.png');
+}
+
+.left_page {
+    position: absolute;
+    width: 88px;
+    height: 175px;
+    top: 290px;
+    left: 3px;
+}
+
+.right_page {
+    position: absolute;
+    width: 88px;
+    height: 175px;
+    top: 290px;
+    left: 1189px;
+}

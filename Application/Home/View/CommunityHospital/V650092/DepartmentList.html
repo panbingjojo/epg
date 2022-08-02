@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>社区医院-科室列表-V650092</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/CommunityHospital/650092/DepartmentList.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            areaName: "{$areaName}",
+        };
+    </script>
+</head>
+<body>
+<p class="title">科室介绍</p>
+<div id="container">
+ <div id="dep-0">科室名称</div>
+ <div id="dep-1">科室名称</div>
+ <div id="dep-2" class="last-dep">科室名称</div>
+ <div id="dep-3">科室名称</div>
+</div>
+<div class="arrow-wrapper">
+    <img id="prev-arrow" src="__ROOT__/Public/img/hd/CommunityHospital/prev.png" alt="">
+    <img id="next-arrow" src="__ROOT__/Public/img/hd/CommunityHospital/next.png" alt="">
+</div>
+
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<!--当前模块js-->
+<script type="text/javascript" src="__ROOT__/Public/js/CommunityHospital/V650092/DepartmentList.js?t={$time}"></script>
+
+<script>
+    CommunityHosp.init();
+</script>
+</body>
+</html>
+  
+  

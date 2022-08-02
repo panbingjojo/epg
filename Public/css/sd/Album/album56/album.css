@@ -1,0 +1,142 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 530px;
+    width: 644px;
+    background: url("../../../../img/sd/Album/album56/bg.png") no-repeat;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#videoTv {
+    position: absolute;
+    top: 192px;
+    left: 974px;
+    z-index: 0;
+    outline: none !important;
+    width: 292px;
+    height: 213px;
+
+}
+#focus-2-1 {
+    position: absolute;
+    top: 375px;
+    left: 47px;
+    z-index: 0;
+    outline: none !important;
+    width: 136px;
+    height: 90px;
+
+}
+#focus-2-2 {
+    position: absolute;
+    top: 375px;
+    left: 182px;
+    z-index: 0;
+    outline: none !important;
+    width: 136px;
+    height: 90px;
+}
+
+#focus-2-3 {
+    position: absolute;
+    top: 375px;
+    left: 317px;
+    z-index: 0;
+    outline: none !important;
+    width: 136px;
+    height: 90px;
+}
+
+#focus-2-4 {
+    position: absolute;
+    top: 375px;
+    left: 452px;
+    z-index: 0;
+    outline: none !important;
+    width: 136px;
+    height: 90px;
+}
+
+
+
+#back{
+    position: absolute;
+    top: 12px;
+    left: 584px;
+    z-index: 0;
+    outline: none !important;
+    width: 42px;
+    height: 42px;
+
+}
+
+
+#page-left{
+    position: absolute;
+    top: 405px;
+    left: 4px;
+    z-index: 0;
+    outline: none !important;
+    width: 31px;
+    height: 31px;
+}
+#page-right{
+    position: absolute;
+    top: 405px;
+    left: 601px;
+    z-index: 0;
+    outline: none !important;
+    width: 31px;
+    height: 31px;
+}
+
+
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+.none{ display: none}
+
+.g_toast {
+    position: absolute;
+    left: 148px;
+    top: 210px;
+    width: 348px;
+    height: 81px;
+    line-height: 106px;
+    font-size: 20px;
+    z-index: 1000;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../img/sd/Common/bg_toast.png") no-repeat;
+}
+
+

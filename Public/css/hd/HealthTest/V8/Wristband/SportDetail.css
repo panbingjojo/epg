@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../../img/hd/Home/V13/Home/bg.png);
+}
+.title-head {
+    position: absolute;
+    top: 118px;
+    left: 237px;
+    width: 810px;
+    height: 165px;
+    border-radius: 5px;
+    background: url(../../../../../img/hd/HealthTest/V8/Wristband/sport_bg.png) no-repeat;
+    /*border: 1px red solid;*/
+}
+
+.des-bar {
+    /*position: absolute;*/
+    /*top: 53px;*/
+    margin-top: 33px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 50px;
+    box-sizing: border-box;
+    /*border: 1px red solid;*/
+    text-align: center;
+}
+
+#low {
+    position: absolute;
+    left: 160px;
+}
+
+#middle {
+    position: absolute;
+    left: 550px;
+}
+.head-val{
+    font-size: 40px;
+}
+
+.tab-list {
+    margin-left: 30px;
+}
+
+.tab-list img {
+    margin: 20px;
+}
+
+.sport-type {
+    width: 230px;
+    height: 170px;
+    line-height: 55px;
+    float: left;
+    margin-left: 60px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 24px;
+    box-sizing: border-box;
+}
+.sport-type-2 {
+    width: 230px;
+    height: 170px;
+    line-height: 55px;
+    float: left;
+    margin-left: 160px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 24px;
+    box-sizing: border-box;
+}
+
+.val{
+    font-size: 40px ;
+}
+
+
+.container {
+    position: absolute;
+    font-family: 'SourceHanSansCN-Regular';
+    top: 280px;
+    left: 177px;
+    width: 890px;
+    height: 378px;
+    /*border: 1px red solid;*/
+    /*background: rgba(255, 255, 255, 0.3);*/
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+#scroll-wrapper {
+    position: absolute;
+    font-family: 'SourceHanSansCN-Regular';
+    top: 0px;
+    left: 0px;
+    width: 1120px !important;
+    height: 378px !important;
+    overflow: auto;
+}
+.footer{
+    position: absolute;
+    left: 80px;
+    top: 670px;
+    width: 1120px;
+    text-align: center;
+    font-size: 30px;
+}
+.arrow {
+    position: absolute;
+    top: 353px;
+}
+
+img#left-arrow {
+    left: 18px;
+    width: 80px;
+    height: 80px;
+}
+
+img#right-arrow {
+    left: 1187px;
+    width: 80px;
+    height: 80px;
+}
+#sport{
+    position: absolute;
+    top: 30px;
+    left: 1050px;
+
+}
+#head-time{
+    position: absolute;
+    top: 10px;
+    left: 180px;
+    font-size: 22px;
+    width: 450px;
+    height: 30px;
+    /*border: 1px red solid;*/
+}
+.sport-type2{
+    width: 230px;
+    height: 170px;
+    line-height: 55px;
+    float: left;
+    margin-left: 150px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 24px;
+    box-sizing: border-box;
+}

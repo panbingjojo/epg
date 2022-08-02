@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>乌什县-阿和乡-11村民服务热线</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+</head>
+<body>
+<script>
+    var RenderParam = {
+        inner: "{$inner}",
+        userId: "{$userId}",
+        accountId: "{$accountId}",
+        hospitalName: '{$hospitalName}',
+    };
+
+    window.onload = function () {
+        //服务热线将此页作为中转页面wushixianahexiang
+        var hospitalKey = "";
+        if (RenderParam.hospitalName == "wushixianahexiang") {
+            hospitalKey = "TN5281";
+        } else if (RenderParam.hospitalName == "wanaxiangyiyuan") {
+            hospitalKey = "TN9108";
+        }else if (RenderParam.hospitalName == "huangchengshequ") {
+            hospitalKey = "TN9109";
+        }else if (RenderParam.hospitalName == "akeshunanchengrexian") {
+            //阿克苏南城街道民生直通车热线
+            hospitalKey = "TN9117";
+        }else if (RenderParam.hospitalName == "akeshunanchengfalvrexian") {
+            //阿克苏南城街道法律援助热线
+            hospitalKey = "TN9118";
+        } else if (RenderParam.hospitalName == "saimachangpianqu") {
+            hospitalKey = "TN9110";
+        } else if (RenderParam.hospitalName == "huyuanxiangxishequ") {
+            hospitalKey = "TN9111";
+        } else if (RenderParam.hospitalName == "fushouxiangshequ") {
+            hospitalKey = "TN9112";}
+        else if (RenderParam.hospitalName == "hongxingerrenguangchang") {
+            hospitalKey = "TN9113";}
+        else if(RenderParam.hospitalName == "hetiandiqu"){
+            hospitalKey = "TN9114";
+        }
+        else {
+            hospitalKey = "TN5281";
+        }
+        var currObj = LMEPG.Intent.createIntent('IPTVPortal');
+        var addrObj = LMEPG.Intent.createIntent("doctorIndex");
+        addrObj.setParam('userId', RenderParam.userId);
+        addrObj.setParam('inner', RenderParam.inner);
+        addrObj.setParam('hospitalId', hospitalKey);
+        addrObj.setParam('s_demo_id', 'superDemo');
+
+        LMEPG.Intent.jump(addrObj, currObj);
+    }
+</script>
+</body>
+
+</html>
+  
+  

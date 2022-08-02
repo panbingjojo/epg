@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>挂号记录详情页-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/AppointmentRegister/V1/RegisteredDetail.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共参数
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户账号
+
+            //当前页渲染
+            pageCurrent: '{$pageCurrent}',
+            lastFocusId: '{$lastFocusId}',
+            areaId: '{$areaId}',
+            domImgCode: '{$imgCode}',
+            hospitalId: '{$hoslId}',
+            payType:'{$recordDetailInfo->payType}',
+            payState:'{$recordDetailInfo->payState}',
+            orderState:'{$recordDetailInfo->orderState}',
+            tipMsg:'{$recordDetailInfo->tipMsg}',
+            canCancel:'{$recordDetailInfo->canCancel}',
+            orderId:'{$orderId}',
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V1/RegisteredDetail.js?t={$time}"></script>
+
+</head>
+<body style="background-image: url('__ROOT__/Public/img/{$platformType}/Common/V1/bg_home.png');">
+<div class="title">挂号详情</div>
+<!--就诊人信息-->
+<img class="lan1" src="__ROOT__/Public/img/{$platformType}/AppointmentRegister/V1/lan1.png"/>
+<div class="card-title1">就诊人信息</div>
+<div class="name">姓名：&nbsp;&nbsp;<span id="name">{$recordDetailInfo->patientName}</span></div>
+<div class="name-id">病人ID :&nbsp;&nbsp;<span id="name-id">{$recordDetailInfo->patientId}</span></div>
+<div class="regist-num">挂号单号:&nbsp;&nbsp; <span id="regist-num">{$recordDetailInfo->medicalVoucher[0]->挂号单号}</span></div>
+<div class="phone">联系方式 :&nbsp;&nbsp;<span id="phone">{$recordDetailInfo->phone}</span></div>
+<div class="cardId">身份证号: &nbsp;&nbsp;<span id="cardId">{$recordDetailInfo->certificateNo}</span></div>
+
+<!--就诊信息-->
+<img class="lan2" src="__ROOT__/Public/img/{$platformType}/AppointmentRegister/V1/lan2.png"/>
+<div class="card-title2">就珍信息</div>
+<div class="hospital">就诊医院: &nbsp;&nbsp;<span id="hospital">{$recordDetailInfo->hospitalName}</span></div>
+<div class="address">医院地址: &nbsp;&nbsp;<span id="address">{$recordDetailInfo->clinicAddr}</span></div>
+<div class="doctor">科室医生: &nbsp;&nbsp;<span id="doctor">{$recordDetailInfo->clinicName}</span></div>
+<div class="type">门诊类型: &nbsp;&nbsp;<span id="type">{$recordDetailInfo->hdeptName}</span></div>
+<div class="time">就诊时间: &nbsp;&nbsp;<span id="time">{$recordDetailInfo->shiftDate} {$recordDetailInfo->shiftWeek} {$recordDetailInfo->timeRangeName} {$recordDetailInfo->timeSection}</span></div>
+
+<!--就诊费用-->
+<img class="lan3" src="__ROOT__/Public/img/{$platformType}/AppointmentRegister/V1/lan3.png"/>
+<div class="card-title3">就诊费用<span id="charge" class="charge"> &nbsp;&nbsp;微信支付(APP)</span></div>
+<div class="price">挂号费用&nbsp;&nbsp;<span id="price">￥{$recordDetailInfo->regFee}</span></div>
+<div class="book-price">病历本费用&nbsp;&nbsp;<span id="book-price">￥{$recordDetailInfo->medicalBookPrice}</span></div>
+<div class="check-price">检查费用&nbsp;&nbsp;<span id="check-price">￥{$recordDetailInfo->serviceFee}</span></div>
+<div class="card-price">就诊卡费用&nbsp;&nbsp;<span id="card-price">￥{$recordDetailInfo->medicalCardPrice}</span></div>
+<div class="total">合计&nbsp;&nbsp;<span id="total">￥{$recordDetailInfo->regFee + $recordDetailInfo->medicalBookPrice + $recordDetailInfo->serviceFee + $recordDetailInfo->medicalCardPrice} </span></div>
+<div class="introduce">
+    <!--预约状态模块-->
+    <div id="regist_type">
+        <img id="register_type"/>
+        <div id="register_text"> </div>
+    </div>
+    <div id="content"></div>
+<!--弹窗模块-->
+    <div id="tost">
+        <div class="tip_title">你是否要取消本次预约?</div>
+        <div id="confirm_tip_btn">确 &nbsp;&nbsp; &nbsp;定</div>
+        <div id="cancel_tip_btn">返 &nbsp;&nbsp; &nbsp;回</div>
+    </div>
+</div>
+<div id="confirm_btn">确 &nbsp;&nbsp; &nbsp;定</div>
+<div id="cancel_btn">取消预约</div>
+</body>
+</html>

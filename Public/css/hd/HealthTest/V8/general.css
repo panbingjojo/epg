@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+.title2 {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    height: 66px;
+    line-height: 66px;
+    color: #fff;
+}
+
+#person-pic {
+    width: 66px;
+    height: 66px;
+    padding-bottom: 20px;
+}
+
+p.title {
+    top: 24px;
+    left: 58px;
+    font-size: 35px;
+    color: #fff;
+}
+
+#shadeDiv {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+    background: url("../../../../img/hd/HealthTest/V8/Wristband/mask_bg.png");
+    color: #fff;
+}
+
+.shade-title {
+    position: absolute;
+    top: 144px;
+    font-size: 26px;
+    left: 400px;
+    width: 480px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+    text-align: center;
+}
+
+#member-list {
+    position: absolute;
+    top: 264px;
+    left: 86px;
+    width: 1106px;
+    /*border: 1px red solid;*/
+}
+
+.member-box {
+    width: 180px;
+    float: left;
+    margin-left: 70px;
+    font-size: 26px;
+    text-align: center;
+    /*font-weight: bold;*/
+}
+
+.member-box > img {
+    width: 180px;
+    height: 180px;
+}
+
+.focus {
+    background: url("../../../../img/hd/HealthTest/V8/Wristband/member_box.png") no-repeat center;
+    padding: 10px;
+    margin: -5px;
+}
+
+.member-title {
+    margin-top: 10px;
+}
+
+#arrow_left {
+    position: absolute;
+    top: 334px;
+    left: 76px;
+}
+
+#arrow_right {
+    position: absolute;
+    top: 334px;
+    left: 1136px;
+}
+
+#submit {
+    position: absolute;
+    top: 484px;
+    left: 520px;
+}
+
+.shade-intro {
+    position: absolute;
+    top: 564px;
+    left: 140px;
+    width: 1000px;
+    font-size: 24px;
+    /*border: 1px red solid;*/
+    text-align: center;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-button {
+    background-color: #32cfe0;
+    display: none;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #32cfe0;
+    border-radius: 20px;
+}
+::-webkit-scrollbar-corner {
+    background: #32cfe0;
+    display: none;
+}

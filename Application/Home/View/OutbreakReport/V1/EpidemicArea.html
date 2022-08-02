@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>疫情播报</title>
+    <!--公用库-->
+    <script>
+        Root = "__ROOT__";
+        var RenderParam = {
+            isVip: {$isVip},  //当前用户是否VIP
+            userId: '{$userId}',    // 当前用户ID
+            carrierId: "{$carrierId}",          // 地区id
+            platformType: '{$platformType}',     // hd--高清 sd--标清
+            lmcid: '{$carrierId}',  // 所属地区Id
+            focusIndex: "{$focusIndex}",                        // 焦点ID
+            epidemicDetails: {$epidemicDetails}, // 疫情详情
+        };
+    </script>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/OutbreakReport/V1/EpidemicArea.css?t={$time}">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V1/EpidemicArea.js?t={$time}"></script>
+
+</head>
+<body>
+<!--背景-->
+<div id="real-time-data">截止：<span id="time">2021-01-21 16:40</span>&nbsp;&nbsp;<span>数据来源：各地区卫健委</span></div>
+
+<div class="btn-group">
+    <img id="btn-1" class="btn" src="__ROOT__/Public/img/hd/OutbreakReport/EAS/btn_1.png">
+    <img id="btn-2" class="btn" src="__ROOT__/Public/img/hd/OutbreakReport/EAS/btn_2.png">
+</div>
+<div id="notice">
+    温馨提示：<br/>
+    本页面信息仅供参考，数据来源官方，具体防控措施以当地政策为准，建议前往街道社区或村镇了解最新动态
+</div>
+<script>
+    window.onload = function () {
+        Page.init();
+    }
+
+    if (RenderParam.carrierId == "410092") {
+        LMEPG.Log.info('init HybirdCallBackInterface !!!!!');
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                LMEPG.Log.info('HybirdCallBackInterface param : ' + JSON.stringify(param));
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</body>
+</html>

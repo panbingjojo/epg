@@ -1,0 +1,109 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+}
+
+.balloon-box {
+    height: 550px;
+    width: 2580px;
+    overflow: hidden;
+    position: absolute;
+    left: 0px;
+}
+
+.balloon {
+    height: 550px;
+    width: 1280px;
+    float: left;
+}
+
+#scol-balloon {
+    height: 550px;
+    width: 1280px;
+    overflow: hidden;
+    position: absolute;
+    top: 40px;
+}
+
+.surfe {
+    height: 634px;
+    width: 1280px;
+    position: absolute;
+    top: 86px;
+    display: none;
+}
+
+.progress_bar_box {
+    height: 32px;
+    width: 1071px;
+    position: absolute;
+    top: 662px;
+    left: 58px;
+}
+
+.bar_box {
+    height: 32px;
+    width: 1071px;
+    position: absolute;
+    top: 664px;
+    left: 60px;
+}
+
+#progress_bar {
+    height: 27px;
+    width: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#man {
+    height: 62px;
+    width: 82px;
+    position: absolute;
+    top: -15px;
+    left: 0px;
+}
+
+.end {
+    height: 87px;
+    width: 127px;
+    position: absolute;
+    top: 614px;
+    left: 1140px;
+    z-index: 999;
+}
+
+.produce_confirm {
+    height: 32px;
+    width: 300px;
+    position: absolute;
+    top: 24px;
+    left: 490px;
+}
+
+.dialog {
+    height: 720px;
+    width: 1280px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+}
+.btn-only2 {
+    position: absolute;
+    top: 600px;
+    left: 530px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+    z-index: 999;
+}

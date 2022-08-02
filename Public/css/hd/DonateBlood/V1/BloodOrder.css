@@ -1,0 +1,144 @@
+body {
+    color: #fff;
+    background-image: url("../../../../../Public/img/hd/DonateBlood/V1/bg_content.png");
+    background-repeat: no-repeat;
+}
+p.title {
+    position: absolute;
+    top: 20px;
+    left: 80px;
+    font-size: 38px;
+    color: #FFFFFF;
+}
+#title_line{
+    position: absolute;
+    top: 88px;
+    left: 80px;
+    width: 152px;
+}
+.hos_name{
+    position: absolute;
+    width: 336px;
+    height: 50px;
+    font-size: 24px;
+    color: #FFFFFF;
+    line-height: 50px;
+    text-align: center;
+    background-color: #1888cb;
+}
+#hos_1{
+    position: absolute;
+    top: 140px;
+    left: 80px;
+}
+#hos_name_1{
+    position: absolute;
+    top: 306px;
+    left: 80px;
+}
+#hos_2{
+    position: absolute;
+    top: 140px;
+    left: 472px;
+}
+#hos_name_2{
+    position: absolute;
+    top: 306px;
+    left: 472px;
+}
+#hos_3{
+     position: absolute;
+     top: 140px;
+     left: 864px;
+ }
+#hos_name_3{
+    position: absolute;
+    top: 306px;
+    left: 864px;
+}
+#hos_4{
+    position: absolute;
+    top: 412px;
+    left: 80px;
+}
+#hos_name_4{
+    position: absolute;
+    top: 578px;
+    left: 80px;
+}
+#hos_5{
+    position: absolute;
+    top: 412px;
+    left: 472px;
+}
+#hos_name_5{
+    position: absolute;
+    top: 578px;
+    left: 472px;
+}
+#hos_6{
+    position: absolute;
+    top: 412px;
+    left: 864px;
+}
+#hos_name_6{
+    position: absolute;
+    top: 578px;
+    left: 864px;
+}
+#btn_order_f_1{
+    position: absolute;
+    top: 104px;
+    left: 44px;
+    display: none;
+}
+#btn_order_f_2{
+    position: absolute;
+    top: 104px;
+    left: 436px;
+    display: none;
+}
+#btn_order_f_3{
+    position: absolute;
+    top: 104px;
+    left: 828px;
+    display: none;
+}
+#btn_order_f_4{
+    position: absolute;
+    top: 376px;
+    left: 44px;
+    display: none;
+}
+#btn_order_f_5{
+    position: absolute;
+    top: 376px;
+    left: 436px;
+    display: none;
+}
+#btn_order_f_6{
+    position: absolute;
+    top: 376px;
+    left: 828px;
+    display: none;
+}
+#icon_prev{
+    position: absolute;
+    top: 364px;
+    left: 24px;
+    display: none;
+}
+#icon_next{
+    position: absolute;
+    top: 364px;
+    left: 1232px;
+}
+
+#page_num{
+    position: absolute;
+    top: 654px;
+    width: 1280px;
+    text-align: center;
+    font-size: 30px;
+    color: #FFFFFF;
+}

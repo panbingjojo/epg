@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问医归档</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/DataArchiving/V13/TestIndex.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+
+            // 焦点恢复
+            focusId: '{$focusId}',
+            page: '{$page}',
+            memberWebStr: '{$member}',
+            initInquiryID: '{$inquiryID}',
+            inner: '{$inner}',
+            comeFrom:"{$comeFrom}",
+        };
+    </script>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/DataArchiving/V13/AskArchive.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<p class="title">问医归档</p>
+<div class="container">
+    <img id="left-arrow" class="arrow" src="__ROOT__/Public/img/{$platformType}/Common/V13/left.png" alt=""/>
+    <img id="right-arrow" class="arrow" src="__ROOT__/Public/img/{$platformType}/Common/V13/right.png" alt=""/>
+    <div id="list-wrapper"></div>
+</div>
+<p class="text-sure">请选择本次归档人</p>
+<script type="text/javascript">
+    Archive.init();
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+    };
+
+    if (RenderParam.carrierId == "410092") {
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</body>
+</html>

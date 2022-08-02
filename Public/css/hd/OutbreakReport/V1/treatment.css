@@ -1,0 +1,105 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    font-size: 22px;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background: url("../../../../../Public/img/hd/OutbreakReport/V1/bg.jpg") no-repeat;
+    color: #fff;
+}
+
+.title {
+    position: absolute;
+    top: 30px;
+    left: 36px;
+    font-size: 30px;
+}
+
+.line {
+    position: absolute;
+    top: 84px;
+    left: 36px;
+}
+
+#list {
+    position: absolute;
+    top: 145px;
+    left: 124px;
+}
+
+.list-img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 312px;
+    height: 178px;
+}
+
+#list-1 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#list-2 {
+    position: absolute;
+    top: 0px;
+    left: 360px;
+}
+
+#list-3 {
+    position: absolute;
+    top: 0px;
+    left: 720px;
+}
+
+#list-4 {
+    position: absolute;
+    top: 250px;
+    left: 0px;
+}
+
+#list-5 {
+    position: absolute;
+    top: 250px;
+    left: 360px;
+}
+
+#list-6 {
+    position: absolute;
+    top: 250px;
+    left: 720px;
+}
+
+.list-box {
+    position: absolute;
+    top: -21px;
+    left: -21px;
+    display: none;
+}
+
+#area-prev-arrow {
+    position: absolute;
+    top: 342px;
+    left: 40px;
+}
+
+#area-next-arrow {
+    position: absolute;
+    top: 342px;
+    left: 1210px;
+}
+
+#page {
+    position: absolute;
+    top: 660px;
+    left: 1200px;
+}

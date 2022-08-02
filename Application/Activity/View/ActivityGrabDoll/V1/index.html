@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>H1.0-02-116新春娃娃乐</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--背景图设置-->
+    <!--<include file="./Application/Activity/View/ActivityGrabDoll/bgImage.html"/>-->
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityGrabDoll/V1/index.css?t={$time}">
+    <style type="text/css">
+        #body {
+            background-image: url("{$activityFsImg}{$platformType}/bg_home.png");
+        }
+
+        /*#score {*/
+        /*background-image: url("{$activityFsImg}{$platformType}/bg_game_score.png");*/
+        /*}*/
+
+        /*====中奖名单====*/
+        #winner_list{
+            background-image: url("{$activityFsImg}{$platformType}/bg_winner_list.png");
+        }
+
+        /*====兑换成功====*/
+        #exchange_success{
+            background-image: url("{$activityFsImg}{$platformType}/bg_exchange_success.png");
+        }
+
+        /*====兑换失败====*/
+        #exchange_fail{
+            background-image: url("{$activityFsImg}{$platformType}/bg_no_prize.png");
+        }
+
+        /*====游戏成功====*/
+        #lottery_success {
+            background-image: url("{$activityFsImg}{$platformType}/bg_lottery_success.png");
+        }
+
+        #lottery_fail {
+            background-image: url("{$activityFsImg}{$platformType}/bg_lottery_fail.png");
+        }
+
+        /*====VIP没有游戏次数====*/
+        #game_over{
+            background-image: url("{$activityFsImg}{$platformType}/no_times.png");
+        }
+
+        /*====普通用户没有游戏次数====*/
+        #order_vip {
+            background-image: url("{$activityFsImg}{$platformType}/bg_order_vip.png");
+        }
+
+        #countdown{
+            background-image: url("{$activityFsImg}{$platformType}/bg_countdown.png");
+        }
+
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="application/javascript">
+        RenderParam = {
+            fromLaunch:"{$fromLaunch}",
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown}, // 是否挽留页弹窗弹出值
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: '{$score}',
+            exchangeRecordList: {$exchangeRecordList},
+            exchangePrizeList: {$exchangePrizeList},
+            lotteryRecordList: {$lotteryRecordList},
+            myLotteryRecord: {$myLotteryRecord},
+        };
+        /**
+         * 释放iframe资源
+         */
+        function releaseFrame() {
+            LMEPG.Log.info("releaseFrame!!!!!!!!!!!!!");
+            LMEPG.PayFrame.releaseFrame();
+        }
+
+        //记录进入应用等待10S后才能退出应用
+        var keyCookieWait = RenderParam.activityName+RenderParam.userId+'_wait';
+        LMEPG.Cookie.setCookie(keyCookieWait,new Date().getTime());
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityGrabDoll/V1/index.js?t={$time}"></script>
+</head>
+<body id="body">
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+<div id="debug"></div>
+<a href="#" id="default_link"></a>
+
+<!--游戏剩余次数-->
+<div id="left_times">{$activityTimes}</div>
+<!--当前用户积分-->
+<div id="score"></div>
+<img src="{$activityFsImg}{$platformType}/btn_home_back.png" id="btn_back">
+<div id="btn_container">
+    <img src="{$activityFsImg}{$platformType}/btn_activity_rule.png" id="btn_activity_rule">
+    <img src="{$activityFsImg}{$platformType}/btn_winner_list.png" id="btn_winner_list">
+    <img src="{$activityFsImg}{$platformType}/btn_exchange_prize.png" id="btn_exchange_prize">
+    <img src="{$activityFsImg}{$platformType}/btn_start.png" id="btn_start">
+    <img src="{$activityFsImg}{$platformType}/grab_action.gif" id="grab_action">
+</div>
+
+<!--开始动画-->
+<div id="game_start"></div>
+
+<!--活动规则-->
+<div id="activity_rule" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_home_back.png" id="btn_close_rule">
+</div>
+
+<!--中奖名单-->
+<div id="winner_list" class="modal">
+    <div id="total_list"></div>
+    <div id="my_list"></div>
+    <div id="reset_tel">请输入有效的电话</div>
+    <img id="btn_list_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_list_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<!--兑换UI-->
+<div id="exchange_prize" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_exchange_close">
+    <div id="game_score">58</div>
+    <img src="{$activityFsImg}{$platformType}/btn_exchange_unable.png" id="exchange_prize_1">
+    <img src="{$activityFsImg}{$platformType}/btn_exchange_unable.png" id="exchange_prize_2">
+    <img src="{$activityFsImg}{$platformType}/btn_exchange_unable.png" id="exchange_prize_3">
+    <div id="exchange_point_1"></div>
+    <div id="exchange_point_2"></div>
+    <div id="exchange_point_3"></div>
+</div>
+
+<!--兑换成功-->
+<div id="exchange_success" class="modal">
+    <div id="exchange_tel">请输入有效的电话</div>
+    <img id="btn_exchange_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_exchange_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<!--兑换失败-->
+<div id="exchange_fail" class="modal"></div>
+
+<!--抽奖成功页面-->
+<div id="lottery_success" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_lottery_success" >
+</div>
+
+<!--游戏——抽奖失败页面-->
+<div id="lottery_fail" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_lottery_fail">
+</div>
+
+<!--游戏次数耗尽，订购VIP-->
+<div id="order_vip" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_yes.png" id="btn_order_submit">
+    <img src="{$activityFsImg}{$platformType}/btn_no.png" id="btn_order_cancel">
+</div>
+
+<!--游戏次数耗尽，退出游戏-->
+<div id="game_over" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_game_over_sure">
+</div>
+
+<!--订购状态-->
+<div id="order_status" class="modal"></div>
+
+<!--订购状态-->
+<div id="intercept" class="modal">
+    <!--<img class="tost_bg" src="{$activityFsImg}{$platformType}/tost_1.png">-->
+    <img id="intercept-back" src="{$activityFsImg}{$platformType}/btn_home_back.png">
+    <!--<img id="btn-go" src="{$activityFsImg}{$platformType}/btn_go.png">-->
+</div>
+
+<!--倒计时-->
+<div id="countdown" class="modal">
+    <div id="count">8</div>
+</div>
+
+<script>
+    var spMap = []; // 内容通过onload-->canAnswer方法异步加载过来的
+    var isDirectOrder = true; //是否直接订购（true-直接跳转到局方订购页 false-先弹窗到自定义的产品详情页）
+    window.onload = function () {
+        if(RenderParam.lmcid == '000051' && RenderParam.areaCode == '207'){
+            document.body.style.backgroundImage = 'url('+ RenderParam.imagePath + '/bg_home_207.png)';
+        }
+        /** 吉林广电（电信）局方大厅推荐位直接进入活动会导致焦点丢失，以下操作获取焦点  */
+        if(G('default_link')) G('default_link').focus();
+        Activity.init();
+        lmInitGo();
+
+    };
+
+    /**
+     * 释放iframe资源
+     */
+    function releaseFrame() {
+        LMEPG.Log.info("releaseFrame!!!!!!!!!!!!!");
+        LMEPG.PayFrame.releaseFrame();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>全平台专辑132-雨季来临，防范病菌是关键-I</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/Album/album132.css?t={$time}"/>
+
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <if condition="$carrierId eq '520092'"><!--贵州广电引用-->
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <if condition="$carrierId eq '450094' ">
+        <!-- 广西广电小窗视频播放 -->
+        <script type="text/javascript" src="http://10.1.15.25/webJS/gxgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Album/album.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+
+</head>
+<body id="body" class="{$platformType}-body">
+<div id="debug"></div>
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+<if condition="$platformType eq 'hd' ">
+    <div id="smallvod" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+        <iframe id="smallscreen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+    </div>
+    <img id="videoTv" class="hd-videoTv" useType="video" data-v="0"
+         src="__ROOT__/Public/img/hd/Album/album132/bg_small_video.png"/>
+    <img id="hd-free" src="__ROOT__/Public/img/hd/Album/album132/free.png" alt="">
+    <else/>
+</if>
+<div id="tab-content" class="{$platformType}-tab-content">
+</div>
+<if condition='$platformType eq "sd"'>
+    <img id="v-prev" class="{$platformType}-v-arrow {$platformType}-v-prev"
+         src="__ROOT__/Public/img/hd/Album/album132/sd/icon_prev_page.png"/>
+    <img id="v-next" class="{$platformType}-v-arrow {$platformType}-v-next"
+         src="__ROOT__/Public/img/hd/Album/album132/sd/icon_next_page.png"/>
+    <else/>
+    <img id="v-prev" class="{$platformType}-v-arrow {$platformType}-v-prev"
+         src="__ROOT__/Public/img/hd/Album/album132/icon_prev_page.png"/>
+    <img id="v-next" class="{$platformType}-v-arrow {$platformType}-v-next"
+         src="__ROOT__/Public/img/hd/Album/album132/icon_next_page.png"/>
+</if>
+<img id="more" class="{$platformType}-more" src="__ROOT__/Public/img/hd/Album/album132/bg_more_video.png"/>
+<img id="back" class="{$platformType}-back" useType="back"
+     src="__ROOT__/Public/img/hd/Album/album132/bg_back.png"/>
+<div id="history-album" class="{$platformType}-history-album">
+
+</div>
+<script type="text/javascript">
+	// TP框架控制器返回数据应用
+	var TP = {
+		vip: {$isVip},
+		listMovePages: {$moveNum},           // 页数
+		albumMovePages: {$moveAlbumNum},
+		userId: '{$userId}',
+		focusIDName: '{$focus_index}' == 'focus-1-1' ? 'focus-1' : '{$focus_index}',
+		videoData: {$data}.data.video_list,  // 专题节目列表
+		platformType: '{$platformType}',     // hd--高清 sd--标清
+		lmcid: '{$carrierId}',
+		carrierId: '{$carrierId}',
+		inner: '{$inner}',
+        areaCode: "{$areaCode}",
+        fromLaunch:"{$fromLaunch}",
+		albumName: '{$albumName}',          // 专辑名称
+		domainUrl: '{$domainUrl}'           // 江苏电信需要使用的第三方播放器前缀地址\
+	};
+	RenderParam = TP;
+	// 小窗播放参数
+	(function smallPlay(keyCode) {
+        if (LMSmallPlayer.isInterceptPlayException(keyCode)) return;
+		if (TP.platformType == 'hd') {
+            LMSmallPlayer.initParam({
+                carrierId: TP.lmcid,
+                playerUrl: TP.domainUrl,
+                position: {
+                    top: 506,    // 小窗播放距离上
+                    left: 288,   // 距离左
+                    width: 288,  // 宽
+                    height: 165  // 高
+                },
+                playerScreenId: 'smallscreen',
+                platformType: TP.platformType,
+                videoData: TP.videoData
+            });
+            LMSmallPlayer.startPlayVideo();
+			//虚拟按键触发，轮询播放
+			LMEPG.KeyEventManager.addKeyEvent({
+				EVENT_MEDIA_END: smallPlay,	         //视频播放结束
+				EVENT_MEDIA_ERROR: smallPlay        //视频播放错误
+			});
+		}
+	}());
+
+	// 本专辑控制器参数传递
+	var param = {
+		imgPrefixIndex: (function() {
+			var imgIndex = TP.platformType == 'sd'
+				? '__ROOT__/Public/img/hd/Album/album132/sd/'
+				: '__ROOT__/Public/img/hd/Album/album132/';
+
+			if (TP.lmcid == '460092') {
+				imgIndex = TP.platformType == 'sd'
+					? '__ROOT__/Public/img/hd/Album/album132/sd/hainan/'
+					: '__ROOT__/Public/img/hd/Album/album132/hainan/';
+			}
+			return imgIndex;
+		}()),
+		buttons: [],
+		V: 4,  // 渲染视频列表个数
+		A: 4,                                // 渲染往期专辑的个数
+		allVideoLength: TP.lmcid == '460092' ? 7 : 10, // 视频列表的总个数
+		hasSmallVideo: TP.lmcid != '450094' || TP.lmcid != '650092',    // 是否有小窗播放
+		listVideoDirection: TP.platformType == 'sd' ? 'down' : 'right',         // Video列表下一个翻页方向
+		hisAlbumDirection: '',               // 往期专题下一个翻页方向
+		// 视频列表焦点移动方向
+		firstAndLastListItemMove: {
+			prev: TP.platformType == 'sd' ? 'back' : 'videoTv',
+			next: '',
+			up: 'back',
+			down: 'videoTv',
+			left: '',
+			right: ''
+		},
+		// 往期专题焦点移动方向
+		firstAndLastAlbumItemMove: {
+			prev: '',
+			next: '',
+			up: '',
+			down: '',
+			left: '',
+			right: ''
+		},
+		// 更多精彩焦点移动方向
+		moreItemMove: {
+			up: '',
+			down: 'focus-1',
+			left: 'back',
+			right: 'back'
+		},
+		// 返回焦点移动方向
+		backItemMove: {
+			up: '',
+			down: 'focus-1',
+			left: 'more',
+			right: 'more'
+		},
+		// 小窗视频焦点移动方向
+		videoTvItemMove: {
+			up: 'focus-1',
+			down: '',
+			left: '',
+			right: 'focus-1'
+		},
+		backPage: TP.lmcid == '000051' ? 'homeTab4' : 'home',
+		backHomeTabNumber: '4',
+		morePageName: TP.lmcid == '520094' ? 'healthVideoList' : 'channel', // 设置查看更多跳转路径
+		// 设置往期专辑索引,不同区域不同专辑
+		setAlbumIndex: (function() {
+			var a = 99,
+				b = 100,
+				c = 101;
+			return [
+				{index: a, album: 'album' + a},
+				{index: b, album: 'album' + b},
+				{index: c, album: 'album' + c},
+				{index: 'more', album: 'more'}];
+		}()),
+		// 钩子函数->解决不同区域背景图和已知差异化
+		different: function() {
+			var bodyBg = 'bg_album.png';
+			switch (TP.lmcid) {
+				case '630092':
+					bodyBg = 'bg_album_qinghai.png';
+					this.morePageName = 'MenuTabLevelThree'; // 青海电信查看更多跳转地址
+					break;
+				case '640092':
+					bodyBg = 'bg_album.png';
+					this.morePageName = 'MenuTabLevelThree'; // 宁夏电信查看更多跳转地址
+					break;
+				case '450094':
+					this.hasSmallVideo = false;
+					bodyBg = 'bg_album.jpg';
+					G('videoTv').parentNode.removeChild(G('videoTv')); // 广西广电没有视频小窗
+					break;
+				case '420092': // 湖北电信有免费图标
+				case '320092': // 江苏电信有免费图标
+                case '520094': // 贵州广电有免费图标
+					S('hd-free');
+					break;
+			}
+			TP.platformType == 'sd' && (bodyBg = 'bg_album_sd.png');
+			G('body').style.backgroundImage = 'url(' + this.imgPrefixIndex + bodyBg + ')';
+		},
+		// 钩子函数->焦点移动
+		hookMoveFocus: function(key, btn) {
+
+		}
+	};
+	// 调用模块总成函数
+	App.init(param);
+    lmInitGo();
+</script>
+</body>
+</html>

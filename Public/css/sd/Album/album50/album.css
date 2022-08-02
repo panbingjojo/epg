@@ -1,0 +1,128 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 530px;
+    width: 644px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#focus-2-1 {
+    position: absolute;
+    top: 266px;
+    left: 16px;
+    z-index: 0;
+    outline: none !important;
+    width: 78px;
+    height: 197px;
+
+}
+
+
+#focus-2-2 {
+    position: absolute;
+    top: 266px;
+    left: 112px;
+    z-index: 0;
+    outline: none !important;
+    width: 78px;
+    height: 197px;
+}
+
+#focus-2-3 {
+    position: absolute;
+    top: 266px;
+    left: 209px;
+    z-index: 0;
+    outline: none !important;
+    width: 78px;
+    height: 197px;
+
+}
+
+#focus-2-4 {
+    position: absolute;
+    top: 266px;
+    left: 305px;
+    z-index: 0;
+    outline: none !important;
+    width: 78px;
+    height: 197px;
+}
+#focus-2-5 {
+    position: absolute;
+    top: 266px;
+    left: 399px;
+    z-index: 0;
+    outline: none !important;
+    width: 78px;
+    height: 197px;
+}
+#focus-2-6 {
+    position: absolute;
+    top: 266px;
+    left: 493px;
+    z-index: 0;
+    outline: none !important;
+    width: 78px;
+    height: 197px;
+}
+#more {
+    position: absolute;
+    top: 342px;
+    left: 585px;
+    z-index: 0;
+    outline: none !important;
+    width: 54px;
+    height: 123px;
+}
+
+
+
+#back {
+    position: absolute;
+    top: 17px;
+    left:589px;
+    z-index: 0;
+    outline: none !important;
+    width: 50px;
+    height: 36px;
+
+}
+
+
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+.none{ display: none}
+
+

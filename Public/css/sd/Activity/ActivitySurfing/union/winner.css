@@ -1,0 +1,270 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+#back {
+    position: absolute;
+    top: 30px;
+    left: 564px;
+    outline: none !important;
+    width: 50px;
+    height: 60px;
+}
+
+#titel_introduce {
+    position: absolute;
+    width: 1090px;
+    height: 40px;
+    font-size: 34px;
+    color: #fe7727;
+    text-align: center;
+    top: 469px;
+    left: 95px
+}
+
+#searchText {
+    width: 180px;
+    height: 21px;
+    z-index: 999;
+    position: absolute;
+    top: 452px;
+    left: 142px;
+    font-size: 16px;
+    outline: none;
+    line-height: 21px;
+    color: #4c4c4c;
+    overflow: hidden;
+    border: none;
+}
+
+#submit {
+    position: absolute;
+    top: 440px;
+    left: 348px;
+    outline: none !important;
+    width: 128px;
+    height: 46px;
+}
+
+#clear {
+    position: absolute;
+    top: 440px;
+    left: 486px;
+    outline: none !important;
+    width: 128px;
+    height: 46px;
+}
+
+#rule {
+    width: 440px;
+    overflow: hidden;
+    position: relative;
+    top: 230px;
+    left: 105px;
+}
+
+table tr td {
+    width: 345px;
+    text-align: center;
+    list-style: none;
+    font-size: 14px;
+    color: #f5f3f3 !important;
+    height: 15px;
+}
+
+.list2 li {
+    list-style: none;
+}
+
+#myprice {
+    width: 440px;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    top: 312px;
+    left: 105px;
+
+}
+
+#scoller {
+    position: absolute;
+    top: 0px;
+}
+
+#play {
+    font-size: 20px;
+    color: red;
+    position: absolute;
+    top: 680px;
+    left: 513px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 30px;
+    font-family: Source Han Sans CN;
+}
+
+#tips {
+    position: absolute;
+    top: 83px;
+    left: 86px;
+    z-index: 1;
+    width: 1108px;
+    height: 347px
+}
+
+#price_name {
+    font-size: 20px;
+    color: #ff1975;
+    position: absolute;
+    top: 290px;
+    left: 306px;
+    font-weight: 100;
+    width: 664px;
+    text-align: center;
+}
+
+#scoller_box {
+    width: 690px;
+    height: 40px;
+    position: absolute;
+    top: 285px;
+    left: 300px
+}
+
+#sound {
+    width: 162px;
+    height: 156px;
+    position: absolute;
+    top: 210px;
+    left: 195px
+}
+
+.none {
+    display: none
+}
+
+#win_price_box {
+    width: 441px;
+    height: 55px;
+    position: absolute;
+    top: 550px;
+    left: 423px
+}
+
+#myPhone {
+    position: absolute;
+    font-size: 18px;
+    color: #f5f3f3;
+    top: 452px;
+    left: 20px
+}
+
+#warm {
+    position: absolute;
+    left: 41px;
+    font-size: 20px;
+    color: black;
+    top: 685px;
+    width: 1200px;
+}
+
+.key-table tr td {
+    width: 30px;
+    text-align: center;
+    font-size: 14px
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}
+
+.tab1 {
+    position: absolute;
+    top: 200px;
+    left: 146px;
+    z-index: 1;
+    font-size: 14px;
+    color: #ffbf7f;
+}
+.tab2 {
+    position: absolute;
+    top: 200px;
+    left: 296px;
+    z-index: 1;
+    font-size: 14px;
+    color: #ffbf7f;
+}
+.tab3 {
+    position: absolute;
+    top: 200px;
+    left: 436px;
+    z-index: 1;
+    font-size: 14px;
+    color: #ffbf7f;
+}
+.my_tab1 {
+    position: absolute;
+    top: 360px;
+    left: 146px;
+    z-index: 1;
+    font-size: 14px;
+    color: #ffbf7f;
+}
+.my_tab2 {
+    position: absolute;
+    top: 360px;
+    left: 296px;
+    z-index: 1;
+    font-size: 14px;
+    color: #ffbf7f;
+}
+.my_tab3 {
+    position: absolute;
+    top: 360px;
+    left: 436px;
+    z-index: 1;
+    font-size: 14px;
+    color: #ffbf7f;
+}
+
+
+
+.title_name {
+    position: absolute;
+    top: 120px;
+    left: 250px;
+    width: 160px;
+    height: 50px;
+    z-index: 1;
+}
+
+.text_img {
+    position: absolute;
+    top: 450px;
+    left: 132px;
+    width: 206px;
+    height: 26px;
+    z-index: 1;
+}
+
+.my_img {
+    position: absolute;
+    top: 320px;
+    left: 274px;
+    width: 102px;
+    height: 24px;
+    z-index: 1;
+}

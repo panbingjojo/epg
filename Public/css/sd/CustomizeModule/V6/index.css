@@ -1,0 +1,46 @@
+#freeMedical_page {
+    position: absolute;
+    width: 640px;
+    height: 530px;
+    background-size: 100% 100%;
+    /*background: url("/Public/img/hd/CustomizeModule/V6/bg_home.png");*/
+}
+
+.articleContent_1 {
+    position: absolute;
+    width: 278px;
+    top: 200px;
+    left: 176px;
+}
+
+.articleContent_2 {
+    position: absolute;
+    width: 278px;
+    height: 55px;
+    top: 280px;
+    left: 176px;
+}
+
+.articleContent_3 {
+    position: absolute;
+    width: 278px;
+    height: 55px;
+    top: 360px;
+    left: 176px;
+}
+
+.articleContent_4 {
+    position: absolute;
+    width: 278px;
+    height: 55px;
+    top: 435px;
+    left: 176px;
+}
+
+#freeMedical {
+    position: absolute;
+    width: 69px;
+    height: 69px;
+    top: 400px;
+    left: 505px;
+}

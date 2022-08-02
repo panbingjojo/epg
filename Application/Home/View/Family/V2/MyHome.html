@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>我的家首页-V2</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Family/V2/MyHome.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+
+
+<div id="nav">
+    <img class="line" src="__ROOT__/Public/img/hd/Doctor/V2/line.png" alt=""/>
+    <div class="title">我的家</div>
+</div>
+    <div class="tab tab1">
+        <img id="focus-1" src="__ROOT__/Public/img/hd/Doctor/V2/{$platformType}_online_sick_record.png" alt=""/>
+    </div>
+    <div class="tab tab2">
+        <img id="focus-2" src="__ROOT__/Public/img/hd/Doctor/V2/{$platformType}_family_admin.png" alt=""/>
+    </div>
+    <div class="tab tab3">
+        <img id="focus-3" src="__ROOT__/Public/img/hd/Doctor/V2/{$platformType}_search_order_out.png" alt=""/>
+    </div>
+    <div class="tab tab4">
+        <img id="focus-4" src="__ROOT__/Public/img/hd/Doctor/V2/{$platformType}_expert_sick_record.png" alt=""/>
+    </div>
+    <div class="tab tab5">
+        <img id="focus-5" src="__ROOT__/Public/img/hd/Doctor/V2/{$platformType}_vip.png" alt=""/>
+    </div>
+    <div class="tab tab6">
+        <img id="focus-6" src="__ROOT__/Public/img/hd/Doctor/V2/{$platformType}_about_us.png" alt=""/>
+    </div>
+
+<!-- 提示框 -->
+<div id="toast" > </div>
+
+<script type="text/javascript">
+    var platformType = "{$platformType}";
+    var isVip = "{$isVip}";   // 用户是否是vip
+    var userId = "{$userId}"; // 用户Id
+    var accessInquiryInfo = "{$accessInquiryInfo | json_encode}"; // 是否能访问视频问诊,1--表示能访问
+    var isShowToast = false; // 是否已经弹出提示框 true--表示已经弹出
+    var toastPicUrl = "__ROOT__/Public/img/{$platformType}/Common/";
+
+    var currentFocusId = "{$myFamilyFocus}";    // 当前获得焦点的元素id
+    var Action = {
+        focusChange: function (btn, hasFocus) {
+            if (hasFocus){
+                G(btn.id).parentNode.className +=" img-hover";    // 发光边框显示
+                currentFocusId = btn.id; // 记录当前获得焦点的元素id
+            }else{
+                G(btn.id).parentNode.className = G(btn.id).parentNode.className.slice(0,8);    // 发光边框隐藏
+            }
+        },
+
+        onClick: function (btn) {
+            switch (btn.id) {
+                case "focus-1":   // 在线问诊记录
+                    jumpInquiryRecord();
+                    break;
+                case "focus-2":   // 家庭成员管理
+                    jumpMemberEditor();
+                    break;
+                case "focus-3":   // 查询及退订
+                    switch ("{$carrierId}") {
+                        case '000051':
+                            jumpQueryOrderAndCancel();
+                            break;
+                        case '340092':
+                        default:
+                            LMEPG.UI.showToast("本栏目暂未开放，敬请期待！", 3);
+                            break;
+                    }
+                    break;
+                case "focus-4":   // 专家约诊记录
+                    switch ("{$carrierId}") {
+                        case '000051':
+                            jumpExpertRecordHome();
+                            break;
+                        case '340092':
+                        default:
+                            LMEPG.UI.showToast("本栏目暂未开放，敬请期待！", 3);
+                            break;
+                    }
+                    break;
+                case "focus-5":   // VIP
+                    switch ("{$carrierId}") {
+                        case '000051':
+                            jumpOrderVip();
+                            break;
+                        case '340092':
+                        default:
+                            LMEPG.UI.showToast("本栏目暂未开放，敬请期待！", 3);
+                            break;
+                    }
+                    break;
+                case "focus-6":   // 跳转关于我们
+                    jumpAbout();
+                    break;
+            }
+        }
+    };
+    var buttons = [                             // 当前页面的所有按钮
+        {
+            id: 'focus-1',
+            name: '在线问诊记录',
+            type: 'img',
+            focusable: true,
+            nextFocusLeft: '',
+            nextFocusUp: '',
+            nextFocusRight: 'focus-2',
+            nextFocusDown: 'focus-4',
+            focusChange: Action.focusChange,
+            click: Action.onClick
+        },
+        {
+            id: 'focus-2',
+            name: '专家约诊记录',
+            type: 'img',
+            focusable: true,
+            nextFocusLeft: 'focus-1',
+            nextFocusUp: '',
+            nextFocusRight: 'focus-3',
+            nextFocusDown: 'focus-5',
+            focusChange: Action.focusChange,
+            click: Action.onClick
+        },
+        {
+            id: 'focus-3',
+            name: '家庭成员管理',
+            type: 'img',
+            focusable: true,
+            nextFocusLeft: 'focus-2',
+            nextFocusUp: '',
+            nextFocusRight: 'focus-4',
+            nextFocusDown: 'focus-6',
+            focusChange: Action.focusChange,
+            click: Action.onClick
+        },
+        {
+            id: 'focus-4',
+            name: '关于我们',
+            type: 'img',
+            focusable: true,
+            nextFocusLeft: 'focus-3',
+            nextFocusUp: 'focus-1',
+            nextFocusRight: 'focus-5',
+            nextFocusDown: '',
+            focusChange: Action.focusChange,
+            click: Action.onClick
+        }, {
+            id: 'focus-5',
+            name: '关于我们',
+            type: 'img',
+            focusable: true,
+            nextFocusLeft: 'focus-4',
+            nextFocusUp: 'focus-2',
+            nextFocusRight: 'focus-6',
+            nextFocusDown: '',
+            focusChange: Action.focusChange,
+            click: Action.onClick
+        }, {
+            id: 'focus-6',
+            name: '关于我们',
+            type: 'img',
+            focusable: true,
+            nextFocusLeft: 'focus-5',
+            nextFocusUp: 'focus-3',
+            nextFocusRight: '',
+            nextFocusDown: '',
+            focusChange: Action.focusChange,
+            click: Action.onClick
+        },
+        {
+            id: 'toast_message_pic',
+            name: '弹框',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            click: closeToast,
+            moveChange: "",
+        }
+    ];
+
+    /** 按返回键 */
+    function onBack() {
+        // 如果已经弹框，按返回时，把弹框关闭，不进行后续操作
+        if (isShowToast) {
+            closeToast();
+            return;
+        }
+
+        LMEPG.Intent.back();
+    }
+
+
+    window.onload = function () {
+        if (currentFocusId) {
+            LMEPG.ButtonManager.init(currentFocusId, buttons, '', true);
+        } else {
+            LMEPG.ButtonManager.init('focus-1', buttons, '', true);
+        }
+    };
+
+    /**
+     * 跳转函数
+     */
+    function getCurrentPage() {
+        var currentPage = LMEPG.Intent.createIntent("familyHome");
+        currentPage.setParam('myFamilyFocus', currentFocusId);
+        return currentPage;
+    }
+
+    /** 跳转-在线问诊记录 */
+    function jumpInquiryRecord() {
+        var objInquiryRecord = {};
+        var objBack = getCurrentPage();
+        // 如果是标清盒子和已经表明不支持的盒子，不支持视频问诊
+        if (accessInquiryInfo.isAccessInquiry == 0 || platformType == 'sd') {
+            if ("{$carrierId}" == '000051') {
+                var _html = "";
+                _html = '<img id="toast_message_pic" src="' + toastPicUrl + 'toast.png"/>'; // 背景图片
+                _html += '<div id="toast_message_text">' + accessInquiryInfo.message + '</div>'; // 提示内容
+                _html += '<div id="toast_message_submit">' + accessInquiryInfo.submit + '</div>'; // 确定按钮
+                G("toast").innerHTML = _html;
+                isShowToast = true;
+                currentFocusId = LMEPG.ButtonManager.getCurrentButton().id;
+                LMEPG.ButtonManager.requestFocus("toast_message_pic");
+            } else {
+                objInquiryRecord = LMEPG.Intent.createIntent("doctorLimit");
+                LMEPG.Intent.jump(objInquiryRecord, objBack);
+            }
+        } else {
+            objInquiryRecord = LMEPG.Intent.createIntent("doctorRecordHome");
+            LMEPG.Intent.jump(objInquiryRecord, objBack);
+        }
+    }
+
+    /** 跳转-专家约诊记录 */
+    function jumpExpertRecordHome() {
+        //LMEPG.UI.showToast("本栏目暂未开放，敬请期待！", 3);
+        var objBack = getCurrentPage();
+        var objExpertRecordHome = {};
+        // 如果是标清盒子和已经表明不支持的盒子，不支持视频问诊
+        if (accessInquiryInfo.isAccessInquiry == 0 || platformType == 'sd') {
+            if ("{$carrierId}" == '000051') {
+                var _html = "";
+                _html = '<img id="toast_message_pic" src="' + toastPicUrl + 'toast.png"/>'; // 背景图片
+                _html += '<div id="toast_message_text">' + accessInquiryInfo.message + '</div>'; // 提示内容
+                _html += '<div id="toast_message_submit">' + accessInquiryInfo.submit + '</div>'; // 确定按钮
+                G("toast").innerHTML = _html;
+                isShowToast = true;
+                currentFocusId = LMEPG.ButtonManager.getCurrentButton().id;
+                LMEPG.ButtonManager.requestFocus("toast_message_pic");
+            } else {
+                objExpertRecordHome = LMEPG.Intent.createIntent("expertLimit");
+                LMEPG.Intent.jump(objExpertRecordHome, objBack);
+            }
+        } else {
+            objExpertRecordHome = LMEPG.Intent.createIntent("expertRecordHome");
+            LMEPG.Intent.jump(objExpertRecordHome, objBack);
+        }
+    }
+
+    /** 跳转-家庭成员管理 */
+    function jumpMemberEditor() {
+        // 如果是标清盒子和已经表明不支持的盒子，不支持视频问诊
+        if (accessInquiryInfo.isAccessInquiry == 0 || platformType == 'sd') {
+            if ("{$carrierId}" == '000051') {
+                var _html = "";
+                _html = '<img id="toast_message_pic" src="' + toastPicUrl + 'toast.png"/>'; // 背景图片
+                _html += '<div id="toast_message_text">' + accessInquiryInfo.message + '</div>'; // 提示内容
+                _html += '<div id="toast_message_submit">' + accessInquiryInfo.submit + '</div>'; // 确定按钮
+                G("toast").innerHTML = _html;
+                isShowToast = true;
+                currentFocusId = LMEPG.ButtonManager.getCurrentButton().id;
+                LMEPG.ButtonManager.requestFocus("toast_message_pic");
+            } else {
+                LMEPG.UI.showToast("不支持该功能，请更换安卓机顶盒", 3);
+            }
+        } else {
+            var objBack = getCurrentPage();
+            var objAbout = LMEPG.Intent.createIntent("familyMembersEditor");
+            LMEPG.Intent.jump(objAbout, objBack);
+        }
+    }
+
+    /** 跳转-关于我们 */
+    function jumpAbout() {
+        var objBack = getCurrentPage();
+        var objAbout = LMEPG.Intent.createIntent("familyAbout");
+        LMEPG.Intent.jump(objAbout, objBack);
+    }
+
+    /** 查询及退订 */
+    function jumpQueryOrderAndCancel() {
+        var objCurrent = getCurrentPage();
+        var objReturn = LMEPG.Intent.createIntent("orderProductList");
+        LMEPG.Intent.jump(objReturn, objCurrent);
+    }
+
+    /** 订购VIP*/
+    function jumpOrderVip() {
+        if (LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {
+            var orderVip = LMEPG.Intent.createIntent("hadOrderVip");
+            orderVip.setParam("userId", userId);
+            orderVip.setParam("isVip", isVip);
+            orderVip.setParam("returnPageName", "familyHome");
+        } else {
+            var orderVip = LMEPG.Intent.createIntent("orderHome");
+            orderVip.setParam("userId", "{$userId}");
+            orderVip.setParam("orderReason", "100");
+            orderVip.setParam("returnPageName", "familyHome");
+        }
+
+
+        var objHome = getCurrentPage();
+        objHome.setParam("userId", userId);
+        objHome.setParam("fromId", "1");
+
+        LMEPG.Intent.jump(orderVip, objHome);
+    }
+
+    /**
+     * 关闭弹窗
+     */
+    function closeToast() {
+        isShowToast = false;
+        G("toast").innerHTML = "";
+        LMEPG.ButtonManager.requestFocus(currentFocusId);
+    }
+
+</script>
+</body>
+</html>

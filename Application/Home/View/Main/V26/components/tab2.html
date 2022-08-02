@@ -1,0 +1,150 @@
+<img id="tab2-prev-arrow" class="tab2-arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/left.png" alt="">
+<img id="tab2-next-arrow" class="tab2-arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/right.png" alt="">
+<div id="tab2-carousel-wrapper">
+    <img id="sift-0" class="lv-0" src="__ROOT__/Public/img/hd/Common/default.png" alt="">
+    <img id="sift-1" class="lv-1" src="__ROOT__/Public/img/hd/Common/default.png" alt="">
+    <div id="item-center">
+        <img id="sift-2" class="lv-2" src="__ROOT__/Public/img/hd/Common/default.png" alt="">
+    </div>
+    <img id="sift-3" class="lv-3" src="__ROOT__/Public/img/hd/Common/default.png" alt="">
+    <img id="sift-4" class="lv-4" src="__ROOT__/Public/img/hd/Common/default.png" alt="">
+</div>
+<div id="tab2-help" class="tab-help-wrap">
+    <img id="tab2-help0" src="__ROOT__/Public/img/hd/Help/V13/tab2_help0.png">
+</div>
+<script type="text/javascript">
+    var Tab2 = {
+        n: 0,
+        Nc: 0,
+        preloaderImg: [],
+        prevBtn: document.getElementById('tab2-prev-arrow'),
+        nextBtn: document.getElementById('tab2-next-arrow'),
+        httpImg: [],
+        init: function () {
+            this.renderTab2();
+            var tab2CarouselId = LMEPG.Func.getLocationString('curTab2CarouselId') || 2;
+            tab2CarouselId = parseInt(tab2CarouselId);
+            // 如果是tab2，专辑数据保持
+            if (Page.tabId == 'tab-2') {
+                curTab2CarouselId = tab2CarouselId;
+                if (tab2CarouselId == 0) {
+                    Tab2.onMoveChange('left');
+                    Tab2.onMoveChange('left');
+                } else if (tab2CarouselId == 1) {
+                    Tab2.onMoveChange('left');
+                } else if (tab2CarouselId > 2) {
+                    for (var i = 2; i < tab2CarouselId; i++) {
+                        Tab2.onMoveChange('right');
+                    }
+                }
+            }
+            this.renderImg();
+            this.createBtns();
+        },
+        /**
+         * 渲染Tab2
+         */
+        renderTab2: function() {
+            Tab2.httpImg = [];
+            for (var i = 0; i < albumList.length; i++) {
+                var tmp = {};
+                if (albumList[i].list_image_url) {
+                    tmp.src = Page.getImg(albumList[i].list_image_url.large);
+                }
+                tmp.link = i;
+                Tab2.httpImg.push(tmp);
+            }
+        },
+        carousel: function () {
+            this.timer = setInterval(this.loop, 3222);
+        },
+        loop: function (direction) {
+            Tab2.key = direction;
+            Tab2.getDirection();
+        },
+        /**
+         * 循环载入图片到文档中
+         * Np：当前图片数组长度
+         * data-link: 跳转参数索引
+         */
+        renderImg: function () {
+            var looperLength = this.httpImg.length;
+            if (this.httpImg && looperLength > 0) {
+                var Np = this.httpImg && looperLength < 5 ? looperLength : 5; // 一次渲染最大长度为5个
+                var htm = '<div>';
+                while (Np--) {
+                    var currentImage = this.httpImg[Np].src;
+                    var isLoaderCurrentImage = !/.*\.(jpg|png)/.test(this.httpImg[Np].src) ? ROOT + '/Public/img/hd/Common/default.png' : currentImage;
+                    var defaultImg = ROOT + '/Public/img/hd/Common/default.png';
+                    if (Np == 2) {
+                        htm += '<div id="item-center"><img onerror="this.src=\'' + defaultImg + '\'" id="sift-' + Np + '" class="lv-' + Np + '" src=' +
+                            isLoaderCurrentImage + '></div>';
+                    } else {
+                        htm += '<img onerror="this.src=\'' + defaultImg + '\'"  id="sift-' + Np + '" class="lv-' + Np + '" src=' + isLoaderCurrentImage + '>';
+                    }
+                }
+                G('tab2-carousel-wrapper').innerHTML = htm;
+                if (this.httpImg && looperLength >= 3) {
+                    G('sift-2').setAttribute('data-link', this.httpImg[2].link);
+                }
+            }
+        },
+        /**
+         * 更新当前图片数组
+         */
+        updateImg: function () {
+            if (this.key == 'left') {
+                this.httpImg.unshift(this.httpImg.pop());
+            } else {
+                this.httpImg.push(this.httpImg.shift());
+            }
+            this.renderImg();
+            curTab2CarouselId = Tab2.httpImg[2].link;
+        },
+        /**
+         * 实时解析得到的方向
+         */
+        getDirection: function () {
+            this.n == 4 ? this.Nc = 1 : (this.n == 0 ? this.Nc = 0 : null);
+            !this.key ? (this.key = this.Nc == 0 ? 'right' : 'left') : null;
+            this.updateImg();
+        },
+
+        createBtns: function () {
+            buttons.push({
+                id: 'sift-2',
+                type: 'others',
+                nextFocusUp: '',
+                click: Page.onClickTab2Album,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onMoveChange
+            });
+        },
+        onFocusIn: function (btn, hasFocus) {
+            var focusElement = G('item-center');
+            if (hasFocus) {
+                focusElement.className = 'focus';
+            } else {
+                focusElement.className = '';
+            }
+        },
+        onMoveChange: function (direction, btn) {
+            if (direction == 'left' || direction == 'right') {
+                Tab2.loop(direction);
+                LMEPG.BM.requestFocus('sift-2');
+                return false;
+            }
+            if (direction === 'up' &&btn.id=="sift-2") {
+                showTabContent("tab-1");
+                LMEPG.BM.requestFocus('bottom-link-0');
+                return false;
+            }
+            if (direction === 'down' &&btn.id=="sift-2") {
+                showTabContent("tab-3");
+                LMEPG.BM.requestFocus('collect-record');
+                return false;
+            }
+        }
+    };
+    // Tab2.init();
+</script>

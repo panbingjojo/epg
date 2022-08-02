@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>活动《社区医院》-主页-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!-- 默认标签 -->
+    <a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCommunityHospital/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--本地库-->
+    <script type="text/javascript" src="__ROOT__/Public\js\Activity\ActivityCommunityHospital\V1\guide.js?t={$time}"></script>
+
+    <!--全局变量-->
+    <script type="text/javascript">
+        var RenderParam = {
+            userId: "{$userId}",
+            userAccount: "{$userAccount}",
+            hospitalId: "100000020",
+            currentPage: 1,
+            currentDeptId: "{$deptId}", //全部科室
+            MAX_PAGE_STEP: 1,      //每页获取1个医生;
+            buttons: [{
+                id: 'btn-back',
+                name: '返回按钮',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'piece-1-btn',
+                click: 'onBack()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back_f.png'
+            }, {
+                id: 'piece-1-btn',
+                name: '一键问医',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'btn-back',
+                nextFocusDown: '',
+                click: 'goInquiry()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_ask.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_ask_f.png'
+            }]
+        }
+    </script>
+</head>
+<body>
+<p id="title" class="txt">社区卫生服务站</p>
+<img id="btn-back" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back.png" alt="">
+<div id="piece-0">
+    <p class="txt piece-0-txt">社区卫生服务站</p>
+    <img id="piece-0-pic" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/hosp_pic.png" alt="">
+    <div id="doctor-intro">
+        <marquee behavior="" scrollamount="3" direction="up" height="200px">
+            <span id="goods-call">服务介绍：</span>
+            <p>
+               一、获得专属的健康守护者<br>
+                您将获得家庭医生提供的以下全程连续性的健康服务：<br>
+                ①医疗服务、用药指导、康复指导。<br>
+                ②疑问解答、心理疏导。<br>
+                ③对卧床或行动不便的家人约定上门随访。<br>
+                ④需住院或转院的帮助联系医院。<br>
+                ⑤符合条件的建立家庭病床。<br>
+            </p>
+            <p>
+                二、家人可以享受以下免费服务：<br>
+                ① 建立健康档案。<br>
+                ② 宣传：疾病预防、健康生活。<br>
+                ③ 0-6岁儿童预防接种、体检。<br>
+                ④ 孕妇检查、产后访视。<br>
+                ⑤ 35岁以上家人每年筛查血压、血糖1次。<br>
+                ⑥ 高血压、糖尿病、重性精神病患者每年体检 1次、随访4次。<br>
+                ⑦ 65岁以上老人每年体检1次。<br>
+                ⑧ 社区传染病控制。<br><br>
+                社区医生服务电话  13639973137
+            </p>
+        </marquee>
+    </div>
+</div>
+<div id="piece-1">
+    <p class="txt piece-1-txt">社区医生</p>
+    <img id="piece-1-pic" src="__ROOT__/Public/img/Common/default.png" alt="">
+    <img id="piece-1-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_ask.png" alt="">
+</div>
+<div id="piece-2">
+    <p id="doctor-name"></p>
+    <p id="doctor-position"></p>
+    <p id="doctor-dep"><span id="doctor-hospital"></span></p>
+    <p id="doctor-goods"><span id="goods-title"></span></p>
+</div>
+</body>
+<script type="text/javascript">
+    LMEPG.BM.init('piece-1-btn', RenderParam.buttons, '', true);
+    window.onload = function () {
+        // 通过医院ID来获取医生信息
+        loadDoctorList(RenderParam.hospitalId, RenderParam.currentDeptId, RenderParam.currentPage, RenderParam.MAX_PAGE_STEP);
+        //lmInitGo();
+    };
+</script>
+</html>

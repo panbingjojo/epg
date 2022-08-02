@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>签到模块-抽奖V16</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/DateMark/V16/lottery.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+
+            //当前页渲染
+            skin: {$skin},   // 用户自定义背景
+            allUserPrizeList: {$allUserPrizeList}.list,
+            markInfo: {$markInfo}, // 签到信息
+            activityInfo: {$activityInfo},// 配置的获得信息
+            prizeList: {$prizeList}.list, // 奖品图片信息
+            vip: '{$isVip}',
+            activityId: '{$activityId}',
+        };
+    </script>
+
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/DateMark/V16/lottery.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<img id="btn-rules" src="__ROOT__/Public/img/hd/DateMark/V16/btn_rules.png" alt="">
+<div class="total-score">
+    <img src="__ROOT__/Public/img/hd/DateMark/V16/icon_total.png" alt="">
+    累计积分<b id="total-score">0</b>
+</div>
+<p class="tips">小贴士：每抽奖一次消耗 <span id="loseSore">0</span> 积分</p>
+<div id="lottery-container" class="lottery-container">
+    <div id="leave-times">剩余抽奖次数：0</div>
+    <div id="marquee-wrap"></div>
+    <div id="prize-wrap" class="prize-wrap">
+        <img id="prize-1" src="__ROOT__/Public/img/Common/default.png" alt="">
+        <img id="prize-2" src="__ROOT__/Public/img/Common/default.png" alt="">
+        <img id="prize-3" src="__ROOT__/Public/img/Common/default.png" alt="">
+        <img id="prize-8" src="__ROOT__/Public/img/Common/default.png" alt="">
+
+        <!--占位符-->
+        <img class="occupied" src="__ROOT__/Public/img/Common/spacer.gif" alt="">
+        <img id="prize-4" src="__ROOT__/Public/img/Common/default.png" alt="">
+        <img id="prize-7" src="__ROOT__/Public/img/Common/default.png" alt="">
+        <img id="prize-6" src="__ROOT__/Public/img/Common/default.png" alt="">
+        <img id="prize-5" src="__ROOT__/Public/img/Common/default.png" alt="">
+    </div>
+</div>
+<img id="btn-lottery" src="__ROOT__/Public/img/hd/DateMark/btn_lottery.png" alt="">
+</body>
+<script type="text/javascript">
+	window.onload = function() {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+	    Lottery.init();
+	};
+</script>
+</html>

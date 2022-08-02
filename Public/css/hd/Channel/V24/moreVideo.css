@@ -1,0 +1,81 @@
+.container{
+    height: 100%;
+    background: url("../../../../img/hd/Home/V24/bg.png");
+    background-size: 100% 100%;
+}
+.main{
+    padding: 60px;
+    position: relative;
+}
+.head{
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+}
+.type-class{
+    margin-top: 40px;
+    padding: 0 40px;
+}
+.column{
+    font-size: 24px;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    width: 160px;
+    height: 50px;
+    line-height: 50px;
+    background-size: 160px 50px;
+}
+.main-content{
+    padding: 40px;
+    height: 358px;
+}
+.content-item{
+    display: inline-block;
+    width: 255px;
+    height: 164px;
+    border-radius: 15px;
+    padding: 5px;
+    background-size: 290px 202px;
+    background-position: -14px;
+    position: relative;
+}
+.food{
+    position: absolute;
+    right: 116px;
+    bottom: 30px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+.arrow{
+    position: absolute;
+    left: 60px;
+    top: 57%;
+}
+.arrow-1{
+    position: absolute;
+    right: 70px;
+    top: 57%;
+}
+.no-result{
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    display: none;
+    position: absolute;
+    top: 374px;
+    left: 510px;
+}
+
+.how-long{
+    background: url(../../../../img/hd/Channel/V13/number_bg.png) no-repeat;
+    position: absolute;
+    width: 104px;
+    height: 40px;
+    bottom: 20px;
+    color: #FFFFFF;
+    line-height: 40px;
+    padding: 0 20px;
+    font-size: 24px;
+}

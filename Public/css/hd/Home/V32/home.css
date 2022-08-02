@@ -1,0 +1,800 @@
+#app {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+}
+
+.head-area {
+    padding: 8px 20px;
+    width: 1240px;
+    height: 90px;
+}
+
+.avatar {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    vertical-align: middle;
+    padding: 10px;
+    background-position: 1px;
+    position: relative;
+}
+
+.index-check-mask{
+    position: absolute;
+    left: 10px;
+    top: 35px;
+    width: 75px;
+    height: 30px;
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.user-info {
+    display: inline-block;
+    width: 210px;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.5);
+    vertical-align: middle;
+    border-radius: 10px;
+    margin-left: 20px;
+    color: #fff;
+    padding: 10px 5px 0;
+}
+
+.lever {
+    font-size: 28px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    width: 65px;
+}
+
+.ex {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.ex .num {
+    font-size: 15px;
+    text-align: center;
+}
+
+.ex-progress {
+    width: 127px;
+    height: 6px;
+    background: #AC6C1D;
+    position: relative;
+}
+
+.now-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 6px;
+    background: #FCC72F;
+}
+
+.game-value {
+    width: 210px;
+    height: 46px;
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: #fff;
+    text-align: center;
+    line-height: 45px;
+    margin-left: 20px;
+}
+
+.game-value-spe {
+    width: 210px;
+    height: 61px;
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: #fff;
+    text-align: center;
+    line-height: 61px;
+}
+
+.content {
+    position: relative;
+}
+
+.rank {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 135px;
+    height: 500px;
+    background: url(/Public/img/hd/Home/V32/rank-bg.png);
+}
+
+.rank-user {
+    text-align: center;
+    width: 105px;
+    font-size: 0;
+    margin-top: 5px;
+}
+
+.user-avatar {
+    width: 84px;
+    height: 84px;
+    background: #fff311;
+    border-radius: 10px;
+    border: 3px solid #06062F;
+}
+
+.arrow {
+    position: absolute;
+    left: 110px;
+    top: 248px
+}
+
+.func-bottom-1 {
+    position: absolute;
+    left: 915px;
+    top: 610px;
+    width: 129px;
+    height: 102px;
+}
+
+.func-bottom-2 {
+    position: absolute;
+    left: 1030px;
+    top: 610px;
+    width: 129px;
+    height: 102px;
+}
+
+.func-bottom-3 {
+    position: absolute;
+    left: 1150px;
+    top: 610px;
+    width: 129px;
+    height: 102px;
+}
+
+.func-bottom-5 {
+    position: absolute;
+    left: 800px;
+    top: 610px;
+    width: 129px;
+    height: 102px;
+}
+
+.func-bottom-4 {
+    position: absolute;
+    left: 610px;
+    top: 610px;
+    width: 214px;
+    height: 98px;
+}
+
+.sign {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 99;
+    background: url(/Public/img/hd/Home/V32/sign-bg.png);
+}
+
+.btn-close {
+    position: absolute;
+    top: 55px;
+    right: 25px;
+    padding: 10px;
+    background-position: 5px 6px;
+    background-size: 75px;
+}
+
+.sign-content {
+    position: absolute;
+    top: 136px;
+    left: 105px;
+    text-align: center;
+    width: 1050px;
+}
+
+.day-item {
+    position: absolute;
+}
+
+.diamond-num {
+    position: absolute;
+    bottom: 21px;
+    color: #fff;
+    left: 110px;
+    width: 70px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.sign-day {
+    position: absolute;
+    left: 40px;
+    top: 35px;
+    color: #fff;
+    font-size: 20px;
+    width: 175px;
+}
+
+.has-sign-mask {
+    position: absolute;
+    left: 30px;
+    top: 25px;
+    z-index: 10;
+}
+
+.day-1 {
+    left: 50px;
+    top: 20px;
+}
+
+.day-2 {
+    left: 285px;
+    top: 20px;
+}
+
+.day-3 {
+    left: 520px;
+    top: 20px;
+}
+
+.day-4 {
+    left: 760px;
+    top: 20px;
+}
+
+.day-5 {
+    left: 165px;
+    top: 220px;
+}
+
+.day-6 {
+    left: 400px;
+    top: 220px;
+}
+
+.day-7 {
+    left: 637px;
+    top: 220px;
+}
+
+.now-day {
+    background: url(/Public/img/hd/Home/V32/choose-border.png) no-repeat 17px 14px;
+}
+
+.sing-btn {
+    position: absolute;
+    bottom: 40px;
+    left: 515px;
+}
+
+.tip {
+    position: absolute;
+    bottom: 35px;
+    right: 95px;
+    color: #fff;
+    font-size: 26px;
+}
+
+.game-area {
+    position: absolute;
+    top: 80px;
+    left: 185px;
+}
+
+.game-item {
+    display: inline-block;
+    margin-left: 50px;
+    margin-top: 15px;
+    padding: 10px;
+    position: relative;
+}
+
+.game-item:nth-child(3n+1) {
+    margin-left: 0
+}
+
+.game-icon {
+    position: absolute;
+    left: 15px;
+    top: 8px;
+}
+
+.rank-open {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(/Public/img/hd/Home/V32/rank-mask.png);
+    width: 1280px;
+    height: 720px;
+    z-index: 100;
+}
+
+.rank-open-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 466px;
+    height: 720px;
+    background: url(/Public/img/hd/Home/V32/open-rank-bg.png);
+}
+
+.area-btn {
+    display: inline-block;
+    width: 180px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: #AF623E;
+    font-size: 26px;
+}
+
+.head-open-area {
+    text-align: center;
+    margin-top: 30px;
+    width: 435px;
+}
+
+.rank-main-item {
+    color: #fff;
+    padding: 0 45px;
+    margin-top: 15px;
+}
+
+.rank-main-no {
+    display: inline-block;
+    font-size: 36px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.rank-main-avatar-area {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 40px;
+}
+
+.rank-main-avatar {
+    width: 78px;
+    height: 78px;
+    border-radius: 10px;
+    border: 2px solid #06062F;
+    vertical-align: middle;
+}
+
+.rank-main-info {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+    color: #fff;
+}
+
+.rank-main-nickname {
+    font-size: 26px;
+}
+
+.rank-main-line {
+    background: url(/Public/img/hd/Home/V32/rank-line.png);
+    height: 1px;
+    margin-top: 20px;
+}
+
+.me-rank {
+    width: 450px;
+    height: 138px;
+    background: url(/Public/img/hd/Home/V32/me-rank-bg.png);
+    position: absolute;
+    left: -14px;
+    bottom: 0;
+}
+
+.me-rank-no {
+    position: absolute;
+    top: 75px;
+    left: 35px;
+    font-size: 36px;
+    color: #fff;
+    width: 75px;
+    text-align: center;
+}
+
+.me-rank-info {
+    position: absolute;
+    left: 120px;
+    top: 40px;
+}
+
+.grade-rank {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 99;
+    background: url(/Public/img/hd/Home/V32/grade-rank-bg.png);
+}
+
+.grade-content {
+    position: absolute;
+    left: 88px;
+    top: 160px;
+}
+
+.pai-pic {
+    padding: 8px;
+    width: 265px;
+    height: 402px;
+    background-position: -3px -2px;
+    display: inline-block;
+}
+
+.match-btn {
+    position: absolute;
+    left: 282px;
+    top: 590px;
+}
+
+.free-btn {
+    position: absolute;
+    left: 730px;
+    top: 590px;
+}
+
+.info-setting {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background: url(/Public/img/hd/Home/V32/info-bg.png);
+    color: #fff;
+}
+
+.change-info-avatar {
+    position: absolute;
+    left: 355px;
+    top: 225px;
+    border-radius: 10px;
+    width: 105px;
+    height: 105px;
+}
+
+.check-mask{
+    position: absolute;
+    left: 355px;
+    top: 265px;
+    width: 105px;
+    height: 35px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    text-align: center;
+    line-height: 35px;
+}
+
+.change-info-account {
+    position: absolute;
+    left: 260px;
+    top: 355px;
+    font-size: 30px;
+}
+
+.change-info-nickname {
+    position: absolute;
+    left: 305px;
+    top: 405px;
+    font-size: 30px;
+}
+
+.account-content {
+    display: inline-block;
+    width: 240px;
+    margin-left: 10px;
+}
+
+.account-nickname {
+    display: inline-block;
+    width: 185px;
+    margin-left: 10px;
+}
+
+.change-avatar-btn {
+    position: absolute;
+    left: 250px;
+    top: 490px;
+}
+
+.change-free-btn {
+    position: absolute;
+    left: 420px;
+    top: 490px;
+}
+
+.qr-tip {
+    position: absolute;
+    left: 780px;
+    top: 230px;
+    font-size: 26px;
+}
+
+.info-qr {
+    position: absolute;
+    left: 755px;
+    top: 290px;
+    width: 212px;
+    height: 212px;
+}
+
+.scan-qr{
+    position: absolute;
+    left: 800px;
+    top: 290px;
+    width: 102px;
+    height: 102px;
+}
+
+.scan-success-text{
+    position: absolute;
+    left: 800px;
+    top: 420px;
+    font-size: 26px;
+}
+
+.scan-success-text-1{
+    position: absolute;
+    left: 730px;
+    top: 465px;
+    font-size: 26px;
+}
+
+.bottom-tip {
+    position: absolute;
+    left: 470px;
+    top: 625px;
+    font-size: 26px;
+}
+
+.game-detail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background: url("/Public/img/hd/Home/V32/detail-bg.png");
+}
+
+.detail-logo {
+    position: absolute;
+    left: 55px;
+    top: 25px;
+}
+
+.detail-game-pic {
+    position: absolute;
+    left: 55px;
+    top: 155px;
+    width: 327px;
+    height: 277px;
+}
+
+.detail-game-name {
+    position: absolute;
+    left: 420px;
+    top: 160px;
+    color: #fff;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.detail-game-size {
+    position: absolute;
+    left: 420px;
+    top: 270px;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.detail-game-v {
+    position: absolute;
+    left: 760px;
+    top: 270px;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.detail-info {
+    position: absolute;
+    left: 420px;
+    top: 330px;
+    width: 780px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.detail-start {
+    position: absolute;
+    left: 508px;
+    top: 480px;
+
+}
+
+.exchange-avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background: url(/Public/img/hd/Home/V32/exchange-avatar-bg.png);
+    color: #fff;
+}
+
+.exchange-avatar-list {
+    position: absolute;
+    left: 190px;
+    top: 140px;
+    width: 1020px;
+}
+
+.exchange-avatar-item {
+    display: inline-block;
+    margin-left: 70px;
+    margin-top: 45px;
+    position: relative;
+    padding: 10px;
+}
+
+.exchange-avatar-item:nth-child(4n+1) {
+    margin-left: 0;
+}
+
+.exchange-avatar-pic {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #06062F;
+    border-radius: 10px;
+}
+
+.avatar-lock {
+    position: absolute;
+    left: 9px;
+    top: 70px;
+    width: 155px;
+}
+
+.pay-to-exchange {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background: url(/Public/img/hd/Home/V32/pay-lock-bg.png);
+    color: #fff;
+}
+
+.pay-to-exchange-pic {
+    position: absolute;
+    left: 565px;
+    top: 205px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.pay-pay-info {
+    font-size: 46px;
+    position: absolute;
+    left: 328px;
+    top: 410px;
+}
+
+.pay-btn-sure {
+    position: absolute;
+    left: 508px;
+    top: 600px;
+}
+
+.delete-game {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background: url("/Public/img/hd/Home/V32/detail-bg.png");
+    color: #fff;
+}
+
+.delete-title {
+    position: absolute;
+    left: 60px;
+    top: 30px;
+    font-size: 30px;
+}
+
+.delete-list {
+    position: absolute;
+    left: 195px;
+    top: 70px;
+    width: 1000px;
+}
+
+.delete-item {
+    text-align: center;
+    display: inline-block;
+    margin-left: 90px;
+    margin-top: 30px;
+}
+
+.delete-game-pic {
+    width: 190px;
+    height: 150px;
+    display: block;
+}
+
+.delete-border-area {
+    margin-top: 25px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid transparent;
+    border-radius: 10px;
+    position: relative;
+}
+
+.delete-btn {
+    position: absolute;
+    bottom: 25px;
+    left: 528px;
+}
+
+.choose-game {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+}
+
+.a-line {
+    position: absolute;
+    left: 0;
+    top: 20px;
+}
+
+.game-pic {
+    width: 250px;
+}
+
+.game-toast {
+    position: absolute;
+    left: 36%;
+    top: 45%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 30px;
+    width: 400px;
+    height: 70px;
+    z-index: 999;
+    text-align: center;
+    line-height: 70px;
+    border-radius: 35px;
+}
+
+.recharge-btn {
+    position: absolute;
+    right: 60px;
+    top: 22px;
+    padding: 10px;
+}

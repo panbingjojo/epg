@@ -1,0 +1,160 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#videoTv {
+    position: absolute;
+    top: 76px;
+    left: 608px;
+    z-index: 0;
+    outline: none !important;
+    width: 640px;
+    height: 381px;
+
+}
+#focus-2-1 {
+    position: absolute;
+    top: 505px;
+    left: 31px;
+    z-index: 0;
+    outline: none !important;
+    width: 174px;
+    height: 206px;
+
+}
+
+#focus-2-2 {
+    position: absolute;
+    top: 505px;
+    left: 236px;
+    z-index: 0;
+    outline: none !important;
+    width: 174px;
+    height: 206px;
+}
+
+#focus-2-3 {
+    position: absolute;
+    top: 505px;
+    left: 441px;
+    z-index: 0;
+    outline: none !important;
+    width: 174px;
+    height: 206px;
+
+}
+
+#focus-2-4 {
+    position: absolute;
+    top: 505px;
+    left: 647px;
+    z-index: 0;
+    outline: none !important;
+    width: 174px;
+    height: 206px;
+}
+#focus-2-5 {
+    position: absolute;
+    top: 505px;
+    left: 853px;
+    z-index: 0;
+    outline: none !important;
+    width: 174px;
+    height: 206px;
+}
+#focus-2-6 {
+    position: absolute;
+    top: 505px;
+    left: 1058px;
+    z-index: 0;
+    outline: none !important;
+    width: 174px;
+    height: 206px;
+}
+
+
+
+#back{
+    position: absolute;
+    top: 11px;
+    left:1172px;
+    z-index: 0;
+    outline: none !important;
+    width: 81px;
+    height: 75px;
+
+}
+#more{
+    position: absolute;
+    top: 11px;
+    left:1066px;
+    z-index: 0;
+    outline: none !important;
+    width: 81px;
+    height: 75px;
+}
+#title{
+    position: absolute;
+    top: 443px;
+    left:719px;
+    z-index: 0;
+    outline: none !important;
+    width: 389px;
+    height: 61px;
+}
+
+
+
+
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+.none{ display: none}
+.g_toast {
+    position: absolute;
+    left: 364px;
+    top: 279px;
+    width: 551px;
+    height: 126px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 1000;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../img/hd/Common/bg_toast.png") no-repeat;
+}
+
+

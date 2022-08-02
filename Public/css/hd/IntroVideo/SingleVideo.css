@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    background-image: url(../../../img/hd/IntroVideo/bg_home.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+body > * {
+    position: absolute;
+}
+
+#case-img {
+    top: 75px;
+    left: 62px;
+    width: 324px;
+    height: 501px;
+}
+
+#static-btn {
+    top: 628px;
+    left: 73px;
+}
+
+#video-desc {
+    list-style: none;
+    top: 74px;
+    left: 411px;
+    color: #fff;
+    width: 803px;
+    font-size: 26px;
+}
+
+#video-desc li {
+    margin-top: 10px;
+}
+
+br {
+    line-height: 50px;
+}
+
+#title {
+    font-size: 36px;
+}
+
+li#play {
+    margin-top: 50px;
+}
+
+#introduce {
+    max-height: 240px;
+    overflow: hidden;
+}
+
+#title, #introduce, #play {
+    margin-left: 15px;
+}
+
+#how-much {
+    top: 503px;
+    left: 62px;
+}
+
+#money-desc {
+    position: absolute;
+    top: 6px;
+    left: 13px;
+    font-size: 32px;
+    color: #fff;
+}

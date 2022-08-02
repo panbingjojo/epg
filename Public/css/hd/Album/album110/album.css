@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+body > * {
+    position: absolute;
+}
+
+#focus-1{
+    position: absolute;
+    top:340px;
+    left: 80px;
+}
+
+#focus-2{
+    position: absolute;
+    top:132px;
+    left: 220px;
+}
+#focus-3{
+    position: absolute;
+    top:132px;
+    left: 820px;
+}
+#focus-4{
+    position: absolute;
+    top:320px;
+    left: 980px;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 80px;
+    top: 200px
+}
+#title{
+    top: 400px;
+    left: 381px;
+}
+
+
+
+.back {
+    top: 20px;
+    left: 1180px;
+}
+
+/*.tab-content {*/
+    /*!*top: 148px;*!*/
+    /*!*left: 786px;*!*/
+    /*!*width: 479px;*!*/
+
+/*}*/
+
+/*.tab-content img {*/
+    /*!*margin-top: 55px;*!*/
+    /*!*margin-left: 37px;*!*/
+/*}*/
+
+.v-arrow {
+    /*top: 378px;*/
+    top: 420px;
+}
+
+.v-prev {
+    left: 0px;
+    /*left: 39px;*/
+}
+
+.v-next {
+    left: 1160px;
+    /*left:636px;*/
+}

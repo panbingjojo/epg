@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>心率-V13</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+        <link rel="stylesheet" type="text/css"
+              href="__ROOT__/Public/css/hd/HealthTest/V8/Wristband/HeartRateList.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/HealthTest/V8/general.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+            positionTwoConfig: "{$positionTwoConfig}",
+            checkTime: "{$checkTime}",
+            commonImgsView: "{$commonImgsView}",                // 公用图片模式
+            themeImage: "{$themePicture}",                      // 应用主题背景
+            focusIndex: "{$focusIndex}",                        // 焦点ID
+            classifyId: "{$classifyId}",                        // 导航栏ID
+            member_id: "{$member_id}",                          // 成员id
+            member_image_id: "{$member_image_id}",              // 头像id
+            member_name: "{$member_name}",                      // 成员姓名
+            member_gender: "{$member_gender}",                  // 成员性别（0-男 1-女）
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+            page: "{$page}",
+            scrollTop: "{$scrollTop}"
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V8/Wristband/HeartRateList.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<p class="title2"><img align="middle" id="person-pic" alt=""> <span id="title"></span>心率记录</p>
+<div class="title-head">
+    <table class="title-table" border="0" cellspacing="0">
+        <tr>
+            <td><span id="time">今天</span></td>
+            <td>最近一次更新</td>
+            <td><span id="time-s">9</span></td>
+            <td><span id="data-s">71</span>次/分</td>
+        </tr>
+    </table>
+</div>
+<div class="container">
+    <include file="Components/epg-table"/>
+</div>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+        Test.init();
+        LmOrderConf.init({
+            getCurrentPage: Test.getCurrentPage,
+        });
+        G('title').innerHTML = RenderParam.member_name + name;
+        // G('test-item').src = g_appRootPath + '/Public/img/hd/HealthTest/V13/test_' + item + '.png';
+        G('person-pic').src = g_appRootPath + '/Public/img/hd/HealthTest/V13/member_' + RenderParam.member_image_id + '.png';
+    };
+</script>
+</body>
+</html>

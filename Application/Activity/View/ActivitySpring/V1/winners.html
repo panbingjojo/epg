@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>春天活动-中奖信息V1</title>
+    <meta charset="utf-8" name="page-view-size"  content="{$size}" >
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivitySpring/V1/guide.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+    </script>
+
+</head>
+<body style='background-image: url("__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V1/winners_list_bg_.png")'>
+<div id="rule">
+    <div class="list" id="list">
+        <if condition="$platformType eq hd">
+            <table id="scoller" style="top: -100px">
+         <else />
+            <table id="scoller" style="top: -80px">
+        </if>
+            <!--该部分重复为了实现滚动循环无缝衔接；-->
+            <?php foreach($prizeList as $key=>$val):?>
+                <tr>
+                    <td><?php echo (substr($val['user_account'], 0, 3) ."***". substr($val['user_account'], -3))?></td>
+                    <td><?php echo substr($val['prize_dt'], 0, 10)?>
+                    </td><td><?php echo $val['prize_name'] ?></td>
+                </tr>
+            <?php endforeach;?>
+
+            <?php foreach($prizeList as $key=>$val):?>
+            <tr>
+                <td><?php echo (substr($val['user_account'], 0, 3) ."***". substr($val['user_account'], -3))?></td>
+                <td><?php echo substr($val['prize_dt'], 0, 10)?>
+                </td><td><?php echo $val['prize_name'] ?></td>
+            </tr>
+            <?php endforeach;?>
+
+        </table>
+
+    </div>
+    <div class="list2" id="list2"></div>
+</div>
+<div id="myprice">
+    <table>
+        <?php
+        if (empty($myPrizeList->list)) { ?>
+            <tr>
+                <td></td>
+                <td>暂无中奖记录</td>
+                <td></td>
+            </tr>
+        <?php } else{
+            foreach($myPrizeList->list as $key=>$val):
+                if ($key > 2) break;
+        ?>
+            <tr>
+                <td><?php echo (substr($accountId, 0, 3) ."***". substr($accountId, -3))?></td>
+                <td><?php echo substr($val->insert_dt, 0, 10)?></td>
+                <td><?php echo $val->prize_name ?></td>
+            </tr>
+        <?php endforeach; }?>
+    </table>
+</div>
+<div id="btn-back"></div>
+<script type="text/javascript">
+    var scollerSet = -1;//滚动距离
+    var timerID3;//定时器
+    var newTop;//表单当前位置
+    var offSet = 20;//移动单位量，高清25；标清20；
+    var lastTop =-12 * offSet;//循环最大值，当位置到达最大值循环开始;
+
+    var buttons = [
+        {
+            //实际没有这个按钮
+            id: 'btn-back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            backgroundImage: '',
+            focusImage: '',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        }
+    ];
+
+    window.onload = function () {
+        directionY();
+        LMEPG.ButtonManager.init(['btn-back'], buttons, '', true);
+    };
+
+    //中奖信息垂直移动
+    function directionY() {
+        try {
+            Marquee();
+            timerID3 = setTimeout("directionY()", 50);
+        } catch (e) {
+        }
+
+    }
+    //滚动定时器实现表单滚动
+    function Marquee(){
+        hand = G("scoller");
+        newTop = parseInt(hand.style.top);
+        hand.style.top = newTop + scollerSet +"px";
+        if (newTop == lastTop) {
+            hand.style.top = -100 + "px";
+        }
+    }
+
+</script>
+</body>
+</html>

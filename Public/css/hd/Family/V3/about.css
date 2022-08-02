@@ -1,0 +1,67 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    font-size: 26px;
+    color: #ffffff;
+}
+
+.line {
+    width: 1200px;
+    height: 3px;
+    position: absolute;
+    top: 87px;
+    left: 41px
+}
+
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    color: #ffffff
+}
+
+.version {
+    position: absolute;
+    top: 215px;
+    left: 125px;
+    font-size: 32px;
+    color: #ffffff
+}
+
+.phone {
+    position: absolute;
+    top: 294px;
+    left: 125px;
+    font-size: 32px;
+    color: #ffffff
+}
+
+.content {
+    width: 1040px;
+    height: 250px;
+    overflow: hidden;
+    position: absolute;
+    top: 373px;
+    left: 125px;
+    font-size: 32px;
+    color: #ffffff;
+}
+
+.text_bg {
+    width: 1188px;
+    height: 531px;
+    position: absolute;
+    top: 154px;
+    left: 45px
+}

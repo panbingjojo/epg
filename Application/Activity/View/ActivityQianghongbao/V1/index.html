@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>抢红包- indexV1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/AcitityQianghongbao/V1/qinaghongbao.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityQianghongbao/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text, prizeIdx, prizeName) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("prizeName", prizeName);
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+    </script>
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/play_bg_.png');">
+<!--提示弹框-->
+<div id="default_tip"></div>
+<div id="debug" style=" position:absolute; color: red"></div>
+<div id="content">
+    <div id="price">
+        <if condition="$platformType eq hd">
+            <img id="priceimg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/balloon.gif" alt=""/>
+            <else />
+            <img id="priceimg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/balloon.png" alt=""/>
+        </if>
+    </div>
+    <if condition="$platformType eq hd">
+        <img id="hand" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/hand_.gif" alt=""/>
+        <else />
+        <img id="hand" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityQianghongbao/V1/hand_.png" alt=""/>
+    </if>
+</div>
+<div id="warm">遥控器按“左右”键接红包，按“返回”键结束游戏
+</div>
+<div id="default"></div>
+<script type="text/javascript">
+    var platformType = "{$platformType}";
+    var leftTimes = {$leftTimes};//剩余抽奖次数
+    var timer; // 定时器
+    buttons = [
+        {
+            id: 'default',
+            name: '默认焦点',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            backgroundImage: '',
+            focusImage: '',
+            click: "",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }];
+
+    //初始化抓手位置
+    var newTop = (platformType === "hd") ? 360 : 240;//高清：360,标清：240
+    var position = (platformType === "hd") ? 120 : 80;//抓手移动距离，向右正数，向左负数;高清120，标清80
+
+    /**
+     * 初始化红包对象
+     */
+    window.onload = function () {
+        G("hand").style.left = newTop + "px";
+        var oBalloon1 = new balloon('price');
+        /**
+         * 保证每次进入应用钱包掉落位置不一样
+         */
+        G("price").style.left = Math.ceil(Math.random() * 5) * position + "px";
+        LMEPG.ButtonManager.init(['default'], buttons, '', true);
+        LMEPG.KeyEventManager.addKeyEvent(
+            {
+                KEY_LEFT: ' hand(' + -position + ')',		                // 左键
+                KEY_RIGHT: 'hand(' + position + ')',		                // 右键
+            });
+
+        setTimeout(uploadAnswerResult, 100);
+    };
+
+    /**
+     * 上报参与记录（上报答题结果）
+     */
+    function uploadAnswerResult() {
+        LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    console.log('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                } catch (e) {
+                    console.log('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                }
+            },
+            function (rsp) {
+                console.log('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+            }
+        );
+    }
+
+    /**
+     * 将红包掉落对象实例化，转变成对象，并给对象赋值属性
+     * y代表红包沿着竖直方向掉落的值
+     * x代表红包沿着x方向掉落的值；
+     * amplifier代表红包下落过程中的随机偏移量
+     * angle代表初始方位
+     */
+    var balloon = function (ballonId) {
+        this.oWrapper = document.getElementById("content");
+        this.oBalloon = {
+            obj: document.getElementById(ballonId),
+//            x: Math.random() * this.oWrapper.clientWidth,
+            y: Math.random() * 100
+        };
+        this.setTimer();
+    };
+    /**
+     * 红包掉落定时器事件
+     */
+    balloon.prototype.setTimer = function () {
+        var oBalloon = this.oBalloon;
+        if (oBalloon.y + 125 > this.oWrapper.clientHeight && parseInt(oBalloon.obj.style.left) == newTop) {
+            participationActivity();
+        } else {
+            this.move();
+            var oSelf = this;
+            setTimeout(function () {
+                timer = oSelf.setTimer()
+            }, 20);
+        }
+
+    };
+    /**
+     * 通过位移去判断红包掉落的位置，当红包的位置到达底部时判断是否等于手的位置，如果相等判断中奖，弹窗,125是红包自身高度；
+     */
+    balloon.prototype.move = function () {
+        var oBalloon = this.oBalloon;
+
+        oBalloon.y += 5;
+        var hand = G("hand");
+        if (oBalloon.y + 125 > this.oWrapper.clientHeight) {
+            /**
+             * 判断红包位置是否与抓手相等；
+             */
+            if (parseInt(oBalloon.obj.style.left) == newTop) {
+                /**
+                 * 中奖提示；
+                 */
+
+//                clearTimeout(timer);
+            } else {
+                oBalloon.y = 0;
+                oBalloon.obj.style.top = 0;
+                oBalloon.obj.style.left = Math.ceil(Math.random() * 5) * position + "px";//随机产生1到5的数乘以位置移动量去实现每次掉落不同的位置
+            }
+        }
+        /**
+         * 红包下落抖动
+         */
+        oBalloon.obj.style.top = oBalloon.y + "px";
+
+    };
+
+    /**
+     * 红包抓手移动函数，通过键盘的左右键去控制抓手左右移动
+     *
+     */
+    function hand(width) {
+        var hand = G("hand");
+        newTop = parseInt(hand.style.left) + width;
+        hand.style.left = newTop + 'px';
+    }
+
+    //参与抽奖
+    function participationActivity() {
+        LMEPG.ajax.postAPI('Activity/participateActivity', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        //没有抽中奖品
+                        jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS, prizeIdx, prizeName);
+                    } else if (result == 1) {
+                        //抽中奖品
+                        prizeName = data.prize_name;
+                        prizeIdx = data.prize_idx;
+                        jumpDialog(VIP_USER_DRAWN_PRIZE, prizeIdx, prizeName);
+                    } else if (result == -108) {
+                        //vip参与活动次数已满
+                        jumpDialog(VIP_USER_PLAY_TIMES_OVER, prizeIdx, prizeName);
+                    } else if (result == -109) {
+                        //没有抽中奖品
+                        jumpDialog(NOT_VIP_USER_PLAYER_TIPS, prizeIdx, prizeName);
+                    } else {
+                        onBack();
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("抽奖结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("请求抽奖发生错误！");
+            }
+        );
+    }
+</script>
+</body>
+</html>

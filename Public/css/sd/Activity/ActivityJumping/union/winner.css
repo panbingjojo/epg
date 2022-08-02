@@ -1,0 +1,128 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+}
+
+#back {
+    position: absolute;
+    top: 102px;
+    left: 540px;
+    outline: none !important;
+    width: 37px;
+    height: 38px;
+}
+
+
+#searchText {
+    width: 150px;
+    height: 20px;
+    z-index: 999;
+    position: absolute;
+    top: 360px;
+    left: 250px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    line-height: 20px;
+    color: #4c4c4c;
+    overflow: hidden;
+}
+
+#submit {
+    position: absolute;
+    top: 394px;
+    left: 274px;
+    outline: none !important;
+    width: 101px;
+    height: 36px;
+}
+
+#clear {
+    position: absolute;
+    top: 361px;
+    left: 408px;
+    outline: none !important;
+    width: 57px;
+    height: 22px;
+}
+
+#rule {
+    overflow: hidden;
+    position: relative;
+    top: 190px;
+    left: 123px;
+}
+
+table tr td {
+    width: 128px;
+    text-align: center;
+    list-style: none;
+    font-size: 14px;
+    color: #3a230a !important;
+    height: 20px;
+}
+
+.tableList tr td:nth-child(3){
+    width: 110px;
+}
+
+.list2 li {
+    list-style: none;
+}
+
+#myprice {
+    width: 400px;
+    overflow: hidden;
+    position: relative;
+    top: 256px;
+    left: 133px;
+}
+
+#scoller {
+    position: absolute;
+    top: 0px;
+}
+
+
+
+#scoller_box {
+    width: 690px;
+    height: 40px;
+    position: absolute;
+    top: 285px;
+    left: 300px
+}
+
+#sound {
+    width: 162px;
+    height: 156px;
+    position: absolute;
+    top: 210px;
+    left: 195px
+}
+
+.none {
+    display: none
+}
+
+
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+    font-size: 30px
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}

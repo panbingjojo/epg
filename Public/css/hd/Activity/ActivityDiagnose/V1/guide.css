@@ -1,0 +1,33 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+body > * {
+    position: absolute;
+}
+
+#start {
+    top: 566px;
+    left: 430px;
+}
+
+#dialog-success {
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+    display: none;
+}
+
+#rule {
+    position: absolute;
+    top: 599px;
+    left: 784px;
+}

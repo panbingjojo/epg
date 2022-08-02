@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>挂号信息</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/AppointmentRegister/V21/orderDoctor.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            hospitalId: '{$hospitalId}',
+            hospitalName: '{$hospitalName}',
+            depId: '{$depId}',
+            docId: '{$docId}',
+            depName: '{$depName}',
+            backId: '{$backId}',
+            itemBtnId: '{$itemBtnId}',
+            docName: '{$docName}',
+            title: '{$title}',
+            code:'{$code}',
+            docNum:"{$docNum}",
+            title1:"{$title1}",
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V21/orderDoctor.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/doctor.png" style="width: 200px;height: 240px;" id="avatar">
+    <div class="title1" id="title1" style="display: none">专家</div>
+    <div class="name" id="name"></div>
+    <div class="doctor-info" id="hospital-name"></div>
+    <div class="doctor-info" id="title"></div>
+    <div class="doctor-info" id="depName"></div>
+    <div class="info-area">
+        <div class="doctor-info">预约挂号</div>
+        <div class="registered">
+            <div id="all-time">
+                <div id="left-arrow" style="background-image: url('__ROOT__/Public/img/hd/AppointmentRegister/V21/left_arrow.png')"></div>
+                <div id="right-arrow" style="background-image: url('__ROOT__/Public/img/hd/AppointmentRegister/V21/right_arrow.png')"></div>
+                <div id="time-area">
+
+                </div>
+                <div class="doctor-info" id="no-result" style="position: absolute;top: 150px;left: 387px;display: none">
+                    暂无号源
+                </div>
+                <div id="timeList">
+                    <div id="appointment" class="appointment">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div >
+            <div class="doctor-info" id="doctor-info">
+                专家介绍
+                <span id="introduce"></span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        Home.init()
+    }
+</script>
+</body>
+</html>

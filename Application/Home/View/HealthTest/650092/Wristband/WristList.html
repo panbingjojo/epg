@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康检测-V13</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/HealthTest/V8/Wristband/WristList.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/HealthTest/V8/general.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+                //公共渲染
+                carrierId: "{$carrierId}",          // 地区id
+                areaCode: "{$areaCode}",            // 省份地区码
+                subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+                platformType: "{$platformType}",    // 平台类型
+                debug: "{$debug}",                  // 调试模式
+                pageSize: "{$size}",                // 页面尺寸
+                stbModel: "{$stbModel}",            // 盒子的型号
+                fsUrl: "{$resourcesUrl}",           // fs 地址
+                time: "{$time}",                    // 开始渲染时间
+                isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+                userId: "{$userId}",                // 用户Id
+                accountId: "{$accountId}",          // 用户Id
+                returnUrl: "{$returnUrl}",          // 父页面
+                focusId: "{$focusId}",              // 默认焦点
+
+                //当前页渲染
+                positionTwoConfig: "{$positionTwoConfig}",
+                checkTime: "{$checkTime}",
+                commonImgsView: "{$commonImgsView}",                // 公用图片模式
+                themeImage: "{$themePicture}",                      // 应用主题背景
+                focusIndex: "{$focusIndex}",                        // 焦点ID
+                autoOrder: "{$autoOrder}",                          // 用户是否是续订vip
+                classifyId: "{$classifyId}",                        // 导航栏ID
+
+                recordDetail: {$recordDetail | json_encode
+            },        // 检测记录详情
+            member_id: "{$member_id}",                          // 成员id
+            member_image_id: "{$member_image_id}",              // 头像id
+            member_name: "{$member_name}",                      // 成员姓名
+            member_gender: "{$member_gender}",                  // 成员性别（0-男 1-女）
+            momentData: {$momentData | json_encode},            // 时段和就餐状态
+            keepFocusId: "{$keepFocusId}",
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+            page: "{$page}",
+            memberInfo: {$memberInfo | json_encode},            // 家庭成员信息
+        }
+        ;
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V8/Wristband/WristList.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V8/Wristband/Mask.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="debug"></div>
+<img style="display: none" src="__ROOT__/Public/img/hd/Common/bg_toast.png" alt="">
+<p class="title2"><img align="middle" id="person-pic" alt=""> <span id="title"></span>手环记录</p>
+
+<img id="update-wrist"  src="__ROOT__/Public/img/hd/HealthTest/V8/Wristband/change.png" alt="">
+<img id="delete-wrist"  src="__ROOT__/Public/img/hd/HealthTest/V8/Wristband/delete.png" alt="">
+<div class="container">
+    <div id="recd-1" class="recd-box">
+        <img id="recd-btn-1" class="recd-bg" src="__ROOT__/Public/img/hd/HealthTest/V8/Wristband/type_1.png" alt="">
+        <div class="recd-info">
+            <div class="head-data">
+                <san id ="distance-text" >0公里</san>
+                <san id ="calories-text" >0大卡</san>
+            </div>
+            <div class="center-data">步数&nbsp;&nbsp;&nbsp;&nbsp;<span id="step-text" class="show-data">0</span>&nbsp;&nbsp;<span
+                    class="unit">步</span></div>
+            <div id="step-updata-time" class="footer-data"></div>
+        </div>
+    </div>
+
+
+    <div id="recd-2" class="recd-box">
+        <img id="recd-btn-2" class="recd-bg" src="__ROOT__/Public/img/hd/HealthTest/V8/Wristband/type_2.png" alt="">
+        <div class="recd-info">
+            <div class="center-data">心率&nbsp;&nbsp;&nbsp;&nbsp;<span id="heart-num-text" class="show-data">0</span>&nbsp;&nbsp;<span
+                    class="unit">次/分</span></div>
+            <div id="heart-rate-update-time" class="footer-data"></div>
+        </div>
+    </div>
+
+    <div id="recd-3" class="recd-box">
+        <img id="recd-btn-3" class="recd-bg" src="__ROOT__/Public/img/hd/HealthTest/V8/Wristband/type_3.png" alt="">
+        <div class="recd-info">
+            <div class="center-data">运动记录&nbsp;&nbsp;&nbsp;&nbsp;<span id="duration-text" class="show-data">0</span>&nbsp;&nbsp;<span
+                    class="unit">分钟</span></div>
+            <div id="exercise-update-time" class="footer-data"></div>
+        </div>
+    </div>
+
+
+    <div id="recd-4" class="recd-box">
+        <img id="recd-btn-4" class="recd-bg" src="__ROOT__/Public/img/hd/HealthTest/V8/Wristband/type_4.png" alt="">
+        <div class="recd-info">
+            <div class="head-data">
+<!--                等级<san>中</san>-->
+            </div>
+            <div class="center-data">
+                睡眠&nbsp;&nbsp;&nbsp;&nbsp;<span class="show-data2">点击进入</span>&nbsp;&nbsp;<span></span>
+<!--                <span class="show-data2">点击进入睡眠-->
+                    </div>
+            <div id="sleep-update-time" class="footer-data"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<p id="text-mac"><img  id="wrist-icon" src="__ROOT__/Public/img/hd/HealthTest/V8/Wristband/wrist_icon.png" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span id="macId">MAC:</span></p>
+<script type="text/javascript">
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+        LmOrderConf.init({
+            getCurrentPage: Test.getCurrentPage,
+        });
+        G('title').innerHTML = RenderParam.member_name + name;
+        // G('test-item').src = g_appRootPath + '/Public/img/hd/HealthTest/V13/test_' + item + '.png';
+        G('person-pic').src = g_appRootPath + '/Public/img/hd/HealthTest/V13/member_' + RenderParam.member_image_id + '.png';
+    };
+</script>
+</body>
+</html>

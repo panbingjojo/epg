@@ -1,0 +1,74 @@
+body {
+    color: #fff;
+    background-image: url("../../../../../Public/img/hd/DonateBlood/V1/bg_content.png");
+    background-repeat: no-repeat;
+}
+p.title {
+    position: absolute;
+    top: 20px;
+    left: 80px;
+    font-size: 38px;
+    color: #FFFFFF;
+}
+#title_line{
+    position: absolute;
+    top: 88px;
+    left: 80px;
+    width: 152px;
+}
+
+#blood_report{
+    position: absolute;
+    top: 140px;
+    left: 80px;
+}
+#blood_record{
+    position: absolute;
+    top: 140px;
+    left: 650px;
+}
+#blood_register{
+    position: absolute;
+    top: 460px;
+    left: 80px;
+}
+#apply_volunteer{
+    position: absolute;
+    top: 460px;
+    left: 460px;
+}
+#blood_order{
+    position: absolute;
+    top: 460px;
+    left: 840px;
+}
+#btn_order_f_1{
+    position: absolute;
+    top: 104px;
+    left: 44px;
+    display: none;
+}
+#btn_order_f_2{
+    position: absolute;
+    top: 104px;
+    left: 614px;
+    display: none;
+}
+#btn_order_f_3{
+    position: absolute;
+    top: 424px;
+    left: 44px;
+    display: none;
+}
+#btn_order_f_4{
+    position: absolute;
+    top: 424px;
+    left: 424px;
+    display: none;
+}
+#btn_order_f_5{
+    position: absolute;
+    top: 424px;
+    left: 804px;
+    display: none;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>辽宁电信-播放页V14</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            carrierId: '{$carrierId}',                      // 地区id
+            areaCode: '{$areaCode}',                        // 省份地区码
+            platformType: '{$platformType}',                // 平台类型（hd--高清 sd--标清）
+            debug: '{$debug}',                              // 调试模式
+            pageSize: '{$pageSize}',                        // 页面尺寸
+            collectStatus: '{$collectStatus}',              // 判断是否收藏 0表示收藏 1表示未收藏
+            sourceId: '{$sourceId}',                        // 视频ID
+            returnUrl: '{$returnUrl}',                      // 返回地址 unescape("{$returnUrl}")
+            userId: '{$userId}',                            // 用户ID
+            imgHost: '{$resourcesUrl}',                     // 图片host
+            isVip: {$isVip},                                // 用户是不是vip，1 -- 是vip
+            freeSeconds: {$freeSeconds},                    // 免费观看时长
+            durationTime: '{$durationTime}',                // 视频总时长
+            currentPlayTimes: 0,                            // 记录当前播放的时间进度
+            userType: {$userType},                          // 视频的播放策略（0-不限，1-普通用户可看, 2-vip可看）
+            videoInfo: {$videoInfo},                        // 视频信息
+            domainUrl: '{$domainUrl}',                      // 江苏电信需要使用的第三方播放器前缀地址
+            videoUrl: '{$videoUrl}',                        // 视频url：中国联通的高清视频地址http 转换成为rtsp进行播放。
+            recommendVideoUrl: '',                            // 推荐视频播放地址
+            isForbidOrder: '{$Think.cookie.c_is_forbided_order}', // 是否禁止订购 1--表示禁止订购
+
+            allVideoInfo: {$albumArr},    // 从视频集进入，这里是所有的视频，用于上下集切换
+            subjectId: "{$subjectId}",    // 从视频集进入，需要传入视频集id
+            spid: "{$spid}",              // 第三方标识
+            playerCallbackUrl: "{$playerCallbackUrl}",    // 播放视频结束时返回
+        };
+
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+</head>
+<body bgcolor="transparent">
+<div id="debug"></div>
+
+<script type="text/javascript" src="__ROOT__/Public/js/Player/V14/index.js"></script>
+<script type="text/javascript">
+    // javaScript code shift out
+
+    window.onload = function () {
+        LMEPG.BM.init("", [], "", true);
+        // 保存播放的视频，用于首页“继续观看”
+        Network.savePlayerProgress(JSON.stringify(RenderParam.videoInfo));
+
+        // 跳转局方Android影片详情页(CS平台）
+        if (typeof (jsObj) !== "undefined") {
+            var param = {
+                type: 1,
+                data: {
+                    code: RenderParam.videoUrl,
+                    seriesflag: 0,
+                    sequenceCode: "",
+                    longTitle: ""
+                },
+                spid: RenderParam.spid
+            };
+            var paramJson = JSON.stringify(param);
+            LMEPG.Log.info("辽宁电信跳转影片详情 jsObj 调用参数: " + paramJson);
+            console.log("辽宁电信跳转影片详情 jsObj 调用参数: " + paramJson);
+            if (typeof (jsObj) === "undefined") {
+                LMEPG.Log.info("辽宁电信 jsObj 不存在");
+                console.log("辽宁电信 jsObj 不存在");
+                return;
+            }
+            jsObj.eventFromJS(paramJson);
+
+            setTimeout(function () {
+                // history.go(-1);
+                onBack();
+            }, 500);
+        }
+        // BS平台
+        else if (typeof (Authentication) !== 'undefined') {
+            var videoDetailUrl = Authentication.CTCGetConfig("telecom.video")
+                + "?code=" + RenderParam.videoUrl
+                + "&return=" + RenderParam.playerCallbackUrl
+                + "#" + RenderParam.spid;
+
+            LMEPG.Log.info("BS platform videoDetailUrl: " + videoDetailUrl);
+            window.location.href = videoDetailUrl;
+        }
+
+    }
+
+    var onBack = htmlBack = function () {
+        LMEPG.Intent.back();
+    };
+</script>
+</body>
+</html>
+
+

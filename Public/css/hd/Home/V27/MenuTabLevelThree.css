@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+body > * {
+    position: absolute;
+}
+
+/*上*/
+#top-item {
+    position: relative;
+}
+
+#title {
+    position: absolute;
+    top: 15px;
+    left: 80px;
+    color: #fff;
+    font-size: 40px;
+}
+
+#action-icon {
+    position: absolute;
+    display: inline;
+    height: 55px;
+    line-height: 55px;
+    /*top: 5px;*/
+    right: 0;
+}
+
+#action-icon > img {
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+#nav {
+    top: 80px;
+    left: 64px;
+}
+
+#nav img {
+    margin-right: 145px;
+}
+
+#nav #nav-3 {
+    margin-right: 0;
+}
+
+#prev-arrow {
+    top: 370px;
+    left: 15px;
+    visibility: hidden;
+}
+
+#next-arrow {
+    top: 370px;
+    left: 1220px;
+    visibility: hidden;
+}
+
+#page-wrapper {
+    top: 673px;
+    left: 1160px;
+    color: #fff;
+    font-size: 24px;
+}
+
+#container {
+    top: 150px;
+    left: 60px;
+}
+
+#container > div {
+    display: inline-block;
+    width: 290px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#container > div img {
+    height: 183px;
+    width: 255px;
+    padding: 19px;
+    border-radius: 30px;
+}
+
+#container > div > img.active {
+    background-image: url(../../../../../Public/img/hd/Home/V27/levelThree_f.png);
+    background-size: 100% 100%;
+}
+
+#container > div p {
+    color: #fff;
+    width: 250px;
+    height: 33px;
+    font-size: 21px;
+    overflow: hidden;
+    padding-left: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: -10px;
+}
+
+#container > div.null-data {
+    width: 1200px;
+    font-size: 20px;
+    font-style: italic;
+    color: #ccc;
+    line-height: 500px;
+    vertical-align: middle;
+}

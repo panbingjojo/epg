@@ -1,0 +1,255 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+.leave_time {
+    position: absolute;
+    top: 82px;
+    left: 511px;
+    outline: none !important;
+    font-size: 17px;
+    line-height: 17px;
+    color: #333333;
+}
+#leave_time{color: #ffffff}
+
+.integral {
+    position: absolute;
+    top: 46px;
+    left: 515px;
+    outline: none !important;
+    font-size: 14px;
+    line-height: 14px;
+    color: #333333;
+}
+.introduce2{
+    position: absolute;
+    top: 20px;
+    left: 230px;
+    outline: none !important;
+    font-size: 20px;
+    line-height: 20px;
+    color: #333333;
+}
+
+#sweep1_tool {
+    position: absolute;
+    top: 296px;
+    left: 8px;
+    outline: none !important;
+    width: 112px;
+    height: 110px;
+
+}
+
+#sweep2_tool {
+    position: absolute;
+    top: 174px;
+    left: 188px;
+    outline: none !important;
+    width: 110px;
+    height: 241px;
+
+}
+
+#sweep3_tool {
+    position: absolute;
+    top: 292px;
+    left: 360px;
+    outline: none !important;
+    width: 118px;
+    height: 118px;
+
+}
+
+#sweep4_tool {
+    position: absolute;
+    top: 310px;
+    left: 540px;
+    outline: none !important;
+    width: 74px;
+    height: 90px;
+
+}
+
+#rubbish1 {
+    position: absolute;
+    top: 440px;
+    left: 8px;
+    outline: none !important;
+    width: 562px;
+    height: 80px;
+}
+
+#rubbish2 {
+    position: absolute;
+    top: 466px;
+    left: 90px;
+    outline: none !important;
+    width: 550px;
+    height: 64px;
+}
+
+#rubbish3 {
+    position: absolute;
+    top: 320px;
+    left: 366px;
+    outline: none !important;
+    width: 112px;
+    height: 200px;
+}
+
+#rubbish4 {
+    position: absolute;
+    top: 400px;
+    left: 34px;
+    outline: none !important;
+    width: 606px;
+    height: 128px;
+}
+
+#arrow1{
+    position: absolute;
+    top: 330px;
+    left: 86px;
+    outline: none !important;
+    width: 92px;
+    height: 132px;
+    visibility: hidden;
+}
+#arrow2{
+    position: absolute;
+    top: 324px;
+    left: 244px;
+    outline: none !important;
+    width: 92px;
+    height: 132px;
+    visibility: hidden;
+}
+#arrow3{
+    position: absolute;
+    top: 336px;
+    left: 320px;
+    outline: none !important;
+    width: 92px;
+    height: 132px;
+    visibility: hidden;
+}
+#arrow4{
+    position: absolute;
+    top: 350px;
+    left: 472px;
+    outline: none !important;
+    width: 92px;
+    height: 132px;
+    visibility: hidden;
+}
+#title1{
+    position: absolute;
+    top: 264px;
+    left: 30px;
+    outline: none !important;
+    width: 24px;
+    height: 80px;
+    visibility: hidden;
+}
+#title2{
+    position: absolute;
+    top: 270px;
+    left: 246px;
+    outline: none !important;
+    width: 24px;
+    height: 80px;
+    visibility: hidden;
+}
+#title3{
+    position: absolute;
+    top: 290px;
+    left: 376px;
+    outline: none !important;
+    width: 70px;
+    height: 24px;
+    visibility: hidden;
+}
+#title4{
+    position: absolute;
+    top: 310px;
+    left: 540px;
+    outline: none !important;
+    width: 70px;
+    height: 24px;
+    visibility: hidden;
+}
+#showTip{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 644px;
+    height: 530px;
+    z-index: 999;
+    background: url("../../../../../img/sd/Activity/ActivityCleaning/union/show_toast.png");
+    line-height: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: #994c00;
+    visibility: hidden;
+}
+.title{
+    position: absolute;
+     left: 208px;
+    top: 166px;
+    outline: none !important;
+    width: 205px;
+    z-index: 999;
+    line-height: 24px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.content{
+    position: absolute;
+    top: 208px;
+    left: 158px;
+    outline: none !important;
+    width: 320px;
+    z-index: 999;
+    line-height: 40px;
+    text-align: center;
+}
+.black{
+    color: #4d2600;
+}
+#back_btn{
+    position: absolute;
+    top: 315px;
+    left: 252px;
+    outline: none !important;
+    width: 130px;
+    height: 56px;
+}
+.introduce{
+    position: absolute;
+    top: 228px;
+    left: 168px;
+    outline: none !important;
+    width: 320px;
+    z-index: 999;
+    line-height: 32px;
+    text-align: center;
+    font-size: 32px;
+    color: #994c00;
+}

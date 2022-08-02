@@ -1,0 +1,136 @@
+body{
+    color: white;
+}
+.doctor-detail {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    border-radius: 12px;
+    width: 1120px;
+    height: 318px;
+
+}
+
+#avatar {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 233px;
+    height: 285px;
+    border-radius: 10px;
+}
+
+#doctor-recommend {
+    position: absolute;
+    top: 215px;
+    left: 16px;
+}
+
+#doctor-recommend img{
+    display: block;
+}
+
+#introduce {
+    position: absolute;
+    top: 23px;
+    left: 287px;
+    height: 200px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.doctor-word {
+    margin-top: 10px;
+    font-size: 28px;
+    width: 620px;
+    height: 48px;
+    line-height: 48px;
+    overflow: hidden;
+}
+
+#name {
+    margin-top: 10px;
+    font-size: 46px;
+    width: 620px;
+    height: 56px;
+    line-height: 56px;
+    overflow: hidden;
+}
+
+#hospital {
+    margin-top: 10px;
+    font-size: 33px;
+    width: 620px;
+    height: 56px;
+    line-height: 56px;
+    overflow: hidden;
+}
+
+.doctor-desc {
+    position: absolute;
+    top: 394px;
+    left: 80px;
+    width: 1150px;
+    font-size: 28px;
+    height:315px;
+    overflow: auto;
+}
+
+#doctor-desc-detail {
+    position: absolute;
+    left: 0px;
+    width: 1120px;
+    height: 315px;
+    /*text-indent: 40px;*/
+    font-size: 26px;
+    line-height: 40px;
+    text-indent: 40px;
+}
+
+.reception-times-container {
+    position: absolute;
+    width: 220px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    top: 272px;
+    left: 58px;
+    font-size: 22px;
+    color: black;
+}
+
+#status {
+    position:absolute;
+    top: 270px;
+    left: 16px;
+}
+
+.border {
+    background:url("../../../../../Public/img/hd/DoctorP2P/V10/box_detail.png");
+}
+
+#reception-times-img {
+    position: absolute;
+    top: 270px;
+    left: 88px;
+    width: 161px;
+    height: 32px;
+}
+
+#inquiry-type-title {
+    position: absolute;
+    top: 17px;
+    left: 901px;
+    font-size: 22px;
+    color: #33ffdd;
+}
+
+#inquiry-type-container {
+    position: absolute;
+    top: 53px;
+    left: 899px;
+}
+
+#inquiry-type-container li {
+    margin-top: 5px;
+}

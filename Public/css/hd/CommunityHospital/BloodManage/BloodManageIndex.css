@@ -1,0 +1,277 @@
+body {
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    color: #fff;
+    background-image: url("../../../../../Public/img/hd/CommunityHospital/BloodManage/bg.png");
+}
+
+p.title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 30px;
+}
+
+div#container {
+    height: 720px;
+    width: 1100px;
+}
+
+#ask-doctor{
+    position: absolute;
+    top: 69px;
+    left: 810px;
+}
+#blood-data-up{
+    position: absolute;
+    top: 69px;
+    left: 980px;
+}
+
+#member-photo {
+    position: absolute;
+    top:145px;
+    left: 106px;
+    width: 130px;
+    height: 176px;
+    /*border: 1px solid red;*/
+}
+#member-introduce{
+    position: absolute;
+    top: 146px;
+    left: 270px;
+    width: 175px;
+    color: #FFFFFF;
+}
+#member-name{
+    height: 40px;
+    font-size: 30px;
+    /*border: 1px solid red;*/
+}
+#member-age{
+    position: absolute;
+    top: 70px;
+    height: 30px;
+    font-size: 24px;
+    /*border: 1px solid red;*/
+}
+#member-sex{
+    position: absolute;
+    top: 100px;
+    height: 30px;
+    font-size: 24px;
+    /*border: 1px solid red;*/
+}
+
+#health-advice{
+    position: absolute;
+    top: 145px;
+    left: 450px;
+    width: 606px;
+    height: 176px;
+    background-image: url("../../../../../Public/img/hd/CommunityHospital/BloodManage/bg_health_advice.png");
+    background-size: 100% 100%;
+}
+#health-advice-title{
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    font-size: 24px;
+
+}
+#health-advice-content{
+    position: absolute;
+    top: 47px;
+    left: 25px;
+    width: 526px;
+    font-size: 18px;
+
+}
+
+#week-detail{
+    position: absolute;
+    top: 352px;
+    left: 72px;
+}
+#history-data{
+    position: absolute;
+    top: 352px;
+    left: 252px;
+}
+
+#red-point{
+    position: absolute;
+    top: 369px;
+    left: 1009px;
+}
+#height-text{
+    position: absolute;
+    top: 355px;
+    left: 1025px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+#yellow-point{
+    position: absolute;
+    top: 369px;
+    left: 1110px;
+}
+#low-text{
+    position: absolute;
+    top: 355px;
+    left: 1125px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+#bg-content{
+    position: absolute;
+    top: 396px;
+    left: 72px;
+    width: 1136px;
+    height: 294px;
+    /*background-image: url("../../../../../Public/img/hd/CommunityHospital/BloodManage/bg_content.png");*/
+}
+#week-detail-content{
+    width: 1136px;
+    height: 294px;
+    background-image: url("../../../../../Public/img/hd/CommunityHospital/BloodManage/bg_content_week.png");
+    /*display: none;*/
+}
+
+#height-point-1{
+    position: absolute;
+    top: 170px;
+    left: 200px;
+}
+#low-point-1{
+    position: absolute;
+    top: 230px;
+    left: 200px;
+}
+#height-point-2{
+    position: absolute;
+    top: 170px;
+    left: 338px;
+}
+#low-point-2{
+    position: absolute;
+    top: 230px;
+    left: 338px;
+}
+#height-point-3{
+    position: absolute;
+    top: 170px;
+    left: 465px;
+}
+#low-point-3{
+    position: absolute;
+    top: 230px;
+    left: 465px;
+}
+#height-point-4{
+    position: absolute;
+    top: 170px;
+    left: 600px;
+}
+#low-point-4{
+    position: absolute;
+    top: 230px;
+    left: 600px;
+}
+#height-point-5{
+    position: absolute;
+    top: 170px;
+    left: 735px;
+}
+#low-point-5{
+    position: absolute;
+    top: 230px;
+    left: 735px;
+}
+#height-point-6{
+    position: absolute;
+    top: 170px;
+    left: 870px;
+}
+#low-point-6{
+    position: absolute;
+    top: 230px;
+    left: 870px;
+}
+#height-point-0{
+    position: absolute;
+    top: 170px;
+    left: 1008px;
+}
+#low-point-0{
+    position: absolute;
+    top: 230px;
+    left: 1008px;
+}
+
+/*像素点隐藏*/
+.modal{
+    visibility:hidden;
+    /*display: none;*/
+}
+
+#history-data-content{
+    width: 1136px;
+    height: 294px;
+    background-image: url("../../../../../Public/img/hd/CommunityHospital/BloodManage/bg_content_his.png");
+    /*background-size: 100% 100%;*/
+    display: none;
+}
+
+table{
+    position: absolute;
+    top: 20px;
+    left: 86px;
+    text-align: left;
+    font-size: 18px;
+}
+#line{
+    position: absolute;
+    top:  50px;
+    left: 86px;
+    width: 962px;
+}
+table th{
+    font-weight: normal;
+    width: 306px;
+}
+table tr td{
+    width: 306px;
+    line-height: 34px;
+    line-height: 34px;
+}
+#history-data-form{
+    position: absolute;
+    top: 45px;
+}
+
+#his-prev{
+    position: absolute;
+    top: 230px;
+    left: 505px;
+    /*display: none;*/
+}
+#his-next{
+    position: absolute;
+    top: 230px;
+    left: 616px;
+    /*display: none;*/
+}
+
+#page-num{
+    position: absolute;
+    top: 237px;
+    left: 551px;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    font-size: 24px;
+    color: #FFFFFF;
+}

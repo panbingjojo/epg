@@ -1,0 +1,75 @@
+p{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-repeat: no-repeat;
+}
+.title{
+    position: absolute;
+    top: 38px;
+    left: 80px;
+    color: #fff;
+    font-size: 38px;
+    background-image: url(../../../../img/hd/Pay/V520095/line.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    padding-bottom:10px ;
+}
+.pay-info-wrap{
+    position: absolute;
+    top: 120px;
+    left: 80px;
+    width: 1120px;
+    height: 82px;
+    background-image: url(../../../../img/hd/Pay/V520095/txt_bg.png);
+    background-repeat: no-repeat;
+    line-height: 82px;
+}
+.pay-info-wrap>*{
+    position: absolute;
+    color: #fff;
+}
+#vip-icon{
+    top: 0;
+    left: 10px;
+}
+#user-account{
+
+    top: 0;
+    left: 115px;
+    height: 82px;
+    line-height: 82px;
+    font-size: 23px;
+}
+#btn-pay{
+    top: 5px;
+    left: 913px;
+}
+#pay-notice{
+    position: absolute;
+    top: 310px;
+    left: 80px;
+    width: 1120px;
+    color: #fff;
+    font-size: 28px;
+    text-align: center;
+}
+.desc-info{
+    position: absolute;
+    top: 640px;
+    left: 80px;
+    color: #fff;
+    font-size: 20px;
+    text-align: left;
+}
+.desc-info p{
+    margin-bottom: 5px;
+}
+.inquire-phone{
+    position: absolute;
+    top: 51px;
+    right: 90px;
+    font-size: 24px;
+    color: #FFFFFF;
+}

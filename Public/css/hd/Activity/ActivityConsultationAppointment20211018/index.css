@@ -1,0 +1,490 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+/*body > *,*/
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: hidden;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+#bg_1{
+    display: block;
+}
+#bg_2{
+    display: none;
+}
+
+
+/*活动首页*/
+.btn-list{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+#btn_back{
+    position: absolute;
+    left: 1039px;
+    top: 182px;
+    margin-left: 0px;
+}
+#btn_consult_doctor{
+     position: absolute;
+     left: 1039px;
+     top: 254px;
+ }
+#btn_make_appointment{
+      position: absolute;
+      left: 1039px;
+      top: 323px;
+  }
+#btn_winter_disease{
+    position: absolute;
+    left: 1039px;
+    top: 394px;
+}
+#btn_activity_rule{
+    position: absolute;
+    left: 1039px;
+    top: 464px;
+}
+#btn_winner_list{
+    position: absolute;
+    left: 1039px;
+    top: 533px;
+}
+.lipstick{
+    position: absolute;
+
+}
+#lipstick1{
+  position: absolute;
+  left: 40px;
+  top: 474px;
+}
+
+#btn_lottery_cancel_1 {
+    position: absolute;
+    top: 465px;
+    left: 693px;
+    height: 56px;
+    width: 167px;
+}
+
+#left_times {
+    position: absolute;
+    left: 342px;
+    top: 478px;
+    color: #3767ec;
+    font-size: 45px;
+    font-weight: bold;
+}
+#score{
+    position: absolute;
+    top: 267px;
+    left: 637px;
+    text-align: center;
+    color: #3f2b10;
+    width: 80px;
+    height: 36px;
+    font-size: 36px;
+}
+
+#btn_start{
+    position: absolute;
+    top: 583px;
+    left: 943px;
+}
+
+
+
+/*活动规则*/
+#btn_close_rule {
+    position: absolute;
+    top: 70px;
+    left: 1055px;
+    display: block;
+}
+
+/*中奖名单*/
+#total_list {
+    top: 186px;
+    left: 200px;
+    height: 173px;
+    width: 866px;
+    font-size: 26px;
+    /*border: 1px red solid;*/
+}
+#btn_list_submit {
+    top: 526px;
+    left: 734px;
+}
+
+#btn_list_cancel {
+    top: 526px;
+    left: 924px;
+}
+
+#all_marquee {
+    width: 866px;
+    height: 130px;
+}
+
+#my_marquee {
+    height: 40px;
+    width: 866px;
+}
+
+table.marquee_table {
+    width: 866px;
+}
+
+table#all_table tr {
+    height: 40px;
+}
+
+table#my_table tr {
+    height: 30px;
+}
+
+.winner_account{
+    width: 355px;
+}
+.winner_time{
+    width: 385px;
+}
+.winner_prize{
+    width: 178px;
+}
+
+table.marquee_table td {
+    /* left: 240px; */
+    margin-right: 40px;
+    text-align: left;
+    font-size: 30px;
+    color: #fff;
+    font-weight: normal;
+    /*border: 1px red solid;*/
+}
+
+#my_list {
+    top: 460px;
+    left: 200px;
+    height: 30px;
+    width: 866px;
+    font-size: 23px;
+    text-align: center;
+}
+
+#reset_tel {
+    top: 556px;
+    left: 428px;
+    width: 270px;
+    font-size: 18px;
+    color: #a3a3a3;
+    text-align: left;
+    font-weight: normal;
+    /*font-style: SourceHanSansCN-Medium;*/
+}
+
+
+
+/*游戏结束*/
+#btn_game_over_sure {
+    top: 440px;
+    left: 565px;
+}
+
+/*游戏页*/
+#game_container{
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+
+#btn_close{
+    top: 77px;
+    left: 1090px;
+}
+
+
+
+/*抽奖失败*/
+#btn_lottery_fail, #btn_tomorrow_fail{
+    top: 423px;
+    left: 547px;
+}
+
+/*抽奖品*/
+#lottery_prize{
+    top: 280px;
+    left: 475px;
+    width: 271px;
+    height: 340px;
+}
+
+
+#prize_count{
+    top: 280px;
+    left: 980px;
+    font-size: 55px;
+    line-height: 55px;
+    width: 80px;
+    height: 55px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+#btn_exchange_submit {
+    top: 469px;
+    left: 385px;
+}
+
+#btn_exchange_cancel {
+    top: 469px;
+    left: 715px;
+}
+
+#exchange_tel {
+    top: 519px;
+    left: 452px;
+    width: 320px;
+    font-size: 30px;
+
+    color: rgba(255,255,255,0.5);
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+/*抽奖成功*/
+#prize_image {
+    top: 233px;
+    left: 533px;
+}
+
+#lottery_tel {
+    top: 468px;
+    left: 585px;
+    width: 300px;
+    font-size: 18px;
+    color: #a3a3a3;
+    border-radius: 5px;
+    text-align: left;
+    font-weight: normal;
+}
+
+#btn_lottery_submit {
+    top: 523px;
+    left: 447px;
+}
+
+#btn_lottery_cancel {
+    top: 523px;
+    left: 657px;
+}
+
+#context_disease {
+    margin-top: 25px;
+}
+
+
+/*订购VIP*/
+#btn_consult_doctor_order {
+    top: 236px;
+    left: 510px;
+}
+
+#btn_make_appointment_order {
+    top: 423px;
+    left: 510px;
+}
+#btn_game_confirm{
+    top: 528px;
+    left: 713px;
+}
+#btn_game_cancel{
+    top: 528px;
+    left: 984px;
+}
+/*游戏结束*/
+#btn_no_score {
+    top: 528px;
+    left: 713px;
+}
+#cutDown{
+    position: absolute;
+    top: 625px;
+    left: 125px;
+    text-align: center;
+    color: #fff;
+    width: 80px;
+    height: 30px;
+    font-size: 30px;
+    /*border: 1px red solid;*/
+}
+#skin-list{
+    position: absolute;
+    top: 343px;
+    left: 738px;
+    width: 450px;
+    overflow: hidden;
+}
+#skin-list>img{
+    margin-left: -10px;
+}
+#play{
+    position: absolute;
+    top: 583px;
+    left: 933px;
+}
+
+
+/*倒计时弹窗*/
+#count {
+    top: 300px;
+    left: 670px;
+    color: #ffffff;
+    font-size: 50px;
+}
+
+#game_over_sure{
+    position: absolute;
+    top: 440px;
+    left: 565px;
+}
+
+#do-lottery{
+    position: absolute;
+    top: 440px;
+    left: 480px;
+}
+
+#do-cancel{
+    position: absolute;
+    top: 440px;
+    left: 650px;
+}
+
+#btn_bronchitis {
+    top: 27px;
+    left: 13px;
+}
+#btn_facial_paralysis {
+    top: 96px;
+    left: 13px;
+}
+#btn_depressed {
+    top: 164px;
+    left: 13px;
+}
+#btn_heart_disease {
+    top: 232px;
+    left: 13px;
+}
+#btn_chilblains {
+    top: 300px;
+    left: 13px;
+}
+#btn_scapulohumeral {
+    top: 369px;
+    left: 13px;
+}
+#btn_rheumatism {
+    top: 436px;
+    left: 13px;
+}
+#btn_hypertension {
+    top: 504px;
+    left: 13px;
+}
+#btn_myocardial_infarction {
+    top: 572px;
+    left: 13px;
+}
+#btn_common_diseases {
+    top: 640px;
+    left: 13px;
+}
+#disease_content {
+    position: absolute;
+    top: 251px;
+    left: 311px;
+    width: 889px;
+    height: 154px;
+    font-size: 30px;
+    color: #000;
+    font-weight: normal;
+}
+
+#bg_recommend_1 {
+    position: absolute;
+    top: 667px;
+    left: 42px;
+}
+#bg_recommend_2 {
+    position: absolute;
+    top: 667px;
+    left: 275px;
+}
+#bg_recommend_3 {
+    position: absolute;
+    top: 667px;
+    left: 508px;
+}
+#bg_recommend_4 {
+    position: absolute;
+    top: 667px;
+    left: 741px;
+}
+#bg_recommend_5 {
+    position: absolute;
+    top: 667px;
+    left: 974px;
+}
+
+.recommend_f {
+    width: 267px;
+    height: 192px;
+}
+
+.recommendHover {
+    position: absolute;
+    /*top: 25px;
+    left: 25px;*/
+    z-index: 997;
+}
+
+#scroll {
+    position: absolute;
+    top: 0px;
+}
+
+#counts {
+    height: 720px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    overflow: hidden;
+}

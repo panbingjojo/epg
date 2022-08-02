@@ -1,0 +1,130 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #ffffff;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+div.card_detial {
+    top: 58px;
+    left: 453px;
+    text-align: center;
+    width: 767px;
+    height: 609px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V2/doctor_img.png');
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+div {
+    position: absolute;
+}
+
+.hos_img {
+    position: absolute;
+    width: 377px;
+    height: 668px;
+    top: 53px;
+    left: 50px;
+}
+#title {
+    top: 90px;
+    left: 500px;
+    overflow: hidden;
+    font-size: 38px;
+}
+#prePages{
+    position: absolute;
+    width: 65px;
+    height: 26px;
+    top: 10px;
+    left: 803px;
+    display: none;
+}
+#nextPages{
+    position: absolute;
+    width: 65px;
+    height: 26px;
+    top: 680px;
+    left:803px;
+    display: none;
+}
+div#card_1{
+    width: 726px;
+    height: 105px;
+    top: 170px;
+    left:478px;
+}
+div#card_2{
+    width: 726px;
+    height: 105px;
+    top: 170px;
+    left:478px;
+}
+.doc_name{
+    position: absolute;
+    width: 726px;
+    height: 105px;
+    top: 10px;
+    left:128px;
+    font-size: 28px;
+}
+.doc_job{
+    position: absolute;
+    top: 10px;
+    left:288px;
+    font-size: 16px;
+    border: 1px #7fd4ff solid;
+    padding: 3px;
+    color:#7fd4ff;
+}
+.doc_good{
+    position: absolute;
+    top: 58px;
+    left:258px;
+    font-size: 18px;
+    line-height: 18px;
+    height: 36px;
+    width: 450px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.doc_subject{
+    position: absolute;
+    top: 65px;
+    left:128px;
+    font-size: 18px;
+    line-height: 18px;
+}
+div#card_2{
+    width: 726px;
+    height: 105px;
+    top: 320px;
+    left:478px;
+}
+div#card_3{
+    width: 726px;
+    height: 105px;
+    top: 470px;
+    left:478px;
+}
+.photo{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: -3px;
+    left:5px;
+}
+

@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>弹窗</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityConsultation/V1/dailog.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+</head>
+<body style=" background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/bg.png')">
+<img id="back_btn" class="btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png"/>
+<div id="btn_type">
+    <img id="look" class="btn1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/look_out.png"/>
+</div>
+<div id="introduce">SORRY,您已参与过0元义诊活动</div>
+
+<script type="text/javascript">
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    function getCurPageObj() {
+        var objCurrent = LMEPG.Intent.createIntent("activity-consultation-new-dialog");
+        return objCurrent;
+    }
+
+    function jumpRecord() {
+        var curObj = getCurPageObj();
+        var jumpRecordObj = LMEPG.Intent.createIntent("activity-consultation-new-record");
+        LMEPG.Intent.jump(jumpRecordObj, curObj, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+
+</script>
+
+
+<script type="text/javascript">
+    var flag = "{$flag}";//界面显示效果 1:免费预约名额已满；2：已经参与过预约；3：没有约诊记录
+
+    if (flag == 3) {
+        var buttons = [
+            {
+                id: 'back_btn',
+                name: '返回',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusUp: '',
+                nextFocusRight: '',
+                nextFocusDown: 'look',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_in.png',
+                click: "jumpActivityInfo()",
+                focusChange: "",
+                beforeMoveChange: "",
+                moveChange: "",
+            }, {
+                id: 'look',
+                name: '查看医生',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusUp: 'back_btn',
+                nextFocusRight: '',
+                nextFocusDown: 'reservation_btn',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/look_out.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/look_in.png',
+                click: "jumpActivityInfo()",
+                focusChange: "",
+                beforeMoveChange: "",
+                moveChange: "",
+            }]
+    } else if (flag == 1) {
+        var buttons = [
+            {
+                id: 'back_btn',
+                name: '返回',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusUp: '',
+                nextFocusRight: '',
+                nextFocusDown: 'back',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_in.png',
+                click: "onBack()",
+                focusChange: "",
+                beforeMoveChange: "",
+                moveChange: "",
+            }, {
+                id: 'back',
+                name: '查看医生',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusUp: 'back_btn',
+                nextFocusRight: '',
+                nextFocusDown: 'reservation_btn',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/back_out.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/back_in.png',
+                click: "onBack()",
+                focusChange: "",
+                beforeMoveChange: "",
+                moveChange: "",
+            }]
+    } else if (flag == 2) {
+        var buttons = [
+            {
+                id: 'back_btn',
+                name: '返回',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusUp: '',
+                nextFocusRight: '',
+                nextFocusDown: 'appiont_btn',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_in.png',
+                click: "onBack()",
+                focusChange: "",
+                beforeMoveChange: "",
+                moveChange: "",
+            }, {
+                id: 'appiont_btn',
+                name: '查看约诊记录',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusUp: 'back_btn',
+                nextFocusRight: '',
+                nextFocusDown: 'reservation_btn',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/appiont_out.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/appiont_in.png',
+                click: "jumpRecord()",
+                focusChange: "",
+                beforeMoveChange: "",
+                moveChange: "",
+            }]
+    }
+</script>
+
+<script type="text/javascript">
+    window.onload = function (ev) {
+        if (flag == 1) {
+            G("introduce").innerHTML = "抱歉，免费预约名额已满<br/>请继续关注本活动，会有新的免费名额等你来拿";
+            G("btn_type").innerHTML = '<img id="back" class="btn1"  src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/back_out.png"/>';
+        } else if (flag == 2) {
+            G("introduce").innerHTML = "您已预约了医生";
+            G("btn_type").innerHTML = '<img id="appiont_btn" class="btn1"  src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/appiont_out.png"/>';
+        } else if (flag == 3) {
+            G("introduce").innerHTML = "您没有预约记录";
+            G("btn_type").innerHTML = '<img id="look" class="btn1"  src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/look_out.png"/>';
+        }
+        LMEPG.ButtonManager.init(['back_btn'], buttons, '', true);
+    }
+</script>
+</body>
+</html>

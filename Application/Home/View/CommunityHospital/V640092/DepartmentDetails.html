@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'/>
+    <title>epg-page</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/CommunityHospital/650092/DepartmentIntroduce.css?t={$time}">
+    <script>
+        var RenderParam = {
+            channel:"{$channel}"
+        }
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script src="__ROOT__/Public/js/CommunityHospital/V630092/DepartmentDetails.js?t={$time}"></script>
+</head>
+<body>
+<p id="title"  class="title">科室介绍</p>
+<div id="container">
+    <img class="dep-pic" src="" alt="">
+    <div class="intro-wrap">
+        <p class="dep-title">米东区矿业医院</p>
+        <p class="dep-intro">米东区矿业医院米东区矿业医院米东区矿业医院米东区矿业医院</p>
+    </div>
+</div>
+<div class="arrow-wrapper">
+    <img id="prev-arrow" src="__ROOT__/Public/img/hd/CommunityHospital/prev.png" alt="">
+    <img id="next-arrow" src="__ROOT__/Public/img/hd/CommunityHospital/next.png" alt="">
+    <script>
+        window.onload=function () {
+            CommunityHosp.init();
+        };
+
+    </script>
+</div>
+</body>
+</html>
+  
+  

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>活动《社区医院》-主页-V9</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!-- 默认标签 -->
+    <a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCommunityHospital/V9/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--本地库-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityCommunityHospital/V9/guide.js?t={$time}"></script>
+    <!--全局变量-->
+    <script type="text/javascript">
+        var RenderParam = {
+            userId: "{$userId}",
+            userAccount: "{$userAccount}",
+            hospitalId: "080226092",
+            currentPage: 1,
+            currentDeptId: "{$deptId}", //全部科室
+            MAX_PAGE_STEP: 1,      //每页获取1个医生;
+            buttons: [{
+                id: 'btn-back',
+                name: '返回按钮',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'piece-1-btn',
+                click: 'onBack()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back_f.png'
+            }, {
+                id: 'piece-1-btn',
+                name: '健康咨询',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'btn-back',
+                nextFocusDown: 'piece-2-btn',
+                click: 'goInquiry()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_ask_f.png'
+            }, {
+                id: 'piece-2-btn',
+                name: '上门预约',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'piece-1-btn',
+                nextFocusDown: '',
+                click: onOrder,
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_order.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_order_f.png'
+            }, {
+                id: 'dialog-confirm',
+                name: '确定',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                click: onBack,
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm_f.png'
+            }]
+        }
+    </script>
+
+</head>
+<body>
+<p id="title" class="txt">乌鲁木齐金天川医院（银川路街道银川社区卫生服务站）</p>
+<img id="btn-back" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_back.png" alt="">
+<div id="piece-0">
+    <p class="txt piece-0-txt">乌鲁木齐金天川医院（银川路街道银川社区卫生服务站）</p>
+    <img id="piece-0-pic" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/hosp_pic9.png" alt="">
+    <div id="doctor-intro">
+        <marquee behavior="" scrollamount="3" direction="up" height="200px">
+            <span id="goods-call">医院简介：</span>"
+            乌鲁木齐金天川医院位于乌鲁木齐市新市区银川路477号，由原新疆第二毛纺织厂医院改制而来,至今已有37年历史。金天川医院、银川路社区卫生服务站、
+            金桥社区卫生服务中心都隶属于新疆隆成集团，医院现有临床科室内科、外科、儿科、妇科、中医内科、中医骨伤科、住院部、口腔科、检验科、影像科、
+            社区科（负责计免接种和健康体检工作）等。 拥有进口DR拍片机、彩色多普勒B超机、全自动生化分析仪、血球分析仪、自动血流变测试仪等40余套，医疗设备先进齐全。"
+        </marquee>
+    </div>
+</div>
+<div id="piece-1">
+    <img id="piece-1-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V1/btn_ask.png" alt="">
+    <!--    <img id="piece-2-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/btn_order.png" alt="">-->
+</div>
+<!--<div id="dialog">-->
+<!--    <p>预约电话：0991-2575371</p>-->
+<!--    <img id="dialog-confirm" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V4/confirm.png" alt="">-->
+<!--</div>-->
+</body>
+
+
+<script type="text/javascript">
+    LMEPG.BM.init('piece-1-btn', RenderParam.buttons, '', true);
+    window.onload = function () {
+        // 通过医院ID来获取医生信息
+        loadDoctorList(RenderParam.hospitalId, RenderParam.currentDeptId, RenderParam.currentPage, RenderParam.MAX_PAGE_STEP);
+        //lmInitGo();
+    };
+</script>
+</html>

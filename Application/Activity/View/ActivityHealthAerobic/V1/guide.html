@@ -1,0 +1,721 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>悦动自然，健康有氧计划中国联通-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityHealthAerobic/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityHealthAerobic/DialogMoreThree.js?t={$time}"></script>
+    <!--小键盘-->
+    <script type="text/javascript" src="__ROOT__/Public/hd/js/Common/keypad.js?t={$time}"></script>
+    <script type="application/javascript" src="__ROOT__/Public/js/Activity/Common/activityCommon.js?t={$time}"></script>
+</head>
+<body>
+<img id="bg" src="">
+<!--自定义文本描述-->
+<div id="custom-message"></div>
+
+<p id="lottery-count">剩余可玩次数：0</p>
+<p id="total-oxygen">盛林产氧量：666</p>
+
+<div id="right-btn-wrapper" class="right-btn-wrapper">
+    <img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/btn_back.png">
+    <img id="rules" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/btn_rule.png">
+    <img id="winners" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/btn_prize.png">
+    <img id="exchange" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/btn_exchange.png">
+</div>
+<div class="collect-wrapper">
+    <img id="do-water" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/water.gif" alt="">
+    <img id="do-bug" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/bug.gif" alt="">
+    <img id="do-weeding" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/weeding.gif" alt="">
+</div>
+<img id="modify-tips" src="" alt="">
+<!--可浇水-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/modify_water.png" id="water" alt="">
+<!--可驱虫-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/modify_bug.png" id="bug" alt="">
+<!--可除草-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/modify_weeding.png" id="weeding" alt="">
+<!--模态框-->
+<div id="modal">
+
+</div>
+<script type="application/javascript">
+
+    var A,              // 参数数据模块
+        U,              // 函数功能模块
+        onBack,         // 公用返回
+        buttons,        // 虚拟按钮模块
+        imgVision;      // 使用图片前缀
+
+    imgVision = function () {
+        // 该活动不同地区使用图素区分（背景、活动规则、奖品1,2,3）
+        var bgIndex = "";
+        switch ("{$carrierId}") {
+            case "000051": // 中国联通（测试环境）
+                bgIndex = "V1";
+                break;
+            case "640092": // 宁夏电信
+                bgIndex = "V1";
+                break;
+            case "650092": // 新疆
+                bgIndex = "V2";
+                break;
+        }
+        if ("{$currentTime}" == 0){
+            document.body.style.color = "#000";
+        }else {
+            document.body.style.color = "#fff";
+        }
+        document.getElementById("bg").src = "__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/" + bgIndex + "/{$currentTime}_bg_home.png";
+        return bgIndex;
+    }();
+
+    // 全局参数
+    A = {
+        reload: false,
+        isModal: false,
+        myInfo: [],
+        ROOT: "__ROOT__",
+        modal: G("modal"),
+        isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+        userTel: "{$userTel}",                                          // 中奖电话
+        isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+        platformType: "{$platformType}",
+        currentTime: "{$currentTime}",
+        currentAddr: "activity-common-guide",
+        cOrderResult: "{$Think.cookie.c_order_result}",
+        vipList: F.isNull({$vipList}),
+        getUserScore: {$getUserScore},
+        prize_idx: F.isNull({$prize_idx}),
+        myPrizeList: F.isNull({$myPrizeList}),                          // 我的中奖记录
+        activityInfo: F.isNull({$activityInfo}),                        // 活动信息
+        leftTimes: F.isNull({$leftTimes}).leftTimes,                    // 剩余次数
+        ExchangeRecord: F.isNull({$ExchangeRecord}),                    // 兑换记录
+        setExchangeList: F.isNull({$setExchangeList}),                  // 设置的兑换物品信息
+        AllUserPrizeLis: F.isNull({$AllUserPrizeLis}),                  // 所用中奖信息
+        fishStore: F.toJson(F.isNull({$storeFish}).val),                // 查询存储的数据
+        specialData: F.toJson(F.isNull({$specialData}).val),            // 查询存储的数据
+        imgPathPrefix: "__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/V1/",
+    };
+
+    // 公用返回函数
+    onBack = function () {
+        var keyPad = G("key-table");
+        switch (true) {
+            // 遥控器返回键关闭虚拟小键盘
+            case !!keyPad:
+                keyPad.parentNode.removeChild(keyPad);
+                LMEPG.ButtonManager.requestFocus("btn-submit");
+                break;
+            // 如果是弹框即关闭弹框
+            case A.isModal:
+                A.modal.innerHTML = '';
+                A.isModal = false;
+                LMEPG.ButtonManager.requestFocus(A.beClickBtnId);
+                A.reload && F.reload(A.currentAddr);
+                break;
+            // 应用内活动，直接返回上一级页面
+            default:
+                LMEPG.Intent.back();
+                break;
+        }
+    };
+
+    U = function (doc, O) {
+        var times = doc.getElementById("lottery-count");
+        var msgDesc = doc.getElementById("custom-message");
+        O = {
+            init: function () {
+                this.toZero();
+                this.getTimes();
+                this.initButton("");
+                this.showMeta();
+                this.changeData();
+            },
+            // 存储执行清理树木的留下的行为
+            dataSave: function (str) {
+                var reSaveData = function () {
+                    return A.specialData.data.filter(function (t, i) {
+                        return t != str;
+                    })
+                };
+                var reqData = {
+                    "action": "special",
+                    "currentData": JSON.stringify(reSaveData()),
+                };
+
+                LMEPG.ajax.postAPI('Activity/commonAjax', reqData,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            A.specialData.data = reSaveData();
+                        } catch (e) {
+                            LMEPG.UI.showToast("存储数据异常！");
+                            console.log(e.toString())
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("存储数据异常！");
+                    }
+                );
+            },
+            /**
+             * 保存氧量
+             * 执行一次gif动画效果
+             * 重载数据
+             */
+            saveScore: function (score) {
+                doc.getElementById("modify-tips").src = "__ROOT__/Public/img/{$platformType}/Activity/ActivityHealthAerobic/" + imgVision + "/{$currentTime}_pao" + score + ".gif";
+                var reqData = {
+                    "action": "addScore",
+                    "score": score,
+                };
+                LMEPG.ajax.postAPI('Activity/commonAjax', reqData,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            console.log(rsp, data);
+                            if (data.result == 0) {
+                                O.changeData(score,data.leftTimes);
+                                F.reload()
+                            } else {
+                                LMEPG.UI.showToast("存储数据异常！");
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("存储数据异常！");
+                            console.log(e.toString())
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("存储数据异常！");
+                    }
+                );
+            },
+            // 更新氧量
+            changeData: function (score,times) {
+                G("total-oxygen").innerText = A.getUserScore + (score ? score : 0);
+                O.getTimes(times)
+            },
+            // 再点击提示
+            tips: function (index) {
+                // 任务提示
+                var msg = ["谢谢您，我现在还不想喝水~~~", "谢谢您，我身上现在还很清爽~~~", "谢谢您，我身边还没有争夺养分的小东西~~~", "谢谢您，我现在没有不舒服的地方~~~"];
+                LMEPG.UI.showToast(msg[index], 2);
+            },
+            // UI 按钮行为更新
+            showMeta: function () {
+                var arr = A.specialData.data;
+                // 若一个行为都没有则焦点移动到返回按钮上
+                var btns = ["water", "bug", "weeding"];
+                btns.forEach(function (item) {
+                    if (arr.indexOf(item) == -1) {
+                        var currentItem = LMEPG.ButtonManager.getButtonById("do-" + item);
+                        currentItem.backgroundImage = currentItem.isForbidBg;
+                        G("do-" + item).src = currentItem.isForbidBg;
+                    } else {
+                        G(item).style.opacity = 1;
+                    }
+                });
+                O.moveToFocus("do-water");
+            },
+
+            /**
+             * 点击行为之后：
+             *  0.检查次数：不足普通用户调提示订购，VIP提示明天来；
+             *  1.焦点移动到可以执行行为的焦点上（若都没有则移动到右边的兑换奖品上）；
+             *  2.被点击的焦点变为灰色；
+             *  3.动画（树上的动画+气泡动画）；
+             *  4.分数更新
+             *  5.次数更新
+             */
+            doAction: function (btn) {
+                var id = btn.id;
+                var str = btn.id.slice(3);
+                var index = id == "do-water" ? 0 : id == "do-bug" ? 1 : id == "do-weeding" ? 2 : 3;
+
+                // 次数不足提示
+                if (!+A.leftTimes) {
+                    O.jumpTimesOutDialog();
+                    return;
+                }
+                // 全部任务已经完成提示
+                if (A.specialData.data[0] == "") {
+                    O.tips(3);
+                    return;
+                }
+                // 该任务已经完成提示
+                if (A.specialData.data.indexOf(str) == -1) {
+                    O.tips(index);
+                    return;
+                }
+
+                // 有次数且有任务可执行
+                O.animationEasing(str);
+            },
+            animationEasing: function (str) {
+                var n = 1;
+                var toDom = doc.getElementById(str);
+                LMEPG.ButtonManager.setKeyEventPause(true);
+                var timer = setInterval(function () {
+                    n = Math.max(0, n -= 0.1);
+                    toDom.style.opacity = n;
+                    if (n == 0) {
+                        clearInterval(timer);
+                        O.dataSave(str);
+                        O.saveScore(5);
+                    }
+                }, 150)
+            },
+
+            getTimes: function (x) {
+                // 剩余次数
+                times.innerText = x || A.leftTimes;
+            },
+
+            winnersList: function () {
+                A.myInfo = [];
+                var recordData = [];
+                var currentUser = "{$userAccount}";
+                A.ExchangeRecord.data.all_list.forEach(function (item) {
+                    // 总获奖列表
+                    recordData.push({
+                        user: F.formatAccount(item.user_account),
+                        winTime: F.getDate(item.log_dt),
+                        prize: item.goods_name,
+                    });
+                    // 当前登录User中奖记录
+                    if (item.user_account == currentUser) {
+                        A.myInfo.push({
+                            user: F.formatAccount("{$userAccount}"),
+                            winTime: F.getDate(item.log_dt),
+                            prize: item.goods_name,
+                        })
+                    }
+                });
+                dialogShow.rankList(recordData, A.myInfo)
+            },
+
+            /**
+             * 保存用户电话号码
+             */
+            setPhoneNumber: function () {
+                var userTel = G("searchText").innerHTML;
+                //判断手机号是否正确
+                if (!LMEPG.Func.isTelPhoneMatched(userTel)) {
+                    LMEPG.UI.showToast("请输入有效电话号码!");
+                    return;
+                }
+                // 判断是否抽到过奖品
+                if (A.beClickBtnId == "winners" && !+A.myInfo.length) {
+                    LMEPG.UI.showToast("您尚未中奖！", 3);
+                    return;
+                }
+
+                var reqData = {
+                    "action": "phone",
+                    "number": userTel,
+                    "prizeIdx": A.prize_idx,
+                };
+                LMEPG.ajax.postAPI('Activity/commonAjax', reqData,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            var result = data.result;
+                            if (result == 0) {
+                                LMEPG.UI.showToast("提交电话成功！");
+                                F.reload(A.currentAddr);
+                            } else {
+                                LMEPG.UI.showToast("提交失败，请重试！");
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("保存手机号结果处理异常！");
+                            LMEPG.Log.error(e.toString());
+                            console.log(e.toString())
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("请求保存手机号发生错误！");
+                    });
+            },
+
+            jumpBuyVip: function () {
+                // 进行购买操作
+                var objCurrent = F.getCurrentPage(A.currentAddr);
+
+                var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+                objOrderHome.setParam("userId", "{$userId}");
+                objOrderHome.setParam("directPay", "1");
+                objOrderHome.setParam("orderReason", "101");
+                objOrderHome.setParam("hasVerifyCode", "1");
+                objOrderHome.setParam("remark", "{$activityName}");
+
+
+                var objActivityGuide = F.getCurrentPage(A.currentAddr);
+                objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+
+                LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+            },
+
+            jumpTimesOutDialog: function () {
+                // 用户抽奖次数用完
+                if (!LMEPG.Func.isAllowAccess(+A.isVip, ACCESS_NO_TYPE)) {
+                    //不是vip，弹出订购弹窗
+                    dialogShow.timeOver()
+                } else {
+                    //是vip，提示用户今天次数用尽，明天再来
+                    dialogShow.vipTimes();
+                }
+            },
+            // 显示兑换UI
+            exchangeGift: function () {
+                var currentUser = "{$userAccount}";
+                A.ExchangeRecord.data.all_list.forEach(function (item) {
+                    if (item.user_account == currentUser) {
+                        A.myExchange = item.goods_name;
+                    }
+                });
+                dialogShow.exchange()
+            },
+            /**
+             * 执行兑换条件
+             * 1.积分满足兑换
+             * 2.积分满足，是否已经兑换过了该奖品
+             * 3.该奖品是否有库存
+             *******************
+             * 执行兑换结果
+             * 1.失败-原因：库存不足、积分不足、未知原因
+             * 2.成功
+             */
+            exchangePrize: function (btn) {
+                var postData = {
+                    action: "bgExchange",
+                    goodsId: btn.idx,
+                    score: 0,
+                };
+                LMEPG.UI.showWaitingDialog();
+                LMEPG.ButtonManager.setKeyEventPause(true);
+                LMEPG.ajax.postAPI('Activity/commonAjax', postData,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : rsp ? JSON.parse(rsp) : rsp;
+                            LMEPG.UI.dismissWaitingDialog();
+                            switch (data.result) {
+                                // 兑换成功
+                                case 0:
+                                    LMEPG.ButtonManager.setKeyEventPause(false);
+                                    dialogShow.successExchange();
+                                    A.success = true;
+                                    break;
+                                // 超出可兑换的数量
+                                case -100:
+                                    LMEPG.UI.showToast("你已经兑换过该奖品了");
+                                    break;
+                                // 库存不足
+                                case -101:
+                                    dialogShow.emptyStore();
+                                    break;
+                                // 积分不足不能兑换
+                                default:
+                                    dialogShow.unExchange();
+                                    break;
+                            }
+                            if (!A.success) {
+                                LMEPG.ButtonManager.setKeyEventPause(false);
+                                setTimeout(function () {
+                                    dialogShow.exchange();
+                                }, 1500)
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("解析异常！", 3);
+                            LMEPG.Log.error(e.toString());
+                            console.log(e.toString());
+                            // reLoad();
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("上报失败！", 3);
+                    }
+                );
+            },
+            toZero: function () {
+                // 如果后台配置倒计时方可执行
+                var countNumber = A.activityInfo.list.count_down;
+                if (+countNumber) {
+                    var htm = "<p id='count-down'>";
+                    htm += "<p id='game-intro'>倒计时结束后，在活动页无任何操作，自动退出活动";
+                    msgDesc.innerHTML = htm;
+                    (function countDown() {
+                        Math.max(0, countNumber -= 1);
+                        G("count-down").innerText = "倒计时：" + countNumber + "s";
+                        if (countNumber != 0) {
+                            A.homeCDTimer = setTimeout(countDown, 1000);
+                        } else {
+                            onBack();
+                        }
+                    }())
+                }
+            },
+            initButton: function (id) {
+                LMEPG.ButtonManager.init(id, buttons, "", true)
+            },
+            moveToFocus: function (id) {
+                LMEPG.ButtonManager.requestFocus(id)
+            },
+            reLoad: function () {
+                // 重载当前页面（从服务器拉取交互的新数据）
+                location.reload(false)
+            },
+        };
+        return O;
+    }(document, U || {});
+
+    buttons = [{
+        id: 'do-water',
+        name: '浇水',
+        type: 'img',
+        focusable: true,
+        nextFocusLeft: '',
+        nextFocusRight: 'do-bug',
+        nextFocusUp: 'exchange',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'water.gif',
+        focusImage: A.imgPathPrefix + 'water_f.gif',
+        isForbidBg: A.imgPathPrefix + 'water_u.png',
+        click: U.doAction,
+        Obj: U,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'do-bug',
+        name: '除虫',
+        type: 'img',
+        focusable: true,
+        nextFocusLeft: 'do-water',
+        nextFocusRight: 'do-weeding',
+        nextFocusUp: 'exchange',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'bug.gif',
+        focusImage: A.imgPathPrefix + 'bug_f.gif',
+        isForbidBg: A.imgPathPrefix + 'bug_u.png',
+        click: U.doAction,
+        Obj: U,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'do-weeding',
+        name: '除草',
+        type: 'img',
+        focusable: true,
+        nextFocusLeft: 'do-bug',
+        nextFocusRight: '',
+        nextFocusUp: 'exchange',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'weeding.gif',
+        focusImage: A.imgPathPrefix + 'weeding_f.gif',
+        isForbidBg: A.imgPathPrefix + 'weeding_u.png',
+        click: U.doAction,
+        Obj: U,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'back',
+        name: '返回',
+        type: 'img',
+        nextFocusLeft: 'do-water',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: 'rules',
+        backgroundImage: A.imgPathPrefix + 'btn_back.png',
+        focusImage: A.imgPathPrefix + 'btn_back_f.png',
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'rules',
+        name: '活动详情',
+        type: 'img',
+        nextFocusLeft: 'do-water',
+        nextFocusRight: '',
+        nextFocusUp: 'back',
+        nextFocusDown: 'winners',
+        backgroundImage: A.imgPathPrefix + 'btn_rule.png',
+        focusImage: A.imgPathPrefix + 'btn_rule_f.png',
+        click: dialogShow.rule,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'rule-close',
+        name: '活动规则-关闭',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'winners',
+        name: '中奖名单',
+        type: 'img',
+        nextFocusLeft: 'do-water',
+        nextFocusRight: '',
+        nextFocusUp: 'rules',
+        nextFocusDown: 'exchange',
+        backgroundImage: A.imgPathPrefix + 'btn_prize.png',
+        focusImage: A.imgPathPrefix + 'btn_prize_f.png',
+        click: U.winnersList,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'exchange',
+        name: '兑换',
+        type: 'img',
+        nextFocusLeft: 'do-water',
+        nextFocusRight: '',
+        nextFocusUp: 'winners',
+        nextFocusDown: 'do-water',
+        backgroundImage: A.imgPathPrefix + 'btn_exchange.png',
+        focusImage: A.imgPathPrefix + 'btn_exchange_f.png',
+        click: U.exchangeGift,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'searchText',
+        name: '号码框',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: "",
+        focusChange: F.keyPad,
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-submit',
+        name: '中奖名单-确认',
+        type: 'img',
+        nextFocusLeft: 'searchText',
+        nextFocusRight: 'btn-cancle',
+        nextFocusUp: 'searchText',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_sure.png',
+        focusImage: A.imgPathPrefix + 'btn_sure_f.png',
+        click: U.setPhoneNumber,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-cancle',
+        name: '中奖名单-取消',
+        type: 'img',
+        nextFocusLeft: "btn-submit",
+        nextFocusRight: 'btn-submit',
+        nextFocusUp: 'searchText',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_cancle.png',
+        focusImage: A.imgPathPrefix + 'btn_cancle_f.png',
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-sure-pay',
+        name: '次数玩-订购',
+        type: 'img',
+        nextFocusLeft: 'btn-cancle',
+        nextFocusRight: 'btn-cancle',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_sure.png',
+        focusImage: A.imgPathPrefix + 'btn_sure_f.png',
+        click: U.jumpBuyVip,//  支付接口
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'exchange-1',
+        name: '兑换物品1',
+        type: 'img',
+        nextFocusUp: 'exchange-close',
+        nextFocusDown: 'exchange-2',
+        backgroundImage: A.imgPathPrefix + 'btn_exchange1.png',
+        focusImage: A.imgPathPrefix + 'btn_exchange1_f.png',
+        click: U.exchangePrize,
+        idx: A.setExchangeList.data[0].goods_id,
+        btnCount: A.setExchangeList.data[0].consume_list[0].consume_count
+    }, {
+        id: 'exchange-2',
+        name: '兑换物品2',
+        type: 'img',
+        nextFocusUp: 'exchange-1',
+        nextFocusDown: 'exchange-3',
+        backgroundImage: A.imgPathPrefix + 'btn_exchange1.png',
+        focusImage: A.imgPathPrefix + 'btn_exchange1_f.png',
+        click: U.exchangePrize,
+        idx: A.setExchangeList.data[1].goods_id,
+        btnCount: A.setExchangeList.data[1].consume_list[0].consume_count
+    }, {
+        id: 'exchange-3',
+        name: '兑换物品3',
+        type: 'img',
+        nextFocusUp: 'exchange-2',
+        backgroundImage: A.imgPathPrefix + 'btn_exchange1.png',
+        focusImage: A.imgPathPrefix + 'btn_exchange1_f.png',
+        click: U.exchangePrize,
+        idx: A.setExchangeList.data[2].goods_id,
+        btnCount: A.setExchangeList.data[2].consume_list[0].consume_count
+    }, {
+        id: 'exchange-close',
+        name: '关闭兑换弹框',
+        type: 'img',
+        nextFocusDown: 'exchange-1',
+        backgroundImage: A.imgPathPrefix + 'btn_close.png',
+        focusImage: A.imgPathPrefix + 'btn_close_f.gif',
+        click: onBack,
+    }, {
+        id: 'btn-one',
+        name: '活动规则-关闭',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: U.reLoad,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }];
+    window.onload = function () {
+        U.init();
+        F.showOrderResult();
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>《鱼鱼跃试，云霄大飞跃》中国联通-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityFishJumping/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityFishJumping/DialogMoreThree.js?t={$time}"></script>
+    <!--小键盘-->
+    <script type="text/javascript" src="__ROOT__/Public/hd/js/Common/keypad.js?t={$time}"></script>
+    <script type="application/javascript" src="__ROOT__/Public/js/Activity/Common/activityCommon.js?t={$time}"></script>
+</head>
+<body>
+<img id="bg" src="">
+<p id="lottery-count">3</p>
+
+<div class="right-btn-wrapper">
+    <img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/btn_back.png">
+    <img id="rules" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/btn_rule.png">
+    <img id="winners" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/btn_prize.png">
+</div>
+<img id="lottery" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/btn_go.png" alt="">
+<div id="custom-message"></div>
+
+<!--模态框-->
+<div id="modal">
+
+</div>
+<script type="application/javascript">
+
+    var A, // 参数数据模块
+        buttons, // 虚拟按钮模块
+        C, // 函数功能模块
+        imgVision = function () {
+            // 该活动不同{$carrierId}地区使用图素区分（背景、活动规则、奖品1,2,3）
+            var bgIndex = "";
+            switch ("{$carrierId}") {
+                case "000051":
+                    bgIndex = "V1";
+                    G("back").parentNode.innerHTML += '<img id="debook" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/btn_debook.png">'
+                    break;
+                case "630092":
+                    bgIndex = "V2";
+                    break;
+                case "420092": // 湖北
+                    bgIndex = "V3";
+                    break;
+                case "350092": // 福建
+                    bgIndex = "V4";
+                    break;
+            }
+            document.getElementById("bg").src = "__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/" + bgIndex + "/bg_home.gif";
+            return bgIndex;
+        }();
+
+    // 全局参数
+    A = {
+        isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+        isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+        cOrderResult: "{$Think.cookie.c_order_result}",
+        nPrizeIdx: 0,
+        ROOT: "__ROOT__",
+        currentAddr: "activity-common-guide",
+        modal: G("modal"),
+        isModal: false,
+        platformType: "{$platformType}",
+        activityInfo: F.isNull({$activityInfo}),                        // 活动信息
+        fishStore: F.toJson(F.isNull({$storeFish}).val),                // 收集鱼的个数
+        leftTimes: F.isNull({$leftTimes}).leftTimes,                    // 剩余次数
+        userTel: "{$userTel}",                                          // 中奖电话
+        myPrizeList: F.isNull({$myPrizeList}),                          // 我的中奖记录
+        AllUserPrizeLis: F.isNull({$AllUserPrizeLis}),                  // 所用中奖信息
+        prize_idx: F.isNull({$prize_idx}),
+        vipList: F.isNull({$vipList}),
+        imgPathPrefix: "__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/",
+        reload: false,
+        beClickBtnId: "lottery",
+    };
+
+    C = function (doc) {
+
+        // 公用返回函数
+        onBack = function () {
+            var keyPad = G("key-table");
+            switch (true) {
+                // 遥控器返回键关闭虚拟小键盘
+                case !!keyPad:
+                    keyPad.parentNode.removeChild(keyPad);
+                    LMEPG.ButtonManager.requestFocus("btn-submit");
+                    break;
+                // 如果是弹框即关闭弹框
+                case A.isModal:
+                    A.modal.innerHTML = '';
+                    A.isModal = false;
+                    LMEPG.ButtonManager.requestFocus("lottery");
+                    A.reload && F.reload(A.currentAddr);
+                    break;
+                // 应用内活动，直接返回上一级页面
+                default:
+                    LMEPG.Intent.back();
+                    break;
+            }
+        };
+        var times = doc.getElementById("lottery-count");
+        return {
+            toZero: function () {
+                var countNumber = A.activityInfo.list.count_down;
+                if (+countNumber) {
+                    var htm = "<p id='count-down'>";
+                    htm += "<p id='game-intro'>倒计时结束后，在活动页无任何操作，自动退出活动";
+                    G("custom-message").innerHTML = htm;
+                    (function countDown() {
+                        Math.max(0, countNumber -= 1);
+                        G("count-down").innerText = "倒计时：" + countNumber + "s";
+                        if (countNumber != 0) {
+                            A.homeCDTimer = setTimeout(countDown, 1000);
+                        } else {
+                            onBack();
+                        }
+                    }())
+                }
+            },
+
+            getTimes: function () {
+                times.innerText = A.leftTimes;
+            },
+
+            /**
+             * 跳转到局方退订接口
+             */
+            goUnBookPage: function () {
+                var objCurrent = F.getCurrentPage(A.currentAddr);
+                var objThirdPartySP = LMEPG.Intent.createIntent("activity-go-cancel-order-page");
+                objThirdPartySP.setParam("userId", "{$userId}");
+
+                LMEPG.Intent.jump(objThirdPartySP, objCurrent);
+            },
+
+            /**
+             * 中奖名单
+             */
+            winnersList: function () {
+                clearTimeout(A.homeCDTimer);
+                var myInfo = [];
+                var recordData = [];
+                var currentUser = "{$userAccount}";
+                A.AllUserPrizeLis.list.forEach(function (item) {
+                    // 总获奖列表
+                    recordData.push({
+                        user: F.formatAccount(item.user_account),
+                        winTime: F.getDate(item.prize_dt),
+                        prize: item.prize_name,
+                    });
+                    // 当前登录User中奖记录
+                    if (item.user_account == currentUser) {
+                        myInfo.push({
+                            user: F.formatAccount("{$userAccount}"),
+                            winTime: F.getDate(item.prize_dt),
+                            prize: item.prize_name,
+                        })
+                    }
+                });
+                dialogShow.rankList(recordData, myInfo)
+            },
+
+            /**
+             * 保存用户电话号码
+             */
+            setPhoneNumber: function () {
+                var userTel = G("searchText").innerHTML;
+                //判断手机号是否正确
+                if (!LMEPG.Func.isTelPhoneMatched(userTel)) {
+                    LMEPG.UI.showToast("请输入有效电话号码!");
+                    return;
+                }
+                // 判断是否抽到过奖品
+                if (!+A.myPrizeList.list.length && !A.nPrizeIdx) {
+                    LMEPG.UI.showToast("您尚未中奖！", 3);
+                    return;
+                }
+
+                var reqData = {
+                    "phoneNumber": userTel,
+                    "prizeIdx": A.myPrizeList.list[0].prize_idx,
+                };
+                LMEPG.ajax.postAPI('Activity/setPhoneNumber', reqData,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            var result = data.result;
+                            if (result == 0) {
+                                LMEPG.UI.showToast("提交电话成功！");
+                                F.reload(A.currentAddr);
+                            } else {
+                                LMEPG.UI.showToast("提交失败，请重试！");
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("保存手机号结果处理异常！");
+                            LMEPG.Log.error(e.toString());
+                            console.log(e.toString())
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("请求保存手机号发生错误！");
+                    });
+            },
+            /**
+             * @func 进行购买操作
+             */
+            jumpBuyVip: function () {
+                var objCurrent = F.getCurrentPage(A.currentAddr);
+
+                var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+                objOrderHome.setParam("userId", "{$userId}");
+                objOrderHome.setParam("directPay", "1");
+                objOrderHome.setParam("orderReason", "101");
+                objOrderHome.setParam("hasVerifyCode", "1");
+                objOrderHome.setParam("remark", "{$activityName}");
+
+
+                var objActivityGuide = F.getCurrentPage(A.currentAddr);
+                objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+
+                LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+            },
+
+            /**
+             * 显示次数用尽弹窗
+             */
+            jumpTimesOutDialog: function () {
+                // 用户抽奖次数用完
+                if (!LMEPG.Func.isAllowAccess(+A.isVip, ACCESS_NO_TYPE)) {
+                    //不是vip，弹出订购弹窗
+                    dialogShow.timeOver()
+                } else {
+                    //是vip，提示用户今天次数用尽，明天再来
+                    dialogShow.vipTimes();
+                }
+            },
+
+            /**
+             * @func 跳转游戏页面
+             */
+            jumpIndexPage: function () {
+                if (A.leftTimes) {
+                    var objCurrent = F.getCurrentPage(A.currentAddr);
+
+                    var objOrderHome = LMEPG.Intent.createIntent("activity-common-home");
+
+                    LMEPG.Intent.jump(objOrderHome, objCurrent);
+                } else {
+                    C.jumpTimesOutDialog()
+                }
+            },
+
+            reLoad: function () {
+                location.reload(false)
+            },
+        };
+    }(document);
+
+    buttons = [{
+        id: 'lottery',
+        name: '抽奖',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: 'back',
+        nextFocusUp: "back",
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_go.png',
+        focusImage: A.imgPathPrefix + 'btn_go.gif',
+        click: C.jumpIndexPage,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'debook',
+        name: '退订',
+        type: 'img',
+        nextFocusLeft: 'lottery',
+        nextFocusRight: '',
+        nextFocusUp: 'winners',
+        nextFocusDown: 'lottery',
+        backgroundImage: A.imgPathPrefix + 'btn_debook.png',
+        focusImage: A.imgPathPrefix + 'btn_debook.gif',
+        click: C.goUnBookPage,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'back',
+        name: '返回',
+        type: 'img',
+        nextFocusLeft: 'lottery',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: 'rules',
+        backgroundImage: A.imgPathPrefix + 'btn_back.png',
+        focusImage: A.imgPathPrefix + 'btn_back.gif',
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'rules',
+        name: '活动详情',
+        type: 'img',
+        nextFocusLeft: 'lottery',
+        nextFocusRight: '',
+        nextFocusUp: 'back',
+        nextFocusDown: 'winners',
+        backgroundImage: A.imgPathPrefix + 'btn_rule.png',
+        focusImage: A.imgPathPrefix + 'btn_rule.gif',
+        click: dialogShow.rule,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'rule-close',
+        name: '活动规则-关闭',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'winners',
+        name: '中奖名单',
+        type: 'img',
+        nextFocusLeft: 'lottery',
+        nextFocusRight: '',
+        nextFocusUp: 'rules',
+        nextFocusDown: G("debook") ? "debook" : "lottery",
+        backgroundImage: A.imgPathPrefix + 'btn_prize.png',
+        focusImage: A.imgPathPrefix + 'btn_prize.gif',
+        click: C.winnersList,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'searchText',
+        name: '号码框',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: "",
+        focusChange: F.keyPad,
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-submit',
+        name: '中奖名单-确认',
+        type: 'img',
+        nextFocusLeft: 'searchText',
+        nextFocusRight: 'btn-cancle',
+        nextFocusUp: 'searchText',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_sure.png',
+        focusImage: A.imgPathPrefix + 'btn_sure.gif',
+        click: C.setPhoneNumber,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-cancle',
+        name: '中奖名单-取消',
+        type: 'img',
+        nextFocusLeft: "btn-submit",
+        nextFocusRight: 'btn-submit',
+        nextFocusUp: 'searchText',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_cancle.png',
+        focusImage: A.imgPathPrefix + 'btn_cancle.gif',
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-sure-pay',
+        name: '次数玩-订购',
+        type: 'img',
+        nextFocusLeft: 'btn-cancle',
+        nextFocusRight: 'btn-cancle',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_sure.png',
+        focusImage: A.imgPathPrefix + 'btn_sure.gif',
+        click: C.jumpBuyVip,//  支付接口
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-one',
+        name: '活动规则-关闭',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: C.reLoad,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }];
+
+    window.onload = function () {
+        // C.toZero();
+        C.getTimes();
+        F.showOrderResult();
+        LMEPG.ButtonManager.init('lottery', buttons, '', true);
+    };
+</script>
+</body>
+</html>

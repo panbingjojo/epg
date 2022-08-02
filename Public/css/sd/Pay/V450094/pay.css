@@ -1,0 +1,56 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+}
+
+
+
+.tab2 {
+    width: 158px;
+    height: 200px;
+    position: absolute;
+    top: 221px;
+    left: 158px
+}
+
+.tab3 {
+    width: 158px;
+    height: 200px;
+    position: absolute;
+    top: 221px;
+    left: 337px
+}
+
+.home_btn {
+    width: 100px;
+    height: 43px;
+    position: absolute;
+    top: 462px;
+    left: 27px;
+}
+
+.main_btn {
+    width: 100px;
+    height: 43px;
+    position: absolute;
+    top: 462px;
+    left: 128px;
+}
+
+.back_btn {
+    width: 100px;
+    height: 43px;
+    position: absolute;
+    top: 462px;
+    left: 228px;
+}

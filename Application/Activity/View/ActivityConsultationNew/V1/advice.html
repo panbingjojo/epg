@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>医生建议</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityConsultation/V1/DoctorAdvice.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+</head>
+<body style=" background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/bg.png')">
+<img id="back_btn" class="btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png"/>
+<div class="common_bg">
+    <div class="title">医生建议</div>
+    <div id="content">
+        Google 翻译是谷歌公司提供一项免费的翻译服务，可提供 80 种语言之间的即时翻译，支持任意两种语言之间的字词、句子和网页翻译。可分析的人工翻译文档越多，译文的质量就会越高。
+        Google 翻译生成译文时，会在数百万篇文档中查找各种模式，以便决定最佳翻译。Google
+        翻译通过在经过人工翻译的文档中检测各种模式，进行合理的猜测，然后得出适当的翻译。这种在大量文本中查找各种范例的过程称为“统计机器翻译”。由于译文是由机器生成的，因此并不是所有的译文都是完美的。
+    </div>
+</div>
+<div class="warn">——诊疗建议及方案的最终采纳请患者及家属与临床医生协商后决<br/>定,39健康不承担选择治疗方案而导致的所有法律责任。</div>
+<script type="text/javascript">
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+    var buttons = [
+        {
+            id: 'back_btn',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'reservation_btn',
+            nextFocusUp: '',
+            nextFocusRight: '',
+            nextFocusDown: 'reservation_btn',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_in.png',
+            click: "jumpActivityInfo()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        }]
+</script>
+
+<script type="text/javascript">
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init(['back_btn'], buttons, '', true);
+    }
+</script>
+</body>
+</html>

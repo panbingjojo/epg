@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>社区医院-血压数据上传</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" href="/Public/css/hd/CommunityHospital/BloodManage/BloodDataUp.css">
+
+    <script type="text/javascript">
+        var RenderParam = {
+            ROOT : '__ROOT__',
+            userId : "{$userId}",
+            memberId: "{$member_id}",
+            name: "{$name}",
+        };
+    </script>
+</head>
+<body>
+<p class="title" id="title">血压数据上传</p>
+<div id="container">
+    <div id="bg-content">
+        <div id="input-form">
+            <!--用户名列表-->
+            <div id="user-name-text" class="lable-css">用户名&#12288</div>
+            <div id="user-name">
+                <div id="user-name-display" class="input" data-link=""></div>
+                <div id="user-name-list">
+
+                </div>
+            </div>
+            <!--收缩压-->
+            <div id="ssy-text" class="lable-css">收缩压（高压）&#12288</div>
+            <div id="ssy">
+                <div id="ssy-display" class="input" data-link="110">110</div>
+                <div id="ssy-list">
+
+                </div>
+            </div>
+            <div id="ssy-unit">mmHg</div>
+            <!--舒张压-->
+            <div id="szy-text" class="lable-css">舒张压（低压）&#12288</div>
+            <div id="szy">
+                <div id="szy-display" class="input" data-link="75">75</div>
+                <div id="szy-list">
+
+                </div>
+            </div>
+            <div id="szy-unit">mmHg</div>
+
+            <!--下拉角标-->
+            <img id="user-name-icon" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/icon_next.png" alt="">
+            <img id="ssy-icon" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/icon_next.png" alt="">
+            <img id="szy-icon" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/icon_next.png" alt="">
+        </div>
+
+        <!--新增用户-->
+        <img id="btn-add-user" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_add_user.png" alt="">
+        <!--确认上传-->
+        <img id="btn-confirm" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_confirm.png" alt="">
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="../../../../../Public/Common/js/lmcommon.js?t={$time}"></script>
+<script type="text/javascript" src="../../../../../Public/Common/js/lmui.js?t={$time}"></script>
+<script type="text/javascript" src="../../../../../Public/js/CommunityHospital/BloodManage/BloodDataUp.js?t={$time}"></script>
+</body>
+
+<script>
+    window.onload = function () {
+        BloodManage.init();
+    }
+</script>
+</html>
+

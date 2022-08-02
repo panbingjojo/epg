@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>宝宝健康大测评活动V1-答题页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityBabyHealthTest/V1/index.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script>var carrierId = {$carrierId};</script>
+    <if condition="$carrierId eq '07430093' ">
+        <!--湖南联通芒果TV 07430093js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/mongoTV/webview.js?t={$time}"></script>
+    </if>
+
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--弹窗-->
+    <!--<script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityBabyHealthTest/V1/DialogMoreThree.js?t={$time}"></script>
+    &lt;!&ndash;弹窗规则定义&ndash;&gt;
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityBabyHealthTest/PopRule.js?t={$time}"></script>-->
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转结果页
+         */
+        function jumpResultDialog() {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+
+    </script>
+</head>
+<body>
+<img id="bg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/bg_problems.png" alt="">
+<div id="problem-num"></div>
+<div id="problem"></div>
+<div>
+    <img id="option-A" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/option_unselect_out.png" alt="">
+    <span id="option-A-text"></span>
+    <img id="option-B" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/option_unselect_out.png" alt="">
+    <span id="option-B-text"></span>
+    <img id="option-C" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/option_unselect_out.png" alt="">
+    <span id="option-C-text"></span>
+</div>
+<img id="back-btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/back_btn_out.png" alt="">
+<img id="prev-btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/prev_btn_out.png" alt="">
+<img id="next-btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/next_btn_out.png" alt="">
+
+<!-- 指示器 -->
+<div id="auto-tips">选择后自动进入下一项测试></div>
+<img id="indicator-1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-4" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-5" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-6" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-7" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-8" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-9" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-10" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-11" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+<img id="indicator-12" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/indicator_white.png">
+
+<script type="text/javascript">
+
+    // 题目数组
+    var problems = {$problems | json_encode};
+    // 当前题目数组下标
+    var curIndex = 0;
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = "__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/";
+    // 答案数组
+    var answerList = [];
+    // 活动id
+    var activityId = "{$activityId}";
+    // 用户id
+    var userId = "{$userId}";
+
+    var buttons = [
+        {
+            id: 'back-btn',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'option-A',
+            backgroundImage: imgPathPrefix + 'back_btn_out.png',
+            focusImage: imgPathPrefix + 'back_btn_in.png',
+            click: onBack,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'option-A',
+            name: 'A选项',
+            type: 'option',
+            nextFocusLeft: 'prev-btn',
+            nextFocusRight: 'option-B',
+            nextFocusUp: 'back-btn',
+            nextFocusDown: 'option-C',
+            backgroundImage: imgPathPrefix + 'option_unselect_out.png',
+            focusImage: imgPathPrefix + 'option_unselect_in.png',
+            click: clickOption,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+            state: "unselect",
+            answer: "A",
+        },
+        {
+            id: 'option-B',
+            name: 'B选项',
+            type: 'option',
+            nextFocusLeft: 'option-A',
+            nextFocusRight: 'next-btn',
+            nextFocusUp: 'back-btn',
+            nextFocusDown: 'option-C',
+            backgroundImage: imgPathPrefix + 'option_unselect_out.png',
+            focusImage: imgPathPrefix + 'option_unselect_in.png',
+            click: clickOption,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+            state: "unselect",
+            answer: "B",
+        },
+        {
+            id: 'option-C',
+            name: 'C选项',
+            type: 'option',
+            nextFocusLeft: 'prev-btn',
+            nextFocusRight: 'option-B',
+            nextFocusUp: 'option-A',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'option_unselect_out.png',
+            focusImage: imgPathPrefix + 'option_unselect_in.png',
+            click: clickOption,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+            state: "unselect",
+            answer: "C",
+        },
+        {
+            id: 'prev-btn',
+            name: '前一题',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'option-A',
+            nextFocusUp: 'back-btn',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'prev_btn_out.png',
+            focusImage: imgPathPrefix + 'prev_btn_in.png',
+            click: clickPrev,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'next-btn',
+            name: '后一题',
+            type: 'img',
+            nextFocusLeft: 'option-B',
+            nextFocusRight: '',
+            nextFocusUp: 'back-btn',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'next_btn_out.png',
+            focusImage: imgPathPrefix + 'next_btn_in.png',
+            click: clickNext,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }
+    ];
+
+    window.onload = function () {
+        LMEPG.ButtonManager.init(['option-A'], buttons, '', true);
+        initAnswerList();
+        setProblem();
+    };
+
+    /**
+     * 设置题目
+     */
+    function setProblem() {
+        if (curIndex >= problems.length)
+            return;
+        var problem = problems[curIndex];
+        G("problem-num").innerHTML = problem.index;
+        G("problem").innerHTML = problem.question;
+        G("option-A-text").innerHTML = "A." + problem.A;
+        G("option-B-text").innerHTML = "B." + problem.B;
+        G("option-C-text").innerHTML = "C." + problem.C;
+        // 显示“前一题”和“下一题”按钮
+        Show("prev-btn");
+        Show("next-btn");
+        // 重置选项焦点移动
+        buttons[1].nextFocusLeft = "prev-btn";
+        buttons[3].nextFocusLeft = "prev-btn";
+        buttons[2].nextFocusRight = "next-btn";
+        // 第一题隐藏“前一题”按钮
+        if (curIndex == 0) {
+            Hide("prev-btn");
+            buttons[1].nextFocusLeft = "";
+            buttons[3].nextFocusLeft = "";
+        }
+        // 最后一题隐藏“下一题”按钮
+        if (curIndex == problems.length - 1) {
+            Hide("next-btn");
+            buttons[3].nextFocusRight = "";
+        }
+        // 把3个选项设置为未选中
+        for (var i = 0; i < buttons.length; i++) {
+            if (buttons[i].type == "option") {
+                buttons[i].backgroundImage = imgPathPrefix + 'option_unselect_out.png';
+                buttons[i].focusImage = imgPathPrefix + 'option_unselect_in.png';
+                G(buttons[i].id).src = imgPathPrefix + 'option_unselect_out.png';
+            }
+        }
+        // 对于已作答的题目，选项为已选择中状态
+        var id = -1;
+        var focusId = "option-A";
+        if (answerList[curIndex] == "A") {
+            id = 1;
+            focusId = "option-A";
+        } else if (answerList[curIndex] == "B") {
+            id = 2;
+            focusId = "option-B";
+        } else if (answerList[curIndex] == "C") {
+            id = 3;
+            focusId = "option-C";
+        }
+        if (id != -1) {
+            buttons[id].backgroundImage = imgPathPrefix + 'option_select_out.png';
+            buttons[id].focusImage = imgPathPrefix + 'option_select_in.png';
+            G(buttons[id].id).src = imgPathPrefix + 'option_select_in.png';
+        }
+        LMEPG.BM.requestFocus(focusId);
+
+        // 更新指示器
+        updateIndicator();
+    }
+
+    /**
+     * 初始化答案数组（0表示未作答此题）
+     */
+    function initAnswerList() {
+        for (var i = 0; i < problems.length; i++) {
+            answerList.push("0");
+        }
+    }
+
+    /**
+     * 点击选项
+     */
+    function clickOption(btn) {
+        // 保存答案
+        answerList[curIndex] = btn.answer;
+
+        // 最后一题
+        if (curIndex == problems.length - 1) {
+            // 上报结果，并跳转结果页面
+            // 题目12个，每3个一组，分别代表“大运动”“精细运动”“语言”“认知”（3个A-优秀，1~2个A-良好，0个A-一般）
+            // 上报的结果格式为多少个A：eg. 3333
+            var test1 = 0;
+            var test2 = 0;
+            var test3 = 0;
+            var test4 = 0;
+            for (var i = 0; i < answerList.length; i++) {
+                if (i >= 0 && i < 3 && answerList[i] == "A") {
+                    test1++;
+                }
+                if (i >= 3 && i < 6 && answerList[i] == "A") {
+                    test2++;
+                }
+                if (i >= 6 && i < 9 && answerList[i] == "A") {
+                    test3++;
+                }
+                if (i >= 9 && i < 12 && answerList[i] == "A") {
+                    test4++;
+                }
+            }
+            var result = "" + test1 + test2 + test3 + test4;
+            var curDateStr; // 当前时间格式：201903
+            var curDate = new Date();
+            var curYear = curDate.getFullYear();
+            var curMonth = curDate.getMonth() + 1;
+            if (curMonth <= 9)
+                curMonth = "0" + curMonth;
+            curDateStr = "" + curYear + curMonth;
+            var postData = {
+                // "key": activityId + "-" + userId + "-" + curDateStr + "-" + "{$phase}",
+                "key": activityId + "-" + userId + "-" + "{$date}" + "-" + "{$phase}",
+                "value": result
+            };
+            LMEPG.ajax.postAPI('Activity/saveStoreData', postData,
+                function (rsp) {
+                    console.log(rsp);
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        // 跳转结果页
+                        jumpResultDialog();
+                    } else {
+                        LMEPG.UI.showToast("上报结果出错！");
+                    }
+                },
+                function (rsp) {
+                    LMEPG.UI.showToast("上报结果出错！");
+                }
+            );
+        }
+        // 显示下一题
+        else {
+            curIndex++;
+            setProblem();
+        }
+    }
+
+    /**
+     * 点击前一题
+     */
+    function clickPrev() {
+        curIndex--;
+        setProblem();
+    }
+
+    /**
+     * 点击下一题
+     */
+    function clickNext() {
+        // 判断当前题目有没有作答，没有作答则不允许跳转下一题
+        if (answerList[curIndex] == "0") {
+            LMEPG.UI.showToast("您还未作答当前题目！");
+            return;
+        }
+        curIndex++;
+        setProblem();
+    }
+
+    /**
+     * 更新指示器
+     */
+    function updateIndicator() {
+        var size = problems.length;
+        // 先全部渲染为白色未作答状态
+        for (var i = 0; i < size; i++) {
+            G("indicator-" + (i + 1)).src = imgPathPrefix + "indicator_white.png";
+        }
+        // 然后把已作答的渲染为红色
+        for (var i = 0; i < size; i++) {
+            if (answerList[i] != "0")
+                G("indicator-" + (i + 1)).src = imgPathPrefix + "indicator_red.png";
+        }
+        // 最后把当前的题目渲染为红白相间色（最后一个单独处理，图片不同）
+        for (var i = 0; i < size; i++) {
+            if (curIndex == i) {
+                if (i == size - 1) {
+                    G("indicator-" + (i + 1)).src = imgPathPrefix + "indicator_cur_1.png";
+                }
+                else {
+                    G("indicator-" + (i + 1)).src = imgPathPrefix + "indicator_cur_2.png";
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

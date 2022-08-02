@@ -1,0 +1,220 @@
+<div id="user-container">
+    <if condition="$carrierId eq '371092'">
+        <img id="user-pic" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/unvip_371092.png">
+        <else/>
+        <img id="user-pic" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/unvip.png">
+    </if>
+
+    <p id="user-account"></p>
+    <img id="join-vip" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/join_vip.png">
+</div>
+<div id="record-container">
+    <img src="" id="tab3-link-1">
+    <img src="" id="tab3-link-2">
+    <img src="" id="tab3-link-3">
+    <img src="" id="tab3-link-4">
+    <img src="" id="tab3-link-5">
+    <img src="" id="tab3-link-6">
+</div>
+<div id="tab3-help" class="tab-help-wrap">
+    <img id="tab3-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help0.png">
+    <img id="tab3-help1" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help1.png">
+    <img id="tab3-help2" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help2.png">
+    <img id="tab3-help3" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help3.png">
+</div>
+<script type="text/javascript">
+    var Tab3 = {
+        isLoad: false,
+        init: function () {
+            this.renderTab3();
+            this.createBtns();
+
+            if(RenderParam.carrierId === '430002'){
+                G('record-container').style.top = '85px'
+            }
+        },
+
+        /**
+         * 点击跳转有页面
+         */
+        onClickJumpPage: function (btn) {
+            var curObj = getCurPageObj();
+            var jumpId = {
+                'collect-record': 'collect',
+                'play-record': 'historyPlay',
+                'family-record': 'familyEdit',
+                'order-record': 'expertRecordHome',
+                'debook-record': 'debook'
+            };
+            if (RenderParam.platformType == 'sd' && btn.id == "order-record") {
+                LMEPG.UI.showToast('不支持的盒子类型！', 1.5);
+                return;
+            }
+            var dstObj = LMEPG.Intent.createIntent(jumpId[btn.id]);
+            LMEPG.Intent.jump(dstObj, curObj);
+        },
+
+        /**
+         * 渲染Tab3
+         */
+        renderTab3: function () {
+            // 辽宁电信隐藏“我的”tab页面
+
+            if (RenderParam.carrierId == '210092') {
+                var el = G("content-3");
+                el.parentNode.removeChild(el);
+                el = G("tab-3");
+                el.parentNode.removeChild(el);
+                return;
+            }
+            var data = RenderParam.configInfo && RenderParam.configInfo.data;
+
+            var indexStart = 0;
+            var indexEnd = 0;
+            // 部分地区需重新设置推荐位内容起始下标
+            // if(resetIndexCarriers.indexOf(RenderParam.carrierId) > -1){
+            // “我的”模块后台配置位置的position 从41开始
+            for (var dataIndex = 0; dataIndex < data.entry_list.length; dataIndex++) {
+                if (data.entry_list[dataIndex].position == 41) {
+                    indexStart = dataIndex;
+                    indexEnd = dataIndex + 6;
+                    break;
+                }
+            }
+            // }
+
+            var configList = data && data.entry_list && data.entry_list.slice(indexStart, indexEnd);
+            var tab3Data = [41, 42, 43, 44, 45, 46]; // “我的”模块后台配置位置的position
+            var item = '';
+            var htm = '';
+            var index = '';
+
+            for (var i = 0; i < configList.length; i++) {
+                item = configList[i];
+                index = tab3Data.indexOf(+item.position);
+                if (index > -1) {
+                    htm += '<img src="' + Page.getImg(item.item_data[0].img_url) + '"  id="tab3-link-' + (index + 1) + '">'
+                }
+            }
+
+            // 如果是vip，隐藏加入会员按钮
+            if (RenderParam.isVip == 1) {
+                H('join-vip');
+                var vipImagePath = g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab3/vip.png';
+                if (RenderParam.carrierId == '371092') {
+                    vipImagePath = g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab3/vip_371092.png';
+                }
+                G('user-pic').src = vipImagePath;
+            }
+            G('record-container').innerHTML = htm;
+            G('user-account').innerHTML = '账户ID：' + RenderParam.accountId;
+        },
+
+        /**
+         * 创建按钮
+         */
+        createBtns: function () {
+            var orderImagePath = g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab3/join_vip.png';
+            var orderImageFPath = g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab3/join_vip_f.png';
+            if (RenderParam.carrierId == '371092') {
+                orderImagePath = g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab3/join_vip_371092.png';
+                orderImageFPath = g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab3/join_vip_371092_f.png';
+            }
+            buttons.push({
+                id: 'join-vip',
+                type: 'img',
+                name: '加入会员',
+                nextFocusUp: 'tab-3',
+                nextFocusRight: "tab3-link-1",
+                backgroundImage: orderImagePath,
+                focusImage: orderImageFPath,
+                click: this.joinVip,
+                focusChange: this.onFocusIn
+            }, {
+                id: 'tab3-link-1',
+                type: 'img',
+                name: '推荐位1',
+                nextFocusUp: 'tab-3',
+                nextFocusDown: isShow('tab3-link-4') ? 'tab3-link-4' : '',
+                nextFocusLeft: RenderParam.isVip == 0 ? 'join-vip' : "",
+                nextFocusRight: 'tab3-link-2',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 41
+            }, {
+                id: 'tab3-link-2',
+                type: 'img',
+                name: '推荐位2',
+                nextFocusUp: 'tab-3',
+                nextFocusDown: isShow('tab3-link-5') ? 'tab3-link-5' : isShow('tab3-link-4') ? 'tab3-link-4' : '',
+                nextFocusLeft: "tab3-link-1",
+                nextFocusRight: 'tab3-link-3',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 42
+            }, {
+                id: 'tab3-link-3',
+                type: 'img',
+                name: '推荐位3',
+                nextFocusUp: 'tab-3',
+                nextFocusDown: isShow('tab3-link-6') ? 'tab3-link-6' : isShow('tab3-link-4') ? 'tab3-link-4' : '',
+                nextFocusLeft: 'tab3-link-2',
+                nextFocusRight: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 43
+            }, {
+                id: 'tab3-link-4',
+                type: 'img',
+                name: '推荐位4',
+                nextFocusUp: 'tab3-link-1',
+                nextFocusLeft: RenderParam.isVip == 0 ? 'join-vip' : "",
+                nextFocusRight: isShow('tab3-link-5') ? 'tab3-link-5' : '',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 44
+            }, {
+                id: 'tab3-link-5',
+                type: 'img',
+                name: '推荐位5',
+                nextFocusUp: 'tab3-link-2',
+                nextFocusLeft: 'tab3-link-4',
+                nextFocusRight: 'tab3-link-6',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 45
+            }, {
+                id: 'tab3-link-6',
+                type: 'img',
+                name: '推荐位6',
+                nextFocusUp: 'tab3-link-3',
+                nextFocusLeft: 'tab3-link-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 46
+            });
+        },
+        joinVip: function () {
+            if (RenderParam.carrierId == CARRIER_ID_SHANDONG_HICON || RenderParam.carrierId == "371002") {
+                // 山东电信海看埋点上报推荐位点击事件
+                var turnPageInfo = {
+                    currentPage: location.href,   // 跳转前页面
+                    turnPage: location.origin + "/index/Home/Pay/indexV1",
+                    turnPageName: "订购详情页",
+                    turnPageId: "",
+                    clickId: '39JKWD-1-1'
+                };
+                ShanDongHaiKan.sendReportData('6', turnPageInfo);
+            }
+            PageJump.jumpBuyVip();
+        },
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.className = 'focus';
+            } else {
+                btnElement.className = '';
+            }
+        }
+    };
+</script>

@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+}
+
+body {
+    position: relative;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 80px;
+    top: 200px
+}
+
+#smallvod {
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body {
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-videoTv {
+    top: 374px;
+    left: 105px;
+}
+
+.hd-free {
+    visibility: hidden;
+}
+
+.hd-more {
+}
+
+.hd-back {
+    top: 40px;
+    left: 1189px;
+}
+
+.hd-tab-content {
+    top: 93px;
+    left: 674px;
+}
+
+.hd-tab-content p {
+    margin-bottom: 15px;
+    width: 365px;
+    height: 87px;
+    font-size: 25px;
+    line-height: 77px;
+    padding-left: 100px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-image: url("../../../img/hd/Album/album47/focus.png");
+    background-position: left;
+    padding-right: 66px;
+}
+
+
+.hd-v-arrow {
+    left: 935px;
+}
+
+.hd-v-prev {
+    top: 40px;
+}
+
+.hd-v-next {
+    top: 609px;
+}
+
+/*==============SD==================*/
+.sd-body {
+    width: 644px;
+    height: 530px;
+    background-size: 644px 530px;
+}
+
+.sd-more {
+}
+
+.sd-back {
+    top: 13px;
+    left: 564px;
+    width: 54px;
+    height: 49px;
+}
+
+.sd-tab-content {
+    top: 91px;
+    left: 265px;
+}
+
+.sd-tab-content p {
+    width: 265px;
+    height: 67px;
+    font-size: 20px;
+    line-height: 60px;
+    padding-left: 75px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-image: url("../../../img/hd/Album/album47/focus.png");
+    background-position: left;
+    padding-right: 25px;
+    background-size: 100% 100%;
+}
+
+.sd-v-arrow {
+    left: 450px;
+    width: 24px;
+    height: 33px;
+}
+
+.sd-v-prev {
+    top: 53px;
+}
+
+.sd-v-next {
+    top: 447px;
+}
+
+.sd-history-album {
+}
+
+.sd-history-album img {
+}
+
+.sd-a-arrow {
+}
+
+.sd-a-prev {
+}
+
+.sd-a-next {
+}

@@ -1,0 +1,342 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+    -webkit-shape-outside: none;
+    color: #fff;
+    font-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background-position: left;
+}
+
+#bodyimg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+#bodyDefaultImg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    display: none;
+}
+
+#container-left{
+    position: absolute;
+    top: 0px;
+    left: 28px;
+}
+
+#nav {
+    position: absolute;
+    top: 189px;
+}
+
+ul {
+    list-style: none;
+}
+
+#service-tel {
+    position: absolute;
+    top: 676px;
+    left: 931px;
+}
+
+ul#nav li {
+    padding-left: 60px;
+    margin-top: 10px;
+    height: 52px;
+    width: 226px;
+    line-height: 52px;
+    background-position: left;
+}
+
+#tab-home {
+    color: #000;
+}
+
+ul#nav li#tab-order {
+    margin-top: 40px;
+    background-position: 8px;
+    font-size: 24px;
+}
+
+#qr-code {
+    position: absolute;
+    top: 568px;
+    left: 35px;
+    text-align: center;
+}
+
+#qr-code-desc {
+    width: 150px;
+}
+
+/**右边内容**/
+
+#container-right {
+    position: absolute;
+    left: 300px;
+    top: 81px;
+}
+
+#pre-arrow {
+    position: absolute;
+    top: 10px;
+    left: 700px;
+    display: none;
+}
+
+#next-arrow {
+    position: absolute;
+    bottom: 10px;
+    left: 700px;
+    display: none;
+}
+
+/*首页*/
+#content-home {}
+
+#content-home-title {
+    font-size: 24px;
+    color: #fff;
+}
+
+#content-home-title-desc {
+    position: absolute;
+    font-size: 18px;
+    top: 18px;
+    left: 700px;
+}
+
+#content-home-video {
+    margin-top: 27px;
+    width: 904px;
+    height: 500px;
+    border: 1px solid #fff;
+}
+
+/*顶级专家*/
+#content-experts {
+    position: absolute;
+    top: 20px;
+    width: 848px;
+    height: 510px;
+}
+
+#experts-introduce {
+    position: absolute;
+    left: 270px;
+    top: 50px;
+    width: 520px;
+}
+
+#experts-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 848px;
+    height: 510px;
+}
+
+#experts-introduce li {
+    padding-left: 60px;
+}
+
+#expert-name {
+    font-size: 36px;
+    color: #393938;
+}
+
+#expert-title {
+    font-size: 26px;
+    color: #393938;
+    margin-left: 50px;
+}
+
+#expert-hospital,
+#expert-job,
+#expert-Specialty {
+    font-size: 23px;
+    color: #393938;
+}
+
+#expert-detail {
+    font-size: 17px;
+    color: #393938;
+}
+
+.expert-info {
+    margin-top: 20px;
+}
+
+#expert-num {
+    position: absolute;
+    bottom: -50px;
+    left: 400px;
+    border: none;
+    font-size: 26px;
+    text-align: center;
+}
+
+/*就诊指南*/
+#content-guide {
+    position: absolute;
+    top: 10px;
+    left: -50px;
+    width: 1000px;
+    height: 600px;
+    /*background-position: -22px 60px;*/
+}
+
+#content-guide-video {
+    width: 904px;
+    height: 505px;
+}
+
+.guide-title {
+    position: absolute;
+    top: -20px;
+    left: 50px;
+    width: 800px;
+    font-size: 26px;
+}
+
+.guide-title-right {
+    position: absolute;
+    left: 670px;
+    bottom: 0;
+    font-size: 20px
+}
+
+#guide-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+
+.answer-guide-q {
+
+    padding: 20px;
+    position: absolute;
+    top: 450px;
+    left: -10px;
+    width: 875px;
+    height: 100px;
+    background-image: url(../../../img/hd/New39hospital/guide_text_bg.png);
+
+}
+
+.guide-desc {
+    font-size: 16px;
+}
+
+.afterThreeText {
+    position: absolute;
+    top: 54px;
+    left: 500px;
+}
+
+/*患者案例*/
+#content-case {
+    position: absolute;
+    top: 20px;
+    width: 904px;
+    height: 510px;
+}
+
+#content-case-video {
+    margin-top: 27px;
+    width: 904px;
+    height: 500px;
+}
+
+#case-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+
+.case-picture-title {
+    position: absolute;
+    bottom: 25px;
+    left: 35px;
+    width: 100%;
+    height: 64px;
+    line-height: 64px;
+    text-indent: 20px;
+    font-size: 24px;
+    background-position: left;
+    background-image: url(../../../img/hd/New39hospital/word_title.png);
+}
+
+#case-num {
+    position: absolute;
+    bottom: -50px;
+    left: 400px;
+    border: none;
+    font-size: 26px;
+    text-align: center;
+}
+
+.static-title {
+    position: absolute;
+    top: -30px;
+    left: 30px;
+    width: 850px;
+    font-size: 24px;
+}
+
+.static-title-child {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 20px
+}
+
+/*立即咨询*/
+#content-order {
+    position: absolute;
+    top: 20px;
+    width: 904px;
+    height: 510px;
+}
+
+#content-order-img {
+    margin-top: 27px;
+    width: 904px;
+    height: 500px;
+}
+
+#order-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 904px;
+    height: 500px;
+}
+

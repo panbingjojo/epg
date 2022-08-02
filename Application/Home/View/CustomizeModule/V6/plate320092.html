@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>免费问医</title>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/CustomizeModule/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/CustomizeModule/V6/index.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var rootPath = '__ROOT__';
+        var RenderParam = {
+            carrierId: '{$carrierId}', // 地区id
+            areaCode: '{$areaCode}', // 省份地区码
+            platformType: '{$platformType}', // 平台类型
+            debug: '{$debug}', // 调试模式
+            pageSize: '{$size}', // 页面尺寸
+            stbModel: '{$stbModel}', // 盒子的型号
+            fsUrl: '{$resourcesUrl}', // fs 地址
+            time: '{$time}', // 开始渲染时间
+            userId: '{$userId}', // 用户Id
+            accountId: '{$accountId}', // 用户账号
+            client: '{$client}', // 盒子CA卡号
+            regionCode: '{$regionCode}', // 网关CA卡的区域码
+            userType: '{$userType}', // 用户类型：老人型，儿童型
+            loginId: '{$loginId}', // 用户登录id
+            positionTwoConfig: '{$positionTwoConfig}',
+            checkTime: '{$checkTime}',
+            commonImgsView: '{$commonImgsView}', // 公用图片模式
+            themeImage: '{$themePicture}', // 应用主题背景
+            thirdPlayerUrl: '{$domainUrl}', // 第三方播放器根路径地址
+            focusIndex: '{$focusIndex}', // 焦点ID
+            isVip: '{$isVip}', // 用户是否是vip
+            autoOrder: '{$autoOrder}', // 用户是否是续订vip
+            classifyId: '{$classifyId}', // 导航栏ID
+            moduleConfig: {$moduleConfig}, // 主页配置信息
+            fromLaunch:"{$fromLaunch}",    // 部分平台进入应用时用于判断是否返回局方大厅的标志
+
+            modelId:"{$modelId}",
+            page:"{$page}"
+        };
+
+    </script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--当前页所用自定义js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/CustomizeModule/banner.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmPayFrame.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmapkmofang.js?t={$time}"></script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/CustomizeModule/clickEvent.js?t={$time}"></script>
+</head>
+<body>
+<div id="freeMedical_page">
+    <img src="__ROOT__/Public/img/{$platformType}/CustomizeModule/V6/back.png" id="back" alt="">
+    <img src="/Public/img/hd/CustomizeModule/V6/articleContent_1.png" class="articleContent_1" alt=""></div>
+    <img src="/Public/img/hd/CustomizeModule/V6/articleContent_2.png" class="articleContent_2" alt=""></div>
+    <img src="/Public/img/hd/CustomizeModule/V6/articleContent_3.png" class="articleContent_3" alt=""></div>
+    <img src="/Public/img/hd/CustomizeModule/V6/articleContent_4.png" class="articleContent_4" alt=""></div>
+    <img src="__ROOT__/Public/img/{$platformType}/CustomizeModule/V6/freeMedical.png" id="freeMedical" alt="">
+</div>
+
+
+<script type="text/javascript">
+    var imagePath = "__ROOT__/Public/img/hd/CustomizeModule/V6/";
+
+    window.onload = function () {
+        Page.init()
+    }
+    var Page = {
+        buttons:[],
+        init: function () {
+            Page.initButton()
+            LMEPG.ButtonManager.init('freeMedical', Page.buttons, '', true);
+            var url = RenderParam.fsUrl + RenderParam.moduleConfig.bg_img.gq_img_url
+            G('freeMedical_page').style.backgroundImage = 'url("/Public/img/hd/CustomizeModule/V6/bg_home.png")';//'url('+url+')'
+        },
+
+        initButton: function () {
+            Page.buttons.push({
+                id: 'freeMedical',
+                name: '免费问医',
+                type: 'div',
+                click: PageJump.jumpVideoVisitHome,
+                nextFocusDown: '',
+                nextFocusUp: 'back',
+                backgroundImage: imagePath + 'freeMedical.png',
+                focusImage: imagePath + 'freeMedical_f.png',
+                focusChange: this.onFocusChange,
+            }, {
+                id: 'back',
+                name: '返回',
+                type: 'div',
+                click: onBack,
+                nextFocusDown: 'freeMedical',
+                nextFocusUp: '',
+                backgroundImage: imagePath + 'back.png',
+                focusImage: imagePath + 'back_f.png',
+                focusChange: this.onFocusChange,
+            })
+        },
+        homeIntent: function () {
+            return LMEPG.Intent.createIntent("home");
+        },
+        onFocusChange: function (btn, focus) {
+            if (focus) {
+                G(btn.id).src = imagePath + btn.id +'_f.png';
+            } else {
+                G('back').src = imagePath + 'back.png';
+                G('freeMedical').src = imagePath + 'freeMedical.png';
+            }
+        },
+    }
+
+    function onBack() {
+        LMEPG.Intent.jump(Page.homeIntent());
+    }
+</script>
+</body>
+</html>

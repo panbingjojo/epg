@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单列表</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V21/orderList.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            backIndex:'{$backIndex}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V21/orderList.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div class="main" id="main">
+        <div class="title">订单记录</div>
+        <div class="line"></div>
+        <div id="left-arrow" style="background-image: url('__ROOT__/Public/img/hd/AppointmentRegister/V21/left_arrow.png')"></div>
+        <div id="right-arrow" style="background-image: url('__ROOT__/Public/img/hd/AppointmentRegister/V21/right_arrow.png')"></div>
+        <div id="name_area">
+
+        </div>
+
+        <div id="listArr">
+            <div id="list"></div>
+        </div>
+
+        <div class="title tips" id="tips" style="display: none">暂时没有订单</div>
+        <span class="span_text">当前仅显示最近一年的订单记录！</span>
+        <div class="records" id="records"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

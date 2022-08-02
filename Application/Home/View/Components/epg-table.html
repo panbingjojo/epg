@@ -1,0 +1,159 @@
+<style>
+    #scroll-wrapper {
+        position: absolute;
+        font-family: 'SourceHanSansCN-Regular';
+        top: 0px;
+        left: 0px;
+        width: 807px;
+        height: 508px;
+        overflow: auto;
+    }
+
+    .epg-table {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .epg-table tr th {
+        height: 100px;
+        text-align: center;
+        border: none;
+        font-size: 30px;
+    }
+
+    .epg-table tr td {
+        height: 50px;
+        text-align: center;
+        border: none;
+        font-size: 24px;
+    }
+
+    #null-data {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px;
+        font-size: 26px;
+        color: #fff;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-button {
+        background-color: #32cfe0;
+        display: none;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #32cfe0;
+        border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-corner {
+        background: #32cfe0;
+        display: none;
+    }
+</style>
+<div id="scroll-wrapper">
+    <table class="epg-table" border="0" cellspacing="0">
+        <thead id="thead">
+        <tr>
+        </tr>
+        </thead>
+        <tbody id="data-table">
+
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    var TableComponents = {
+        defaultFocusImg: g_appRootPath + '/Public/img/hd/HealthTest/V8/Wristband/s_long_box_f.png',
+        tempData: [],
+        thead: [],//表头及结构
+        moveY: 30,
+        render: function (data, thead, callback, key) {
+            // G("scroll-wrapper").scrollTop = 0;
+            this.tempData = data;
+            Test.moveY = 40 + (Math.ceil(data.length / 10) * Math.ceil(data.length / 10))-(Math.ceil(data.length / 10)*3);
+            this.thead = thead;
+            this.callback = callback;
+            this.key = key || [];
+            if (data.length > 0) {
+                this.createHtml();
+                this.createBtn();
+            } else {
+                G("data-table").innerHTML = '<div id="null-data">暂无数据</div>'
+                // alert("ddd")
+                // LMEPG.ButtonManager.init("", buttons, '', true);
+            }
+        },
+        createHtml: function () {
+            G("data-table").innerHTML = "";
+            var strhtml = "";
+            var strHead = "";
+            for (var i = 0; i < TableComponents.thead.length; i++) {
+                strHead += ' <th>' + TableComponents.thead[i] + '</th>'
+            }
+            G("thead").innerHTML = strHead;
+
+            this.tempData.forEach(function (item, i) {
+                strhtml += '<tr id="recd-btn-' + (i + 1) + '">';
+                for (var key in item) {
+                    console.log(key + ' : ' + item[key]);
+                    if (TableComponents.isNoKey(key)) {
+                        strhtml += '<td>' + item[key] + '</td>';
+                    }
+                }
+                strhtml += '</tr>';
+            })
+            G("data-table").innerHTML = strhtml;
+
+        },
+        isNoKey: function (key) {
+            if (this.key.indexOf(key) > -1) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+        createBtn: function () {
+            var FOCUS_COUNT = Test.tempData.length;
+            while (FOCUS_COUNT--) {
+                buttons.push({
+                    id: 'recd-btn-' + (FOCUS_COUNT + 1),
+                    type: 'div',
+                    nextFocusUp: 'recd-btn-' + FOCUS_COUNT,
+                    nextFocusDown: 'recd-btn-' + (FOCUS_COUNT + 2),
+                    backgroundImage: g_appRootPath + 'ddd',
+                    focusImage: TableComponents.defaultFocusImg,
+                    click: this.onClick,
+                    beforeMoveChange: this.beforeMoveItem,
+                    cIndex: FOCUS_COUNT,
+                    cData: Test.tempData[FOCUS_COUNT]
+                });
+            }
+            LMEPG.ButtonManager.init(!LMEPG.Func.isEmpty(RenderParam.focusId) ? RenderParam.focusId : 'recd-btn-1', buttons, '', true);
+        }
+
+        ,
+        beforeMoveItem: function (dir, btn) {
+            if (dir == "down") {
+                G("scroll-wrapper").scrollTop += Test.moveY
+            } else if (dir == "up") {
+                G("scroll-wrapper").scrollTop -= Test.moveY
+            }
+        }
+        ,
+        onClick: function (btn) {
+            LMEPG.call(TableComponents.callback, btn);
+        }
+    }
+</script>
+

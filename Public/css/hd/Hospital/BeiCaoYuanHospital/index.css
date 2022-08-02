@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+.bg{
+    position: relative;
+    height: 720px;
+    width: 1280px;
+    background-image: url("../../../../img/hd/Hospital/BeiCaoYuanHospital/Hospital_bg.png");
+}
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    font-weight:900;
+    color: #dbd8d8
+}
+.content{
+    position: absolute;
+    margin-top: 143px;
+    margin-left: 144px;
+}
+.content img{
+    float: left;
+}
+.content2{
+    margin-left: 40px;
+    float: left;
+}
+.content_bg1{
+    position: absolute;
+    left: 0px;
+}
+.content_bg2{
+    position: absolute;
+    right: 0px;
+
+}

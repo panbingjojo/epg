@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>喜遇重阳，卡牌连连看2020-</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--处理background-img拿取图片fs地址-->
+    <include file="./Application/Activity/View/ActivityRepeatedlyRead/bgImage.html"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Activity/ActivityRepeatedlyRead/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/keypad.js?t={$time}"></script>
+
+    <!--当前活动-->
+    <script type="text/javascript">
+        var RenderParam = {
+            beClickId: 'btn-begin0',
+            activityImg: '{$activityFsImg}{$platformType}/',
+            cdCount: '{$cdCount}',
+            isVip: '{$isVip}',
+            isOrderBack: '{$isOrderBack}',
+            cOrderResult: '{$Think.cookie.c_order_result}',
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            userTel: '{$userTel}',
+            userId: '{$userId}',
+            exchangeRecords: {$exchangeRecords},
+            activityInfo: {$activityInfo},
+            prizeConfigItems: {$prizeConfigItems},
+            setExchangeList: {$setExchangeList},
+            extraTimes: '{$extraTimes}',
+            leftTimes: {$leftTimes},
+            score: '{$score}'
+        };
+
+        window.onload = function () {
+            Activity.init();
+        };
+        // window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
+        //     LMEPG.UI.logPanel.show("错误信息：" + errorMessage);
+        //     LMEPG.UI.logPanel.show("出错文件：" + scriptURI);
+        //     LMEPG.UI.logPanel.show("出错行号：" + lineNumber);
+        //     LMEPG.UI.logPanel.show("出错列号：" + columnNumber);
+        //     LMEPG.UI.logPanel.show("错误详情：" + errorObj);
+        // };
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityRepeatedlyRead/V1/index.js?t={$time}"></script>
+
+</head>
+<body>
+
+<div id="debug"></div>
+<p id="score-count">茱萸：XXX</p>
+<p id="times-count">剩余次数：XXX</p>
+<div class="jump-wrap">
+    <img id="jump-back" src="{$activityFsImg}{$platformType}/jump_back.png">
+    <img id="jump-rule" src="{$activityFsImg}{$platformType}/jump_rule.png">
+    <img id="jump-winner" src="{$activityFsImg}{$platformType}/jump_winner.png">
+    <img id="jump-exchange" src="{$activityFsImg}{$platformType}/jump_exchange.png">
+</div>
+
+<!--奖品展示UI-->
+<div class="prize-wrapper">
+    <img src="{$activityFsImg}{$platformType}/V{$carrierId}/prize_1.png">
+    <img src="{$activityFsImg}{$platformType}/V{$carrierId}/prize_2.png">
+    <img src="{$activityFsImg}{$platformType}/V{$carrierId}/prize_3.png">
+</div>
+
+<!--游戏UI-->
+<div class="game-wrapper">
+    <div id="card-wrap">
+        <img id="card-0" src="{$activityFsImg}{$platformType}/card.png">
+        <img id="card-1" src="{$activityFsImg}{$platformType}/card.png">
+        <img id="card-2" src="{$activityFsImg}{$platformType}/card.png">
+        <img id="card-3" src="{$activityFsImg}{$platformType}/card.png">
+        <img id="card-4" src="{$activityFsImg}{$platformType}/card.png">
+        <img id="card-5" src="{$activityFsImg}{$platformType}/card.png">
+    </div>
+    <p class="txt-tip">重阳节将至，快来参与游戏获取茱萸，兑换你心仪的重阳节大礼吧~</p>
+</div>
+
+<!--增加积分UI-->
+<div id="modal-add-score" class="modal">
+    <p id="p-add-score">0</p>
+</div>
+<!--没能增加积分UI-->
+<div id="modal-lose-score" class="modal"></div>
+
+<!--普通用户返回时进入触发返回倒计时UI-->
+<div id="modal-cd" class="modal">
+    <div id="count-down">8</div>
+</div>
+
+<!--活动规则UI-->
+<div id="modal-rule" class="modal">
+    <!--<img id="btn-rule-close" src="__ROOT__/Public/img/Common/spacer.gif">-->
+</div>
+
+<!--中奖名单UI-->
+<div id="modal-list" class="modal">
+    <div id="total-list"></div>
+    <div id="my-list"></div>
+    <div id="rewrite-tel" class="list-tel my">请输入有效的电话</div>
+    <img id="btn-list-submit" class="btn-list" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-list-cancel" class="btn-list" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--VIP没有游戏次数UI-->
+<div id="modal-vip-notimes" class="modal">
+    <img id="btn-one0" src="{$activityFsImg}{$platformType}/btn_sure.png">
+</div>
+
+<!--普通用户没有游戏次数UI-->
+<div id="modal-pay-notimes" class="modal">
+    <img id="btn-pay-sure" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-pay-cancel" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--兑换UI-->
+<div id="modal-exchange" class="modal"></div>
+
+<!--奖品抽中/兑换成功UI-->
+<div id="modal-accomplish" class="modal">
+    <img id="accomplish-prize" src="">
+    <div id="accomplish-tel">请输入有效的电话</div>
+    <img id="btn-accomplish-submit" class="btn-win" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-accomplish-cancel" class="btn-win" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--支付反馈UI-->
+<div id="modal-pay" class="modal">
+    <img id="pay-back-tip" src="__ROOT__/Public/img/Common/spacer.gif">
+</div>
+
+</body>
+</html>

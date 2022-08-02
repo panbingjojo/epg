@@ -1,0 +1,153 @@
+.recommended-1 {
+    position: absolute;
+    top: 140px;
+    left: 77px;
+    width: 259px;
+    height: 476px;
+    /*z-index: 3;*/
+}
+.recommended-2 {
+    position: absolute;
+    top: 140px;
+    left: 348px;
+    width: 256px;
+    height: 239px;
+    /*z-index: 3;*/
+}
+.recommended-3 {
+    position: absolute;
+    top: 140px;
+    left: 616px;
+    width: 273px;
+    height: 239px;
+    /*z-index: 3;*/
+}
+.recommended-4 {
+    position: absolute;
+    top: 140px;
+    left: 901px;
+    width: 301px;
+    height: 354px;
+    /*z-index: 3;*/
+}
+.recommended-5 {
+    position: absolute;
+    top: 391px;
+    left: 348px;
+    width: 541px;
+    height: 225px;
+    /*z-index: 3;*/
+}
+.recommended-6 {
+    position: absolute;
+    top: 506px;
+    left: 901px;
+    width: 301px;
+    height: 110px;
+    /*z-index: 3;*/
+}
+
+.recommended-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.recommended-hover > #recommended-1-bg {
+    position: absolute;
+    top: -25px;
+    left: -18px;
+    width: 285px;
+    height: 524px;
+    /*padding: 42px;*/
+    /*z-index: 3;*/
+}
+.recommended-hover > #recommended-5-bg {
+    position: absolute;
+    top: -11px;
+    left: -27px;
+    /*width: 541px;*/
+    /*height: 225px;*/
+    width: 595px;
+    height: 248px;
+    /*padding: 42px;*/
+    /*z-index: 3;*/
+}
+.recommended-hover > #recommended-6-bg {
+    position: absolute;
+    top: -11px;
+    left: -5px;
+    width: 301px;
+    height: 110px;
+    width: 331px;
+    height: 121px;
+    /*padding: 42px;*/
+    /*z-index: 3;*/
+}
+.recommended-hover>#recommend-5-vip-icon{
+    top: 26px;
+    left: 10px;
+}
+
+.recommended-hover>#recommend-1-vip-icon{
+    top: 12px;
+    left: 18px;
+}
+
+
+/*挽留页*/
+.retain {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 10000;
+}
+
+.retain > .hold-bg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+
+.retain > .continue-btn {
+    position: absolute;
+    left: 167px;
+    top: 597px;
+    width: 199px;
+    height: 77px;
+
+}
+
+.retain > .close-btn {
+    position: absolute;
+    left: 428px;
+    top: 597px;
+    width: 199px;
+    height: 77px;
+
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+
+/*--------------------------------------------------
+         按钮选中效果
+ ---------------------------------------------------*/
+/*推荐位*/
+.recommended-hover {
+    position: absolute;
+    /*-webkit-transform: scale(1.1);*/
+    /*-moz-transform: scale(1.1);*/
+    /*box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);*/
+    /*border: 1px solid black;*/
+    /*border-radius: 12px;*/
+    z-index: 996;
+    /*-webkit-transition: all 0.1s;*/
+    /*-moz-transition: all 0.1s;*/
+}

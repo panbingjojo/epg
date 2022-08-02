@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>title</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--处理background-img拿取图片fs地址-->
+    <include file="./Application/Activity/View/ActivityThanksgiving/bgImage.html"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityThanksgiving/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <!--当前活动-->
+    <script type="text/javascript">
+
+        var RenderParam = {
+            beClickId: 'btn-begin0',
+            activityImg: '{$activityFsImg}{$platformType}/',
+            cdCount: '{$cdCount}',
+            isVip: '{$isVip}',
+            isOrderBack: '{$isOrderBack}',
+            cOrderResult: '{$Think.cookie.c_order_result}',
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            userTel: '{$userTel}',
+            userId: '{$userId}',
+            exchangeRecords: {$exchangeRecords},
+            activityInfo: {$activityInfo},
+            prizeConfigItems: {$prizeConfigItems},
+            setExchangeList: {$setExchangeList},
+            allChannelScore: {$allChannelScore},
+            leftTimes: {$leftTimes},
+            extraTimes: '{$extraTimes}',
+            score: '{$score}',
+            totalScore: {$totalScore}
+        };
+
+        window.onload = function () {
+            Activity.init();
+        };
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityThanksgiving/V1/index.js?t={$time}"></script>
+</head>
+<body>
+
+<div id="debug"></div>
+
+<p id="score-count">x0</p>
+<img id="jump-back" src="{$activityFsImg}{$platformType}/jump_back.png">
+<img id="jump-rule" src="{$activityFsImg}{$platformType}/jump_rule.png">
+<!--活动规则-->
+<div id="modal-rule" class="modal"></div>
+<div id="exchange-wrap"></div>
+
+<!--抽中奖品-->
+<div id="modal-accomplish" class="modal">
+    <div id="accomplish-tel">请输入有效的电话</div>
+    <img id="btn-accomplish-submit" class="btn-win" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-accomplish-cancel" class="btn-win" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<div id="task-wrap">
+    <div>
+        <p id="completed-0">完成挑战任务 （0/1）</p>
+        <img class="task" id="jump-mark" src="{$activityFsImg}{$platformType}/jump_mark.png">
+    </div>
+    <div>
+        <p id="completed-1">完成挑战任务 （0/1）</p>
+        <img class="task" id="jump-case" src="{$activityFsImg}{$platformType}/jump_case.png">
+    </div>
+    <div>
+        <p id="completed-2">完成挑战任务 （0/2）</p>
+        <img class="task" id="jump-play" src="{$activityFsImg}{$platformType}/jump_play.png">
+    </div>
+</div>
+</body>
+</html>

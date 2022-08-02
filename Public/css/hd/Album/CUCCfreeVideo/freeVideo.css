@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+    background-position: left;
+    color: #000;
+    overflow: hidden;
+}
+.title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+.arrow {
+    position: absolute;
+    top: 325px;
+}
+
+#prev-arrow {
+    left: 50px;
+}
+
+#next-arrow {
+    left: 1160px;
+}
+
+
+#list-container {
+    position: absolute;
+    top: 160px;
+    width: 1280px;
+}
+
+#list-container .arrow {
+    position: absolute;
+    top: 180px;
+}
+
+#list-container #prev-arrow {
+    left: 50px;
+}
+
+#list-container #next-arrow {
+    right: 50px;
+}
+
+ul#list-wrapper {
+    position: absolute;
+    top: -70px;
+    left: 165px;
+    list-style: none;
+}
+
+ul#list-wrapper li {
+    position: relative;
+    float: left;
+    width: 316px;
+    height: 211px;
+    line-height: 211px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+ul#list-wrapper li.focus{
+    background-image: url(../../../../img/hd/Channel/V13/video_f.png);
+}
+ul#list-wrapper li img {
+    width: 294px;
+    height: 192px;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+ul#list-wrapper li p {
+    position: absolute;
+    top: 205px;
+    left: 11px;
+    font-size: 24px;
+    color: #fff;
+    width: 290px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    /* background-image: url(../../../../img/hd/Channel/V13/number_bg.png); */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#page-wrapper {
+    position: absolute;
+    top: 602px;
+    left: 329px;
+    height: 62px;
+}
+
+#page-wrapper img {
+    vertical-align: middle;
+}
+
+#page-wrapper p {
+    width: 81px;
+    height: 62px;
+    line-height: 62px;
+    color: #b2deff;
+    text-align: center;
+    display: inline-block;
+}
+#page-wrapper p#page-index{
+    font-size: 24px;
+    color: #b2deff;
+}
+.null-data {
+    font-size: 20px;
+    font-style: italic;
+    color: #fff;
+    text-align: center;
+}

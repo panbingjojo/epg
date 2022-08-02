@@ -1,0 +1,127 @@
+body {
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    color: #fff;
+    background-image: url("../../../../img/hd/CommunityHospital/BloodManage/bg.png");
+}
+
+p.title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 30px;
+}
+
+div#container {
+    height: 720px;
+    width: 1100px;
+}
+
+#bg-content{
+    position: absolute;
+    top: 162px;
+    left: 100px;
+    width: 1080px;
+    height: 454px;
+    background-image: url("../../../../img/hd/CommunityHospital/BloodManage/bg_content.png");
+}
+#input-form{
+    position: absolute;
+    top: 75px;
+    left: 90px;
+    width: 500px;
+    height: 250px;
+
+}
+input::-webkit-input-placeholder{
+    /*color: #D9D9D9;*/
+    text-indent: 10px;
+    text-align: left;
+    font-size: 18px;
+    padding: 11px 0;
+}
+
+#user-name-text{
+    position: absolute;
+}
+#user-name{
+    position: absolute;
+    left: 200px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+#id-card-text{
+    position: absolute;
+    top: 74px;
+}
+#id-card{
+    position: absolute;
+    top: 74px;
+    left: 200px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+#user-tel-text{
+    position: absolute;
+    top: 148px;
+}
+#user-tel{
+    position: absolute;
+    top: 148px;
+    left: 200px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.lable-css{
+    font-size: 24px;
+    text-align: right;
+    width: 200px;
+    height: 40px;
+}
+
+.input{
+    font-size: 18px;
+    text-align: left;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    color: #91ceff;
+    border: none;
+    text-indent: 10px;
+    background-image: url("../../../../img/hd/CommunityHospital/BloodManage/bg_input.png");
+}
+#user-name-icon{
+    position: absolute;
+    top: 15px;
+    right: 13px;
+}
+
+
+#btn-confirm {
+    position: absolute;
+    top: 346px;
+    left: 345px;
+}
+#erweima{
+    position: absolute;
+    top: 56px;
+    left: 700px;
+    width: 260px;
+    height: 260px;
+    /*border: 1px red solid;*/
+}
+#tip-text1{
+    position: absolute;
+    top: 332px;
+    left: 711px;
+    font-size: 24px;
+}
+#tip-text2{
+    position: absolute;
+    top: 375px;
+    left: 670px;
+    font-size: 24px;
+}

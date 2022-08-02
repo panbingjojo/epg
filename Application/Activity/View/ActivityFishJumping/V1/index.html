@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>《鱼鱼跃试，云霄大飞跃》中国联通-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityFishJumping/V1/index.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityFishJumping/DialogMoreThree.js?t={$time}"></script>
+    <!--小键盘-->
+    <script type="text/javascript" src="__ROOT__/Public/hd/js/Common/keypad.js?t={$time}"></script>
+    <script type="application/javascript" src="__ROOT__/Public/js/Activity/Common/activityCommon.js?t={$time}"></script>
+</head>
+<body>
+<img id="bg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/bg_game.png">
+<img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/btn_close.png">
+
+<p id="count-down">10s</p>
+<img id="lottery" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/btn_jump1.png" alt="">
+<img id="fish-wrap" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/fish_1.png" alt="">
+<!--模态框-->
+<div id="modal">
+
+</div>
+<script type="application/javascript">
+
+    var A, // 参数数据模块
+        buttons, // 虚拟按钮模块
+        Game; // 函数功能模块
+
+    // 全局参数
+    A = {
+        isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+        isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+        cOrderResult: "{$Think.cookie.c_order_result}",
+        nPrizeIdx: 0,
+        ROOT: "__ROOT__",
+        currentAddr: "activity-common-home",
+        modal: G("modal"),
+        isModal: false,
+        platformType: "{$platformType}",
+        activityInfo: F.isNull({$activityInfo}),                        // 活动信息
+        fishStore: F.toJson(F.isNull({$storeFish}).val),                // 收集鱼的个数
+        leftTimes: F.isNull({$leftTimes}).leftTimes,                    // 剩余次数
+        userTel: "{$userTel}",                                          // 中奖电话
+        myPrizeList: F.isNull({$myPrizeList}),                          // 我的中奖记录
+        AllUserPrizeLis: F.isNull({$AllUserPrizeLis}),                  // 所用中奖信息
+        prize_idx: F.isNull({$prize_idx}),
+        vipList: F.isNull({$vipList}),
+        imgPathPrefix: "__ROOT__/Public/img/{$platformType}/Activity/ActivityFishJumping/V1/",
+        reload: false,
+        beClickBtnId: "",
+    };
+    imgVision = function () {
+        // 该活动不同{$carrierId}地区使D用图素区分（背景、活动规则、奖品1,2,3）
+        var bgIndex = "";
+        switch ("{$carrierId}") {
+            case "000051":
+                bgIndex = "V1";
+                break;
+            case "630092":
+                bgIndex = "V2";
+                break;
+            case "420092": // 湖北
+                bgIndex = "V3";
+                break;
+            case "350092": // 福建
+                bgIndex = "V4";
+                break;
+        }
+        return bgIndex;
+    }();
+    Game = function (doc) {
+
+        // 公用返回函数
+        onBack = function () {
+            var keyPad = G("key-table");
+            switch (true) {
+                // 遥控器返回键关闭虚拟小键盘
+                case !!keyPad:
+                    keyPad.parentNode.removeChild(keyPad);
+                    LMEPG.ButtonManager.requestFocus("btn-submit");
+                    break;
+                // 应用内活动，直接返回上一级页面
+                default:
+                    LMEPG.Intent.back();
+                    break;
+            }
+        };
+
+        var bg = doc.getElementById("bg");
+        var backBtn = doc.getElementById("back");
+        var startBtn = doc.getElementById("lottery");
+        var fishAction = doc.getElementById("fish-wrap");
+        var CDdom = doc.getElementById("count-down");
+
+
+        var status = true;
+        var Nx = 0; // 背景索引
+        var Ny = 2; // 鱼图片索引
+        var Hz = 300; // 频率
+        return {
+            /**
+             * 开始游戏后的动效
+             * 1.开始按钮切换为“点击飞跃”的字样图片
+             * 2.隐藏返回按钮，阻止全局返回功能
+             * 3.背景切换（三张png交互切换）
+             * 4.鱼的效果切换为动图
+             */
+            fishAnimate: function () {
+                var self = this;
+                var Ns = 0;
+                Hz = Math.max(100, Hz -= 30);
+                status = function () {
+                    if (!self.animateTimer) {
+                        startBtn.src = A.imgPathPrefix + "btn_jump.gif";
+                        backBtn.parentNode.removeChild(backBtn);
+                    }
+                    return false;
+                }();
+
+                var updatePic = function (m, n, o) {
+                    var oc = o > 60 ? 1 : n;
+                    bg.src = A.imgPathPrefix + "game_state_" + m + ".png";
+                    fishAction.src = A.imgPathPrefix + "fish_" + oc + ".png";
+                };
+                var currHz = function (times) {
+                    if (times > 60) {
+                        Hz = Math.min(300, Hz += 30);
+                    }
+                };
+                clearTimeout(this.animateTimer);
+                (function move() {
+                    Ns += 10;
+                    currHz(Ns);
+                    updatePic(Nx, Ny, Ns);
+                    Ny = Ny == 1 ? 2 : 1;
+                    Nx = Nx == 2 ? 0 : Nx += 1;
+                    self.animateTimer = setTimeout(move, Hz);
+                }());
+            },
+            countDown: function () {
+                var self = this;
+                var COUNT = 10;
+                self.gameBegin();
+                (function CD() {
+                    CDdom.innerText = COUNT + "s";
+                    Math.min(0, COUNT -= 1);
+                    if (COUNT > -1) {
+                        setTimeout(CD, 1000)
+                    } else {
+                        LMEPG.ButtonManager.setKeyEventPause(true);
+                        clearTimeout(Game.animateTimer);
+                        Game.lotteryResult(A.resultStatus, A.nPrizeIdx);
+                    }
+                }());
+            },
+            /**
+             *抽奖结果
+             * 1.去除 “点击飞跃” 按钮
+             * 2.背景切换为正常背景
+             * 3.成功抽到奖品：鱼的效果切换为抽奖成功后的“龙”效果图 ：失败：失败的鱼效果
+             * 4.显示抽到的奖品
+             */
+            lotteryResult: function (resultStatus, prizeId) {
+                bg.src = A.imgPathPrefix + "bg_game.png";
+                startBtn.style.display = "none";
+                switch (resultStatus) {
+                    //没有抽中奖品
+                    case 0:
+                        fishAction.src = A.imgPathPrefix + "failed_state.png";
+                        dialogShow.uncomplete();
+                        setTimeout(function () {
+                            F.reload();
+                        }, 1000);
+                        break;
+                    //抽中奖品
+                    case 1:
+                        fishAction.src = A.imgPathPrefix + "success_animate.gif";
+                        setTimeout(function () {
+                            LMEPG.UI.showWaitingDialog("", 0.5, function () {
+                                dialogShow.complete("prize" + prizeId);
+                                LMEPG.ButtonManager.setKeyEventPause(false);
+                            });
+                        }, 2200);
+                        break;
+                    //其它
+                    default:
+                        LMEPG.UI.showToast('抽奖结果出错[' + resultStatus + ']', 1);
+                        F.reload();
+                        break;
+                }
+            },
+            /**
+             * 开始抽奖
+             * 1.检查剩余次数(首页进来的时候已经检查)
+             * 3.ajax抽奖接口,返回中奖物品ID
+             */
+            gameBegin: function () {
+                var postData = {
+                    "action": "lottery",
+                    "lottery": 1,
+                };
+
+                LMEPG.ajax.postAPI('Activity/commonAjax', postData,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            A.nPrizeIdx = data.prize_idx;
+                            A.resultStatus = data.result;
+                        } catch (e) {
+                            LMEPG.UI.showToast("解析异常！", 3);
+                            console.log(e)
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("上报失败！", 3);
+                    }
+                );
+            },
+            startLottery: function () {
+                status && Game.countDown();
+                Game.fishAnimate();
+
+            },
+
+
+            /**
+             * 保存用户电话号码
+             */
+            setPhoneNumber: function () {
+                var userTel = G("searchText").innerHTML;
+                //判断手机号是否正确
+                if (!LMEPG.Func.isTelPhoneMatched(userTel)) {
+                    LMEPG.UI.showToast("请输入有效电话号码!");
+                    return;
+                }
+
+
+                // 判断是否抽到过奖品
+                if (!+A.myPrizeList.list.length && !A.nPrizeIdx) {
+                    LMEPG.UI.showToast("您尚未中奖！", 3);
+                    return;
+                }
+
+                var reqData = {
+                    "phoneNumber": userTel,
+                    "prizeIdx": A.nPrizeIdx,
+                };
+                LMEPG.ajax.postAPI('Activity/setPhoneNumber', reqData,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            var result = data.result;
+                            if (result == 0) {
+                                LMEPG.UI.showToast("提交电话成功！");
+                                F.reload();
+                            } else {
+                                LMEPG.UI.showToast("提交失败，请重试！");
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("保存手机号结果处理异常！");
+                            LMEPG.Log.error(e.toString());
+                            console.log(e.toString())
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("请求保存手机号发生错误！");
+                    });
+            }
+            ,
+        };
+    }
+    (document);
+    buttons = [{
+        id: 'lottery',
+        name: '抽奖',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: 'back',
+        nextFocusUp: 'back',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_jump1.png',
+        focusImage: A.imgPathPrefix + 'btn_jump1.gif',
+        click: Game.startLottery,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'back',
+        name: '返回',
+        type: 'img',
+        nextFocusLeft: 'lottery',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: 'lottery',
+        backgroundImage: A.imgPathPrefix + 'btn_close.png',
+        focusImage: A.imgPathPrefix + 'btn_close.gif',
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'searchText',
+        name: '号码框',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: "",
+        focusChange: F.keyPad,
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-submit',
+        name: '中奖名单-确认',
+        type: 'img',
+        nextFocusLeft: 'searchText',
+        nextFocusRight: 'btn-cancle',
+        nextFocusUp: 'searchText',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_sure.png',
+        focusImage: A.imgPathPrefix + 'btn_sure.gif',
+        click: Game.setPhoneNumber,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-cancle',
+        name: '中奖名单-取消',
+        type: 'img',
+        nextFocusLeft: "btn-submit",
+        nextFocusRight: 'btn-submit',
+        nextFocusUp: 'searchText',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + 'btn_cancle.png',
+        focusImage: A.imgPathPrefix + 'btn_cancle.gif',
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-one',
+        name: '活动规则-关闭',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: Game.reLoad,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }];
+
+    window.onload = function () {
+        LMEPG.ButtonManager.init('lottery', buttons, '', true);
+    };
+</script>
+</body>
+</html>

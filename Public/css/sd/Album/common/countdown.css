@@ -1,0 +1,21 @@
+#dialog_wrap * {
+    position: absolute;
+}
+
+#btn_purchase {
+    top: 330px;
+    left: 180px;
+}
+
+#btn_cancel_purchase {
+    top: 330px;
+    left: 340px;
+}
+
+#count {
+    top: 162px;
+    left: 214px;
+    font-size: 36px;
+    color: #c55800;
+    font-weight: bold
+}

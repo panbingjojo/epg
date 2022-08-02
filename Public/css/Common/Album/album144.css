@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    /*position:absolute;;*/
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    top: 0px
+}
+
+#small-video-wrap{
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#small-video {
+    top: 218px;
+    left: 22px;
+}
+
+.hd-corner-mark{
+    top: 517px;
+    left: 737px;
+    visibility: hidden;
+}
+
+.hd-back {
+    top: 27px;
+    left: 1124px;
+}
+
+.hd-view-more {
+    top: 27px;
+    left: 984px;
+}
+
+.hd-video-list {
+    top: 107px;
+    left: 612px;
+    width: 588px;
+    /*border: 1px red solid;*/
+}
+.hd-video-list img{
+    /*margin-bottom: 16px;*/
+}
+
+.hd-v-arrow {
+    left: 864px;
+}
+
+.hd-v-prev {
+    top: 53px;
+    visibility: hidden;
+}
+
+.hd-v-next {
+    top: 660px;
+}
+
+/*==============SD==================*/
+.sd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+.sd-body{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    /*border: 1px solid red;*/
+}
+.sd-view-more {
+    position:absolute;
+    top: 20px;
+    left: 440px;
+}
+
+.sd-back {
+    position: absolute;
+    top: 20px;
+    left: 540px;
+}
+
+.sd-video-list {
+    position:absolute;
+    top: 78px;
+    left: 210px;
+    width: 388px;
+    height: 282px;
+    /*border: 1px red solid;*/
+}
+
+.sd-video-list img {
+    /*position: absolute;*/
+    width: 432px;
+    height: 95px;
+    /*margin-bottom: 12px;*/
+}
+
+.sd-v-arrow {
+    position:absolute;
+    width: 40px;
+    height: 21px;
+    left: 395px;
+}
+
+.sd-v-prev {
+    top:39px;
+    visibility: hidden;
+}
+
+.sd-v-next {
+    top:486px;
+}
+
+

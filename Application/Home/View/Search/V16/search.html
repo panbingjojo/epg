@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>中国联通搜索-V16</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Search/V16/search.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            focusIndex: '{$focusIndex}',
+            userId: '{$userId}',
+            platformType: '{$platformType}',    // 平台类型
+            cwsHlwyyUrl: '{$cwsHlwyyUrl}',
+            cws39HospitalUrl: '{$cws39HospitalUrl}',
+            carrierId: '{$carrierId}',
+            modeTitle: '{$modeTitle}',
+            isVip: '{$isVip}',
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            skin: {$skin},      // 用户自定义背景
+
+            // 焦点保持
+            focusId: '{$focusId}',
+            page: '{$page}',
+            keepFocusId: '{$curSelectedTabId}',
+            searchWord: '{$searchWord}'
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Search/V16/search.js?t={$time}"></script>
+</head>
+<body>
+
+<!--输入框和键盘容器-->
+<div id="input-key-wrapper">
+    <!--输入框-->
+    <div class="input-txt-wrap">
+        <p id="search-value" val=""></p>
+        <img id="delete" src="__ROOT__/Public/img/hd/Search/V16/delete.png">
+        <img id="clear" src="__ROOT__/Public/img/hd/Search/V16/clear.png">
+    </div>
+    <!--键盘-->
+    <div class="key-container">
+        <div><img id="key-0" src="__ROOT__/Public/img/hd/Search/V16/key0.png"></div>
+        <div><img id="key-1" src="__ROOT__/Public/img/hd/Search/V16/key1.png"></div>
+        <div><img id="key-2" src="__ROOT__/Public/img/hd/Search/V16/key2.png"></div>
+        <div><img id="key-3" src="__ROOT__/Public/img/hd/Search/V16/key3.png"></div>
+        <div><img id="key-4" src="__ROOT__/Public/img/hd/Search/V16/key4.png"></div>
+        <div><img id="key-5" src="__ROOT__/Public/img/hd/Search/V16/key5.png"></div>
+        <div><img id="key-6" src="__ROOT__/Public/img/hd/Search/V16/key6.png"></div>
+        <div><img id="key-7" src="__ROOT__/Public/img/hd/Search/V16/key7.png"></div>
+        <div><img id="key-8" src="__ROOT__/Public/img/hd/Search/V16/key8.png"></div>
+        <div><img id="key-9" src="__ROOT__/Public/img/hd/Search/V16/key9.png"></div>
+    </div>
+</div>
+
+<!--搜索结果-->
+<p id="title">大家都在搜</p>
+<ul class="tab-wrap">
+    <li id="single-video">视频</li>
+    <li id="gather-video">视频集</li>
+    <li id="album">专题</li>
+    <if condition="$carrierId neq '000051'">
+        <li id="doctor">医生</li>
+    </if>
+    <!--<li id="expert">专家</li>-->
+</ul>
+<div id="content-container"></div>
+<div id="page-index">0/0</div>
+<img id="prev-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V16/Home/Common/left.png">
+<img id="next-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V16/Home/Common/right.png">
+</body>
+<script>
+	window.onload = function() {
+		// 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+
+		Search.init();
+	};
+</script>
+<script type="text/javascript" src="__ROOT__/Public/js/Unclassified/ByCarrierIdSet.js?t={$time}"></script>
+</html>

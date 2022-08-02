@@ -1,0 +1,104 @@
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+
+.center {
+    position: absolute;
+    top: 180px;
+    width: 1120px;
+    left: 60px;
+}
+
+.card {
+    position: relative;
+    width: 284px;
+    height: 404px;
+    background: url("../../../../../Public/img/hd/Family/V10/bg_card.png");
+    float: left;
+    margin-left: 80px;
+}
+
+.photo {
+    position: absolute;
+    width: 152px;
+    height: 152px;
+    border-radius: 50%;
+    top: 88px;
+    left: 62px;
+}
+.intro-info{
+    position: absolute;
+    width: 284px;
+    text-align: center;
+    top: 274px;
+    font-size: 34px;
+    color:white;
+}
+.font-s{
+    font-size: 28px;
+}
+#right {
+    width: 36px;
+    height: 69px;
+    position: absolute;
+    top: 362px;
+    left: 1220px;
+    display: none;
+}
+
+#left {
+    width: 36px;
+    height: 69px;
+    position: absolute;
+    top: 362px;
+    left: 25px;
+    display: none;
+}
+#arching-btn{
+    position: absolute;
+    width: 200px;
+    height: 72px;
+    top: 28px;
+    left: 1012px;
+}
+.times{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    left: 1168px;
+    border-radius: 50%;
+    background: #ff6666;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 40px;
+    font-size: 28px;
+}
+
+#no_data {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    line-height: 720px;
+    text-align: center;
+    font-size: 36px;
+    z-index: 900;
+    color: #FFFFFF;
+    display: none;
+}

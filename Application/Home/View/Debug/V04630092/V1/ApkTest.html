@@ -1,0 +1,584 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>青海电信EPG-启动APK</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+            appName: "{$appName}",
+            appUrl: "{$appUrl}",
+        }
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+
+    <style type="text/css">
+        #checkApk{
+            position: absolute;
+            width: 170px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 19px;
+            background: #FFFFFF;
+            left: 20px;
+        }
+        #startApk{
+            position: absolute;
+            width:150px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 19px;
+            background: #FFFFFF;
+            left: 230px;
+        }
+        #startAppMarket{
+            position: absolute;
+            width:150px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 19px;
+            background: #FFFFFF;
+            left: 450px;
+        }
+        #startAppMarketDetail{
+            position: absolute;
+            width:220px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 19px;
+            background: #FFFFFF;
+            left: 670px;
+        }
+    </style>
+</head>
+<body style="background-image: url('../../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');
+    background-Repeat: no-repeat; width: 1280px;height: 720px;position: relative;">
+<div id="debug" style=" display: block;color:white;z-index:999;"></div>
+<div id="checkApk">检测是否安装APK</div>
+<div id="startApk">启动APK</div>
+<div id="startAppMarket">启动应用商城</div>
+<div id="startAppMarketDetail">启动应用商城插件详情</div>
+<div id="hongzhong" style="    position: absolute;
+    width: 170px;
+    height: 50px;
+    top: 100px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 19px;
+    background: #FFFFFF;
+    left: 20px;">乐宝红中麻将</div>
+<div id="paodekuai" style="    position: absolute;
+    width: 150px;
+    height: 50px;
+        top: 100px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 19px;
+    background: #FFFFFF;
+    left: 230px;">乐宝跑得快</div>
+<div id="qinghaimajiang"style="    position: absolute;
+    width: 150px;
+    height: 50px;
+        top: 100px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 19px;
+    background: #FFFFFF;
+    left: 450px;">乐宝青海麻将</div>
+<div id="zhuanzhuan"style="    position: absolute;
+    width: 150px;
+    height: 50px;
+        top: 100px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 19px;
+    background: #FFFFFF;
+    left: 670px;">乐宝转转麻将</div>
+
+<div id="wzq"style="    position: absolute;
+    width: 150px;
+    height: 50px;
+    top: 200px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 19px;
+    background: #FFFFFF;
+    left: 20px;">五子棋</div>
+
+<div id="zgxq"style="    position: absolute;
+    width: 150px;
+    height: 50px;
+    top: 200px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 19px;
+    background: #FFFFFF;
+    left: 230px;">中国象棋</div>
+
+<div id="yq"style="    position: absolute;
+    width: 150px;
+    height: 50px;
+    top: 200px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 19px;
+    background: #FFFFFF;
+    left: 670px;">弈棋</div>
+<!--提示弹框-->
+<div id="default_tip"></div>
+</body>
+
+<script type="text/javascript">
+    buttons = [
+        {
+            id: 'hongzhong',
+            name: '乐宝红中麻将',
+            type: 'img',
+            nextFocusUp: 'checkApk',
+            nextFocusDown: 'wzq',
+            nextFocusLeft: '',
+            nextFocusRight: 'paodekuai',
+            focusChange:onFocusBtn,
+            click: onClick,
+            id_x:0,
+        },
+        {
+            id: 'paodekuai',
+            name: '乐宝跑得快',
+            type: 'img',
+            nextFocusUp: 'startApk',
+            nextFocusDown: 'zgxq',
+            nextFocusLeft: 'hongzhong',
+            nextFocusRight: 'qinghaimajiang',
+            focusChange:onFocusBtn,
+            click: onClick,
+            id_x:1,
+        }, {
+            id: 'qinghaimajiang',
+            name: '乐宝青海麻将',
+            type: 'img',
+            nextFocusUp: 'startAppMarket',
+            nextFocusDown: 'zgxq',
+            nextFocusLeft: 'paodekuai',
+            nextFocusRight: 'zhuanzhuan',
+            focusChange:onFocusBtn,
+            click: onClick,
+            id_x:2,
+        },       {
+            id: 'zhuanzhuan',
+            name: '乐宝青海麻将',
+            type: 'img',
+            nextFocusUp: 'startAppMarketDetail',
+            nextFocusDown: 'yq',
+            nextFocusLeft: 'qinghaimajiang',
+            nextFocusRight: '',
+            focusChange:onFocusBtn,
+            click: onClick,
+            id_x:3,
+        },{
+            id: 'yq',
+            name: '弈棋',
+            type: 'img',
+            nextFocusUp: 'startAppMarketDetail',
+            nextFocusDown: '',
+            nextFocusLeft: 'zgxq',
+            nextFocusRight: '',
+            focusChange:onFocusBtn,
+            click: onClick,
+            id_x:4,
+        },
+        {
+            id: 'wzq',
+            name: '五子棋',
+            type: 'img',
+            nextFocusUp: 'qinghaimajiang',
+            nextFocusDown: '',
+            nextFocusLeft: '',
+            nextFocusRight: 'zgxq',
+            focusChange:onFocusBtn,
+            click: onClick,
+            id_x:5,
+        },
+        {
+            id: 'zgxq',
+            name: '中国象棋',
+            type: 'img',
+            nextFocusUp: 'qinghaimajiang',
+            nextFocusDown: '',
+            nextFocusLeft: 'wzq',
+            nextFocusRight: 'yq',
+            focusChange:onFocusBtn,
+            click: onClick,
+            id_x:6,
+        },
+
+        {
+            id: 'checkApk',
+            name: '检测是否安装APK',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'startApk',
+            nextFocusDown: 'hongzhong',
+            focusChange:onFocusBtn,
+            click: onClick,
+        }, {
+            id: 'startApk',
+            name: '启动APK',
+            type: 'img',
+            nextFocusLeft: 'checkApk',
+            nextFocusRight: 'startAppMarket',
+            nextFocusDown: 'paodekuai',
+            focusChange:onFocusBtn,
+            click: onClick,
+        },{
+            id: 'startAppMarket',
+            name: '启动应用商城',
+            type: 'img',
+            nextFocusLeft: 'startApk',
+            nextFocusRight: 'startAppMarketDetail',
+            nextFocusDown: 'qinghaimajiang',
+            focusChange:onFocusBtn,
+            click: onClick,
+        },{
+            id: 'startAppMarketDetail',
+            name: '启动应用商城插件详情',
+            type: 'img',
+            nextFocusLeft: 'startAppMarket',
+            nextFocusRight: '',
+            nextFocusDown: 'zhuanzhuan',
+            focusChange:onFocusBtn,
+            click: onClick,
+        }];
+
+    function onFocusBtn(btn, hasFocus) {
+        if (hasFocus == true) {
+            G(btn.id).style.background = 'blue';
+            G(btn.id).style.color = '#ffffff';
+        } else {
+            G(btn.id).style.background = '#ffffff';
+            G(btn.id).style.color = 'black';
+        }
+    }
+
+    function onClick(btn) {
+        switch (btn.id) {
+            case "checkApk":
+                checkIsInstallApp();
+                break;
+            case "startApk":
+            case "intentStartApk":
+                startApp(RenderParam.appName);
+                break;
+            case "startAppMarket":
+                startAppMarket();
+                break;
+            case "startAppMarketDetail":
+                startAppMarketDetail();
+                break;
+            case "hongzhong":
+            case "paodekuai":
+            case "qinghaimajiang":
+            case "zhuanzhuan":
+            case "yq":
+            case "wzq":
+            case "zgxq":
+                startAppGame(gameParamList[btn.id_x].packageName,gameParamList[btn.id_x].APPID);
+                break;
+            default:
+                LMEPG.UI.showToast("不支持该操作");
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    var debug = document.getElementById("debug");
+    var gameParamList = [{packageName:"com.runmo.mronehzmj",APPID:"470",CLASS_NAME:"org.cocos2dx.javascript.AppActivity",EXTAR:'{"appId":"470","hall":true,"lunchFrom": "epg","asserId":"","position":""}'},
+        {packageName:"com.runmo.mronepdk",APPID:"471",CLASS_NAME:"org.cocos2dx.javascript.AppActivity",EXTAR:'{"appId":"471","hall":true,"lunchFrom": "epg","asserId":"","position":""}'},
+        {packageName:"com.runmo.mrone",APPID:"472",CLASS_NAME:"org.cocos2dx.javascript.AppActivity",EXTAR:'{"appId":"472","hall":true,"lunchFrom": "epg","asserId":"","position":""}'},
+        {packageName:"com.runmo.mronezzmj",APPID:"473",CLASS_NAME:"org.cocos2dx.javascript.AppActivity",EXTAR:'{"appId":"473","hall":true,"lunchFrom": "epg","asserId":"","position":""}'},
+        {packageName:"com.holyblade.QiPai.game",APPID:"1"},
+        {packageName:"com.yzkj.wuziqi",APPID:"475"},
+        {packageName:"com.yzkj.zhongguoxiangqi",APPID:"476"},
+    ];
+
+    function checkIsInstallApp() {
+        var install = LMEPG.ApkPlugin.isAppInstall(RenderParam.appName);
+        if (install && install != "undefined") {
+            LMEPG.UI.showToast("此盒子已安装APK");
+        } else {
+            LMEPG.UI.showToast("此盒子未安装APK");
+        }
+    }
+
+    function startApp(appName) {
+        var install = LMEPG.ApkPlugin.isAppInstall(appName);
+        if (install && install != "undefined") {
+            LMEPG.ApkPlugin.startAppByName(appName);
+        } else {
+            startAppMarketDetail();
+        }
+    }
+
+    function startAppMarket() {
+        // 如果apk没有安装，则打开应用市场首页
+        var appName = "com.amt.appstore"; // 商城包名，根据具体版本而定，不一定是 “com.amt.appstore”
+        var extraString = "jumpId=0";
+        var intentMessage = '{"intentType":1,' +
+            '"appName":"' + appName + '",' +
+            '"action":"' + "com.amt.appstore.action.LAUNCHER" + '",' +
+            '"extra":[{"name":"extraKey","value":"' + extraString + '"}]}';
+
+        console.log(intentMessage);
+        STBAppManager.startAppByIntent(intentMessage);
+    }
+
+    function startAppMarketDetail() {
+        // 如果apk没有安装，则打开应用市场的详情页
+        var appName = "com.amt.appstore"; // 商城包名，根据具体版本而定，不一定是 “com.amt.appstore”
+        var extraString = "jumpId=8&appPkg=" + "com.longmaster.iptv.healthplugin.video.qinghaidx" + "&appId=" + "408";
+        var intentMessage = '{"intentType":1,' +
+            '"appName":"' + appName + '",' +
+            '"action":"' + "com.amt.appstore.action.LAUNCHER" + '",' +
+            '"extra":[{"name":"extraKey","value":"' + extraString + '"}]}';
+
+        console.log(intentMessage);
+        STBAppManager.startAppByIntent(intentMessage);
+    }
+
+    function startAppGame(packageName,appId) {
+        /*
+        乐宝红中麻将appPkg：com.runmo.mronehzmj；appId：470
+        org.cocos2dx.javascript.AppActivity
+        {"appId":"470","hall":true,"lunchFrom": "epg","asserId":"","position":""}
+        乐宝跑得快appPkg：com.runmo.mronepdk；appId：471
+        org.cocos2dx.javascript.AppActivity
+        {"appId":"471","hall":true,"lunchFrom": "epg","asserId":"","position":""}
+        乐宝青海麻将appPkg：com.runmo.mrone；appId：472
+        org.cocos2dx.javascript.AppActivity
+        {"appId":"472","hall":true,"lunchFrom": "epg","asserId":"","position":""}
+        乐宝转转麻将：appPkg=com.runmo.mronezzmj；appId=473
+        org.cocos2dx.javascript.AppActivity
+        {"appId":"473","hall":true,"lunchFrom": "epg","asserId":"","position":""}
+        * */
+        // 如果apk没有安装，则打开应用市场的详情页
+        console.log(packageName);
+        console.log(appId);
+        var install = LMEPG.ApkPlugin.isAppInstall(packageName);
+        LMEPG.Log.error("startAppGame install:"+install);
+        if (install && install != "undefined") {
+            LMEPG.ApkPlugin.startAppByName(packageName);
+        } else {
+/*
+            var appName = "com.amt.appstore"; // 商城包名，根据具体版本而定，不一定是 “com.amt.appstore”
+            var extraString = "jumpId=8&appPkg=" + packageName + "&appId=" + appId;
+            var intentMessage = '{"intentType":1,' +
+                '"appName":"' + appName + '",' +
+                '"action":"' + "com.amt.appstore.action.LAUNCHER" + '",' +
+                '"extra":[{"name":"extraKey","value":"' + extraString + '"}]}';
+
+            LMEPG.Log.error("startAppGame intentMessage:"+intentMessage);
+            console.log(intentMessage);
+            STBAppManager.startAppByIntent(intentMessage);
+*/
+            var gameName = "m.apk";
+            if(appId == "470"){
+                gameName = "hz0325.apk";
+            }
+            if(appId == "471"){
+                gameName = "pdk0325.apk";
+            }
+            if(appId == "472"){
+                gameName = "qh0325.apk";
+            }
+            if(appId == "473"){
+                gameName = "zz0325.apk";
+            }
+            if(appId == "475"){
+                gameName = "wzq.apk";
+            }
+            if(appId == "476"){
+                gameName = "zgxq.apk";
+            }
+            var appDownloadUrl = 'http://223.221.36.146:10010/gameFile/'+gameName;
+            STBAppManager.installApp(appDownloadUrl);
+        }
+    }
+
+    //页面加载完成
+    window.onload = function () {
+        // 初始焦点在第一个
+        LMEPG.ButtonManager.init('checkApk', buttons, '', true);
+
+        playerMp3();
+        //getJumpGame();
+        //getOrderJump();
+        if (typeof STBAppManager == "undefined") {
+            debug.innerHTML = "STBAppManager undefined";
+        } else {
+            debug.innerHTML = "STBAppManager start test";
+        }
+    };
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    function getJumpGame() {
+        LMEPG.ajax.postAPI("Notify/getGameJump", null, function (data) {
+            try {
+                //debugger;
+                data = data instanceof Object ? data : JSON.parse(data);
+                if(LMEPG.Func.isEmpty(data.result)){
+                    setTimeout(function () {
+                        getJumpGame();
+                    },1000);
+                }else {
+                    LMEPG.Log.error("getGameJump ---> data:"+JSON.stringify(data));
+                    for(var i=0; i<gameParamList.length; i++){
+                        if(gameParamList[i].APPID == data.result.game_id){
+                            startAppGame(gameParamList[i].packageName,gameParamList[i].APPID);
+                        }
+                    }
+                    setTimeout(function () {
+                        getJumpGame();
+                    },5000);
+                }
+            } catch (e) {
+                LMEPG.Log.error("getGameJump ---> err: exception(" + e.toString() + ")");
+            }
+        });
+    }
+
+    function getOrderJump() {
+        LMEPG.ajax.postAPI("Notify/getOrderJump", null, function (data) {
+            try {
+                data = data instanceof Object ? data : JSON.parse(data);
+                if(data.result === 0){
+                    jumpBuyVip();
+                }else if(data.result === 1){
+                    for(var i=0; i<gameParamList.length; i++){
+                        if(gameParamList[i].APPID == data.gameId){
+                            startAppGame(gameParamList[i].packageName,gameParamList[i].APPID);
+                            setTimeout(function () {
+                                getOrderJump();
+                            },5000);
+                        }
+                    }
+                }else{
+                    setTimeout(function () {
+                        getOrderJump();
+                    },1000);
+                }
+            } catch (e) {
+                LMEPG.Log.error("getGameJump ---> err: exception(" + e.toString() + ")");
+            }
+        });
+    }
+
+    function jumpBuyVip() {
+        var objCurrent = LMEPG.Intent.createIntent('debugCallApkTest');
+        var jumpObj = LMEPG.Intent.createIntent('orderHome');
+        jumpObj.setParam("userId", RenderParam.userId);
+        LMEPG.Intent.jump(jumpObj, objCurrent);
+        setTimeout(function () {
+            getOrderJump();
+        },3000);
+    }
+
+
+
+
+
+    function playerMp3() {
+        var playUrl = "http://223.221.36.146:10010/gameFile/demo.mp3"; //vod的播放地址
+        var mediaStr = '[{mediaUrl:"'+ playUrl +'",';
+        mediaStr += 'mediaCode: "jsoncode1",';
+        mediaStr += 'mediaType:4,';
+        mediaStr += 'audioType:1,';
+        mediaStr += 'videoType:1,';
+        mediaStr += 'streamType:1,';
+        mediaStr += 'drmType:1,';
+        mediaStr += 'fingerPrint:0,';
+        mediaStr += 'copyProtection:1,';
+        mediaStr += 'allowTrickmode:1,';
+        mediaStr += 'startTime:0,';
+        mediaStr += 'endTime:20000,';
+        mediaStr += 'entryID:"jsonentry1"}]';
+        try {
+            var mp = new MediaPlayer(); //新建一个mediaplayer对象
+            var instanceId = mp.getNativePlayerInstanceID(); //读取本地的媒体播放实例的标识
+            initMediaPlay(mp,mediaStr,instanceId);
+            mp.playFromStart();
+            LMEPG.Log.error("playerMp3 ---> mp:new success.");
+
+        }catch (e) {
+            LMEPG.Log.error("playerMp3 ---> err: exception(" + e.toString() + ")");
+        }
+    }
+
+    function initMediaPlay(mp,mediaStr,instanceId)
+    {
+        var playListFlag = 0; //Media Player 的播放模式。 0：单媒体的播放模式 (默认值)，1: 播放列表的播放模式
+        var videoDisplayMode = 1; //MediaPlayer 对象对应的视频窗口的显示模式. 1: 全屏显示2: 按宽度显示，3: 按高度显示
+        var height = 1;
+        var width = 1;
+        var left = 1;
+        var top = 1;
+        var muteFlag = 0; //0: 设置为有声 (默认值) 1: 设置为静音
+        var subtitleFlag = 0; //字幕显示
+        var videoAlpha = 0; //视频的透明度
+
+        var cycleFlag = 0;
+        var randomFlag = 0;
+        var autoDelFlag = 0;
+        var useNativeUIFlag = 1;
+
+        //初始话mediaplayer对象
+        mp.initMediaPlayer(instanceId,playListFlag,videoDisplayMode,
+            height,width,left,top,muteFlag,useNativeUIFlag,subtitleFlag,videoAlpha,cycleFlag,randomFlag,autoDelFlag);
+
+        mp.setSingleMedia(mediaStr); //设置媒体播放器播放媒体内容
+        mp.setAllowTrickmodeFlag(0); //设置是否允许trick操作。 0:允许 1：不允许
+        mp.setVideoDisplayMode(0);
+        mp.setVideoDisplayArea(left,top,width,height);
+
+        mp.setNativeUIFlag(0); //设置播放器本地UI显示功能 0:允许 1：不允许
+        mp.setAudioTrackUIFlag(1);
+
+        mp.setMuteUIFlag(1);
+        mp.setAudioVolumeUIFlag(1);
+        mp.refreshVideoDisplay();
+    }
+</script>
+</html>

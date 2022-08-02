@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>甘肃移动-折扣季-计费页</title>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/Common/V1/common.css?t={$time}"/>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/Pay/V620007/V2/payDiscount.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            userId: "{$userId}",                // 用户Id
+
+            isPlaying: "{$isPlaying}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            returnPageName: "{$returnPageName}",
+            orderItems: {$orderItems},
+
+            imagePath: "__ROOT__/Public/img/Pay/V620007/V2/",
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-3.6.0.min.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <!--订购-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V620007/V2/payDiscount.js?t={$time}"></script>
+</head>
+<body id="body">
+<div class="order_options">
+    <div id="order_item_1" class="order_item_selected">
+        <img src="__ROOT__/Public/img/Pay/V620007/V2/order_discount_1.png"/>
+    </div>
+    <div id="order_item_2">
+        <img src="__ROOT__/Public/img/Pay/V620007/V2/order_discount_2.png"/>
+    </div>
+    <div id="order_item_3">
+        <img src="__ROOT__/Public/img/Pay/V620007/V2/order_discount_3.png"/>
+    </div>
+    <div id="order_item_4">
+        <img src="__ROOT__/Public/img/Pay/V620007/V2/order_discount_4.png"/>
+    </div>
+</div>
+
+<div id="pay_container">
+    <!--    套餐订购说明-->
+    <div id="desc_item_1" class="order_item_desc">您即将订购智慧健康包月产品，资费<span id="desc_price">29元/月</span>，此业务可向您提供视频问诊，大专家问诊，家庭医生免费咨询，健康视频点播等业务，订购后立即生效。
+    </div>
+    <div id="desc_item_2" class="order_item_desc">自订购日起每月自动续费，费用将从您办理业务的手机号码费用中扣除，请及时关注费用情况。</div>
+    <div id="desc_item_3" class="order_item_desc">如您要退订智慧健康产品，您可以通过以下途径进行：<br/>
+        1、魔百和我的页面-我的订购-智慧健康产品进行退订<br/>
+        2、下载和陇原APP-我的-我的订购-增值业务进行退订<br/>
+        3、发送0000至10086进行退订<br/>
+        4、营业厅退订
+    </div>
+
+    <div class="order_info">
+        <img id="pay_item_title" class="order" src="__ROOT__/Public/img/Pay/V620007/V2/pay_qr_code_n.png"/>
+        <div class="pay_item_detail">
+            <div class="pay_tips_container">
+                <div class="row">产品名称：<span id="name">电视家庭医生</span></div>
+                <div class="row">产品类型：<span id="type">包月</span></div>
+                <div class="row">资费信息：<span id="price"></span></div>
+            </div>
+            <img id="pay_code_img"/>
+            <div class="pay_notice">/注：请使用支付宝APP、建设银行APP扫码支付/</div>
+        </div>
+    </div>
+
+    <img id="confirm" src="__ROOT__/Public/img/Pay/V630001/bg_confirm.png"/>
+    <img id="cancel" src="__ROOT__/Public/img/Pay/V630001/bg_cancel.png"/>
+</div>
+<script>
+    window.onload = function () {
+        order_discount.initButtons();
+    };
+</script>
+</body>
+</html>

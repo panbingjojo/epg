@@ -1,0 +1,210 @@
+/*菜单选项*/
+.tab_menu {
+    position: absolute;
+    left: 13px;
+    top: 0px;
+    width: 233px;
+    height: 720px;
+    -moz-background-size: 233px 720px; /* 老版本的 Firefox */
+    background-size: 233px 720px;
+    background-repeat: no-repeat;
+}
+
+#menu_pre {
+    position: absolute;
+    top: 26px;
+    width: 33px;
+    height: 18px;
+    text-align: center;
+    left: 50%;
+    margin-left: -17px;
+    display: none;
+}
+
+#menu_next {
+    position: absolute;
+    bottom: 26px;
+    width: 33px;
+    height: 18px;
+    text-align: center;
+    left: 50%;
+    margin-left: -17px;
+    display: none;
+}
+
+.tab_list {
+    position: absolute;
+    left: 13px;
+    top: 54px;
+}
+
+.tab_list_block {
+    position: relative;
+    top: 0px;
+    left: 13px;
+    width: 179px;
+    height: 73px;
+    margin-top: 3px;
+}
+
+.tab_list_img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 179px;
+    height: 66px;
+}
+
+.tab_list_icon {
+    position: absolute;
+    top: 18px;
+    left: 0px;
+    width: 179px;
+    height: 27px;
+    font-size: 25px;
+    text-align: center;
+    line-height: 27px;
+    overflow: hidden;
+    z-index: 55;
+}
+
+/*右侧面板*/
+.right_panel {
+    position: absolute;
+    width: 1034px;
+    height: 720px;
+    right: 130px;
+    /*border: 1px red solid;*/
+}
+
+.light {
+    position: absolute;
+    top: 70px;
+    left: 40px;
+    width: 97px;
+    height: 3px;
+}
+
+.finished_icon {
+    position: absolute;
+    top: 14px;
+    width: 355px;
+    height: 84px;
+    text-align: center;
+    left: 50%;
+    margin-left: -178px;
+}
+
+.finished_title {
+    position: absolute;
+    top: 113px;
+    width: 963px;
+    height: 40px;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: center;
+    left: 50%;
+    margin-left: -482px;
+}
+
+#disease_name {
+    color: #92ffa4;
+    font-size: 40px;
+}
+
+.content {
+    position: absolute;
+    top: 173px;
+    width: 1000px;
+    height: 480px;
+    -moz-background-size: 1000px 480px; /* 老版本的 Firefox */
+    background-size: 1000px 480px;
+    background-repeat: no-repeat;
+    left: 50%;
+    margin-left: -500px;
+}
+
+.content_size {
+    position: absolute;
+    top: 6px;
+    height: 460px;
+    width: 1000px;
+    overflow: auto;
+}
+
+.content_block {
+    margin: 0px 53px;
+    width: 900px;
+}
+
+.title_icon_container {
+    margin-top: 23px;
+    width: 100%;
+    height: 30px;
+    text-align: left;
+}
+
+.title_icon {
+    width: 138px;
+    height: 30px;
+}
+
+.content_title {
+    margin-top: 18px;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: left;
+    color: #fff;
+}
+
+/*收藏/取消收藏按钮*/
+.collect_btn {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 185px;
+    height: 66px;
+    line-height: 66px;
+    text-align: center;
+    font-size: 26px;
+}
+
+.collect_btn_bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 185px;
+    height: 66px;
+}
+
+#collect_btn_title {
+    position: absolute;
+    width: 185px;
+    height: 66px;
+}
+
+/*右侧底部*/
+.prompt {
+    position: absolute;
+    top: 669px;
+    width: 1000px;
+    height: 22px;
+    color: #fff333;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.prompt_icon {
+    width: 51px;
+    height: 22px;
+}
+
+.prompt_title {
+    display: inline-block;
+    position: relative;
+    top: -3px;
+    left: 230px;
+    text-align: center;
+    /*border: 1px red solid;*/
+    font-size: 25px;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>广东广电EPG--局方计费接口（directPay）</title>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            accountId: "{$accountId}",          // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+
+            // 订购参数
+            orderUrl: "{$orderUrl}",                //订购地址
+            providerId: "{$providerId}",           //providerId
+            devNo: "{$devNo}",                      //智能卡号
+            appId: "{$appId}",                      //appid
+            productId: "{$productId}",             //产品id
+            price: "{$price}",                      //价格
+            tradeNo: "{$tradeNo}",                  //我方订单号
+            timeStamp: "{$timeStamp}",             //时间戳
+            returnUrl: "{$returnUrl}",             //回调地址
+            sign: "{$sign}",                         //md5检验值
+            caRegionCode: "{$caRegionCode}",         //区域码
+            imageUrl: "{$imageUrl}",               //在局方订购页显示的产品logo图
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+
+</head>
+<body>
+<!--用于加载表单-->
+<div id="showForm" style="display: none"></div>
+
+<script type="text/javascript">
+    /**
+     * 返回（延时）
+     */
+    function onBackDelay() {
+        setTimeout("onBack()", 3000);
+    }
+
+    /**
+     * 使用post发送订购请求
+     */
+    function postOrderRequest() {
+        // 生成表单并跳转到局方支付界面
+        var domShowForm = G('showForm');
+        var html;
+        if(LMEPG.Func.isEmpty(domShowForm)){
+            LMEPG.UI.showToast("节点不存在，无法创建表单！",3);
+            onBackDelay();
+        } else {
+            html  = '<form action="'+ RenderParam.orderUrl +'" method="post">';
+            html  += '<input type="text" name="providerId" value="'+ RenderParam.providerId +'" id="providerId">';
+            html  += '<input type="text" name="devNo" value="'+ RenderParam.devNo +'" id="devNo">';
+            html  += '<input type="text" name="appId" value="'+ RenderParam.appId +'" id="appId">';
+            html  += '<input type="text" name="productId" value="'+ RenderParam.productId +'" id="productId">';
+            html  += '<input type="text" name="price" value="'+ RenderParam.price +'" id="price">';
+            html  += '<input type="text" name="spOrderId" value="'+ RenderParam.tradeNo +'" id="spOrderId">';
+            html  += '<input type="text" name="timeStamp" value="'+ RenderParam.timeStamp +'" id="timeStamp">';
+            html  += '<input type="text" name="returnUrl" value="'+ RenderParam.returnUrl +'" id="returnUrl">';
+            html  += '<input type="text" name="imageUrl" value="'+ RenderParam.imageUrl +'" id="imageUrl">';
+            html  += '<input type="text" name="sign" value="'+ RenderParam.sign +'" id="sign">';
+            html  += '<input type="submit" value="" id="goPay">';
+            html  += '</form>';
+            LMEPG.Log.error("广东广电epg订购请求,postOrderRequest:" + html);
+            console.log("广东广电epg订购请求,postOrderRequest:" + html);
+            domShowForm.innerHTML = html;
+
+            // 提交
+            document.getElementById("goPay").click();
+        }
+    }
+
+    /**
+     * 使用post发送订购请求
+     */
+    function postOrderRequestUHealth() {
+        // 生成表单并跳转到局方支付界面
+        var domShowForm = G('showForm');
+        var html;
+        if(LMEPG.Func.isEmpty(domShowForm)){
+            LMEPG.UI.showToast("节点不存在，无法创建表单！",3);
+            onBackDelay();
+        } else {
+            html  = '<form action="'+ RenderParam.orderUrl +'" method="post">';
+            html  += '<input type="text" name="orderNo" value="'+ RenderParam.tradeNo +'" id="orderNo">';
+            html  += '<input type="text" name="productid" value="'+ RenderParam.productId +'" id="productid">';
+            html  += '<input type="text" name="devno" value="'+ RenderParam.devNo +'" id="devno">';
+            html  += '<input type="text" name="CARegionCode" value="'+ RenderParam.caRegionCode +'" id="CARegionCode">';
+            html  += '<input type="text" name="returnUrl" value="'+ RenderParam.returnUrl +'" id="returnUrl">';
+            html  += '<input type="text" name="imageUrl" value="'+ RenderParam.imageUrl +'" id="imageUrl">';
+            html  += '<input type="text" name="sign" value="'+ RenderParam.sign +'" id="sign">';
+            html  += '<input type="submit" value="" id="goPay">';
+            html  += '</form>';
+            LMEPG.Log.error("广东广电epg订购请求,postOrderRequest uhealth:" + html);
+            domShowForm.innerHTML = html;
+
+            // 提交
+            document.getElementById("goPay").click();
+        }
+    }
+    postOrderRequest();
+</script>
+</body>
+</html>

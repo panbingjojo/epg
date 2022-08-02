@@ -1,0 +1,106 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-detail {
+    position: absolute;
+    top: 76px;
+    left: 504px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+
+}
+
+#btn-start {
+    position: absolute;
+    top: 434px;
+    left: 236px;
+    outline: none !important;
+    width: 172px;
+    height: 82px;
+}
+
+#btn-price {
+    position: absolute;
+    top: 130px;
+    left: 504px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+#back {
+    position: absolute;
+    top: 21px;
+    left: 504px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+.jump{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 644px;
+    height: 530px;
+}
+
+#btn-book1{
+    position: absolute;
+    top: 392px;
+    left: 6px;
+    outline: none !important;
+    width: 122px;
+    height: 131px;
+}
+#btn-book2{
+    position: absolute;
+    top: 392px;
+    left: 120px;
+    outline: none !important;
+    width: 122px;
+    height: 131px;
+}
+#btn-book3{
+    position: absolute;
+    top: 392px;
+    left: 401px;
+    outline: none !important;
+    width: 122px;
+    height: 131px;
+}
+#btn-book4{
+    position: absolute;
+    top: 392px;
+    left: 515px;
+    outline: none !important;
+    width: 122px;
+    height: 131px;
+}
+#show-box{
+    position: absolute;
+    top: 448px;
+    left: 370px;
+    outline: none !important;
+    width: 30px;
+    height: 22px;
+    z-index: 999;
+    line-height: 22px;
+    text-align: center;
+    font-size: 18px;
+    color: #662400;
+}

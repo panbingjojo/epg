@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>搜索页面-V7</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Search/V7/search.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            // 共用参数
+            isVip: "{$isVip}",          // 地区id
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户账号
+            isReturn: "{$isReturn}",            // 用户账号
+            keyWords: "{$keyWords}",            // 用户账号
+            fromId: "{$fromId}",                // 用户账号
+            focusIndex: "{$focusIndex}",        // 用户账号
+            currentPage: '{$currentPage}',      // 用户账号
+            modeTitle: '{$modeTitle}',          // 用户账号
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+</head>
+<body style="background-image: url('__ROOT__/Public/img/hd/Menu/Common/bg.png');">
+<div class="tab1">
+    <img id="focus-1-1" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword1_out.png"/>
+</div>
+<div class="tab2">
+    <img id="focus-1-2" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword2_out.png"/>
+</div>
+<div class="tab3">
+    <img id="focus-1-3" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword3_out.png"/>
+</div>
+<div class="tab4">
+    <img id="focus-2-1" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword4_out.png"/>
+</div>
+<div class="tab5">
+    <img id="focus-2-2" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword5_out.png"/>
+</div>
+<div class="tab6">
+    <img id="focus-2-3" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword6_out.png"/>
+</div>
+<div class="tab7">
+    <img id="focus-3-1" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword7_out.png"/>
+</div>
+<div class="tab8">
+    <img id="focus-3-2" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword8_out.png"/>
+</div>
+<div class="tab9">
+    <img id="focus-3-3" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword9_out.png"/>
+</div>
+
+
+<img id="focus-4-1" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/del_btn_out.png"/>
+<img id="focus-4-2" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/keyword0_out.png"/>
+<img id="focus-4-3" class="key_btn" src="__ROOT__/Public/img/{$platformType}/Search/V7/back_btn_out.png"/>
+
+<div id="left">
+    <div id="searchText">请输入首字母进行搜索</div>
+    <!--<hr class="line"/>-->
+</div>
+
+<img id="topArrow" src="__ROOT__/Public/img/hd/QHotherPages/upArrow.png">
+<img id="bottomArrow" src="__ROOT__/Public/img/hd/QHotherPages/downArrow.png"/>
+<div id="searchTitle">大家都在看</div>
+<div id="pagePlag"></div>
+<div class="rightWrap" id="rightWrap"></div>
+<!--字幕层-->
+<div id="scroll_div" class="scroll_div">
+    <if condition="$platformType eq 'sd' ">
+        <marquee direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1"  width="588">
+            <else />
+            <marquee  direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1"  width="1130">
+    </if>
+    <span id="hljltMarquee"><?php echo $marqueeText ?></span>
+    </marquee>
+</div>
+<!-- 默认标签 -->
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+
+<!--初始化焦点模块 -->
+<script type="text/javascript" src="__ROOT__/Public/js/Search/V7/search.js?t={$time}"></script>
+</body>
+</html>

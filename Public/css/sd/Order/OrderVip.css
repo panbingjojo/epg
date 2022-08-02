@@ -1,0 +1,23 @@
+.bg_order {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+}
+
+#order_vip{
+    position: absolute;
+    left: 39px;
+    top: 376px;
+    width: 146px;
+    height: 46px;
+}
+
+#back{
+    position: absolute;
+    left: 209px;
+    top: 376px;
+    width: 146px;
+    height: 46px;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>就诊人管理</title>
+
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V21/choosePeople.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            isManage:'{$isManage}',
+            backIndex:'{$backIndex}',
+            isAdd:'{$isAdd}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V21/choosePeople.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div class="title">就诊人管理</div>
+    <div class="line"></div>
+    <div class="top_row" id="top_row">
+        <div class="name">姓名</div>
+        <div class="gender">性别</div>
+        <div class="card-num">身份证号</div>
+    </div>
+    <div id="peopleList">
+        <div id="list"></div>
+    </div>
+
+
+    <div class="add2" id="add2" style="display: none">
+        <div class="add-btn" id="add-btn">添加</div>
+        <div class="add-tips">暂无就诊人信息，请进行添加</div>
+    </div>
+    <div class="add" id="add" style="display: block">添加</div>
+</div>
+<div id="container_window" style="display: none;  position: absolute;top: 0px;left: 0px;width: 1280px;height: 720px;text-align: center;background-color: rgba(1, 1, 1, 0.5)">
+    <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/window.png" class="window" id="window1" alt="" >
+    <div class="information">请用手机微信扫描下方二维码填写就诊人信息</div>
+    <img src="" id="window2">
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

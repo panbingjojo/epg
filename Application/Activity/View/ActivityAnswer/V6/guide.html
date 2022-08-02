@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>答题活动V6-首页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityAnswer/V1/guide.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityAnswer/PopRule.js?t={$time}"></script>
+
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 活动详情
+         */
+        function jumpActivityInfo() {
+            jumpDialog(ACTIVITY_RULE_DETAIL);
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         */
+        function jumpPlayUI() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            objActivityHome.setParam("userId", "{$userId}");
+            objActivityHome.setParam("inner", "{$inner}");
+            objActivityHome.setParam("leftTimes", leftTimes);
+
+            LMEPG.Intent.jump(objActivityHome, objCurrent);
+        }
+
+        /**
+         * 显示次数用尽弹窗，可能是答题次数用尽，也可能是抽奖次数用尽
+         */
+        function jumpTimesOutDialog() {
+            var context;
+            // 用户抽奖次数用完
+            if (!LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {
+                //不是vip，弹出订购弹窗
+                context = NOT_VIP_USER_PLAY_TIMES_OVER;
+            } else {
+                //是vip，提示用户今天次数用尽，明天再来
+                context = VIP_USER_PLAY_TIMES_OVER;
+            }
+            jumpDialog(context);
+        }
+
+        /**
+         * 页面跳转 - 显示中奖信息
+         */
+        function jumpPriceInfo() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityWinList = LMEPG.Intent.createIntent("activity-common-winList");
+            objActivityWinList.setParam("userId", "{$userId}");
+            objActivityWinList.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityWinList, objCurrent);
+        }
+
+    </script>
+</head>
+<body style=" background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V6/bg.gif');">
+<img id="btn-detail" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/detail_out.png"/>
+<img id="btn-start" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/start_out.png"/>
+<img id="btn-price" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/price_list_out.png"/>
+<img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/back_out.png"/>
+<div id="default_tip"></div>
+<script type="text/javascript">
+    var inner = "{$inner}";
+    var leftTimes = -99;//剩余抽奖次数;//剩余抽奖次数
+    var prizeIdx = "{$prizeIdx}"; // 奖品ID
+    var prizeName = "{$prizeName}"; // 奖品名称
+    var isVip = {$isVip};//是否是vip
+    var styleName = "{$styleName}";//分辨率
+    var aeara = "<?php echo $carrierId?>";
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    var buttons = [
+        {
+            id: 'btn-detail',
+            name: '活动详情',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-start',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/detail_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/detail_in.gif',
+            click: "jumpActivityInfo()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'btn-start',
+            name: '开始游戏',
+            type: 'img',
+            nextFocusLeft: 'btn-detail',
+            nextFocusRight: 'btn-price',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/start_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/start_in.gif',
+            click: "canAnswer()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'btn-price',
+            name: '中奖名单',
+            type: 'img',
+            nextFocusLeft: 'btn-start',
+            nextFocusRight: '',
+            nextFocusUp: 'back',
+            nextFocusDown: '',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/price_list_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/price_list_in.gif',
+            click: "jumpPriceInfo()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'btn-price',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/back_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityAnswer/V1/back_in.gif',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        }
+    ];
+
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init(['btn-start'], buttons, '', true);
+    }
+
+    /**
+     * 判断用户是否可以答题
+     */
+    function canAnswer() {
+        LMEPG.ajax.postAPI('Activity/canAnswer', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        leftTimes = data.leftTimes;
+                    } else {
+                        leftTimes = 0;
+                    }
+
+                    startGame();
+                } catch (e) {
+                    LMEPG.UI.showToast("判断用户是否可以答题，解析异常！", 3);
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("判断用户是否可以答题失败", 3);
+            }
+        );
+    }
+
+    /**
+     * 开始游戏
+     */
+    function startGame() {
+        if (leftTimes > 0) {
+            //可以答题
+            jumpPlayUI();
+        } else {
+            //不可以答题
+            jumpTimesOutDialog();
+        }
+    }
+
+</script>
+</body>
+</html>

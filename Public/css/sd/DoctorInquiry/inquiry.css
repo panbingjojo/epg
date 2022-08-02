@@ -1,0 +1,200 @@
+/*--------------------------------------------------
+           在线问诊电话校验
+ ---------------------------------------------------*/
+/*可输入文本对话框*/
+.g_verify_call_dialog {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+    background: transparent no-repeat;
+    z-index: 999;
+}
+
+/*背景图*/
+.g_verify_call_dialog_img_bg {
+    width: 1280px;
+    height: 720px;
+}
+
+/*显示文本*/
+.g_verify_number_edit_dialog_message_text {
+    position: absolute;
+    top: 187px;
+    left: 384px;
+    width: 550px;
+    height: 90px;
+    line-height: 40px;
+    font-size: 28px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    z-index: 1000;
+
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 4;
+}
+
+/*输入框前的label文本*/
+.g_verify_phone_edit_dialog_message_input_label {
+    position: absolute;
+    top: 302px;
+    left: 384px;
+    width: 122px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff333;
+    font-size: 30px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 1000;
+
+}
+
+/*输入框input区域*/
+.g_verify_phone_edit_dialog_message_input {
+    position: absolute;
+    top: 297px;
+    left: 506px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 396px;
+    height: 56px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 56px;
+    color: black;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    z-index: 1000;
+    background: white;
+}
+
+/*输入框前的label文本*/
+.g_verify_number_edit_dialog_message_input_label {
+    position: absolute;
+    top: 380px;
+    left: 384px;
+    width: 122px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff333;
+    font-size: 30px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+
+/*输入框input区域*/
+.g_verify_number_edit_dialog_message_input {
+    position: absolute;
+    top: 374px;
+    left: 506px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 232px;
+    height: 56px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 56px;
+    color: black;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    z-index: 1000;
+    background: white;
+}
+
+.g_verify_phone_button_border {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_verify_phone_button_interval {
+    margin-left: 86px;
+}
+
+/*通用按钮文本*/
+.g_verify_phone_button_text {
+    width: 179px;
+    height: 66px;
+    margin-top: -66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 40px;
+    color: white;
+    z-index: 1000;
+}
+
+/*输入框底部按钮*/
+.g_verify_phone_edit_dialog_button_container {
+    position: absolute;
+    margin: auto;
+    top: 462px;
+    left: 300px;
+    width: 680px;
+    height: 67px;
+    text-align: center;
+    z-index: 1000;
+}
+
+/*输入框底部按钮*/
+.g_verify_phone_get_edit_dialog_button_container {
+    position: absolute;
+    margin: auto;
+    top: 370px;
+    left: 774px;
+    width: 152px;
+    height: 57px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.g_verify_phone_get_button_border {
+    width: 152px;
+    height: 57px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_verify_phone_get_button_img {
+    width: 152px;
+    height: 57px;
+}
+
+.g_verify_phone_get_button_text {
+    width: 152px;
+    height: 57px;
+    margin-top: -57px;
+    text-align: center;
+    line-height: 57px;
+    font-size: 24px;
+    color: white;
+    z-index: 1000;
+}
+
+/*输入框input的focus状态border*/
+.g_verify_edit_dialog_message_input_border_focus {
+    border: 3px solid #279BC6;
+}
+
+/*输入框input的unfocus状态border*/
+.g_verify_edit_dialog_message_input_border_unfocus {
+    border: 3px solid transparent;
+}

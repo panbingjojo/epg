@@ -1,0 +1,394 @@
+<div id="header-container">
+    <div id="top-action-content-icons">
+        <img id="search" src="__ROOT__/Public/img/hd/Home/V13/Home/search.png">
+        <img id="mark" src="__ROOT__/Public/img/hd/Home/V13/Home/mark.png">
+        <img id="set" src="__ROOT__/Public/img/hd/Home/V13/Home/set.png">
+        <img id="help" src="__ROOT__/Public/img/hd/Home/V13/Home/help.png">
+        <if condition="$showPayLock eq 1">
+            <if condition="$payLockStatus eq 1"><img id="lock" src="__ROOT__/Public/img/hd/Home/V13/Home/lock_open.png">
+                <else/>
+                <img id="lock" src="__ROOT__/Public/img/hd/Home/V13/Home/lock_close.png">
+            </if>
+        </if>
+    </div>
+    <div id="nav-content-tabs">
+        <img id="tab-0">
+        <img id="tab-1">
+        <img id="tab-2">
+        <img id="tab-3">
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var thisNavID; // 跳转记录当前导航条焦点
+    var navIsLeave; // 导航条是否离开
+    var previousTabIndex; // 上一个导航焦点
+    var callbackOnce = true; // 声明执行一次函数
+    var smallVideoTimer = null; // 小窗播放定时器
+    var getJumpKeepFocusTabId = LMEPG.Func.getLocationString('tabId');  // 得到跳转页面回来的tab焦点
+
+    var pathPrefix = '/Public/img/hd/Home/V13/Home/';
+    var helpIcon = pathPrefix + 'help.png';
+    var helpIconF = pathPrefix + 'help_f.png';
+    var lockCloseIcon = pathPrefix + 'lock_close.png';
+    var lockCloseIconF = pathPrefix + 'lock_close_f.png';
+    var lockOpenIcon = pathPrefix + 'lock_open.png';
+    var lockOpenIconF = pathPrefix + 'lock_open_f.png';
+    var markIcon = pathPrefix + 'mark.png';
+    var markIconF = pathPrefix + 'mark_f.png';
+    var searchIcon = pathPrefix + 'search.png';
+    var searchIconF = pathPrefix + 'search_f.png';
+    var setIcon = pathPrefix + 'set.png';
+    var setIconF = pathPrefix + 'set_f.png';
+    var vipIcon = pathPrefix + 'vip.png';
+    var vipIconF = pathPrefix + 'vip_f.png';
+
+    /*导航栏得失焦点回调操作*/
+    function tabGetFocus(btn, hasFocus) {
+        // 当前导航条的索引
+        var currentTabIndex = cutLastStr(btn.id);
+        if (hasFocus) {
+            // 启动当前内容块轮播
+            startTimer(currentTabIndex);
+            // 重置小窗播放的内容块
+            reBuildSmallVideo(currentTabIndex);
+            // 调用内容块控制器
+            tabContentController(currentTabIndex);
+            // 设置不同内容块背景图
+            setBodyBackgroundImage(currentTabIndex);
+            // 初始化变量
+            initializationVariable(btn);
+            // 首次进入执行帮助图文
+            HelpModal.showTabHelp(currentTabIndex);
+        } else {
+            tabLoseFocus(btn, currentTabIndex);
+        }
+        toggleFocus(btn, hasFocus);
+    }
+
+    /*销毁/重启小窗播放*/
+    function reBuildSmallVideo(index) {
+        if (index == 0) {
+            if (index != previousTabIndex){
+                Play.startPollPlay();
+            }
+        } else {
+            Play.stopPollPlay();
+        }
+    }
+
+    /*内容块显隐控制器*/
+    function tabContentController(index) {
+        var isShowDisplay = G('content-' + index).style.display;
+        if (isShowDisplay === 'none' || !isShowDisplay) {
+            Hide('content-' + previousTabIndex); // 隐藏上一个tabContent
+            Show('content-' + index); // 显示当前tabContent
+        }
+    }
+
+    /*导航栏失去焦点*/
+    function tabLoseFocus(btn, index) {
+        // 焦点离开导航设置焦点保持
+        onceFn();
+        previousTabIndex = index;
+        if (navIsLeave) {
+            G(btn.id).src = RenderParam.fsUrl + RenderParam.navConfig[index].img_url.focus_out;
+        }
+    }
+
+    /*得到焦点初始化*/
+    function initializationVariable(btn) {
+        thisNavID = btn.id; // 标记当前焦点的ID
+        HelpModal.count = 0; // 初始话当前帮助索引为零
+        navIsLeave = false; // 导航得到焦点标记离开状态为false
+    }
+
+    /*为不同tab设置不同背景图，主要是tab0有小窗，背景图为镂空的*/
+    function setBodyBackgroundImage(index) {
+        var imgPrefix = '/Public/img/{$platformType}/Home/V13/Home/';
+        var TP = RenderParam;
+        var bgObj = RenderParam.tabBg;
+        // 焦点在本栏目内容区移到自身tab 不需要做背景图的渲染
+        if (index == previousTabIndex) return;
+        //+--------------------主页的背景图设置规则----------------------
+        //优先级：系统配置背景图>自定义皮肤>默认
+        //+-------------------------------------------------------------
+        var tabStrIndex = 'tab' + (parseInt(index) + 1);
+        var bgImg = imgPrefix + 'bg.png';
+
+        if (bgObj[tabStrIndex]) {
+            bgImg = TP.fsUrl + bgObj[tabStrIndex];
+        } else if (TP.skin['sy'] || TP.skin['cpbjt']) {
+            bgImg = index == 0 ? TP.fsUrl + TP.skin.sy : TP.fsUrl + TP.skin.cpbjt;
+        } else {
+            index == 0 ? bgImg = (imgPrefix + 'bg_home.png') : null;
+        }
+        document.body.style.backgroundImage = 'url(' + bgImg + ')';
+    }
+
+    /*启动轮播*/
+    function startTimer(currentTabIndex) {
+        clearInterval(Tab1.Carousel.timer);
+        clearInterval(Tab0.Carousel.timer);
+        if (currentTabIndex == 0) {
+            Tab0.Carousel.init();
+        }
+        if (currentTabIndex == 1) {
+            Tab1.Carousel.init();
+        }
+    }
+
+    /*通用切换*/
+    function toggleFocus(btn, hasFocus) {
+        var btnElement = G(btn.id);
+        if (hasFocus) {
+            btnElement.setAttribute('class', 'focus');
+        } else {
+            btnElement.removeAttribute('class');
+        }
+    }
+
+    /*小图标功能区得失焦点*/
+    function onFocusIn(btn, hasFocus) {
+        toggleFocus(btn, hasFocus);
+        initDownFocusObj(btn);
+    }
+
+    /*小图标下移（搜索左移动）到当前对应内容块导航焦点上*/
+    function initDownFocusObj(btn) {
+        LMEPG.BM.getButtonById(btn.id).nextFocusDown = 'tab-' + previousTabIndex;
+        if (btn.id == 'search') {
+            LMEPG.BM.getButtonById('search').nextFocusLeft = 'tab-' + previousTabIndex;
+        }
+    }
+
+    /*导航栏焦点移动之前*/
+    function setTabLeaveStatus(key, btn) {
+        // 导航栏向上、下移动（最后一个tab向右移动）设置离开状态
+        if (key == 'up' || key == 'down' || (key == 'right' && btn.nextFocusRight == 'search')) {
+            navIsLeave = true;
+        } else {
+            getJumpKeepFocusTabId = false; // 其他页面不是通过返回操作跳转回来初始化该参数
+        }
+    }
+
+    /*渲染导航条背景*/
+    function renderNavImg() {
+        var count = 4;
+        var htm = [];
+        while (count--) {
+            var itemSrc = RenderParam.fsUrl + RenderParam.navConfig[count].img_url.normal;
+            htm.push('<img id="tab-' + count + '" src="' + itemSrc + '">');
+        }
+        G('nav-content-tabs').innerHTML = htm.reverse().join(' ');
+    }
+
+    /*只执行一次函数*/
+    function onceFn() {
+        if (callbackOnce && getJumpKeepFocusTabId) {
+            navIsLeave = true;
+            callbackOnce = false;
+            previousTabIndex = cutLastStr(getJumpKeepFocusTabId);
+        }
+    }
+
+    /*截取最后一个字符串*/
+    function cutLastStr(str) {
+        return str.substr(str.length - 1);
+    }
+
+    /*获取当前页*/
+    function getCurPageObj() {
+        var objCurrent = LMEPG.Intent.createIntent('home');
+        objCurrent.setParam('focusId', LMEPG.BM.getCurrentButton().id);
+        objCurrent.setParam('tabId', thisNavID);
+        objCurrent.setParam('curTab2CarouselId', curTab2CarouselId);
+        objCurrent.setParam('moveCount', +Tab1.moveCount);
+        return objCurrent;
+    }
+
+    /*小图标跳转页面*/
+    function jumpPageUI(btn) {
+        var currentObj = getCurPageObj(btn);
+        // 通过点击对象id,设置跳转页面对象
+        var jumpPageObj = {
+            'search': 'search',
+            'mark': 'dateMark',
+            'vip': 'orderHome',
+            'set': 'custom',
+            'help': 'helpIndex'
+        };
+        var jumpAgreementObj = LMEPG.Intent.createIntent(jumpPageObj[btn.id]);
+        // 跳转的订购页面
+        if (jumpPageObj[btn.id] == 'orderHome') {
+            if (LMEPG.Func.isAllowAccess(RenderParam.isVip, ACCESS_NO_TYPE)) {
+                modal.commonDialog({beClickBtnId: btn.id, onClick: modal.hide}, '<span style="color: #ef6188">您已是VIP会员，不能重复订购</span>', '海量健康资讯', '为您的家人健康保驾护航');
+                return;
+            } else {
+                jumpAgreementObj.setParam('userId', RenderParam.userId);
+                jumpAgreementObj.setParam('isPlaying', '0');
+                jumpAgreementObj.setParam('remark', '主动订购');
+            }
+        }
+        LMEPG.Intent.jump(jumpAgreementObj, currentObj);
+    }
+
+    /*点击童锁*/
+    function lockBeClick() {
+        if (RenderParam.payLockStatus == "0") {
+            // 童锁未开启，开启童锁
+            var postData = {
+                'flag': 1,
+                'focusIndex': 'lock',
+                'returnPageName': "home"
+            };
+            LMEPG.ajax.postAPI("Pay/getPayLockSetUrl", postData, function (data) {
+                if (data.result == 0) {
+                    window.location.href = data.url;
+                }
+            });
+            return;
+        }
+        if (RenderParam.payLockStatus == "1") {
+            // 童锁已开启，关闭童锁
+            var postData = {
+                'flag': 0,
+                'focusIndex': 'lock',
+                'returnPageName': "home"
+            };
+            LMEPG.ajax.postAPI("Pay/getPayLockSetUrl", postData, function (data) {
+                if (data.result == 0) {
+                    window.location.href = data.url;
+                }
+            });
+            return;
+        }
+        // 查询童锁的状态异常。
+    }
+
+    var buttons = [
+        {
+            id: 'search',
+            name: '搜索图标',
+            type: 'img',
+            nextFocusLeft: 'tab-3',
+            nextFocusRight: 'mark',
+            nextFocusDown: 'tab-0',
+            backgroundImage: searchIcon,
+            focusImage: searchIconF,
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, {
+            id: 'mark',
+            name: '签到图标',
+            type: 'img',
+            nextFocusLeft: 'search',
+            nextFocusRight: 'set',
+            nextFocusDown: 'tab-0',
+            backgroundImage: markIcon,
+            focusImage: markIconF,
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, /*{
+            id: 'vip',
+            name: 'VIP图标',
+            type: 'img',
+            nextFocusLeft: 'mark',
+            nextFocusRight: 'set',
+            nextFocusDown: 'tab-0',
+            backgroundImage: vipIcon,
+            focusImage: vipIconF,
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, */{
+            id: 'set',
+            name: '设置图标',
+            type: 'img',
+            nextFocusLeft: 'mark',
+            nextFocusRight: 'help',
+            nextFocusDown: 'tab-0',
+            backgroundImage: setIcon,
+            focusImage: setIconF,
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, {
+            id: 'help',
+            name: '帮助图标',
+            type: 'img',
+            nextFocusLeft: 'set',
+            nextFocusRight: RenderParam.showPayLock == 1 ? 'lock' : '',
+            nextFocusUp: '',
+            nextFocusDown: 'tab-0',
+            backgroundImage: helpIcon,
+            focusImage: helpIconF,
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, {
+            id: 'lock',
+            name: '童锁图标',
+            type: 'img',
+            nextFocusLeft: 'help',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'tab-0',
+            backgroundImage: RenderParam.payLockStatus == 1 ? lockOpenIcon : lockCloseIcon,
+            focusImage: RenderParam.payLockStatus == 1 ? lockOpenIconF : lockCloseIconF,
+            click: lockBeClick,
+            focusChange: onFocusIn
+        }, {
+            id: 'tab-0',
+            name: '第一个导航',
+            type: 'img',
+            nextFocusLeft: 'tab-3',
+            nextFocusRight: 'tab-1',
+            nextFocusUp: 'search',
+            nextFocusDown: 'video-TV',
+            backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[0].img_url.normal,
+            focusImage: RenderParam.fsUrl + RenderParam.navConfig[0].img_url.focus_in,
+            focusChange: tabGetFocus,
+            beforeMoveChange: setTabLeaveStatus
+        }, {
+            id: 'tab-1',
+            name: '第二个导航',
+            type: 'img',
+            nextFocusLeft: 'tab-0',
+            nextFocusRight: 'tab-2',
+            nextFocusUp: 'search',
+            nextFocusDown: 'tab1-link',
+            backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[1].img_url.normal,
+            focusImage: RenderParam.fsUrl + RenderParam.navConfig[1].img_url.focus_in,
+            focusChange: tabGetFocus,
+            beforeMoveChange: setTabLeaveStatus
+        }, {
+            id: 'tab-2',
+            name: '第三个导航',
+            type: 'img',
+            nextFocusLeft: 'tab-1',
+            nextFocusRight: 'tab-3',
+            nextFocusUp: 'search',
+            nextFocusDown: 'sift-2',
+            backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[2].img_url.normal,
+            focusImage: RenderParam.fsUrl + RenderParam.navConfig[2].img_url.focus_in,
+            focusChange: tabGetFocus,
+            beforeMoveChange: setTabLeaveStatus
+        }, {
+            id: 'tab-3',
+            name: '第四个导航',
+            type: 'img',
+            nextFocusLeft: 'tab-2',
+            nextFocusRight: 'search',
+            nextFocusUp: 'search',
+            nextFocusDown: 'tab3-link-1',
+            backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[3].img_url.normal,
+            focusImage: RenderParam.fsUrl + RenderParam.navConfig[3].img_url.focus_in,
+            focusChange: tabGetFocus,
+            beforeMoveChange: setTabLeaveStatus
+        }, {
+            id: 'debug',
+            name: '脚手架ID',
+            type: 'others',
+            click: HelpModal.showTabHelp,
+            beforeMoveChange: HelpModal.showTabHelp
+        }];
+</script>

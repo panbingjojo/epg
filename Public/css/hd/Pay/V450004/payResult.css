@@ -1,0 +1,101 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+    color: #FFFFFF;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+}
+
+.body-bg {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+}
+
+#second-bg{
+    position: absolute;
+    width: 1120px;
+    height: 600px;
+    left: 80px;
+    top: 60px;
+    background: url("../../../img/Pay/V450004/result-bg.png");
+}
+
+
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #FFFFFF;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #FFFFFF;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #FFFFFF;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #FFFFFF;
+}
+
+#btn-ok {
+    position: absolute;
+    top: 420px;
+    left: 456px;
+    width: 192px;
+    height: 72px;
+
+    text-align: center;
+    line-height: 72px;
+    font-size: 26px;
+
+    background-image: url("../../../img/UserInfo/V450004/edit.png");
+}
+
+.content {
+    position: absolute;
+    top: 98px;
+    left: 77px;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+#input-text {
+    position: absolute;
+    overflow: hidden;
+    width: 486px;
+    height: 66px;
+    font-size: 28px;
+    line-height: 60px;
+    z-index: 999;
+    top: 5px;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#input-bg{
+    position: absolute;
+    top: 295px;
+    width: 486px;
+    left: 347px;
+    height: 84px;
+    background-image: url("../../../img/Pay/V450004/input.png");
+}
+
+#input-tips{
+    position: absolute;
+    top: 316px;
+    font-size: 28px;
+    left: 86px;
+}

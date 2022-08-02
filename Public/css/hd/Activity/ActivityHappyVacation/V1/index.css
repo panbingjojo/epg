@@ -1,0 +1,95 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+
+/*活动首页*/
+#btn_back {
+    position: absolute;
+    top: 32px;
+    left: 1070px;
+    width: 167px;
+    height: 56px;
+}
+
+#btn_album1{
+    position: absolute;
+    top: 106px;
+    left: 106px;
+    width: 210px;
+    height: 160px;
+}
+#btn_album1_f{
+    position: absolute;
+    top: 97px;
+    left: 97px;
+    display: none;
+}
+
+#btn_album2{
+    position: absolute;
+    top: 106px;
+    left: 346px;
+    width: 210px;
+    height: 160px;
+}
+#btn_album2_f{
+    position: absolute;
+    top: 97px;
+    left: 337px;
+    display: none;
+}
+#btn_album3{
+    position: absolute;
+    top: 106px;
+    left: 585px;
+    width: 210px;
+    height: 160px;
+}
+#btn_album3_f{
+    position: absolute;
+    top: 97px;
+    left: 576px;
+    display: none;
+}
+#btn_album4{
+    position: absolute;
+    top: 296px;
+    left: 106px;
+    width: 210px;
+    height: 160px;
+}
+#btn_album4_f{
+    position: absolute;
+    top: 287px;
+    left: 97px;
+    display: none;
+}
+#btn_album5{
+    position: absolute;
+    top: 296px;
+    left: 346px;
+    width: 210px;
+    height: 160px;
+}
+#btn_album5_f{
+    position: absolute;
+    top: 287px;
+    left: 337px;
+    display: none;
+}
+#btn_album6{
+    position: absolute;
+    top: 296px;
+    left: 585px;
+    width: 210px;
+    height: 160px;
+}
+#btn_album6_f{
+    position: absolute;
+    top: 287px;
+    left: 576px;
+    display: none;
+}
+

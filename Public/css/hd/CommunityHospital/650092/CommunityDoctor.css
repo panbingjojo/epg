@@ -1,0 +1,108 @@
+body {
+    color: #fff;
+    background-image: url("../../../../img/hd/CommunityHospital/bg.png");
+}
+
+p.title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 30px;
+}
+
+div#container {
+    height: 720px;
+    width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+div#hospital-wrapper {
+    position: relative;
+    /* height: 382px; */
+    /* top: 117px; */
+}
+
+div#curr-hospital {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 382px;
+    top: 117px;
+}
+
+img#hosp-pic,
+div.hosp-intro-wrap {
+    float: left;
+}
+
+
+p.hosp-name {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+img#hosp-pic {
+    width: 340px;
+    height: 220px;
+    background-image: url("../../../../img/hd/CommunityHospital/hosp-border.png");
+}
+
+img#hosp-pic {
+    margin-top: 50px;
+    padding: 21px;
+}
+
+div.hosp-intro-wrap {
+    width: 320px;
+    height: 264px;
+    font-size: 20px;
+    margin-top: 48px;
+    margin-left: 32px;
+    overflow: hidden;
+}
+
+p.hosp-intro-title {margin-bottom: 10px;}
+
+p.hosp-intro-text {
+    text-indent: 40px;
+    line-height: 30px;
+    height: 250px;
+}
+
+#div-wrapper{
+    position: absolute;
+    top: 135px;
+    left: 772px;
+    width: 260px;
+    height: 426px;
+    padding: 34px;
+    background-image: url("../../../../img/hd/CommunityHospital/doctor-border.png");
+}
+ul#doctor-wrapper{
+  list-style: none;
+  height: 170px;
+  margin-top: 10px;
+}
+ul#doctor-wrapper li{
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 6px;
+}
+img.doctor-pic{
+    width: 260px;
+    height: 260px;
+}
+ul#doctor-wrapper li.doctor-name{
+    font-size: 30px;
+    font-weight: bold;
+}
+ul .doctor-skillful{
+    color: #b2deff;
+}
+img#one-key-advice{
+    position: absolute;
+    top: 514px;
+    left: 33px;
+}
+

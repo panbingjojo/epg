@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#back{
+    position: absolute;
+    top: 20px;
+    left: 1060px;
+}
+#order{
+    position: absolute;
+    top: 470px;
+    left: 520px;
+}
+
+
+/*==>css/img目录结构调整*/
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+body>*{
+    position: absolute;
+}
+#top {
+    z-index: 1000;
+}
+#order{
+    top: 589px;
+    left: 460px;
+}

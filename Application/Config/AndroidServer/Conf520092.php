@@ -1,0 +1,309 @@
+<?php
+
+define("ANDROID_SERVER_CONFIG_DEBUG", false);
+
+// 测试服配置
+if (ANDROID_SERVER_CONFIG_DEBUG) {
+    define("ANDROID_SERVER_CONFIG", json_encode([
+        // cws服务器
+        'server_cws' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 消息推送服务器
+        'server_push' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 文件系统服务器
+        'server_file_system' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 崩溃跟踪服务器
+        'server_crash' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 互联网医院web服务器
+        'hosp_apis' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 互联网医院licode服务
+        'hosp_licode' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 互联网医院ice服务
+        'hosp_stun' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+                'turn_username' => '',
+                'turn_passwd' => '',
+            ],
+        ],
+        // 互联网医院视频问诊WSS服务器
+        'hosp_inquiry_wss' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 健康检测、直播、日志上传ES推送服务器
+        'server_general_push' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 音频适配服务器
+        'audio_adapter' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // APK2.0入口地址
+        'epg_lws_for_apk' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 客服电话
+        'custmer_service_hotline' => [
+            [
+                'phone_number' => '0898-6856-8003',
+            ],
+        ],
+        // log_config字段说明，用于配置插件端打印日志到服务器端的相关选项，对应打印日志在服务器端的路径在Application/Config/Common/Config[$CARRIER_ID].php文件中配置
+        //      例如新疆电信配置为：define("INQUIRY_LOG_PATH", '/data/logs/inquiry/' . CARRIER_ID . '/');
+        //      对应的输入路径为：/data/logs/inquiry/650092/yy_MM_dd.log
+        // log_config_filters选项，用户过滤插件端打印内容，例如配置P2PManager，就会过滤筛选日志内容中包含P2PManager的相关信息，多个字段用，分隔
+        //      注：过滤的内容区分大小写，如ErizoClient打印为内容，可在添加参数erizoclient
+        // log_config_level选项，用于过滤日志级别，例如只打印Error界别，传入“*：E”；各级别配置如下
+        //      verbose（最低优先级） - *:V
+        //      debug（调试） - *:D
+        //      info（信息）  - *:I
+        //      warn（警告）  - *:W
+        //      error（错误） - *:E
+        //      fatal（严重错误） - *:F
+        //      silent（无记载） - *:S （该配置项可用于关闭插件端日志的打印）
+        "log_config" => [
+            [
+                "log_config_filters" => "ServerConfigManager, P2PManager,VideoInquiryManager, UserWebAPI, BooterWebAPI, MyWebsocketManager, ErizoClient, WebSocketManager, VIESessionManager",
+                "log_config_level" => "*:V",
+            ]
+        ]
+    ]));
+}
+// 正式服配置
+else {
+    define("ANDROID_SERVER_CONFIG", json_encode([
+        // cws服务器
+        'server_cws' => [
+            [
+                'src_addr' => 'http://192.168.8.80:10001',
+                'dest_addr' => 'http://192.168.8.80:10001',
+            ],
+        ],
+        // 消息推送服务器
+        'server_push' => [
+            [
+                'src_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10006',
+                'dest_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10006',
+            ],
+        ],
+        // 文件系统服务器
+        'server_file_system' => [
+            [
+                'src_addr' => 'http://10.255.12.54:10002/fs',
+                'dest_addr' => 'http://10.255.12.54:10002/fs',
+            ],
+        ],
+        // 天气服务器
+        'server_weather' => [
+            [
+                'src_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10002/cws/weather/?',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10002/cws/weather/?',
+            ],
+        ],
+        // 预约挂号服务器
+        'server_guahao' => [
+            [
+                'src_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10014/',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10014/',
+            ],
+        ],
+        // 统计服务器
+        'server_stat' => [
+            [
+                'src_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10015/',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10015/',
+            ],
+        ],
+        // 崩溃跟踪服务器
+        'server_crash' => [
+            [
+                'src_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10005/',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10005/',
+            ],
+        ],
+        // 互联网医院服务器信息获取地址
+        'hosp_main_apis' => [
+            [
+                'src_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10000/apis?app_id=10002&amp;app_key=DcJL354uvIvEdvI9J2wc5Fq08ODjKBbW',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10000/apis?app_id=10002&amp;app_key=DcJL354uvIvEdvI9J2wc5Fq08ODjKBbW',
+            ],
+        ],
+        // 互联网医院轮询服务
+        'hosp_polling' => [
+            [
+                'src_addr' => 'https://www.hlwyy.cn/lp/',
+                'dest_addr' => 'https://gzdxtygq39jk.tygq.gz163.cn:10008/lp/',
+            ],
+        ],
+        // 互联网医院web服务器
+        'hosp_apis' => [
+            [
+                'src_addr' => 'http://apis.hlwyy.cn',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10001',
+            ],
+        ],
+        // 互联网医院医生头像服务器
+        'hosp_doctor_avater' => [
+            [
+                'src_addr' => 'https://www.hlwyy.cn',
+                'dest_addr' => 'https://gzdxtygq39jk.tygq.gz163.cn:10008',
+            ],
+        ],
+        // 互联网医院licode服务
+        'hosp_licode' => [
+            [
+                'src_addr' => 'wss://webrtc.hlwyy.cn:3004',
+                'dest_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10017',
+            ],
+            [
+                'src_addr' => 'wss://webrtc1.hlwyy.cn:3004',
+                'dest_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10018',
+            ],
+            [
+                'src_addr' => 'wss://webrtc2.hlwyy.cn:3004',
+                'dest_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10019',
+            ],
+        ],
+        // 互联网医院ice服务
+        'hosp_stun' => [
+            [
+                'src_addr' => 'stun:webrtc.hlwyy.cn:3478',
+                'dest_addr' => 'turn:gzdxtygq39jk.tygq.gz163.cn:10050',
+                'turn_username' => 'test',
+                'turn_passwd' => 'testpwd',
+            ],
+        ],
+        // 互联网医院ice服务
+        'hosp_live_stun' => [
+            [
+                'src_addr' => 'stun:iptv-video.hlwyy.cn:3478',
+                'dest_addr' => 'turn:gzdxtygq39jk.tygq.gz163.cn:10050',
+                'turn_username' => 'test',
+                'turn_passwd' => 'testpwd',
+            ],
+        ],
+        // 互联网医院视频问诊WSS服务器
+        'hosp_inquiry_wss' => [
+            [
+                'src_addr' => 'wss://websocket.hlwyy.cn:8282/',
+                'dest_addr' => 'wss://gzdxtygq39jk.tygq.gz163.cn:10021',
+            ],
+        ],
+        // 直播服务licode 服务
+        'hosp_live_licode' => [
+            [
+                'src_addr' => 'wss://iptv-video.hlwyy.cn:3004',
+                'dest_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10020',
+            ],
+        ],
+        // 直播服务推送服务器
+        'hosp_live_push' => [
+            [
+                'src_addr' => 'ws://iptv-push.hlwyy.cn:8101',
+                'dest_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10007',
+            ],
+        ],
+        // 健康检测、直播、日志上传ES推送服务器
+        'server_general_push' => [
+            [
+                'src_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10007',
+                'dest_addr' => 'ws://gzdxtygq39jk.tygq.gz163.cn:10007',
+            ],
+        ],
+        // 音频适配服务器
+        'audio_adapter' => [
+            [
+                'src_addr' => 'http://app.amx.langma.cn',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10003',
+            ],
+        ],
+        // 活动服务器
+        'server_activities' => [
+            [
+                'src_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10002/apk-lws/index.php?',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10002/apk-lws/index.php?m=Activity&amp;c=Index&amp;a=index',
+            ],
+        ],
+        // buy_vip
+        'buy_vip' => [
+            [
+                'src_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10002/apk-lws/index.php',
+                'dest_addr' => 'http://gzdxtygq39jk.tygq.gz163.cn:10002/apk-lws/index.php?m=Order&amp;c=Index&amp;a=index',
+            ],
+        ],
+        // APK2.0入口地址
+        'epg_lws_for_apk' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 客服电话
+        'custmer_service_hotline' => [
+            [
+                'phone_number' => '0898-6856-8003',
+            ],
+        ],
+        // log_config字段说明，用于配置插件端打印日志到服务器端的相关选项，对应打印日志在服务器端的路径在Application/Config/Common/Config[$CARRIER_ID].php文件中配置
+        //      例如新疆电信配置为：define("INQUIRY_LOG_PATH", '/data/logs/inquiry/' . CARRIER_ID . '/');
+        //      对应的输入路径为：/data/logs/inquiry/650092/yy_MM_dd.log
+        // log_config_filters选项，用户过滤插件端打印内容，例如配置P2PManager，就会过滤筛选日志内容中包含P2PManager的相关信息，多个字段用，分隔
+        //      注：过滤的内容区分大小写，如ErizoClient打印为内容，可在添加参数erizoclient
+        // log_config_level选项，用于过滤日志级别，例如只打印Error界别，传入“*：E”；各级别配置如下
+        //      verbose（最低优先级） - *:V
+        //      debug（调试） - *:D
+        //      info（信息）  - *:I
+        //      warn（警告）  - *:W
+        //      error（错误） - *:E
+        //      fatal（严重错误） - *:F
+        //      silent（无记载） - *:S （该配置项可用于关闭插件端日志的打印）
+        "log_config" => [
+            [
+                "log_config_filters" => "ServerConfigManager, P2PManager,VideoInquiryManager, UserWebAPI, BooterWebAPI, MyWebsocketManager, ErizoClient, WebSocketManager, VIESessionManager",
+                "log_config_level" => "*:V",
+            ]
+        ]
+    ]));
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>步数-V13</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/HealthTest/V8/general.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/HealthTest/V8/Wristband/StepCountDetail.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+            positionTwoConfig: "{$positionTwoConfig}",
+            checkTime: "{$checkTime}",
+            commonImgsView: "{$commonImgsView}",                // 公用图片模式
+            themeImage: "{$themePicture}",                      // 应用主题背景
+            focusIndex: "{$focusIndex}",                        // 焦点ID
+            classifyId: "{$classifyId}",                        // 导航栏ID
+            member_id: "{$member_id}",                          // 成员id
+            member_image_id: "{$member_image_id}",              // 头像id
+            member_name: "{$member_name}",                      // 成员姓名
+            member_gender: "{$member_gender}",                  // 成员性别（0-男 1-女）
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+            page: "{$page}",
+            dt: "{$dt}",
+            device_id: "{$device_id}",
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+        <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V8/Wristband/StepCountListDetail.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+<p class="title2"><img align="middle" id="person-pic" alt=""> <span id="title"></span>步数详情</p>
+<div class="container">
+    <div class="head">
+        <table class="head-data">
+            <tr>
+                <td><span id="insert-dt">2021年3月02日</span></td>
+                <td>步数</td>
+                <td><span id="cur-step">6666</span><span> 步</span></td>
+                <td>
+                    <div class="border" id="drop-down">目标步数：<span id="step">1000</span>&nbsp;<span style="position: relative;top: 3px">︾</span>&nbsp;修改</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="center">
+        <table class="center-data">
+            <tr>
+                <th colspan="3">近30天步数</th>
+            </tr>
+            <tr>
+                <td>日均步数</td>
+                <td>单日最高</td>
+                <td>累计达标</td>
+            </tr>
+            <tr>
+                <td class="s-number"><span id="average_step"></span></td>
+                <td class="s-number"><span id="max_step"></span></td>
+                <td class="s-number"><span id="num"></span>天</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="left">
+        <div class="long-data" >步数消耗<span id="consume"></span>大卡<br/>
+<!--            <span>≈1.8块奶糖，减2.6g脂肪</span>-->
+        </div>
+    </div>
+    <div class="right">
+        <div class="long-data">步数里程<span id="distance">0.6</span>公里<br/>
+<!--            <span>≈1.4圈操场，减少排碳28.5g</span>-->
+        </div>
+    </div>
+</div>
+<div id="drop-list" style="display: none"></div>
+
+    <!--<img id="left-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/left.png" alt="上页箭头">-->
+    <!--<img id="right-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/right.png" alt="下页箭头">-->
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+        // Test.init();
+        G('title').innerHTML = RenderParam.member_name + name;
+        // G('test-item').src = g_appRootPath + '/Public/img/hd/HealthTest/V13/test_' + item + '.png';
+        G('person-pic').src = g_appRootPath + '/Public/img/hd/HealthTest/V13/member_' + RenderParam.member_image_id + '.png';
+        Test.init()
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+    color:black;
+    font-size: 20px;
+}
+
+body {
+    position: absolute;
+    height: 720px;
+    width: 1280px;
+    background-repeat: no-repeat;
+}
+
+
+.title {
+    top: 40px;
+    left: 562px;
+    position: absolute;
+    outline: none;
+    font-size: 36px;
+    line-height: 36px;
+    color: #08a8b6;
+    font-weight: bold;
+}
+
+/*.expert-bg {*/
+    /*position: absolute;*/
+    /*left: 65px;*/
+    /*top: 150px;*/
+    /*width: 858px;*/
+    /*height: 498px;*/
+/*}*/
+
+/*.bg-qr-code {*/
+    /*position: absolute;*/
+    /*left: 947px;*/
+    /*top: 150px;*/
+    /*width: 268px;*/
+    /*height: 336px;*/
+/*}*/
+
+#qr-code {
+    position: absolute;
+    left: 920px;
+    top: 189px;
+    width: 170px;
+    height: 170px;
+}
+
+#qr-code-title {
+    position: absolute;
+    left: 915px;
+    top: 373px;
+    width: 180px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#consultation-wrap {
+    position: absolute;
+    top: 437px;
+    left: 937px;
+    text-align: center;
+    display: none;
+    border: 1px red solid;
+}
+
+#introduce-wrap {
+    position: absolute;
+    left: 937px;
+    top: 491px;
+    width: 249px;
+    height: 59px;
+    text-align: center;
+    display: none;
+}
+
+.advise-wrap {
+    position: absolute;
+    left: 937px;
+    top: 544px;
+    /*left: 637px;*/
+    /*top: 515px;*/
+    width: 249px;
+    height: 59px;
+    text-align: center;
+    display: none;
+}
+
+.btn-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.btn-title {
+    position: absolute;
+    top: 0px;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+table tr td {
+    text-align: left;
+    height: 30px;
+}
+
+table tr td:nth-child(2) {
+    width: 470px;
+}
+
+.expert-detial {
+    position: absolute;
+    top: 186px;
+    left: 177px;
+    width: 720px;
+}
+
+.expert-name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.pages {
+    position: absolute;
+    top: 656px;
+    left: 616px;
+    width: 275px;
+    height: 399px;
+    font-size: 23px
+}
+
+#photo {
+    width: 216px;
+    height: 288px;
+    border-radius: 10px
+}
+
+.position {
+    color: #ed94a6
+}
+
+.dead-line {
+    position: absolute;
+    top: 119px;
+    left: 183px;
+}
+
+#time {
+    color: #bd242e;
+    font-size: 30px
+}
+
+.pre-page {
+    position: absolute;
+    top: 329px;
+    left: 15px;
+    width: 33px;
+    height: 62px;
+    display: none;
+}
+
+.next-page {
+    position: absolute;
+    top: 329px;
+    left: 1232px;
+    width: 33px;
+    height: 62px;
+    display: none;
+}
+
+#good {
+    width: 460px;
+    overflow: hidden;
+    height: 30px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#department{
+    width: 460px;
+    overflow: hidden;
+    height: 30px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.fst-td {
+    vertical-align: top;
+    padding-top: 10px
+}
+
+#no-data {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    line-height: 720px;
+    text-align: center;
+    overflow: hidden;
+    font-size: 34px;
+    display: none;
+}
+#status{
+    color: #08a8b6;
+}

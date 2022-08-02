@@ -1,0 +1,34 @@
+
+#container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#pay_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+/*确认*/
+#sure_btn {
+    position: absolute;
+    left: 385px;
+    top: 569px;
+    width: 248px;
+    height: 87px;
+}
+
+/* 返回*/
+#back_btn {
+    position: absolute;
+    left: 647px;
+    top: 569px;
+    width: 248px;
+    height: 87px;
+}

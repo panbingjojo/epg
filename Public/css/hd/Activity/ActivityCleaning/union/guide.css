@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-detail {
+    position: absolute;
+    top: 250px;
+    left: 1070px;
+    outline: none !important;
+    width: 190px;
+    height: 80px;
+
+}
+
+#btn-start {
+    position: absolute;
+    top: 326px;
+    left: 586px;
+    outline: none !important;
+    width: 220px;
+    height: 150px;
+}
+
+#btn-price {
+    position: absolute;
+    top: 90px;
+    left: 1070px;
+    outline: none !important;
+    width: 190px;
+    height: 80px;
+}
+#btn-exchange {
+    position: absolute;
+    top: 170px;
+    left: 1070px;
+    outline: none !important;
+    width: 190px;
+    height: 80px;
+}
+
+#back {
+    position: absolute;
+    top: 10px;
+    left: 1070px;
+    outline: none !important;
+    width: 190px;
+    height: 80px;
+}
+
+#btn-book1{
+    position: absolute;
+    top: 270px;
+    left: 90px;
+    outline: none !important;
+    width: 180px;
+    height: 214px;
+}
+#btn-book2{
+    position: absolute;
+    top: 270px;
+    left: 290px;
+    outline: none !important;
+    width: 180px;
+    height: 214px;
+}
+#btn-book3{
+    position: absolute;
+    top: 500px;
+    left: 90px;
+    outline: none !important;
+    width: 180px;
+    height: 214px;
+}
+#btn-book4{
+    position: absolute;
+    top: 500px;
+    left: 290px;
+    outline: none !important;
+    width: 180px;
+    height: 214px;
+}
+#show-box{
+    position: absolute;
+    top: 390px;
+    left: 782px;
+    outline: none !important;
+    width: 36px;
+    height: 30px;
+    z-index: 999;
+    background: url("../../../../../img/hd/Activity/ActivityCleaning/union/box.png");
+    line-height: 30px;
+    text-align: center;
+    font-size: 17px;
+    color: #ffffff;
+}
+.integral_introduce{
+    position: absolute;
+    top: 170px;
+    left: 132px;
+    outline: none !important;
+    font-size: 26px;
+    line-height: 26px;
+    color: #ffffff;
+}
+#integral{
+    position: absolute;
+    top: 224px;
+    left: 112px;
+    outline: none !important;
+    font-size: 26px;
+    line-height: 26px;
+    text-align: center;
+    width: 140px;
+    color: #ffffff;
+}

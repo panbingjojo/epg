@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+
+p.title {
+    position: absolute;
+    top: 24px;
+    left: 58px;
+    width: 200px;
+    font-size: 35px;
+    color: #fff;
+}
+
+#explain{
+    position: absolute;
+    top: 47px;
+    left: 805px;
+}
+#services{
+    position: absolute;
+    top: 47px;
+    left: 1020px;
+}
+.container{
+    position: absolute;
+    top: 120px;
+    left: 123px;
+    width: 1034px;
+    height: 554px;
+    /*border: 1px red solid;*/
+}
+
+#goods-name{
+    position: absolute;
+    top: 57px;
+    left: 700px;
+    width: 290px;
+    height: 50px;
+    font-size: 36px;
+    color: #fff;
+    text-align: center;
+}
+
+#goods-model{
+     position: absolute;
+     top: 105px;
+     left: 700px;
+     width: 290px;
+     height: 50px;
+     font-size: 36px;
+     color: #fff;
+     text-align: center;
+ }
+
+#goods-services{
+    position: absolute;
+    top: 140px;
+    left: 700px;
+    width: 290px;
+    height: 80px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+}
+
+#goods-price{
+    position: absolute;
+    top: 250px;
+    left: 700px;
+    font-size: 30px;
+    color: #fd9633;
+    font-weight: bold;
+}
+#goos-qrCode{
+    position: absolute;
+    width: 186px;
+    height: 186px;
+    top: 310px;
+    left: 750px;
+}
+#tip-text{
+    position: absolute;
+    top: 500px;
+    left: 765px;
+    font-size: 26px;
+    color: #fff;
+}
+
+#content-services{
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    font-weight: bold;
+    display: none;
+}
+
+#tip-1{
+    position: absolute;
+    top: 304px;
+    width: 1280px;
+    font-size: 30px;
+    text-align: center;
+
+}
+
+#tip-2{
+    position: absolute;
+    top: 364px;
+    width: 1280px;
+    font-size: 30px;
+    text-align: center;
+}

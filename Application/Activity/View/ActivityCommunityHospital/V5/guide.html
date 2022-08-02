@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>活动《社区医院》-主页-V5</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!-- 默认标签 -->
+    <a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCommunityHospital/V5/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--本地库-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityCommunityHospital/V5/guide.js?t={$time}"></script>
+    <!--全局变量-->
+    <script type="text/javascript">
+        var RenderParam = {
+            userId: "{$userId}",
+            userAccount: "{$userAccount}",
+            hospitalId: "MJY285473",
+            // hospitalId: "100000020",
+            currentPage: 1,
+            currentDeptId: "{$deptId}", //全部科室
+            MAX_PAGE_STEP: 1,      //每页获取1个医生;
+            buttons: [{
+                id: 'btn-back',
+                name: '返回按钮',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'piece-1-btn',
+                click: 'onBack()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_back.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_back_f.png'
+            }, {
+                id: 'piece-1-btn',
+                name: '健康咨询',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'btn-back',
+                nextFocusDown: 'piece-2-btn',
+                click: 'goInquiry()',
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_ask.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_ask_f.png'
+            }, {
+                id: 'piece-2-btn',
+                name: '上门预约',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'piece-1-btn',
+                nextFocusDown: '',
+                click: onOrder,
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_order.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_order_f.png'
+            }, {
+                id: 'dialog-confirm',
+                name: '确定',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                click: onBack,
+                focusChange: '',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V5/confirm.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Activity/ActivityCommunityHospital/V5/confirm_f.png'
+            }]
+        }
+    </script>
+
+</head>
+<body>
+<p id="title" class="txt">乌鲁木齐市延安路街道社区卫生服务中心</p>
+<img id="btn-back" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_back.png" alt="">
+<div id="piece-0">
+    <p class="txt piece-0-txt">乌鲁木齐市延安路街道社区卫生服务中心</p>
+    <img id="piece-0-pic" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V5/hosp_pic.png" alt="">
+    <div id="doctor-intro">
+        <marquee behavior="" scrollamount="3" direction="up" height="200px">
+            <span id="goods-call">医院简介：</span>"延安路街道社区卫生服务中心位于和顺花园一期院内，属新疆医科大学第六附属医院（骨科医院）第一分院，是自治区、乌鲁木齐市医保定点医院（医保编号0001448），是自治区人民医院，乌鲁木齐市友谊医院、新疆心脑血管医院的协作和技术指导、双向转诊的综合性一级非营利性医院。中心拥有36名专业的医疗技术人员和职称梯队（其中高级职称3名，中级职称 8 名，初级职称 18 名），中心医院设有住院部、门诊部和公共卫生科三大部门：
+            门诊部电话：2575540
+            设有西医内科（内科常见病，多发病，急慢性病）；外科（四肢骨折保守治疗、清创缝合，腋嗅手术，包皮及体表肿物切除等手术、术后换药）；儿科（运用雾化治疗、脐部贴疗、直肠给药治疗儿科常见病、多发病）；妇科（各种阴道炎，外阴白斑，各种宫颈炎，利普刀治疗，处女膜修复术前后壁修补术，前庭大腺脓肿切开造口术，阴道壁囊肿剔除术等常见病的诊治）；计划生育科（育龄妇女上环，取环，药流手术，无疼人流手术，产前检查诊断，产后恢复及访视等）；口腔科（拔牙、镶牙、矫正、治疗等）；中医科（各类常见病、慢性病的治疗、调理、养生保健）；康复理疗科（颈肩腰腿疼及筋肌膜疼痛的治疗、软组织损伤及闭合性骨折复位的治疗）；检验科（三大常规，肝功，肾功，血脂，血粘度，血糖，糖化血红蛋白，尿微量蛋白，乙肝五项，甲肝，丙肝，梅毒，HIV,肺炎支原体，衣原体，尿HCG,血沉，抗O,类风湿，C反应蛋白，降钙素原，血凝，心肌酶，微量元素，血型，微量元素测定等）；心电B超室（动态血压，动态心电图，普通心电图，各脏器彩色B超及血管彩超）；放射科（ 胸腹部、颈肩腰、四肢等处透视、拍片）。
+            住院部电话：2575026
+            设综合病床30余张（可收住内、外、儿、妇科多发病，常见病，慢性病等多种疾患）；
+            社区公共卫生科电话：2575573
+            （重点为建立居民健康档案、高血压、糖尿病、肿瘤、精神病等慢性病管理及居民健康状况评估、指导、健康教育等14项服务工作）。
+            中心医院全体员工将竭诚为广大居民服务，做好居民的健康守门人。"
+
+        </marquee>
+    </div>
+</div>
+<div id="piece-1">
+    <img id="piece-1-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_ask.png" alt="">
+    <img id="piece-2-btn" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V5/btn_order.png" alt="">
+</div>
+<div id="dialog">
+    <p id="dialog-tel">预约电话：0991-2575371</p>
+    <img id="dialog-confirm" src="__ROOT__/Public/img/hd/Activity/ActivityCommunityHospital/V5/confirm.png" alt="">
+    <p id="dialog-dt">接诊时间: 周末10:30~19:00，周一至周五10:15~20:00 (北京时间)</p>
+</div>
+</body>
+
+
+<script type="text/javascript">
+	LMEPG.BM.init('piece-1-btn', RenderParam.buttons, '', true);
+    window.onload = function () {
+        // 通过医院ID来获取医生信息
+        loadDoctorList(RenderParam.hospitalId, RenderParam.currentDeptId, RenderParam.currentPage, RenderParam.MAX_PAGE_STEP);
+        //lmInitGo();
+    };
+</script>
+</html>

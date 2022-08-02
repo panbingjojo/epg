@@ -1,0 +1,134 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 200px;
+    color: #fff;
+}
+/*专家介绍*/
+#introduce-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.doctor-introduce {
+    position: absolute;
+    top: 73px;
+    left: 141px;
+    width: 1100px;
+    height: 208px;
+}
+
+.doctor-introduce img.doctor-pic {
+    width: 208px;
+    height: 208px;
+    border-radius: 50%;
+}
+
+.doctor-introduce ul {
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 230px;
+}
+
+.doctor-introduce ul li {
+    color: #fff;
+    text-align: left;
+    line-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 30px;
+}
+.doctor-introduce ul li span{
+    font-size: 24px;
+}
+.mar{
+    font-size: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: left;
+    color: #fff;
+    width: 300px;
+}
+.doctor-introduce li.doctor-title {
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.doctor-introduce li.doctor-title span{
+    margin-left: 20px;
+}
+
+.doctor-introduce li.doctor-hospital {
+}
+
+
+.doctor-introduce #doctor-advice-1 {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/*专家详细简介*/
+#doctor-desc {
+    width: 1160px;
+    height: 334px;
+    position: absolute;
+    top: 302px;
+    left: 53px;
+    overflow: hidden;
+    padding: 30px;
+    background-image: url(../../../../../Public/img/hd/Expert/V13/modal_intro.png);
+    background-size: 1160px 370px;
+}
+.auto-overlay {
+    width: 1100px;
+    height: 334px;
+    overflow: hidden;
+}
+
+#desc-wrap {
+    position: relative;
+    font-size: 24px;
+    color: #fff;
+}
+
+#desc-wrap span.h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+#scroll-wrap {
+    width: 6px;
+    height: 335px;
+    position: absolute;
+    top: 35px;
+    right: 80px;
+    border-radius: 6px;
+    background-color: #89adf4;
+}
+
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 10px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: #efa8aa;
+}

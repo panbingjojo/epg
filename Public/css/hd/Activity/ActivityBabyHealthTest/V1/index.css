@@ -1,0 +1,212 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#problem-num {
+    position: absolute;
+    top: 150px;
+    left: 211px;
+    color: #b3476b;
+    font-size: 32px;
+}
+
+#problem {
+    position: absolute;
+    top: 150px;
+    left: 280px;
+    width: 800px;
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 50px;
+}
+
+#option-A {
+    position: absolute;
+    top: 300px;
+    left: 300px;
+    width: 56px;
+    height: 56px;
+}
+
+#option-A-text {
+    position: absolute;
+    top: 315px;
+    left: 365px;
+    color: #ffffff;
+    font-size: 24px;
+    width: 120px;
+}
+
+#option-B {
+    position: absolute;
+    top: 300px;
+    left: 760px;
+    width: 56px;
+    height: 56px;
+}
+
+#option-B-text {
+    position: absolute;
+    top: 315px;
+    left: 825px;
+    color: #ffffff;
+    font-size: 24px;
+    width: 120px;
+}
+
+#option-C {
+    position: absolute;
+    top: 380px;
+    left: 300px;
+    width: 56px;
+    height: 56px;
+}
+
+#option-C-text {
+    position: absolute;
+    top: 395px;
+    left: 365px;
+    color: #ffffff;
+    font-size: 24px;
+    width: 120px;
+}
+
+#back-btn {
+    position: absolute;
+    top: 20px;
+    left: 1050px;
+}
+
+#prev-btn {
+    position: absolute;
+    top: 340px;
+    left: 80px;
+    width: 68px;
+    height: 88px;
+}
+
+#next-btn {
+    position: absolute;
+    top: 340px;
+    left: 1132px;
+    width: 68px;
+    height: 88px;
+}
+
+#auto-tips {
+    position: absolute;
+    left: 40px;
+    top: 656px;
+    font-size: 20px;
+    color: #b3476b;
+}
+
+#indicator-1 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 40px;
+}
+
+#indicator-2 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 148px;
+}
+
+#indicator-3 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 256px;
+}
+
+#indicator-4 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 364px;
+}
+
+#indicator-5 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 472px;
+}
+
+#indicator-6 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 580px;
+}
+
+#indicator-7 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 688px;
+}
+
+#indicator-8 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 796px;
+}
+
+#indicator-9 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 904px;
+}
+
+#indicator-10 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 1012px;
+}
+
+#indicator-11 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 1120px;
+}
+
+#indicator-12 {
+    position: absolute;
+    width: 108px;
+    height: 20px;
+    top: 688px;
+    left: 1228px;
+}

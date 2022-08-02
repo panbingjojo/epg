@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>健康测一测活动V3-弹窗页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityHeathTest/V3/dailog.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityHeathTest/V3/DialogMoreThree.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityHeathTest/PopRule.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/keyboard.js?t={$time}"></script>
+
+    <!--页面跳转-->
+    <script type="text/javascript">
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-dialog");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(context) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("focusedId", "{$focusedId}");//活动主页按钮焦点保持
+            objDialog.setParam("context", context);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * @func 进行购买操作
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip() {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("directPay", "1");
+            objOrderHome.setParam("orderReason", "101");
+            objOrderHome.setParam("remark", "{$activityName}");
+
+            var objActivityGuide = LMEPG.Intent.createIntent("activity-common-guide");
+            objActivityGuide.setParam("userId", "{$userId}");
+            objActivityGuide.setParam("inner", "{$inner}");
+            objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+            objActivityGuide.setParam("focusedId", "{$focusedId}");//活动主页按钮焦点保持
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+        }
+
+        /**
+         * 页面跳转 - 奖品页
+         */
+        function jumpPirzeDialog(context, prizeIdx, prizeName) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("focusedId", "{$focusedId}");//活动主页按钮焦点保持
+            objDialog.setParam("context", context);
+            objDialog.setParam("prizeName", prizeName);
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("bg", "play");
+
+            LMEPG.Intent.jump(objDialog, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         */
+        function jumpPlayUI() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            objActivityHome.setParam("userId", "{$userId}");
+            objActivityHome.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityHome, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            var src = getCurrentPage();
+            var dst = LMEPG.Intent.createIntent("activity-common-guide");
+            dst.setParam("userId", "{$userId}");
+            dst.setParam("inner", "{$inner}");
+            dst.setParam("focusedId", "{$focusedId}");//活动主页按钮焦点保持
+            LMEPG.Intent.jump(dst, src, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        }
+    </script>
+
+</head>
+<body style='background-image: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V3/model.png");'>
+<div id="dialog">
+
+</div>
+<script type="text/javascript">
+    // 抽中奖弹出输入框呼出键盘X-Y坐标
+    var keyWordX = '<?php echo ($platformType === "hd" ? 400 : 145)?>';//呼出键盘的X坐标
+    var keyWordY = '<?php echo ($platformType === "hd" ? 260 : 400)?>';//呼出键盘的Y坐标
+    var searchTextTips = "请输入有效的电话号码"; //搜索框中的文字提示
+
+    var bookType = "{$spDesc}";//订购类型
+    var contentId = "{$contentId}";
+    var context = "{$context}";
+    var platformType = "{$platformType}";//全局参数，DialogMoreThree.js引用判断
+    var prizeName = "{$prizeName}"; // 中奖奖品名称
+    var prizeIdx = "{$prizeIdx}"; // 奖品id
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = "__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V3/";
+
+    var buttons = [
+        {
+            id: 'btn-close',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-open',
+            nextFocusUp: 'searchText',
+            nextFocusDown: 'btn-open',
+            backgroundImage: imgPathPrefix + 'btn_close.png',
+            focusImage: imgPathPrefix + 'btn_close_f.gif',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'btn-open',
+            name: '打开',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-close',
+            nextFocusUp: 'btn-close',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'btn_open.png',
+            focusImage: imgPathPrefix + 'btn_open_f.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }, {
+            id: 'btn-sure',
+            name: '确定',
+            type: 'img',
+            nextFocusLeft: 'btn-cancle',
+            nextFocusRight: 'btn-cancle',
+            nextFocusUp: 'searchText',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'btn_sure.png',
+            focusImage: imgPathPrefix + 'btn_sure_f.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }, {
+            id: 'btn-cancle',
+            name: '取消',
+            type: 'img',
+            nextFocusLeft: 'btn-sure',
+            nextFocusRight: 'btn-sure',
+            nextFocusUp: 'searchText',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'btn_cancle.png',
+            focusImage: imgPathPrefix + 'btn_cancle_f.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }, {
+            id: 'btn-one',
+            name: '确定',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'btn_sure.png',
+            focusImage: imgPathPrefix + 'btn_sure_f.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }, {
+            id: 'searchText',
+            name: '号码框',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'submit',
+            backgroundImage: '',
+            focusImage: '',
+            click: "",
+            focusChange: "KeyBtn.init(keyWordY, keyWordX, 'searchText', 'btn-sure')",
+            beforeMoveChange: "onCommonMoveChange",
+            moveChange: ""
+        }
+    ];
+
+    window.onload = function (ev) {
+        switch (context) {
+            case TEST_RESULT:
+                dialogCreateResult.show(platformType);
+                break;
+
+            // 会员次数用尽
+            case VIP_USER_PLAY_TIMES_OVER:
+                dialogCreateTimeOver.show(platformType);
+                break;
+
+            // 非会员次数用尽
+            case NOT_VIP_USER_PLAY_TIMES_OVER:
+                dialogCreateUnVip.show(platformType);
+                break;
+
+            // 活动规则
+            case ACTIVITY_RULE_DETAIL:
+                dialogCreateActivity.show(platformType);
+                break;
+
+            // 中奖
+            case VIP_USER_DRAWN_PRIZE:
+                dialogCreatePhone.show(platformType, prizeName);
+                break;
+
+            // 未抽中奖品
+            case USER_NOT_DRAWN_PRIZE_TIPS:
+                dialogNoPrice.show(platformType);
+                break;
+
+            default:
+                LMEPG.UI.showToast("没有响应弹窗", 3000);
+                break;
+        }
+
+        LMEPG.ButtonManager.init([dialogFocusId], buttons, '', true);
+    };
+
+
+    /**
+     * 点击事件
+     */
+    function onClick(btn) {
+        var btnId = btn.id;
+        switch (focusType) {
+            case "back":
+                if (btnId == "btn-open") {
+                    jumpDialog(context);   //  跳转概率中奖与否界面
+                } else {
+                    onBack();
+                }
+                break;
+
+            // 填写手机号码页面
+            case "save":
+                if (btnId == "btn-sure") {
+                    //去设置电话号码
+                    goSetPhoneNumber();
+                } else if (btnId == "btn-cancle" || btnId == "btn-close") {
+                    onBack();
+                }
+                break;
+            case "drawn":
+                jumpPlayUI();
+                break;
+            case "book":
+                if (btnId == "btn-sure") {
+                    jumpBuyVip();
+                } else {
+                    onBack();
+                }
+                break;
+        }
+    }
+
+    /**
+     * 去设置中奖电话号码
+     */
+    function goSetPhoneNumber() {
+        //获取用户填写的手机号
+        var phoneTex = G("searchText");
+        var userTel = phoneTex.innerHTML;
+        if (prizeIdx == null) {
+            LMEPG.UI.showToast("没有中奖！");
+            return;
+        }
+        if (!LMEPG.Func.isTelPhoneMatched(userTel)) {
+            LMEPG.UI.showToast("请输入有效的手机号码");
+            return;
+        }
+
+        var reqData = {
+            "phoneNumber": userTel,
+            "prizeIdx": prizeIdx
+        };
+        LMEPG.ajax.postAPI('Activity/setPhoneNumber', reqData,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {  // 设置号码成功
+                        LMEPG.UI.showToast("提交成功", 1);
+                        setTimeout(onBack, 1000);
+                    } else { // 设置号码失败
+                        LMEPG.UI.showToast("提交失败，请重试！");
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("保存手机号结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("请求保存手机号发生错误！");
+            }
+        );
+    }
+
+</script>
+</body>
+</html>

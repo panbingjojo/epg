@@ -1,0 +1,15 @@
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+    background-position: left;
+    color: #000;
+    overflow: hidden;
+}
+
+#m-applets-qrcode{
+    position: absolute;
+    top: 152px;
+    left: 352px;
+}

@@ -1,0 +1,37 @@
+/*背景图*/
+#update_background {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    background-image: url("../../../../img/hd/Pay/Common/bg_order_limit.png");
+    overflow: hidden;
+}
+
+/* 弹出提示文字内容*/
+#toast_message_text{
+    background-Repeat: no-repeat;
+    width: 266px;
+    font-family: 'Source Han Sans CN';
+    font-size: 24px;
+    color: #2a4e87;
+    top: 386px;
+    left: 498px;
+    position: absolute;
+    overflow: hidden;
+}
+
+/* 确定或取消 按钮文字内容*/
+#toast_message_submit{
+    background-Repeat: no-repeat;
+    width: 178px;
+    height: 62px;
+    font-family: 'Source Han Sans CN';
+    font-size: 35px;
+    color: #ffffff;
+    top:492px;
+    left: 544px;
+    background-image: url("../../../../img/hd/Pay/Common/btn_sure.png");
+    position: absolute;
+    overflow: hidden;
+}

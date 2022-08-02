@@ -1,0 +1,126 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    background: url("../../../img/Album/album44/bg.png") no-repeat;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#videoTv {
+    position: absolute;
+    top: 411px;
+    left: 11px;
+    z-index: 0;
+    outline: none !important;
+    width: 406px;
+    height: 309px;
+
+}
+#focus-2-1 {
+    position: absolute;
+    top: 333px;
+    left: 158px;
+    z-index: 0;
+    outline: none !important;
+    width: 239px;
+    height: 190px;
+
+}
+
+#focus-2-2 {
+    position: absolute;
+    top: 273px;
+    left: 394px;
+    z-index: 0;
+    outline: none !important;
+    width: 273px;
+    height: 190px;
+}
+
+#focus-2-3 {
+    position: absolute;
+    top: 268px;
+    left: 637px;
+    z-index: 0;
+    outline: none !important;
+    width: 239px;
+    height: 190px;
+
+}
+
+#focus-2-4 {
+    position: absolute;
+    top: 308px;
+    left: 868px;
+    z-index: 0;
+    outline: none !important;
+    width: 239px;
+    height: 190px;
+}
+#back {
+    position: absolute;
+    top: 29px;
+    left: 1132px;
+    z-index: 0;
+    outline: none !important;
+    width: 83px;
+    height: 66px;
+
+}
+
+#page-left{
+    position: absolute;
+    top: 368px;
+    left: 53px;
+    z-index: 0;
+    outline: none !important;
+    width: 74px;
+    height: 41px;
+}
+#page-right{
+    position: absolute;
+    top: 368px;
+    left: 1151px;
+    z-index: 0;
+    outline: none !important;
+    width: 74px;
+    height: 41px;
+}
+
+
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+.none{ display: none}
+
+

@@ -1,0 +1,98 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+}
+
+#back {
+    position: absolute;
+    top: 61px;
+    left: 526px;
+    outline: none !important;
+    width: 38px;
+    height: 38px;
+}
+
+#searchText {
+    width: 174px;
+    height: 25px;
+    z-index: 999;
+    position: absolute;
+    top: 425px;
+    left: 302px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    line-height: 25px;
+    color: #4c4c4c;
+    overflow: hidden;
+}
+
+#submit {
+    position: absolute;
+    top: 460px;
+    left: 188px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+#clear {
+    position: absolute;
+    top: 460px;
+    left: 380px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+table tr td {
+    width: 155px;
+    text-align: center;
+    list-style: none;
+    font-size: 15px;
+    color: #000000 !important;
+    height: 25px;
+}
+
+#all-prizes {
+    width: 465px;
+    overflow: hidden;
+    position: relative;
+    top: 142px;
+    left: 83px;
+}
+
+#my-prizes {
+    width: 465px;
+    height: 85px;
+    overflow: hidden;
+    position: relative;
+    top: 230px;
+    left: 83px;
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}
+
+.key-table {
+    position: absolute;
+}
+
+.key-table tr td {
+    width: 30px;
+    text-align: center;
+    font-size: 14px;
+    z-index: 999;
+}

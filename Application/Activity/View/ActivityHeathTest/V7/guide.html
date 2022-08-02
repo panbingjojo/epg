@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>健康测一测活动V7-首页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityHeathTest/V7/guide.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityHeathTest/PopRule.js?t={$time}"></script>
+
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+            objDialog.setParam("focusedId", focusedId);//活动主页按钮焦点保持
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 活动详情
+         */
+        function jumpActivityInfo() {
+            jumpDialog(ACTIVITY_RULE_DETAIL);
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         * @param answerType 答题类型：1-趣味小常识 2-心理测试 3-亚健康测试
+         */
+        function jumpPlayUI(answerType) {
+            var objCurrent = getCurrentPage();
+
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            objActivityHome.setParam("userId", "{$userId}");
+            objActivityHome.setParam("inner", "{$inner}");
+            objActivityHome.setParam("leftTimes", leftTimes);
+            objActivityHome.setParam("demoTimes", demoTimes);
+            objActivityHome.setParam("answersType", answerType);
+            objActivityHome.setParam("focusedId", focusedId);//活动主页按钮焦点保持
+
+            LMEPG.Intent.jump(objActivityHome, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 显示中奖信息
+         */
+        function jumpPriceInfo() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityWinList = LMEPG.Intent.createIntent("activity-common-winList");
+            objActivityWinList.setParam("userId", "{$userId}");
+            objActivityWinList.setParam("inner", "{$inner}");
+            objActivityWinList.setParam("focusedId", focusedId);//活动主页按钮焦点保持
+
+            LMEPG.Intent.jump(objActivityWinList, objCurrent);
+        }
+
+        /**
+         * @func 进行购买操作
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip(contentId) {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("directPay", "1");
+            objOrderHome.setParam("orderReason", "101");
+            objOrderHome.setParam("contentId", contentId); // sp订购的内容id
+            objOrderHome.setParam("isJointActivity", "1"); // 表示联合活动
+            objOrderHome.setParam("remark", "{$activityName}");
+
+            var objActivityGuide = LMEPG.Intent.createIntent("activity-common-guide");
+            objActivityGuide.setParam("userId", "{$userId}");
+            objActivityGuide.setParam("inner", "{$inner}");
+            objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+        }
+
+    </script>
+</head>
+<body style='background-image: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/model.png");'>
+<img id="bg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/bg_home.png" alt="">
+<!--开始答题-->
+<img class="start" id="start-1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/btn_start.png" alt=""/>
+<img class="start" id="start-2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/btn_start.png" alt=""/>
+<img class="start" id="start-3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/btn_start.png" alt=""/>
+<div class="btn-wrap">
+    <img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/btn_back.png" alt=""/>
+    <img id="rules" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/btn_rules.png" alt=""/>
+    <img id="winners" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/btn_winners.png" alt=""/>
+</div>
+<div id="left-times"></div>
+<script type="text/javascript">
+    var leftTimes = 0; // 剩余试玩次数
+    var demoTimes = 0; // 免费体验次数
+    var isVip = {$isVip}; // 是否是vip（0-非vip 1-vip）
+    var isOrderBack = "{$isOrderBack}"; // 是否为订购返回
+    var cOrderResult = "{$Think.cookie.c_order_result}";
+    var focusedId = '{$focusedId}'; // 当前默认焦点保持
+    focusedId = (typeof focusedId === 'undefined' || null == focusedId || focusedId === '') ?  'start-1' : focusedId;
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = "__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/";
+    var paySuccessUrl = imgPathPrefix + "pay_success.png"; //订购成功弹窗背景
+    var payFailedUrl = imgPathPrefix + "pay_failed.png"; //订购失败弹窗背景
+
+    var buttons = [
+        {
+            id: 'back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'start-1',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'rules',
+            backgroundImage: imgPathPrefix + 'btn_back.png',
+            focusImage: imgPathPrefix + 'btn_back_f.png',
+            click: onBack,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'rules',
+            name: '活动详情',
+            type: 'img',
+            nextFocusLeft: 'start-1',
+            nextFocusUp: 'back',
+            nextFocusDown: 'winners',
+            backgroundImage: imgPathPrefix + 'btn_rules.png',
+            focusImage: imgPathPrefix + 'btn_rules_f.png',
+            click: jumpActivityInfo,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'winners',
+            name: '中奖名单',
+            type: 'img',
+            nextFocusLeft: 'start-1',
+            nextFocusRight: '',
+            nextFocusUp: 'rules',
+            nextFocusDown: 'start-3',
+            backgroundImage: imgPathPrefix + 'btn_winners.png',
+            focusImage: imgPathPrefix + 'btn_winners_f.png',
+            click: jumpPriceInfo,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'start-1',
+            name: '趣味小常识',
+            answerType: 1, // 答题类型：1-趣味小常识 2-心理测试 3-亚健康测试
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'start-2',
+            nextFocusUp: 'winners',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'btn_start.png',
+            focusImage: imgPathPrefix + 'btn_start_f.png',
+            click: startPlayGames,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        }, {
+            id: 'start-2',
+            name: '心理测试',
+            answerType: 2, // 答题类型：1-趣味小常识 2-心理测试 3-亚健康测试
+            type: 'img',
+            nextFocusLeft: 'start-1',
+            nextFocusRight: 'start-3',
+            nextFocusUp: 'winners',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'btn_start.png',
+            focusImage: imgPathPrefix + 'btn_start_f.png',
+            click: startPlayGames,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        }, {
+            id: 'start-3',
+            name: '亚健康测试',
+            answerType: 3, // 答题类型：1-趣味小常识 2-心理测试 3-亚健康测试
+            type: 'img',
+            nextFocusLeft: 'start-2',
+            nextFocusRight: '',
+            nextFocusUp: 'winners',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'btn_start.png',
+            focusImage: imgPathPrefix + 'btn_start_f.png',
+            click: startPlayGames,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        }
+    ];
+
+    window.onload = function () {
+        // 弹出订购结果的提示框
+        showOrderResult();
+        // 查询剩余次数
+        canAnswer();
+    };
+
+    /** 检查并显示订购结果 */
+    function showOrderResult() {
+        if (isOrderBack == "1") {
+            LMEPG.UI.showToastBig(3, cOrderResult == "1" ? paySuccessUrl : payFailedUrl);
+        }
+    }
+
+    /** 记录焦点保持 */
+    function onFocusChanged(btn, hasFocus) {
+        if (hasFocus && btn && btn.id) {
+            focusedId = btn.id;
+        }
+    }
+
+    /**
+     * 点击3个开始游戏按钮：
+     * answerType 1-3 分别表示进行答题的类型：趣味小常识、心理测试、亚健康测试
+     */
+    function startPlayGames(btnObj) {
+        if (leftTimes > 0) {     // 进入游戏页
+            jumpPlayUI(btnObj.answerType);
+        } else if (LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {     // VIP用户次数用尽，弹窗提示明日再来
+            jumpDialog(VIP_USER_PLAY_TIMES_OVER);
+        } else {                // 非VIP用户次数用尽，弹窗提示订购VIP
+            jumpDialog(NOT_VIP_USER_PLAY_TIMES_OVER);
+        }
+    }
+
+    /**
+     * 判断用户是否可以答题
+     */
+    function canAnswer() {
+        LMEPG.ajax.postAPI('Activity/canAnswer', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    if (data.result == 0) {
+                        leftTimes = data.leftTimes || 0;
+                        demoTimes = data.demoTimes || 0;
+                    } else {
+                        leftTimes = 0;
+                    }
+                    updateLeftTimesUI(leftTimes);
+                    initButton();
+                } catch (e) {
+                    LMEPG.UI.showToast("判断用户是否可以试玩，解析异常！");
+                    LMEPG.Log.error(e.toString());
+                    LMEPG.ButtonManager.init('', [], '', true); // 失败异常处理，保证至少可以响应返回按键
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("判断用户是否可以试玩失败");
+                LMEPG.ButtonManager.init('', [], '', true); // 失败异常处理，保证至少可以响应返回按键
+            }
+        );
+    }
+
+    /**
+     * 初始化焦点
+     */
+    function initButton() {
+        LMEPG.ButtonManager.init(focusedId, buttons, '', true);
+    }
+
+    /**
+     * 设置剩余试玩次数
+     */
+    function updateLeftTimesUI(leftTimes) {
+        G('left-times').innerHTML = leftTimes;
+    }
+
+</script>
+</body>
+</html>

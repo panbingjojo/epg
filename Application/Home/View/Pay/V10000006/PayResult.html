@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>中国联通--订购结果显示</title>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            carrierId: "{$carrierId}",          // 地区id
+            fsUrl: '{$resourcesUrl}',           // fs地址
+            isSuccess: "{$isSuccess}",          // 是否订购成功
+            msg: "{$msg}",                      // 订购提示信息
+        };
+
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    if (RenderParam.isSuccess == 1) {
+        parent.document.getElementById("bg_pay").src = "__ROOT__/Public/img/{$platformType}/Pay/V10000006/V1/bg_pay_success.png";
+    } else {
+        parent.document.getElementById("bg_pay").src = "__ROOT__/Public/img/{$platformType}/Pay/V10000006/V1/bg_pay.png";
+    }
+    window.onload = function () {
+        if (parent) {
+            LMEPG.Log.info("parent.releaseFrame!!!!!!!!!!!!!");
+            try {
+                parent.onBack();
+                releaseFrame();
+            } catch (e) {
+                LMEPG.Log.error("parent.releaseFrame exception: " + e.toString());
+            }
+        }
+    };
+
+    /**
+     * 释放iframe资源
+     */
+    function releaseFrame() {
+        LMEPG.Log.info("releaseFrame!!!!!!!!!!!!!");
+        try {
+            var item = parent.document.getElementById('Host');
+            item.blur();
+            parent.document.body.removeChild(item); // 移除标签
+            LMEPG.Log.info("releaseFrame remove iframe");
+            window.location.reload();
+        } catch (e) {
+            LMEPG.Log.info("异常：" + e.toString());
+        }
+        LMEPG.ButtonManager.setKeyEventPause(false);
+    }
+</script>
+</body>
+</html>

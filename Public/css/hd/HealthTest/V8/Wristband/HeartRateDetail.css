@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+.sleep-bar {
+    width: 1090px;
+    height: 168px;
+    clear: left;
+    position: relative;
+    top: 128px;
+    left: 80px;
+    font-size: 30px;
+    background: url("../../../../../img/hd/HealthTest/V8/Wristband/heart_bg.png");
+}
+
+.sleep-bar-title {
+    position: absolute;
+    top: 13px;
+    left: 20px;
+    font-size: 26px;
+}
+.des-bar{
+    /*position: absolute;*/
+    /*top: 53px;*/
+    margin-top: 53px;
+    font-size: 24px;
+    line-height: 50px;
+    box-sizing: border-box;
+    float: left;
+    margin-left: 50px;
+    /*border: 1px red solid;*/
+    text-align: center;
+}
+/*#low{*/
+/*    left: 50px;*/
+/*}*/
+
+/*#middle*/
+
+
+.container {
+    position: absolute;
+    font-family: 'SourceHanSansCN-Regular';
+    top: 320px;
+    left: 80px;
+    width: 1120px;
+    height: 378px;
+    /*border: 1px red solid;*/
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+#scroll-wrapper {
+    position: absolute;
+    font-family: 'SourceHanSansCN-Regular';
+    top: 0px;
+    left: 0px;
+    width: 1120px !important;
+    height: 378px !important;
+    overflow: auto;
+}
+.arrow {
+    position: absolute;
+    top: 353px;
+}
+
+img#left-arrow {
+    left: 18px;
+    width: 80px;
+    height: 80px;
+}
+
+img#right-arrow {
+    left: 1187px;
+    width: 80px;
+    height: 80px;
+}

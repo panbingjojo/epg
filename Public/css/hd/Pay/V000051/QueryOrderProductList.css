@@ -1,0 +1,212 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #ffffff;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+div {
+    position: absolute;
+}
+
+div.title {
+    top: 24px;
+    left: 58px;
+    font-size: 35px;
+}
+
+
+div.hos_focus1 {
+    left: 151px;
+    top: 139px;
+}
+
+div.hos_focus2 {
+    left: 480px;
+    top: 139px;
+}
+
+div.hos_focus3 {
+    left: 809px;
+    top: 139px;
+}
+
+div.hos_focus4 {
+    left: 151px;
+    top: 397px;
+}
+
+div.hos_focus5 {
+    left: 480px;
+    top: 397px;
+}
+
+div.hos_focus6 {
+    left: 809px;
+    top: 397px;
+}
+
+.hos-img {
+    position: absolute;
+    width: 347px;
+    height: 247px;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+}
+
+
+
+.left_page {
+    position: absolute;
+    width: 40px;
+    height: 104px;
+    top: 340px;
+    left: 65px;
+}
+
+.right_page {
+    position: absolute;
+    width: 40px;
+    height: 104px;
+    top: 340px;
+    left: 1179px;
+}
+.product_name{
+    font-size: 26px;
+    line-height: 26px;
+    color: #d3f809;
+    position: absolute;
+    top: 60px;
+    width: 100px;
+    left: 130px;
+}
+.book_time {
+    font-size: 17px;
+    line-height: 17px;
+    color: #ffffff;
+    position: absolute;
+    top: 100px;
+    width: 200px;
+    left: 80px;
+    text-align: left;
+}
+.book_price {
+    font-size: 17px;
+    line-height: 17px;
+    color: #ffffff;
+    position: absolute;
+    top: 120px;
+    width: 200px;
+    left: 80px;
+    text-align: left;
+}
+.go_price {
+    font-size: 17px;
+    line-height: 17px;
+    color: #ffffff;
+    position: absolute;
+    top: 140px;
+    width: 200px;
+    left: 80px;
+    text-align: left;
+}
+.toast_bg{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    background-image: url("../../../../img/hd/Pay/V000051/queryOrderProductList/stop_order_bg.png");
+    top: 0px;
+    left: 0px;
+}
+#default_focus{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+}
+#success_focus{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+}
+#book_stop{
+    width: 260px;
+    height: 115px;
+    position: absolute;
+    z-index: 999;
+    top: 405px;
+    left: 387px;
+}
+#cancel{
+    width: 260px;
+    height: 115px;
+    position: absolute;
+    z-index: 999;
+    top: 405px;
+    left: 635px;
+}
+.record_null{
+    font-size: 35px;
+    line-height: 35px;
+    color: #ffffff;
+    position: absolute;
+    top: 256px;
+    width: 250px;
+    left: 520px;
+    text-align: left;
+}
+
+/* 弹出提示文字内容*/
+#toast_message_text{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    font-family: 'Source Han Sans CN';
+    font-size: 31px;
+    color: #2a4e87;
+    top:270px;
+    left: 450px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* 确定或取消 按钮文字内容*/
+#toast_message_submit{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    font-family: 'Source Han Sans CN';
+    font-size: 35px;
+    color: #ffffff;
+    top:435px;
+    left: 588px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+}

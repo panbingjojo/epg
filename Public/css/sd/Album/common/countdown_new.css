@@ -1,0 +1,47 @@
+#dialog_wrap * {
+    position: absolute;
+}
+
+#purchase-dialog {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 640px;
+    height: 530px;
+    visibility: hidden;
+}
+.purchase-dialog-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 640px;
+    height: 530px;
+}
+
+#purchase-dialog * {
+    position: absolute;
+}
+
+#countdown-dialog * {
+    position: absolute;
+}
+
+#btn-purchase {
+    position: absolute;
+    top: 330px;
+    left: 180px;
+}
+
+#btn-cancel-purchase {
+    position: absolute;
+    top: 330px;
+    left: 340px;
+}
+
+#count {
+    top: 162px;
+    left: 214px;
+    font-size: 36px;
+    color: #c55800;
+    font-weight: bold
+}

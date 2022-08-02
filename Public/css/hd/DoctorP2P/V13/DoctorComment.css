@@ -1,0 +1,169 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/Common/bg.png);
+}
+
+.doctor-item {
+    position: absolute;
+    top: 65px;
+    left: 93px;
+    width: 310px;
+    height: 488px;
+}
+
+.doctor-item ul {
+    width: 310px;
+    height: 420px;
+    padding-top: 15px;
+    background-position: center;
+
+}
+
+.doctor-item ul li {
+    color: #fff;
+    text-align: center;
+    line-height: 35px;
+}
+
+.doctor-item li.doctor-pic {
+    margin-top: 10px;
+}
+
+.doctor-item .doctor-pic img {
+    width: 208px;
+    height: 208px;
+}
+
+.doctor-item li.doctor-status {
+    margin-top: -20px;
+}
+
+.doctor-item li.doctor-title {
+    margin-top: 18px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.doctor-item li.doctor-department,
+.doctor-item .doctor-Attending {
+    font-size: 24px;
+}
+
+.doctor-item li.doctor-case {
+    font-size: 20px;
+    color: #b2deff;
+}
+
+.doctor-item li.doctor-comment {
+    width: 310px;
+    height: 177px;
+    font-size: 24px;
+    margin-top: 20px;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/comment_bg.png);
+}
+
+li.doctor-comment p.comment-desc {
+    padding-top: 30px;
+}
+
+li.doctor-comment div#star-wrap {
+    margin-top: 20px;
+}
+
+.doctor-item li.doctor-collect {
+    margin-top: 20px;
+}
+
+#patient-info {
+    position: absolute;
+    top: 53px;
+    left: 426px;
+    width: 700px;
+    height: 534px;
+    overflow: hidden;
+    padding: 40px;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/modal_desc.png);
+}
+
+/*问诊人信息*/
+#ask-result {
+    margin-top: 15px;
+}
+
+#ask-result * {
+    float: left;
+}
+.result-title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -20px;
+    position: relative;
+}
+#delete-result{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#ask-result .counsel,
+#ask-result .duration {
+    font-size: 24px;
+    font-weight: bold;
+}
+#ask-result .duration{
+    margin-left: 100px;
+}
+
+#counsel-person,
+#duration-ask {
+    margin-left: 10px;
+    width: 100px;
+    border-bottom: 1px solid #fff;
+    text-align: center;
+    font-weight: normal;
+}
+/*主诉、病史、建议*/
+.auto-overlay {
+    width: 675px;
+    height: 440px;
+    overflow: hidden;
+    position: absolute;
+    top: 140px;
+}
+
+#desc-wrap {
+    position: relative;
+    font-size: 24px;
+    color: #fff;
+}
+
+#desc-wrap span.h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/*滚动条*/
+#scroll-wrap {
+    width: 6px;
+    height: 440px;
+    position: absolute;
+    top: 145px;
+    left: 730px;
+    border-radius: 6px;
+    background-color: #89adf4;
+}
+
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 10px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: #32cfe0;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单详情</title>
+
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V21/orderDetails.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            docName:'{$docName}',
+            time:'{$dayTime}',
+            depName:'{$depName}',
+            doctorName:'{$docName}',
+            startTime:'{$appointment_start}',
+            endTime:'{$appointment_end}',
+            backDepIndex : "{$backDepIndex}",
+            dateTime: '{$dateTime}',
+            name:'{$name}',
+            card:'{$card}',
+            sex:'{$sex}',
+            num:'{$num}',
+            payWay:'{$payWay}',
+            payMoney:'{$payMoney}',
+            payNum: '{$payNum}',
+            payTime: '{$payTime}',
+            title1:  '{$title1}',
+            isOrderList: '{$isOrderList}',
+            status: '{$status}',
+            id_apt: '{$id_apt}'
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V21/orderDetails.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div class="information" id="information" style="background-image: url('__ROOT__/Public/img/hd/AppointmentRegister/V21/box1.png')">
+        <div class="details">订单详情</div>
+        <div class="hospital_name" id="hospital_name"></div>
+        <div class="dep_name" id="dep_name"></div>
+        <div class="doctor_name" id="doctor_name"></div>
+        <div class="title1" id="title1" style="display: none">专家</div>
+        <div class="dayTime" id="dayTime"></div>
+    </div>
+    <div class="back" id="back">返回</div>
+    <div class="cancel" id="cancel">取消订单</div>
+</div>
+
+<div id="window1">
+    <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/box3.png" alt="" class="box3">
+    <div class="information1">您确定要取消订单吗</div>
+    <div class="common" id="common">确定</div>
+    <div class="cancel1" id="cancel1">取消</div>
+</div>
+
+<div id="window2">
+    <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/window3.png" alt="" class="window3">
+    <div class="information2" id="information2">退款成功，请注意查收金额！</div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        Home.init()
+    }
+</script>
+</body>
+</html>

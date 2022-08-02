@@ -1,0 +1,674 @@
+<div id="header-container">
+
+    <!--    -->
+    <if condition="$carrierId eq '320092'">
+        <img id="logo-jsdx" src="__ROOT__/Public/img/hd/Home/V13/Home/logo_320092.png">
+        <elseif condition="$carrierId eq '440004'"/>
+        <img id="logo-gddx" src="__ROOT__/Public/img/hd/Home/V13/Home/logo_440004.png">
+        <elseif condition="$carrierId eq '640001'"/>
+        <img id="logo-nxdx" src="__ROOT__/Public/img/hd/Home/V13/Home/logo_640001.png">
+    </if>
+
+    <!--  顶部操作内容图标  -->
+    <if condition="$carrierId eq '430002'">
+        <div id="top-action-content-icons1">
+            <img id="search" src="__ROOT__/Public/img/hd/Home/V13/Home/search1.png">
+            <img id="vip" src="__ROOT__/Public/img/hd/Home/V13/Home/vip1.png">
+            <img id="quit" src="__ROOT__/Public/img/hd/Home/V13/Home/quit.png">
+            <div id="service-tel1">服务电话：4009900901</div>
+        </div>
+    <elseif condition="$carrierId eq '440004'"/>
+        <div id="top-action-content-icons">
+            <img id="search" src="/Public/img/hd/Home/V13/Home/search1.png">
+            <img id="vip" src="/Public/img/hd/Home/V13/Home/vip1.png">
+        </div>
+    <else/>
+        <div id="top-action-content-icons">
+            <if condition="$carrierId eq '320092'">
+                <img id="life" style="position: relative;top: 3px" src="__ROOT__/Public/img/hd/Home/V13/Home/life.png">
+            </if>
+            <if condition="($carrierId neq '371092') OR ($carrierId neq '371002')">
+                <img id="search" src="__ROOT__/Public/img/hd/Home/V13/Home/search_371092.png">
+                <else/>
+                <img id="search" src="__ROOT__/Public/img/hd/Home/V13/Home/search.png">
+            </if>
+
+            <if condition="($carrierId neq '371092') OR ($carrierId neq '371002')">
+                <img id="vip" src="__ROOT__/Public/img/hd/Home/V13/Home/vip_371092.png">
+                <else/>
+                <img id="vip" src="__ROOT__/Public/img/hd/Home/V13/Home/vip.png">
+            </if>
+        </div>
+    </if>
+
+    <!--    导航内容按钮 -->
+    <div id="nav-content-tabs"></div>
+</div>
+
+<script type="text/javascript">
+    var CARRIER_ID_SHANDONG_HICON = '371092'; // 山东电信海看项目区域id
+
+    var thisNavID; // 跳转记录当前导航条焦点
+    var navIsLeave; // 导航条是否离开
+    var previousTabIndex; // 上一个导航焦点
+    var isStartSmallVideo = false;
+    var callbackOnce = true; // 声明执行一次函数
+    var smallVideoTimer = null; // 小窗播放定时器
+    var getJumpKeepFocusTabId = LMEPG.Func.getLocationString('tabId') || 'tab-0';  // 得到跳转页面回来的tab焦点
+    var pathPrefix = g_appRootPath + '/Public/img/hd/Home/V13/Home/';
+
+    /**
+     * 宁夏电信移除帮助按钮
+     */
+    function hideHelpBtn(carrierId) {
+        // if(carrierId == "640092") document.getElementById("help").remove();
+    }
+
+    hideHelpBtn(RenderParam.carrierId);
+
+    function tabMoveUpdate(currentTabIndex) {
+    }
+
+    /**
+     * 导航栏得失焦点回调操作
+     */
+    function tabGetFocus(btn, hasFocus) {
+        var buttonId = btn.id;
+        // 当前导航条的索引
+        console.log("onFocusIn btn id = " + buttonId + "  hasFocus = " + hasFocus)
+        var currentTabIndex = buttonId.slice(-1);
+        if (hasFocus) {
+            lazyLoad(currentTabIndex);
+            // 启动当前内容块轮播
+            startTimer(currentTabIndex);
+            if (Tab0.hasSmallVideo) {
+                // 重置小窗播放的内容块
+                reBuildSmallVideo(currentTabIndex);
+            }else  if(["650092","420092","410092","320092","450092","370092","371092","500092","620092",'150002'].indexOf(RenderParam.carrierId) !== -1 && (Tab0.hasSmallVideo == false)){
+                //二号位兼容改版
+                 Show("link-0");
+            }
+            // 调用内容块控制器
+            tabContentController(currentTabIndex);
+            // 设置不同内容块背景图
+            setBodyBackgroundImage(currentTabIndex);
+            // 初始化变量
+            initializationVariable(btn);
+            // 首次进入执行帮助图文
+            HelpModal.showTabHelp(currentTabIndex);
+        } else {
+            tabLoseFocus(btn, currentTabIndex);
+        }
+        toggleFocus(btn, hasFocus);
+    }
+
+    /**
+     * 各屏幕数据懒加载
+     */
+    function lazyLoad(index) {
+        if (!eval('Tab' + index).isLoad) {
+            eval('Tab' + index).init();
+            eval('Tab' + index).isLoad = true;
+            LMEPG.ButtonManager.init(this.tabId, buttons, '', true);
+            if (index == 0) {
+                if (Tab0.noSmallVideoArea.indexOf(RenderParam.carrierId) === -1) {
+                    Hide('link-0');
+                }
+            }
+        }
+    }
+
+    /**
+     * 销毁/重启小窗播放
+     */
+    function reBuildSmallVideo(index) {
+        clearInterval(smallVideoTimer);
+        if (!+index) {
+            if (index == previousTabIndex) return;
+            // 每次加载Tab0页面，开启小窗播放
+            if (isStartSmallVideo) return;
+            isStartSmallVideo = true;
+            Play.startPollPlay();
+        } else {
+            smallVideoTimer = setInterval(function () {
+                LMEPG.mp.destroy();
+                if (RenderParam.carrierId === '450094') {
+                    iPanel.setGlobalVar("VOD_CTRL_STOP", "1");
+                }
+                if (RenderParam.isRunOnAndroid === '1') {
+                    LMAndroid.hideSmallVideo();
+                }
+            }, 100);
+
+            // 江苏电信华为盒子(EC6110T_pub_jssdx)释放小窗播放方式
+            if (RenderParam.stbModel === 'EC6110T_pub_jssdx' ||
+                RenderParam.stbModel === 'EC6108V9_pub_jssdx' ||
+                RenderParam.stbModel == 'EC6110T_pub_gsgdx' ||
+                RenderParam.stbModel == 'EC6108V9U_pub_gsgdx'
+            ) {
+                G('iframe_small_screen').src = g_appRootPath + '/Public/img/Common/spacer.gif';
+            }
+        }
+    }
+
+    /**
+     * 内容块显隐控制器
+     */
+    function tabContentController(index) {
+        var isShowDisplay = G('content-' + index).style.display;
+        if (isShowDisplay === 'none' || !isShowDisplay) {
+            Hide('content-' + previousTabIndex); // 隐藏上一个tabContent
+            Show('content-' + index); // 显示当前tabContent
+        }
+    }
+
+    /**
+     * 导航栏失去焦点
+     */
+    function tabLoseFocus(btn, index) {
+        // 焦点离开导航设置焦点保持
+        onceFn();
+        previousTabIndex = index;
+        isStartSmallVideo = false;
+        if (navIsLeave) {
+            G(btn.id).src = RenderParam.fsUrl + RenderParam.navConfig[index].img_url.focus_out;
+        }
+    }
+
+    /**
+     * 得到焦点初始化
+     */
+    function initializationVariable(btn) {
+        thisNavID = btn.id; // 标记当前焦点的ID
+        HelpModal.count = 0; // 初始话当前帮助索引为零
+        navIsLeave = false; // 导航得到焦点标记离开状态为false
+    }
+
+    /**
+     * 为不同tab设置不同背景图，主要是tab0有小窗，背景图为镂空的
+     */
+    function setBodyBackgroundImage(index) {
+        var imgPrefix = g_appRootPath + '/Public/img/{$platformType}/Home/V13/Home/';
+        var TP = RenderParam;
+        var bgObj = RenderParam.themeImage;
+
+        //+--------------------主页的背景图设置规则----------------------
+        //优先级：系统配置背景图>自定义皮肤>默认
+        //+-------------------------------------------------------------
+        var bgImg;
+        if (RenderParam.carrierId !== "001006" && bgObj) {
+            bgImg = TP.fsUrl + JSON.parse(bgObj).bottom;
+        } else if (TP.skin['sy'] || TP.skin['cpbjt']) {
+            bgImg = index == 0 ? TP.fsUrl + TP.skin.sy : TP.fsUrl + TP.skin.cpbjt;
+        } else {
+             bgImg = index === '0' ? (imgPrefix + 'bg_home1.png') : (imgPrefix + 'bg.png');
+        }
+        console.log("index-->" + index);
+        LMEPG.Log.info('[header.html]--->[bgImg]--->背景图片地址: ' + bgImg);
+        document.body.style.backgroundImage = 'url(' + bgImg + ')';
+    }
+
+    /**
+     * 启动轮播
+     */
+    function startTimer(currentTabIndex) {
+        if (currentTabIndex == 0) {
+            Tab0.banner.stop();
+            Tab0.bannerData.length > 1 ? Tab0.banner.start() : Hide('point-wrapper');
+        }
+        if (currentTabIndex == 1) {
+            Tab1.banner.stop();
+            Tab1.bannerData.length > 1 ? Tab1.banner.start() : Hide('tab1-point-wrapper');
+        }
+    }
+
+    /**
+     * 通用切换
+     */
+    function toggleFocus(btn, hasFocus) {
+        var btnElement = G(btn.id);
+        if (hasFocus) {
+            btnElement.setAttribute('class', 'focus');
+        } else {
+            btnElement.removeAttribute('class');
+        }
+    }
+
+    /**
+     * 小图标功能区得失焦点
+     */
+    function onFocusIn(btn, hasFocus) {
+        toggleFocus(btn, hasFocus);
+        initDownFocusObj(btn);
+    }
+
+    /**
+     * 小图标下移（搜索左移动）到当前对应内容块导航焦点上
+     */
+    function initDownFocusObj(btn) {
+        LMEPG.BM.getButtonById(btn.id).nextFocusDown = 'tab-' + previousTabIndex;
+        if (RenderParam.carrierId != "320092") {
+            if (btn.id == 'search') {
+                LMEPG.BM.getButtonById('search').nextFocusLeft = 'tab-' + previousTabIndex;
+            }
+        } else {
+            if (btn.id == 'life') {
+                LMEPG.BM.getButtonById('life').nextFocusLeft = 'tab-' + previousTabIndex;
+            }
+        }
+    }
+
+    /**
+     * 导航栏焦点移动之前
+     */
+    function setTabLeaveStatus(key, btn) {
+        var nextFocusId = 'nextFocus' + key.slice(0, 1).toUpperCase() + key.slice(1);
+        var btnObj = G(btn[nextFocusId]);
+        if (btnObj) {
+            // 导航栏向上、下移动设置离开状态
+            if (key == 'up' || key == 'down') {
+                navIsLeave = true;
+            } else {
+                getJumpKeepFocusTabId = false; // 其他页面不是通过返回操作跳转回来初始化该参数
+            }
+            // 山东电信海看上报点击事件
+            var moveToBtnId = btnObj.id;
+            if ((key == "right" || key == "left") && (RenderParam.carrierId == CARRIER_ID_SHANDONG_HICON || RenderParam.carrierId == "371002")&& moveToBtnId.indexOf('tab') > -1) {
+                sendNavEventFoHICON(moveToBtnId);
+            }
+        }
+    }
+
+    /**
+     * 只执行一次函数
+     */
+    function onceFn() {
+        if (callbackOnce && getJumpKeepFocusTabId) {
+            navIsLeave = true;
+            callbackOnce = false;
+            if (typeof getJumpKeepFocusTabId === 'string') {
+                previousTabIndex = getJumpKeepFocusTabId.slice(-1);
+            }
+        }
+    }
+
+    /**
+     * 获取当前页
+     */
+    function getCurPageObj() {
+        var objCurrent = LMEPG.Intent.createIntent('home');
+        objCurrent.setParam('focusId', LMEPG.BM.getCurrentButton().id);
+        objCurrent.setParam('tabId', thisNavID);
+        objCurrent.setParam('bottomPage', +Tab1.bottomPage);
+        return objCurrent;
+    }
+
+    /**
+     * 小图标跳转页面
+     */
+    function jumpPageUI(btn) {
+        if (RenderParam.carrierId === '430002' && (btn.id === 'quit' || btn.id === 'tab3-link-6')) {
+            if (!LMAndroid.isRunOnPc()) {
+                var param = '{\"appId\":\"777777\",\"outDown\":\"1\",\"loadURL\":\"http://124.232.135.212:8082/AppStoreTV4/service/page/newPage/ordertwo.jsp\"}';
+                LMAndroid.JSCallAndroid.quitPay(param, function (resParam, notifyAndroidCallback) {
+
+                });
+            } else {
+                LMEPG.UI.showToast('运行在PC上');
+            }
+
+            return;
+        }
+
+        var currentObj = getCurPageObj(btn);
+        // 通过点击对象id,设置跳转页面对象
+        var jumpPageObj = {
+            'search': 'search',
+            'mark': 'dateMark',
+            'vip': 'orderHome',
+            'set': 'custom',
+            'help': 'helpIndex',
+            'life': 'life'
+        };
+
+        var jumpAgreementObj = LMEPG.Intent.createIntent(jumpPageObj[btn.id]);
+        // 跳转的订购页面
+        if (jumpPageObj[btn.id] == 'orderHome') {
+            if (LMEPG.Func.isAllowAccess(RenderParam.isVip, ACCESS_NO_TYPE)) {
+                modal.commonDialog({
+                    beClickBtnId: btn.id,
+                    onClick: modal.hide
+                }, '<span style="color: #ef6188">您已是VIP会员，不能重复订购</span>', '海量健康资讯', '为您的家人健康保驾护航');
+                return;
+            } else {
+                jumpAgreementObj.setParam('userId', RenderParam.userId);
+                jumpAgreementObj.setParam('isPlaying', '0');
+                jumpAgreementObj.setParam('remark', '主动订购');
+            }
+        } else if (jumpPageObj[btn.id] == 'life') {
+            var url = 'http://180.100.135.12:8296/life/superior/login';
+            window.location.href = url;
+            return;
+        }
+        LMEPG.Intent.jump(jumpAgreementObj, currentObj);
+    }
+
+    /**
+     * 点击童锁
+     */
+    function lockBeClick() {
+        if (RenderParam.payLockStatus == "0") {
+            // 童锁未开启，开启童锁
+            var postData = {
+                'flag': 1,
+                'focusIndex': 'lock',
+                'returnPageName': "home"
+            };
+            LMEPG.ajax.postAPI("Pay/getPayLockSetUrl", postData, function (data) {
+                if (data.result == 0) {
+                    window.location.href = data.url;
+                }
+            });
+            return;
+        }
+        if (RenderParam.payLockStatus == "1") {
+            // 童锁已开启，关闭童锁
+            var postData = {
+                'flag': 0,
+                'focusIndex': 'lock',
+                'returnPageName': "home"
+            };
+            LMEPG.ajax.postAPI("Pay/getPayLockSetUrl", postData, function (data) {
+                if (data.result == 0) {
+                    window.location.href = data.url;
+                }
+            });
+            return;
+        }
+        // 查询童锁的状态异常。
+    }
+
+    var searchNormalImage = 'search.png';  // 搜索图片
+    var searchFocusImage = 'search_f.png'; // 搜索获取焦点图片
+    var orderNormalImage = "vip.png";      // 订购图片
+    var orderFocusImage = "vip_f.png";     // 订购获取焦点图片
+    var helpNormalImage = "help.png";      // 帮组图片
+    var helpFocusImage = "help_f.png";     // 帮组获取焦点图片
+    (function () {
+        if (RenderParam.carrierId === '440004') { // 广西广电
+            searchNormalImage = 'search1.png';
+            orderNormalImage = "vip1.png";
+        } else if(RenderParam.carrierId === "371092" || RenderParam.carrierId === "371002"){ // 山东海看epg\山东海看apk
+            searchFocusImage = 'search_371092_f.png';
+            orderFocusImage = "vip_371092_f.png";
+            helpFocusImage = "help_371092_f.png";
+        }
+    })();
+
+    var buttons = RenderParam.carrierId === '430002'?[
+            {
+                id: 'search',
+                name: '搜索图标',
+                type: 'img',
+                nextFocusLeft: 'tab-3',
+                nextFocusRight: 'vip',
+                nextFocusDown: 'tab-0',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Home/V13/Home/search1.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Home/V13/Home/search_f.png',
+                click: jumpPageUI,
+                //beforeMoveChange: onBeforeMoveChanged_Header,
+                focusChange: onFocusIn
+            }, {
+                id: 'vip',
+                name: 'VIP图标',
+                type: 'img',
+                nextFocusLeft: 'search',
+                nextFocusRight: 'quit',
+                nextFocusDown: 'tab-0',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Home/V13/Home/vip1.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Home/V13/Home/vip_f.png',
+                click: jumpPageUI,
+                //beforeMoveChange: onBeforeMoveChanged_Header,
+                focusChange: onFocusIn
+            }, {
+                id: 'quit',
+                name: 'VIP图标',
+                type: 'img',
+                nextFocusLeft: 'vip',
+                nextFocusRight: 'mark',
+                nextFocusDown: 'tab-0',
+                backgroundImage: g_appRootPath + '/Public/img/hd/Home/V13/Home/quit.png',
+                focusImage: g_appRootPath + '/Public/img/hd/Home/V13/Home/quit_f.png',
+                click: jumpPageUI,
+                //beforeMoveChange: onBeforeMoveChanged_Header,
+                focusChange: onFocusIn
+            }, {
+                id: 'tab-0',
+                name: '第一个导航',
+                type: 'img',
+                nextFocusLeft: 'tab-3',
+                nextFocusRight: 'tab-1',
+                nextFocusUp: 'search',
+                nextFocusDown: 'video-TV',
+                backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[0].img_url.normal,
+                focusImage: RenderParam.fsUrl + RenderParam.navConfig[0].img_url.focus_in,
+                // selectedImage: RenderParam.fsUrl + RenderParam.navConfig[0].img_url.focus_out,
+                focusChange: tabGetFocus,
+                beforeMoveChange: setTabLeaveStatus
+            }, {
+                id: 'tab-1',
+                name: '第二个导航',
+                type: 'img',
+                nextFocusLeft: 'tab-0',
+                nextFocusRight: 'tab-2',
+                nextFocusUp: 'search',
+                nextFocusDown: 'tab1-link',
+                backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[1].img_url.normal,
+                focusImage: RenderParam.fsUrl + RenderParam.navConfig[1].img_url.focus_in,
+                // selectedImage: RenderParam.fsUrl + RenderParam.navConfig[1].img_url.focus_out,
+                focusChange: tabGetFocus,
+                beforeMoveChange: setTabLeaveStatus
+            }, {
+                id: 'tab-2',
+                name: '第三个导航',
+                type: 'img',
+                nextFocusLeft: 'tab-1',
+                nextFocusRight: 'tab-3',
+                nextFocusUp: 'search',
+                nextFocusDown: 'sift-2',
+                backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[2].img_url.normal,
+                focusImage: RenderParam.fsUrl + RenderParam.navConfig[2].img_url.focus_in,
+                // selectedImage: RenderParam.fsUrl + RenderParam.navConfig[2].img_url.focus_out,
+                focusChange: tabGetFocus,
+                beforeMoveChange: setTabLeaveStatus
+            }, {
+                id: 'tab-3',
+                name: '第四个导航',
+                type: 'img',
+                nextFocusLeft: 'tab-2',
+                nextFocusRight: 'search',
+                nextFocusUp: 'search',
+                nextFocusDown: 'tab3-link-1',
+                backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[3].img_url.normal,
+                focusImage: RenderParam.fsUrl + RenderParam.navConfig[3].img_url.focus_in,
+                // selectedImage: RenderParam.fsUrl + RenderParam.navConfig[3].img_url.focus_out,
+                focusChange: tabGetFocus,
+                beforeMoveChange: setTabLeaveStatus
+            }, {
+                id: 'debug',
+                name: '脚手架ID',
+                type: 'others',
+                click: HelpModal.showTabHelp,
+                beforeMoveChange: HelpModal.showTabHelp
+            }
+        ] :
+        [{
+            id: 'life',
+            name: '优品生活首页',
+            type: 'img',
+            nextFocusLeft: 'tab-3',
+            nextFocusRight: 'search',
+            nextFocusDown: 'tab-0',
+            backgroundImage: pathPrefix + 'life.png',
+            focusImage: pathPrefix + 'life_f.png',
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        },
+        {
+            id: 'search',
+            name: '搜索图标',
+            type: 'img',
+            nextFocusLeft: RenderParam.carrierId == "320092" ? 'life' : 'tab-3',
+            nextFocusRight: 'vip',
+            nextFocusDown: 'tab-0',
+            backgroundImage: pathPrefix + searchNormalImage,
+            focusImage: pathPrefix + searchFocusImage,
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, {
+            id: 'mark',
+            name: '签到图标',
+            type: 'img',
+            nextFocusLeft: 'search',
+            nextFocusRight: RenderParam.carrierId == "610092" ? 'set' : 'vip',
+            nextFocusDown: 'tab-0',
+            backgroundImage: pathPrefix + 'mark.png',
+            focusImage: pathPrefix + 'mark_f.png',
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, {
+            id: 'vip',
+            name: 'VIP图标',
+            type: 'img',
+            nextFocusLeft: 'search',
+            nextFocusRight: 'help',
+            nextFocusDown: 'tab-0',
+            backgroundImage: pathPrefix + orderNormalImage,
+            focusImage: pathPrefix + orderFocusImage,
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, {
+            id: 'set',
+            name: '设置图标',
+            type: 'img',
+            nextFocusLeft: RenderParam.carrierId == "610092" ? 'mark' : 'vip',
+            nextFocusRight: 'help',
+            nextFocusDown: 'tab-0',
+            backgroundImage: pathPrefix + 'set.png',
+            focusImage: pathPrefix + 'set_f.png',
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, {
+            id: 'help',
+            name: '帮助图标',
+            type: 'img',
+            nextFocusLeft: 'vip',
+            nextFocusRight: RenderParam.showPayLock == 1 ? 'lock' : '',
+            nextFocusUp: '',
+            nextFocusDown: 'tab-0',
+            backgroundImage: pathPrefix + helpNormalImage,
+            focusImage: pathPrefix + helpFocusImage,
+            click: jumpPageUI,
+            focusChange: onFocusIn
+        }, {
+            id: 'lock',
+            name: '童锁图标',
+            type: 'img',
+            nextFocusLeft: 'help',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'tab-0',
+            backgroundImage: RenderParam.payLockStatus == 1 ? pathPrefix + 'lock_open.png' : pathPrefix + 'lock_close.png',
+            focusImage: RenderParam.payLockStatus == 1 ? pathPrefix + 'lock_open_f.png' : pathPrefix + 'lock_close_f.png',
+            click: lockBeClick,
+            focusChange: onFocusIn
+        }, {
+            id: 'tab-0',
+            name: '第一个导航',
+            type: 'img',
+            nextFocusLeft: 'tab-3',
+            nextFocusRight: 'tab-1',
+            nextFocusUp: RenderParam.carrierId == "320092" ? 'life' : 'search',
+            nextFocusDown: 'video-TV',
+            backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[0].img_url.normal,
+            focusImage: RenderParam.fsUrl + RenderParam.navConfig[0].img_url.focus_in,
+            focusChange: tabGetFocus,
+            moveChange: tabMoveUpdate,
+            beforeMoveChange: setTabLeaveStatus
+        }, {
+            id: 'tab-1',
+            name: '第二个导航',
+            type: 'img',
+            nextFocusLeft: 'tab-0',
+            nextFocusRight: 'tab-2',
+            nextFocusUp: RenderParam.carrierId == "320092" ? 'life' : 'search',
+            nextFocusDown: 'tab1-link',
+            backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[1].img_url.normal,
+            focusImage: RenderParam.fsUrl + RenderParam.navConfig[1].img_url.focus_in,
+            focusChange: tabGetFocus,
+            moveChange: tabMoveUpdate,
+            beforeMoveChange: setTabLeaveStatus
+        }, {
+            id: 'tab-2',
+            name: '第三个导航',
+            type: 'img',
+            nextFocusLeft: 'tab-1',
+            nextFocusRight: 'tab-3',
+            nextFocusUp: RenderParam.carrierId == "320092" ? 'life' : 'search',
+            nextFocusDown: 'sift-2',
+            backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[2].img_url.normal,
+            focusImage: RenderParam.fsUrl + RenderParam.navConfig[2].img_url.focus_in,
+            focusChange: tabGetFocus,
+            moveChange: tabMoveUpdate,
+            beforeMoveChange: setTabLeaveStatus
+        }, {
+            id: 'tab-3',
+            name: '第四个导航',
+            type: 'img',
+            nextFocusLeft: 'tab-2',
+            nextFocusRight: RenderParam.carrierId === '430012' ? 'search' : 'tab-0',
+            nextFocusUp: 'search',
+            nextFocusDown: 'tab3-link-1',
+            backgroundImage: RenderParam.fsUrl + RenderParam.navConfig[3].img_url.normal,
+            focusImage: RenderParam.fsUrl + RenderParam.navConfig[3].img_url.focus_in,
+            focusChange: tabGetFocus,
+            moveChange: tabMoveUpdate,
+            beforeMoveChange: setTabLeaveStatus
+        }, {
+            id: 'debug',
+            name: '脚手架ID',
+            type: 'others',
+            click: HelpModal.showTabHelp,
+            beforeMoveChange: HelpModal.showTabHelp
+        }];
+
+    function sendNavEventFoHICON(navId) {
+
+        var turnPageInfo = {
+            currentPage: location.href,   // 跳转前页面
+            turnPage: location.href,      // 当前页面
+            turnPageName: "",  // 当前页面名称
+            turnPageId: "",    // 当前页面：详情页节目code/列表页categoryid/专题id
+            clickId: ""        // 推荐位Id,由海看分配
+        };
+        switch (navId) {
+            case 'tab-0':
+                turnPageInfo.turnPageName = "首页-推荐";
+                turnPageInfo.clickId = '39JKTJ';
+                break;
+            case 'tab-1':
+                turnPageInfo.turnPageName = "首页-发现";
+                turnPageInfo.clickId = '39JKFX';
+                break;
+            case 'tab-2':
+                turnPageInfo.turnPageName = "首页-精选专题";
+                turnPageInfo.clickId = '';//39JKJXZT
+                break;
+            case 'tab-3':
+                turnPageInfo.turnPageName = "首页-我的";
+                turnPageInfo.clickId = '39JKWD';
+                break;
+        }
+        ShanDongHaiKan.sendReportData('6', turnPageInfo);
+    }
+</script>

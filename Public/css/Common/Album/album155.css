@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    /*position:absolute;;*/
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    top: 0px
+}
+
+#small-video-wrap{
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#small-video {
+    top: 524px;
+    left: 676px;
+}
+
+.hd-corner-mark{
+    top: 517px;
+    left: 737px;
+    visibility: hidden;
+}
+
+.hd-back {
+    top: 16px;
+    left: 1175px;
+}
+
+.hd-view-more {
+    top: 16px;
+    left: 1042px;
+}
+
+.hd-video-list {
+    top: 65px;
+    left: 726px;
+    /*border: 1px red solid;*/
+}
+/*#video-1{*/
+    /*position: absolute;*/
+    /*top: 65px;*/
+    /*left: 726px;*/
+/*}*/
+/*#video-2{*/
+    /*position: absolute;*/
+    /*top: 65px;*/
+    /*left: 826px;*/
+/*}*/
+/*#video-3{*/
+    /*position: absolute;*/
+    /*top: 65px;*/
+    /*left: 936px;*/
+/*}*/
+/*#video-4{*/
+    /*position: absolute;*/
+    /*top: 65px;*/
+    /*left: 1036px;*/
+/*}*/
+.hd-video-list img{
+    margin-right: 50px;
+}
+
+.hd-v-arrow {
+    top: 280px;
+}
+
+.hd-v-prev {
+    left: 667px;
+    visibility: hidden;
+}
+
+.hd-v-next {
+    left: 1177px;
+}
+
+/*==============SD==================*/
+.sd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+.sd-body{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    /*border: 1px solid red;*/
+}
+.sd-view-more {
+    position:absolute;
+    top: 14px;
+    left: 473px;
+    width: 77px;
+    height: 32px;
+}
+
+.sd-back {
+    position: absolute;
+    top: 14px;
+    left: 561px;
+    width: 55px;
+    height: 32px;
+}
+
+.sd-video-list {
+    position:absolute;
+    top: 86px;
+    left: 316px;
+    width: 308px;
+    height: 277px;
+    /*border: 1px red solid;*/
+}
+
+.sd-video-list img {
+    /*position: absolute;*/
+    width: 54px;
+    height: 297px;
+    margin-right: 21px;
+}
+
+.sd-v-arrow {
+    position:absolute;
+    top: 231px;
+    width: 18px;
+    height: 28px;
+}
+
+.sd-v-prev {
+    left: 283px;
+    visibility: hidden;
+}
+
+.sd-v-next {
+    left: 620px;
+}
+
+

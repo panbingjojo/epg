@@ -1,0 +1,228 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #ffffff;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+div {
+    position: absolute;
+}
+
+div#focus-1-1 {
+    width: 169px;
+    height: 67px;
+    left: 63px;
+    top: 136px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-1-1_marquee {
+    color: black;
+}
+
+div#focus-1-2 {
+    width: 169px;
+    height: 67px;
+    left: 301px;
+    top: 136px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-1-2_marquee {
+   color: black;
+}
+
+div#focus-2-1 {
+    width: 169px;
+    height: 67px;
+    left: 63px;
+    top: 228px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-2-1_marquee {
+    color: black;
+}
+
+div#focus-2-2 {
+    width: 169px;
+    height: 67px;
+    left: 301px;
+    top: 228px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-2-2_marquee {
+    color: black;
+}
+
+div#focus-3-1 {
+    width: 169px;
+    height: 67px;
+    left: 63px;
+    top: 320px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-3-1_marquee {
+    color: black;
+}
+
+div#focus-3-2 {
+    width: 169px;
+    height: 67px;
+    left: 301px;
+    top: 320px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-3-2_marquee {
+    color: black;
+}
+
+div#focus-4-1 {
+    width: 169px;
+    height: 67px;
+    left: 63px;
+    top: 412px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-4-1_marquee {
+    color: black;
+}
+
+div#focus-4-2 {
+    width: 169px;
+    height: 67px;
+    left: 301px;
+    top: 412px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-4-2_marquee {
+    color: black;
+}
+
+div#focus-5-1 {
+    width: 169px;
+    height: 67px;
+    left: 63px;
+    top: 504px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-5-1_marquee {
+    color: black;
+}
+
+div#focus-5-2 {
+    width: 169px;
+    height: 67px;
+    left: 301px;
+    top: 504px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-5-2_marquee {
+    color: black;
+}
+
+div#focus-6-1 {
+    width: 169px;
+    height: 67px;
+    left: 63px;
+    top: 586px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-6-1_marquee {
+    color: black;
+}
+
+div#focus-6-2 {
+    width: 169px;
+    height: 67px;
+    left: 301px;
+    top: 586px;
+    font-size: 22px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V1/area_btn_out.png');
+    line-height: 67px;
+    text-align: center;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+
+#focus-6-2_marquee {
+    color: black;
+}

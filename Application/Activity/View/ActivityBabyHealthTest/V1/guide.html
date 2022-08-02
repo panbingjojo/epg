@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html style="width: 1280px">
+<head>
+    <title>宝宝健康大测评V1-首页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityBabyHealthTest/V1/guide.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+
+    <script>var carrierId = {$carrierId};</script>
+    <if condition="$carrierId eq '07430093' ">
+        <!--湖南联通芒果TV 07430093js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/mongoTV/webview.js?t={$time}"></script>
+    </if>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <!-- <script type="text/javascript"
+             src="__ROOT__/Public/js/Activity/ActivityBabyHealthTest/PopRule.js?t={$time}"></script>-->
+
+    <!--页面跳转-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            carrierId: "{$carrierId}"
+        };
+
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("isNeedJumpMain", "true");
+            return objCurrent;
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         * @param answerType 答题类型：1-趣味小常识 2-心理测试 3-亚健康测试
+         */
+        function jumpPlayUI(answerType) {
+            var objCurrent = getCurrentPage();
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            LMEPG.Intent.jump(objActivityHome, objCurrent);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+        }
+
+    </script>
+</head>
+<body>
+
+<!-- 入口 -->
+<div id="entry-page">
+    <img id="modal-bg"
+         src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/bg_entry_{$phase}.png" alt="">
+    <img id="entry-btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/entry_btn.gif"
+         alt="">
+</div>
+
+<!-- 引导主页面 -->
+<div id="main">
+    <img id="bg-guide"
+         src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/bg_guide_{$phase}.png" alt="">
+    <!--<div id="time">活动时间：2019.3.1 - 2019.3.31</div>-->
+    <div id="left-times"></div>
+    <!--<div id="tips">参与活动的用户有且只有一次测试机会。</div>-->
+    <div id="phone" style="visibility: hidden;">客服电话：400-666-9882</div>
+    <img id="back-btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/back_btn_out.png"
+         alt="">
+    <if condition="$carrierId neq '640094' ">
+        <img id="unsubscribe-btn"
+             src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/unsubscribe_btn_out.png"
+             alt="">
+    </if>
+    <img id="begin-btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/begin_btn_out.png"
+         alt="">
+</div>
+<script type="text/javascript" src="__ROOT__/Public/js/Unclassified/by640092Set.js"></script>
+<script type="text/javascript">
+    var carrierId = "{$carrierId}";
+    var isTested = {$isTested}; // 是否测试过（0-没有 1-测试过）
+    // var isTested = 0; // 是否测试过（0-没有 1-测试过）
+    //VIP 用户不限制游戏次数，普通用户原逻辑
+    var isVip = '{$isVip}';
+    isVip == '1' ? isTested = 0 : '';
+
+    var isNeedJumpMain = "{$isNeedJumpMain}"; // 如果从答题页面返回，则需要直接显示主页面
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = "__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/";
+
+    if(RenderParam.carrierId === '440004' || RenderParam.carrierId === '440001' ){
+        G('modal-bg').src ='/Public/img/hd/Activity/ActivityBabyHealthTest/V1/440004/modal_bg.png'
+        G('entry-btn').src='/Public/img/hd/Activity/ActivityBabyHealthTest/V1/440004/modal_btn.png'
+    }
+
+    var buttons = [
+        {
+            id: 'entry-btn',
+            name: '开启健康之旅',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            backgroundImage: '',
+            focusImage: '',
+            click: jumpGuideMain,
+            focusChange: '',
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'back-btn',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: carrierId == '650092' || carrierId == '320092' || carrierId == '370092' || carrierId == '640094' || carrierId == '07430093' || carrierId == '500092' || carrierId == '000709' ? 'begin-btn' : 'unsubscribe-btn',
+            backgroundImage: imgPathPrefix + 'back_btn_out.png',
+            focusImage: imgPathPrefix + 'back_btn_in.png',
+            click: onBack,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'unsubscribe-btn',
+            name: '退订',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusUp: 'back-btn',
+            nextFocusDown: 'begin-btn',
+            backgroundImage: imgPathPrefix + 'unsubscribe_btn_out.png',
+            focusImage: imgPathPrefix + 'unsubscribe_btn_in.png',
+            click: unSubscribe,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'begin-btn',
+            name: '开始测评/测评记录',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: carrierId == '650092' || carrierId == '320092' || carrierId == '370092' || carrierId == '640094' || carrierId == '07430093' || carrierId == '500092' ||  carrierId == '000709'? 'back-btn' : 'unsubscribe-btn',
+            nextFocusDown: '',
+            backgroundImage: isTested == 1 ? imgPathPrefix + 'record_btn_out.png' : imgPathPrefix + 'begin_btn_out.png',
+            focusImage: isTested == 1 ? imgPathPrefix + 'record_btn_in.png' : imgPathPrefix + 'begin_btn_in.png',
+            click: beginTest,
+            focusChange: onFocusChanged,
+            beforeMoveChange: "",
+            moveChange: ""
+        }
+    ];
+
+    window.onload = function () {
+
+        initButton();
+        if (RenderParam.carrierId === '450092' || RenderParam.carrierId === '000709') { // 去掉退订按钮
+            delNode('unsubscribe-btn');
+            LMEPG.BM._buttons['begin-btn'].nextFocusUp = 'back-btn';
+            LMEPG.BM._buttons['begin-btn'].nextFocusRight = 'back-btn';
+            LMEPG.BM._buttons['back-btn'].nextFocusDown = 'begin-btn';
+            LMEPG.BM._buttons['back-btn'].nextFocusLeft = 'begin-btn';
+        }
+        if (isNeedJumpMain == "true") {
+            jumpGuideMain();
+        }
+
+        if (RenderParam.carrierId === "640092") {
+            var el = G('unsubscribe-btn');
+            el.parentNode.removeChild(el);
+            LMEPG.BM._buttons['begin-btn'].nextFocusUp = 'back-btn';
+            LMEPG.BM._buttons['back-btn'].nextFocusDown = 'begin-btn';
+        }
+    };
+
+    /** 记录焦点保持 */
+    function onFocusChanged(btn, hasFocus) {
+        if (hasFocus && btn && btn.id) {
+            focusedId = btn.id;
+        }
+    }
+
+    /** 退订*/
+    function unSubscribe() {
+        var objCurrent = getCurrentPage();
+        var objThirdPartySP = LMEPG.Intent.createIntent("activity-go-cancel-order-page");
+        objThirdPartySP.setParam("userId", "{$userId}");
+
+        LMEPG.Intent.jump(objThirdPartySP, objCurrent);
+    }
+
+    /**
+     * 初始化焦点
+     */
+    function initButton() {
+        // 江苏电信、山东电信，隐藏“退订”按钮
+        if (carrierId == '650092' || carrierId == '320092' || carrierId == '370092' || carrierId == '620092' || carrierId == '07430093' || carrierId == '500092') {
+            G('unsubscribe-btn').style.display = 'none';
+        }
+        LMEPG.ButtonManager.init("entry-btn", buttons, '', true);
+    }
+
+    /**
+     * 显示引导主页面
+     */
+    function jumpGuideMain() {
+        // 目前标清盒子不能进入该活动
+        if ("{$platformType}" == "sd") {
+            LMEPG.UI.showToast("暂不支持该功能", 3, function () {
+                onBack();
+            });
+        } else {
+            Hide("entry-page");
+            G("main").style.display = "block";
+            if (isTested == 1) {
+                G("left-times").innerHTML = "剩余评测次数：0"
+            } else {
+                if (isVip == "1") {
+                    G("left-times").innerHTML = "";
+                } else {
+                    G("left-times").innerHTML = "剩余评测次数：1";
+                }
+            }
+            LMEPG.BM.requestFocus("begin-btn");
+        }
+    }
+
+    /**
+     * 开始测评/测评记录
+     */
+    function beginTest() {
+        if (isTested == 0) {
+            // 开始测评
+            jumpPlayUI();
+        } else {
+            // 测评结果
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+    }
+</script>
+</body>
+</html>

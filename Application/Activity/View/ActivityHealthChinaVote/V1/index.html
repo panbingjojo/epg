@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>"健康中国·传承中医药文化"</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityHealthChinaVote/V1/index.css?t={$time}">
+    <style type="text/css">
+        body {
+            background-image: url("{$activityFsImg}{$platformType}/bg_home.png");
+        }
+
+        .modal {
+            background-image: url("{$activityFsImg}{$platformType}/bg_vote.png");
+        }
+
+        #winner_list {
+            background-image: url("{$activityFsImg}{$platformType}/bg_winner_list.png");
+        }
+
+        /*#vote-container {*/
+            /*background-image: url("{$activityFsImg}{$platformType}/bg_vote.png");*/
+        /*}*/
+
+        #exchange_prize {
+            background-image: url("{$activityFsImg}{$platformType}/V{$carrierId}/bg_exchange_prize.png");
+        }
+
+        #game_over {
+            background-image: url("{$activityFsImg}{$platformType}/no_times.png");
+        }
+
+        #order_vip {
+            background-image: url("{$activityFsImg}{$platformType}/bg_order_vip.png");
+        }
+
+        #exchange_success {
+            background-image: url("{$activityFsImg}{$platformType}/bg_exchange_success.png");
+        }
+
+        #countdown {
+            background-image: url("{$activityFsImg}{$platformType}/bg_countdown.png");
+        }
+
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown},
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: '{$score}',
+            // lotteryRecordList: {$lotteryRecordList},
+            // myLotteryRecord: {$myLotteryRecord},
+            // exchangeRecordList: {$exchangeRecordList},
+            // exchangePrizeList: {$exchangePrizeList},
+        };
+        window.onload = function () {
+            Activity.init();
+            lmInitGo();
+        };
+        // window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
+        //     LMEPG.UI.logPanel.show("错误信息：" + errorMessage);
+        //     LMEPG.UI.logPanel.show("出错文件：" + scriptURI);
+        //     LMEPG.UI.logPanel.show("出错行号：" + lineNumber);
+        //     LMEPG.UI.logPanel.show("出错列号：" + columnNumber);
+        //     LMEPG.UI.logPanel.show("错误详情：" + errorObj);
+        // };
+    </script>
+
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityHealthChinaVote/V1/index.js?t={$time}"></script>
+
+</head>
+<body id="body">
+    <div id="debug"></div>
+    <if condition="$carrierId neq 640094">
+        <a href="#" id="default_link"></a>
+    </if>
+    <!--游戏剩余次数-->
+    <div id="left_times"> {$activityTimes}</div>
+    <!--积分-->
+    <!--<div id="score">{$score}</div>-->
+
+    <div id="btn_container">
+        <img src="{$activityFsImg}{$platformType}/btn_back.png" id="btn_back">
+        <img src="{$activityFsImg}{$platformType}/btn_activity_rule.png" id="btn_activity_rule">
+        <img src="{$activityFsImg}{$platformType}/btn_rank.png" id="btn_rank">
+        <img src="{$activityFsImg}{$platformType}/btn_more.png" id="btn_more">
+        <img src="{$activityFsImg}{$platformType}/btn_start.png" id="btn_start">
+    </div>
+
+    <!--活动规则-->
+    <div id="activity_rule" class="modal">
+        <!--活动规则图素js写入-->
+        <img src="{$activityFsImg}{$platformType}/bg_activity_rule.png" id="bg_activity_rule">
+        <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_rule" class="btn_close">
+    </div>
+
+    <!--投票专区-->
+    <div id="vote-container"  class="modal">
+        <img src="{$activityFsImg}{$platformType}/bg_vote.png" id="bg_vote">
+        <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_vote" class="btn_close">
+        <div id = "vote-wrap">
+            <table class="vote-table">
+
+            </table>
+        </div>
+
+        <div id="page-wrapper">
+            <img id="btn_prev_page_vote" src="{$activityFsImg}{$platformType}/btn_prev_page.png" alt="">
+            <p id="vote-page-index">0/0</p>
+            <img id="btn_next_page_vote" src="{$activityFsImg}{$platformType}/btn_next_page.png" alt="">
+        </div>
+    </div>
+
+
+    <!--更多精彩-->
+    <div id="more-container"  class="modal">
+        <img src="{$activityFsImg}{$platformType}/bg_more.png" id="bg_more">
+        <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_more" class="btn_close">
+        <div id = "more-wrap">
+            <table class="more-table">
+
+            </table>
+        </div>
+
+        <div id="more-page-wrapper">
+            <img id="btn_prev_page_more" src="{$activityFsImg}{$platformType}/btn_prev_page.png" alt="">
+            <p id="more-page-index">0/0</p>
+            <img id="btn_next_page_more" src="{$activityFsImg}{$platformType}/btn_next_page.png" alt="">
+        </div>
+    </div>
+
+    <!--排行榜-->
+    <div id="rank-container" class="modal">
+        <img src="{$activityFsImg}{$platformType}/bg_rank.png" id="bg_rank">
+        <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_rank" class="btn_close">
+
+        <div id = "rank-wrap">
+            <table class="rank-table">
+
+            </table>
+        </div>
+
+        <div id="arrow-wrapper">
+            <img id="btn_prev_page_rank" src="{$activityFsImg}{$platformType}/left.png" alt="">
+            <img id="btn_next_page_rank" src="{$activityFsImg}{$platformType}/right.png" alt="">
+        </div>
+        <p id="rank-page-index">0/0</p>
+    </div>
+
+    <!--游戏结束-->
+    <!--<div id="game_over" class="modal">-->
+    <div id="game_over"  class="modal">
+        <img src="{$activityFsImg}{$platformType}/no_times.png" id="no_times">
+        <img src="{$activityFsImg}{$platformType}/btn_sure.png" id="btn_game_over_sure">
+    </div>
+    <!--倒计时-->
+    <div id="countdown" class="modal">
+        <div id="count"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-image: url("../../../../img/Activity/ActivitySpring/V1/play_bg_.png");
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+#btn-back {
+    position: absolute;
+    top: 20px;
+    left: 550px;
+    z-index: 0;
+    outline: none !important;
+    width: 77px;
+    height: 26px;
+
+}
+
+#btn-area1 {
+    position: absolute;
+    top: 128px;
+    left: 0px;
+    z-index: 0;
+    outline: none !important;
+    width: 274px;
+    height: 174px;
+}
+#btn-area2 {
+    position: absolute;
+    top: 158px;
+    left: 241px;
+    z-index: 3;
+    width: 402px;
+    height: 138px;
+    outline: none !important;
+}
+#btn-area3{
+    position: absolute;
+    top: 251px;
+    left: 0px;
+    z-index: 0;
+    width: 454px;
+    height: 279px;
+    outline: none !important;
+}
+
+#btn-area4 {
+    position: absolute;
+    top: 228px;
+    left: 407px;
+    z-index: 0;
+    width: 237px;
+    height: 208px;
+    outline: none !important;
+}
+#btn-area5 {
+    position: absolute;
+    top: 370px;
+    left: 246px;
+    z-index: 0;
+    width: 398px;
+    height: 160px;
+    outline: none !important;
+}

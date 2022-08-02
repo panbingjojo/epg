@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+.title-head {
+    position: absolute;
+    top: 118px;
+    left: 80px;
+    width: 1090px;
+    height: 140px;
+    border-radius: 5px;
+    background: url(../../../../../img/hd/HealthTest/V8/Wristband/long_box.png) no-repeat;
+    /*border: 1px red solid;*/
+}
+.epg-table tr th{
+    height: 1px !important;
+}
+
+
+
+.container {
+    position: absolute;
+    font-family: 'SourceHanSansCN-Regular';
+    top: 280px;
+    left: 80px;
+    width: 1120px;
+    height: 408px;
+    /*border: 1px red solid;*/
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+#scroll-wrapper {
+    position: absolute;
+    font-family: 'SourceHanSansCN-Regular';
+    top: 100px !important;
+    left: 0px;
+    width: 1120px !important;
+    height: 308px !important;
+    overflow: auto;
+    /*border: 1px red solid;*/
+}
+.des-bar {
+    /*position: absolute;*/
+    /*top: 53px;*/
+    margin-top: 13px;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 50px;
+    box-sizing: border-box;
+    /*border: 1px red solid;*/
+    text-align: center;
+}
+
+#low {
+    position: absolute;
+    left: 250px;
+}
+
+#middle {
+    position: absolute;
+    left: 750px;
+}
+
+.tab-list {
+    margin-left: 30px;
+}
+
+.tab-list img {
+    margin: 20px;
+}
+.epg-table tr th{
+    height: 0px;
+}
+.epg-table tr td{
+    width: 33%;
+   text-align: center;
+}
+.arrow{
+    position: absolute;
+    top: 290px !important;
+}

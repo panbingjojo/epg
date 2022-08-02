@@ -1,0 +1,138 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+.tb1 {
+    position: absolute;
+    top: 180px;
+    left: 146px;
+    width: 314px;
+    height: 376px;
+}
+
+.tb2 {
+    position: absolute;
+    top: 180px;
+    left: 492px;
+    width: 314px;
+    height: 179px;
+}
+
+.tb5 {
+    position: absolute;
+    top: 378px;
+    left: 492px;
+    width: 314px;
+    height: 179px;
+}
+
+.tb3 {
+    position: absolute;
+    top: 180px;
+    left: 838px;
+    width: 314px;
+    height: 179px;
+}
+
+.tb4 {
+    position: absolute;
+    top: 378px;
+    left: 838px;
+    width: 314px;
+    height: 179px;
+}
+
+#focus-1-2-box {
+    position: absolute;
+    top: 138px;
+    left: 108px;
+    width:395px;
+    height: 461px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-1-3-box {
+    position: absolute;
+    top: 138px;
+    left: 454px;
+    width: 395px;
+    height: 249px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-2-3-box {
+    position: absolute;
+    top: 336px;
+    left: 454px;
+    width: 395px;
+    height: 249px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-1-4-box {
+    position: absolute;
+    top: 137px;
+    left: 800px;
+    width: 395px;
+    height: 249px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-2-4-box {
+    position: absolute;
+    top: 336px;
+    left: 801px;
+    width: 393px;
+    height: 247px;
+    visibility: hidden;
+    z-index: 1
+}
+
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.none {
+    visibility: hidden !important;
+}
+
+.show {
+    visibility: visible !important;
+}
+
+.imghover {
+    width: 108%;
+    height: 108%;
+    z-index: 1;
+    position: absolute;
+    top: -15px;
+    left: -10px;
+    outline: none;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+}

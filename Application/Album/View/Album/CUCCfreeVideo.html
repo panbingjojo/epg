@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>免费专区-中国联通</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Album/CUCCfreeVideo/freeVideo.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+		var RenderParam = {
+			//公共渲染
+			carrierId: '{$carrierId}',          // 地区id
+			areaCode: '{$areaCode}',            // 省份地区码
+			platformType: '{$platformType}',    // 平台类型
+			debug: '{$debug}',                  // 调试模式
+			pageSize: '{$size}',                // 页面尺寸
+			stbModel: '{$stbModel}',            // 盒子的型号
+			fsUrl: '{$resourcesUrl}',           // fs 地址
+			time: '{$time}',                    // 开始渲染时间
+			userId: '{$userId}',                // 用户Id
+			inner: '{$inner}',
+			isVip: '{$isVip}',                  // 是否vip
+
+			albumName: '{$albumName}',          // 专辑名称
+			focus_index: '{$focus_index}',      // 焦点保持-焦点id
+			focusPages: '{$focusPages}',        // 焦点保持-页数
+
+			skin: {$skin}      // 用户自定义背景
+		};
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<p class="title">免费专区</p>
+<div id="list-container">
+    <img id="prev-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/left.png">
+    <img id="next-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/right.png">
+    <ul id="list-wrapper"></ul>
+</div>
+<div id="page-wrapper">
+    <img id="first-page" src="__ROOT__/Public/img/hd/Channel/V13/first_page.png">
+    <img id="prev-page" src="__ROOT__/Public/img/hd/Channel/V13/prev_page.png">
+    <p id="page-index">0/0</p>
+    <img id="next-page" src="__ROOT__/Public/img/hd/Channel/V13/next_page.png">
+    <img id="last-page" src="__ROOT__/Public/img/hd/Channel/V13/last_page.png">
+</div>
+<!-- 无数据 -->
+<div id="null-data-000051">还没有视频哦~</div>
+<script type="text/javascript">
+	var FreeArea = {
+		page: 1,
+		maxPage: 0,
+		buttons: [],
+		beClickBtnId: 'focus-0',
+		init: function() {
+			// 设置皮肤（产品背景图）
+			if (!LMEPG.Func.isEmpty(RenderParam.skin.cpbjt)) {
+				var bgImg = RenderParam.fsUrl + RenderParam.skin.cpbjt;
+				document.body.style.backgroundImage = 'url(' + bgImg + ')';
+			}
+
+			FreeArea.page = !LMEPG.Func.isEmpty(RenderParam.focusPages) ? parseInt(RenderParam.focusPages) : FreeArea.page;
+			Network.getAlbumVideoList(FreeArea.page, function() {
+				FreeArea.render();
+				FreeArea.createBtns();
+			});
+
+		},
+		navIndex: 0,
+		render: function() {
+			var htm = '';
+			var isNullData = this.isNullData();
+			if (!isNullData) {
+				for (var i = 0; i < videoList.length; i++) {
+					var t = videoList[i];
+					htm += '<li id=focus-' + i + '>' +
+						'<img onerror="this.src=\'__ROOT__/Public/img/Common/default.png\'" src=' + RenderParam.fsUrl + t.image_url + '>';
+					// '<p>' + t.title + '</p>';
+				}
+				G('list-wrapper').innerHTML = htm;
+				G('page-index').innerHTML = this.page + '/' + this.maxPage;
+				this.toggleArrow();
+			}
+		},
+		// 空数据处理
+		isNullData: function() {
+			if (videoList.length == 0) {
+				// G('list-wrapper').innerHTML = '<div class=null-data>该栏目还没有视频哦~';
+				LMEPG.BM.init('', [], '', true);
+				G('null-data-000051').style.display = 'block';
+				H('page-wrapper');
+				H('prev-arrow');
+				H('next-arrow');
+				return true;
+			}
+			return false;
+		},
+
+		// 上一页
+		prevPage: function(btn) {
+			if (FreeArea.page == 1) {
+				return;
+			}
+			Network.getAlbumVideoList(FreeArea.page - 1, function() {
+				FreeArea.render();
+				FreeArea.changeMoveFocusId(btn);
+				if (btn.id.substr(0, 5) == 'focus') {
+					FreeArea.moveToFocus('focus-2');
+				}
+			});
+		},
+		// 下一页
+		nextPage: function(btn) {
+			if (FreeArea.page == FreeArea.maxPage) {
+				return;
+			}
+			Network.getAlbumVideoList(FreeArea.page + 1, function() {
+				FreeArea.render();
+				FreeArea.changeMoveFocusId(btn);
+				if (btn.id.substr(0, 5) == 'focus') {
+					FreeArea.moveToFocus('focus-0');
+				}
+			});
+		},
+		// 第一页
+		firstPage: function(btn) {
+			if (FreeArea.page == 1) {
+				return;
+			}
+			Network.getAlbumVideoList(1, function() {
+				FreeArea.render();
+				FreeArea.changeMoveFocusId(btn);
+			});
+		},
+		// 最后一页
+		lastPage: function(btn) {
+			if (FreeArea.page == FreeArea.maxPage) {
+				return;
+			}
+			Network.getAlbumVideoList(FreeArea.maxPage, function() {
+				FreeArea.render();
+				FreeArea.changeMoveFocusId(btn);
+			});
+		},
+		/**
+		 * 1.
+		 *  最后一页或下一页是最后一页的时候，
+		 *  且页面视频个数不足6个，
+		 *  功能按钮上移ID为最后一个视频;
+		 * 2.
+		 *  当前页面视频列表小于4个的时候，
+		 *  视频列表下移到功能区；
+		 *  当前视频列表个数为6个还原移动方向
+		 */
+		changeMoveFocusId: function(btn) {
+			var leaveItems = (videoList.length - 1);
+			var upId = ['first-page', 'next-page', 'prev-page', 'last-page'];
+
+			for (var i = 0; i < upId.length; i++) {
+				var t = upId[i];
+				LMEPG.ButtonManager.getButtonById(t).nextFocusUp = 'focus-' + leaveItems;
+			}
+
+			var downId = ['focus-0', 'focus-1', 'focus-2'];
+			if (leaveItems < 3) {
+				for (var i = 0; i < downId.length; i++) {
+					var t = downId[i];
+					var btn = LMEPG.ButtonManager.getButtonById(t);
+					if (btn) {
+						btn.nextFocusDown = 'first-page';
+					}
+				}
+			} else{
+				// this.buttons.length = 0;
+				// this.createBtns();
+				// this.isLeaveNav = true;
+				// this.moveToFocus(btn.id);
+			}
+		},
+
+		// 箭头指示切换
+		toggleArrow: function() {
+			S('prev-arrow');
+			S('next-arrow');
+			this.page == 1 && H('prev-arrow');
+			this.page == this.maxPage && H('next-arrow');
+		},
+		/**
+		 * 获取当前页面对象
+		 */
+		getCurPageObj: function() {
+			var objCurrent = LMEPG.Intent.createIntent('album');
+			objCurrent.setParam('userId', RenderParam.userId);
+			objCurrent.setParam('albumName', RenderParam.albumName);
+			objCurrent.setParam('inner', RenderParam.inner);
+			objCurrent.setParam('focus_index', LMEPG.BM.getCurrentButton().id);
+			objCurrent.setParam('focusPages', FreeArea.page);
+			return objCurrent;
+		},
+		/**
+		 * 点击视频项
+		 */
+		clickVideo: function(btn) {
+			var videoData = videoList[parseInt(btn.id.substr(6))];
+			var play_url = videoData.ftp_url;
+			var videoObj = play_url instanceof Object ? play_url : JSON.parse(play_url);
+			var videoUrl = RenderParam.platformType == 'hd' ? videoObj.gq_ftp_url : videoObj.bq_ftp_url;
+			// 创建视频信息
+			var videoInfo = {
+				'sourceId': videoData.source_id,
+				'videoUrl': videoUrl,
+				'title': videoData.title,
+				'type': videoData.model_type,
+				'userType': videoData.user_type,
+				'freeSeconds': videoData.free_seconds,
+				'entryType': 1,
+				'entryTypeName': 'album',
+                'unionCode': videoData.union_code,
+            };
+			if (LMEPG.Func.isAllowAccess(RenderParam.isVip, ACCESS_PLAY_VIDEO_TYPE, videoInfo)) {
+				FreeArea.jumpPlayVideo(videoInfo);
+			} else{
+				FreeArea.jumpBuyVip(videoInfo.title, videoInfo);
+			}
+		},
+		/**
+		 * 跳转 - 播放器
+		 */
+		jumpPlayVideo: function(videoInfo) {
+			if (LMEPG.Func.isEmpty(videoInfo) || LMEPG.Func.isEmpty(videoInfo.videoUrl)) {
+				LMEPG.UI.showToast('视频信息为空！');
+				return;
+			}
+
+			var objHome = FreeArea.getCurPageObj();
+
+			// 更多视频，按分类进入
+			var objPlayer = LMEPG.Intent.createIntent('player');
+			objPlayer.setParam('userId', RenderParam.userId);
+			objPlayer.setParam('videoInfo', JSON.stringify(videoInfo));
+
+			LMEPG.Intent.jump(objPlayer, objHome);
+		},
+
+		/**
+		 * 跳转购买vip页面
+		 */
+		jumpBuyVip: function(remark, videoInfo) {
+            if (typeof (videoInfo) !== "undefined" && videoInfo !== "") {
+                var postData = {
+                    "videoInfo": JSON.stringify(videoInfo)
+                };
+                // 存储视频信息
+                LMEPG.ajax.postAPI("Player/storeVideoInfo", postData, function (data) {
+                });
+            }
+
+			var objCurrent = FreeArea.getCurPageObj();
+			var jumpObj = LMEPG.Intent.createIntent('orderHome');
+            jumpObj.setParam("userId", RenderParam.userId);
+            jumpObj.setParam("isPlaying", "1");
+            jumpObj.setParam("remark", remark);
+			LMEPG.Intent.jump(jumpObj, objCurrent);
+		},
+
+		toggleFocus: function(btn, hasFocus) {
+			/*var btnElement = G(btn.id);
+			var txtEl = btnElement.lastElementChild;
+			if (hasFocus) {
+				LMEPG.Func.marquee(txtEl,txtEl.innerText ,13);
+			} else{
+				LMEPG.Func.marquee(txtEl);
+			}*/
+		},
+		onMoveChangeFocusId: function(key, btn) {
+			// 上一页
+			if (key == 'left' && (btn.id == 'focus-0' || btn.id == 'focus-3')) {
+				FreeArea.prevPage(btn);
+				return false;
+			}
+
+			// 下一页
+			if (key == 'right' && (btn.id == 'focus-2' || btn.id == 'focus-5')) {
+				FreeArea.nextPage(btn);
+				return false;
+			}
+
+			FreeArea.changeMoveFocusId(btn);
+		},
+		createBtns: function() {
+			var VIDEO_COUNT = 6;
+			while (VIDEO_COUNT--) {
+				this.buttons.push({
+					id: 'focus-' + VIDEO_COUNT,
+					name: '视频',
+					type: 'div',
+					nextFocusLeft: 'focus-' + (VIDEO_COUNT - 1),
+					nextFocusRight: 'focus-' + (VIDEO_COUNT + 1),
+					nextFocusUp: VIDEO_COUNT < 3 ? 'nav-0' : 'focus-' + (VIDEO_COUNT - 3),
+					nextFocusDown: VIDEO_COUNT > 2 ? 'first-page' : 'focus-' + (VIDEO_COUNT + 3),
+					backgroundImage: g_appRootPath+'/Public/img/hd/Common/transparent.png',
+					focusImage: RenderParam.platformType == 'sd' ?g_appRootPath+ '/Public/img/sd/Unclassified/V13/video_f.png' : g_appRootPath+'/Public/img/hd/Channel/V13/video_f.png',
+					focusChange: this.toggleFocus,
+					click: this.clickVideo,
+					beforeMoveChange: this.onMoveChangeFocusId
+				});
+			}
+
+			this.buttons.push({
+				id: 'first-page',
+				name: '首页',
+				type: 'img',
+				nextFocusRight: 'prev-page',
+				nextFocusUp: 'focus-3',
+				backgroundImage: g_appRootPath+'/Public/img/hd/Channel/V13/first_page.png',
+				focusImage: g_appRootPath+'/Public/img/hd/Channel/V13/first_page_f.png',
+				click: this.firstPage
+			}, {
+				id: 'prev-page',
+				name: '上一页',
+				type: 'img',
+				nextFocusLeft: 'first-page',
+				nextFocusRight: 'next-page',
+				nextFocusUp: 'focus-4',
+				backgroundImage:g_appRootPath+ '/Public/img/hd/Channel/V13/prev_page.png',
+				focusImage:g_appRootPath+ '/Public/img/hd/Channel/V13/prev_page_f.png',
+				click: this.prevPage
+			}, {
+				id: 'next-page',
+				name: '下一页',
+				type: 'img',
+				nextFocusLeft: 'prev-page',
+				nextFocusRight: 'last-page',
+				nextFocusUp: 'focus-4',
+				backgroundImage:g_appRootPath+ '/Public/img/hd/Channel/V13/next_page.png',
+				focusImage: g_appRootPath+'/Public/img/hd/Channel/V13/next_page_f.png',
+				click: this.nextPage
+			}, {
+				id: 'last-page',
+				name: '尾页',
+				type: 'img',
+				nextFocusLeft: 'next-page',
+				nextFocusUp: 'focus-5',
+				backgroundImage: g_appRootPath+'/Public/img/hd/Channel/V13/last_page.png',
+				focusImage:g_appRootPath+ '/Public/img/hd/Channel/V13/last_page_f.png',
+				click: this.lastPage
+			});
+			if (RenderParam.focus_index == 'focus-1-1') {
+				this.initButtons('focus-0');
+			} else{
+				this.initButtons(RenderParam.focus_index);
+			}
+		},
+		initButtons: function(id) {
+			LMEPG.ButtonManager.init(id, this.buttons, '', true);
+		},
+
+		moveToFocus: function(id) {
+			LMEPG.ButtonManager.requestFocus(id);
+		}
+	};
+	var onBack = function() {
+		LMEPG.Intent.back();
+	};
+	window.onload = function() {
+		FreeArea.init();
+	};
+
+	/**
+	 * ============================================网络请求===============================================
+	 */
+	var videoList = [];
+	var Network = {
+		/**
+		 * 获取专辑视频列表
+		 * @param page
+		 */
+		getAlbumVideoList: function(page, callback) {
+			LMEPG.UI.showWaitingDialog('');
+			var postData = {
+				page: page,
+				pageNum: 6,
+				albumName: RenderParam.albumName
+			};
+			LMEPG.ajax.postAPI('Video/getAlbumVideoList', postData, function(data) {
+				LMEPG.UI.dismissWaitingDialog();
+				data = data instanceof Object ? data : JSON.parse(data);
+				console.log(data);
+				if (data.result == 0) {
+					videoList = data.data.video_list;
+					FreeArea.page = page;
+					FreeArea.maxPage = Math.ceil(data.data.content_cnt / 6);
+					callback();
+				} else{
+					LMEPG.UI.showToast('数据获取失败！');
+					// 默认焦点，防止点击页面无反应
+					if (LMEPG.Func.isEmpty(LMEPG.BM.getCurrentButton())) {
+						LMEPG.BM.init('', [], '', true);
+					}
+				}
+			});
+		}
+	};
+</script>
+</body>
+</html>

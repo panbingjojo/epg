@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <title>宁夏广电EPG版本</title>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Home/V13/home.css?t={$time}"/>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            carrierId: '{$carrierId}', // 地区id
+            areaCode: '{$areaCode}', // 省份地区码
+            platformType: '{$platformType}', // 平台类型
+            debug: '{$debug}', // 调试模式
+            pageSize: '{$size}', // 页面尺寸
+            stbModel: '{$stbModel}', // 盒子的型号
+            fsUrl: '{$resourcesUrl}', // fs 地址
+            time: '{$time}', // 开始渲染时间
+            userId: '{$userId}', // 用户Id
+            accountId: '{$accountId}', // 用户账号
+            loginId: '{$loginId}', // 用户登录id
+            positionTwoConfig: '{$positionTwoConfig}',
+            checkTime: '{$checkTime}',
+            commonImgsView: '{$commonImgsView}', // 公用图片模式
+            themeImage: '{$themePicture}', // 应用主题背景
+            thirdPlayerUrl: '{$domainUrl}', // 第三方播放器根路径地址
+            focusIndex: '{$focusIndex}', // 焦点ID
+            isVip: {$isVip}, // 用户是否是vip
+            autoOrder: '{$autoOrder}', // 用户是否是续订vip
+            classifyId: '{$classifyId}', // 导航栏ID
+            navConfig: {$navigateInfo}, // 导航栏配置
+            configInfo: {$homeConfigInfo}, // 主页配置信息
+            videoPlayRank: {$videoPlayRank}, // Tab1热播榜
+            videoClass: {$videoClass}, // Tab1视频栏目
+            albumList: {$albumList}, // Tab2专辑列表
+            homePollVideoList: {$homePollVideoList}, // 首页轮播的视频列表
+            latestVideoInfo: {$latestVideoInfo},  // 最近播放的视频
+            accessInquiryInfo: {$accessInquiryInfo11}, // 是否能访问视频问诊,1--表示能访问
+            tabBg: '{$tabBg}',
+            helpTabInfo: {$helpTabInfo}, // 帮助提示幕布参数
+            skin: {$skin},      // 用户自定义背景
+            showPayLock: {$showPayLock}, // 显示定购童锁 0-- 不显示童锁，1-- 显示童锁
+            payLockStatus: "{$payLockStatus}", // 支付锁的状态，中国联通EPG
+            isOrderBack: "{$isOrderBack}", // 是否为订购返回
+            orderType: "{$orderType}", // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            payMethod: {$payMethod}, // 促订设置
+        };
+
+    </script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--当前页所用自定义js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Home/V17/home.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmPayFrame.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+</head>
+<body bgcolor="transparent">
+<div id="debug"></div>
+<a href="#" id="default_link"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+<include file="Main/V17/Components/header"/>
+<!--主容器-->
+<div id="content-container">
+    <div id="content-0" class="content">
+        <include file="Main/V17/Components/TabContent_0"/>
+    </div>
+    <div id="content-1" class="content">
+        <include file="Main/V17/Components/TabContent_1"/>
+    </div>
+    <div id="content-2" class="content">
+        <include file="Main/V17/Components/TabContent_2"/>
+    </div>
+    <div id="content-3" class="content">
+        <include file="Main/V17/Components/TabContent_3"/>
+    </div>
+</div>
+<!--滚动字体提示栏、服务电话栏-->
+<div id="bottom-container">
+    <!-- 修改：js异步加载 -->
+    <div class="marquee-wrapper" id="scroll-wrapper"></div>
+    <p id="service-tel" class="service-tel hide">客服电话：400-016-0700</p>
+</div>
+
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        Page.init();
+        LmOrderConf.init({
+            getCurrentPage: getCurPageObj,
+        });
+        lmInitGo();
+    };
+</script>
+<script type="text/javascript" src="__ROOT__/Public/js/Unclassified/ByCarrierIdSet.js?t={$time}"></script>
+</html>

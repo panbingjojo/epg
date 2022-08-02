@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>嗨翻暑假，天天送红包</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityHappyVacation/V1/index.css?t={$time}">
+    <style type="text/css">
+        body {
+            background-image: url("{$activityFsImg}{$platformType}/bg_home.png");
+        }
+
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown},
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: '{$score}',
+        };
+        window.onload = function () {
+            Activity.init();
+            lmInitGo();
+        };
+    </script>
+
+    <!--当前模块js-->
+    <!--<script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityHappyVacation/V1/index.js?t={$time}"></script>
+
+</head>
+<body id="body">
+    <div id="debug"></div>
+
+    <img src="{$activityFsImg}{$platformType}/btn_back.png" id="btn_back">
+    <div id="btn_container">
+        <img src="{$activityFsImg}{$platformType}/album1.png" id="btn_album1">
+        <img src="{$activityFsImg}{$platformType}/album_f.png" id="btn_album1_f">
+        <img src="{$activityFsImg}{$platformType}/album2.png" id="btn_album2">
+        <img src="{$activityFsImg}{$platformType}/album_f.png" id="btn_album2_f">
+        <img src="{$activityFsImg}{$platformType}/album3.png" id="btn_album3">
+        <img src="{$activityFsImg}{$platformType}/album_f.png" id="btn_album3_f">
+        <img src="{$activityFsImg}{$platformType}/album4.png" id="btn_album4">
+        <img src="{$activityFsImg}{$platformType}/album_f.png" id="btn_album4_f">
+        <img src="{$activityFsImg}{$platformType}/album5.png" id="btn_album5">
+        <img src="{$activityFsImg}{$platformType}/album_f.png" id="btn_album5_f">
+        <img src="{$activityFsImg}{$platformType}/album6.png" id="btn_album6">
+        <img src="{$activityFsImg}{$platformType}/album_f.png" id="btn_album6_f">
+    </div>
+
+</body>
+</html>

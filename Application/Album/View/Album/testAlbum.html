@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>39精选</title>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <style type="text/css">
+        body {
+            position: relative;
+            background-color: transparent;
+            width: 1280px;
+            height: 720px;
+        }
+
+        #img-current {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+        }
+
+        img.arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 2;
+        }
+
+        #left-arrow {
+            left: 10px;
+        }
+
+        #right-arrow {
+            right: 10px;
+        }
+        #title{
+            position: absolute;
+            top: 30px;
+            left: 200px;
+            width: 880px;
+            text-align: center;
+            font-size: 36px;
+        }
+        #content{
+            position: absolute;
+            top: 100px;
+            left: 80px;
+            width: 1120px;
+
+        }
+    </style>
+</head>
+<body>
+<div id="debug"></div>
+<img class="arrow" src="__ROOT__/Public/img/hd/Album/common/icon_prev_page.png" id="left-arrow"/>
+<img class="arrow" src="__ROOT__/Public/img/hd/Album/common/icon_next_page.png" id="right-arrow"/>
+<img id="img-current" src="">
+<div id="title">
+
+</div>
+<div id="content">
+
+</div>
+<script>
+	var ItemPicture = {
+		data: {$data}.data.video_list,
+		page: 0,
+		maxPage: 0,
+		buttons: [],
+		init: function() {
+//            alert({$resourcesUrl});
+//		    alert({$data}.data.video_list[0].subject_name);
+			this.createBtns();
+			this.maxPage = this.data.length - 1;
+			this.renderImg();
+			LMEPG.ButtonManager.init('img-current', this.buttons, '', true);
+		},
+		createBtns: function() {
+			this.buttons = [
+				{
+					id: 'back',
+					name: '返回',
+					type: 'img',
+					nextFocusDown: 'focus-1',
+					click: onBack,
+					backgroundImage: g_appRootPath + '/Public/img/hd/Menu/QHotherPages/back.png',
+					focusImage: g_appRootPath + '/Public/img/hd/Menu/QHotherPages/back_f.png'
+				}, {
+					id: 'img-current',
+					name: '图文容器',
+					type: 'img',
+					nextFocusDown: 'focus-1',
+					beforeMoveChange: this.onBeforeMoveChange
+				}];
+		},
+		onBeforeMoveChange: function(key, btn) {
+
+			if (key == 'left') {
+				ItemPicture.prevPage();
+			}
+			if (key == 'right') {
+				ItemPicture.nextPage();
+			}
+		},
+		renderImg: function() {
+			G('img-current').src = '{$resourcesUrl}' + this.data[this.page].content_desc[0];
+            G("title").innerHTML=this.data[this.page].subject_name;
+            var str='';
+            str=HTMLDecode(this.data[this.page].content_desc2.txt[0]);
+            G("content").innerHTML=str;
+			this.toggleArrow();
+		},
+		prevPage: function() {
+			this.page = Math.max(0, this.page -= 1);
+			this.renderImg();
+		},
+		nextPage: function() {
+			this.page = Math.min(this.maxPage, this.page += 1);
+			this.renderImg();
+		},
+		toggleArrow: function() {
+			S('left-arrow');
+			S('right-arrow');
+			this.page == 0 && H('left-arrow');
+			this.page == this.maxPage && H('right-arrow');
+			console.log(this.page,this.maxPage)
+		}
+	};
+	ItemPicture.init();
+
+	function onBack() {
+		LMEPG.Intent.back();
+	}
+
+    function HTMLEncode(html) {
+        var temp = document.createElement("div");
+        (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+        var output = temp.innerHTML;
+        temp = null;
+        return output;
+    }
+    function HTMLDecode(text) {
+        var temp = document.createElement("div");
+        temp.innerHTML = text;
+        var output = temp.innerText || temp.textContent;
+        temp = null;
+        return output;
+    }
+</script>
+</body>
+</html>

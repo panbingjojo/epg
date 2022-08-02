@@ -1,0 +1,318 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+#default_focus {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 1280px;
+    height: 720px;
+}
+
+.btn-only {
+    position: absolute;
+    top: 600px;
+    left: 530px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+}
+.btn-only2 {
+    position: absolute;
+    top: 500px;
+    left: 530px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+}
+
+.btn-success {
+    position: absolute;
+    top: 476px;
+    left: 660px;
+    outline: none !important;
+    width: 187px;
+    height: 74px;
+}
+
+
+.introduce {
+    position: absolute;
+    top: 260px;
+    left: 188px;
+    outline: none !important;
+    width: 891px;
+    height: 320px;
+}
+
+.introduce2 {
+    position: absolute;
+    top: 270px;
+    left: 374px;
+    outline: none !important;
+    width: 540px;
+    height: 141px;
+}
+
+.introduce-success {
+    position: absolute;
+    top: 234px;
+    left: 499px;
+    outline: none !important;
+    width: 480px;
+    font-size: 29px;
+    color: #414141;
+    text-align: center;
+    line-height: 55px;
+}
+
+.btn-one {
+    position: absolute;
+    top: 601px;
+    left: 518px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+}
+
+.btn-two {
+    position: absolute;
+    top: 601px;
+    left: 728px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+}
+
+#searchText {
+    width: 380px;
+    height: 40px;
+    z-index: 999;
+    position: absolute;
+    top: 532px;
+    left: 538px;
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    outline: none;
+    line-height: 40px;
+    color: #4c4c4c;
+    border: none;
+    border-radius: 5px;
+    overflow:hidden;
+    text-indent: 10px;
+}
+
+.introduce-price-text {
+    position: absolute;
+    top: 395px;
+    left: 800px;
+    outline: none !important;
+    width: 100px;
+    height: 100px;
+}
+
+#myPhone {
+    position: absolute;
+    font-size: 18px;
+    color: #414141;
+    top: 355px;
+    left: 597px
+}
+
+.introduce-price-name {
+    font-size: 47px;
+    color: #fc5f1a;
+}
+
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+    font-size: 30px
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}
+
+.detail-table {
+    position: absolute;
+    top: 246px;
+    left: 290px;
+    outline: none !important;
+}
+.detail-table tr td{ height: 18px; font-size: 24px;  color:#ffac59; width: 700px; line-height: 32px}
+.btn_back {
+    position: absolute;
+    top: 61px;
+    left: 1156px;
+    outline: none !important;
+    width: 73px;
+    height: 84px;
+}
+.price_one{
+    position: absolute;
+    top: 560px;
+    left: 310px;
+    outline: none !important;
+    width: 150px;
+    height: 150px;
+}
+.price_two{
+    position: absolute;
+    top: 560px;
+    left: 570px;
+    outline: none !important;
+    width: 150px;
+    height: 150px;
+}
+.price_three{
+    position: absolute;
+    top: 560px;
+    left: 830px;
+    outline: none !important;
+    width: 150px;
+    height: 150px;
+}
+.introduce-pay{
+    position: absolute;
+    top: 253px;
+    left: 457px;
+    outline: none !important;
+    width: 400px;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+    line-height: 60px;}
+
+#tip_test {
+    position: absolute;
+    top: 150px;
+    left: 544px;
+    outline: none !important;
+    width: 190px;
+    height: 60px;
+}
+
+#choose_order_test{
+    position: absolute;
+    top: 260px;
+    left: 385px;
+    outline: none !important;
+    width: 540px;
+    height: 141px;
+}
+
+#pay-one{
+    position: absolute;
+    top: 420px;
+    left: 150px;
+    outline: none !important;
+    width: 190px;
+    height: 194px;
+  }
+#pay-two{
+    position: absolute;
+    top: 420px;
+    left: 413px;
+    outline: none !important;
+    width: 190px;
+    height: 194px;
+}
+#pay-three{
+    position: absolute;
+    top: 420px;
+    left: 677px;
+    outline: none !important;
+    width: 190px;
+    height: 194px;
+}
+
+#pay-four{
+    position: absolute;
+    top: 420px;
+    left: 940px;
+    outline: none !important;
+    width: 190px;
+    height: 194px;
+}
+
+#pay-back{
+    position: absolute;
+    top: 630px;
+    left: 540px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+}
+
+.book_text{
+    position: absolute;
+    top: 243px;
+    left: 606px;
+    outline: none !important;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+}
+.book_text_name{
+    position: absolute;
+    top: 238px;
+    left: 706px;
+    outline: none !important;
+    font-size: 40px;
+    color: #e21212;
+    text-align: center;
+    font-weight: bold;
+}
+.price_text{
+    position: absolute;
+    top: 306px;
+    left: 606px;
+    outline: none !important;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+}
+.price_text_name{
+    position: absolute;
+    top: 301px;
+    left: 706px;
+    outline: none !important;
+    font-size: 40px;
+    color: #ef7101;
+    text-align: center;
+    font-weight: bold;
+}
+.introduce_text{
+    position: absolute;
+    top: 387px;
+    left: 586px;
+    outline: none !important;
+    font-size: 20px;
+    color: #414141;
+    text-align: center;
+}
+.title_name {
+    position: absolute;
+    top: 154px;
+    left: 555px;
+    width: 170px;
+    height: 54px;
+    z-index: 1;
+}
+.price_word{
+    position: absolute;
+    top: 154px;
+    left: 555px;
+    width: 170px;
+    height: 54px;
+    z-index: 1;
+}

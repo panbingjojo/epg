@@ -1,0 +1,143 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+.toy {
+    position: absolute;
+    top: 168px;
+    left: 130px;
+    outline: none !important;
+    width: 305px;
+    height: 469px;
+}
+
+.topic {
+    position: absolute;
+    top: 211px;
+    left: 501px;
+    outline: none !important;
+    width: 192px;
+    height: 112px;
+}
+
+.topicName {
+    position: absolute;
+    top: 210px;
+    left: 735px;
+    outline: none !important;
+    width: 374px;
+    height: 112px;
+    font-size: 26px;
+    color: #FFFFFF;
+}
+
+.answerA {
+    position: absolute;
+    top: 356px;
+    left: 705px;
+    outline: none !important;
+    width: 404px;
+    height: 112px;
+    font-size: 26px;
+    color: #FFFFFF;
+}
+
+.answerB {
+    position: absolute;
+    top: 411px;
+    left: 705px;
+    outline: none !important;
+    width: 404px;
+    height: 112px;
+    font-size: 26px;
+    color: #FFFFFF;
+}
+
+.answerC {
+    position: absolute;
+    top: 456px;
+    left: 705px;
+    outline: none !important;
+    width: 404px;
+    height: 112px;
+    font-size: 26px;
+    color: #FFFFFF;
+}
+
+#replayA {
+    position: absolute;
+    top: 527px;
+    left: 568px;
+    outline: none !important;
+    width: 132px;
+    height: 99px;
+}
+
+#replayB {
+    position: absolute;
+    top: 527px;
+    left: 769px;
+    outline: none !important;
+    width: 132px;
+    height: 99px;
+}
+
+#replayC {
+    position: absolute;
+    top: 527px;
+    left: 969px;
+    outline: none !important;
+    width: 132px;
+    height: 99px;
+}
+
+#back {
+    position: absolute;
+    top: 56px;
+    left: 1162px;
+    outline: none !important;
+    width: 84px;
+    height: 97px;
+}
+
+/*提示窗样式*/
+#default_tip
+{
+    position: absolute;
+    left: 450px;
+    top: 210px;
+    width: 370px;
+    height: 81px;
+    line-height:106px;
+    text-align: center;
+    font-size: 30px;
+    color: #090609;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+
+.g_toast {
+    position: absolute;
+    left: 394px;
+    top: 239px;
+    width: 566px;
+    height: 365px;
+    line-height: 325px;
+    font-size: 32px;
+    z-index: 1000;
+    text-align: center;
+    text-indent: 110px;
+    color: #ff6600;
+    background: url("../../../../../img/hd/Activity/ActivityAnswer/V1/answer_result.png") no-repeat;
+}

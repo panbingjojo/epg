@@ -1,0 +1,82 @@
+/*公用样式(请不要加入其他项目不存在的样式)*/
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    color: #000000;
+    overflow: hidden;
+}
+
+body.hd-body {
+    width: 1280px;
+    height: 720px;
+
+}
+
+body.sd-body {
+    width: 644px;
+    height: 530px;
+}
+
+img {
+    border: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+div#debug {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 23;
+}
+
+/*加载等待框*/
+#id_common_dialog {
+    position: absolute;
+    top: 42%;
+    width: 100%;
+    z-index: 9999;
+    color: #ff6600;
+    text-align: center;
+    background-position: top;
+    background-image: url("../../img/Common/bg_waiting_dialog.gif");
+}
+
+#id_common_dialog.hd_waiting_dialog {
+    height: 200px;
+    line-height: 225px;
+    font-size: 32px;
+}
+
+#id_common_dialog.sd_waiting_dialog {
+    height: 130px;
+    line-height: 100px;
+    font-size: 22px;
+}
+
+/*toast提示*/
+#id_common_dialog.hd_message_dialog {
+    position: absolute;
+    height: 126px;
+    line-height: 166px;
+    font-size: 32px;
+    background-image: url("../../img/hd/Common/bg_toast.png");
+}
+
+#id_common_dialog.sd_message_dialog {
+    position: absolute;
+    height: 100px;
+    line-height: 105px;
+    font-size: 20px;
+    background-image: url("../../img/sd/Common/bg_toast.png");
+}

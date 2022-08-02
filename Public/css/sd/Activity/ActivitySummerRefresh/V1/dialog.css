@@ -1,0 +1,107 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#btn-close {
+    position: absolute;
+    top: 17px;
+    left: 495px;
+}
+
+#btn-open {
+    position: absolute;
+    top: 525px;
+    left: 545px;
+}
+
+.btn-sure {
+    position: absolute;
+    top: 373px;
+    left: 110px;
+}
+
+.btn-cancel {
+    position: absolute;
+    top: 373px;
+    left: 348px;
+}
+
+.btn-sure2 {
+    position: absolute;
+    top: 373px;
+    left: 110px;
+}
+
+.btn-cancel2 {
+    position: absolute;
+    top: 373px;
+    left: 348px;
+}
+
+#goods {
+    position: absolute;
+    top: 187px;
+    left: 733px;
+}
+
+#searchText {
+    top: 311px;
+    left: 281px;
+    color: #004475;
+    font-size: 15px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+.test-result-message{
+    position: absolute;
+    left: 265px;
+    top: 165px;
+}
+.test-result-title{
+    position: absolute;
+    left: 195px;
+    top: 615px;
+    font-size: 24px;
+    color: #333333;
+    width: 900px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+#btn-one {
+    position: absolute;
+    top: 326px;
+    left: 232px;
+}
+
+
+#btn-price{
+    position: absolute;
+    top: 358px;
+    left: 520px;
+}
+#btn-go{
+    position: absolute;
+    top: 436px;
+    left: 520px;
+}
+.price{
+    position: absolute;
+    top: 230px;
+    left: 586px;
+}

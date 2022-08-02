@@ -1,0 +1,47 @@
+body {
+    color: #fff;
+    background-image: url("../../../../../Public/img/hd/DonateBlood/V1/bg_content.png");
+    background-repeat: no-repeat;
+}
+#qr_title {
+    position: absolute;
+    top: 103px;
+    width: 1280px;
+    line-height: 51px;
+    text-align: center;
+    font-size: 45px;
+    color: #FFFFFF;
+}
+
+#pic_qr_code{
+    position: absolute;
+    top: 207px;
+    left: 514px;
+    width: 260px;
+    height: 260px;
+    /*border: 1px solid red;*/
+}
+#qr_text1{
+    position: absolute;
+    top: 520px;
+    width: 1280px;
+    font-size: 36px;
+    text-align: center;
+    color: #FFFFFF;
+}
+#qr_text2{
+    position: absolute;
+    top: 580px;
+    width: 1280px;
+    font-size: 32px;
+    text-align: center;
+    color: #FFFFFF;
+}
+#qr_text3{
+    position: absolute;
+    top: 635px;
+    width: 1280px;
+    font-size: 32px;
+    text-align: center;
+    color: #FFFFFF;
+}

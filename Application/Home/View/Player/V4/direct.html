@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>贵州广电EPG播放器-直接跳转局方播放器</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+                videoUrl: "{$videoUrl}",                // 视频url
+                videoTitle:"{$title}",                  // 视频标题
+                returnIP:"{$ENTER_IP}",                 // 视频播放完后的返回地址
+                isVip:{$isVip},                         // 用户是不是vip，1 -- 是vip
+                isBack:"{isBack}",
+                recommendVideoUrl: '',                  // 推荐视频播放地址
+                isForbidOrder:"{$Think.cookie.c_is_forbided_order}", // 是否禁止订购 1--表示禁止订购
+            };
+        var  isStarcInit = false;
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--<script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>-->
+    <!--<script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--<script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>-->
+
+</head>
+<body id="hold"  style=" background-color:transparent;margin:0; padding:0;">
+<p id="test" style="position: absolute;left: 100px;top: 100px;width:300px;font-size: 20px;color: #9B410E">贵州广电播放器</p>
+
+
+<script type="text/javascript" src="__ROOT__/Public/js/Player/V14/direct.js"></script>
+<script type="text/javascript">
+
+    window.onload = function () {
+        LMEPG.Log.error("guizhougd player--------videoUrl:" + RenderParam.videoUrl + ";videoTitle:" + RenderParam.videoTitle + ";returnUrl:" + returnUrl);
+//        testDoc.innerHTML += "\n" + "videoUrl:" + RenderParam.videoUrl;
+//        testDoc.innerHTML += "\n" + "videoTitle:" + RenderParam.videoTitle;
+//        testDoc.innerHTML += "\n" + "returnUrl:" + returnUrl;
+//        testDoc.style.display = "none";
+
+        setTimeout(function () {
+            if(isStarcInit == false){
+                LMEPG.UI.showToast("网络异常，请稍后重试!", 8);
+            }
+            onBack();
+        },5000);
+    }
+
+
+</script>
+
+</body>
+</html>
+
+

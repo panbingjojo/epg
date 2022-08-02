@@ -1,0 +1,176 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+    background-repeat: no-repeat;
+}
+
+.title {
+    position: absolute;
+    top: 33px;
+    left: 40px;
+    font-size: 32px;
+    font-weight: bold;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+}
+
+#btn_report_data {
+    position: absolute;
+    top: 377px;
+    left: 541px;
+}
+
+.disclaimer {
+    position: absolute;
+    top: 455px;
+    left: 40px;
+    font-size: 18px;
+    color: #fff;
+    width: 1200px;
+    height: 240px;
+    padding: 25px 36px 0px 36px;
+    line-height: 30px;
+    background-image: url(../../../../img/hd/HealthTest/V13/bg_des.png);
+    background-repeat: no-repeat;
+}
+
+.disclaimer p{
+    width: 1127px;
+}
+
+#record-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+
+#record-container #table-wrap {
+    position: absolute;
+    top: 95px;
+    left: 40px;
+    height: 258px;
+    width: 1200px;
+    padding: 0px 20px;
+    background-image: url(../../../../img/hd/HealthTest/V13/bg_report_bat_list.png);
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#record-container table {
+    position: absolute;
+    width: 1140px;
+    height: 250px;
+    border-collapse: collapse;
+    /*border: 1px red solid;*/
+}
+
+.thead-title {
+    color: #fff;
+}
+
+#record-container table thead {
+    font-size: 24px;
+    color: #b2deff;
+    font-weight: bold;
+}
+
+#record-container table thead th {
+    width: 18%;
+}
+
+#record-container table tbody {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#record-container table tbody tr {
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0 5px;
+    background-position: center;
+}
+
+tr.even {
+    color: goldenrod;
+}
+
+tr.odd {
+
+}
+
+#record-container table tbody tr td {
+    /*width: 18%;*/
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#record-container table tbody tr td.test-time {
+    width: 28%;
+}
+
+/*滚动条*/
+#scroll-wrap {
+    width: 6px;
+    height: 216px;
+    position: absolute;
+    top: 117px;
+    left: 1195px;
+    border-radius: 6px;
+    background-color: #89adf4;
+}
+
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 10px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #32cfe0;
+}
+
+.detail {
+    width: 944px;
+    height: 50px;
+    background-image: url(../../../../img/hd/HealthTest/V8/all_btn.png);
+}
+.detail li{
+    float: left;
+    list-style: none;
+    text-align: center;
+    width: 314px;
+}
+
+.detail-2 {
+    /*width: 944px;*/
+    height: 50px;
+    background-image: url(../../../../img/hd/HealthTest/V8/all_btn.png);
+    /*border: 1px red solid;*/
+}
+.detail-2 li{
+    float: left;
+    list-style: none;
+    text-align: center;
+    width: 308px;
+    line-height: 50px;
+}
+.test-delete{
+    /*padding-top: 35px;*/
+    line-height: 1px;
+}

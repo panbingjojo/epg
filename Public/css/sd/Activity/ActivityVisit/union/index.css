@@ -1,0 +1,32 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+#play{
+    position: absolute;
+    top: 419px;
+    left: 279px;
+    outline: none !important;
+    width: 123px;
+    height: 58px;
+    z-index: 999;
+}
+#tip_bg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}

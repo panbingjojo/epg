@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>测量设备</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/HealthTest/V8/code.css?t={$time}"/>
+    <style type="text/css">
+        .warm-tips p {
+            margin-bottom: 10px;
+        }
+    </style>
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            lmp: '{$lmp}',                      // 入口
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+            accountId: '{$accountId}',          // 用户账号
+            loginId: '{$loginId}',              // 用户登录id
+            isVip: {$isVip}, // 用户是否是vip
+
+            //当前页渲染
+            testDevice: '{$testDevice}',
+            remind: '{$remind}',
+            deviceType:'{$deviceType}',
+            deviceModelId:'{$deviceModelId}',
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+            qrCodeUrl:"{$qrCodeUrl}"//获取二维码外网地址
+        };
+    </script>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+</head>
+<body>
+<p class="title" id="title"></p>
+<img id="fee-btn" style="display: none" src="__ROOT__/Public/img/hd/HealthTest/V8/fee.png" alt="">
+<img id="write-btn" src="__ROOT__/Public/img/hd/HealthTest/V8/input.png" alt="">
+<img id="introduce-btn" src="__ROOT__/Public/img/hd/HealthTest/V8/product-btn.png" alt="">
+
+<img id="code" src="__ROOT__/Public/img/hd/HealthTest/V8/test.gif" alt="">
+
+<div class="warm-tips" id="warm-tips">
+    <div style="display: inline-block">
+        <p class="warm-title">温馨提示：</p>
+    </div>
+    <div id="blood-tips" style="display: inline-block;width: 1000px;vertical-align: text-top">
+        <p id="reminder-tips"></p>
+    </div>
+</div>
+
+<script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V8/code.js?t={$time}"></script>
+<script type="text/javascript">
+    // javaScript code shift out
+
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        if (!LMEPG.Func.isEmpty(RenderParam.skin.cpbjt)) {
+            var bgImg = RenderParam.fsUrl + RenderParam.skin.cpbjt;
+            document.body.style.backgroundImage = 'url(' + bgImg + ')';
+        }
+
+        if(RenderParam.carrierId == '520092'){
+            document.body.style.backgroundImage = 'url(/Public/img/hd/Home/V10/bg.png)';
+        }
+
+    }
+    if (RenderParam.carrierId == "410092") {
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+
+</script>
+</body>
+</html>

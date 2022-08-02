@@ -1,0 +1,144 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+/*大标题及提示-css*/
+#subject-title {
+    left: 388px;
+    top: 32px;
+}
+
+#subject-title-tips {
+    left: 220px;
+    top: 144px;
+    width: 840px;
+    font-size: 20px;
+    color: #00524c;
+}
+
+/*题目及答案选项-css*/
+
+#question-title {
+    color: #000;
+    font-size: 24px;
+    text-align: left;
+    margin: 0;
+}
+#question-title-content{
+    max-height: 50px;
+    overflow-y: hidden;
+    width: 800px;
+    display: inline-block;
+}
+#question-title-num {
+    color: #fff;
+    font-size: 27px;
+    margin: 0 20px 0 7px;
+}
+
+.option-wrap {
+    top: 220px;
+    left: 225px;
+}
+
+.option-wrap li {
+    position: relative;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.option-wrap li span.inner {
+    position: absolute;
+    top: 12px;
+    left: 60px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.d-1 {
+    margin: 0;
+}
+
+/*底部答题进度-css*/
+
+#line {
+    top: 570px;
+    left: 230px;
+}
+
+.current-progress-bar-container {
+    top: 571px;
+    left: 226px;
+}
+
+.current-progress-bar-container img {
+    margin-right: 20px;
+}
+
+.current-progress-bar-container li {
+    position: relative;
+    list-style: none;
+    display: inline-block;
+}
+
+.current-progress-bar-container span {
+    position: absolute;
+    top: 24px;
+    left: 8px;
+    color: #fff;
+}
+
+/*每个进度点-css*/
+.current-progress-dot-item {
+    margin-left: 40px;
+}
+
+#test-result-bg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    z-index: 888;
+    top: 0px;
+    left: 0px;
+}
+
+#btn-test-result-open-bag {
+    position: absolute;
+    left: 545px;
+    top: 525px;
+    z-index: 889;
+}
+
+#btn-test-result-close {
+    position: absolute;
+    left: 1146px;
+    top: 70px;
+    width: 73px;
+    height: 75px;
+    z-index: 889;
+}
+
+#test-result-message {
+    position: absolute;
+    width: 850px;
+    left: 191px;
+    top: 179px;
+    font-size: 28px;
+    line-height: 45px;
+    color: #000000;
+    z-index: 889;
+}

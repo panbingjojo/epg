@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>江苏移动-计费页</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/> -->
+    <style type="text/css">
+        body {
+            background-Repeat: no-repeat;
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-image: url("__ROOT__/Public/img/hd/Pay/V000006/bg_pay.png");
+        }
+
+        #pay_page {
+            width: 1280px;
+            height: 720px;
+            display: none;
+        }
+
+        .g_toast {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 1280px;
+            height: 720px;
+            background: url("../../img/sd/Common/bg_common_dialog.png") no-repeat;
+            -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+            background-size: 1280px 720px;
+            z-index: 99999;
+            display: table;
+        }
+
+        .g_title {
+            position: absolute;
+            /*top: 270px;
+            left: 290px;*/
+            width: 700px;
+            height: 300px;
+            color: #fff333;
+            font-size: 46px;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 60px;
+            word-break: break-all;
+            display: table-cell;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            /*居中显示*/
+            left: 50%;
+            top: 50%;
+            transition-property: translate;
+            -o-transition-property: translate;
+            -moz-transition-property: translate;
+            -webkit-transition-property: translate;
+            transform: translateX(-50%) translateY(-50%);
+            -o-transform: translateX(-50%) translateY(-50%);
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+
+            /*显示块控制*/
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            -webkit-line-clamp: 5;
+        }
+    </style>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+                // 公用参数
+                accountId: "{$accountId}",            // 账号
+                carrierId: "{$carrierId}",          // 地区id
+                areaCode: "{$areaCode}",            // 省份地区码
+                platformType: "{$platformType}",    // 平台类型
+                debug: "{$debug}",                  // 调试模式
+                pageSize: "{$size}",                // 页面尺寸
+                stbModel: "{$stbModel}",            // 盒子的型号
+                fsUrl: "{$resourcesUrl}",           // fs 地址
+                time: "{$time}",                    // 开始渲染时间
+                userId: "{$userId}",                // 用户Id
+
+                // 页面参数
+                orderItems: {$orderItems},
+                isPlaying: "{$isPlaying}",
+                orderReason: "{$orderReason}",
+                remark: "{$remark}",
+                returnPageName: "{$returnPageName}",
+            };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-1.7.2.min.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    <!--订购-->
+    <script type="text/javascript"  src="__ROOT__/Public/js/Pay/V320001/pay.js?t={$time}"></script>
+</head>
+<body>
+<div id="body">
+<div id="debug"></div>
+<iframe id="pay_page"></iframe>
+</div>
+
+
+<script type="text/javascript">
+    Pay.init();
+</script>
+</body>
+</html>

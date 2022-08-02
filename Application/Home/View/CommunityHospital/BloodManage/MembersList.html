@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>血压管理-家庭成员列表</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/CommunityHospital/BloodManage/MembersList.css?t={$time}"/>
+    <script>
+        var RenderParam = {
+            carrierId: "{$carrierId}",
+        };
+    </script>
+</head>
+<body>
+<p class="title">血压管理</p>
+<img id="blood-data-up" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_blood_data_up.png" alt="">
+<div id="container">
+    <!--<img id="bg-content" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/bg_content.png" alt="">-->
+    <!--<p id="tip-text">暂无数据，请上传血压测量数据以便进行血压管理</p>-->
+</div>
+<div class="arrow-wrapper">
+    <img id="prev-arrow" src="__ROOT__/Public/img/hd/CommunityHospital/prev.png" alt="">
+    <img id="next-arrow" src="__ROOT__/Public/img/hd/CommunityHospital/next.png" alt="">
+</div>
+
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<!--<script type="text/javascript" src="__ROOT__/Public/js/DoctorP2P/Vfree/DoctorList.js?t={$time}"></script>-->
+<!--当前模块js-->
+<script type="text/javascript" src="__ROOT__/Public/js/CommunityHospital/BloodManage/MembersList.js?t={$time}"></script>
+<script>
+    BloodManage.init();
+</script>
+</body>
+</html>
+  
+  

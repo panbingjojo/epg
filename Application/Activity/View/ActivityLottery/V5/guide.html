@@ -1,0 +1,479 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>奇趣蛋青海</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityLottery/V5/guide.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityLottery/PopRule.js?t={$time}"></script>
+
+    <!--页面跳转-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+        }
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 活动详情
+         */
+        function jumpActivityInfo() {
+            jumpDialog(ACTIVITY_RULE_DETAIL);
+        }
+
+        /**
+         * 显示未中奖
+         */
+        function jumpNotDrawnPrizeDialog() {
+            jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS);
+        }
+
+        /**
+         * 页面跳转 - 联合活动订购界面
+         */
+        function jumpUniActivityInfo(spContentId) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", ACTIVITY_V5_BOOK);
+            objDialog.setParam("contentId", spContentId);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+
+        /**
+         * 显示中奖
+         */
+        function jumpDrawnPrizeDialog(prizeIdx) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("context", VIP_USER_DRAWN_PRIZE);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 显示中奖信息
+         */
+        function jumpPriceInfo() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityWinList = LMEPG.Intent.createIntent("activity-common-winList");
+            objActivityWinList.setParam("userId", "{$userId}");
+            objActivityWinList.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityWinList, objCurrent);
+        }
+
+        /**
+         * @func 进行购买操作
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip(contentId) {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("directPay", "1");
+            objOrderHome.setParam("orderReason", "101");
+            objOrderHome.setParam("contentId", contentId); // sp订购的内容id
+            objOrderHome.setParam("isJointActivity", "1"); // 表示联合活动
+            objOrderHome.setParam("remark", "{$activityName}");
+
+            var objActivityGuide = LMEPG.Intent.createIntent("activity-common-guide");
+            objActivityGuide.setParam("userId", "{$userId}");
+            objActivityGuide.setParam("inner", "{$inner}");
+            objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialogFirstOrder(proId, productName) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", leftTimes);
+            objDialog.setParam("demoTimes", demoTimes);
+            objDialog.setParam("productId", proId);
+            objDialog.setParam("productName", productName);
+            objDialog.setParam("context", ORDER_FIRST);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 返回事件
+         * 中国联通联合活动，返回时只能回到局方
+         */
+        function onBack() {
+            LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+        }
+
+    </script>
+</head>
+<body style="background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/guide_bg.png');">
+<div class="btn-group">
+    <img id="back" class="btnInfo" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/bg_back.png"/>
+    <img id="btn-price" class="btnInfo"
+         src="__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/bg_list.png"/>
+    <img id="btn-rule" class="btnInfo"
+         src="__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/bg_rule.png"/>
+</div>
+<div class="show-box"><span id="show-box"></span></div>
+<div class="run-group">
+    <img id="run-1" class="runInfo" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/run_1.png"/>
+    <img id="run-2" class="runInfo" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/run_1.png"/>
+    <img id="run-3" class="runInfo" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/run_1.png"/>
+</div>
+<img class="run-box" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/box_run.png"/>
+<img id="btn-start" class="btn-start"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/bg_start.png"/>
+<div id="default_tip"></div>
+<script type="text/javascript">
+    var jumpNUm = 1; // 花瓣图片替换参数
+    var timerID1; // 跳跃定时器
+    var leftTimes = 0; // 剩余抽奖次数
+    var demoTimes = 0; // 免费体验次数
+    var isVip = {$isVip}; // 是否是vip（0-非vip 1-vip）
+
+    var isOrderBack = "{$isOrderBack}"; // 是否为订购返回
+    var cOrderResult = "{$Think.cookie.c_order_result}";
+    var successUrl = "/Public/img/{$platformType}/Activity/ActivityLottery/V5/book_success.png";//订购成功弹窗背景
+    var falseUrl = "/Public/img/{$platformType}/Activity/ActivityLottery/V5/book_false.png";//订购失败弹窗背景
+    var buttons = [];
+    var imgPath = "/Public/img/{$platformType}/Activity/ActivityLottery/V5/";
+
+    /**
+     * 初始化焦点
+     */
+    var Button = {
+        initBtn: function () {
+            buttons.push({
+                id: 'back',
+                name: '返回',
+                type: 'img',
+                nextFocusLeft: 'btn-start',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'btn-price',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/bg_back.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/f_back.gif',
+                click: onBack,
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange: ''
+            }, {
+                id: 'btn-price',
+                name: '中奖名单',
+                type: 'img',
+                nextFocusLeft: 'btn-start',
+                nextFocusRight: '',
+                nextFocusUp: 'back',
+                nextFocusDown: 'btn-rule',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/bg_list.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/f_list.gif',
+                click: jumpPriceInfo,
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange: ''
+            }, {
+                id: 'btn-rule',
+                name: '活动详情',
+                type: 'img',
+                nextFocusLeft: 'btn-start',
+                nextFocusRight: '',
+                nextFocusUp: 'btn-price',
+                nextFocusDown: 'btn-start',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/bg_rule.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/f_rule.gif',
+                click: jumpActivityInfo,
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange: ''
+            }, {
+                id: 'btn-start',
+                name: '开始游戏',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'btn-rule',
+                nextFocusUp: 'btn-rule',
+                nextFocusDown: '',
+                backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/bg_start.png',
+                focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityLottery/V5/f_start.gif',
+                click: Pages.onClickPlay,
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: ''
+            })
+        },
+
+    }
+    /**
+     * 界面渲染
+     */
+    var Pages = {
+        //检查并显示订购结果
+        showOrderResult: function () {
+            if (isOrderBack == "1") {
+                LMEPG.UI.showToastBig(3, cOrderResult == "1" ? successUrl : falseUrl);
+            }
+        },
+        /**
+         * 判断用户是否可以答题
+         */
+        canAnswer: function () {
+            LMEPG.ajax.postAPI('Activity/canAnswer', null,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            var result = data.result;
+                            if (result == 0) {
+                                leftTimes = data.leftTimes || data.left_times || 0;
+                                demoTimes = data.demoTimes || data.demo_times || 0;
+                                Pages.setPrizeNum(leftTimes);
+                            } else {
+                                leftTimes = 0;
+                                Pages.setPrizeNum(leftTimes);
+                            }
+//                            initButton();
+                        } catch (e) {
+                            LMEPG.UI.showToast("判断用户是否可以试玩，解析异常！");
+                            LMEPG.Log.error(e.toString());
+                            LMEPG.ButtonManager.init('', [], '', true); // 失败异常处理，保证至少可以响应返回按键
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("判断用户是否可以试玩失败");
+                        LMEPG.ButtonManager.init('', [], '', true); // 失败异常处理，保证至少可以响应返回按键
+                    }
+            );
+        },
+
+        /**
+         * 设置剩余抽奖次数
+         */
+        setPrizeNum: function (leftTimes) {
+            var last = document.getElementById("show-box");
+            last.innerHTML = leftTimes;
+        },
+
+        /**
+         * 界面点击事件
+         */
+        onClickPlay: function () {
+            LMEPG.UI.showWaitingDialog("", 10);
+            if (leftTimes > 0) {     // 进入游戏页
+                Animal.beat();
+                setTimeout(Pages.participationActivity, 2000)
+//                Pages.participationActivity();
+                Pages.uploadAnswerResult();
+            } else if (LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {     // VIP用户次数用尽，弹窗提示明日再来
+                jumpDialog(VIP_USER_TIMES_OVER);
+            } else {                // 非VIP用户次数用尽，弹窗提示订购VIP
+                jumpDialog(VIP_USER_PLAY_TIMES_OVER);
+            }
+        },
+
+        /**
+         * 上报参与记录（上报答题结果）
+         */
+        //
+        participationActivity: function () {
+            LMEPG.KeyEventManager.setAllowFlag(false);
+            setTimeout("LMEPG.KeyEventManager.setAllowFlag(true)", 1000);
+            LMEPG.UI.showWaitingDialog("", 2);
+            var reqData = {
+                round_flag: 1
+            };
+            LMEPG.ajax.postAPI('Activity/participateActivity', reqData,
+                    function (rsp) {
+                        LMEPG.UI.dismissWaitingDialog();
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            switch (data.result) {
+                                    // 没有抽中奖品
+                                case 0:
+                                    Animal.showResult(0);
+                                    setTimeout(jumpNotDrawnPrizeDialog, 1000);
+                                    break;
+
+                                    // 抽中奖品
+                                case 1:
+                                    Animal.showResult(1);
+                                    jumpDrawnPrizeDialog(data.prize_idx);
+                                    break;
+
+                                default:
+                                    LMEPG.UI.showToast('抽奖失败[' + data.result + ']');
+//                                    setTimeout(onBack, 3000);
+                                    return;
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("抽奖结果处理异常！");
+//                            setTimeout("onBack()", 3000);
+                            LMEPG.Log.error(e.toString());
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.dismissWaitingDialog();
+                        LMEPG.UI.showToast("请求抽奖发生错误！");
+                    }
+            );
+        },
+
+        /**
+         * 上报参与记录（上报答题结果）
+         */
+        uploadAnswerResult: function () {
+            LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+                    function (rsp) {
+                        try {
+                            var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                            var result = data.result;
+                            console.log('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                            LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                        } catch (e) {
+                            console.log('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                            LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                        }
+                    },
+                    function (rsp) {
+                        console.log('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                        LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                    }
+            );
+        },
+        /**
+         * 界面初始化
+         */
+        pageStart: function () {
+            Pages.showOrderResult();
+            Pages.canAnswer();
+            LMEPG.ButtonManager.init("btn-start", buttons, '', true);
+        }
+    }
+
+    /**
+     * 动画部分
+     */
+    var Animal = {
+        run1: G("run-1"),//角色1
+        run2: G("run-2"),//角色2
+        run3: G("run-3"),//角色2
+        speed: 180,//定时器速率
+        moveIndex: 0,//移动累计量
+        moveIndex1: 1,//移动累计量
+        moveIndex2: 2,//移动累计量
+        maxLength: 4,
+        timerStart: null,//定时器声明
+        beat: function () {
+            Animal.moveIndex++;
+            Animal.moveIndex1++;
+            Animal.moveIndex2++;
+            Animal.run1.src = imgPath + "run_" + Animal.moveIndex + ".png";
+            Animal.run2.src = imgPath + "run_" + Animal.moveIndex1 + ".png";
+            Animal.run3.src = imgPath + "run_" + Animal.moveIndex2 + ".png";
+            Animal.timer1();
+            if (Animal.moveIndex >= Animal.maxLength) {
+                Animal.moveIndex = 0;
+            } else if (Animal.moveIndex1 >= Animal.maxLength) {
+                Animal.moveIndex1 = 0;
+            } else if (Animal.moveIndex2 >= Animal.maxLength) {
+                Animal.moveIndex2 = 0;
+            }
+        },
+        timer1: function () {
+            Animal.timerStart = setTimeout(Animal.beat, Animal.speed);
+        },
+
+        showResult: function (type) {
+            clearTimeout(Animal.timerStart);
+            if (type == 1) {
+                Animal.run1.src = imgPath + "run_1.png";
+                Animal.run2.src = imgPath + "run_1.png";
+                Animal.run3.src = imgPath + "run_1.png";
+                //显示中奖结果
+            } else {
+                var param1 = Animal.randomNum(1, 4);
+                var param2 = Animal.randomNum(2, 4);
+                Animal.run1.src = imgPath + "run_" + param1 + ".png";
+                Animal.run2.src = imgPath + "run_" + param1 + ".png";
+                Animal.run3.src = imgPath + "run_" + param2 + ".png";
+
+            }
+        },
+        //生成从minNum到maxNum的随机数
+        randomNum: function (minNum, maxNum) {
+            switch (arguments.length) {
+                case 1:
+                    return parseInt(Math.random() * minNum + 1, 10);
+                    break;
+                case 2:
+                    return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+                    break;
+                default:
+                    return 0;
+                    break;
+            }
+        }
+    }
+
+
+    window.onload = function () {
+        Button.initBtn();
+        Pages.pageStart();
+    };
+</script>
+</body>
+</html>

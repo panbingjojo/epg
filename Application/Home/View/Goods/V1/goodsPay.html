@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>扫码支付</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",            // 页面尺寸
+            stbModel: "{$stbModel}",                            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",                // 用户Id
+            focusIndex: "{$focusIndex}",           // 焦点ID
+            focusBackId: "{$focusBackId}",        // 焦点ID
+            isVip: {$isVip},                     // 用户是否是vip
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUI.js?t={$time}"></script>
+    <!--模块-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Goods/GoodsAPI.js?t={$time}"></script>
+    <style>
+        .title {
+            position: absolute;
+            left: 80px;
+            top: 38px;
+            line-height: 37px;
+            font-size: 37px;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .title-line {
+            position: absolute;
+            left: 80px;
+            top: 87px;
+            width: 150px;
+            height: 2px;
+        }
+
+        .order {
+            position: absolute;
+            top: 140px;
+            left: 80px;
+            width: 1120px;
+            height: 374px;
+            /*border: 1px red solid;*/
+        }
+
+        .table {
+            width: 660px;
+            margin: 56px auto;
+            /*border: 1px red solid;*/
+            font-size: 36px;
+            color: #fff;
+        }
+
+        .introduce {
+            width: 300px;
+            height: 200px;
+        }
+
+        .introduce {
+            position: absolute;
+            top: 581px;
+            left: 485px;
+            height: 80px;
+            font-size: 23px;
+            /*border: 1px red solid;*/
+        }
+
+        .word {
+            position: relative;
+            left: 80px;
+            top: -70px;
+            width: 250px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="title">
+    扫码支付
+</div>
+<img class="title-line" src="__ROOT__/Public/img/hd/Home/V15/Home/line.png"/>
+
+<div class="order" style='background-image: url("__ROOT__/Public/img/hd/Goods/V1/rgb_bg.png")'>
+    <table class="table">
+        <tr>
+            <td>
+                <div class="type">
+                    广电云智慧医疗
+                </div>
+            </td>
+            <td rowspan="3">
+                <img id="qr-code-img" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="good-name" class="name"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="price" class="price"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="introduce">
+    <img src="__ROOT__/Public/img/hd/Goods/V1/icon_wechat.png"/>
+    <div class="word">使用微信<br/>扫码完成二维码支付</div>
+</div>
+
+<script>
+    var buttons = [];
+
+    // 返回按键
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    //页面跳转控制
+    var Jump = {
+
+        /**
+         * 跳转 -- 付款成功
+         * @param activityName
+         */
+        jumpPaySuccess: function () {
+            var objHome = Jump.getCurrentPage();
+            var objSuccess = LMEPG.Intent.createIntent("goodsPayComplete");
+            objSuccess.setParam("goodInfo", DataHandle.InitData.goodInfo);
+            LMEPG.Intent.jump(objSuccess, objHome, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        },
+        /**
+         * 跳转 -- 付款失败
+         * @param activityName
+         */
+        jumpPayFalse: function () {
+            var objHome = Jump.getCurrentPage();
+            var objActivity = LMEPG.Intent.createIntent("goodsPayError");
+            LMEPG.Intent.jump(objActivity, objHome);
+        },
+
+        /**
+         * 跳转 -- 付款成功
+         * @param activityName
+         */
+        jumpPay: function () {
+            var objHome = Jump.getCurrentPage();
+            var objActivity = LMEPG.Intent.createIntent("goodsPayComplete");
+            LMEPG.Intent.jump(objActivity, objHome);
+        },
+
+        /**
+         * 获取当前页面对象
+         */
+        getCurrentPage: function () {
+            var currentPage = LMEPG.Intent.createIntent("goodsPay");
+            currentPage.setParam("goodInfo", DataHandle.InitData.goodInfo);
+            currentPage.setParam("orderId", DataHandle.InitData.orderId);
+            currentPage.setParam("payUrl", DataHandle.InitData.payUrl);
+            return currentPage;
+        },
+
+    };
+
+    var DataHandle = {
+        InitData: {
+           /* goodInfo: {$goodInfo},*/
+            orderId: "{$orderId}",
+            payUrl: "{$payUrl}"
+        },
+        pollOrderStatus: function () {
+            var tempGoodType = DataHandle.InitData.goodInfo.goods_type;
+            var tempOrderId = DataHandle.InitData.orderId;
+            GoodsAPI.getOrderResult(tempOrderId, tempGoodType, function (data) {
+                if (data.result == "0") {
+                    Jump.jumpPaySuccess();
+                } else {
+                    console.log("getOrderResult::" + data.result);
+                    DataHandle.pollOrderStatus();
+                }
+            });
+        }
+    };
+
+    var UIHandle = {
+        init: function () {
+            var tempGoodInfo = DataHandle.InitData.goodInfo;
+            //G("qr-code-img").setAttribute("src", DataHandle.InitData.payUrl);
+            //G("good-name").innerHTML = tempGoodInfo.goods_name;
+            //var tempPrice = (tempGoodInfo.goods_price / 100).toFixed(2);
+            //G("price").innerHTML = "￥" + tempPrice;
+            //DataHandle.pollOrderStatus();
+        }
+    };
+
+
+    window.onload = function () {
+        document.body.style.backgroundImage = 'url(__ROOT__/Public/img/hd/Home/V15/Home/bg.png)';
+        UIHandle.init();
+        LMEPG.ButtonManager.init("", buttons, "", true);
+    };
+
+</script>
+</body>
+</html>

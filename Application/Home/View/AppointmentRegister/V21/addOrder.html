@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加预约人信息</title>
+
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V21/addOrder.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            hospitalName:'{$hospitalName}',
+            docName:'{$docName}',
+            time:'{$dayTime}',
+            depName:'{$depName}',
+            doctorName:'{$docName}',
+            startTime:'{$appointment_start}',
+            endTime:'{$appointment_end}',
+            backDepIndex : "{$backDepIndex}",
+            dateTime: '{$dateTime}',
+            title1: '{$title1}',
+            cost: '{$cost}',
+            tickId:'{$tickId}',
+            id_sch:'{$id_sch}',
+            docNum: '{$docNum}',
+            depCode: '{$depCode}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V21/addOrder.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div class="appointment">我的预约</div>
+    <div class="hospital" id="hospital-name"></div>
+    <div class="doctor" id="name"></div>
+    <div class="department" id="department"></div>
+    <div class="dayTime" id="time"></div>
+    <div class="title1" id="title1" style="display: none">专家</div>
+    <div class="line"></div>
+    <div class="first">第一步  选择就诊人</div>
+    <div class="info_p" id="info_p">
+        <div class="nameTitle">姓名</div>
+        <div class="sexTitle" >性别</div>
+        <div class="cardTitle">身份证号</div>
+    </div>
+    <div class="people-item" id = 'people-item'>
+    </div>
+    <div style="display: none" id="add-area" >
+        <div class="add" id="add">选择就诊人</div>
+        <div class="choose">暂无就诊人，请选择一名就诊人</div>
+    </div>
+
+    <div class="next" id="next" style="display: none">下一步</div>
+
+
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

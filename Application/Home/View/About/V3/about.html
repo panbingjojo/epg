@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>关于我们-V10</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'>
+
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+    <style>
+        body {
+            width: 1280px;
+            height: 720px;
+            background-repeat: no-repeat;
+            text-align: center;
+            color: #fff;
+            background-image: url("__ROOT__/Public/img/hd/Common/V9/bg_home.png");
+        }
+
+        #default {
+            margin-top: 135px;
+        }
+
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-size: 38px;
+        }
+
+        .version_code {
+            position: absolute;
+            left: 144px;
+            top: 630px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="title">
+    关于我们
+</div>
+<img id="default"  src="__ROOT__/Public/img/hd/Family/V7/about_370002.png"/>
+<div class="version_code">
+    版本号：2.0.0
+</div>
+<script type="text/javascript">
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    // 监听遥控器按键跳转测试页面
+    LMEPG.KeyEventManager.addKeyEvent(
+        {
+            KEY_BACK: onBack,	           // 返回键，onBack 由页面自行定义回调
+            KEY_RIGHT: onTestKeyDown,
+        }
+    );
+
+    function onTestKeyDown(code){
+        switch (code) {
+            case KEY_RIGHT:
+                var keys = LMEPG.KeyEventManager.getKeyCodes();
+                if (keys.length >= 4) {
+                    if (keys[keys.length - 1] == KEY_RIGHT
+                        && keys[keys.length - 2] == KEY_LEFT
+                        && keys[keys.length - 3] == KEY_DOWN
+                        && keys[keys.length - 4] == KEY_UP) {
+
+                        jumpTestPage();
+                    }
+                }
+        }
+    }
+    function jumpTestPage(){
+        var objCurrent = LMEPG.Intent.createIntent("about");
+        var objHomeTab = LMEPG.Intent.createIntent("testEntrySet");
+        LMEPG.Intent.jump(objHomeTab, objCurrent);
+    }
+
+    var buttons = [];
+    window.onload = function (ev) {
+        // LMEPG.ButtonManager.init("default", buttons, "", false);
+        LMEPG.KeyEventManager.init();
+    }
+</script>
+</body>
+</html>

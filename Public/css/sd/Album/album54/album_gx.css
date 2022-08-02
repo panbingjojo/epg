@@ -1,0 +1,131 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 530px;
+    width: 644px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.logo {
+    position: absolute;
+    top: 17px;
+    left: 18px;
+    z-index: 0;
+    outline: none !important;
+    width: 49px;
+    height: 52px;
+}
+
+#focus-2-1 {
+    position: absolute;
+    top: 432px;
+    left: 30px;
+    z-index: 0;
+    outline: none !important;
+    width: 194px;
+    height: 80px;
+}
+
+#focus-2-2 {
+    position: absolute;
+    top: 432px;
+    left: 224px;
+    z-index: 0;
+    outline: none !important;
+    width: 194px;
+    height: 80px;
+}
+
+#focus-2-3 {
+    position: absolute;
+    top: 432px;
+    left: 410px;
+    z-index: 0;
+    outline: none !important;
+    width: 194px;
+    height: 80px;
+}
+
+#back {
+    position: absolute;
+    top: 8px;
+    left: 576px;
+    z-index: 0;
+    outline: none !important;
+    width: 60px;
+    height: 60px;
+
+}
+
+#page-left {
+    position: absolute;
+    top: 460px;
+    left: 11px;
+    z-index: 0;
+    outline: none !important;
+    width: 26px;
+    height: 26px;
+}
+
+#page-right {
+    position: absolute;
+    top: 460px;
+    left: 614px;
+    z-index: 0;
+    outline: none !important;
+    width: 26px;
+    height: 26px;
+}
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+
+.none {
+    display: none
+}
+
+.g_toast {
+    position: absolute;
+    left: 148px;
+    top: 210px;
+    width: 348px;
+    height: 81px;
+    line-height: 106px;
+    font-size: 20px;
+    z-index: 1000;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../img/sd/Common/bg_toast.png") no-repeat;
+}
+
+

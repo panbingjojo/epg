@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <title>响应测试</title>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Debug/ServerResponseTest/ServerResponseTest.css?t={$time}"/>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script>
+        var RenderParam = {
+            vip: '{$isVip}',          //当前用户是否VIP
+            userId: '{$userId}',    // 当前用户ID
+            inner: '{$inner}',
+            lmcid: '{$carrierId}',
+        };
+    </script>
+</head>
+<body id="body" style="position: relative;">
+<div id="table-mode">
+    <h1 id="btn_pingTest">EPG服务器响应测试</h1>
+</div>
+<!--<img id="prev-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/left.png">-->
+<!--<img id="next-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/right.png">-->
+<table>
+    <thead>
+    <tr id="thead">
+        <th>请求时间</th>
+        <th>服务器响应时间</th>
+        <th>响应时间</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+</table>
+<!--<div id="layPageNavNum">-->
+
+<!--</div>-->
+</body>
+<script>
+    var request_time, server_time, response_time;
+    var eachPage = 6;
+    var maxPage;
+    var i = 0;
+    // var laypage = 0;
+    var arryDate = [];
+
+    /**
+     *按钮初始化
+     */
+    var buttons = [
+        {
+            id: 'btn_pingTest',
+            name: '测试按钮',
+            type: 'h1',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'prev-arrow',
+            beforeMoveChange: arryDateLengthDetection,
+            click: click
+        },
+        // {
+        //     id: 'prev-arrow',
+        //     name: '左翻页',
+        //     type: 'img',
+        //     nextFocusLeft: '',
+        //     nextFocusRight: 'next-arrow',
+        //     nextFocusUp: 'btn_pingTest',
+        //     nextFocusDown: '',
+        //     beforeMoveChange: DateDetection,
+        //     click: click
+        //
+        // }, {
+        //     id: 'next-arrow',
+        //     name: '右翻页',
+        //     type: 'img',
+        //     nextFocusLeft: 'prev-arrow',
+        //     nextFocusRight: '',
+        //     nextFocusUp: 'btn_pingTest',
+        //     nextFocusDown: '',
+        //     beforeMoveChange: DateDetection,
+        //     click: click
+        // }
+    ];
+
+    window.onload = function () {
+        LMEPG.ButtonManager.init("btn_pingTest", buttons, '', true);
+    }
+
+    /**
+     * 设置页面的返回效果，这里默认返回上一页
+     * */
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    /**
+     *设置按钮的点击事件函数
+     * */
+    function click() {
+        PingTest();
+    }
+
+    // function leftClick() {
+    //     laypage -= 6;
+    //     var strHtml = "";
+    //     for (var j = laypage; j < (laypage + 6 < arryDate.length - 1 ? laypage + 6 : arryDate.length - 1); j++) {
+    //         strHtml += '<tr>';
+    //         strHtml += '<td>' + arryDate[j].request_time + '</td>'
+    //         strHtml += '<td>' + arryDate[j].server_time + '</td>'
+    //         strHtml += '<td>' + arryDate[j].response_time + '</td>'
+    //         strHtml += '</tr>';
+    //     }
+    //     G("tbody").innerHTML = strHtml;
+    //
+    // }
+    //
+    // function rightClick() {
+    //     laypage += 6;
+    //     var strHtml = "";
+    //     if (laypage <= arryDate.length) {
+    //         for (var j = laypage; j < (laypage + 6 < arryDate.length - 1 ? laypage + 6 : arryDate.length - 1); j++) {
+    //             strHtml += '<tr>';
+    //             strHtml += '<td>' + arryDate[j].request_time + '</td>'
+    //             strHtml += '<td>' + arryDate[j].server_time + '</td>'
+    //             strHtml += '<td>' + arryDate[j].response_time + '</td>'
+    //             strHtml += '</tr>';
+    //         }
+    //         G("tbody").innerHTML = strHtml;
+    //     }
+
+    // }
+
+
+    /**
+     * 获取当前的本地系统时间
+     * */
+    function currentTime() {
+        var myDate = new Date();
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1;
+        var date = myDate.getDate();
+        var hours = myDate.getHours();
+        var minutes = myDate.getMinutes();
+        var seconds = myDate.getSeconds();
+        var millisecond = myDate.getTime();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (date < 10) {
+            date = "0" + date;
+        }
+        var Time = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds ;
+        return Time;
+    }
+
+    /**
+     * 获取系统的请求时间：request_time
+     * 获取服务器响应时间：server_time
+     * 获取客户端响应时间：response_time
+     * */
+    function PingTest() {
+        request_time = currentTime();
+        var reqData = {
+            "time1": request_time,
+        }
+        LMEPG.ajax.postAPI('Debug/testPing', reqData,
+            function (rsp) {
+
+                server_time = rsp.time_tatal;
+                response_time = currentTime();
+                arryDate.push({
+                    "request_time": request_time,
+                    "response_time": response_time,
+                    "server_time": server_time
+                })
+                createElements();
+            }
+        )
+    }
+
+    /**
+     * 创建元素
+     */
+    function createElements() {
+        maxPage = Math.ceil(arryDate.length / eachPage)
+        /* 创建按钮 */
+        if (arryDate.length <12) {
+            G("tbody").innerHTML = "";
+            var strHtml = "";
+            for (var i = arryDate.length-1; i >= 0; i--) {
+                strHtml += '<tr>';
+                strHtml += '<td>' + arryDate[i].request_time + '</td>'
+                strHtml += '<td>' + arryDate[i].server_time + '</td>'
+                strHtml += '<td>' + arryDate[i].response_time + '</td>'
+                strHtml += '</tr>';
+            }
+            G("tbody").innerHTML = strHtml;
+        }else {
+            G("tbody").innerHTML = "";
+            var strHtml = "";
+            for (var i = arryDate.length-1; i >= arryDate.length-12 ; i--) {
+                strHtml += '<tr>';
+                strHtml += '<td>' + arryDate[i].request_time + '</td>'
+                strHtml += '<td>' + arryDate[i].server_time + '</td>'
+                strHtml += '<td>' + arryDate[i].response_time + '</td>'
+                strHtml += '</tr>';
+            }
+            G("tbody").innerHTML = strHtml;
+        }
+    }
+
+
+    var page = 0;
+
+
+    function arryDateLengthDetection() {
+        if (arryDate.length == 0) {
+            alert("暂时还没有数据，请按回车键开始测试");
+        }
+    }
+
+    // function DateDetection(direction) {
+    //     if (page === 0 && direction === "left") {
+    //         alert("这已经是第一页了");
+    //         return false;
+    //     }
+    //     if (page !== 0 && direction === "left") {
+    //         page--;
+    //         leftClick();
+    //         return false;
+    //     }
+    //
+    //     if (page + 1 !== maxPage && direction === "right") {
+    //         page++;
+    //         rightClick();
+    //         return false;
+    //     }
+    //
+    // }
+</script>
+</html>

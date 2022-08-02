@@ -1,0 +1,490 @@
+* {
+    outline: none !important;
+    padding: 0px;
+    margin: 0px
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    background-repeat: no-repeat;
+    position: absolute;
+    overflow: hidden;
+}
+
+#focus-8-1 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 0px;
+    left: 20px;
+    text-align: left;
+    overflow: hidden;
+}
+
+#focus-8-1-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+}
+
+#focus-8-1-src {
+    position: absolute;
+    width: 215px;
+    height: 160px;
+    left: 22px;
+    top: 15px;
+}
+
+#focus-8-1-title {
+    position: absolute;
+    background: url('../../../../img/hd/Search/V2/txtbg.png');
+    z-index: 888;
+    left: 22px;
+    width: 215px;
+    height: 30px;
+    top: 145px;
+    font-size: 25px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-8-2 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 0px;
+    left: 260px;
+    text-align: center;
+    /*overflow: hidden;*/
+}
+
+#focus-8-2-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+}
+
+#focus-8-2-src {
+    position: absolute;
+    width: 215px;
+    height: 160px;
+    left: 22px;
+    top: 15px;
+}
+
+#focus-8-2-title {
+    background: url('../../../../img/hd/Search/V2/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 22px;
+    width: 215px;
+    height: 30px;
+    top: 145px;
+    font-size: 25px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-8-3 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 0px;
+    left: 500px;;
+    text-align: center;
+}
+
+#focus-8-3-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+}
+
+#focus-8-3-src {
+    position: absolute;
+    width: 215px;
+    height: 160px;
+    left: 22px;
+    top: 15px;
+}
+
+#focus-8-3-title {
+    background: url('../../../../img/hd/Search/V2/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 22px;
+    width: 215px;
+    height: 30px;
+    top: 145px;
+    font-size: 25px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-9-1 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 180px;
+    left: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#focus-9-1-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+    top: 10px;
+}
+
+#focus-9-1-src {
+    position: absolute;
+    width: 217px;
+    height: 160px;
+    left: 21px;
+    top: 25px;
+}
+
+#focus-9-1-title {
+    background: url('../../../../img/hd/Search/V2/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 21px;
+    width: 217px;
+    height: 30px;
+    top: 155px;
+    font-size: 25px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-9-2 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 180px;
+    left: 260px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#focus-9-2-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+    top: 10px;
+}
+
+#focus-9-2-src {
+    position: absolute;
+    width: 217px;
+    height: 160px;
+    left: 21px;
+    top: 25px;
+}
+
+#focus-9-2-title {
+    background: url('../../../../img/hd/Search/V2/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 21px;
+    width: 217px;
+    height: 30px;
+    top: 155px;
+    font-size: 25px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-9-3 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 180px;
+    left: 500px;;
+    text-align: center;
+    overflow: hidden;
+}
+
+#focus-9-3-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+    top: 10px;
+}
+
+#focus-9-3-src {
+    position: absolute;
+    width: 216px;
+    height: 160px;
+    left: 22px;
+    top: 25px;
+}
+
+#focus-9-3-title {
+    background: url('../../../../img/hd/Search/V2/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 22px;
+    width: 216px;
+    height: 30px;
+    top: 155px;
+    font-size: 25px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#searchText {
+    position: absolute;
+    width: 400px;
+    height: 50px;
+    font-size: 35px;
+    text-align: center;
+    color: #FFFFFF;
+    outline: none !important;
+    top: 20px;
+    left: 35px;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+.line {
+    position: absolute;
+    top: 70px;
+    width: 450px;
+    left: 10px;
+}
+
+#left {
+    height: 640px;
+    width: 480px;
+    left: 24px;
+    top: 41px;
+    background-image: url("../../../../img/hd/Search/V2/keywordmodel.png");
+    position: absolute;
+}
+
+
+.key_btn {
+    width: 122px;
+    height: 123px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab1 {
+    top: 163px;
+    left: 44px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab2 {
+    top: 163px;
+    left: 199px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab3 {
+    top: 163px;
+    left: 372px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab4 {
+    top: 288px;
+    left: 44px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab5 {
+    top: 288px;
+    left: 199px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab6 {
+    top: 288px;
+    left: 372px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab7 {
+    top: 413px;
+    left: 44px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab8 {
+    top: 413px;
+    left: 199px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab9 {
+    top: 413px;
+    left: 372px;
+    position: absolute;
+    z-index: 1
+}
+
+#focus-4-1 {
+    top: 538px;
+    left: 44px;
+    position: absolute;
+    z-index: 1
+}
+
+#focus-4-2 {
+    top: 538px;
+    left: 199px;
+    position: absolute;
+    z-index: 1
+}
+
+#focus-4-3 {
+    top: 538px;
+    left: 372px;
+    position: absolute;
+    z-index: 1
+}
+
+.focus-col-1 {
+    left: 0px;
+}
+
+.focus-col-2 {
+    left: 90px;
+}
+
+.focus-col-3 {
+    left: 165px;
+}
+
+.focus-col-4 {
+    left: 240px;
+}
+
+.focus-col-5 {
+    left: 315px;
+}
+
+.focus-col-6 {
+    left: 390px;
+}
+
+.focus-row-1 {
+    top: 80px;
+}
+
+.focus-row-2 {
+    top: 160px;
+}
+
+.focus-row-3 {
+    top: 240px;
+}
+
+.focus-row-4 {
+    top: 320px;
+}
+
+.focus-row-5 {
+    top: 400px;
+}
+
+.focus-row-6 {
+    top: 480px
+}
+
+
+
+.rightWrap {
+    position: absolute;
+    top: 180px;
+    left: 500px;
+    width: 650px;
+    height: 420px;
+}
+
+#topArrow {
+    position: absolute;
+    left: 850px;
+    top: 130px;
+    width: 30px;
+    height: 20px;
+    visibility: hidden;
+}
+
+#bottomArrow {
+    position: absolute;
+    left: 850px;
+    top: 620px;
+    width: 30px;
+    height: 20px;
+    visibility: hidden;
+}
+
+#pagePlag {
+    position: absolute;
+    left: 1120px;
+    top: 70px;
+    width: 60px;
+    height: 20px;
+    color: white;
+    font-size: 30px;
+}
+
+#searchTitle {
+    position: absolute;
+    left: 520px;
+    top: 65px;
+    width: 200px;
+    height: 20px;
+    color: white;
+    font-size: 35px;
+}
+
+/*跑马灯*/
+#scroll_div {
+    width: 1130px;
+    height: 30px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    top: 670px;
+    left: 74px;
+    font-size: 29px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+}

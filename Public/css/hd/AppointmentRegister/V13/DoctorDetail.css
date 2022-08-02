@@ -1,0 +1,108 @@
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/Common/bg.png);
+}
+
+ul li {
+    list-style: none;
+}
+p#title {
+    position: absolute;
+    top: 15px;
+    left: 40px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+}
+#container {
+    width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    top: 70px;
+}
+
+#top-positon {
+    height: 180px;
+}
+
+#doctor-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    float: left;
+}
+
+#top-positon ul li#doctor-name {
+    font-size: 30px;
+}
+
+#top-positon ul{
+    float: left;
+    text-align: left;
+    margin-left: 50px;
+}
+#top-positon ul li{
+    margin-top: 10px;
+    font-size: 22px;
+}
+
+#top-positon span {
+    color: #fff;
+    text-align: left;
+    margin-right: 7px;
+    font-weight: bold;
+}
+
+#doctor-intro{
+    width: 1080px;
+    padding: 30px;
+    height: 303px;
+    background-image: url("../../../../img/hd/AppointmentRegister/V13/content_bg.png");
+    overflow: hidden;
+    position: relative;
+    top: 60px;
+}
+#cotnent-wrap{
+    position: absolute;
+    padding-right: 30px;
+    height: 303px;
+    width: 1080px;
+    overflow: hidden;
+}
+#call-intro{
+    font-weight: bold;
+}
+#content-intro{
+    position: absolute;
+    font-size: 24px;
+    line-height: 40px;
+    width: 1050px;
+}
+#scroll-wrap {
+    width: 6px;
+    height: 303px;
+    position: absolute;
+    top: 30px;
+    left: 1100px;
+    border-radius: 6px;
+    background-color: #89adf4;
+}
+
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 10px;
+    height: 66px;
+    border-radius: 10px;
+    background-color: #efa8aa;
+}
+
+#scroll-bar.focus {
+    background-color: #ef6188;
+}

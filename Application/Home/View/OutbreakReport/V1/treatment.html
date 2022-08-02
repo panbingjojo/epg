@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>预防和治疗</title>
+    <script>
+        Root = "__ROOT__";
+        var RenderParam = {
+            lmcid: "{$carrierId}",          // 地区id
+            carrierId: "{$carrierId}",          // 地区id
+            focusIndex: "{$focusIndex2}",                        // 焦点ID
+            pages: "{$pages}",                        // 焦点ID
+            historyLength: "{$historyLength}",
+            splashHistory: "{$splashHistory}" // 获取欢迎页在浏览器中的历史步长
+        };
+    </script>
+    <!--公用库-->
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/OutbreakReport/V1/treatment.css?t={$time}">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V1/treatment.js?t={$time}"></script>
+</head>
+<body>
+<div class="title">预防和治疗</div>
+<img class="line" src="__ROOT__/Public/img/hd/OutbreakReport/V1/line.png"/>
+<div id="list">
+    <div id="list-1">
+        <img class="list-img" src="__ROOT__/Public/img/hd/OutbreakReport/V1/line.png"/>
+        <img id="list-box-1" class="list-box" src="__ROOT__/Public/img/hd/OutbreakReport/V1/box.png"/>
+    </div>
+    <div id="list-2">
+        <img class="list-img" src="__ROOT__/Public/img/hd/OutbreakReport/V1/line.png"/>
+    </div>
+    <div id="list-3">
+        <img class="list-img" src="__ROOT__/Public/img/hd/OutbreakReport/V1/line.png"/>
+    </div>
+</div>
+
+<img id="area-next-arrow" src="__ROOT__/Public/img/hd/OutbreakReport/V1/left_page.png"/>
+<img id="area-prev-arrow" src="__ROOT__/Public/img/hd/OutbreakReport/V1/right_page.png"/>
+<div id="page">
+    2/3
+</div>
+<script>
+
+    window.onload = function () {
+        MenuList.init(_album);
+        LMEPG.BM.init(MenuList.defaultFocusId, buttons, "", true);
+    }
+
+    if (RenderParam.carrierId == "410092") {
+        LMEPG.Log.info('init HybirdCallBackInterface !!!!!');
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                LMEPG.Log.info('HybirdCallBackInterface param : ' + JSON.stringify(param));
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</body>
+</html>

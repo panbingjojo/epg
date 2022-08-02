@@ -1,0 +1,127 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.btn {
+    position: absolute;
+    width: 158px;
+    height: 52px;
+    outline: none;
+}
+
+#rule_btn {
+    top: 278px;
+    left: 80px;
+}
+
+#consultation_btn {
+    top: 278px;
+    left: 265px;
+}
+
+#detail_btn {
+    top: 278px;
+    left: 449px;
+}
+
+#back_btn {
+    top: 35px;
+    left: 1080px;
+}
+
+#photo_box {
+    top: 152px;
+    left: 782px;
+    position: absolute;
+    width: 296px;
+    height: 396px;
+    outline: none;
+}
+
+#photo_img {
+    top: 160px;
+    left: 790px;
+    position: absolute;
+    width: 280px;
+    height: 343px;
+    outline: none;
+}
+
+#pre_page {
+    top: 66px;
+    left: 904px;
+    position: absolute;
+    width: 56px;
+    height: 26px;
+    outline: none;
+}
+
+#next_page {
+    top: 605px;
+    left: 904px;
+    position: absolute;
+    width: 56px;
+    height: 26px;
+    outline: none;
+}
+
+.title {
+    top: 373px;
+    left: 130px;
+    position: absolute;
+    letter-spacing: 2px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+#doctor {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#content {
+    top: 424px;
+    left: 130px;
+    position: absolute;
+    letter-spacing: 2px;
+    font-size: 24px;
+    line-height: 40px;
+    width: 558px;
+    height: 167px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-indent: 80px;
+}
+
+.good_at {
+    top: 424px;
+    left: 130px;
+    position: absolute;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 40px;
+}
+#page {
+    top: 644px;
+    left: 900px;
+    position: absolute;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 40px;
+}

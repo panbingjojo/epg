@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>《月饼欢乐送》主页-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityDeliverMoonCake/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/keypad.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/LMActivity2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityDeliverMoonCake/V1/guide.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmBase64.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            nPrizeIdx: 0,
+            lmcid: "{$carrierId}",
+            ROOT: "__ROOT__",
+            platformType: "{$platformType}",
+            activityInfo:  LMEPG.Func.checkParamsNull({$activityInfo}),                         // 活动信息
+            leftTimes: "{$leftTimes}", // 剩余次数
+            userTel: "{$userTel}",                                                              // 中奖电话
+            userAccount: "{$userAccount}",
+            allLotteryList: LMEPG.Func.checkParamsNull({$allLotteryList}),                  // 所用中奖信息
+            myLotteryInfo: LMEPG.Func.checkParamsNull({$myLotteryInfo}),                  // 当前用户中奖信息
+            prize_idx: LMEPG.Func.checkParamsNull({$prize_idx}),
+            imagePathPrefix: "__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/",
+            imagePath: "__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/",
+            score: "{$score}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: LMEPG.Func.checkParamsNull({$valueCountdown}),
+            keyArrive: "{$keyArrive}",
+            valueArrive: LMEPG.Func.checkParamsNull({$valueArrive}),
+            extraTimes:  "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}"
+        };
+        window.onload = function () {
+            ActivityDeliverMoonCake.init();
+            lmInitGo();
+        };
+    </script>
+</head>
+<body id="body">
+<div id="debug"></div>
+<!--背景图片-->
+<img id="background" src="">
+ <!--返回-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_back.png" id="btn-back">
+<!--活动规则-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_rules.png" id="btn-rules">
+<!--中奖名单-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_winner_list.png" id="btn-winner-list">
+<!--开始游戏-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_start.png" id="btn-start">
+<div id="game-times"></div>
+
+<!--活动规则-->
+<div id="activity-rule" style="visibility: hidden">
+    <img id="bg-activity-rule" src="">
+    <img id="btn-exit-rule" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_close_f.gif">
+</div>
+
+<!--中奖名单页-->
+<div id="winner-list" style="visibility: hidden">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_winner_list.png">
+    <marquee id="all-winner" behavior="" direction="up"></marquee>
+    <div id="mine-container"></div>
+    <div id="list-phone-container">请输入正确的手机号码</div>
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_sure.png" id="btn-update-phone">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_cancel.png" id="btn-reset-phone">
+</div>
+
+<!--游戏容器-->
+<div id="game-container" style="visibility: hidden">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_game.png">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/icon_game_box.png" id="game-box">
+    <div id="cake-count"></div>
+    <div id="game-time"></div>
+    <!--装月饼的容器-->
+    <div id="cake-container"></div>
+    <!--月饼个数小于10次时弹窗-->
+    <div id="game-fail" style="visibility: hidden">
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_game_fail.png">
+        <div id="game-fail-score"></div>
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_sure.png" id="btn-game-fail">
+    </div>
+
+    <!--月饼个数小于10次时弹窗-->
+    <div id="game-success" style="visibility: hidden">
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_game_success.png">
+        <div id="game-success-score"></div>
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_lottery.png" id="btn-lottery">
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_cancel_lottery.png" id="btn-cancel-lottery">
+    </div>
+
+    <!--中奖弹窗-->
+    <div id="lottery-success" style="visibility: hidden">
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_lottery_success.png">
+        <img src="" id="lottery-prize">
+        <div id="lottery-phone-container">请输入正确的手机号码</div>
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_sure.png" id="btn-lottery-phone">
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_cancel.png" id="btn-exit-lottery-success">
+    </div>
+
+    <!--未中奖弹窗-->
+    <div id="lottery-fail" style="visibility: hidden">
+        <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_lottery_fail.png">
+        <img id="btn-exit-lottery-fail" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_sure.png">
+    </div>
+</div>
+
+<!--次数用尽，订购弹窗-->
+<div id="purchase" style="visibility: hidden">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_purchase.png">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_sure.png" id="btn-purchase">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_cancel.png" id="btn-cancel-purchase">
+</div>
+
+<!--次数用尽，游戏结束-->
+<div id="game-over" style="visibility: hidden">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_game_over.png">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/btn_sure.png" id="btn-game-over">
+</div>
+
+<!--订购成功-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_purchase_success.png"  id="purchase-success" style="visibility: hidden">
+<!--订购失败-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_purchase_fail.png"  id="purchase-fail" style="visibility: hidden">
+
+<!--倒计时-->
+<div id="countdown" style="visibility: hidden">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDeliverMoonCake/V1/bg_countdown.png">
+    <div id="countdown-count"></div>
+</div>
+</body>
+</html>

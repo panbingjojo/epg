@@ -1,0 +1,256 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    top: 0;
+    left: 0;
+}
+
+body > * {
+    position: absolute;
+}
+
+/*首页 --- start*/
+#btn-back {
+    left: 497px;
+    top: 32px;
+}
+
+#btn-rules {
+    left: 497px;
+    top: 91px;
+}
+
+#btn-winner-list {
+    left: 497px;
+    top: 150px;
+}
+
+#btn-start {
+    left: 217px;
+    top: 411px;
+}
+
+#game-times {
+    top: 431px;
+    left: 387px;
+    font-size: 18px;
+    color: #400000;
+}
+/*首页 --- end*/
+
+/*活动规则页 --- start*/
+#btn-exit-rule {
+    position: absolute;
+    top: 64px;
+    left: 532px;
+}
+/*活动规则页 --- end*/
+
+/*中奖名单页 --- start*/
+#winner-list > * {
+    position: absolute;
+}
+
+#list-phone-container {
+    top: 398px;
+    left: 310px;
+    width: 200px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 14px;
+    color: #000;
+}
+
+#btn-update-phone {
+    top: 426px;
+    left: 188px;
+}
+
+#btn-reset-phone {
+    top: 426px;
+    left: 330px;
+}
+
+#all-winner {
+    top: 143px;
+    left: 120px;
+    width: 412px;
+    height: 88px;
+}
+
+#mine-container {
+    top: 347px;
+    left: 120px;
+    width: 412px;
+    height: 42px;
+}
+
+table tr td{
+    font-size: 14px;
+    line-height: 14px;
+    color: #000;
+    text-align: center;
+}
+
+.col-1 {
+    width: 90px;
+}
+
+.col-2 {
+    width: 238px;
+}
+
+.col-3 {
+    width: 98px;
+}
+/*中奖名单页 --- end*/
+
+/*次数用尽，订购弹窗 --- start*/
+#purchase > * {
+    position: absolute;
+}
+
+#btn-purchase {
+    top: 350px;
+    left: 191px;
+}
+
+#btn-cancel-purchase {
+    top: 350px;
+    left: 333px;
+}
+/*次数用尽，订购弹窗 --- end*/
+
+/*次数用尽，游戏结束 --- start*/
+#btn-game-over {
+    position: absolute;
+    top: 351px;
+    left: 256px;
+}
+/*次数用尽，游戏结束 --- end*/
+
+/*游戏页 --- start*/
+#game-container > * {
+    position: absolute;
+}
+
+#game-box {
+    top: 379px;
+    left: 257px;
+}
+
+#cake-count {
+    top: 20px;
+    left: 92px;
+    width: 48px;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+}
+
+#game-time {
+    top: 64px;
+    left: 117px;
+    font-size: 24px;
+    color: #fff;
+}
+
+#cake-container > * {
+    position: absolute;
+}
+
+#game-fail > * {
+    position: absolute;
+}
+
+#game-fail-score {
+    top: 159px;
+    left: 340px;
+    font-size: 38px;
+    color: #3e2200;
+}
+
+#btn-game-fail {
+    top: 290px;
+    left: 262px;
+}
+
+#game-success > * {
+    position: absolute;
+}
+
+#game-success-score {
+    top: 159px;
+    left: 325px;
+    font-size: 38px;
+    color: #3e2200;
+}
+
+#btn-lottery {
+    top: 290px;
+    left: 191px;
+}
+
+#btn-cancel-lottery {
+    top: 290px;
+    left: 333px;
+}
+
+#lottery-success > * {
+    position: absolute;
+}
+
+#lottery-prize {
+    top: 133px;
+    left: 353px;
+}
+
+#lottery-phone-container {
+    top: 293px;
+    left: 289px;
+    font-size: 14px;
+    color: #000;
+    width: 200px;
+    height: 14px;
+    line-height: 14px;
+}
+
+#btn-lottery-phone {
+    top: 326px;
+    left: 195px;
+}
+
+#btn-exit-lottery-success {
+    top: 326px;
+    left: 326px;
+}
+
+#btn-exit-lottery-fail {
+    position: absolute;
+    top: 306px;
+    left: 262px;
+}
+/*游戏页 --- end*/
+
+/*倒计时 --- start*/
+#countdown-count {
+    position: absolute;
+    top: 160px;
+    left: 310px;
+    font-size: 38px;
+    color: #000;
+}
+/*倒计时 --- end*/
+
+
+

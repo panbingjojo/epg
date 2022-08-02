@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>社区医院-首页-V650092</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/CommunityHospital/650092/CommunityIndex.css?t={$time}"/>
+</head>
+<body>
+<p class="title">我的医生</p>
+<div id="container">
+    <div id="carousel-wrapper">
+        <div id="prev-hospital">
+            <p id="hosp-name"></p>
+            <img id="hosp-pic_1" src="" alt="">
+        </div>
+        <div class="hosp-intro-wrap">
+            <p id="hosp-intro-title"></p>
+            <p id="marquee-wrap" class="hosp-intro-text"></p>
+        </div>
+    </div>
+    <img id="especially-department" style="display: none;" src="/Public/img/hd/CommunityHospital/especially-department.png" alt="">
+    <div id="hospital-nav">
+
+    </div>
+</div>
+
+<img id="prev" style="display: none;" src="__ROOT__/Public/img/hd/CommunityHospital/prev.png" alt="">
+<img id="next" style="display: none;" src="__ROOT__/Public/img/hd/CommunityHospital/next.png" alt="">
+
+<div class="show-code" id="show-code">
+    <img src="/Public/img/hd/CommunityHospital/code.png"/>
+</div>
+
+<div class="show-code" id="show-intro">
+    <img id="show-intro-img" src="/Public/img/hd/CommunityHospital/tongren/tongren.png"/>
+</div>
+<script type="text/javascript">
+    var RenderParam = {
+        inner: "{$inner}",
+        userId: "{$userId}",
+        accountId: "{$accountId}",
+        hospitalId: '{$hospitalId}',//医院id
+        hospitalName: '{$hospitalName}',
+        version: '{$version}',  //版本ID
+        functions: '{$function}',//zxzx在线咨询，zjjs专家介绍，jkjy健康教育，xygl血压管理
+        resourcesUrl: "{$resourcesUrl}", // 文件服务链接地址
+        pageIndex: "{$pageIndex}",
+    };
+</script>
+
+</body>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Hospital/CommunityHospital/CommunityIndex.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Hospital/CommunityHospital/V7/index.js?t={$time}"></script>
+<script>
+    window.onload = function () {
+        HospitalArea.init();
+    }
+</script>
+</html>
+  
+  

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>检测步骤-V10</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/V10/general.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/HealthTest/V10/DetectionStep.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+
+            //当前页渲染
+            userfromType: "{$userfromType}",
+            subId: "{$subId}",
+            fromId: "{$fromId}",
+            epgSplashPictureUrl: "{$epgSplashPictureUrl}",
+            intentType: "{$intentType}",
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V10/DetectionStep.js?t={$time}"></script>
+</head>
+<body>
+<!--背景-->
+<img id="img-body" class="bg" src="__ROOT__/Public/img/hd/Home/V13/Home/bg.png" alt=""
+     onerror="this.src='__ROOT__/Public/img/hd/V2/Common/bg.png'"/>
+<div class="title">
+    健康检测
+</div>
+<img class="title-line" id="data_input" src="__ROOT__/Public/img/hd/Home/V10/title_line.png" alt=""/>
+<div class="show_box border">
+    <img id="step_1" src="__ROOT__/Public/img/hd/HealthTest/V10/step_1.gif" alt=""/>
+    <img id="step_2" src="__ROOT__/Public/img/hd/HealthTest/V10/arrow_right.gif" alt=""/>
+    <img id="step_3" src="__ROOT__/Public/img/hd/HealthTest/V10/step_2.gif" alt=""/>
+    <img id="step_4" src="__ROOT__/Public/img/hd/HealthTest/V10/arrow_down.gif" alt=""/>
+    <img id="step_5" src="__ROOT__/Public/img/hd/HealthTest/V10/step_3.gif" alt=""/>
+    <img id="step_6" src="__ROOT__/Public/img/hd/HealthTest/V10/arrow_left.gif" alt=""/>
+    <img id="step_7" src="__ROOT__/Public/img/hd/HealthTest/V10/step_4.gif" alt=""/>
+</div>
+</body>
+</html>

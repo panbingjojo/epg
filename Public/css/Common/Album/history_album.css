@@ -1,0 +1,65 @@
+/*-------------hd-------------*/
+.hd-more-album {
+    top: 606px;
+    left: 530px;
+}
+
+.hd-history-album-wrap {
+    width: 1280px;
+    height: 200px;
+    top: 520px;
+    visibility: hidden;
+}
+
+.hd-history-album{
+    position: absolute;
+    top: 20px;
+    left: 180px;
+}
+
+.history_album_item {
+    float: left;
+}
+
+.hd-history-album img{
+    margin-right: 40px;
+    padding: 7px;
+    width: 196px;
+    height: 130px;
+}
+/*-------------sd-------------*/
+.sd-more-album {
+    top: 452px;
+    left: 244px;
+    width: 156px;
+    height: 78px;
+}
+
+.sd-history-album-wrap {
+    width: 644px;
+    height: 200px;
+    top: 384px;
+    visibility: hidden;
+}
+
+.sd-history-album-marker {
+    width: 644px;
+    height: 146px;
+}
+
+.sd-history-album{
+    position: absolute;
+    top: 26px;
+    left: 22px;
+}
+
+.history_album_item {
+    float: left;
+}
+
+.sd-history-album img{
+    margin-right: 20px;
+    padding: 4px;
+    width: 126px;
+    height: 84px;
+}

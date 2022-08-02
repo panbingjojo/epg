@@ -1,0 +1,437 @@
+body {
+    width: 644px;
+    height: 530px;
+}
+
+body > *,
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*活动首页*/
+
+#btn_back{
+    position: absolute;
+    top: 24px;
+    left: 496px;
+    /*height: 42px;*/
+    /*width: 123px;*/
+}
+/*活动规则*/
+#btn_activity_rule{
+    position: absolute;
+    top: 85px;
+    left: 496px;
+    /*height: 42px;*/
+    /*width: 123px;*/
+}
+/*中间名单*/
+#btn_winner_list{
+    position: absolute;
+    top:142px;
+    left: 496px;
+    /*height: 42px;*/
+    /*width: 123px;*/
+}
+/*兑换奖品*/
+#btn_exchange_prize{
+    position: absolute;
+    top: 199px;
+    left: 496px;
+    /*height: 42px;*/
+    /*width: 123px;*/
+}
+
+#left_times {
+    position: absolute;
+    top: 486px;
+    left: 25px;
+    color: #FFFFFF;
+    font-size: 15px;
+    width: 150px;
+    font-weight: bold;
+    text-shadow: -2px 0 #735501, 0 2px #735501, 2px 0 #735501, 0 -2px #735501;
+}
+
+#btn_start{
+    position: absolute;
+    top: 366px;
+    left:240px;
+}
+
+#bg_autumn{
+    position: absolute;
+    top: 221px;
+    left: 204px;
+    height: 134px;
+    width: 236px;
+}
+
+#gm_color_plate{
+    position: absolute;
+    top: 231px;
+    left: 18px;
+    height: 36px;
+    width: 118px;
+}
+
+#gm_color_1{
+    position: absolute;
+    top: 280px;
+    left: 18px;
+    height: 36px;
+    width: 118px;
+}
+
+#gm_color_2{
+    position: absolute;
+    top: 330px;
+    left: 18px;
+    height: 36px;
+    width: 118px;
+}
+
+#gm_color_3{
+    position: absolute;
+    top: 380px;
+    left: 18px;
+    height: 36px;
+    width: 118px;
+}
+
+#gm_color_4{
+    position: absolute;
+    top: 428px;
+    left: 18px;
+    height: 36px;
+    width: 118px;
+}
+
+/*倒计时*/
+#count_down{
+    top: 40px;
+    left: 34px;
+    width: 44px;
+    height: 30px;
+    line-height: 30px;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+}
+
+
+/*活动规则*/
+#btn_close_rule {
+    top: 111px;
+    left: 523px;
+    height: 52px;
+    width: 52px;
+}
+
+/*中奖名单*/
+#total_list {
+    top: 148px;
+    left: 70px;
+    width: 500px;
+    height: 90px;
+    font-size: 14px;
+    color: #634a01;
+    /*border: 1px red solid;*/
+}
+
+#btn_list_submit {
+    top: 397px;
+    left: 187px;
+}
+
+#btn_list_cancel {
+    top: 397px;
+    left: 334px;
+}
+
+#all_marquee {
+    height: 90px;
+}
+
+#my_marquee {
+    height: 20px;
+}
+
+table.marquee_table {
+    width: 500px;
+}
+
+table#all_table tr {
+    height: 30px;
+}
+
+table.marquee_table td {
+    width: 144px;
+    margin-right: 16px;
+    /* margin-left: 16px; */
+    text-align: center;
+    color: #fff;
+    height: 30px;
+    font-size: 20px;
+}
+
+#my_list {
+    top: 299px;
+    left: 70px;
+    height: 28px;
+    font-size: 14px;
+    color: #634a01;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+.winner_account{
+    /* height: 90px; */
+    /* width: 144px; */
+    padding-right: 0px;
+}
+
+.winner_time{
+    height: 90px;
+    width: 144px;
+    padding-left: 0px;
+}
+.winner_prize{
+    height: 90px;
+    width: 144px;
+    padding-left: 10px;
+}
+
+#reset_tel {
+    top: 345px;
+    left: 217px;
+    width: 200px;
+    height: 28px;
+    line-height: 30px;
+    font-size: 21px;
+    text-align: center;
+    color: #474747;
+    /*border: 1px red solid;*/
+}
+
+/*奖品兑换*/
+
+#btn_paradise_1{
+    top: 193px;
+    left: 94px;
+}
+
+#btn_paradise_2{
+    top: 193px;
+    left: 344px;
+}
+
+#btn_paradise_3{
+    top: 352px;
+    left: 94px;
+}
+
+#btn_paradise_4{
+    top: 352px;
+    left: 344px;
+}
+
+#exchange_prize_1{
+    top: 319px;
+    left:84px;
+}
+
+#exchange_prize_2{
+    top: 319px;
+    left:257px;
+}
+
+#exchange_prize_3{
+    top: 319px;
+    left:430px;
+}
+
+#btn_exchange_back {
+    top: 28px;
+    left: 575px;
+}
+
+/*兑奖成功*/
+#exchange_tel {
+    top: 275px;
+    left: 305px;
+    font-size: 16px;
+    color: #000000;
+    width: 200px;
+    height: 14px;
+    line-height: 14px;
+    text-align: left;
+}
+
+#btn_exchange_submit {
+    top: 420px;
+    left: 208px;
+}
+
+#btn_exchange_cancel {
+    top: 420px;
+    left: 343px;
+}
+
+/*活动页样式*/
+#btn_boy{
+    bottom: 0px;
+}
+
+/*抽奖成功*/
+#prize_image {
+    top: 160px;
+    left: 450px;
+    height: 150px;
+    width: 150px;
+}
+
+
+/*游戏结束*/
+#btn_game_over_sure {
+    top: 390px;
+    left: 237px;
+}
+
+
+/*游戏失败*/
+#btn_lottery_fail{
+    top: 303px;
+    left: 261px;
+}
+
+#btn_game_fail_sure {
+    top: 330px;
+    left: 270px;
+}
+
+
+/*游戏成功*/
+#btn_game_success {
+    top: 331px;
+    left: 273px;
+}
+
+#btn_game_sure {
+    top: 340px;
+    left: 270px;
+}
+
+
+/*游戏页*/
+#game_container{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+}
+
+#game_countdown {
+    top: 21px;
+    left: 72px;
+    width: 30px;
+    height: 30px;
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#gm_make_clothe{
+    top: 174px;
+    left: 103px;
+}
+
+#shot_count{
+    top: 264px;
+    left: 380px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+#lottery_tel {
+    color: #804000;
+    top: 374px;
+    left: 270px;
+    width: 244px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 24px;
+    text-align: center;
+}
+
+#btn_lottery_submit {
+    top: 303px;
+    left: 261px;
+}
+
+/*订购VIP*/
+#btn_order_submit {
+    top: 307px;
+    left: 187px;
+}
+
+#btn_order_cancel {
+    top: 307px;
+    left: 334px;
+}
+
+#btn_single_game_over{
+    top: 328px;
+    left: 230px;
+}
+
+#single_game_arrow_num{
+    top: 223px;
+    left: 400px;
+    color: #fe7271;
+    font-size: 40px;
+    font-weight: bold;
+    width: 75px;
+    height: 34px;
+    line-height: 35px;
+    text-align: center;
+    /*border: 1px red solid*/
+}
+
+/*挽留倒计时弹窗*/
+#count {
+    top: 80px;
+    left: 367px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: -3px 0 #735501, 0 3px #735501, 3px 0 #735501, 0 -3px #735501;
+}
+
+*img{
+    border: none;
+    outline: none;
+}

@@ -1,0 +1,144 @@
+
+body {
+    color: #000;
+    font-size: 18px;
+    background-image: url(../../../../img/sd/Home/V16/Home/bg.png);
+    background-size: 644px 530px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#btn-rules {
+    top: 24px;
+    left: 480px;
+    width: 144px;
+    height: 44px;
+}
+
+#btn-lottery {
+    top: 240px;
+    left: 251px;
+    /*z-index: 1;*/
+    width: 140px;
+    height: 140px;
+}
+
+.total-score {
+    top: 24px;
+    left: 24px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.total-score img {
+    width: 25px;
+    height: 25px;
+    margin-bottom: -6px;
+    margin-right: 8px;
+}
+
+.total-score b {
+    color: #00BCD7;
+    margin-left: 18px;
+}
+
+.tips {
+    top: 487px;
+    /* left: 185px; */
+    width: 644px;
+    text-align: center;
+}
+
+.tips span {
+}
+
+.lottery-container {
+    top: 94px;
+    left: 41px;
+    width: 558px;
+    height: 381px;
+    background-image: url(../../../../img/sd/Unclassified/V16/lottery_bg.png);
+    background-size: 558px,381px;
+}
+
+#leave-times {
+    position: absolute;
+    top: 6px;
+    left: 22px;
+    height: 30px;
+    width: 190px;
+    text-align: center;
+}
+
+#marquee-wrap {
+    position: absolute;
+    top: 4px;
+    left: 240px;
+    width: 310px;
+    height: 30px;
+    line-height: 30px;
+    color: #C38554;
+    display: block;
+}
+
+.prize-wrap {
+    position: absolute;
+    top: 60px;
+    left: 75px;
+}
+
+.prize-wrap img {
+    width: 130px;
+    height: 90px;
+    padding: 6px;
+    margin: -5px;
+    margin-bottom: 0;
+    z-index: 1;
+    position: relative;
+}
+
+.prize-wrap img.focus {
+    background-image: url(../../../../img/sd/Unclassified/V16/prize_f.png);
+    background-size: 142px,102px;
+}
+
+.occupied {
+}
+
+#key-table {top: 0;left: 0;margin-top: -200px;margin-left: 160px;}
+
+/*签到规则弹框*/
+div.rules {
+    height: 444px;
+    color: #fffefe;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+div.rules .title {
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    font-size: 22px;
+    position: absolute;
+    top: 46px;
+    left: 44px;
+    font-weight: bold;
+}
+
+.rules .rules-desc {
+    position: absolute;
+    top: 102px;
+    left: 44px;
+    font-size: 18px;
+}
+
+.rules p {
+    margin-bottom: 6px;
+}
+
+.rules .placeholder {
+    margin-top: 10px;
+}

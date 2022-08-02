@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>播放器界面宁夏广电</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'>
+    <script type="text/javascript">
+        var RenderParam = {
+            // 公共渲染
+            carrierId: '{$carrierId}',                      // 地区id
+            areaCode: '{$areaCode}',                        // 省份地区码
+            platformType: '{$platformType}',                // 平台类型（hd--高清 sd--标清）
+            debug: '{$debug}',                              // 调试模式
+            pageSize: '{$pageSize}',                        // 页面尺寸
+            collectStatus: '{$collectStatus}',              // 判断是否收藏 0表示收藏 1表示未收藏
+            sourceId: '{$sourceId}',                        // 视频ID
+            returnUrl: '{$returnUrl}',                      // 返回地址 unescape("{$returnUrl}")
+            userId: '{$userId}',                            // 用户ID
+            durationTime: '{$durationTime}',                // 视频总时长
+            currentPlayTimes: 0,                            // 记录当前播放的时间进度
+            videoInfo: {$videoInfo},                        // 视频信息
+            domainUrl: '{$domainUrl}',                      // 江苏电信需要使用的第三方播放器前缀地址
+            videoUrl: '{$videoUrl}',                        // 视频url：中国联通的高清视频地址http 转换成为rtsp进行播放。
+            recommendVideoUrl: '',                            // 推荐视频播放地址
+
+            // allVideoInfo: {$albumArr},    // 从视频集进入，这里是所有的视频，用于上下集切换
+            subjectId: "{$subjectId}",       // 从视频集进入，需要传入视频集id
+            PLUGIN_APP_NAME: '{$pluginVideoName}'
+        };
+    </script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/V17/Player.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug" style="position: absolute;top: 100px;left: 100px;color: orangered;width: 500px;word-break: break-all"></div>
+<script type="text/javascript">
+    window.onload = function () {
+        OTTPlayer.init();
+        // history.back();
+        LMEPG.Intent.back();
+    };
+
+    window.onerror = function (message, filename, lineno) {
+        document.getElementById('debug').innerHTML = ''
+            + "发生错误>>> "
+            + "\nmessage==>" + message
+            + "\nfile_name==>" + filename
+            + "\nline_NO==>" + lineno;
+
+        // 5秒后返回首页
+        setTimeout(function () {
+            // history.back();
+            LMEPG.Intent.back();
+        }, 5000);
+    };
+</script>
+</body>
+</html>

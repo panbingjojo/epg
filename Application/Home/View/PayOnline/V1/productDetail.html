@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情页-V1</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/PayOnline/V1/productDetail.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/PayOnline/V1/productDetail.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+<div id="content-detail">
+    <p class="title">在线购买</p>
+    <img id="explain" src="__ROOT__/Public/img/hd/PayOnline/V1/btn_explain.png" alt="">
+    <img id="services" src="__ROOT__/Public/img/hd/PayOnline/V1/btn_services.png" alt="">
+
+    <div id="container" class="container">
+        <div id="goods-name"></div>
+        <div id="goods-model"></div>
+        <div id="goods-services">
+            <div id="icon">+</div>
+            <div id="services-name">39健康年包</div>
+        </div>
+        <div id="goods-price">商城优惠价：&nbsp<span id="price"></span>元</div>
+        <img id="goos-qrCode"  src="" alt="">
+        <p id="tip-text">扫码预约购买</p>
+    </div>
+</div>
+<div id="content-services">
+    <p class="title">售后服务</p>
+    <p id="tip-1">在使用过程中有任何问题请拨打客户服务电话：400-016-0700</p>
+    <p id="tip-2">客服在线时间：7x24小时</p>
+</div>
+
+<script type="text/javascript">
+    window.onload = function() {
+        Product.init();
+    };
+</script>
+</body>
+</html>

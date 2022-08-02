@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在线购买-V1</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/PayOnline/V1/payOnline.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+            page: "{$page}"
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/PayOnline/V1/payOnline.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+<p class="title">检测设备服务专区</p>
+<!--<img id="input" src="__ROOT__/Public/img/hd/HealthTest/V8/input.png" alt="">-->
+<div id="container" class="container">
+    <!--<img id="link-0" src="__ROOT__/Public/img/hd/PayOnline/V1/link_1.png" alt="">-->
+    <!--<img id="link-1" src="__ROOT__/Public/img/hd/PayOnline/V1/link_2.png" alt="">-->
+    <!--<img id="link-2" src="__ROOT__/Public/img/hd/PayOnline/V1/link_3.png" alt="">-->
+</div>
+<img id="left-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/left.png" alt="上页箭头">
+<img id="right-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/right.png" alt="下页箭头">
+<p class="prompt">请按<span style="color: #FFC426">确定</span>键</p>
+<script type="text/javascript">
+    window.onload = function() {
+        Product.init();
+    };
+</script>
+</body>
+</html>

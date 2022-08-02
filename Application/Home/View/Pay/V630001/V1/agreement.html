@@ -1,0 +1,156 @@
+<html><head>
+    <title>青海移动-计费页（多套餐包）</title>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/hd/Pay/V630001/V1/pay.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            accountId: "{$accountId}",            // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    <!--订购-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V630001/V1/pay.js?t={$time}"></script>
+</head>
+
+<body id="body" style="background-image: url('__ROOT__/Public/img/hd/Pay/V630001/V1/agreement-bg.png'); ">
+<div style="position: absolute;width: 1066px;height: 480px;border: 0px solid #e81515; overflow: hidden;left: 107px; top: 120px;font-size: 21px; color: #10577f;">
+    <div id="move-p" style="position: relative;top:0px;font-size: 22px;color: #10577f;">
+    <p id=agreement-1>	尊敬的互联网电视用户：	</p>
+    <p id=agreement-2 style="text-indent:2em">	欢迎您使用互联网电视增值业务服务（简称为：本服务）。《互联网电视增值业务服务协议》（简称为：本协议）是您与互联网电视牌照方、相关内容提供方之间关于互联网电视增值业务服务所订立的协议。您应当阅读并遵守本协议。请您务必审慎阅读、充分理解各条款内容，特别是免除或限制责任的相应条款，以及开通或使用某项服务的单独协议，并选择接受或不接受。免除或限制责任条款可能以加粗等形式提示您注意。	</p>
+    <p id=agreement-3 style="text-indent:2em">	除非您已阅读并接受本协议所有条款，否则您无权使用本服务。您对本服务的任何购买或接受赠与等获取行为及登录、查看等任何使用行为即视为您已阅并同意本协议约束。	</p>
+    <p id=agreement-4 style="text-indent:2em">	如果您未满18周岁，请在法定监护人的陪同下阅读本协议，并特别注意未成年人使用条款。	</p>
+    <p id=agreement-5>	一、【协议的范围】	</p>
+    <p id=agreement-6>	1.1 【协议适用主体范围】	</p>
+    <p id=agreement-7 style="text-indent:2em">	本协议是您与互联网电视牌照方、相关内容提供方之间关于您使用本服务所订立的协议。	</p>
+    <p id=agreement-8>	1.2 【本服务内容】	</p>
+    <p id=agreement-9 style="text-indent:2em">	本协议内容同时包括移动互联网电视可能不断发布的关于本服务的相关协议、业务规则等内容。上述内容一经正式发布，即为本协议不可分割的组成部分，您同样应当遵守。	</p>
+    <p id=agreement-10>	二、【关于本服务】	</p>
+    <p id=agreement-11 style="text-indent:2em">	增值服务，指按照用户选定方式支付一定服务费用之后，用户可以享受由移动互联网电视或第三方提供的相关特权的服务(简称为:本服务)。	</p>
+    <p id=agreement-12 style="text-indent:2em">	互联网电视可能会根据不同的产品及服务类型，推出不同的包月、包季、包年等增值服务，同时，互联网电视可能会根据用户的需求、产品及服务类型的变化等，对现有包月增值服务种类进行调整以及不断推出新的包月增值服务种类。互联网电视也可能会在不同时间推出具体不同的服务内容，以不断完善、优化本服务。増值服务种类及服务内容可能由于国家广电政策或其他原因调整或下线，以相关客服告知、服务页面公布、实际提供的内容为准，您可以自行根据需要选择相应服务。	</p>
+    <p id=agreement-13 style="text-indent:2em; font-weight: 900;color: #dd1818;">	开通年费服务、开通期限较长等情况下，您将会享有更多的服务，具体以相关服务页面公布、实际提供的内容为准。	</p>
+    <p id=agreement-14 style="text-indent:2em;font-weight: 900;color: #dd1818;">	特别提示1：互联网电视增值服务，只提供青海地区使用。订购电视增值业务，可在线专享互联网电视牌照方、相关内容方提供的相应付费内容。	</p>
+    <p id=agreement-15 style="text-indent:2em;font-weight: 900;color: #dd1818;">	特别提示2：在您开通本服务后，互联网电视牌照方、相关内容提供方可能会根据本服务的整体规划向您提供不同类型的广告服务。	</p>
+    <p id=agreement-16 style="text-indent:2em;font-weight: 900;color: #dd1818;">	您理解并同意:您通过互联网电视牌照方相关渠道开通本服务后，可能会由于您使用的软件版本、设备、操作系统等不同以及其他第三方原因等导致您实际可使用的具体服务有差别，由此可能给您带来的不便，您表示理解，并不会因此向互联网电视提出任何主张或追权益要求。	</p>
+    <p id=agreement-17>	三、权利义务	</p>
+    <p id=agreement-18>	3.1 【服务信息】	</p>
+    <p id=agreement-19 style="text-indent:2em">	互联网电视牌照方可能会根据本服务的整体规划，对本服务相关权益细则、收费标准、方式等进行修改和变更，前述修改、变更，互联网电视牌照方将在相应服务页面进行展示。您若需要获取、使用本服务，请先提前了解清楚当时关于本服务的收费标准、方式等信息。	</p>
+    <p id=agreement-20>	3.2 【服务开通】	</p>
+    <p id=agreement-21 >	3.2.1 您应该通过选定方式，在依约支付一定费用后开通本服务。您通过话费、第三方扫码(微信、支付宝等)支付获取的任何产品信息(包括但不限于产品及其描述说明等)可能会通过屏幕二次点击确认或短信下发验证码的形式进行付费确认，您应自行判断并承担风险，互联网电视牌照方、相关内容提供方及中国移动均对此不承担任何法律责任。本服务开通之后，不可进行转让和退款，除非因产品技术原因，导致您购买时被重复扣款或您无法享有购买的服务时，您可以提出退款申诉，经过核实后可为您办理退款，但您需要提供相应信息并配合处理。	</p>
+    <p id=agreement-22 style="font-weight: 900;color: #dd1818;">	3.2.2 本服务提供的服务中可能包括广告，您同意在使用过程中显示本服务和第三方合作伙伴提供的广告。您通过互联网电视产品页面所链接的广告所购买的该服务或者商品，其交易行为仅存于您与该商品或服务的提供者之间，与互联网电视牌照方及中国移动无关，且不就您与该商品或服务的提供者之间所产生的交易行为承担任何法律责任。	</p>
+    <p id=agreement-23 >	3.2.3 您不得通过以下任何方式为自己或他人开通本服务	</p>
+    <p id=agreement-24>	（1）以营利、经营等非个人使用的目的为自己或他人开通本服务;	</p>
+    <p id=agreement-25>	（2）通过任何机器人软件、蜘蛛软件、爬虫软件、刷屏软件等任何程序、软件方式为自己或他人开通本服务;	</p>
+    <p id=agreement-26>	（3）通过任何不正当手段或以违反诚实信用原则的方式为自己或他人开通本服务；	</p>
+    <p id=agreement-27>	（4）通过侵犯互联网电视牌照方、相关内容提供方合法权益的方式为自己或他人开通本服务；	</p>
+    <p id=agreement-28>	（5）通过其他违反相关法律、行政法规、国家政策等的方式为自己或他人开通本服务。	</p>
+    <p id=agreement-29>	3.3 【服务期限】	</p>
+    <p id=agreement-30>	3.3.1 VIP会员服务的服务期限以您自行选择并支付相应会员费用对应的服务期限为准，自您成为VIP会员之日起算。该期限不因您未使用或对视频的暂停、倒回等请况而延长。当会员服务期限到期后，互联网电视业务将停止继续向您提供VIP会员服务。	</p>
+    <p id=agreement-31>	3.3.2 本服务开通最高期限会受到内容版权或其他限制，若出现内容方终止内容提供的情况，则互联网电视牌照方或内容提供方有权单方面终止用户对已订购增值内容的正常使用，同时不再向用户收费。	</p>
+    <p id=agreement-32>	3.4 【行为规范】	</p>
+    <p id=agreement-33>	3.4.1 【五不准】	</p>
+    <p id=agreement-34 style="text-indent:2em">	您在使用本服务时不得利用本服务从事以下行为，包括但不限于：	</p>
+    <p id=agreement-35>	（1）发布、传送、传播、储存违反国家法律、危害国家安全统一、社会稳定、公序良俗、社会公德以及侮辱、诽谤、淫秽、暴力的内容；	</p>
+    <p id=agreement-36>	（2）发布、传送、传播、储存侵害他人名誉权、肖像权、知识产权、商业秘密等合法权利的内容；	</p>
+    <p id=agreement-37>	（3）应构事实、隐瞒真相以误导、欺骗他人；	</p>
+    <p id=agreement-38>	（4）发表、传送、传播广告信息及垃圾信息；	</p>
+    <p id=agreement-39>	（5）从事其他违反法律法规、政策及公序良俗、社会公德等的行为。	</p>
+    <p id=agreement-40>	3.4.2 【用户禁止行为】	</p>
+    <p id=agreement-41 style="text-indent:2em">	本服务仅供您个人使用，除非经互联网电视书面许可，您不得进行以下行为：	</p>
+    <p id=agreement-42>	（1）通过任何方式搜集本服务中其他用户的用户名、电子邮件等相关信息，并以发送垃圾邮件、连锁邮件、垃圾短信、即时消息等方式干扰、骚扰其他用户；	</p>
+    <p id=agreement-43>	（2）通过本服务发布包含广告、宣传、促销等内容的信息；	</p>
+    <p id=agreement-44>	（3）将本服务再次许可他人使用；	</p>
+    <p id=agreement-45>	（4）其他未经互联网电视书面许可的行为。	</p>
+    <p id=agreement-46>	3.4.3 【对自己行为负责】	</p>
+    <p id=agreement-47 style="text-indent:2em">	您充分了解井同意，您必须为自己开通的帐号下一切行为负贵，包括但不限于您所发表的任何内容以及由此产生的任何后果。您应对本服务中的内容自行加以判断，并承担因使用内容而引起的所有风险，包括因对内容的正确性、完整性或实用性的依赖而产生的风险。	</p>
+    <p id=agreement-48>	3.5 【服务的变更、中止或终止】	</p>
+    <p id=agreement-49 style="text-indent:2em">	您充分了解并同意，由于互联网服务的特殊性，互联网电视可能会按照相关法规、双方约定或在其他必要时，中止或终止向您提供本服务，届时，互联网电视会依法保护您的合法权。	</p>
+    <p id=agreement-50>	四、【违约责任】	</p>
+    <p id=agreement-51>	4.1 如果互联网电视发现或收到他人举报您有违反本协议任何行为的，互联网电视牌照方有权依法进行独立判断并采取技术手段予以删除、屏蔽或断开相关的信息。同时，互联网电视牌照方有权视您的行为性质，对您采取包括但不限于暂停或终止部分或全部本服务、中止或终止您对移动账号互联网电视使用、追究您法律责任等措施，互联网电视牌照方也无需向您退还任何费用，而由此给您帯来的损失(包括但不限于通信中断、相关数据清空、未使用的服务费用作为违约金而归互联网电视所有等)，由您自行承担，造成互联网电视损失的，您也应予以赔偿。	</p>
+    <p id=agreement-52>	4.2 【对第三方损害的处理】	</p>
+    <p id=agreement-53 style="text-indent:2em">	您有违反本协议任何行为，导致任何第三方损害的，您应当独立承担责任;互联网电视牌照方或内容提供方因此遭受损失的，您也应当一并赔偿，并为互联网电视消除影响。	</p>
+    <p id=agreement-54>	五、【其他】	</p>
+    <p id=agreement-55>	5.1 【协议的生效】	</p>
+    <p id=agreement-56 style="text-indent:2em">	您使用本服务即视为您已阅读并同意受本协议的约束。	</p>
+    <p id=agreement-57>	5.2 【适用法律】	</p>
+    <p id=agreement-58 style="text-indent:2em">	本协议的成立、生效、履行、解释及纠纷解决，适用中华人民共和国大陆地区法律(不包括冲突法)。	</p>
+    <p id=agreement-59>	5.3 【争议解决】	</p>
+    <p id=agreement-60 style="text-indent:2em">	若您和互联网电视牌照方、内容提供方之间发生任何纠纷或争议，首先应友好协商解决;协商不成的，您同意将纠纷或争议提交本协议签订地有管辖权的人民法院管辖。	</p>
+    <p id=agreement-61>	5.4 【条款标题】	</p>
+    <p id=agreement-62 style="text-indent:2em">	本协议所有条款的标题仅为阅读方便，本身并无实际涵义，不能作为本协议涵义解释的依据。	</p>
+    <p id=agreement-63>	5.5 【条款效力】	</p>
+    <p id=agreement-64 style="text-indent:2em">	本协议条款无论因何种原因部分无效或不可执行，其余条款仍有效，对双方具有约束力。	</p>
+        <p id=agreement-65>（正文完）</p>
+    </div>
+</div>
+
+<div id = "btn-back" style="position: absolute; top: 610px;left: 570px;">
+    <img src="__ROOT__/Public/img/hd/Pay/V630001/V1/back.png" alt="">
+</div>
+
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        LMEPG.KeyEventManager.delKeyEvent([KEY_BACK, KEY_BACK_640,KEY_BACK_ANDROID]);
+        LMEPG.KeyEventManager.addKeyEvent({KEY_BACK: "onBack()", KEY_BACK_640: "onBack()",KEY_BACK_ANDROID: "onBack()"});
+        init();
+        LMEPG.BM.init("btn-back", buttons, "", true);
+    };
+
+    function init() {
+        buttons.push({
+            id: "btn-back",
+            name: "返回" ,
+            type: "div",
+            click: onBack,
+            beforeMoveChange: onMove,
+        });
+
+    };
+
+    function onBack() {
+        LMEPG.Intent.back();
+    };
+
+    var iSum = 0;
+    var init_tab = false;
+    function onMove(direction, current) {
+        if (direction == "down"){
+            var div = document.getElementById("move-p");
+            if(iSum <= 130){
+                div.style.top = parseInt(div.style.top)-20 + "px";
+                iSum = iSum +1;
+            }
+        }
+
+        if (direction == "up"){
+            var div = document.getElementById("move-p");
+            if(iSum > 0){
+                div.style.top = parseInt(div.style.top)+20 + "px";
+                iSum = iSum - 1;
+            }
+        }
+    }
+
+</script>
+
+
+</html>

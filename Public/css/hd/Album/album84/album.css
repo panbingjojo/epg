@@ -1,0 +1,50 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    -webkit-shape-outside: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+body > * {
+    position: absolute;
+}
+#more{
+    top: 40px;
+    left: 1016px;
+}
+#back {
+    top: 37px;
+    left: 1191px;
+}
+#tab-content {
+    top: 141px;
+    left: 650px;
+    width: 346px;
+}
+
+#tab-content img {
+    margin-top: 15px;
+}
+
+.arrow{
+    left: 873px;
+}
+#page-prev {
+    top: 89px;
+}
+
+#page-next {
+    top: 638px;
+}
+
+
+

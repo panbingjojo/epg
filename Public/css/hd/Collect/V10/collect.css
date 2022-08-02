@@ -1,0 +1,256 @@
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+/*数据列表*/
+#container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+#collection_container {
+    position: absolute;
+    top: 0;
+    left: 80px;
+    width: 1120px;
+    height: 720px;
+}
+
+#title {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 300px;
+    font-size: 43px;
+    font-weight: bold;
+    line-height: 43px;
+    color: white;
+    text-align: left;
+}
+
+#collection_content {
+    position: absolute;
+    left: 0;
+    top: 130px;
+    width: 1120px;
+}
+
+#collection_list {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 940px;
+    height: 520px;
+}
+
+#page_num {
+    position: absolute;
+    left: 1080px;
+    top: 526px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    color: white;
+}
+
+.arrow_left {
+    position: absolute;
+    top: 366px;
+    left: 20px;
+    display: none;
+}
+
+.arrow_right {
+    position: absolute;
+    top: 366px;
+    left: 1242px;
+    display: none;
+}
+
+/*弹出按钮*/
+.filter {
+    position: absolute;
+    left: 42px;
+    top: 42px;
+    width: 336px;
+    height: 216px;
+    background: url("../../../../../Public/img/hd/Search/V10/bg_layer.png");
+    border-radius: 12px;
+    display: none;
+}
+
+.detail_btn {
+    position: absolute;
+    left: 76px;
+    top: 40px;
+    width: 179px;
+    height: 66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 26px;
+}
+
+.cancel_btn {
+    position: absolute;
+    left: 76px;
+    top: 117px;
+    width: 179px;
+    height: 66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 26px;
+}
+
+.btn_bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 179px;
+    height: 66px;
+}
+
+.btn_title {
+    position: absolute;
+    width: 179px;
+    height: 66px;
+    color: #FFFFFF;
+}
+
+#item_container_1 {
+    position: absolute;
+    left: -42px;
+    top: -32px;
+    width: 336px;
+    height: 216px;
+}
+
+#item_container_2 {
+    position: absolute;
+    left: 350px;
+    top: -32px;
+    width: 336px;
+    height: 216px;
+}
+
+#item_container_3 {
+    position: absolute;
+    left: 742px;
+    top: -32px;
+    width: 336px;
+    height: 216px;
+}
+
+#item_container_4 {
+    position: absolute;
+    left: -42px;
+    top: 240px;
+    width: 336px;
+    height: 216px;
+}
+
+#item_container_5 {
+    position: absolute;
+    left: 350px;
+    top: 240px;
+    width: 336px;
+    height: 216px;
+}
+
+#item_container_6 {
+    position: absolute;
+    left: 742px;
+    top: 240px;
+    width: 336px;
+    height: 216px;
+}
+
+.item_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 336px;
+    height: 216px;
+    padding: 42px;
+    border-radius: 14px;
+}
+
+
+.vip_corner {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 62px;
+    height: 62px;
+    z-index: 4;
+}
+
+.collection_zoom_out>.item_img {
+    background: url("../../../../../Public/img/hd/Search/V10/box_collect.png");
+    /*width: 336px;*/
+    /*height: 237px;*/
+    /*top: -42px;*/
+    /*left:-42px ;*/
+    /*border-radius: 14px;*/
+    /*box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);*/
+    /*border: 2px solid black;*/
+    /*-webkit-transform: scale(1.08);*/
+    /*-moz-transform: scale(1.08);*/
+    /*!*z-index: 996;*!*/
+    /*-webkit-transition: all 0.2s;*/
+    /*-moz-transition: all 0.2s;*/
+}
+
+/*拉取空数据占位*/
+#empty_data {
+    position: absolute;
+    left: 36px;
+    top: 53px;
+    width: 940px;
+    height: 520px;
+    line-height: 520px;
+    text-align: center;
+    font-size: 36px;
+    display: none;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 auto;
+}
+#btn-search{
+    position: absolute;
+    top: 30px;
+    left: 1050px;
+}
+
+.recommended_title{
+    position:absolute;
+    top: 220px;
+    left: 41px;
+    width: 280px;
+    height: 38px;
+    font-size: 20px;
+    line-height: 38px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    text-indent: 30px;
+    white-space: nowrap;
+    color: #FFFFFF;
+    background: url("../../../../img/hd/Channel/V10/mycollect_mask.png") no-repeat;
+    /*background: rgba(0,0,0,0.6);*/
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>我的家-V10(贵州电信)</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Family/V10/FamilyIndex.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+                //公共渲染
+                carrierId: "{$carrierId}",          // 地区id
+                areaCode: "{$areaCode}",            // 省份地区码
+                subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+                platformType: "{$platformType}",    // 平台类型
+                debug: "{$debug}",                  // 调试模式
+                pageSize: "{$size}",                // 页面尺寸
+                stbModel: "{$stbModel}",            // 盒子的型号
+                fsUrl: "{$resourcesUrl}",           // fs 地址
+                time: "{$time}",                    // 开始渲染时间
+                userId: "{$userId}",                // 用户Id
+                accountId: "{$accountId}",          // 用户Id
+
+                //当前页渲染
+                firstHandle:"{$firstHandle}",       // 是否第一次访问当前模块
+                firstHandleName:"f_family",         // 当前模块名称
+                positionTwoConfig: "{$positionTwoConfig}",
+                checkTime: "{$checkTime}",
+                commonImgsView: "{$commonImgsView}",                // 公用图片模式
+                themeImage: "{$themePicture}",                      // 应用主题背景
+                focusIndex: "{$focusIndex}",                        // 焦点ID
+                isVip: {$isVip},                                    // 用户是否是vip
+                autoOrder: "{$autoOrder}",                          // 用户是否是续订vip
+                vipInfo: {$vipInfo  | json_encode},                 // vip信息
+                pageInfo: {$pageInfo  | json_encode},               // 首页推荐位配置
+                isFromMyFamilyPage: "{$isFromMyFamilyPage}",        // 是否从我的家页面进入
+            };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Family/V11/FamilyIndex.js?t={$time}"></script>
+</head>
+<body>
+<!--背景-->
+<img id="img_body" class="bg" src="__ROOT__/Public/img/hd/Common/V11/bg.png" alt=""
+     onerror="this.src='__ROOT__/Public/img/hd/Home/V10/bg.png'"/>
+<p class="title">我的家</p>
+<!--推荐位-->
+<div class="center">
+    <div id="recommended-1" class="recommended-1">
+        <img id="recommend-1-bg" class="recommended-bg" src="__ROOT__/Public/img/hd/Family/V11/my_home_1.png" alt=""/>
+    </div>
+    <div id="recommended-2" class="recommended-2">
+        <img id="recommend-2-bg" class="recommended-bg" src="__ROOT__/Public/img/hd/Family/V11/my_home_2.png"  alt=""/>
+    </div>
+    <div id="recommended-3" class="recommended-3">
+        <img id="recommend-3-bg" class="recommended-bg" src="__ROOT__/Public/img/hd/Family/V11/my_home_3.png" alt=""/>
+    </div>
+    <div id="recommended-4" class="recommended-4">
+        <img id="recommend-4-bg" class="recommended-bg" src="__ROOT__/Public/img/hd/Family/V11/my_home_4.png"  alt=""/>
+    </div>
+    <div id="recommended-5" class="recommended-5">
+        <img id="recommend-5-bg" class="recommended-bg" src="__ROOT__/Public/img/hd/Family/V11/my_home_5.png" alt=""/>
+        <!--<img id="recommend-5-vip-icon" class="vip-icon" src="__ROOT__/Public/img/hd/Common/V11/icon_vip.png" alt=""/>-->
+    </div>
+</div>
+</body>
+</html>

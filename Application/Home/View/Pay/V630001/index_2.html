@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>青海移动-计费页（单套餐包）</title>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/Common/V1/common.css?t={$time}"/>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/Pay/V630001/pay.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            accountId: "{$accountId}",            // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+
+            // 页面参数
+            isSinglePay: 1,                     // 单套餐包
+            orderItems: {$orderItems},
+            isPlaying: "{$isPlaying}",
+            isDebugPay: "{$isDebugPay}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            returnPageName: "{$returnPageName}",
+            authProductInfo: {$authProductInfo},
+            payPackages: {$payPackages},
+            apkInfo: {$apkInfo},
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-3.6.0.min.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <!--订购-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V630001/pay.js?t={$time}"></script>
+</head>
+<body id="body">
+<img class="bg" src="__ROOT__/Public/img/Pay/V630001/bg_2.png" alt=""/>
+<img id="confirm" src="__ROOT__/Public/img/Pay/V630001/bg_confirm.png" alt=""/>
+<img id="cancel" src="__ROOT__/Public/img/Pay/V630001/bg_cancel.png" alt=""/>
+<!--先将弹框背景给缓存下来-->
+<img style="display: none" src="__ROOT__/Public/img/Common/bg_common_dialog.png" alt=""/>
+
+<div id="second-order-toast">
+    <!--验证码显示-->
+    <div id="verify"></div>
+    <!--确认验证码输入框-->
+    <input type="tel" id="textPhone-text" disabled="true" oninput="onInputChange(event)" onporpertychange="maxLength(event)">
+    <!--确认/取消订购按钮-->
+    <img id="second-confirm" src="__ROOT__/Public/img/Pay/V630001/bg_confirm.png" alt=""/>
+    <img id="second-cancel" src="__ROOT__/Public/img/Pay/V630001/bg_cancel.png" alt=""/>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        Pay.init();
+    };
+</script>
+</body>
+</html>

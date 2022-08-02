@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>开学季，惊心上学路</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityBackToSchool/V2/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <!--当前活动-->
+    <script type="text/javascript">
+
+        var RenderParam = {
+            cdCount: '{$cdCount}',
+            isVip: '{$isVip}',                                    // 是否是vip（0-非vip 1-vip）
+            isOrderBack: '{$isOrderBack}',                        // 是否为订购返回
+            cOrderResult: '{$Think.cookie.c_order_result}',
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',                   // 中奖用户
+            userTel: '{$userTel}',                                // 中奖用户tel
+            userId: '{$userId}',                                  // 中奖用户ID
+            leftTimes: '{$leftTimes}',
+            score:'{$score}',
+            exchangeRecords: {$exchangeRecords},                  // 兑换记录
+            activityInfo: {$activityInfo},                        // 活动信息
+            prizeConfigItems: {$prizeConfigItems},                // 设置的奖品信息
+            setExchangeList: {$setExchangeList},                  // 设置的兑奖奖品信息
+            imgDiffPrefix: '__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/V{$carrierId}/',
+            imgFtpPrefix: '__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/',
+            beClickId: 'btn-begin0',
+            valueCountdown:{showDialog:'1'}
+        };
+        window.onload = function () {
+            Activity.init();
+            lmInitGo();
+        };
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityBackToSchool/V2/index.js?t={$time}"></script>
+
+</head>
+<body bgcolor="transparent">
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+<div id="debug"></div>
+<!--图片地址基础为V1,其他为各地区差异-->
+<p id="times-count">0</p>
+<p id="total-score">{$score}</p>
+<img id="jump-game" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/jump_start.png">
+<div class="jump-wrap">
+    <img id="jump-back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/jump_back.png">
+    <img id="jump-rule" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/jump_rule.png">
+    <img id="jump-winner" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/jump_winner.png">
+    <img id="jump-exchange" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/jump_exchange.png">
+</div>
+
+<!--普通用户返回时进入触发返回倒计时-->
+<div id="modal-cd" class="modal">
+    <div id="count-down">8</div>
+</div>
+
+<!--活动规则-->
+<div id="modal-rule" class="modal">
+    <img id="btn-rule-close" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/jump_back.png">
+</div>
+
+<!--中奖名单-->
+<div id="modal-list" class="modal">
+    <div id="total-list"></div>
+    <div id="my-list"></div>
+    <div id="rewrite-tel" class="list-tel my">请输入有效的电话</div>
+    <img id="btn-list-submit" class="btn-list" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_sure.png">
+    <img id="btn-list-cancel" class="btn-list" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_cancel.png">
+</div>
+
+<!--VIP没有游戏次数-->
+<div id="modal-vip-notimes" class="modal">
+    <img id="btn-one0" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_sure.png">
+</div>
+
+<!--普通用户没有游戏次数-->
+<div id="modal-pay-notimes" class="modal">
+    <img id="btn-pay-sure" class="btn-pay" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_sure.png">
+    <img id="btn-pay-cancel" class="btn-pay" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_cancel.png">
+</div>
+
+<!--广西电信普通用户没有游戏次数跳转到播放视频页-->
+<div id="modal-notimes-jump-to-video" class="modal">
+    <img id="btn-play-video-sure" class="btn-pay" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_sure.png">
+    <img id="btn-play-video-cancel" class="btn-pay" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_cancel.png">
+</div>
+
+<!--兑换奖品-->
+<div id="modal-accomplish" class="modal">
+    <div id="accomplish-tel">请输入有效的电话</div>
+    <img id="btn-accomplish-submit" class="btn-win" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_sure.png">
+    <img id="btn-accomplish-cancel" class="btn-win" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_cancel.png">
+</div>
+
+<!--支付反馈UI-->
+<div id="modal-pay" class="modal">
+    <img id="pay-back-tip" src="__ROOT__/Public/img/Common/spacer.gif">
+</div>
+
+<!--游戏UI-->
+<div id="modal-game" class="modal">
+    <img id="bg-img_0" class="bg-img hide" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/bg_game_0.png" alt="">
+    <img id="bg-img_1" class="bg-img hide" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/bg_game_1.png" alt="">
+    <img id="bg-img_2" class="bg-img hide" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/bg_game_2.png" alt="">
+
+    <img id="person" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/person.png">
+    <img id="obs_0" class="obs" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/obs_0.png">
+    <img id="obs_1" class="obs" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/obs_1.png">
+    <img id="obs_2" class="obs" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/obs_2.png">
+    <p id="game-cd">10</p>
+    <p id="warn-tips">按遥控器左右键可躲避障碍物哦~</p>
+    <img id="game-start" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_start.png">
+</div>
+
+<!--增加积分UI-->
+<div id="modal-add-score" class="modal">
+    <p id="p-add-score">0</p>
+    <img id="btn-one-add" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_sure.png" alt="">
+</div>
+
+<!--兑换UI-->
+<div id="modal-exchange" class="modal">
+    <div id="data-exchange">
+        <img id="btn-close-exchange" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/jump_back.png">
+        <div class="require-score-wrap">
+<!--            <span>600</span>-->
+<!--            <span>400</span>-->
+<!--            <span>200</span>-->
+        </div>
+    </div>
+    <div class="exchange-btn-wrap">
+        <img id="btn-exchange_0" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_exchange.png">
+        <img id="btn-exchange_1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_exchange.png">
+        <img id="btn-exchange_2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBackToSchool/V2/btn_exchange.png">
+    </div>
+</div>
+</body>
+</html>

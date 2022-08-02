@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+}
+
+body > * {
+    position: absolute;
+}
+
+#help-introduce {
+    position: absolute;
+    z-index: 999;
+    display: none;
+    width: 644px;
+    height: 530px;
+}
+
+/*上*/
+#top-icon {
+    position: absolute;
+    display: inline;
+    height: 20px;
+    top: 10px;
+    right: 5px;
+}
+
+#top-icon > img {
+    top: 20px;
+    vertical-align: middle;
+    width: 22px;
+    height: 18px;
+    padding: 2px 10px 2px 10px;
+    background-size: 100% 100%;
+}
+
+/*导航*/
+#nav {
+    top: 53px;
+    left: 21px;
+}
+
+#nav > img {
+    margin-right: 10px;
+    width: 92px;
+    height: 31px;
+}
+
+/*主容器*/
+#container {
+    top: 135px;
+    left: 21px;
+    /*width: 1126px;*/
+}
+
+/*左容器*/
+#container-left {
+    width: 150px;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+#container-left > img {
+    width: 130px;
+    height: 73px;
+    padding: 10px;
+    margin-bottom: -15px;
+}
+#container-left > img.focus {
+   background-image: url(../../../../img/hd/Home/V7/tab0/left_link_f.png);
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+#night-medicine {
+}
+
+#39-featured {
+}
+
+#history-album {
+}
+
+/*中容器*/
+#container-center {
+    position: absolute;
+    top: 0;
+    left: 142px;
+    width: 273px;
+}
+
+/*轮播*/
+#center-link-1 {
+    position: absolute;
+    top: 0;
+    width: 273px;
+    height: 145px;
+    overflow: hidden;
+}
+
+#carousel-link {
+    position: absolute;
+    width: 295px;
+    height: 167px;
+    z-index: 9999;
+    top: -10px;
+    left: -10px;
+}
+
+#carousel-wrapper {
+    position: absolute;
+    width: 273px;
+    height: 145px;
+}
+
+#carousel-wrapper img {
+    position: absolute;
+    opacity: 0;
+    width: 273px;
+    height: 145px;
+    transition: 1s opacity;
+    border-radius: 10px;
+}
+
+#carousel-wrapper img.active {
+    opacity: 1;
+}
+
+ul#point li {
+    display: inline-block;
+}
+
+#point {
+    position: absolute;
+    bottom: 0;
+    width: 273px;
+    height: 17px;
+    line-height: 17px;
+    background: rgba(0, 0, 0, 0.49);
+    list-style-type: none;
+    border-radius: 0 0 10px 10px;
+}
+
+#point li {
+    width: 8px;
+    height: 8px;
+    border: 1px solid #fff;
+    margin: 0 3px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+#point li.currentImg {
+    background-color: #fff;
+    transition: 1s background-color;
+}
+
+#point li#point-1 {
+    margin-left: 108px;
+}
+
+#book-and-smile {
+    position: absolute;
+    top: 165px;
+    height: 157px;
+}
+#book-and-smile>img {
+    position: absolute;
+    width: 131px;
+    height: 155px;
+    padding: 10px;
+    top: -10px;
+    border-radius: 20px;
+}
+#book-registration{
+    left: -10px;
+}
+#do-smile-people {
+    left: 130px;
+}
+#book-and-smile>img.focus{
+    background-image: url(../../../../img/hd/Home/V7/tab0/order_smile_f.png);
+    background-position: center;
+    background-size: 105% 105%;
+}
+
+/*右容器*/
+#container-right {
+    position: absolute;
+    top: 0;
+    left: 420px;
+    width: 177px;
+}
+
+#container-right>img{
+    position: absolute;
+    width: 177px;
+    height: 155px;
+    padding: 10px;
+    left: -10px;
+    border-radius: 20px;
+}
+#videoTv-link {
+    top: -15px;
+}
+
+#album-inner {
+    top: 155px;
+}
+
+#container-right>img.focus{
+    background-image: url(../../../../img/hd/Home/V7/tab0/rightLink_f.png);
+    background-position: center;
+    background-size: 100% 100%;
+}
+#home_container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+}
+
+#iframe_small_screen {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}
+
+/*字幕滚动消息*/
+.scroll-wrapper{
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+    width: 644px;
+    height: 40px;
+    overflow: hidden;
+    font-size: 15px;
+    color: #fff;
+}
+.scroll-wrapper marquee{
+    color: #fff !important;
+}
+#txt {
+    position: absolute;
+    right: -200px;
+}
+

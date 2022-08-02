@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+
+p.title {
+    top: 24px;
+    left: 58px;
+    font-size: 35px;
+    color: #fff;
+}
+
+div.container {
+    top: 168px;
+    left: 132px;
+}
+#input{
+    top: 38px;
+    left: 1022px;
+    /*width: 169px;*/
+    /*height: 43px;*/
+}
+.container>img{
+    margin-left: 46px;
+}
+.prompt{
+    top: 600px;
+    left: 566px;
+    font-size: 29px;
+    color: #fff;
+}
+
+.arrow {
+    position: absolute;
+    top: 283px;
+}
+
+img#left-arrow {
+    left: 38px;
+    width: 80px;
+    height: 80px;
+}
+
+img#right-arrow {
+    left: 1160px;
+    width: 80px;
+    height: 80px;
+}
+.focus{
+    padding: 10px;
+    background-image: url(../../../../img/hd/PayOnline/V1/link_f.png);
+    background-position: center;
+}

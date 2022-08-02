@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>《春新萌动，欢乐出游》-游戏页-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityJoyTourism/V1/index.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/keypad.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityJoyTourism/dialog.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/ActivityTools.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug" style="position: absolute;color: #fff;"></div>
+<img id="bg" src="" class="loading">
+<img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/btn_back0.png">
+<div id="travel-place">
+    <img id="travel0" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/travel0.png">
+    <img id="travel1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/travel1.png">
+    <img id="travel2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/travel2.png">
+    <img id="travel3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/travel3.png">
+    <img id="travel4" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/travel4.png">
+</div>
+<!--模态框-->
+<div id="modal">
+
+</div>
+<script type="text/javascript">
+	var A,          // 参数数据模块
+		App,        // 函数功能模块
+		ImgV,       // 区域id拿去图片版本
+		onBack,     // 公用返回
+		buttons;    // 虚拟按钮模块
+	A = {
+		isVip: '{$isVip}',                                              // 是否是vip（0-非vip 1-vip）
+		isOrderBack: '{$isOrderBack}',                                  // 是否为订购返回
+		cOrderResult: '{$Think.cookie.c_order_result}',
+		nPrizeIdx: 0,
+		ROOT: '__ROOT__',
+		currentAddr: 'activity-common-guide',
+		modal: G('modal'),
+		isModal: false,
+		platformType: '{$platformType}',
+		activityInfo: LMTools.isNull({$activityInfo}),                        // 活动信息
+		fishStore: LMTools.toJson(LMTools.isNull({$storeFish}).val),                // 收集鱼的个数
+		leftTimes: LMTools.isNull({$leftTimes}).leftTimes,                    // 剩余次数
+		userTel: '{$userTel}',                                          // 中奖电话
+		myPrizeList: LMTools.isNull({$myPrizeList}),                          // 我的中奖记录
+		AllUserPrizeLis: LMTools.isNull({$AllUserPrizeLis}),                  // 所用中奖信息
+		prize_idx: LMTools.isNull({$prize_idx}),
+		vipList: LMTools.isNull({$vipList}),
+		imgPathPrefix: '__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/V1/',
+		reload: false,
+		beClickBtnId: 'travel0',
+	};
+	ImgV = function() {
+		// 该活动不同{$carrierId}地区使用图素区分（背景、活动规则、奖品1,2,3）
+		var bgIndex = '';
+		var homeBg = 'V1';
+		switch ('{$carrierId}') {
+			case '630092':// 青海电信
+				bgIndex = 'V4';
+				break;
+			case '640092':// 宁夏电信
+				bgIndex = 'V3';
+				break;
+			case '420092':// 湖北电信
+				bgIndex = 'V2';
+				break;
+			case '000051':// 开发模式
+			case '350092':// 福建电信
+				bgIndex = 'V1';
+				break;
+		}
+		document.getElementById('bg').src = '__ROOT__/Public/img/{$platformType}/Activity/ActivityJoyTourism/' +
+			homeBg + '/bg_game.png';
+		return bgIndex;
+	}();
+	// 公用返回函数
+	onBack = function() {
+		var keypad = G('key-table');
+		switch (true) {
+			// 遥控器返回键关闭虚拟小键盘
+			case !!keypad:
+				keypad.parentNode.removeChild(keypad);
+				LMEPG.ButtonManager.requestFocus('btn-submit');
+				break;
+			// 如果是弹框即关闭弹框
+			case A.isModal:
+				A.modal.innerHTML = '';
+				A.isModal = false;
+				LMEPG.ButtonManager.requestFocus(A.beClickBtnId);
+				A.reload && LMTools.reload(A.currentAddr);
+				break;
+			// 应用内活动，直接返回上一级页面
+			default:
+				LMEPG.Intent.back();
+				break;
+		}
+	};
+	/**
+	 * 单例应用模式
+	 */
+	App = function(doc, param) {
+		var Obj = {
+				init: function() {
+					this.initBtn('travel0');
+				},
+
+				showUIWidthTravelPlace: function(btn) {
+					A.beClickBtnId = btn.id;// 记录哪一个被点击
+					var which_one = btn.id.slice(btn.id.length - 1); //截取索引
+					LMEPG.ButtonManager.setKeyEventPause(true); // 禁止重复点击
+					var imgElment = new Image();
+					imgElment.id = 'travelPlace';
+					imgElment.src = A.imgPathPrefix + 'bg_travel' + which_one + '.png';
+					var hasImgElement = doc.getElementById('travelPlace');
+					!!hasImgElement && doc.body.removeChild(hasImgElement);
+					doc.body.appendChild(imgElment);
+					setTimeout(Obj.startLottery, 1500);
+				},
+
+				setPhoneNumber: function() {
+					var userTel = G('userTel').innerHTML;
+					//判断手机号是否正确
+					if (!LMEPG.Func.isTelPhoneMatched(userTel)) {
+						LMEPG.UI.showToast('请输入有效电话号码!', 1);
+						return;
+					}
+
+					var reqData = {
+						'phoneNumber': userTel,
+					};
+					LMEPG.ajax.postAPI('Activity/setPhoneNumber', reqData,
+						function(rsp) {
+							try {
+								var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+								var result = data.result;
+								if (result == 0) {
+									LMEPG.UI.showToast('提交电话成功！');
+									LMTools.reload(A.currentAddr);
+								}
+								else {
+									LMEPG.UI.showToast('提交失败，请重试！');
+								}
+							}
+							catch (e) {
+								LMEPG.UI.showToast('保存手机号结果处理异常！');
+								LMEPG.Log.error(e.toString());
+								console.log(e.toString());
+							}
+						},
+						function(rsp) {
+							LMEPG.UI.showToast('请求保存手机号发生错误！');
+						});
+				},
+				startLottery: function() {
+					var postData = {
+						'action': 'lottery',
+						'lottery': '1',
+					};
+
+					LMEPG.UI.showWaitingDialog();
+					LMEPG.ajax.postAPI('Activity/commonAjax', postData, function(rsp) {
+							try {
+								var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+								Obj.lotteryResult(data.result, data.prize_idx);
+							}
+							catch (e) {
+								LMEPG.UI.showToast('解析异常！', 3);
+								console.log(e);
+							}
+						},
+						function(rsp) {
+							LMEPG.UI.showToast('上报失败！', 3);
+						});
+				},
+
+				lotteryResult: function(resultStatus, prizeId) {
+					switch (resultStatus) {
+						//没有抽中奖品
+						case 0:
+							dialogShow.uncomplete();
+							setTimeout(function() {
+								LMTools.reload();
+							}, 1000);
+							break;
+						//抽中奖品
+						case 1:
+							LMEPG.UI.dismissWaitingDialog();
+							LMEPG.ButtonManager.setKeyEventPause(false);
+							dialogShow.complete('prize' + prizeId);
+							break;
+						//其它
+						default:
+							LMEPG.UI.showToast('抽奖结果出错[' + resultStatus + ']', 1);
+							LMTools.reload();
+							break;
+					}
+				},
+				initBtn:
+					function(id) {
+						LMEPG.ButtonManager.init(id, buttons, '', true);
+					}
+
+				,
+				reLoad: function() {
+					location.reload(false);
+				}
+				,
+			}
+		;
+		return Obj;
+	}(document, App || {});
+
+	buttons = [
+		{
+			id: 'back',
+			name: '返回',
+			type: 'img',
+			nextFocusLeft: 'travel3',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: 'travel3',
+			backgroundImage: A.imgPathPrefix + 'btn_back0.png',
+			focusImage: A.imgPathPrefix + 'btn_back0_f.png',
+			click: onBack,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'userTel',
+			name: '号码框',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			backgroundImage: '',
+			focusImage: '',
+			click: '',
+			focusChange: LMTools.keyPad,
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'btn-submit',
+			name: '确认',
+			type: 'img',
+			nextFocusLeft: 'userTel',
+			nextFocusRight: 'btn-cancel',
+			nextFocusUp: 'userTel',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'btn_sure.png',
+			focusImage: A.imgPathPrefix + 'btn_sure_f.png',
+			click: App.setPhoneNumber,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'btn-cancel',
+			name: '取消',
+			type: 'img',
+			nextFocusLeft: 'btn-submit',
+			nextFocusRight: 'btn-submit',
+			nextFocusUp: 'userTel',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'btn_cancel.png',
+			focusImage: A.imgPathPrefix + 'btn_cancel_f.png',
+			click: onBack,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'travel0',
+			name: '场景0',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: 'travel1',
+			backgroundImage: A.imgPathPrefix + 'travel0.png',
+			focusImage: A.imgPathPrefix + 'travel0_f.gif',
+			click: App.showUIWidthTravelPlace,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'travel1',
+			name: '场景1',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: 'travel2',
+			nextFocusUp: 'travel0',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'travel1.png',
+			focusImage: A.imgPathPrefix + 'travel1_f.gif',
+			click: App.showUIWidthTravelPlace,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'travel2',
+			name: '场景2',
+			type: 'img',
+			nextFocusLeft: 'travel1',
+			nextFocusRight: 'travel3',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'travel2.png',
+			focusImage: A.imgPathPrefix + 'travel2_f.gif',
+			click: App.showUIWidthTravelPlace,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'travel3',
+			name: '场景3',
+			type: 'img',
+			nextFocusLeft: 'travel2',
+			nextFocusRight: '',
+			nextFocusUp: 'back',
+			nextFocusDown: 'travel4',
+			backgroundImage: A.imgPathPrefix + 'travel3.png',
+			focusImage: A.imgPathPrefix + 'travel3_f.gif',
+			click: App.showUIWidthTravelPlace,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'travel4',
+			name: '场景4',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: '',
+			nextFocusUp: 'travel3',
+			nextFocusDown: '',
+			backgroundImage: A.imgPathPrefix + 'travel4.png',
+			focusImage: A.imgPathPrefix + 'travel4_f.gif',
+			click: App.showUIWidthTravelPlace,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'btn-one',
+			name: '活动规则-关闭',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			backgroundImage: '',
+			focusImage: '',
+			click: App.reLoad,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'debug',
+			name: '脚手架ID',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusRight: '',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			backgroundImage: '',
+			focusImage: '',
+			click: App.reLoad,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}];
+
+	window.onload = function() {
+		App.init();
+		LMTools.showOrderResult();
+	};
+</script>
+</body>
+</html>

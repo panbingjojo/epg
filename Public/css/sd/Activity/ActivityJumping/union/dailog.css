@@ -1,0 +1,305 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+#default_focus {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 644px;
+    height: 530px;
+}
+
+.btn-only {
+    position: absolute;
+    top: 600px;
+    left: 530px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+}
+.btn-only2 {
+    position: absolute;
+    top: 500px;
+    left: 530px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+}
+
+.btn-success {
+    position: absolute;
+    top: 319px;
+    left: 274px;
+    outline: none !important;
+    width: 101px;
+    height: 36px;
+}
+
+
+
+.introduce{
+    position: absolute;
+    top: 222px;
+    left: 94px;
+    outline: none !important;
+    width: 450px;
+    font-size: 20px;
+    color: #3a230a;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.introduce2{
+    position: absolute;
+    top: 187px;
+    left: 98px;
+    outline: none !important;
+    width: 450px;
+    font-size: 18px;
+    color: #3a230a;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.introduce3{
+    position: absolute;
+    top: 192px;
+    left: 80px;
+    outline: none !important;
+    width: 480px;
+    font-size: 20px;
+    color: #3a230a;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.btn-one {
+    position: absolute;
+    top: 346px;
+    left: 198px;
+    outline: none !important;
+    width: 101px;
+    height: 36px;
+}
+
+.btn-two {
+    position: absolute;
+    top: 346px;
+    left: 324px;
+    outline: none !important;
+    width: 101px;
+    height: 36px;
+}
+
+#searchText {
+    width: 150px;
+    height: 20px;
+    z-index: 999;
+    position: absolute;
+    top: 293px;
+    left: 248px;
+    font-size: 14px;
+    background: transparent;
+    border: none;
+    outline: none;
+    line-height: 20px;
+    color: #4c4c4c;
+    border: none;
+    border-radius: 5px;
+    overflow:hidden;
+    text-indent: 5px;
+}
+
+.introduce-price-text {
+    position: absolute;
+    top: 395px;
+    left: 800px;
+    outline: none !important;
+    width: 100px;
+    height: 100px;
+}
+
+#myPhone {
+    position: absolute;
+    font-size: 18px;
+    color: #414141;
+    top: 355px;
+    left: 597px
+}
+
+.introduce-price-name {
+    font-size: 47px;
+    color: #fc5f1a;
+}
+
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+    font-size: 30px
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}
+
+.detail-table {
+    position: absolute;
+    top: 165px;
+    left: 115px;
+    outline: none !important;
+}
+.detail-table tr td{ height: 2px; font-size: 12px;  color:#3a230a; width: 420px; line-height: 16px; font-weight: bold}
+.btn_back {
+    position: absolute;
+    top: 108px;
+    left: 538px;
+    outline: none !important;
+    width: 44px;
+    height: 44px;
+}
+
+.introduce-pay{
+    position: absolute;
+    top: 253px;
+    left: 457px;
+    outline: none !important;
+    width: 400px;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+    line-height: 60px;}
+
+#tip_test {
+    position: absolute;
+    top: 150px;
+    left: 544px;
+    outline: none !important;
+    width: 190px;
+    height: 60px;
+}
+
+#choose_order_test{
+    position: absolute;
+    top: 260px;
+    left: 385px;
+    outline: none !important;
+    width: 540px;
+    height: 141px;
+}
+
+#pay-one{
+    position: absolute;
+    top: 240px;
+    left: 84px;
+    outline: none !important;
+    width: 92px;
+    height: 100px;
+  }
+#pay-two{
+    position: absolute;
+    top: 240px;
+    left: 202px;
+    outline: none !important;
+    width: 92px;
+    height: 100px;
+}
+#pay-three{
+    position: absolute;
+    top: 240px;
+    left: 326px;
+    outline: none !important;
+    width: 92px;
+    height: 100px;
+}
+
+#pay-four{
+    position: absolute;
+    top: 240px;
+    left: 448px;
+    outline: none !important;
+    width: 92px;
+    height: 100px;
+}
+
+#pay-back{
+    position: absolute;
+    top: 361px;
+    left: 274px;
+    outline: none !important;
+    width: 101px;
+    height: 36px;
+}
+
+.book_text{
+    position: absolute;
+    top: 243px;
+    left: 606px;
+    outline: none !important;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+}
+.book_text_name{
+    position: absolute;
+    top: 238px;
+    left: 706px;
+    outline: none !important;
+    font-size: 40px;
+    color: #e21212;
+    text-align: center;
+    font-weight: bold;
+}
+.price_text{
+    position: absolute;
+    top: 306px;
+    left: 606px;
+    outline: none !important;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+}
+.price_text_name{
+    position: absolute;
+    top: 301px;
+    left: 706px;
+    outline: none !important;
+    font-size: 40px;
+    color: #ef7101;
+    text-align: center;
+    font-weight: bold;
+}
+.introduce_text{
+    position: absolute;
+    top: 387px;
+    left: 586px;
+    outline: none !important;
+    font-size: 20px;
+    color: #414141;
+    text-align: center;
+}
+.title_name {
+    position: absolute;
+    top: 154px;
+    left: 555px;
+    width: 170px;
+    height: 54px;
+    z-index: 1;
+}
+.price_word{
+    position: absolute;
+    top: 154px;
+    left: 555px;
+    width: 170px;
+    height: 54px;
+    z-index: 1;
+}

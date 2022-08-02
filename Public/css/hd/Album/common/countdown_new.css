@@ -1,0 +1,45 @@
+#dialog_wrap * {
+    position: absolute;
+}
+
+#purchase-dialog * {
+    position: absolute;
+}
+
+#countdown-dialog * {
+    position: absolute;
+}
+
+#btn-purchase {
+    top: 500px;
+    left: 400px;
+}
+
+#btn-cancel-purchase {
+    top: 500px;
+    left: 680px;
+}
+
+#count {
+    top: 232px;
+    left: 472px;
+    font-size: 48px;
+    color: #c55800;
+    font-weight: bold
+}
+
+/*ShowToast使用*/
+.g_toast {
+    position: absolute;
+    left: 364px !important;
+    top: 279px  !important;
+    width: 551px  !important;
+    height: 126px  !important;
+    line-height: 166px  !important;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../img/hd/Common/bg_toast.png") no-repeat;
+    background-size: auto !important;
+}

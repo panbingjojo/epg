@@ -1,0 +1,161 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 530px;
+    width: 644px;
+    margin: 0;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#focus-1-1 {
+    position: absolute;
+    top: 97px;
+    left: 102px;
+    z-index: 0;
+    outline: none !important;
+    width: 442px;
+    height: 34px;
+    background: url("../../../../img/sd/Album/FreeAbum/tab_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 34px;
+
+}
+
+#focus-2-1 {
+    position: absolute;
+    top: 143px;
+    left: 102px;
+    z-index: 0;
+    outline: none !important;
+    width: 442px;
+    height: 34px;
+    background: url("../../../../img/sd/Album/FreeAbum/tab_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 34px;
+
+}
+
+#focus-3-1 {
+    position: absolute;
+    top: 189px;
+    left: 102px;
+    z-index: 0;
+    outline: none !important;
+    width: 442px;
+    height: 34px;
+    background: url("../../../../img/sd/Album/FreeAbum/tab_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 34px;
+
+}
+
+#focus-4-1 {
+    position: absolute;
+    top: 235px;
+    left: 102px;
+    z-index: 0;
+    outline: none !important;
+    width: 442px;
+    height: 34px;
+    background: url("../../../../img/sd/Album/FreeAbum/tab_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 34px;
+}
+
+#focus-5-1 {
+    position: absolute;
+    top: 281px;
+    left: 102px;
+    z-index: 0;
+    outline: none !important;
+    width: 442px;
+    height: 34px;
+    background: url("../../../../img/sd/Album/FreeAbum/tab_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 34px;
+
+}
+#focus-6-1 {
+    position: absolute;
+    top: 327px;
+    left: 102px;
+    z-index: 0;
+    outline: none !important;
+    width: 442px;
+    height: 34px;
+    background: url("../../../../img/sd/Album/FreeAbum/tab_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 34px;
+
+}
+#focus-7-1 {
+    position: absolute;
+    top: 373px;
+    left: 102px;
+    z-index: 0;
+    outline: none !important;
+    width: 442px;
+    height: 34px;
+    background: url("../../../../img/sd/Album/FreeAbum/tab_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 34px;
+}
+#focus-8-1 {
+    position: absolute;
+    top: 419px;
+    left: 102px;
+    z-index: 0;
+    outline: none !important;
+    width: 442px;
+    height: 34px;
+    background: url("../../../../img/sd/Album/FreeAbum/tab_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 34px;
+}
+
+.focus_name{  width: 265px;font-size: 21px; overflow: hidden; height: 34px; position: absolute; left:21px; line-height: 34px;   }
+
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+.none{ display: none}
+.title{position: absolute;top: 18px; left: 23px; font-size: 30px; color: #FFFFFF}
+#page{position: absolute;top: 484px; left: 501px; font-size: 16px; color: #FFFFFF}
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>挂号信息</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V8/orderDoctor.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            hospitalId:'{$hospitalId}',
+            hospitalName:'{$hospitalName}',
+            depId:'{$depId}',
+            docId:'{$docId}',
+            depName:'{$depName}',
+            backId:'{$backId}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V8/orderDoctor.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div style="padding: 60px 50px">
+        <div class="doctor-area">
+            <img src="" style="width: 190px;height: 200px;margin-top: 40px" id="avatar">
+            <div style="padding: 0 10px">
+                <div class="name" id="name"></div>
+                <div class="doctor-info" id="hospital-name"></div>
+                <div class="doctor-info" id="title"></div>
+                <div class="doctor-info" id="depName"></div>
+            </div>
+        </div>
+
+        <div class="info-area">
+            <div style="padding: 30px 20px 0 30px">
+                <div class="doctor-info">请选预约时间</div>
+                <div style="margin-top: 15px" id="order-list"></div>
+                <div class="doctor-info" id="no-result" style="display: none">暂无预约信息</div>
+                <div class="line"></div>
+            </div>
+
+            <div style="padding: 30px">
+                <div class="doctor-info" id="doctor-info" style="padding:15px">专家介绍：<span id="introduce">暂无</span></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

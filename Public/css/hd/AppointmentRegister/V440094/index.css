@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+}
+
+body {
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url("../../../../img/hd/HospitalDetails/bg_hos_list.jpg");
+}
+
+body > * {
+    position: absolute;
+}
+
+#prev-arrow {
+    top: 45px;
+    left: 759px;
+}
+
+#next-arrow {
+    top: 625px;
+    left: 759px;
+}
+
+#hospital-title-wrap {
+    top: 150px;
+    left: 516px;
+    list-style: none;
+    color: #fff;
+    font-family: 'Source Han Sans CN';
+    font-size: 24px;
+    width: 580px;
+    height: 450px;
+}
+
+#hospital-title-wrap li {
+    margin-bottom: 30px;
+}

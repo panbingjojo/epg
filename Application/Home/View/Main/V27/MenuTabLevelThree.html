@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三级页面共享分页</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Home/V27/MenuTabLevelThree.css?t={$time}">
+
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+                // 公用参数
+                carrierId: "{$carrierId}",          // 地区id
+                areaCode: "{$areaCode}",            // 省份地区码
+                platformType: "{$platformType}",    // 平台类型
+                debug: "{$debug}",                  // 调试模式
+                pageSize: "{$size}",                // 页面尺寸
+                stbModel: "{$stbModel}",            // 盒子的型号
+                fsUrl: "{$resourcesUrl}",           // fs 地址
+                time: "{$time}",                    // 开始渲染时间
+                userId: "{$userId}",                // 用户Id
+
+                homeTabIndex: {$homeTabIndex}, // 0~3 进入当前页面对象值;
+                currentTabIndex: {$currentTabIndex}, //0~3 当前页面tab值;
+                fromId: "{$fromId}",
+                classifyId: "{$classifyId}",      // 导航栏ID
+                modelType: "{$modelType}",        // 栏目ID
+                modelTitle: "{$modelTitle}",        // 栏目名称
+                pageCurrent: {$pageCurrent},    // 分页id
+                totalPages: 1,                        // 默认总页数
+                focusIndex: "{$focusIndex}",       // 默认焦点位置
+                videoList: "", // 视频内容
+                navData: {$navData | json_encode},   // 导航信息
+                isVip: "{$isVip}",   // VIP状态
+            };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+<img src="__ROOT__/Public/img/hd/Home/V27/bg.png" alt="">
+<img id="prev-arrow" src="__ROOT__/Public/img/hd/Home/V27/prev.png" alt="">
+<img id="next-arrow" src="__ROOT__/Public/img/hd/Home/V27/next.png" alt="">
+<div id="top-item">
+    <span id="title"></span>
+    <div id="action-icon">
+        <img id="search" src="__ROOT__/Public/img/hd/Home/V27/search.png" alt="">
+        <img id="collection" src="__ROOT__/Public/img/hd/Home/V27/collection.png" alt="">
+    </div>
+</div>
+<div id="nav">
+    <!--导航组件-->
+</div>
+<div id="container">
+    <!--视频列表组件-->
+</div>
+<div id="page-wrapper">0/0</div>
+<script>
+    window.onload = function () {
+        renderPage.init();
+    };
+</script>
+<script type="text/javascript" src="__ROOT__/Public/js/Home/V27/function.js?t={$time}"></script>
+<switch name="carrierId">
+    <case value="630001|000509|540001">     <!--青海移动|展厅演示版5-->
+        <script src="__ROOT__/Public/js/Home/V27/menuTabLevelThree_2.js?t={$time}"></script>
+        <script src="__ROOT__/Public/js/Home/V27/menuTabLevelThreeButtons_2.js?t={$time}"></script>
+    </case>
+    <default />
+        <script src="__ROOT__/Public/js/Home/V27/menuTabLevelThree.js?t={$time}"></script>
+        <script src="__ROOT__/Public/js/Home/V27/menuTabLevelThreeButtons.js?t={$time}"></script>
+</switch>
+
+</body>
+</html>

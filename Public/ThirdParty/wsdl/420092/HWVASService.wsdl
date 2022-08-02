@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.vas.huawei.com" xmlns:intf="http://service.vas.huawei.com" xmlns:tns1="http://bean.vas.huawei.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.vas.huawei.com">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://service.vas.huawei.com">
+   <import namespace="http://bean.vas.huawei.com"/>
+   <element name="userTokenUpdateReq" type="tns1:UserTokenUpdateReq"/>
+   <element name="userTokenUpdateReturn" type="tns1:UserTokenUpdateResp"/>
+   <element name="serviceAuthReq" type="tns1:ServiceAuthReq"/>
+   <element name="serviceAuthReturn" type="tns1:ServiceAuthResp"/>
+   <complexType name="ArrayOf_tns1_Product">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Product"/>
+    </sequence>
+   </complexType>
+   <element name="serviceOrderReq" type="tns1:ServiceOrderReq"/>
+   <element name="serviceOrderReturn" type="tns1:ServiceOrderResp"/>
+   <element name="userAuthReq" type="tns1:UserAuthReq"/>
+   <element name="userAuthReturn" type="tns1:UserAuthResp"/>
+   <element name="prodDetailQueryReq" type="tns1:ProdDetailQueryReq"/>
+   <element name="prodDetailQueryReturn" type="tns1:ProdDetailQueryResp"/>
+   <element name="serviceDetailQueryReq" type="tns1:ServiceDetailQueryReq"/>
+   <element name="serviceDetailQueryReturn" type="tns1:ServiceDetailQueryResp"/>
+   <element name="productServiceDetailQueryReq" type="tns1:ProductServiceDetailQueryReq"/>
+   <element name="productServiceDetailQueryReturn" type="tns1:ProductServiceDetailQueryResp"/>
+   <element name="queryUserOrderReq" type="tns1:QueryUserOrderReq"/>
+   <element name="queryUserOrderReturn" type="tns1:QueryUserOrderResp"/>
+   <complexType name="ArrayOf_tns1_OrderInfo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:OrderInfo"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns1_Service">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Service"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns1_ProductServices">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:ProductServices"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://bean.vas.huawei.com">
+   <import namespace="http://service.vas.huawei.com"/>
+   <complexType name="UserTokenUpdateReq">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="action" nillable="true" type="xsd:string"/>
+     <element name="oldUserToken" nillable="true" type="xsd:string"/>
+     <element name="returnURL" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserTokenUpdateResp">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="newUserToken" nillable="true" type="xsd:string"/>
+     <element name="result" nillable="true" type="xsd:string"/>
+     <element name="tokenExpiredTime" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceAuthReq">
+    <sequence>
+     <element name="IP" nillable="true" type="xsd:string"/>
+     <element name="MAC" nillable="true" type="xsd:string"/>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="contentID" nillable="true" type="xsd:string"/>
+     <element name="productID" nillable="true" type="xsd:string"/>
+     <element name="serviceID" nillable="true" type="xsd:string"/>
+     <element name="timeStamp" nillable="true" type="xsd:string"/>
+     <element name="transactionID" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+     <element name="userToken" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Product">
+    <sequence>
+     <element name="fee" type="xsd:int"/>
+     <element name="limitTimes" type="xsd:int"/>
+     <element name="listPrice" type="xsd:int"/>
+     <element name="productDesc" nillable="true" type="xsd:string"/>
+     <element name="productID" nillable="true" type="xsd:string"/>
+     <element name="productName" nillable="true" type="xsd:string"/>
+     <element name="purchaseType" type="xsd:int"/>
+     <element name="rentalTerm" type="xsd:int"/>
+     <element name="iPTVRewardPoints" type="xsd:int"/>
+     <element name="teleRewardPoints" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceAuthResp">
+    <sequence>
+     <element name="IP" nillable="true" type="xsd:string"/>
+     <element name="MAC" nillable="true" type="xsd:string"/>
+     <element name="STBID" nillable="true" type="xsd:string"/>
+     <element name="balance" type="xsd:int"/>
+     <element name="contentID" nillable="true" type="xsd:string"/>
+     <element name="expiredTime" nillable="true" type="xsd:string"/>
+     <element name="productID" nillable="true" type="xsd:string"/>
+     <element name="productList" nillable="true" type="impl:ArrayOf_tns1_Product"/>
+     <element name="result" nillable="true" type="xsd:string"/>
+     <element name="serviceID" nillable="true" type="xsd:string"/>
+     <element name="transactionID" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+     <element name="availableIPTVRewardPoints" type="xsd:int"/>
+     <element name="availableTeleRewardPoints" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceOrderReq">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="action" nillable="true" type="xsd:string"/>
+     <element name="contentID" nillable="true" type="xsd:string"/>
+     <element name="productID" nillable="true" type="xsd:string"/>
+     <element name="serviceID" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+     <element name="userToken" nillable="true" type="xsd:string"/>
+     <element name="orderMode" nillable="true" type="xsd:string"/>
+     <element name="continueType" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceOrderResp">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="balance" type="xsd:int"/>
+     <element name="contentID" nillable="true" type="xsd:string"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="expiredTime" nillable="true" type="xsd:string"/>
+     <element name="fee" type="xsd:int"/>
+     <element name="productID" nillable="true" type="xsd:string"/>
+     <element name="purchaseType" type="xsd:int"/>
+     <element name="result" nillable="true" type="xsd:string"/>
+     <element name="serviceID" nillable="true" type="xsd:string"/>
+     <element name="transactionID" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+     <element name="userToken" nillable="true" type="xsd:string"/>
+     <element name="orderMode" nillable="true" type="xsd:string"/>
+     <element name="availableIPTVRewardPoints" type="xsd:int"/>
+     <element name="availableTeleRewardPoints" type="xsd:int"/>
+     <element name="serStartTime" nillable="true" type="xsd:string"/>
+     <element name="serEndTime" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserAuthReq">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+     <element name="userToken" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="QueryUserOrderReq">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+     <element name="userToken" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="OrderInfo">
+    <sequence>
+     <element name="productID" nillable="true" type="xsd:string"/>
+     <element name="startTime" nillable="true" type="xsd:string"/>
+     <element name="endTime" nillable="true" type="xsd:string"/>
+     <element name="contentID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="QueryUserOrderResp">
+    <sequence>
+     <element name="EPGGroupNMB" nillable="true" type="xsd:string"/>
+     <element name="MAC" nillable="true" type="xsd:string"/>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="STBID" nillable="true" type="xsd:string"/>
+     <element name="products" nillable="true" type="impl:ArrayOf_tns1_OrderInfo"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserAuthResp">
+    <sequence>
+     <element name="EPGGroupNMB" nillable="true" type="xsd:string"/>
+     <element name="MAC" nillable="true" type="xsd:string"/>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="STBID" nillable="true" type="xsd:string"/>
+     <element name="products" nillable="true" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProdDetailQueryReq">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="productID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProdDetailQueryResp">
+    <sequence>
+     <element name="EPGGroupNMB" nillable="true" type="xsd:string"/>
+     <element name="fee" type="xsd:int"/>
+     <element name="productDesc" nillable="true" type="xsd:string"/>
+     <element name="productId" nillable="true" type="xsd:string"/>
+     <element name="productName" nillable="true" type="xsd:string"/>
+     <element name="purchaseType" type="xsd:int"/>
+     <element name="iPTVRewardPoints" type="xsd:int"/>
+     <element name="teleRewardPoints" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceDetailQueryReq">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+     <element name="serviceID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceDetailQueryResp">
+    <sequence>
+     <element name="serviceDesc" nillable="true" type="xsd:string"/>
+     <element name="serviceID" nillable="true" type="xsd:string"/>
+     <element name="serviceName" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductServiceDetailQueryReq">
+    <sequence>
+     <element name="SPID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Service">
+    <sequence>
+     <element name="serviceID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductServices">
+    <sequence>
+     <element name="productID" nillable="true" type="xsd:string"/>
+     <element name="services" nillable="true" type="impl:ArrayOf_tns1_Service"/>
+     <element name="serviceAmount" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductServiceDetailQueryResp">
+    <sequence>
+     <element name="productAmount" type="xsd:int"/>
+     <element name="productServices" nillable="true" type="impl:ArrayOf_tns1_ProductServices"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="productServiceDetailQueryRequest">
+
+      <wsdl:part element="impl:productServiceDetailQueryReq" name="productServiceDetailQueryReq"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="userTokenUpdateRequest">
+
+      <wsdl:part element="impl:userTokenUpdateReq" name="userTokenUpdateReq"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="userTokenUpdateReturn">
+
+      <wsdl:part element="impl:userTokenUpdateReturn" name="userTokenUpdateReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="userAuthRequest">
+
+      <wsdl:part element="impl:userAuthReq" name="userAuthReq"/>
+
+   </wsdl:message>
+   
+   <wsdl:message name="queryUserOrderRequest">
+
+      <wsdl:part element="impl:queryUserOrderReq" name="queryUserOrderReq"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="serviceDetailQueryRequest">
+
+      <wsdl:part element="impl:serviceDetailQueryReq" name="serviceDetailQueryReq"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="serviceAuthReturn">
+
+      <wsdl:part element="impl:serviceAuthReturn" name="serviceAuthReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="productServiceDetailQueryReturn">
+
+      <wsdl:part element="impl:productServiceDetailQueryReturn" name="productServiceDetailQueryReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="userAuthReturn">
+
+      <wsdl:part element="impl:userAuthReturn" name="userAuthReturn"/>
+
+   </wsdl:message>
+   <wsdl:message name="queryUserOrderReturn">
+
+      <wsdl:part element="impl:queryUserOrderReturn" name="queryUserOrderReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="serviceOrderReturn">
+
+      <wsdl:part element="impl:serviceOrderReturn" name="serviceOrderReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="serviceOrderRequest">
+
+      <wsdl:part element="impl:serviceOrderReq" name="serviceOrderReq"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="serviceAuthRequest">
+
+      <wsdl:part element="impl:serviceAuthReq" name="serviceAuthReq"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="prodDetailQueryRequest">
+
+      <wsdl:part element="impl:prodDetailQueryReq" name="prodDetailQueryReq"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="prodDetailQueryReturn">
+
+      <wsdl:part element="impl:prodDetailQueryReturn" name="prodDetailQueryReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="serviceDetailQueryReturn">
+
+      <wsdl:part element="impl:serviceDetailQueryReturn" name="serviceDetailQueryReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="VASService">
+
+      <wsdl:operation name="userTokenUpdate" parameterOrder="userTokenUpdateReq">
+
+         <wsdl:input message="impl:userTokenUpdateRequest" name="userTokenUpdateRequest"/>
+
+         <wsdl:output message="impl:userTokenUpdateReturn" name="userTokenUpdateReturn"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="serviceAuth" parameterOrder="serviceAuthReq">
+
+         <wsdl:input message="impl:serviceAuthRequest" name="serviceAuthRequest"/>
+
+         <wsdl:output message="impl:serviceAuthReturn" name="serviceAuthReturn"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="serviceOrder" parameterOrder="serviceOrderReq">
+
+         <wsdl:input message="impl:serviceOrderRequest" name="serviceOrderRequest"/>
+
+         <wsdl:output message="impl:serviceOrderReturn" name="serviceOrderReturn"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="userAuth" parameterOrder="userAuthReq">
+
+         <wsdl:input message="impl:userAuthRequest" name="userAuthRequest"/>
+
+         <wsdl:output message="impl:userAuthReturn" name="userAuthReturn"/>
+
+      </wsdl:operation>
+      
+      <wsdl:operation name="queryUserOrder" parameterOrder="queryUserOrderReq">
+
+         <wsdl:input message="impl:queryUserOrderRequest" name="queryUserOrderRequest"/>
+
+         <wsdl:output message="impl:queryUserOrderReturn" name="queryUserOrderReturn"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="prodDetailQuery" parameterOrder="prodDetailQueryReq">
+
+         <wsdl:input message="impl:prodDetailQueryRequest" name="prodDetailQueryRequest"/>
+
+         <wsdl:output message="impl:prodDetailQueryReturn" name="prodDetailQueryReturn"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="serviceDetailQuery" parameterOrder="serviceDetailQueryReq">
+
+         <wsdl:input message="impl:serviceDetailQueryRequest" name="serviceDetailQueryRequest"/>
+
+         <wsdl:output message="impl:serviceDetailQueryReturn" name="serviceDetailQueryReturn"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="productServiceDetailQuery" parameterOrder="productServiceDetailQueryReq">
+
+         <wsdl:input message="impl:productServiceDetailQueryRequest" name="productServiceDetailQueryRequest"/>
+
+         <wsdl:output message="impl:productServiceDetailQueryReturn" name="productServiceDetailQueryReturn"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="VASServiceSoapBinding" type="impl:VASService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="userTokenUpdate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="userTokenUpdateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="userTokenUpdateReturn">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="serviceAuth">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="serviceAuthRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="serviceAuthReturn">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="serviceOrder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="serviceOrderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="serviceOrderReturn">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="userAuth">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="userAuthRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="userAuthReturn">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+      <wsdl:operation name="queryUserOrder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="queryUserOrderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="queryUserOrderReturn">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="prodDetailQuery">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="prodDetailQueryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="prodDetailQueryReturn">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="serviceDetailQuery">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="serviceDetailQueryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="serviceDetailQueryReturn">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="productServiceDetailQuery">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="productServiceDetailQueryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="productServiceDetailQueryReturn">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="VASServiceService">
+
+      <wsdl:port binding="impl:VASServiceSoapBinding" name="VASService">
+
+         <wsdlsoap:address location="http://116.210.251.146:33200/ACS/services/VASService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

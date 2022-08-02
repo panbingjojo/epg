@@ -1,0 +1,618 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    outline: none !important;
+    background-repeat: no-repeat;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    color: #000;
+    overflow: hidden;
+    font-family: 'Source Han Sans CN';
+    background-color: transparent;
+    background-repeat: no-repeat;
+    position: relative;
+    background: transparent no-repeat;
+    top: 0;
+    left: 0;
+}
+
+img {
+    border: 0;
+}
+ul li{
+    list-style: none;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.null-data {
+    position:absolute;
+    font-size: 20px;
+    font-style: italic;
+    color: #fff;
+    text-align: center;
+    width: 188px;
+}
+
+#debug,
+#grabFocus,
+#default_link,
+.commonPosition{
+    position: absolute;
+}
+#debug{
+    z-index: 99;
+    color: #ff6600;
+}
+.g_toast {
+    position: absolute;
+    left: 364px !important;
+    top: 279px !important;
+    width: 551px !important;
+    height: 126px !important;
+    line-height: 166px !important;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url(../../img/hd/Common/bg_toast.png) no-repeat;
+    background-size: auto !important;
+}
+
+
+.g_toast_620007 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background: url("../../../Public/img/Common/bg_common_dialog.png") no-repeat;
+    background-size: 1280px 720px;
+    -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+    -webkit-background-size: 1280px 720px;
+    -o-background-size: 1280px 720px;
+    z-index: 99999;
+    display: table;
+}
+
+.g_toast_4 {
+    position: absolute;
+    left: 364px;
+    top: 279px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+}
+
+.g_toast_big {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 9999;
+}
+
+.g_waiting_dialog {
+    position: absolute;
+    left: 590px;
+    top: 310px;
+    width: 99px;
+    height: 100px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+}
+
+.g_waiting_dialog_v2 {
+    position: absolute;
+    left: 60px;
+    top: 580px;
+    width: 99px;
+    height: 100px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+}
+
+
+.grubFocusImg {
+    width: 0px;
+    height: 0px;
+}
+
+.corner_free {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 49px;
+    height: 51px;
+}
+
+/*--------------------------------------------------
+           通用对话框 style  --- start
+ ---------------------------------------------------*/
+.g_common_dialog_img_bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 1000;
+}
+
+/*通用弹框消息文本*/
+.g_common_dialog_message_text {
+    position: absolute;
+    left: 400px;
+    top: 230px;
+    width: 480px;
+    height: 180px;
+    font-size: 32px;
+    color: #474747;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1000;
+}
+
+/*输入框底部按钮*/
+.g_common_button_container {
+    position: absolute;
+    margin: auto;
+    top: 430px;
+    left: 400px;
+    width: 480px;
+    height: 83px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.g_common_button_border {
+    width: 203px;
+    height: 83px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_common_button_interval {
+    margin-left: 20px;
+}
+
+/*通用按钮文本*/
+.g_common_button_text {
+    width: 203px;
+    height: 83px;
+    line-height: 83px;
+    font-size: 36px;
+    text-align: center;
+    color: white;
+    z-index: 1000;
+}
+
+/*--------------------------------------------------
+           通用对话框 style  --- end
+ ---------------------------------------------------*/
+/*--------------------------------------------------
+           通用对话框 V1 style  --- start
+ ---------------------------------------------------*/
+.g_common_dialog_v1 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: transparent no-repeat;
+    width: 1280px;
+    height: 720px;
+    z-index: 999;
+}
+
+.g_common_button_img_v1 {
+    width: 179px;
+    height: 66px;
+}
+
+.g_common_dialog_img_bg_v1 {
+    width: 1280px;
+    height: 720px;
+}
+
+/*通用弹框消息文本*/
+.g_common_dialog_message_text_v1 {
+    position: absolute;
+    top: 244px;
+    left: 300px;
+    width: 680px;
+    height: 110px;
+    /*font-size: 36px;*/
+    font-size: 28px;
+    text-align: center;
+    color: #ffffff;
+    z-index: 1000;
+}
+
+.g_common_button_container_v1 {
+    position: absolute;
+    margin: auto;
+    /*top: 386px;*/
+    top: 423px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.g_common_button_border_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_common_button_interval_v1 {
+    margin-left: 86px;
+}
+
+.g_common_button_text_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: -66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+
+/*--------------------------------------------------
+           通用对话框 V1 style  --- end
+ ---------------------------------------------------*/
+
+/**
+    通用弹框样式2
+ */
+.g_toast_v_2 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+    background-size: 1280px 720px;
+    z-index: 999;
+    display: table;
+    background: url("../../img/hd/Home/V10/bg_toast.png");
+}
+
+.g_title_v_2 {
+    position: absolute;
+    top: 270px;
+    left: 290px;
+    width: 700px;
+    height: 300px;
+    color: #ffffff;
+    font-size: 32px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 60px;
+    word-break: break-all;
+    display: table-cell;
+}
+
+/**
+    通用弹框样式3
+ */
+.g_toast_v_3 {
+    position: absolute;
+    left: 285px;
+    top: 600px;
+    width: 710px;
+    height: 74px;
+    line-height: 74px;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+    color: #ffffff;
+    background: url("../../img/hd/Common/bg_toast_v_3.png") no-repeat;
+}
+
+.g_title_v_3 {
+    position: absolute;
+    width: 710px;
+    left: 0;
+    top: 0;
+    line-height: 74px;
+    font-size: 32px;
+    vertical-align: middle;
+    text-align: center;
+    word-break: break-all;
+    display: table-cell;
+}
+
+/*--------------------------------------------------
+           可输入文本对话框V1版本开始
+ ---------------------------------------------------*/
+/*可输入文本对话框*/
+.g_common_input_dialog_v1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background: transparent no-repeat;
+    z-index: 999;
+}
+
+.g_common_input_btn_border_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_common_input_btn_interval_v1 {
+    margin-left: 86px;
+}
+
+/*背景图*/
+.g_common_input_dialog_img_bg_v1 {
+    width: 1280px;
+    height: 720px;
+}
+
+/*显示文本*/
+.g_common_input_dialog_message_text_v1 {
+    position: absolute;
+    top: 145px;
+    left: 240px;
+    width: 770px;
+    height: 180px;
+    line-height: 45px;
+    font-size: 32px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    z-index: 1000;
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 4;
+}
+
+.g_common_input_dialog_tel_v1 {
+    position: absolute;
+    top: 350px;
+    left: 280px;
+    color: #FFFFFF;
+    font-size: 32px;
+}
+
+input::-ms-input-placeholder {
+    text-align: center;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+input::-webkit-input-placeholder {
+    text-align: center;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/*输入框input区域*/
+.g_common_input_dialog_message_v1 {
+    position: absolute;
+    top: 336px;
+    left: 406px;
+    width: 504px;
+    height: 84px;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    line-height: 84px;
+    background: url("../../img/hd/DataArchiving/V10/bg_text.png");
+    z-index: 1000;
+}
+
+/*输入框input的focus状态border*/
+.g_common_input_message_border_focus_v1 {
+    box-shadow: 0 0 6px 4px #ffffff;
+    -moz-box-shadow: 0 0 6px 4px #ffffff;
+    -webkit-box-shadow: 0 0 6px 4px #ffffff;
+}
+
+/*输入框input的unfocus状态border*/
+.g_common_input_dialog_message_border_unfocus_v1 {
+    border: 3px solid transparent;
+}
+
+.g_common_input_btn_img_v1 {
+    width: 192px;
+    height: 72px;
+}
+
+.g_common_input_text_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: -70px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+
+/*输入框底部按钮*/
+.g_common_input_btn_v1 {
+    position: absolute;
+    margin: auto;
+    top: 450px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.vip-icon {
+    position: absolute;
+    top: 42px;
+    left: 42px;
+    width: 79px;
+    height: 79px;
+    z-index: 4;
+}
+
+
+
+/*******可输入文本对话框V1版本结束********/
+#null-data-000051 {
+    position: absolute;
+    top: 45%;
+    left: 31%;
+    width: 500px;
+    text-align: center;
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: bold;
+    display: none;
+}
+
+/*--------------------------------------------------
+           通用页面屏幕debug调试style
+ ---------------------------------------------------*/
+.g_debug {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px; /*width: 100%;*/
+    height: 720px; /*height: 100%;*/
+    -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+    background-size: 1280px 720px;
+    color: #ff0000;
+    background: black;
+    opacity: 0.8;
+    padding: 10px 23px;
+    word-wrap: break-word;
+    z-index: 999;
+    font-size: 20px;
+    box-sizing: border-box; /*W3C标准(IE9+，Safari5.1+,Chrome10.0+,Opera10.6+都符合box-sizing的w3c标准语法)*/
+    -moz-box-sizing: border-box; /*Firefox3.5+*/
+    -webkit-box-sizing: border-box; /*Safari3.2+*/
+    -o-box-sizing: border-box; /*Opera9.6*/
+    -ms-box-sizing: border-box; /*IE8*/
+    border: 2px red dashed;
+    overflow: auto;
+}
+
+.g_debug_pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.g_waiting_dialog_v2 {
+    position: absolute;
+    left: 60px;
+    top: 580px;
+    width: 99px;
+    height: 100px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+}
+
+
+.toast_style_v1 {
+    position: absolute;
+    left: 435px;
+    top: 419px;
+    width: 393px;
+    height: 75px;
+    background: url("../../../../Public/img/Common/bg_toast_v1.png") no-repeat;
+    -moz-background-size: 393px 75px; /* 老版本的 Firefox */
+    background-size: 393px 75px;
+    z-index: 99999;
+    display: table;
+}
+
+.toast_style_v2 {
+    position: absolute;
+    left: 371px;
+    top: 419px;
+    width: 522px;
+    height: 75px;
+    background: url("../../../../Public/img/Common/bg_toast_v2.png") no-repeat;
+    -moz-background-size: 522px 75px; /* 老版本的 Firefox */
+    background-size: 522px 75px;
+    z-index: 99999;
+    padding-left: 50px;
+    display: table;
+}
+
+.toast_text_v1 {
+    position: absolute;
+    color: #fff;
+    font-size: 36px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 75px;
+    word-break: break-all;
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 5px;
+
+    /*居中显示*/
+    left: 50%;
+    top: 50%;
+    transition-property: translate;
+    -o-transition-property: translate;
+    -moz-transition-property: translate;
+    -webkit-transition-property: translate;
+    transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 5;
+}
+
+.toast_text_v2 {
+    position: absolute;
+    color: #fff;
+    font-size: 36px;
+    vertical-align: middle;
+    line-height: 75px;
+    word-break: break-all;
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 5px;
+}

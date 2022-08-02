@@ -1,0 +1,163 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    color: #000;
+    background-image: url(../../../../img/hd/Home/V16/Home/bg.png);
+    background-repeat: no-repeat;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    height: 66px;
+    line-height: 66px;
+    color: #000;
+}
+
+#person-pic {
+    width: 66px;
+    height: 66px;
+    padding-bottom: 20px;
+}
+
+#test-item {
+    position: absolute;
+    top: 24px;
+    left: 842px;
+}
+
+#write-data {
+    position: absolute;
+    top: 24px;
+    left: 1066px;
+}
+
+#tab-wrap {
+    position: absolute;
+    top: 173px;
+    left: 218px;
+    height: 58px;
+    width: 554px;
+    background-image: url(../../../../img/hd/HealthTest/V16/test_tab_bg.png);
+    background-repeat: no-repeat;
+    list-style: none;
+}
+
+#tab-wrap li {
+    float: left;
+    width: 180px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    padding-bottom: 8px;
+    background-repeat: no-repeat;
+}
+
+
+#record-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#record-container #table-wrap {
+    position: absolute;
+    top: 246px;
+    left: 210px;
+    width: 840px;
+    height: 326px;
+    padding: 20px;
+    background-image: url(../../../../img/hd/HealthTest/V16/container_bg.png);
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#record-container table {
+    position: absolute;
+    width: 860px;
+    height: 356px;
+    border-collapse: collapse;
+}
+
+.thead-title {
+    color: #000;
+}
+
+#record-container table thead {
+    font-size: 24px;
+    color: #b2deff;
+    font-weight: bold;
+}
+
+#record-container table thead th {
+    width: 18%;
+}
+
+#record-container table tbody {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#record-container table tbody tr {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    padding: 0 5px;
+    background-position: center;
+}
+
+tr.even {
+    color: goldenrod;
+}
+
+tr.odd {
+
+}
+
+#record-container table tbody tr td {
+    /*width: 18%;*/
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#record-container table tbody tr td.test-time {
+    width: 28%;
+}
+
+/*滚动条*/
+#scroll-wrap {
+    width: 6px;
+    height: 350px;
+    position: absolute;
+    top: 255px;
+    left: 1070px;
+    border-radius: 6px;
+    background-color: #89adf4;
+}
+
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 10px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #32cfe0;
+}
+

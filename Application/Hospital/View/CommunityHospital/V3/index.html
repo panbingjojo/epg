@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>社区医院-首页-V650092</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/CommunityHospital/650092/CommunityIndex.css?t={$time}"/>
+</head>
+<body>
+<p class="title">我的医生</p>
+<div id="container">
+    <div id="carousel-wrapper">
+        <div id="prev-hospital">
+            <p id="hosp-name"></p>
+            <!--<img id="hosp-pic_0" src="__ROOT__/Public/img/hd/CommunityHospital/midong/hosp-pic0.jpg" alt="">-->
+            <img id="hosp-pic_1" src="" alt="">
+        </div>
+        <div class="hosp-intro-wrap">
+            <p id="hosp-intro-title"></p>
+            <p id="marquee-wrap" class="hosp-intro-text"></p>
+        </div>
+    </div>
+    <!--<img id="especially-department" src="__ROOT__/Public/img/hd/CommunityHospital/especially-department.png" alt="">-->
+    <div id="hospital-nav">
+        <img id="online-case" src="__ROOT__/Public/img/hd/CommunityHospital/online-case.png" alt="">
+        <img id="experts-introduce" src="__ROOT__/Public/img/hd/CommunityHospital/experts-introduce.png" alt="">
+        <img id="health-education" src="__ROOT__/Public/img/hd/CommunityHospital/health-education.png" alt="">
+        <img id="community-doctor" src="__ROOT__/Public/img/hd/CommunityHospital/order-register.png" alt="">
+
+        <!--<img id="online-case" src="__ROOT__/Public/img/hd/CommunityHospital/online-case.png" alt="">-->
+        <!--&lt;!&ndash;<img id="experts-introduce" src="__ROOT__/Public/img/hd/CommunityHospital/experts-introduce.png" alt="">&ndash;&gt;-->
+        <!--<img id="health-education" src="__ROOT__/Public/img/hd/CommunityHospital/health-education.png" alt="">-->
+        <!--<img id="blood-manage" src="__ROOT__/Public/img/hd/CommunityHospital/blood-manage.png" alt="">-->
+    </div>
+</div>
+
+<div class="show-code" id="show-code">
+    <img src="__ROOT__/Public/img/hd/CommunityHospital/code.png"/>
+</div>
+
+<div class="show-code" id="show-intro">
+    <img src="__ROOT__/Public/img/hd/CommunityHospital/tongren/tongren.png"/></div>
+<script type="text/javascript">
+    var RenderParam = {
+        inner: "{$inner}",
+        userId: "{$userId}",
+        accountId: "{$accountId}",
+        hospitalName: '{$hospitalName}',
+    };
+</script>
+
+</body>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Hospital/CommunityHospital/CommunityIndex.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Hospital/CommunityHospital/V3/index.js?t={$time}"></script>
+<script>
+    window.onload = function () {
+        HospitalArea.init();
+    }
+</script>
+</html>
+  
+  

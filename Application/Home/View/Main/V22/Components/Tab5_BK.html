@@ -1,0 +1,102 @@
+<div class="tab4-box">
+    <div id="tab-4-scroll" style="position: absolute;top: 40px;left: 100px;transition: left 0.5s;">
+
+        <div id="tab4-recommended-4-list" class="tab4-recommended-4-list">
+
+            <div class="tab4-recommended-4-list-1-box">
+                <img id="tab4-recommended-4-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    Tab4 = {
+        scrollArray: [100],
+        index: 0,
+        initButton: function () {
+            var j = RenderParam.albumList.list.length;
+            while (j--) {
+                buttons.push({
+                        id: 'tab4-recommended-4-list-' + (j + 1),
+                        type: 'img',
+                        nextFocusLeft: 'tab4-recommended-4-list-' + j,
+                        nextFocusRight: 'tab4-recommended-4-list-' + (j + 2),
+                        nextFocusUp: 'tab-4',
+                        nextFocusDown: '',
+                        click: Page.onClickTab5Album,
+                        focusChange: Tab4.tab5Focus,
+                        beforeMoveChange: Tab4.beforeMoveChange,
+                        cIndex: j
+                    }
+                )
+            }
+            var page = 0;
+            while (page < Math.ceil(RenderParam.albumList.list.length / 4)) {
+                if (page >= 1) {
+                    Tab4.scrollArray.push(-(1120 * page))
+                }
+                page++
+            }
+        },
+        tab5Focus: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'album-list-focus');
+            } else {
+                LMEPG.UI.Marquee.stop();
+                btnElement.setAttribute('class', 'album-list');
+            }
+        },
+        beforeMoveChange: function (dir, cur) {
+            var subId = parseInt(cur.id.substr(24, 3))
+            switch (dir) {
+                case "up":
+                    LMEPG.BM.getButtonById("tab-4").nextFocusDown = cur.id;
+                    break;
+                case "left":
+                    if (subId != 1 && ((subId - 1) % 4 == 0)) {
+                        Tab4.showTabContent("l");
+                    }
+                    break;
+                case "right":
+                    if (subId != RenderParam.albumList.list.length && (subId % 4 == 0)) {
+                        Tab4.showTabContent("r");
+                    }
+                    break;
+
+            }
+        },
+        /*导航栏得失焦点回调操作*/
+        showTabContent: function (dir) {
+            if (dir == "r") {
+                Tab4.index++
+            } else {
+                Tab4.index--
+            }
+            G("tab-4-scroll").style.left = Tab4.scrollArray[Tab4.index] + "px";
+        },
+        createHtml: function () {
+            var strHtml = "";
+            var leftR = 0;
+            for (var i = 0; i < RenderParam.albumList.list.length; i++) {
+                leftR = i * 280;
+                strHtml += ' <div class="tab4-recommended-4-list-' + (i + 1) + '-box" style="position:absolute;left: ' + leftR + 'px">';
+                strHtml += ' <img id="tab4-recommended-4-list-' + (i + 1) + '" class="album-list"  src="' + RenderParam.fsUrl + RenderParam.albumList.list[i].list_image_url.large + '"> </div>';
+            }
+            G("tab4-recommended-4-list").innerHTML = strHtml;
+        },
+        init: function () {
+            try {
+                this.linkAlbum = null;
+                Tab4.initButton();
+                Tab4.createHtml();
+            } catch (e) {
+                LMEPG.UI.showToast("tab5组件异常运行" + e)
+            }
+        },
+    }
+</script>

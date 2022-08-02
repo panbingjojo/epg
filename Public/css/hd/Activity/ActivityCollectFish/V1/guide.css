@@ -1,0 +1,207 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+.abs {
+    position: absolute;
+}
+
+#btn-wrap {
+    top: 30px;
+    left: 1073px;
+    width: 193px;
+}
+
+#lottery {
+    top: 26px;
+    left: 606px;
+}
+
+#pic-1 {
+    top: 265px;
+    left: 345px;
+}
+
+#pic-2 {
+    top: 151px;
+    left: 607px;
+}
+
+#pic-3 {
+    top: 258px;
+    left: 859px;
+}
+
+.count {
+    font: bold 28px "Source Han Sans CN";
+    color: #b81c22;
+}
+
+#pic-1-count {
+    top: 358px;
+    left: 537px;
+}
+
+#pic-2-count {
+    top: 242px;
+    left: 800px;
+}
+
+#pic-3-count {
+    top: 347px;
+    left: 1049px;
+}
+
+#start-collect {
+    top: 395px;
+    left: 595px;
+}
+
+#static-bg {
+    top: 485px;
+    left: 0;
+}
+
+#game-times {
+    top: 360px;
+    left: 750px;
+    color: #cb3c39;
+    font: bold 26px "Source Han Sans CN";
+}
+
+#searchText {
+    position: absolute;
+    z-index: 99;
+    width: 250px;
+    overflow: hidden;
+    color: #ed6a51;
+}
+
+#btn-one {
+    top: 490px;
+    left: 540px;
+}
+
+/*+++++++++++++++常规弹框+++++++++++++++++*/
+/*活动规则*/
+
+#rule-close {
+    top: 12px;
+    left: 1067px;
+}
+
+/*中奖名单*/
+#win-table {
+    top: 280px;
+    left: 247px;
+    width: 800px;
+    height: 140px;
+}
+
+table {
+    width: 800px;
+}
+
+#win-table tr {
+}
+
+#win-table tr td {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 21px;
+    overflow: hidden
+}
+
+/*中奖名单排版*/
+#win-table tr td.user,
+.single-table tr td.user {
+    width: 29%;
+}
+
+#win-table tr td.winTime,
+.single-table tr td.winTime {
+    width: 40%;
+}
+
+#win-table tr td.prize,
+.single-table tr td.prize {
+    width: 31%;
+}
+
+.list-submit {
+    top: 591px;
+    left: 719px;
+}
+
+.list-cancle {
+    top: 591px !important;
+    left: 904px !important;
+}
+
+.tel-wrap {
+    position: absolute;
+    color: #fff;
+    font-size: 24px;
+}
+
+.tel-list {
+    top: 610px;
+    left: 450px;
+}
+
+.single-table {
+    top: 535px;
+    left: 247px;
+    width: 800px;
+    height: 50px;
+    font-size: 20px;
+    color: #251505;
+    text-align: center;
+}
+
+
+/*订购相关*/
+#btn-sure-pay {
+    top: 528px;
+    left: 458px;
+}
+
+#btn-cancle {
+    top: 528px;
+    left: 663px;
+}
+
+/*完成游戏*/
+.complete-submit {
+    top: 528px;
+    left: 458px;
+}
+
+.complete-cancle {
+    top: 528px !important;
+    left: 663px;
+}
+
+.tel-complete {
+    top: 455px;
+    left: 622px;
+}
+
+#win-prize {
+    top: 305px;
+    left: 689px;
+}

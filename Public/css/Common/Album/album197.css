@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    /*position:absolute;;*/
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    top: 0px
+}
+
+#small-video-wrap{
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#small-video {
+    top: 62px;
+    left: 166px;
+}
+
+.hd-corner-mark{
+    top: 517px;
+    left: 737px;
+    visibility: hidden;
+}
+
+.hd-back {
+    top: 18px;
+    left: 1164px;
+}
+
+.hd-view-more {
+    top: 18px;
+    left: 1043px;
+}
+
+.hd-video-list {
+    top: 286px;
+    left: 112px;
+    width: 550px;
+    /*border: 1px red solid;*/
+}
+.hd-video-list img{
+    margin-right: 46px;
+}
+
+.hd-v-arrow {
+    top: 463px;
+}
+
+.hd-v-prev {
+    left: 59px;
+    visibility: hidden;
+}
+
+.hd-v-next {
+    left: 573px;
+}
+
+/*==============SD==================*/
+.sd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+.sd-body{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    /*border: 1px solid red;*/
+}
+.sd-view-more {
+    position:absolute;
+    top: 13px;
+    left: 483px;
+    width: 79px;
+    height: 35px;
+}
+
+.sd-back {
+    position: absolute;
+    top: 13px;
+    left: 572px;
+    width: 59px;
+    height: 35px;
+}
+
+.sd-video-list {
+    position:absolute;
+    top: 198px;
+    left: 52px;
+    width: 398px;
+    height: 248px;
+    /*border: 1px red solid;*/
+}
+
+.sd-video-list img {
+    /*position: absolute;*/
+    width: 47px;
+    height: 248px;
+    margin-right: 29px;
+}
+
+.sd-v-arrow {
+    position:absolute;
+    top: 311px;
+    width: 14px;
+    height: 23px;
+}
+
+.sd-v-prev {
+    left: 19px;
+    visibility: hidden;
+}
+
+.sd-v-next {
+    left: 347px;
+}
+
+

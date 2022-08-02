@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>四川广电-播放器V12</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            carrierId: "{$carrierId}",                      // 地区id
+            areaCode: "{$areaCode}",                        // 省份地区码
+            platformType: "{$platformType}",                // 平台类型（hd--高清 sd--标清）
+            debug: "{$debug}",                              // 调试模式
+            pageSize: "{$pageSize}",                        // 页面尺寸
+            collectStatus: "{$collectStatus}",              // 判断是否收藏 0表示收藏 1表示未收藏
+            sourceId: "{$sourceId}",                        // 视频ID
+            returnUrl: "{$returnUrl}",                      // 返回地址 unescape("{$returnUrl}")
+            userId: "{$userId}",                            // 用户ID
+            imgHost: "{$resourcesUrl}",                     // 图片host
+            isVip: {$isVip},                                // 用户是不是vip，1 -- 是vip
+            freeSeconds: {$freeSeconds},                    // 免费观看时长
+            currentPlayTimes: 0,                            // 记录当前播放的时间进度
+            userType: {$userType},                          // 视频的播放策略（0-不限，1-普通用户可看, 2-vip可看）
+            videoInfo: {$videoInfo},                        // 视频信息
+            domainUrl: "{$domainUrl}",                      // 江苏电信需要使用的第三方播放器前缀地址
+            videoUrl: "{$videoUrl}",                        // 视频url：中国联通的高清视频地址http 转换成为rtsp进行播放。
+            recommendVideoUrl: '',                            // 推荐视频播放地址
+            isForbidOrder: "{$Think.cookie.c_is_forbided_order}", // 是否禁止订购 1--表示禁止订购
+            albumName: "{$albumName}", //专辑跳转传入专辑别名参数
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <!--当前模块-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/510094/scgd_player_util.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript" >
+        var isScreenDebug = false; //TODO 上线去掉屏显调试
+        var logTag = "[510094]][Player/V12/index.html]";
+
+        function onBack() {
+            printLog("onBack()", 'Clear "c_jumped_3rd_player_page"!');
+            LMEPG.Cookie.setCookie("c_jumped_3rd_player_page", "");
+            LMEPG.Intent.back();
+        }
+
+        function printLog(funcName, msg, isLogOnScreen) {
+            console.log(logTag + "--->[" + funcName + "]--->" + msg);
+            LMEPG.Log.info(logTag + "--->[" + funcName + "]--->" + msg);
+            if (isScreenDebug && isLogOnScreen) LMEPG.UI.logPanel.show(msg, true, funcName + "-->");
+        }
+
+    </script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+    window.onload = function () {
+        // 跟踪浏览器历史记录日志
+        printLog("onload()", "history[current/save_cookie]=" + history.length + "/" + LMEPG.Cookie.getCookie("c_history_length"));
+        LMEPG.BM.init("", [], "", true);
+
+        var jumped3rdPlayerPageFlag = LMEPG.Cookie.getCookie("c_jumped_3rd_player_page"); //是否从局方播放器页面返回的标志
+        var lastPageIsOtherPlayerPage = jumped3rdPlayerPageFlag == "1";
+        if (lastPageIsOtherPlayerPage) {
+            // :::从局方播放器页面—>当前播放器过渡页—>退出去:::
+            printLog("onload()", "Back from other/3rd player page，finish and back!");
+
+            // 从四川广电局方播放器（进入后history +1了）返回，history.length不会-1，为避免go(-N)多返回一级，需要对此情况下的N-1。
+            // 详见：/Public/js/Home/V7/function.js#Page.exitAppHome() 510091
+            // var currentLength = history.length;
+            // if (currentLength === splashHistory) {
+            //     currentLength++;
+            // }
+            // /*TODO-->DOC_BEGIN 注：目前使用自定义播放器，暂屏蔽这个逻辑
+            // var jump3rdPlayerPageTimes = parseInt(LMEPG.Cookie.getCookie("c_jumped_3rd_player_page_times"));
+            // if (isNaN(jump3rdPlayerPageTimes)) jump3rdPlayerPageTimes = 0;
+            // LMEPG.Log.info('[js/homeV7/function.js]-->exitApp-->"jumpOtherPageTimes=' + jump3rdPlayerPageTimes);
+            // var backLength = currentLength + 1 - splashHistory - (jump3rdPlayerPageTimes > 0 ? 1 : 0);TODO-->DOC_END*/
+            // history.go(-backLength);
+            var jump3rdPlayerPageTimes = parseInt(LMEPG.Cookie.getCookie("c_jumped_3rd_player_page_times"));
+            if (isNaN(jump3rdPlayerPageTimes)) jump3rdPlayerPageTimes = 0;
+            LMEPG.Cookie.setCookie("c_jumped_3rd_player_page_times", jump3rdPlayerPageTimes + 1);
+            printLog("onload()", "[jumpedOtherPageFlag]=1, Increase jump times and latest: " + (jump3rdPlayerPageTimes + 1));
+
+            // 退出当前播放器过渡页
+            onBack();
+        } else {
+            // :::非局方播放器页面返回，即首次进入—>当前播放器过滤页—>跳转到局方播放器页:::
+            printLog("onload()", "This is the first time to enter the player page!");
+
+            SCGDPlayer.startJumpSCGDPlayPageV2(RenderParam.videoUrl, function (scgdVideoPlayPageUrl) {
+                LMEPG.Cookie.setCookie("c_jumped_3rd_player_page", "1");
+                setTimeout(function () {
+                    window.location.href = scgdVideoPlayPageUrl;
+                }, 500);
+            }, function (errorMsg) {
+                printLog("启动播放失败", errorMsg, true);
+                LMEPG.UI.showToast("播放失败！" + errorMsg, 3, "onBack()");
+            });
+        }
+    };
+
+    window.onerror = function (message, filename, lineno) {
+        var errorLog = "[V12/player.html]发生错误>>> " +
+            "\nmessage:" + message +
+            "\nfile_name:" + filename +
+            "\nline_NO:" + lineno;
+        LMEPG.Log.error(errorLog);
+        LMEPG.UI.showToast(errorLog, 5, "onBack()");
+    };
+</script>
+</body>
+
+</html>

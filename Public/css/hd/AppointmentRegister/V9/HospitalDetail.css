@@ -1,0 +1,117 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #ffffff;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+div {
+    position: absolute;
+}
+
+.hos_img {
+    position: absolute;
+    width: 377px;
+    height: 668px;
+    top: 53px;
+    left: 50px;
+}
+div.card_detial {
+    top: 58px;
+    left: 453px;
+    text-align: center;
+    width: 767px;
+    height: 609px;
+    background-image: url('../../../../img/hd/AppointmentRegister/V2/detail_bg.png');
+    overflow: hidden;
+}
+div#title {
+    top: 32px;
+    left: 47px;
+    overflow: hidden;
+    font-size: 40px;
+}
+
+div#address_word {
+    top: 106px;
+    left: 115px;
+    overflow: hidden;
+    font-size: 30px;
+    width: 620px;
+    text-align: left;
+    overflow: hidden;
+}
+div#telephone {
+    top: 166px;
+    left: 115px;
+    overflow: hidden;
+    font-size: 30px;
+    width: 600px;
+    text-align: left;
+    overflow: hidden;
+}
+
+div.introduce {
+    top: 259px;
+    left: 48px;
+    overflow: hidden;
+    font-size: 27px;
+    width: 400px;
+    text-align: left;
+    overflow: hidden;
+    line-height: 34px;
+}
+
+.code {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    top: 242px;
+    left: 57px;
+}
+
+div.code_introduce {
+    top: 490px;
+    left: 486px;
+    font-size: 20px;
+    width: 210px;
+    text-align: left;
+    line-height: 25px;
+    text-align: center;
+}
+
+#detail {
+    position: absolute;
+    top: 242px;
+    left: 457px;
+    width: 182px;
+    height: 72px;
+}
+#subject {
+    position: absolute;
+    top: 342px;
+    left: 457px;
+    width: 182px;
+    height: 72px;
+}
+#doctor {
+    position: absolute;
+    top: 442px;
+    left: 457px;
+    width: 182px;
+    height: 72px;
+}

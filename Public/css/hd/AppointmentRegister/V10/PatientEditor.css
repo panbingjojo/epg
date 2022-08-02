@@ -1,0 +1,214 @@
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 260px;
+    height: 2px;
+}
+
+.center {
+    position: absolute;
+    top: 141px;
+    left: 80px;
+    font-size: 27px;
+    width: 1120px;
+    height: 520px;
+    font-size: 24px;
+}
+
+.scroll {
+    position: absolute;
+    top: 0px;
+    width: 1150px;
+    height: 520px;
+    border: 1px transparent solid;
+    overflow: auto;
+}
+
+label {
+    float: left;
+    vertical-align: middle;
+    height: 80px;
+    line-height: 80px;
+}
+
+input {
+    background: none;
+    height: 50px;
+    line-height: 50px;
+    width: 305px;
+    text-align: left;
+    margin-left: 10px;
+    /*float: left;*/
+}
+
+.btn-text {
+    text-align: left;
+    float: left;
+    margin-top: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    vertical-align: middle;
+    margin-left: 25px;
+}
+
+.text1 {
+    width: 900px;
+}
+.text2 {
+    width: 884px;
+}
+.text3 {
+    width: 832px;
+}
+.text4 {
+    width: 900px;
+}
+
+.row {
+    position: relative;
+    height: 80px;
+    vertical-align: middle;
+    width: 1040px;
+    left: 40px;
+    border-bottom: 1px rgba(255, 255, 255, 0.3) solid;
+    position: relative;
+}
+.row2 {
+    position: relative;
+    height: 80px;
+    vertical-align: middle;
+    width: 1040px;
+    left: 40px;
+    position: relative;
+}
+
+.radio {
+    width: 64px;
+    height: 64px;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+
+.form {
+    /*border: 1px red solid;*/
+    width: 1120px;
+}
+
+.red {
+    color: #ff7f7f;
+    visibility: visible;
+}
+
+.right {
+    color: #33ffdd;
+    float: right;
+    margin-right: 20px;
+}
+
+.select {
+    width: 500px;
+    text-align: left;
+    margin-left: 30px;
+    float: left;
+}
+.select2{
+    text-align: left;
+    margin-left: 30px;
+    float: left;
+    overflow: hidden;
+}
+.btn-list{
+    position: relative;
+    left: 206px;
+    top: 50px;
+    width: 800px;
+}
+.btn{
+    float: left;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 50px;
+}
+.content{
+    position: relative;
+    width: 400px;
+    top: 100px;
+    height: 20px;
+}
+.btn-hover{
+     font-weight: bold;
+ }
+/*按钮*/
+.btn-hover {
+    box-shadow: 0 0 6px 4px #ffffff;
+    background: rgba(0, 0, 0, 0) !important;
+    font-weight: bold;
+}
+
+.btn-bg {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    font-size: 24px;
+    padding: 5px 10px;
+}
+
+.btn-select {
+    text-align: center;
+    background: #FFFFFF !important;
+    color: #011025;
+    border-radius: 25px;
+    font-size: 24px;
+    padding: 5px 10px;
+}
+
+.tips  {
+    position: absolute;
+    top: 26px;
+    left: 570px;
+    line-height: 45px;
+}
+
+.tip-title {
+    color: #33ffdd;
+    font-size: 27px;
+}
+
+.tip-content {
+    color: #ffffff;
+    font-size: 27px;
+}
+
+.QRCode {
+    position: absolute;
+    top: 10px;
+    left: 1029px;
+    width: 120px;
+    height: 120px;
+}
+
+
+/*input::-webkit-input-placeholder {*/
+/*!* placeholder颜色  *!*/
+/*color: #ff7f7f;*/
+/*!* placeholder字体大小  *!*/
+/*!* placeholder位置  *!*/
+/*text-align: left;*/
+/*font-size: 24px;*/
+/*text-indent: 20px;*/
+/*}*/

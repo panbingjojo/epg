@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>播放页面V3</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V3/video.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V3/volume.css?t={$time}"/>
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            carrierId: "{$carrierId}",                      // 地区id
+            areaCode: "{$areaCode}",                        // 省份地区码
+            platformType: "{$platformType}",                // 平台类型（hd--高清 sd--标清）
+            debug: "{$debug}",                              // 调试模式
+            pageSize: "{$pageSize}",                        // 页面尺寸
+            collectStatus: "{$collectStatus}",              // 判断是否收藏 0表示收藏 1表示未收藏
+            sourceId: "{$sourceId}",                        // 视频ID
+            returnUrl: "{$returnUrl}",                      // 返回地址 unescape("{$returnUrl}")
+            userId: "{$userId}",                            // 用户ID
+            imgHost: "{$resourcesUrl}",                     // 图片host
+            isVip: {$isVip},                                // 用户是不是vip，1 -- 是vip
+            freeSeconds: {$freeSeconds},                    // 免费观看时长
+            currentPlayTimes: 0,                            // 记录当前播放的时间进度
+            userType: {$userType},                          // 视频的播放策略（0-不限，1-普通用户可看, 2-vip可看）
+            videoInfo: {$videoInfo},                        // 视频信息
+            domainUrl: "{$domainUrl}",                      // 江苏电信需要使用的第三方播放器前缀地址
+            videoUrl: "{$videoUrl}",                        // 视频url：中国联通的高清视频地址http 转换成为rtsp进行播放。
+            recommendVideoUrl: '',                           // 推荐视频播放地址
+            isForbidOrder:"{$Think.cookie.c_is_forbided_order}", // 是否禁止订购 1--表示禁止订购
+            albumName: "{$albumName}", //专辑跳转传入专辑别名参数
+        };
+
+    </script>
+    <switch name="carrierId">
+        <case value="450092">
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/450092/registerGlobalKey.js?t={$time}"></script>
+        </case>
+    </switch>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!-- 当前页所用自定义js -->
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/PlayerFocus.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/V2/Player.js?t={$time}"></script>
+</head>
+<body bgcolor="transparent" style="margin:0; padding:0;">
+<div id="backg">
+    <!--江苏电信  通过carrierId判断-->
+    <div id="smallvod" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+        <iframe id="smallscreen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+    </div>
+    <!--调试代码-->
+    <div id="debug1" class="debug1" style="display: none;"></div>
+    <div id="debug2" class="debug2" style="display: none;"></div>
+    <!--播放挽留页面-->
+    <div id="collectback" style="display:none;">
+        <!--标题-->
+        <div id="titletext">为您推荐更多视频</div>
+        <!--四个推荐位-->
+        <div id="focus-1-1" class="imgback">
+            <img alt="" id="img0" class="picture">
+            <div class="imgtitle" id="no-bg-0">
+                <li id="li0"></li>
+            </div>
+        </div>
+        <div id="focus-1-2" class="imgback">
+            <img src="" alt="" id="img1" class="picture">
+            <div class="imgtitle" id="no-bg-1">
+                <li id="li1"></li>
+            </div>
+        </div>
+        <div id="focus-1-3" class="imgback">
+            <img src="" alt="" id="img2" class="picture">
+            <div class="imgtitle" id="no-bg-2">
+                <li id="li2"></li>
+            </div>
+        </div>
+        <div id="focus-1-4" class="imgback">
+            <img src="" alt="" id="img3" class="picture">
+            <div class="imgtitle" id="no-bg-3">
+                <li id="li3"></li>
+            </div>
+        </div>
+        <!--操作按键-->
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div><img id="focus-2-3" class="navimg" src="__ROOT__/Public/img/{$platformType}/Player/V1/Exit.png" /></div>
+        <div id="exittext">退出</div>
+    </div>
+
+    <!--底部UI条-->
+    <div id="playUI">
+        <img id="videoback" src="__ROOT__/Public/img/{$platformType}/Player/V1/videoback.png"/>
+        <div id="ptime">00:00</div>
+        <div id="progressbar">
+            <div id="fill" style="width:0;">
+                <img id="ball" src='<?php echo ($platformType === "hd" ? "__ROOT__/Public/img/hd/Player/V1/ball.png" : "")?>'/>
+            </div>
+        </div>
+        <div id="totaltime">00:00</div>
+    </div>
+
+    <!--音量调节UI-->
+    <div id="volumeUI" style="visibility:hidden">
+        <img id="volume_background" src="__ROOT__/Public/img/{$platformType}/Player/V1/volume_background.png"/>
+        <img id="volume_horn" src="__ROOT__/Public/img/{$platformType}/Player/V1/volume_horn.png"/>
+        <div id="volume_progressbar">
+            <div id="volume_fill" style="width:0;">
+                <!--不显示球状拖动条-->
+                <!--<img id="volume_ball" src="__ROOT__/Public/img/{$platformType}/Player/V1/volume_ball.png" style="left:-10px;"/>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- 默认标签：防止焦点丢失 -->
+    <a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+</div>
+</body>
+</html>

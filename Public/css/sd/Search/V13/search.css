@@ -1,0 +1,241 @@
+
+
+html {
+    color: #fff;
+    background-color: transparent;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    background-image: url(../../../../img/sd/Home/V13/Home/bg.png);
+    background-size: 644px 530px;
+}
+
+body > * {
+    position: absolute;
+}
+
+/*--键盘容器--*/
+#input-key-wrapper {
+    top: 38px;
+    left: 22px;
+}
+
+.input-txt-wrap {
+    position: relative;
+    top: 20px;
+    left: 0;
+    width: 600px;
+    height: 45px;
+    background-image: url(../../../../img/sd/Unclassified/V13/search_bg.png);
+}
+
+#search-value {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    width: 488px;
+    font-size: 16px;
+    color: #b2deff;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#delete {
+    position: absolute;
+    top: 5px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+#clear {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.key-container {
+    position: absolute;
+    top: 101px;
+    width: 600px;
+    left: 0;
+}
+
+.key-container div {
+    float: left;
+    position: relative;
+    /* margin-right: 15px; */
+    width: 60px;
+    height: 60px;
+}
+
+.key-container div img {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+}
+
+.key-container div img.focus {
+    top: -2px;
+}
+
+.key-container div img.click {
+    top: -4px;
+}
+
+/*搜索结果*/
+#title {
+    position: absolute;
+    top: 223px;
+    left: 22px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+#page-index {
+    top: 495px;
+    left: 588px;
+    font-size: 18px;
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    color: #b2deff;
+}
+
+ul.tab-wrap {
+    top: 268px;
+    left: 18px;
+    list-style: none;
+}
+
+ul.tab-wrap li {
+    float: left;
+    width: 86px;
+    color:#fff;
+    height: 44px;
+    margin-right: 8px;
+    text-align: center;
+    line-height: 35px;
+    background-image: url(../../../../img/sd/Unclassified/V13/tab_bg.png);
+    background-position: center;
+}
+
+#content-container {
+    top: 346px;
+    left: 32px;
+    width: 588px;
+    height: 100px;
+}
+
+/*视频、视频集、专题*/
+#content-container div.style-0 {
+    position: relative;
+    float: left;
+    height: 100px;
+    width: 126px;
+    /* margin-right: 20px; */
+    margin-left: 15px;
+}
+
+.style-0 img {
+    position: absolute;
+    padding: 6px;
+    height: 100px;
+    width: 122px;
+    border-radius: 10px;
+}
+
+.style-0 p.modify {
+    position: absolute;
+    color: #fff;
+    top: 70px;
+    left: 6px;
+    width: 60px;
+    height: 25px;
+    font-size: 16px;
+    background-image: url(../../../../img/sd/Unclassified/V13/num_bg.png);
+    background-position: center;
+    line-height: 25px;
+    padding-left: 5px;
+}
+.style-0 p.focus{
+    left: 1px;
+}
+.style-0 img.focus {
+     width: 105%;
+     height: 105%;
+     top: -2px;
+     left: -5px;
+     background-image: url(../../../../img/sd/Unclassified/V13/v_bg.png);
+     background-position: center;
+}
+
+/*医生、专家*/
+#content-container div.style-1 {
+    position: relative;
+    float: left;
+    height: 110px;
+    width: 110px;
+    /* margin-right: 10px; */
+    /* margin-left: 10px; */
+    margin-right: 6px;
+}
+
+.style-1 img {
+    position: absolute;
+    padding: 1px;
+    height: 110px;
+    width: 110px;
+    /* border-radius: 50%; */
+}
+
+
+.style-1 p.modify {
+    position: absolute;
+    top: 125px;
+    left: 0;
+    font-size: 16px;
+    color: #fff;
+    width: 116px;
+    text-align: center;
+}
+
+.style-1 img.focus {
+    /* width: 105%; */
+    /* height: 105%; */
+    top: -2px;
+    left: -3px;
+    /* background-image: url(../../../../img/sd/Unclassified/V13/p_bg.png); */
+    background-position: center;
+    border: 5px solid gold;
+    z-index: 1;
+}
+
+.arrow {
+    top: 383px;
+    width: 39px;
+    height: 40px;
+    visibility: hidden;
+}
+
+#prev-arrow {
+    left: 0;
+}
+
+#next-arrow {
+    /* left: 590px; */
+    right: 0;
+}
+.null-data{
+    font-style: italic;
+    color: #fff;
+}

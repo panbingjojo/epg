@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>浪漫星空健康撞满怀-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--背景图设置-->
+    <include file="./Application/Activity/View/ActivitySky/bgImage.html"/>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivitySky/V1/index.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown},
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: '{$score}',
+            keyStar: "{$keyStar}",
+            valueStar: {$valueStar},
+            payMethod: {$payMethod},
+            lotteryRecordList: {$lotteryRecordList},
+            myLotteryRecord: {$myLotteryRecord},
+        };
+        /**
+         * 释放iframe资源
+         */
+        function releaseFrame() {
+            LMEPG.Log.info("releaseFrame!!!!!!!!!!!!!");
+            LMEPG.PayFrame.releaseFrame();
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivitySky/V1/index.js?t={$time}"></script>
+</head>
+<body id="body">
+<div id="debug"></div>
+
+<!--游戏剩余次数-->
+<div id="left_times">{$activityTimes}</div>
+
+<div id="btn_container">
+    <img src="{$activityFsImg}{$platformType}/btn_winner_list.png" id="btn_winner_list">
+    <img src="{$activityFsImg}{$platformType}/btn_activity_rule.png" id="btn_activity_rule">
+    <img src="{$activityFsImg}{$platformType}/btn_home_back.png" id="btn_back">
+</div>
+<div id="traffic_container">
+    <img src="{$activityFsImg}{$platformType}/play.png" id="btn-start">
+</div>
+
+
+<!--活动规则-->
+<div id="activity_rule" class="modal">
+    <img style="display: none" src="{$activityFsImg}{$platformType}/btn_common_cancel.png" id="btn_close_rule">
+</div>
+
+<!--中奖名单-->
+<div id="winner_list" class="modal">
+    <div id="total_list"></div>
+    <div id="my_list"></div>
+    <div id="reset_tel">请输入有效的电话</div>
+    <img id="btn_list_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_list_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+
+
+
+<!--抽奖成功页面-->
+<div id="lottery_success" class="modal">
+    <img src="{$activityFsImg}{$platformType}/V{$carrierId}/icon_prize_1.png" id="prize_image">
+    <div id="lottery_tel">请输入有效的电话</div>
+    <img id="btn_lottery_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_lottery_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<!--游戏区域-->
+<img id="role" src="{$activityFsImg}{$platformType}/role.png"/>
+<img id="star-1" src="{$activityFsImg}{$platformType}/star_1.png"/>
+<img id="star-2" src="{$activityFsImg}{$platformType}/star_2.png"/>
+<img id="star-3" src="{$activityFsImg}{$platformType}/star_3.png"/>
+<img id="star-4" src="{$activityFsImg}{$platformType}/star_4.png"/>
+<img id="star-5" src="{$activityFsImg}{$platformType}/star_5.png"/>
+<img id="star-6" src="{$activityFsImg}{$platformType}/star_6.png"/>
+<img id="star-7" src="{$activityFsImg}{$platformType}/star_7.png"/>
+
+
+<!--抽奖失败-->
+<div id="lottery_fail" class="modal">
+    <img id="btn_lottery_fail" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+</div>
+<!--游戏成功-->
+<div id="game_success" class="modal">
+    <div id="add_score"></div>
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_game_success">
+</div>
+
+<!--游戏失败-->
+<div id="game_fail" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_fail">
+</div>
+
+<!--游戏次数耗尽，订购VIP-->
+<div id="order_vip" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_order_submit">
+    <img src="{$activityFsImg}{$platformType}/btn_common_cancel.png" id="btn_order_cancel">
+</div>
+
+<!--游戏次数耗尽，退出游戏-->
+<div id="game_over" class="modal"></div>
+
+<!--订购状态-->
+<div id="order_status" class="modal"></div>
+
+<!--倒计时-->
+<div id="countdown" class="modal">
+    <div id="count">8</div>
+</div>
+
+
+<script>
+    window.onload = function () {
+        Activity.init();
+    };
+</script>
+
+</body>
+</html>

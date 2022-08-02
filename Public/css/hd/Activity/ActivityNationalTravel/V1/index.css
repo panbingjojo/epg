@@ -1,0 +1,280 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+body > *,
+#traffic_container > *,
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+#score {
+    top: 670px;
+    left: 120px;
+    width: 90px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 30px;
+    color: #73996b;
+}
+
+#left_times {
+    top: 670px;
+    left: 700px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #e56b2e;
+    font-size: 30px;
+}
+
+#btn_container {
+    top: 20px;
+    left: 1060px;
+}
+
+#btn_container > *{
+    display: block;
+}
+
+#btn_scenery_photo {
+    top: 20px;
+    left: 40px;
+}
+
+#traffic_rail {
+    top: 340px;
+    left: 60px;
+}
+#traffic_plane {
+    top: 120px;
+    left: 200px;
+}
+#traffic_car {
+    top: 340px;
+    left: 320px;
+}
+#traffic_bus {
+    top: 290px;
+    left: 620px;
+}
+#traffic_bicycle {
+    top: 400px;
+    left: 860px;
+}
+#traffic_ship {
+    top: 340px;
+    left: 1100px;
+}
+
+/*====中奖名单====*/
+#total_list {
+    top: 200px;
+    left: 180px;
+}
+
+#all_marquee {
+    height: 166px;
+}
+
+#my_marquee {
+    height: 58px;
+}
+
+table.marquee_table {
+    width: 920px;
+}
+
+table#all_table tr {
+    height: 40px;
+}
+
+table.marquee_table td {
+    width: 300px;
+    margin-right: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+}
+
+#my_list {
+    top: 480px;
+    left: 180px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+}
+
+#reset_tel {
+    color: #999;
+    top: 552px;
+    left: 430px;
+    width: 300px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#btn_list_submit {
+    top: 530px;
+    left: 770px;
+}
+
+#btn_list_cancel {
+    top: 530px;
+    left: 930px;
+}
+/*====兑换奖品====*/
+#game_score {
+    top: 146px;
+    left: 310px;
+    font-size: 36px;
+    color: #fff;
+}
+
+#exchange_prize_1 {
+    top: 410px;
+    left: 570px;
+}
+
+#exchange_prize_2 {
+    top: 450px;
+    left: 240px;
+}
+
+#exchange_prize_3 {
+    top: 450px;
+    left: 900px;
+}
+
+#exchange_point_1 {
+    top: 505px;
+    left: 670px;
+    color: #fff;
+    font-size: 30px;
+}
+
+#exchange_point_2 {
+    top: 545px;
+    left: 340px;
+    color: #fff;
+    font-size: 30px;
+}
+
+#exchange_point_3 {
+    top: 545px;
+    left: 1000px;
+    color: #fff;
+    font-size: 30px;
+}
+
+/*====旅游美景====*/
+.photo_row_1 {
+    top: 140px;
+    left: 180px;
+}
+
+.photo_row_2 {
+    top: 290px;
+    left: 240px;
+}
+
+.photo_row_3 {
+    top: 390px;
+    left: 180px;
+}
+
+.photo_row_4 {
+    top: 540px;
+    left: 240px;
+}
+
+.photo_row_1 > img,
+.photo_row_3 > img {
+    margin-right: 70px;
+}
+
+.photo_row_2 > img,
+.photo_row_4 > img {
+    margin-right: 190px;
+}
+
+/*====游戏成功====*/
+#traffic_photo {
+    top: 210px;
+    left: 430px;
+}
+
+#traffic_score {
+    top: 362px;
+    left: 670px;
+    color: #fff;
+    font-size: 36px;
+}
+
+#btn_game_success{
+    top: 430px;
+    left: 570px;
+}
+
+/*====订购VIP====*/
+#btn_order_submit{
+    top: 420px;
+    left: 470px;
+}
+#btn_order_cancel{
+    top: 420px;
+    left: 670px;
+}
+
+/*====兑换成功====*/
+#exchange_tel {
+    color: #333;
+    top: 332px;
+    left: 600px;
+    width: 300px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#btn_exchange_submit {
+    top: 400px;
+    left: 600px;
+}
+
+#btn_exchange_cancel {
+    top: 400px;
+    left: 760px;
+}
+
+#count {
+    top: 266px;
+    left: 690px;
+    color: #fff;
+    font-size: 54px;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康检测-V8</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/HealthTest/V8/TestIndex.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            tabIndex:"{$tabIndex}",
+
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+            page: "{$page}",// 焦点保持
+        };
+    </script>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V8/index.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+<p class="title">健康检测</p>
+<img id="input" src="__ROOT__/Public/img/hd/HealthTest/V8/input.png" alt="">
+<img id="test-record" src="__ROOT__/Public/img/hd/Family/V13/test_record.png" alt="检测记录">
+
+<div id="container" class="container">
+
+</div>
+
+<img id="left-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/left.png" alt="上页箭头">
+<img id="right-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/right.png" alt="下页箭头">
+
+<script type="text/javascript">
+
+    window.onload = function () {
+        methods.specialCode();
+        Test.init();
+    }
+
+    /**
+     * 方法合集
+     */
+    var methods = {
+        /**
+         * 特殊代码
+         */
+        specialCode: function () {
+            this.CustomProductBg()
+            RenderParam.carrierId == "410092" && this.specialCode410092()
+            RenderParam.carrierId == "520092" && this.specialCode520092()
+        },
+
+        /**
+         * 设置皮肤（产品背景图）
+         */
+        CustomProductBg: function () {
+            if (!LMEPG.Func.isEmpty(RenderParam.skin.cpbjt)) {
+                var bgImg = RenderParam.fsUrl + RenderParam.skin.cpbjt;
+                document.body.style.backgroundImage = 'url(' + bgImg + ')';
+            }
+        },
+
+        /**
+         * 特俗代码 -  贵州电信EPG
+         */
+        specialCode520092: function () {
+            document.body.style.backgroundImage = 'url(/Public/img/hd/Home/V10/bg.png)';
+        },
+
+        /**
+         * 特俗代码 -  河南电信EPG
+         */
+        specialCode410092: function () {
+            try {
+                HybirdCallBackInterface.setCallFunction(function (param) {
+                    if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                        LMEPG.Intent.back();
+                    }
+                })
+            } catch (e) {
+                LMEPG.UI.logPanel.show("e");
+            }
+        }
+    }
+</script>
+</body>
+</html>

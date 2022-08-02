@@ -1,0 +1,371 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+#default_focus {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 644px;
+    height: 530px;
+}
+
+.btn-only {
+    position: absolute;
+    top: 260px;
+    left: 257px;
+    outline: none !important;
+    width: 130px;
+    height: 56px;
+}
+.btn-only2 {
+    position: absolute;
+    top: 500px;
+    left: 530px;
+    outline: none !important;
+    width: 198px;
+    height: 72px;
+}
+
+.btn-success {
+    position: absolute;
+    top: 476px;
+    left: 660px;
+    outline: none !important;
+    width: 187px;
+    height: 74px;
+}
+
+
+.introduce {
+    position: absolute;
+    top: 260px;
+    left: 188px;
+    outline: none !important;
+    width: 891px;
+    height: 320px;
+}
+
+.introduce2 {
+    position: absolute;
+    top: 270px;
+    left: 374px;
+    outline: none !important;
+    width: 540px;
+    height: 141px;
+}
+
+.introduce-success {
+    position: absolute;
+    top: 234px;
+    left: 499px;
+    outline: none !important;
+    width: 480px;
+    font-size: 29px;
+    color: #414141;
+    text-align: center;
+    line-height: 55px;
+}
+
+.btn-one {
+    position: absolute;
+    top: 220px;
+    left: 230px;
+    outline: none !important;
+    width: 130px;
+    height: 56px;
+}
+
+.btn-two {
+    position: absolute;
+    top: 220px;
+    left: 400px;
+    outline: none !important;
+    width: 130px;
+    height: 56px;
+}
+
+#searchText {
+    width: 300px;
+    height: 26px;
+    z-index: 999;
+    position: absolute;
+    top: 173px;
+    left: 228px;
+    font-size: 18px;
+    background: transparent;
+    border: none;
+    outline: none;
+    line-height: 26px;
+    color: #4c4c4c;
+    border: none;
+    overflow:hidden;
+    text-indent: 10px;
+}
+.myPhone{
+    z-index: 999;
+    position: absolute;
+    top: 178px;
+    left: 105px;
+    font-size: 20px;
+    line-height: 20px;
+    color: #994c00;
+    border: none;
+}
+
+.introduce-price-text {
+    position: absolute;
+    top: 395px;
+    left: 800px;
+    outline: none !important;
+    width: 100px;
+    height: 100px;
+}
+
+#myPhone {
+    position: absolute;
+    font-size: 18px;
+    color: #414141;
+    top: 355px;
+    left: 597px
+}
+
+.introduce-price-name {
+    font-size: 47px;
+    color: #fc5f1a;
+}
+
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+    font-size: 30px
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}
+
+.detail-table {
+    position: absolute;
+    top: 110px;
+    left: 83px;
+    outline: none !important;
+}
+.detail-table tr td{ height: 5px; font-size: 15px;  color:#333333; width: 480px; line-height: 25px;  }
+.btn_back {
+    position: absolute;
+    top: 61px;
+    left: 1156px;
+    outline: none !important;
+    width: 73px;
+    height: 84px;
+}
+.price_one{
+    position: absolute;
+    top: 560px;
+    left: 310px;
+    outline: none !important;
+    width: 150px;
+    height: 150px;
+}
+.price_two{
+    position: absolute;
+    top: 560px;
+    left: 570px;
+    outline: none !important;
+    width: 150px;
+    height: 150px;
+}
+.price_three{
+    position: absolute;
+    top: 560px;
+    left: 830px;
+    outline: none !important;
+    width: 150px;
+    height: 150px;
+}
+.introduce-pay{
+    position: absolute;
+    top: 253px;
+    left: 457px;
+    outline: none !important;
+    width: 400px;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+    line-height: 60px;}
+
+#tip_test {
+    position: absolute;
+    top: 150px;
+    left: 544px;
+    outline: none !important;
+    width: 190px;
+    height: 60px;
+}
+
+#choose_order_test{
+    position: absolute;
+    top: 260px;
+    left: 385px;
+    outline: none !important;
+    width: 540px;
+    height: 141px;
+}
+
+#pay-one{
+    position: absolute;
+    top: 200px;
+    left: 190px;
+    outline: none !important;
+    width: 114px;
+    height: 136px;
+  }
+#pay-two{
+    position: absolute;
+    top: 200px;
+    left: 340px;
+    outline: none !important;
+    width: 114px;
+    height: 136px;
+}
+#pay-three{
+    position: absolute;
+    top: 360px;
+    left: 190px;
+    outline: none !important;
+    width: 114px;
+    height: 136px;
+}
+
+#pay-four{
+    position: absolute;
+    top: 360px;
+    left: 340px;
+    outline: none !important;
+    width: 114px;
+    height: 136px;
+}
+
+#pay-back{
+    position: absolute;
+    top: 45px;
+    left: 410px;
+    outline: none !important;
+    width: 40px;
+    height: 40px;
+}
+
+.book_text{
+    position: absolute;
+    top: 243px;
+    left: 606px;
+    outline: none !important;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+}
+.book_text_name{
+    position: absolute;
+    top: 238px;
+    left: 706px;
+    outline: none !important;
+    font-size: 40px;
+    color: #e21212;
+    text-align: center;
+    font-weight: bold;
+}
+.price_text{
+    position: absolute;
+    top: 306px;
+    left: 606px;
+    outline: none !important;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+}
+.price_text_name{
+    position: absolute;
+    top: 301px;
+    left: 706px;
+    outline: none !important;
+    font-size: 40px;
+    color: #ef7101;
+    text-align: center;
+    font-weight: bold;
+}
+.introduce_text{
+    position: absolute;
+    top: 387px;
+    left: 586px;
+    outline: none !important;
+    font-size: 20px;
+    color: #414141;
+    text-align: center;
+}
+.title_name {
+    position: absolute;
+    top: 154px;
+    left: 555px;
+    width: 170px;
+    height: 54px;
+    z-index: 1;
+}
+.price_word{
+    position: absolute;
+    top: 154px;
+    left: 555px;
+    width: 170px;
+    height: 54px;
+    z-index: 1;
+}
+#rule_back{
+    position: absolute;
+    top: 45px;
+    left: 520px;
+    outline: none !important;
+    width: 40px;
+    height: 40px;
+}
+.mTitle{
+    position: absolute;
+    top: 57px;
+    left: 229px;
+    outline: none !important;
+    font-size: 30px;
+    color: #994c00;
+    width: 200px;
+    text-align: center;
+    font-weight: bold;
+}
+.content{
+    position: absolute;
+    top: 117px;
+    left: 172px;
+    outline: none !important;
+    font-size: 16px;
+    color: #666666;
+    width: 300px;
+    text-align: center;
+    line-height: 30px;
+}
+.content2{
+    position: absolute;
+    top: 113px;
+    left: 79px;
+    outline: none !important;
+    font-size: 20px;
+    color: #666666;
+    width: 500px;
+    text-align: center;
+    line-height: 30px;
+}
+.yee{
+    color: #994c00;
+}

@@ -1,0 +1,53 @@
+
+body {
+    background-Repeat: no-repeat;
+    background-size: 1280px 720px;
+    width: 1280px;
+    height: 720px;
+}
+
+#img-title {
+    position: absolute;
+    left: 76px;
+    top: 20px;
+}
+
+#info-container {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+
+#img-avatar {
+    position: absolute;
+    top: 40px;
+    left: 36px;
+}
+
+#id-container{
+    position: absolute;
+    top: 379px;
+    left: 29px;
+}
+
+#role-container {
+    position: absolute;
+    left: 29px;
+    top: 436px;
+}
+
+.personal-info {
+    width: 320px;
+    font-size: 28px;
+    color: #fff;
+}
+
+.vip-color {
+    color: #fff111;
+}
+
+#btn-toggle-order {
+    position: absolute;
+    top: 447px;
+    left: 664px;
+}

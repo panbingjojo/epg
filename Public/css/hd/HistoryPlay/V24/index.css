@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url("../../../../img/hd/Home/V24/bg.png");
+    background-position: left;
+    color: #000;
+    overflow: hidden;
+}
+.title {
+    position: absolute;
+    top: 50px;
+    left: 60px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+#clear-record {
+    position: absolute;
+    top: 45px;
+    right: 60px;
+}
+.arrow {
+    position: absolute;
+    top: 325px;
+   visibility: visible;
+}
+
+#prev-arrow {
+    left: 50px;
+}
+
+#next-arrow {
+    left: 1200px;
+}
+
+#list-container {
+    position: absolute;
+    top: 160px;
+    width: 1280px;
+}
+
+#list-container .arrow {
+    position: absolute;
+    top: 180px;
+}
+
+#list-container #prev-arrow {
+    left: 50px;
+}
+
+#list-container #next-arrow {
+    right: 50px;
+}
+
+#list-container {
+    position: absolute;
+    top: 180px;
+    width: 1280px;
+}
+
+#list-container .arrow {
+    position: absolute;
+    top: 180px;
+    visibility: hidden;
+}
+
+#list-container #prev-arrow {
+    left: 50px;
+}
+
+#list-container #next-arrow {
+    right: 50px;
+}
+
+ul#list-wrapper {
+    position: absolute;
+    top: 0;
+    left: 90px;
+    list-style: none;
+}
+
+ul#list-wrapper li {
+    position: relative;
+    float: left;
+    width: 255px;
+    height: 164px;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+ul#list-wrapper li img {
+    width: 255px;
+    height: 164px;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+ul#list-wrapper li p {
+    position: absolute;
+    top: 170px;
+    left: 15px;
+    font-size: 24px;
+    color: #fff;
+    width: 215px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    /* background-image: url(../../../../img/hd/Collect/V13/number_bg.png); */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#page-wrapper {
+    position: absolute;
+    top: 602px;
+    right: 60px;
+    height: 62px;
+}
+
+#page-wrapper img {
+    vertical-align: middle;
+}
+
+#page-wrapper p {
+    width: 81px;
+    height: 62px;
+    line-height: 62px;
+    color: #b2deff;
+    text-align: center;
+    display: inline-block;
+}
+#page-wrapper p#page-index{
+    font-size: 24px;
+    color: #b2deff;
+}
+.null-data {
+    font-size: 20px;
+    font-style: italic;
+    color: #fff;
+    text-align: center;
+    width: 400px !important;
+}

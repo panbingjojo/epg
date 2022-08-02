@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>39健康-主页-V5</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Home/V5/home.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+
+            //当前页渲染
+            checkTime: "{$checkTime}",
+            commonImgsView: "{$commonImgsView}",                // 公用图片模式
+            themeImage: "{$themePicture}",                      // 应用主题背景
+            thirdPlayerUrl: "{$domainUrl}",                     // 第三方播放器根路径地址
+            focusIndex: "{$focusIndex}",                        // 焦点ID
+            isVip: {$isVip},                                    // 用户是否是vip
+            autoOrder: "{$autoOrder}",                          // 用户是否是续订vip
+            classifyId: "{:($classifyId <1 )?1:$classifyId}",                        // 导航栏ID
+            navConfig: {$navigateInfo->data | json_encode},     // 导航栏配置
+            //initPositionList: {$positionList},                  // 第一个推荐位数据
+            homePollVideoList: {$homePollVideoList},            // 首页轮播的视频列表
+            recommendDataList: {$dataList | json_encode},       // 推荐位数据列表
+            navigateModelInfo: {$navigateModelInfo | json_encode},// 视频栏目
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <if condition="$carrierId eq '520094' ">
+        <!--贵州广电js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <!--主页模块-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Home/V5/home.js?t={$time}"></script>
+
+</head>
+
+<body>
+<div id="home_container">
+
+    <!--应用图标, 青海电信不显示logo-->
+    <if condition="$carrierId neq '630092' ">
+        <img class="logo" src="__ROOT__/Public/img/{$platformType}/Home/V5/icon_logo.png"/>
+    </if>
+
+    <!--公司名称, 只有江苏电信显示-->
+    <if condition="$carrierId eq '320092' ">
+        <div id="company-name">朗玛信息</div>
+    </if>
+
+    <!--顶部菜单栏-->
+    <div class="top_menu">
+        <!--贵州广电不显示收藏按钮-->
+        <if condition="$carrierId neq '520094' ">
+            <div>
+                <img id="help" class="menu_position_1" src="__ROOT__/Public/img/{$platformType}/Home/V5/bg_help.png"/>
+            </div>
+            <div>
+                <img id="search" class="menu_position_2" src="__ROOT__/Public/img/{$platformType}/Home/V5/bg_search.png"/>
+            </div>
+        <else />
+            <div>
+                <img id="search" class="menu_position_1" src="__ROOT__/Public/img/{$platformType}/Home/V5/bg_search.png"/>
+            </div>
+        </if>
+        <!--退订按钮-->
+        <img id="vip_btn" src="__ROOT__/Public/img/{$platformType}/Home/V5/bg_vip_btn.png"/>
+    </div>
+
+    <!--上方导航菜单-->
+    <div class="navs">
+        <div>
+            <img id="nav_0" class="top_menu_img" src="<?php echo $resourcesUrl.json_decode($navigateInfo->data[0]->img_url)->normal ?>" classifyId="<?php echo $navigateInfo->data[0]->navigate_id;?>"/>
+        </div>
+        <div>
+            <img id="nav_1" class="top_menu_img" src="<?php echo $resourcesUrl.json_decode($navigateInfo->data[1]->img_url)->normal ?>" classifyId="<?php echo $navigateInfo->data[1]->navigate_id;?>"/>
+        </div>
+        <div>
+            <img id="nav_2" class="top_menu_img" src="<?php echo $resourcesUrl.json_decode($navigateInfo->data[2]->img_url)->normal ?>" classifyId="<?php echo $navigateInfo->data[2]->navigate_id;?>"/>
+        </div>
+        <div>
+            <img id="nav_3" class="top_menu_img" src="<?php echo $resourcesUrl.json_decode($navigateInfo->data[3]->img_url)->normal ?>" classifyId="<?php echo $navigateInfo->data[3]->navigate_id;?>"/>
+        </div>
+        <div>
+            <img id="nav_4" class="top_menu_img" src="<?php echo $resourcesUrl.json_decode($navigateInfo->data[4]->img_url)->normal ?>" classifyId="<?php echo $navigateInfo->data[4]->navigate_id;?>"/>
+        </div>
+        <div>
+            <img id="nav_5" class="top_menu_img" src="<?php echo $resourcesUrl.json_decode($navigateInfo->data[5]->img_url)->normal ?>" classifyId="<?php echo $navigateInfo->data[5]->navigate_id;?>"/>
+        </div>
+        <div>
+            <img id="nav_6" class="top_menu_img" src="<?php echo $resourcesUrl.json_decode($navigateInfo->data[6]->img_url)->normal ?>" classifyId="<?php echo $navigateInfo->data[6]->navigate_id;?>"/>
+        </div>
+    </div>
+
+    <!--推荐位-->
+    <div id="recommends">
+        <!--动态增加 推荐位样式-->
+        <div class="recommends">
+            <!--推荐位1 焦点框-->
+            <img id="recommend_border_1"
+                 src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <!--推荐位内容-->
+            <div class="recommend_parent_1">
+                <!--背景图片-->
+                <img id="recommend_1" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <!--推荐位2 焦点框-->
+            <img id="recommend_border_2" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <!--推荐位内容-->
+            <div class="recommend_parent_2">
+                <!--背景图片-->
+                <img id="recommend_2" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <!--推荐位3 焦点框-->
+            <img id="recommend_border_3" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_3">
+                <img id="recommend_3" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <!--推荐位4 焦点框-->
+            <img id="recommend_border_4" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_4">
+                <img id="recommend_4" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <!--推荐位5 焦点框-->
+            <img id="recommend_border_5" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_5">
+                <img id="recommend_5" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <!--推荐位6 焦点框-->
+            <img id="recommend_border_6" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_6">
+                <img id="recommend_6" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <!--推荐位A 焦点框-->
+            <img id="recommend_border_A0" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A0">
+                <img id="recommend_A0" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A1" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A1">
+                <img id="recommend_A1" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A2" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A2">
+                <img id="recommend_A2" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A3" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A3">
+                <img id="recommend_A3" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A4" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A4">
+                <img id="recommend_A4" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A5" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A5">
+                <img id="recommend_A5" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A6" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A6">
+                <img id="recommend_A6" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A7" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A7">
+                <img id="recommend_A7" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A8" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A8">
+                <img id="recommend_A8" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+
+            <img id="recommend_border_A9" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            <div class="recommend_parent_A9">
+                <img id="recommend_A9" src="__ROOT__/Public/img/Common/spacer.gif"/>
+            </div>
+        </div>
+    </div>
+
+    <!--字幕层 修改：js内部异步调用内容渲染 -->
+    <div id="scroll_message"></div>
+
+    <img id="help_img" src="__ROOT__/Public/img/{$platformType}/Home/V5/help_{$carrierId}.png" style="display: none;"/>
+</div>
+
+<!--加载-->
+<script type="text/javascript">
+    window.onload = function () {
+        Home.init();
+    }
+</script>
+</body>
+
+</html>

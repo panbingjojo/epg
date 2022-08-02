@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天翼问诊</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <style type="text/css">
+        .doctor-list{
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background: url("__ROOT__/Public/img/hd/DoctorP2P/V5/doctorentr_bg.png") no-repeat;
+        }
+        .doctor-list  img{
+            position: absolute;
+            width: 289px;
+            height: 86px;
+            top: 482px;
+            left: 497px;
+        }
+    </style>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            /** 应用内通用参数 */
+            carrierId: "{$carrierId}",          // 通用参数 - 区域ID
+            userId: "{$userId}",                // 通用参数 - 用户ID（CWS管理）
+            platformType: "{$platformType}",    // 通用参数 - 平台类型（区分高标清）
+            isVip: {$isVip},                    // 通用参数 - 用户身份（区分普通用户/VIP用户）
+            fsUrl: "{$resourcesUrl}",           // 通用参数 - fs地址
+            focusIndex: "{$focusIndex}",        // 通用参数 - 当前页面记忆焦点ID
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+</head>
+<body>
+    <div class="doctor-list">
+        <img id="jump-doctor" src="__ROOT__/Public/img/hd/DoctorP2P/V5/doctorentr_come.png" alt="">
+    </div>
+
+<script type="text/javascript">
+    /**
+     * 遥控器返回按键监听函数
+     */
+    function onBack() {
+        LMEPG.Intent.back('IPTVPortal');
+    }
+
+    /**
+     *  跳转在线问医模块首页
+     * */
+    function jumpInquiryDoctorList() {
+        LMEPG.Cookie.setCookie("limit",1);
+
+        var objHome = LMEPG.Intent.createIntent('doctor-entrance');
+        objHome.setParam('fromId', '1');
+        objHome.setParam('page', '0');
+
+        var objDoctorP2P = LMEPG.Intent.createIntent('doctorList');
+        LMEPG.Intent.jump(objDoctorP2P);
+        LMEPG.Intent.jump(objDoctorP2P, objHome);
+
+    }
+
+    var buttons = [
+        {
+            id: 'jump-doctor',
+            name: '进入医生列表',
+            type: 'img',
+            click: jumpInquiryDoctorList,
+        }];
+
+    /**
+     * 页面加载函数
+     */
+    window.onload = function () {
+        LMEPG.BM.init('jump-doctor', buttons, '', true);
+    };
+</script>
+</body>
+</html>

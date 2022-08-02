@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>血糖血压-V8</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/HealthTest/V8/WaitStep.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+            accountId: '{$accountId}',          // 用户账号
+            loginId: '{$loginId}',              // 用户登录id
+
+            //当前页渲染
+            testType: '{$testType}', // 选择的检测类型
+            skin: {$skin},      // 用户自定义背景
+        };
+    </script>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+</head>
+<body>
+<p class="title" id="title">乐心血压计检测</p>
+<!--<img id="write-btn" src="__ROOT__/Public/img/hd/HealthTest/V13/write_btn.png" alt="">-->
+
+<div class="show_box border">
+    <img id="step_1" src="__ROOT__/Public/img/hd/HealthTest/V8/xy_step_1.png" alt=""/>
+    <img id="step_2" src="__ROOT__/Public/img/hd/HealthTest/arrow_right.gif" alt=""/>
+    <img id="step_3" src="__ROOT__/Public/img/hd/HealthTest/V8/xy_step_2.png" alt=""/>
+    <img id="step_4" src="__ROOT__/Public/img/hd/HealthTest/arrow_down.gif" alt=""/>
+    <img id="step_5" src="__ROOT__/Public/img/hd/HealthTest/V8/xy_step_3.png" alt=""/>
+    <img id="step_6" style="top: 450px;left: 482px" src="__ROOT__/Public/img/hd/HealthTest/arrow_left.gif" alt=""/>
+    <img id="step_7" style="top:288px" src="__ROOT__/Public/img/hd/HealthTest/V8/xy_step_4.png" alt=""/>
+</div>
+<script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V8/WaitStepXY.js?t={$time}"></script>
+<script type="text/javascript">
+    // javaScript code shift out
+
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+    }
+
+    if (RenderParam.carrierId == "410092") {
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</body>
+</html>

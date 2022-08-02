@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+ul{
+    list-style: none;
+}
+body > * {
+    position: absolute;
+}
+p.title {
+    top: 24px;
+    left: 58px;
+    font-size: 35px;
+    color: #fff;
+}
+span.bold{
+    font-weight: bold;
+}
+#container{
+    position: absolute;
+    top: 80px;
+    left: 200px;
+}
+#container ul.data-wrapper{
+    position: relative;
+    font-size: 24px;
+}
+#container ul.data-wrapper>li{
+    color: #fff;
+    height:100px;
+    line-height: 100px;
+
+}
+#container ul.data-wrapper li img{
+    padding-top: 12px;
+}
+#type-prev{/* margin-left: 38px; */}
+#container ul.data-wrapper li img.prev-arrow{
+    /* margin-left: 40px; */
+}
+#container ul.data-wrapper li.test-time{
+    position: relative;
+}
+li.test-time p#input-time{
+    position: absolute;
+    top:25px;
+    left: 150px;
+    width: 568px;
+    height: 30px;
+    line-height: 30px;
+    padding: 10px;
+    text-align: center;
+    background-image: url(../../../../img/hd/HealthTest/V13/test_time.png);
+    margin-left: -10px;
+}
+
+.test-time ul#date-modal{
+    position: absolute;
+    top: 74px;
+    left: 140px;
+    width: 588px;
+    height: 220px;
+    visibility: hidden;
+    z-index: 1;
+    background-image: url(../../../../img/hd/HealthTest/V13/bg_date.png);
+}
+.test-time ul#date-modal li{
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+}
+.test-time ul#date-modal li span{
+    margin: 0 10px;
+}
+li span.number-placeholder input{
+    font-size: 40px;
+    background-color: transparent;
+    margin-top: -30px;
+}
+.test-time ul#date-modal li i{
+    margin-left: 50px;
+}
+.test-time ul#date-modal li.date-inner-center{
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.test-time ul#date-modal li.date-inner-center span.focus{
+    color: #ef6188;
+    border-bottom: 1px solid #ef6188;
+}
+#container ul.data-wrapper li.test-type{
+}
+#container ul.data-wrapper li.test-number{
+    position: relative;
+}
+.test-number p#input-number{
+    position: absolute;
+    top: 25px;
+    left: 150px;
+    width: 198px;
+    height: 30px;
+    line-height: 30px;
+    padding: 10px;
+    text-align: center;
+    background-image: url(../../../../img/hd/HealthTest/V13/test_number.png);
+    margin-left: -10px;
+}
+.test-number span#number-name{
+    margin-left: 248px;
+}
+.test-number ul#number-modal{
+    position: absolute;
+    top: 74px;
+    left: 140px;
+    width: 218px;
+    height: 194px;
+    visibility: hidden;
+    background-image: url(../../../../img/hd/HealthTest/V13/bg_number.png);
+}
+ul#number-modal li{
+    height: 65px;
+    line-height: 65px;
+    text-align: center;
+}
+ul#number-modal li.number-center{
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #fff;
+}
+ul#number-modal li span{
+    margin: 0 10px;
+}
+ul#number-modal li span{
+    margin: 0 10px;
+}
+
+ul#number-modal li.number-center span.focus{
+    color: #ef6188;
+    border-bottom: 1px solid #ef6188;
+}
+
+#container ul.data-wrapper li.test-member{
+}
+#container ul.data-wrapper li.test-status{}
+#container ul.data-wrapper li.test-submit{
+    width: 888px;
+    text-align: center;
+}
+/*调整*/
+li span.type-name{
+    margin-right: 30px;
+}

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>专辑89-没有往期专题</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Album/album89/album.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+
+</head>
+
+<body id="body">
+
+<div id="debug"></div>
+<a href="#" id="default_link" style="width: 1px;height: 1px; position: absolute; left: 80px; top: 200px">.</a>
+<if condition="$platformType eq 'hd' ">
+    <div id="smallvod" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+        <iframe id="smallscreen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+    </div>
+    <img id="videoTv" useType="video" videoDataIndex="0"
+         src="__ROOT__/Public/img/{$platformType}/Album/album89/bg_small_video.png"/>
+    <else/>
+</if>
+<div id="tab-content">
+
+</div>
+<img id="page-prev" class="arrow" src="__ROOT__/Public/img/{$platformType}/Album/album89/icon_prev_page.png"/>
+<img id="page-next" class="arrow" src="__ROOT__/Public/img/{$platformType}/Album/album89/icon_next_page.png"/>
+<img id="more" src="__ROOT__/Public/img/{$platformType}/Album/album89/bg_more_video.png"/>
+<img id="back" useType="back" src="__ROOT__/Public/img/{$platformType}/Album/album89/bg_back.png"/>
+<script type="text/javascript">
+
+    var moveNum = {$moveNum};                 // 移动量
+    var moveAlbumNum = {$moveAlbumNum};
+    var userId = "{$userId}";
+    var isVip = {$isVip};                     // 用户是不是vip，1--是vip
+    var focusIDName = "{$focus_index}" == "focus-1-1" ? "focus-1" : "{$focus_index}";
+    var videoData = '{$data}';                // 专题节目列表
+    var fromId = "{$fromId}";                 // 是不是返回状态
+    var platformType = "{$platformType}";     // hd--高清 sd--标清
+    var lmcid = "{$carrierId}";
+    var inner = "{$inner}";
+    var stbModel = "test";
+    var albumName = "{$albumName}";           // 专辑名称
+    var domainUrl = "{$domainUrl}";           // 江苏电信需要使用的第三方播放器前缀地址\
+    var currentAlbum;
+    var fileIndex = "__ROOT__/Public/img/{$platformType}/Album/album89/";
+    var buttons = [{
+        id: "debug",
+        name: "",
+        type: "",
+        nextFocusLeft: "focus-4",
+        nextFocusRight: "focus-1",
+        nextFocusUp: "",
+        nextFocusDown: "",
+    }];
+    var isNext = false;
+    var AlbumObj = {
+        V: 4, // 页面上视频列表的个数
+        allVideoList: 6, // 所有视频个数
+        mockVideoIndex: [],
+        // 设置当前页面上的视频列表、专辑个数
+        set: function (arr, atMove, count) {
+            var x = atMove * count;
+            return arr.slice(x, x + 4);
+        },
+        init: function () {
+            this.setListNumber();
+            this.videoList(moveNum);
+            this.buttons();
+        },
+        // 设置跳转历史专辑、视频个数
+        setListNumber: function () {
+            bodyBg = "bg_album1.png";
+            for (var i = 0; i < this.allVideoList; i++) {
+                this.mockVideoIndex.push(i)
+            }
+            platformType == "hd" && this.mockVideoIndex.shift();
+            G("body").style.backgroundImage = "url(" + fileIndex + bodyBg + ")";
+        },
+        // 视频列表
+        videoList: function (atMove) {
+            var insertDom = '';
+            var videoList = this.set(this.mockVideoIndex, atMove, this.V);
+            for (var i = 0; i < videoList.length; i++) {
+                var src = fileIndex + 'bg_video_item_' + (videoList[i] + 1) + '.png';
+                var focusBg = fileIndex + 'f_video_item_' + (videoList[i] + 1) + '.png';
+                insertDom += '<img id="focus-' + (i + 1) + '" useType="video" videoDataIndex="' + videoList[i] + '"   src="' + src + '" onfocusurl="' + focusBg + '" confirmurl="' + src + '"/>';
+            }
+            this.arrowToggle();
+            G("tab-content").innerHTML = insertDom;
+        },
+        // 框架焦点虚拟按钮
+        buttons: function () {
+            var videoList = this.set(this.mockVideoIndex, 0, this.V);
+
+            // 视频列表按钮
+            for (var j = 0; j < videoList.length; j++) {
+                buttons.push({
+                    id: "focus-" + (j + 1),
+                    name: "focus-" + (j + 1),
+                    type: 'img',
+                    nextFocusUp: "focus-" + j,
+                    nextFocusDown: "focus-" + (j + 2),
+                    nextFocusLeft: "videoTv",
+                    nextFocusRight: "",
+                    click: AlbumObj.keyEnter,
+                    focusChange: AlbumObj.onFocus,
+                    beforeMoveChange: AlbumObj.beforeFocusMove,
+                })
+            }
+            buttons.push({ // 脚手架ID
+                id: "debug",
+                name: "",
+                type: "",
+                nextFocusLeft: "",
+                nextFocusRight: "",
+                nextFocusUp: "focus-"+AlbumObj.V,
+                nextFocusDown: "focus-1",
+            },{
+                id: "back",
+                name: "返回",
+                type: 'img',
+                nextFocusLeft: "more",
+                nextFocusRight: 'more',
+                nextFocusDown: 'focus-1',
+                backgroundImage: fileIndex + "bg_back.png",
+                focusImage: fileIndex + "f_back.png",
+                click: onBack,
+            }, {
+                id: "more",
+                name: "更多精彩",
+                type: 'img',
+                nextFocusLeft: 'back',
+                nextFocusRight: 'back',
+                nextFocusDown: 'focus-1',
+                nextFocusUp: '',
+                backgroundImage: fileIndex + "bg_more_video.png",
+                focusImage: fileIndex + "f_more_video.png",
+                click: jumpVedioCategory,
+            }, {
+                id: "videoTv",
+                name: "视频小窗",
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'focus-1',
+                nextFocusDown: '',
+                nextFocusUp: 'focus-1',
+                backgroundImage: fileIndex + "bg_small_video.png",
+                focusImage: fileIndex + "f_small_video.png",
+                click: AlbumObj.keyEnter,
+            });
+        },
+        // 指示箭头切换
+        arrowToggle: function () {
+            var videoList = (this.mockVideoIndex.length-1)/this.V - moveNum;
+            Hide("page-prev");
+            Hide("page-next");
+            moveNum > 0 && Show("page-prev");
+            Math.floor(videoList) > 0 && Show("page-next");
+        },
+        // 焦点移动前回调
+        beforeFocusMove: function (direction, current) {
+            switch (direction) {
+                case "up":
+                    current.id == "focus-1" && AlbumObj.prev(current.id);
+                    break;
+                case "down":
+                    var lastFocus = "focus-" + AlbumObj.V;
+                    var pageList = G("tab-content").childNodes;
+                    if (current.id == lastFocus && pageList.length == AlbumObj.V) {
+                        AlbumObj.next(current.id);
+                    }
+                    break;
+                case "left":
+                    break;
+                case "right":
+                    break;
+            }
+        },
+        // 上一页
+        prev: function (id) {
+            var cutId = id.slice(0, 1);
+            switch (cutId) {
+                case 'f':
+                    if (moveNum > 0) {
+                        moveNum--;
+                        AlbumObj.videoList(moveNum);
+                        LMEPG.ButtonManager.requestFocus("debug");
+                    }else{
+                        LMEPG.ButtonManager.requestFocus("back");
+                    }
+                    break;
+            }
+        },
+        // 下一页
+        next: function (id) {
+            var cutId = id.slice(0, 1);
+            var videoList = (AlbumObj.mockVideoIndex.length) - moveNum;
+            switch (cutId) {
+                case 'f':
+                    if (videoList > this.V) {
+                        moveNum++;
+                        AlbumObj.videoList(moveNum);
+                        LMEPG.ButtonManager.requestFocus("debug");
+                    }
+                    break;
+            }
+        },
+        // 获得焦点、失去焦点添加样式
+        onFocus: function (btn, hasFocus) {
+            if (hasFocus) {
+                G("debug").innerHTML = '.'; // 防止焦点丢失
+                currentAlbum = G(btn.id).getAttribute("album");
+                G(btn.id).src = G(btn.id).getAttribute("onfocusurl");//获取焦点
+            } else {
+                G("debug").innerHTML= '';
+                G(btn.id).src = G(btn.id).getAttribute("confirmurl");//获取焦点
+            }
+        },
+        // 键入事件
+        keyEnter: function (btn) {
+            var useType = G(btn.id).getAttribute("useType");
+            var videoDataIndex = G(btn.id).getAttribute("videoDataIndex");
+
+            switch (true) {
+                case useType == "video":
+                    try {
+                        var videoInfoData = JSON.parse(videoData);
+                        var videoInfo = videoInfoData.data.video_list[videoDataIndex];
+                        onClickVideoItem(btn.id, videoInfo);
+                    } catch (e) {
+                        LMEPG.UI.showToast("系统报错！" + e.toString());
+                    }
+                    break;
+                case btn.id == 'back':
+                    onBack();
+                    break;
+            }
+        }
+    };
+
+    //页面加载时获取第一个块的焦点
+    window.onload = function () {
+        AlbumObj.init();
+        //开始轮播
+        if (platformType == "hd") {
+            startPollPlay();
+        }
+
+        isBuyReturn();
+        different();
+    };
+    function different() {
+        if (lmcid == "630092"){
+            document.body.style.backgroundImage = 'url('+fileIndex+'bg_album3.png)';
+            document.body.removeChild(G("more"));
+        }
+    }
+    /** 结束页面 */
+    window.onunload = function () {
+        LMEPG.mp.destroy();  //释放播放器
+    };
+
+
+</script>
+</body>
+<!-- 公用函数 -->
+<script type="text/javascript">
+    /**
+     * 得到当前页面对象
+     */
+    function getCurrentPage(_thisfocus) {
+        var objCurrent = LMEPG.Intent.createIntent("album");
+        objCurrent.setParam("userId", userId);
+        objCurrent.setParam("albumName", albumName);
+        objCurrent.setParam("focus_index", _thisfocus);
+        objCurrent.setParam("fromId", 1);
+        objCurrent.setParam("inner", inner);
+        return objCurrent;
+    }
+
+    // 页面跳转 - 更多视频分类
+    function jumpVedioCategory() {
+        // var reback  = lmcid == "630092" ? "home" : "channel";
+        var objMoreVideo = LMEPG.Intent.createIntent("channel");
+        objMoreVideo.setParam("userId", "{$userId}");
+        objMoreVideo.setParam("modeTitle", "更多精彩");
+        objMoreVideo.setParam("classifyId", "1");
+        objMoreVideo.setParam("modeType", "4");
+
+        var objBack = LMEPG.Intent.createIntent("home");
+        objBack.setParam("userId", "{$userId}");
+        LMEPG.Intent.jump(objMoreVideo, objBack);
+    }
+
+    function jumpHomeTab(tabName, focusIndex) {
+        var objCurrent = getCurrentPage();
+
+        var objHomeTab = LMEPG.Intent.createIntent(tabName);
+        objHomeTab.setParam("userId", userId);
+        objHomeTab.setParam("classifyId", "");
+        objHomeTab.setParam("focusIndex", focusIndex);
+
+        LMEPG.Intent.jump(objHomeTab, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+
+    function jumpVideoPlay(paramJson) {
+        var objCurrent = getCurrentPage();
+        objCurrent.setParam("fromId", 2);
+        objCurrent.setParam("focus_index", paramJson.focusIdx);
+        objCurrent.setParam("moveNum", moveNum);
+
+        var objPlayer = LMEPG.Intent.createIntent("player");
+        objPlayer.setParam("userId", userId);
+        objPlayer.setParam("videoInfo", JSON.stringify(paramJson));
+
+        LMEPG.Intent.jump(objPlayer, objCurrent);
+    }
+
+    /**
+     * @func 进行购买操作
+     * @param focusIdx 当前页的焦点位置
+     * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+     * @returns {boolean}
+     */
+    function jumpBuyVip(focusIdx, remark) {
+        var objCurrent = getCurrentPage();
+        objCurrent.setParam("fromId", 1);
+        objCurrent.setParam("focus_index", focusIdx);
+        objCurrent.setParam("page", 0);
+        objCurrent.setParam("moveNum", moveNum);
+
+        var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+        objOrderHome.setParam("userId", userId);
+        objOrderHome.setParam("isPlaying", "1");
+        objOrderHome.setParam("remark", remark);
+
+        LMEPG.Intent.jump(objOrderHome, objCurrent);
+    }
+
+    /**
+     * 监听返回事件--> 返回局方的Home页面
+     */
+    function onBack() {
+        LMEPG.Intent.back("IPTVPortal");
+    }
+
+    /**
+     * 退出应用
+     */
+    function exitApp() {
+        if (lmcid == "340092") {
+            // 安徽电信EPG，要使用下面的方法来退回到EPG大厅
+            Utility.setValueByName("exitIptvApp");
+        } else if (lmcid == "520094") {
+            starcorCom.exit();
+        } else {
+            LMEPG.Intent.back("IPTVPortal");
+        }
+    }
+
+    // 断是否为购买回来，如果是则轮询是否购买成功
+    function isBuyReturn() {
+        if (fromId == "1" || fromId == "2") {
+            LMEPG.ButtonManager.init(focusIDName, buttons, '', true);
+        } else {
+            LMEPG.ButtonManager.init("focus-1", buttons, '', true);
+        }
+    }
+
+
+    // 处理点击视频列表事件
+    function onClickVideoItem(focusIdName, videoInfo) {
+        // user_type字段:观看用户类型，0 -- 游客  1--会员  2-- vip
+        var userType = videoInfo.user_type;//播放视频是否需要vip权限
+        var ftp_url_json, play_id;
+        if (videoInfo.ftp_url instanceof Object) {
+            ftp_url_json = videoInfo.ftp_url;
+        } else {
+            ftp_url_json = JSON.parse(videoInfo.ftp_url);
+        }
+
+        // 视频ID
+        if (platformType == "hd") {
+            play_id = ftp_url_json.gq_ftp_url;
+        } else {
+            play_id = ftp_url_json.bq_ftp_url;
+        }
+
+        var paramJson = {
+            "sourceId": videoInfo.source_id,
+            "videoUrl": play_id,
+            "title": videoInfo.title,
+            "type": 2,
+            "entryType": 4,
+            "entryTypeName": albumName,
+            "userType": videoInfo.user_type,
+            "freeSeconds": videoInfo.free_seconds,
+            "focusIdx": focusIdName,
+            "durationTime": videoInfo.duration
+        };
+
+        if (LMEPG.Func.isAllowAccess(isVip, ACCESS_PLAY_VIDEO_TYPE, paramJson)) {
+            jumpVideoPlay(paramJson);
+        } else {
+            var postData = {"videoInfo": JSON.stringify(paramJson)};
+            LMEPG.ajax.postAPI("Player/storeVideoInfo", postData, function (data) {
+                if (data.result == 0) {
+                    jumpBuyVip(paramJson.focusIdx, paramJson.title);
+                } else {
+                    LMEPG.UI.showToast("系统报错", 3);
+                }
+            });
+        }
+
+    }
+
+    //获取当前播轮播视频地址
+    function getCurrentPollVideoUrl() {
+        var ftp_url_json;
+        var videoInfoData = JSON.parse(videoData);
+        var videoInfo = videoInfoData.data.video_list[0];
+        if (videoInfo != null) {
+            if (videoInfo.ftp_url instanceof Object) {
+                ftp_url_json = videoInfo.ftp_url;
+            } else {
+                ftp_url_json = JSON.parse(videoInfo.ftp_url);
+            }
+
+            if (platformType == 'hd') {
+                return ftp_url_json.gq_ftp_url;
+            } else {
+                return ftp_url_json.bq_ftp_url;
+            }
+        } else {
+            return "";
+        }
+
+    }
+
+
+    /** 2号位置开始轮播 */
+    function startPollPlay() {
+        LMEPG.mp.destroy();  //释放播放器
+        var videoUrl = getCurrentPollVideoUrl(); //播放地址
+        var top = 503;
+        var left = 81;
+        var width = 332;
+        var height = 195;
+        switch (true) {
+            case lmcid == '320092' || lmcid == "450092" || lmcid == "640092":   //江苏电信、广西电信、宁夏电信
+                playWithIframe();
+                break;
+            case lmcid == '000051':
+                setTimeout(function () {
+                    if (stbModel == 'IP506H_54U3') { //内蒙联通海信盒子
+                        LMEPG.mp.initPlayerByBind();
+                    } else {
+                        LMEPG.mp.initPlayer();
+                    }
+                    if (platformType == 'hd') {
+                        LMEPG.mp.playOfSmallscreen(videoUrl, left, top, width, height); //小窗播放
+                    }
+                }, 500);
+                break;
+            default:
+                setTimeout(function () {
+                    LMEPG.mp.initPlayer(); //初始化
+                    if (platformType == 'hd') {
+                        LMEPG.mp.playOfSmallscreen(videoUrl, left, top, width, height); //小窗播放
+                    }
+                }, 500);
+                break;
+        }
+
+        function playWithIframe() {
+            setTimeout(function () {
+                if (!domainUrl) {
+//                    LMEPG.UI.showToast("domainUrl is empty!!!", 3);
+                    return;
+                }
+                var info;
+                if (lmcid == "640092") {
+                    info = LMEPG.mp.dispatcherUrl.getUrlWith640092(left, top, width, height, videoUrl);
+                } else {
+                    info = LMEPG.mp.dispatcherUrl.getUrlWith320092(left, top, width, height, videoUrl);
+                }
+
+                var factUrl = domainUrl + info;
+                var mSmallFrame = document.getElementById("smallscreen");
+                mSmallFrame.setAttribute("src", factUrl);
+                LMEPG.mp.initPlayerByBind();
+            }, 500);
+            document.getElementById('default_link').focus();//防止（部分盒子）页面失去焦点
+        }
+    }
+
+    //虚拟按键触发，轮询播放
+    LMEPG.ButtonManager.init('', buttons, '', true);
+    LMEPG.KeyEventManager.addKeyEvent(
+        {
+            EVENT_MEDIA_END: rePlay,	        //视频播放结束
+            EVENT_MEDIA_ERROR: rePlay,        //视频播放错误
+        });
+
+    //虚拟按键触发，轮询播放
+    function rePlay(keyCode) {
+        startPollPlay();
+    }
+</script>
+</html>

@@ -1,0 +1,162 @@
+.data {
+    position: absolute;
+    top: 28px;
+    left: 27px;
+    color: #FFFFFF;
+    font-size: 24px;
+}
+
+.data-time {
+    width: 124px;
+    height: 124px;
+    text-align: center;
+    line-height: 80px;
+    margin-left: 45px;
+    background:url("../../../../../Public/img/hd/Home/V10/HomeBox/bg_btn_null.png");
+    float: left;
+}
+
+.data-time > P {
+    line-height: 10px;
+}
+
+.doctor {
+    position: absolute;
+    top: 140px;
+    left:0px;
+    height: 570px;
+    width: 1280px;
+    overflow: hidden;
+}
+#doctor-1{
+    top: 0px;
+    left:0px;
+}
+#doctor-2{
+    top: 236px;
+    left:0px;
+}
+
+.doctor-bg {
+    position: absolute;
+    width: 547px;
+    height: 302px;
+    width: 1280px;
+    background:url("../../../../../Public/img/hd/AppointmentRegister/V10/BtnBox/bg_doctor.png");
+    border-radius: 12px;
+    margin-top: 20px;
+    /*border: 1px red solid;*/
+}
+
+.photo {
+    position: absolute;
+    top: 70px;
+    left: 100px;
+    width: 140px;
+    height: 160px;
+    border: 10px;
+}
+
+.produce {
+    position: absolute;
+    top: 60px;
+    left: 258px;
+}
+
+.line-word {
+    color: #011025;
+    margin-top: 10px;
+    width: 920px;
+}
+
+.name {
+    font-size: 38px;
+}
+
+.subject {
+    padding: 2px 15px;
+    font-size: 24px;
+    border: 1px #011025 solid;
+    border-radius: 15px;
+    color: #011025;
+    /*opacity: 0.75;*/
+    margin: 0px 0px;
+}
+
+.subject + .subject {
+    margin: 0px 15px;
+}
+
+.content {
+    margin-top: 30px;
+    font-size: 28px;
+    color: #011025;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.status{
+    position: absolute;
+    top:52px;
+    left: 1055px;
+}
+.data-empty{
+    position: absolute;
+    top: 130px;
+    left: 430px;
+    text-align: center;
+    width: 400px;
+}
+.icon-sad{
+    /*position: absolute;*/
+    /*top: 0px;*/
+    /*left: 0px;*/
+    width: 120px;
+    height: 120px;
+}
+.empty-title{
+    font-size: 36px;
+    color: #FFFFFF;
+    line-height: 70px;
+}
+.empty-time{
+    font-size: 28px;
+    color: #33ffdd;
+    line-height: 60px;
+}
+.recommended-hover>.photo{
+    top: 60px;
+    left: 50px;
+    width: 156px;
+    height: 176px;
+}
+.recommended-hover>.status{
+    top:42px;
+    left: 1110px;
+}
+.recommended-hover>.produce {
+    top: 60px;
+    left: 268px;
+}
+#m-next {
+    position: absolute;
+    top: 680px;
+    left: 620px;
+}
+.btn-hover{
+    font-weight: bold;
+}
+
+.g_common_dialog_message_text{
+    top: 230px;
+    height: 180px;
+    color: #fff;
+}
+.g_common_button_text{
+    width: 200px;
+    line-height: 70px;
+}
+.g_common_button_container{
+    top: 405px;
+}

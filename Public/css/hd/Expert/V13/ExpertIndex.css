@@ -1,0 +1,349 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+#header-container {
+}
+
+#top-action-content-icons {
+    position: absolute;
+    right: 30px;
+    line-height: 78px;
+}
+
+#top-action-content-icons img {
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+#top-action-content-icons img.focus {
+}
+
+#nav-content-tabs {
+    position: absolute;
+    top: 76px;
+    left: 127px;
+}
+
+#nav-content-tabs img {
+    margin-right: 8px;
+    width: 178px;
+    height: 62px;
+}
+
+#nav-content-tabs .tab{
+    float:left;
+}
+
+#nav-content-tabs img.focus {
+    /* width: 152px; */
+    height: 62px;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/*医生item*/
+#doctor-container {
+    position: relative;
+    top: 170px;
+    left: 136px;
+    width: 1008px;
+    height: 462px;
+    color: #fff;
+    background-image: url(../../../../img/hd/Expert/V13/modal_expert.png);
+}
+
+#doctor-container .doctor-item {
+
+}
+
+.doctor-item .picture-wrap {
+    position: absolute;
+    top: 88px;
+    left: 44px;
+    width: 208px;
+    text-align: center;
+}
+
+.picture-wrap .doctor-picture {
+    width: 208px;
+    height: 208px;
+    border-radius: 50%;
+}
+
+.picture-wrap #collect {
+    margin-top: 20px;
+    width: 198px;
+    height: 62px;
+}
+
+.doctor-item ul {
+    position: absolute;
+    top: 112px;
+    left: 270px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 480px;
+}
+
+.doctor-item ul li {
+    font-size: 24px;
+    line-height: 47px;
+    width: 480px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.doctor-item li span {
+    font-size: 30px;
+    font-family: 'Source Han Sans CN';
+}
+
+.doctor-item li s {
+    text-decoration: line-through;
+}
+
+.doctor-item li i {
+    font-style: normal;
+    color: #ffdc19;
+}
+
+.doctor-item .code-wrap {
+    position: absolute;
+    top: 44px;
+    left: 768px;
+    width: 198px;
+    text-align: center;
+}
+
+.code-wrap #doctor-code {
+    width: 186px;
+    height: 186px;
+}
+
+.code-wrap p {
+    font-size: 20px;
+    color: #b2deff;
+    margin-top: 11px;
+}
+
+.code-wrap #doctor-advice-0 {
+    width: 198px;
+    height: 62px;
+    margin-top: 20px;
+}
+
+.code-wrap #doctor-intro {
+    width: 198px;
+    height: 62px;
+    margin-top: 6px;
+}
+
+#page-count {
+    position: absolute;
+    top: 420px;
+    left: 0;
+    width: 1008px;
+    text-align: center;
+    font-size: 24px;
+    color: #b2deff;
+}
+
+.service-tel {
+    position: absolute;
+    left: 0;
+    bottom: -50px;
+    font-size: 20px;
+    width: 1008px;
+}
+
+.service-tel p {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.service-tel p i {
+    color: #ffdc19;
+    font-style: normal;
+}
+
+.service-tel p i span {
+    text-decoration: underline;
+}
+
+.arrow {
+    position: absolute;
+    top: 340px;
+    visibility: hidden;
+}
+
+#prev-arrow {
+    left: 54px;
+}
+
+#next-arrow {
+    left: 1160px;
+}
+
+/*选中科室*/
+#department-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background-size: 100%;
+    display: none;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/dep_modal.png);
+}
+
+#department-wrap {
+    position: absolute;
+    top: 138px;
+    left: 40px;
+}
+
+.department {
+    width: 152px;
+    height: 62px;
+    margin: 13px 19px;
+    color: #9b3b51;
+    font-size: 24px;
+    /* padding-bottom: 10px; */
+    background-color: transparent;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/department.png);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
+    padding: 4px;
+    padding-bottom: 14px;
+    background-position: center;
+    text-align: center;
+    line-height: 62px ;
+}
+
+#department-container p {
+    font-size: 36px;
+    font-weight: bold;
+    position: relative;
+    top: 38px;
+    text-align: center;
+    color: #fff;
+}
+
+.dep-arrow {
+    position: absolute;
+    left: 607px;
+}
+
+#up-arrow {
+    top: 90px;
+}
+
+#down-arrow {
+    top: 654px;
+}
+
+/*呼叫等待医生页面*/
+.callDoctor {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.callDoctor #doctor-pic {
+    position: absolute;
+    top: 255px;
+    left: 852px;
+    width: 208px;
+    height: 208px;
+}
+
+.callDoctor .telephone-icon {
+    position: absolute;
+    top: 299px;
+    left: 224px;
+}
+
+.callDoctor .waiting-point {
+    position: absolute;
+    top: 333px;
+    left: 525px;
+}
+
+.callDoctor .waiting-text {
+    position: absolute;
+    top: 391px;
+    left: 545px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.callDoctor .notice-text {
+    position: absolute;
+    top: 606px;
+    left: 151px;
+    color: #fff;
+    font-size: 20px;
+    text-align: left;
+}
+
+.rules .rules-desc {
+    text-align: left;
+    color: #fff;
+    position: absolute;
+    top: 78px;
+    left: 53px;
+    font-size: 24px;
+    line-height: 50px;
+    width: 1114px;
+    height: 558px;
+    padding: 30px;
+    background-image: url(../../../../img/hd/Expert/V13/rule_bg.png);
+
+}
+.expert-rule{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+/*帮助*/
+#case-help-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#case-help-wrap img{
+    position: absolute;
+    visibility: hidden;
+}
+
+#dept-name {
+    position: absolute;
+    top: 9.5px;
+    left: 52px;
+    font-size: 24px;
+    color: #8b3b51;
+    width: 109px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing:3px;
+}

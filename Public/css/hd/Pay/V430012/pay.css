@@ -1,0 +1,23 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body,.order_page {
+    width: 1280px;
+    height: 720px;
+}
+
+.order_page {
+    background: url("../../../../../Public/img/hd/Pay/V430012/bg_order.png") no-repeat;
+}
+
+body > * {
+    position: absolute;
+}
+
+.order_item_container {
+    position: absolute;
+    top: 354px;
+    left: 428px;
+}

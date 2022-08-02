@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+}
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    color: #000;
+    background-size: 644px 530px;
+}
+ul{
+    list-style: none;
+}
+#video-TV{
+    width: 178px;
+    height: 133px;
+    position: absolute;
+    top: 40px;
+    left: 51px;
+    border-radius: 10px;
+}
+#video-desc-wrapper{
+    position: absolute;
+    top: 40px;
+    left: 246px;
+    width: 378px;
+    color: #fff;
+}
+#video-desc-wrapper li{
+    text-align: left;
+    margin-bottom: 7px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+}
+#video-desc-wrapper li.desc-title{
+    font-size: 18px;
+    font-weight: bold;
+}
+#video-desc-wrapper li.desc-total{
+    font-size: 16px;
+    color: #000;
+}
+#video-desc-wrapper li.desc-text{
+    font-size: 14px;
+    height: 43px;
+    white-space: normal;
+}
+#video-desc-wrapper li.desc-icon{
+    margin-left: -6px;
+    position: relative;
+}
+
+#video-desc-wrapper li.desc-icon img{
+    width: 120px;
+    height: 45px
+}
+
+#video-desc-wrapper li img{
+    width: 114px;
+    height: 44px;
+}
+#container{
+    position: absolute;
+    top: 200px;
+    left: 7px;
+    width: 630px;
+    height: 312px;
+    background-size: 630px 312px;
+}
+.cover-area{
+    width: 178px;
+    height: 133px;
+    position: absolute;
+    left: 50px;
+    top: 37px;
+    color: #fff;
+    font-size: 22px;
+}
+
+.how-num{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: url(../../../../img/hd/Channel/V25/num-squ.png);
+    width: 80px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+ul#tab-wrap{
+    position: absolute;
+    top: 14px;
+    left: 33px;
+    width: 588px;
+    height: 32px;
+    overflow: hidden;
+}
+ul#tab-wrap li{
+    width: 80px;
+    height: 32px;
+    float: left;
+    line-height: 33px;
+    text-align: center;
+    padding-bottom: 10px;
+    color: #fff;
+    font-size: 16px;
+    background-position:5px 5px;
+     background-size: 70px 26px;
+}
+#nav-next{
+    position: absolute;
+    top: 22px;
+    right: 28px;
+    width: 10px;
+    height: 18px;
+}
+#content-wrap{
+    position: absolute;
+    top: 55px;
+    left: 18px;
+    width: 613px;
+}
+#content-wrap div{
+    width: 136px;
+    height: 107px;
+    text-align: center;
+    float: left;
+    position: relative;
+    vertical-align: middle;
+    padding: 6px;
+    /* line-height: 107px; */
+    background-size: 147px 119px;
+}
+#content-wrap div.focus{
+    background-image: url(../../../../img/hd/Channel/V16/video_list_f.png);
+    /*background-size: 100%;*/
+}
+#content-wrap div img{
+    width: 136px;
+    height: 107px;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+#content-wrap div p{
+    position: absolute;
+    bottom: 6px;
+    right: 5px;
+    width: 73px;
+    height: 24px;
+    font-size: 18px;
+    text-align: center;
+    background-image: url(../../../../img/hd/Channel/V25/num-squ.png);
+    color: #fff;
+}
+
+.arrow{
+    position: absolute;
+    top: 50%;
+    width: 39px;
+    height: 40px;
+}
+#prev-arrow{
+    left: -6px;
+}
+
+#next-arrow{
+    right: -6px;
+}
+
+#sm-current {
+    position: absolute;
+    top: 8px;
+    left: 44px;
+    font-size: 16px;
+    color: #000;
+}
+
+.small_screen_player {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+}
+
+#iframe_small_screen {
+    width: 1px;
+    height: 1px;
+}
+
+#cover-img {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    width: 180px;
+    height: 134px;
+}

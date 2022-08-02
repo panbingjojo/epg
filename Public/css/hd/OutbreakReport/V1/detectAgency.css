@@ -1,0 +1,674 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../img/hd/OutbreakReport/V1/bg.jpg);
+    background-position: left;
+}
+
+body > * {
+    position: absolute;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 300px;
+    height: 2px;
+}
+#title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.level4Wrapper-title-line{
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 158px;
+    height: 2px;
+}
+.level4Wrapper01{
+    position: absolute;
+    top: 125px;
+    left: 79px;
+    width: 1121px;
+    height: 500px;
+    overflow: auto;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 15px;
+}
+
+.title-line-2 {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 148px;
+    height: 2px;
+}
+
+#btn-go-inquiry-page{
+    right: 80px;
+    top: 38px;
+}
+
+#level4Wrapper-title{
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+#prev-arrow {
+    top: 360px;
+    left: 10px;
+}
+
+#next-arrow {
+    top: 360px;
+    left: 1226px;
+}
+
+#hospital-wrapper {
+    top: 120px;
+    left: 55px;
+}
+
+#page-number{
+    position: absolute;
+    top: 660px;
+    left: 50%;
+    color:#fff;
+    font-size:22px;
+}
+#hospital-wrapper div{
+    display: inline-block;
+    position: relative;
+}
+#hospital-wrapper img {
+    width: 360px;
+    height: 220px;
+    padding: 15px;
+    object-fit: cover;
+}
+
+#hospital-wrapper img.focus {
+    background-image: url(../../../../img/hd/OutbreakReport/common/register_bg.png) !important;
+}
+
+#hospital-wrapper p
+{
+    width: 360px;
+    position: absolute;
+    bottom: 18px;
+    height: 40px;
+    line-height: 40px;
+    left: 15px;
+    /*padding: 20px;*/
+    font-size: 26px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    /*border: 1px red solid;*/
+}
+/*框架集*/
+#level-2-container {
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    position: relative;
+    font-family: "SimHei", sans-serif;
+    background-image: url(../../../../img/hd/OutbreakReport/V1/bg.jpg);
+}
+
+
+#level-2-container > * {
+    position: absolute;
+
+}
+
+.btn-wrap-intro {
+
+    top: 294px;
+    left: 910px;
+    width: 179px;
+}
+
+#image-border {
+    top: 163px;
+    left: 44px;
+    width: 376px;
+    height: 408px;
+    background-image: url(../../../../img/hd/OutbreakReport/common/focus_rect.png) !important;
+}
+
+.hos-pic {
+    top: 11px;
+    left: 16px;
+    width: 344px;
+    height: 372px;
+    object-fit: cover;
+    border-radius: 13px;
+    position: relative;
+}
+
+
+#inner-wrapper {
+    top: 60px;
+    left: 453px;
+    width: 767px;
+    height: 600px;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.level-3-arrow{
+    position: absolute;
+    left: 360px;
+}
+
+#hos-dep-prevPage{
+    top: 101px;
+}
+#hos-dep-nextPage{
+    bottom: 0;
+}
+
+
+#dep-wrap{
+    overflow: scroll;
+}
+
+#hos-dep-page-number{
+    bottom: 30px;
+    right: 30px;
+    color: #fff;
+    font-size: 20px;
+}
+
+#inner-wrapper p.departments-hospital-title {top: 0px;width: 95%;text-align: center;position: static;}
+#inner-wrapper p.departments {
+    position: static;
+    display: inline-block;
+    margin: 22px 40px 10px 70px;
+    overflow: hidden;
+}
+
+
+.QRInfo {
+    font-size: 26px;
+    color: #fff;
+    text-indent: 52px;
+    width: 260px;
+    height: 260px;
+    top: 242px;
+    left: 57px;
+}
+
+.btn-wrap-intro {
+    top: 242px;
+    left: 457px;
+    width: 182px;
+    height: 72px;
+}
+
+.iframe-title {
+    position: relative;
+    top: 20px;
+    left: 57px;
+    overflow: hidden;
+    font-size: 33px;
+    width: 600px;
+    font-family: Source Han Sans CN;
+}
+.iframe-tel {
+    position: relative;
+    top: 35px;
+    left: 57px;
+    overflow: hidden;
+    font-size: 24px;
+    width: 600px;
+    text-align: left;
+    font-family: SimHei;
+}
+.iframe-location {
+    position: relative;
+    top: 50px;
+    left: 57px;
+    overflow: hidden;
+    font-size: 24px;
+    width: 700px;
+    letter-spacing: 3px;
+    text-align: left;
+    font-family: SimHei;
+}
+
+.iframe-address {
+    position: relative;
+    top: 65px;
+    left: 57px;
+    position: relative;
+    overflow: hidden;
+    font-size: 24px;
+    width: 680px;
+    text-align: left;
+    font-family: SimHei;
+}
+
+.code {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    top: 320px;
+    left: 60px;
+}
+.code-text{
+    position: absolute;
+    top: 340px;
+    left: 337px;
+    width: 24px;
+    height: 223px;
+    font-size: 24px;
+    /* writing-mode: tb-rl; */
+    font-family: SimHei;
+    writing-mode: tb-rl;
+    font-weight: 400;
+    line-height: 29px;
+}
+.code-text—01{
+    position: absolute;
+    top: 350px;
+    left: 365px;
+    width: 24px;
+    height: 231px;
+    font-size: 24px;
+    writing-mode: tb-rl;
+    font-family: SimHei;
+    font-weight: 400;
+    line-height: 29px;
+
+}
+
+.level-2-btn{
+    position: absolute;
+    left: 455px;
+}
+.iframe-order_mode{
+    top: 250px;
+    left: 31px;
+    /* overflow: hidden; */
+    font-size: 24px;
+    width: 1062px;
+    text-align: left;
+    position: absolute;
+    font-family: SimHei;
+}
+
+.iframe-cost{
+    top: 37px;
+    left: 31px;
+    overflow: hidden;
+    font-size: 24px;
+    width: 1062px;
+    text-align: left;
+    position: absolute;
+    font-family: SimHei;
+}
+.iframe-report_time{
+    top: 135px;
+    left: 31px;
+    /* overflow: hidden; */
+    font-size: 24px;
+    width: 1062px;
+    text-align: left;
+    position: absolute;
+    font-family: SimHei;
+}
+
+
+.fc-event{
+
+}
+#inner-wrapper01{
+    background-color: #7a0000;
+}
+.icon-address{
+    top: 115px;
+    left: 50px;
+}
+.icon-tel{
+    top: 172px;
+    left: 50px;
+}
+
+
+#hos-title{
+    width: 767px;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    z-index: 1200;
+}
+
+#hos-details {
+    margin-top: 66px;
+    width: 737px;
+    height: 520px;
+    font-size: 26px;
+    z-index: 99;
+    text-indent: 40px;
+    /*overflow: hidden;*/
+    padding: 0px 10px;
+    /*border: 1px red solid;*/
+    text-align: justify;
+}
+
+#hos-details-prevPage {
+    position: absolute;
+    top: -50px;
+    left: 350px;
+
+}
+
+#hos-details-nextPage {
+    position: absolute;
+    bottom: -50px;
+    left: 350px;
+}
+
+.departments-hospital-title {
+    margin: 20px;
+    font-size: 38px;
+}
+
+.odd {
+    margin-left: 80px;
+}
+
+.even {
+    margin-left: 450px;
+    margin-top: -135px;
+}
+
+.doctors {
+    position: relative !important;
+    width: 719px;
+    height: 109px;
+    margin-top: 30px;
+    margin-left: 20px;
+
+}
+
+#doc-page-index {
+    position: absolute !important;
+    top: 80px;
+    left: 696px;
+    font-size: 28px;
+}
+
+#doctor-page-up {
+    top: 80px;
+    left: 350px;
+}
+
+#doctor-page-down {
+    bottom: 30px;
+    left: 350px;
+}
+
+
+
+#inner-wrapper p.doctor-name {
+    top: 30px;
+    left: 100px;
+    font-size: 32px;
+    margin-left: 120px;
+    margin-bottom: 0;
+}
+#inner-wrapper p .doctor-position {
+    font-size: 20px;
+    color: #80d4ff;
+    display: block;
+    left: 315px;
+    position: absolute;
+    top: 15px;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 3px;
+}
+#inner-wrapper p.doctor-subject-name {
+    height: 31px;
+    width: 600px;
+    overflow: hidden;
+    font-size: 24px;
+    margin-top: 15px;
+    margin-left: 120px;
+}
+#inner-wrapper p.doctor-subject-name span.doctor-good-at{
+    position: absolute;
+    display: block;
+    width: 400px;
+    overflow: hidden;
+    height: 30px;
+    top: 58px;
+    left: 315px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#inner-wrapper p.doctor-name {
+    top: 30px;
+    left: 100px;
+}
+
+
+
+#btn-detail{
+    top: 429px;
+}
+#btn-department{
+    top: 350px;
+}
+#btn-expert{
+    top: 450px;
+}
+#level4Wrapper{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    font-family: "SimHei", sans-serif;
+    background-image: url(../../../../img/hd/OutbreakReport/V1/bg.jpg);
+}
+
+.hospital-detail {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    border-radius: 12px;
+    border: 1px red solid;
+
+}
+
+.hospital-photo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 190px;
+    height: 220px;
+    border-radius: 10px;
+}
+
+
+.introduce {
+    position: absolute;
+    top: 13px;
+    left: 215px;
+    height: 200px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+.doctor-word{
+    margin-top: 10px;
+    font-size: 28px;
+    width: 620px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+.doctor-word2{
+    margin-top: 10px;
+    font-size: 36px;
+    width: 620px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+.line2{
+    position: absolute;
+    top: 280px;
+    left: 80px;
+    width: 1120px;
+    font-size: 26px;
+}
+.content{
+    position: absolute;
+    top: 300px;
+    left: 80px;
+    width: 1120px;
+    font-size: 28px;
+    height:380px;
+}
+.content-detail{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 1070px;
+    height: 320px;
+    overflow: auto;
+    /*text-indent: 40px;*/
+    font-size: 28px;
+    border: 1px transparent solid;
+}
+
+#btn-register {
+    position: absolute;
+    /*width: 120px;*/
+    /*height: 35px;*/
+    /*line-height: 35px;*/
+    top: 160px;
+    left: 940px;
+}
+.btn-hover{
+    font-weight: bold;
+}
+
+
+#btn-inquiry-wrap{
+    position:absolute;
+    top: 66px;
+    right: 100px;
+    font-size: 22px;
+    display: block;
+}
+
+#btn-inquiry-wrap p{
+    padding: 8px 10px;
+}
+
+#btn-inquiry-wrap p.focus{
+
+}
+
+#btn-inquiry-wrap span{font-size:20px;margin-right: 20px;}
+
+#btn-inquiry-wrap span.btn-inquiry-tip{font-size:20px;color: #4CAF50;display: block;margin-bottom: 10px;margin-right: 0;text-align: center;}
+
+#inquiry-time{
+    font-size: 20px;
+    position: absolute;
+    top: 260px;
+    right: 130px;
+    display: none;
+}
+
+.g-text{
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    top: 78px;
+}
+
+.g-content-area{
+    position: absolute;
+    font-size: 20px;
+    color: #333;
+    top: 130px;
+    left: 25px;
+    height: 525px;
+}
+
+.g-hospital{
+    margin-top: 10px;
+}
+
+.g-item-phone{
+    width: 255px;
+    height: 39px;
+    background: url(../../../../img/hd/OutbreakReport/V1/g-num.png);
+    display: inline-block;
+    margin-left: 15px;
+    text-align: center;
+    line-height: 39px;
+}
+
+.g-item-text{
+    width: 452px;
+    height: 39px;
+    background: url(../../../../img/hd/OutbreakReport/V1/g-text.png);
+    display: inline-block;
+    margin-left: 15px;
+    text-align: center;
+    line-height: 39px;
+    vertical-align: bottom
+}
+
+.g-page{
+    position: absolute;
+    left: 1143px;
+    top: 667px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.g-arrow{
+    position: absolute;
+    left: 606px;
+    width: 35px;
+    height: 25px;
+}

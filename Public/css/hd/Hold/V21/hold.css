@@ -1,0 +1,166 @@
+/*背景图*/
+.splash_background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+.btn_position_1 {
+    position: absolute;
+    left: 692px;
+    top: 47px;
+    width: 265px;
+    height: 129px;
+}
+
+.btn_position_2 {
+    position: absolute;
+    left: 960px;
+    top: 47px;
+    width: 265px;
+    height: 129px;
+}
+
+#recommend_container {
+    position: absolute;
+    width: 1260px;
+    height: 700px;
+}
+
+.center {
+     position: absolute;
+     top:300px;
+     width:1200px;
+     height: 400px;
+     left: 40px;
+ }
+.centert {
+    position: absolute;
+    top:300px;
+    width:1200px;
+    height: 400px;
+    left: 40px;
+}
+
+.centero {
+    position: absolute;
+    top:300px;
+    width:1200px;
+    height: 400px;
+    left: 40px;
+}
+
+#recommend-list {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    font-size: 24px;
+}
+
+#recommend-list div {
+    position: relative;
+    width: 379px;
+    height: 256px;
+    float: left;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.recommend_img {
+    top: 20px;
+    width: 336px;
+    height: 214px;
+    top: 50px;
+    border: 5px solid transparent;
+    /* margin: 0px 0px 0px 20px; */
+    margin-top: 16px;
+}
+
+.recommend_title{
+    position: absolute;
+    top: 199px;
+    left: 21px;
+    width: 336px;
+    height: 36px;
+    font-size: 24px;
+    line-height:36px;
+    text-align: left;
+    overflow: hidden;
+    color: #FFFFFF;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    background-image: url(../../../../img/hd/Home/V21/Common/title_bg.png);
+}
+
+.center #recommend_0{
+    /* position: absolute; */
+    /* top:110px; */
+}
+
+.center #recommend_1{
+    position: absolute;
+    /* top:110px; */
+    left:380px;
+}
+
+.center #recommend_2{
+    position: absolute;
+    /* top:110px; */
+    left:760px;
+}
+
+.centert #recommend_0{
+    position: absolute;
+    top:110px;
+    left:180px;
+}
+
+.centert #recommend_1{
+    position: absolute;
+    top:110px;
+    left:550px;
+}
+
+.centero #recommend_0{
+    position: absolute;
+    top:110px;
+    left:380px;
+}
+
+
+.page_icon{
+    position: absolute;
+    top:500px;
+}
+#prev_page{
+    left:20px
+}
+
+#next_page{
+    left:1230px;
+}
+
+.recommend_img_border {
+    border: 5px #ffffff solid !important;
+    width: 366px !important;;
+    height: 240px !important;;
+    border-radius: 15px !important;
+}
+
+.hd-continue{
+    top: 24px;
+    left: 884px;
+    width: 178px;
+    height: 68px;
+}
+
+.hd-back{
+    top: 24px;
+    left: 1080px;
+    width: 178px;
+    height: 68px;
+}

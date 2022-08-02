@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>优惠券活动</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityCoupon/V1/index.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+
+    <!--当前活动-->
+    <script type="text/javascript">
+
+
+        var RenderParam = {
+            isVip: '{$isVip}', // 是否是vip（0-非vip 1-vip）
+            inner: '{$inner}',
+            userId: '{$userId}',
+            activityName: '{$activityName}',
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            imgPathPrefix: '{$activityFsImg}{$platformType}/',
+            beClickId: 'test-0',
+            userGroupType: {$userGroupType},  //根据不同的用户类型进入的活动的背景不同,有四种用户类型
+            // 分组1：进入产品（提醒送券），此组用户的弹窗只在开机启动弹出，其余位置不弹出。
+            // 分组2：订购失败，返回送券，此组用户的弹窗只在订购失败或取消订购弹出，其余位置不弹出。
+            // 分组3：观看内容-此组用户只针对观看单集视频推荐位，直接触发弹窗。
+            // 分组4：退出无订购-此组用户只在用户退出应用时未订购，以退出挽留的形式，弹出该弹窗。
+        };
+        window.onload = function () {
+            Activity.init();
+        };
+    </script>
+    <!--    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityCoupon/V1/index.js?t={$time}"></script>
+
+</head>
+<body style="background-image: url('{$activityFsImg}{$platformType}/home_page.png');z-index: 1">
+<div class="shade" style="  background-image: url('{$activityFsImg}{$platformType}/shade.png');">
+    <div id="body_id">
+        <div class="btn_wrap">
+            <img id="btn_1" src="{$activityFsImg}{$platformType}/discounts_order.png"/>
+            <img id="btn_2" src="{$activityFsImg}{$platformType}/know.png"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

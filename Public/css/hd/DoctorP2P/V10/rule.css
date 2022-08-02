@@ -1,0 +1,56 @@
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 220px;
+    height: 2px;
+}
+
+.content{
+    position: absolute;
+    top: 140px;
+    left: 80px;
+    width: 1120px;
+    font-size: 28px;
+    height:540px;
+}
+.content-detail{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 1040px;
+    height: 480px;
+    overflow: auto;
+    font-size: 24px;
+}
+
+#btn-register {
+    position: absolute;
+    width: 120px;
+    height: 35px;
+    line-height: 35px;
+    top: 160px;
+    left: 980px;
+}
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+ul li{ list-style: none;
+    margin-top: 15px;
+}

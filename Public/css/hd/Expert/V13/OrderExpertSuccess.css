@@ -1,0 +1,87 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+#success-container{
+    position: relative;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 24px;
+    width: 1008px;
+    height: 530px;
+}
+#success-container p.title{
+    position: absolute;
+    top: 51px;
+    left: 580px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fcff00;
+}
+#success-container p.warm-prompt{
+    position: absolute;
+    top: 94px;
+    width: 1280px;
+    text-align: center;
+}
+#success-container div.doctor-introduce{
+    position: absolute;
+    top: 141px;
+    left: 136px;
+    width: 1008px;
+    height: 530px;
+    background-image: url(../../../../img/hd/Expert/V13/success_order_bg.png);
+}
+div.doctor-introduce ul{
+    position: absolute;
+    top: 40px;
+    left: 53px;
+    line-height: 40px;
+    width: 770px;
+}
+div.doctor-introduce ul li{
+    font-weight: bold;
+}
+div.doctor-introduce ul li span{
+    font-weight: normal;
+}
+div.doctor-introduce ul li.doctor-title{}
+div.doctor-introduce ul li.doctor-hospital{}
+div.doctor-introduce ul li.doctor-department{}
+div.doctor-introduce ul li.order-number{}
+div.doctor-introduce ul li.order-status{}
+div.doctor-introduce ul li.doctor-number{}
+div.doctor-introduce ul li.doctor-time{}
+div.doctor-introduce ul li.order-time{}
+div.doctor-introduce ul li.order-cost{}
+div.doctor-introduce ul li.user-name{}
+div.doctor-introduce ul li.user-contact{}
+div.doctor-introduce div.code-wrap{
+    position: absolute;
+    top: 65px;
+    left: 723px;
+    width: 188px;
+}
+div.code-wrap img#doctor-code{
+    width: 188px;
+    height: 188px;
+}
+div.code-wrap p.prompt-text{
+    color: #fcff00;
+    font-size: 20px;
+    margin-top: 14px;
+    margin-left: -50px;
+    width: 280px;
+    text-align: center;
+}
+div.code-wrap img#btn-sure{
+    margin-top: 88px;
+
+}

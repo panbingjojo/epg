@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>广西广电apk--订购结果显示</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Pay/V450004/payResult.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            carrierId: "{$carrierId}",          // 地区id
+            msgId: "{$msgId}",                  // 订单id，唯一值
+            mobile: "{$mobile}",                // 电话号码
+            deviceId: "{$deviceId}",            // stbId
+            productId: "{$productId}",          // 产品id
+            productName: "{$productName}",      // 产品名称
+            productDesc: "{$productDesc}",      // 产品描述
+            orderType: "{$orderType}",          // 订购类型
+            orderTime: "{$orderTime}"          // 订购时间
+        };
+
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/utils.js?t={$time}"></script>
+</head>
+<body>
+
+<img class="body-bg" src="__ROOT__/Public/img/Common/V8/bg.png"/>
+<div id="second-bg">
+    <div class="content">亲爱的VIP用户：为了让您更好的体验12349智慧养老服务平台，请输入<br/>
+        您的手机号码，我们将在34小时内与您取得联系以便完善您的个人信息，<br/>请您留意接听回访电话！
+    </div>
+    <div id="input-tips">
+        请输入手机号码：
+    </div>
+    <div id="input-bg">
+        <input id="input-text" maxlength="11" type="text"/>
+    </div>
+    <div id="btn-ok">
+        确&nbsp;&nbsp;&nbsp;&nbsp;定
+    </div>
+
+</div>
+
+
+<div id="btn-default"></div>
+
+<script type="text/javascript">
+    var buttons = [];
+
+    /**
+     * 返回事件
+     */
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+
+    function onInputFocus(btn, hasFocus) {
+        if (hasFocus) {
+            G("input-bg").style.backgroundImage = "url('__ROOT__/Public/img/Pay/V450004/input_f.png')";
+        } else {
+            G("input-bg").style.backgroundImage = "url('__ROOT__/Public/img/Pay/V450004/input.png')";
+        }
+    }
+
+    /**
+     * 焦点初始化
+     */
+    function initButtons() {
+        buttons.push(
+            {
+                id: 'btn-default',
+                name: "默认按键",
+                type: "img",
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                backgroundImage: '',
+                focusImage: '',
+                click: 'onBack()',
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange: '',
+            }
+        );
+        buttons.push(
+            {
+                id: 'input-text',
+                name: '',
+                type: 'input-test',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'btn-ok',
+                focusImage: '',
+                backgroundImage: '',
+                click: '',
+                focusChange: onInputFocus,
+                beforeMoveChange: '',
+                moveChange: "",
+            }
+        );
+        buttons.push(
+            {
+                id: 'btn-ok',
+                name: '',
+                type: 'div',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'input-text',
+                nextFocusDown: '',
+                focusImage: '__ROOT__/Public/img/UserInfo/V450004/edit_f.png',
+                backgroundImage: '__ROOT__/Public/img/UserInfo/V450004/edit.png',
+                click: postPhoneInfo,
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange: "",
+            }
+        );
+    }
+
+    window.onload = function () {
+        initButtons();
+        LMEPG.ButtonManager.init("btn-ok", buttons, '', true);
+    }
+
+    /**
+     * 提交电话号码
+     */
+    function postPhoneInfo(btn) {
+        var phoneTex = G("input-text");
+        var userTel = phoneTex.value;
+        if (!LMUtils.phoneVerify(userTel)) {
+            LMAndroid.JSCallAndroid.doShowToast("请输入有效的手机号码!");
+            return
+        }
+
+        var param = {
+            "userTel": userTel,
+            "orderId": RenderParam.tradeNo,
+            "productId": RenderParam.productId,
+            "productName": RenderParam.productName,
+            "productDesc": RenderParam.productDesc,
+            "orderType": RenderParam.orderType,
+            "orderTime": RenderParam.orderTime
+        };
+
+        LMEPG.ajax.postAPI("Pay450004/notify12349", param, function (data) {
+            var dataJson = data instanceof Object?data:JSON.parse(data);
+            if (dataJson.result == 0) {
+                LMAndroid.JSCallAndroid.doShowToast("提交电话信息成功！");
+
+            } else {
+                LMAndroid.JSCallAndroid.doShowToast("提交电话信息失败，请重试！");
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+/*根布局容器*/
+#container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+/*订购页背景图片*/
+#pay_bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+/*订购项容器布局*/
+#pay_container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+/*订购项1-包月*/
+#pay_item_0 {
+    position: absolute;
+    left: 60px;
+    top: 444px;
+    width: 207px;
+    height: 67px;
+}
+
+/*订购项2-单月*/
+#pay_item_1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+}
+
+/*底部文字*/
+#pay_marquee_message {
+    position: absolute;
+    left: 157px;
+    top: 681px;
+    font-size: 18px;
+    color: #515050;
+    visibility: hidden;
+}

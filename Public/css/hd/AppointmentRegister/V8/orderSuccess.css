@@ -1,0 +1,65 @@
+#container{
+    height: 100%;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.main{
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg4.png") no-repeat;
+    background-size: 1180px 626px;
+    width: 1180px;
+    height: 626px;
+    padding: 30px;
+    position: relative;
+}
+.title{
+    font-size: 34px; 
+    font-weight: bold;
+    line-height: 58px;
+    color: #FFFFFF;
+    text-align: center;
+}
+.line{
+    height: 2px;
+    width: 1120px;
+    background: #fff;
+    margin: 15px 0;
+}
+.content{
+    width: 1120px;
+    height: 290px;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg-grey.png") no-repeat;
+    background-size: 1120px 290px;
+    padding: 10px 30px;
+}
+.tips{
+    font-size: 24px;
+    
+    font-weight: 400;
+    line-height: 30px;
+    color: #5ACEF4;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.label{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 51px;
+    color: #FFFFFF;
+}
+.btn-base{
+    position: absolute;
+    width: 170px;
+    height: 60px;
+    left: 540px;
+    bottom: 123px;
+    text-align: center;
+    font-size:22px;
+    line-height: 60px;
+    
+    font-weight: 400;
+    color: #FFFFFF;
+    background: url("../../../../img/hd/AppointmentRegister/V8/no_choose.png") no-repeat;
+    background-size: 170px 60px;
+}

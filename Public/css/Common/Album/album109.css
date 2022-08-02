@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 80px;
+    top: 200px
+}
+
+#smallvod {
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+.hd-videoTv {
+    position: absolute;
+    top: 287px;
+    left: 356px;
+}
+
+.hd-more {
+}
+
+.hd-back {
+    top: 11px;
+    left: 1146px;
+}
+
+.hd-tab-content {
+    top: 125px;
+    left: 805px;
+    width: 417px;
+}
+
+.hd-tab-content img {
+    margin-top: -7px;
+}
+
+.hd-v-arrow {
+    left: 992px;
+}
+
+.hd-v-prev {
+    top: 60px;
+}
+
+.hd-v-next {
+    top: 480px;
+}
+.hd-history-album{
+    top: 522px;
+    left: 422px;
+}
+.hd-history-album img{
+    margin-right: -25px;
+}
+.hd-a-arrow {
+}
+.hd-a-prev{
+}
+.hd-a-next{
+}
+
+/*==============SD==================*/
+.sd-body{
+    width: 644px;
+    height: 530px;
+}
+.sd-more {
+}
+
+.sd-back {
+    top:9px;
+    left: 572px;
+    width: 61px;
+    height: 51px;
+}
+
+.sd-tab-content {
+    top: 96px;
+    left: 327px;
+    width: 297px;
+}
+
+.sd-tab-content img {
+    width: 297px;
+    height: 54px;
+    margin-top: -5px;
+}
+
+.sd-v-arrow {
+    left: 461px;
+}
+
+.sd-v-prev {
+    top: 50px;
+}
+
+.sd-v-next {
+    top: 348px;
+}
+.sd-history-album{
+    top: 390px;
+    left: 61px;
+}
+.sd-history-album img{
+    width: 160px;
+    height: 120px;
+    margin-right: -20px;
+}
+.sd-a-arrow {
+}
+.sd-a-prev{
+}
+.sd-a-next{
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>专辑232-疫情</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" href="__ROOT__/Public/css/Common/Album/albumEpidemic.css?t={$time}"/>
+
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <if condition="$carrierId eq '520092'"><!--贵州广电引用-->
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            // 初始化四个焦点按钮
+            var buttons = [];
+            var imagePath = "__ROOT__/Public/img/hd/Album/albumEpidemic/";
+            for (var index = 1; index <= 4; index ++){
+                buttons.push({
+                    id: "btn_index_" + index,
+                    name: '焦点_' + index,
+                    type: 'img',
+                    nextFocusLeft: "btn_index_" + (index -1),
+                    nextFocusRight: "btn_index_"+(index + 1),
+                    backgroundImage: imagePath + "btn_index_" + index + ".png",
+                    focusImage: imagePath + "btn_index_focus_" + index + ".png",
+                    click: onClickListener,
+                })
+            }
+            var carrierId = '{$carrierId}';
+            if (carrierId == '450094') {
+                if (typeof iPanel == "object") {  //广西广电需要赋值返回键、退出键有页面来控制
+                    iPanel.setGlobalVar("SEND_RETURN_KEY_TO_PAGE", 1);
+                    iPanel.setGlobalVar("SEND_EXIT_KEY_TO_PAGE", 1);
+                }
+                //  添加点击返回事件
+                LMEPG.Log.info('--->album History addKeyEvent: 广西广电新增返回事件');
+                LMEPG.KeyEventManager.addKeyEvent(
+                    {
+                        KEY_399: function () { //广西广电返回键
+                            LMEPG.Log.info('--->album History KEY_399: 广西广电返回键');
+                            onBack();
+                        },
+                        KEY_514: function () {  //广西广电退出键
+                            LMEPG.Log.info('--->album History KEY_514: 广西广电退出键');
+                            onBack();
+                        }
+                    }
+                )
+            }
+            var focusIndex = '{$focus_index}';
+            if (focusIndex){
+                LMEPG.ButtonManager.init(focusIndex, buttons, '', true);
+            }else {
+                LMEPG.ButtonManager.init("btn_index_1", buttons, '', true);
+            }
+        };
+
+        /**
+         * 释放iframe资源
+         */
+        function onClickListener(btn) {
+            switch (btn.id) {
+                case "btn_index_1":
+                    jumpAlbum(btn.id, "album234");
+                    break;
+                case "btn_index_2":
+                    jumpAlbum(btn.id, "album233");
+                    break;
+                case "btn_index_3":
+                    jumpAlbum(btn.id, "album235");
+                    break;
+                case "btn_index_4": // 弹窗显示
+                    G("psychological_counseling").style.display = "block";
+                    break;
+            }
+        }
+
+        function jumpAlbum(btnId,albumName){
+            var objCurrent = LMEPG.Intent.createIntent('album');
+            objCurrent.setParam('albumName', "albumEpidemic");
+            objCurrent.setParam('focus_index', btnId);
+            var objAlbum = LMEPG.Intent.createIntent('album');
+            objAlbum.setParam('albumName', albumName);
+            LMEPG.Intent.jump(objAlbum, objCurrent);
+        }
+
+        function onBack() {
+            var psychologicalCounseling = G("psychological_counseling");
+            if (psychologicalCounseling.style.display == "block"){
+                psychologicalCounseling.style.display = "none";
+            }else {
+                LMEPG.Intent.back();
+            }
+        }
+    </script>
+</head>
+<body id="body" class="{$platformType}-body">
+    <img src="__ROOT__/Public/img/hd/Album/albumEpidemic/bg.png" alt="" class="{$platformType}-bg">
+    <div id="debug"></div>
+    <div id="{$platformType}_btn_container">
+        <img src="__ROOT__/Public/img/hd/Album/albumEpidemic/btn_index_1.png" alt="" id="btn_index_1">
+        <img src="__ROOT__/Public/img/hd/Album/albumEpidemic/btn_index_2.png" alt="" id="btn_index_2">
+        <img src="__ROOT__/Public/img/hd/Album/albumEpidemic/btn_index_3.png" alt="" id="btn_index_3">
+        <img src="__ROOT__/Public/img/hd/Album/albumEpidemic/btn_index_4.png" alt="" id="btn_index_4">
+    </div>
+    <div id="psychological_counseling" class="{$platformType}_psychological_counseling hidden">
+        <img class="{$platformType}_QR_code" src="__ROOT__/Public/img/{$platformType}/Album/albumEpidemic/img_QR_code.png" alt="">
+    </div>
+</body>
+</html>

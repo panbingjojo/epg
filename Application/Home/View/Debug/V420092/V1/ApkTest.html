@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>海南电信EPG-启动APK</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            userToken: "{$userToken}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+            // appName: "{$appName}",
+            appName: "com.longmaster.iptv.healthplugin.video.hubeidx",
+            appUrl: "{$appUrl}",
+        }
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+
+    <style type="text/css">
+        #checkApk{
+            position: absolute;
+            width: 220px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 19px;
+            background: #FFFFFF;
+            left: 20px;
+            top: 50px;
+        }
+        #startApk{
+            position: absolute;
+            width:150px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 19px;
+            background: #FFFFFF;
+            left: 300px;
+            top: 50px;
+        }
+        #startAppMarket{
+            position: absolute;
+            width:180px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 19px;
+            background: #FFFFFF;
+            left: 500px;
+            top: 50px;
+        }
+        #startAppMarketDetail{
+            position: absolute;
+            width:260px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 19px;
+            background: #FFFFFF;
+            left: 750px;
+            top: 50px;
+        }
+        #onerror {
+            position: absolute;
+            font-size: 19px;
+            left: 20px;
+            top: 150px;
+            width:900px;
+            height: 800px;
+            word-wrap: break-word
+        }
+    </style>
+</head>
+<body style="background-image: url('../../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');
+    background-Repeat: no-repeat; width: 1280px;height: 720px;position: relative;">
+<div id="debug" style=" display: block;color:white;z-index:999;"></div>
+<div id="checkApk">检测是否安装APK</div>
+<div id="startApk">启动APK</div>
+<div id="startAppMarket">启动应用商城</div>
+<div id="startAppMarketDetail">启动应用商城插件详情</div>
+<div id="onerror"></div>
+<!--提示弹框-->
+<div id="default_tip"></div>
+</body>
+
+<script type="text/javascript">
+    buttons = [
+        {
+            id: 'checkApk',
+            name: '检测是否安装APK',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'startApk',
+            focusChange:onFocusBtn,
+            click: onClick,
+        }, {
+            id: 'startApk',
+            name: '启动APK',
+            type: 'img',
+            nextFocusLeft: 'checkApk',
+            nextFocusRight: 'startAppMarket',
+            focusChange:onFocusBtn,
+            click: onClick,
+        },{
+            id: 'startAppMarket',
+            name: '启动应用商城',
+            type: 'img',
+            nextFocusLeft: 'startApk',
+            nextFocusRight: 'startAppMarketDetail',
+            focusChange:onFocusBtn,
+            click: onClick,
+        },{
+            id: 'startAppMarketDetail',
+            name: '启动应用商城插件详情',
+            type: 'img',
+            nextFocusLeft: 'startAppMarket',
+            nextFocusRight: '',
+            focusChange:onFocusBtn,
+            click: onClick,
+        }];
+
+    function onFocusBtn(btn, hasFocus) {
+        if (hasFocus == true) {
+            G(btn.id).style.background = 'blue';
+            G(btn.id).style.color = '#ffffff';
+        } else {
+            G(btn.id).style.background = '#ffffff';
+            G(btn.id).style.color = 'black';
+        }
+    }
+
+    function onClick(btn) {
+        switch (btn.id) {
+            case "checkApk":
+                checkIsInstallApp();
+                break;
+            case "startApk":
+            case "intentStartApk":
+                startApp(RenderParam.appName);
+                break;
+            case "startAppMarket":
+                startAppMarket();
+                break;
+            case "startAppMarketDetail":
+                startAppMarketDetail();
+                break;
+            default:
+                LMEPG.UI.showToast("不支持该操作");
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    var debug = document.getElementById("debug");
+
+    function checkIsInstallApp() {
+        var install = LMEPG.ApkPlugin.isAppInstall(RenderParam.appName);
+        if (install && install != "undefined") {
+            LMEPG.UI.showToast("此盒子已安装APK");
+        } else {
+            LMEPG.UI.showToast("此盒子未安装APK");
+        }
+    }
+
+    function startApp(appName) {
+        var intentMessage = {
+            "intentType":0,
+            "appName":"hb.tv.appstore",
+            "className":"hb.tv.appstore.Platform",
+            "extra":[
+                {"name":"IPTVPlatformFlag", "value":"1"},
+                {"name":"UserToken", "value":RenderParam.userToken},
+                {"name":"UserID", "value":RenderParam.accountId},
+                {"name":"AreaID", "value":1001},
+                {"name":"GroupID", "value":0},
+                {"name":"CPID", "value":1},
+                {
+                    "name":"AppName",
+                    "value":{
+                        "openStart":"1",
+                        "AppID":"tvg400002",
+                        "sjpkg":"com.holyblade.platform2",
+                        "PageType":"YY",
+                        "isStart":"2",
+                        "params":{
+                            "AppID":"tvg112057",
+                            "sjpkg":appName,
+                            "PageType":"YX",
+                            "isStart":"1",
+                            "params":""
+                        }
+                    }
+                }
+            ]
+        };
+
+        G("onerror").innerHTML = JSON.stringify(intentMessage);
+        try {
+            STBAppManager.startAppByIntent(JSON.stringify(intentMessage));
+        } catch (e) {
+            G("onerror").innerHTML = e.toString();
+        }
+
+    }
+
+    function startAppMarket() {
+        // 如果apk没有安装，则打开应用市场首页
+        var appName = "com.amt.appstore.hndx"; // 商城包名
+        var extraString = "jumpId=0";
+        var intentMessage = '{' +
+            '"appName":"' + appName + '",' +
+            '"action":"' + "com.amt.appstore.action.LAUNCHER" + '",' +
+            '"category":"' + "android.intent.category.DEFAULT" + '",' +
+            '"flags":"' + "Intent.FLAG_ACTIVITY_NEW_TASK" + '",' +
+            '"extra":[{"name":"extraKey","value":"' + extraString + '"}]}';
+
+        console.log(intentMessage);
+        G("onerror").innerHTML = intentMessage;
+        STBAppManager.startAppByIntent(intentMessage);
+    }
+
+    function startAppMarketDetail() {
+        // 如果apk没有安装，则打开应用市场的详情页
+        var appName = "com.amt.appstore.hndx"; // 商城包名
+        var extraString = "jumpId=8&appPkg=" + RenderParam.appName + "&appId=" + "389155";
+        var intentMessage = '{' +
+            '"appName":"' + appName + '",' +
+            '"action":"' + "com.amt.appstore.action.LAUNCHER" + '",' +
+            '"category":"' + "android.intent.category.DEFAULT" + '",' +
+            '"flags":"' + "Intent.FLAG_ACTIVITY_NEW_TASK" + '",' +
+            '"extra":[{"name":"extraKey","value":"' + extraString + '"}]}';
+
+        console.log(intentMessage);
+        G("onerror").innerHTML = intentMessage;
+        STBAppManager.startAppByIntent(intentMessage);
+    }
+
+    //页面加载完成
+    window.onload = function () {
+        // 初始焦点在第一个
+        LMEPG.ButtonManager.init('checkApk', buttons, '', true);
+
+        if (typeof STBAppManager == "undefined") {
+            debug.innerHTML = "STBAppManager undefined";
+        } else {
+            debug.innerHTML = "STBAppManager start test";
+        }
+    };
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+</script>
+</html>

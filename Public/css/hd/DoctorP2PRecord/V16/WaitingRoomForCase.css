@@ -1,0 +1,103 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/Common/bg.png);
+}
+
+#room-picture {
+    position: absolute;
+    top: 58px;
+    left: 53px;
+    width: 288px;
+    height: 162px;
+}
+
+#waiting-info {
+    position: absolute;
+    top: 303px;
+    left: 53px;
+    color: #b2deff;
+    font-size: 24px;
+    line-height: 45px;
+}
+
+#doctor-info {
+    position: absolute;
+    top: 58px;
+    left: 399px;
+    width: 800px;
+    height: 456px;
+    padding: 40px;
+    background-image: url(../../../../img/hd/Common/V13/intro_bg.png);
+    background-repeat: no-repeat;
+}
+
+#doctor-picture {
+    width: 174px;
+    height: 174px;
+    float: left;
+}
+
+#doctor-info ul {
+    width: 600px;
+    font-size: 24px;
+    float: left;
+}
+#doctor-info ul li{
+    padding-left: 20px;
+    line-height: 40px;
+}
+#doctor-info span {
+    font-weight: bold;
+}
+
+#doctor-info #text-introduce {
+    top: 250px;
+    position: absolute;
+    clear: left;
+    font-size: 24px;
+    width: 788px;
+    height: 260px;
+    overflow: hidden;
+}
+
+#waiting-picture {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1280px;
+    height: 92px;
+    line-height: 92px;
+    text-align: center;
+    font-size: 24px;
+    text-indent: 100px;
+    background-image: url(../../../../img/hd/Common/V13/wait_bg.png);
+}
+#scroll-inner{
+    position: absolute;
+}
+/*滚动条*/
+#scroll-wrap {
+    width: 6px;
+    height: 300px;
+    position: absolute;
+    top: 288px;
+    left: 1220px;
+    border-radius: 6px;
+    background-color: #89adf4;
+}
+
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 10px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #32cfe0;
+}

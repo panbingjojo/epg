@@ -1,0 +1,78 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0;
+    margin: 0;
+    outline: none;
+    -webkit-shape-outside: none;
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+body > * {
+    position: absolute;
+}
+#back {
+    top: 10px;
+    right: 10px;
+    width: 63px;
+    height: 32px;
+}
+#tabConent {
+    top: 80px;
+    left: 43px;
+    width: 481px;
+}
+
+#tabConent img {
+    height: 226px;
+    width: 96px;
+    margin-left: -25px;
+}
+
+#page-prev {
+    top:166px;
+    left: 6px;
+    width: 23px;
+    height: 40px;
+}
+
+#page-next {
+    top:166px;
+    left: 326px;
+    width: 23px;
+    height: 40px;
+}
+
+#album-prev {
+    top: 444px;
+    left: 63px;
+    width: 21px;
+    height: 33px;
+}
+
+#album-next {
+    top: 444px;
+    left: 595px;
+    width: 21px;
+    height: 33px;
+}
+
+#history-ablum {
+    top: 402px;
+    left: 84px;
+}
+
+#history-ablum img {
+    margin-left: 3px;
+    width: 163px;
+    height: 127px;
+}
+
+
+

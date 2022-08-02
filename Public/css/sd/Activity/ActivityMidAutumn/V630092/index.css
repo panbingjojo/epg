@@ -1,0 +1,152 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+#content {
+    position: absolute;
+    width: 460px;
+    height: 450px;
+    margin: 0 auto;
+    left: 20px;
+}
+
+#balloon-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.balloon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    text-align: center;
+    width: 115px;
+    height: 89px;
+}
+
+#hand {
+    position: absolute;
+    width: 118px;
+    height: 175px;
+    top: 353px;
+}
+
+#warm {
+    color: red;
+    width: 400px;
+    height: 20px;
+    position: absolute;
+    top: 500px;
+    left: 130px;
+    font-size: 16px;
+}
+
+#priceimg {
+    width: 44px;
+    height: 43px;
+}
+
+#warm {
+    color: red;
+    width: 600px;
+    height: 30px;
+    position: absolute;
+    top: 680px;
+    left: 350px;
+    font-size: 24px
+}
+
+#score {
+    position: absolute;
+    top: 22px;
+    left: 88px;
+    font-size: 26px;
+    line-height: 26px;
+    color: #ffffff;
+    font-weight: bold;
+    width: 55px;
+    text-align: center;
+}
+
+#timer {
+    position: absolute;
+    top: 64px;
+    left: 110px;
+    font-size: 26px;
+    line-height: 26px;
+    color: #ffffff;
+    font-weight: bold;
+    width: 50px;
+    text-align: center;
+}
+
+.showTost {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+    z-index: 998;
+}
+
+#start_btn {
+    position: absolute;
+    top: 290px;
+    left: 186px;
+    width: 134px;
+    height: 55px;
+    z-index: 999;
+}
+
+#back_btn {
+    position: absolute;
+    top: 290px;
+    left: 328px;
+    width: 134px;
+    height: 55px;
+    z-index: 999;
+}
+
+#confirm_btn {
+    position: absolute;
+    top: 290px;
+    left: 263px;
+    width: 134px;
+    height: 55px;
+    z-index: 999;
+}
+
+.score_tip {
+    position: absolute;
+    width: 75px;
+    top: 169px;
+    left: 310px;
+    line-height: 32px;
+    z-index: 999;
+    font-size: 32px;
+    color: #3f2200;
+    text-align: center;
+}
+
+#add {
+    position: absolute;
+    top: 300px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    display: none;
+}

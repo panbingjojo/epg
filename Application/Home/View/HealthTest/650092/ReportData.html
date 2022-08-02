@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>新疆电信-数据上报天翼云</title>
+
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/HealthTest/V13/ReportData.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-1.7.2.min.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+    <script type="text/javascript">
+        // 后端渲染数据
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+                memberId: "{$memberId}",
+                memberImgId: "{$memberImgId}",
+                memberName: "{$memberName}",
+                measureId: "{$measureId}",
+                measureType: "{$measureType}",
+                measureData: {$measureData | json_encode
+            },//测量数据
+            };
+        // 应用入口
+        window.onload = function () {
+            // 上报数据模块 -- 初始化
+            ReportDataController.init();
+            // 设置皮肤（产品背景图）
+            LMEPG.UI.setBackGround();
+        };
+        // 应用返回
+        window.onBack = function () {
+            ReportDataController.onBack();
+        };
+    </script>
+
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V13/ReportData.js?t={$time}"></script>
+
+</head>
+<body>
+<!--标题-->
+<div class="title">确认是否将以下数据上传至天翼云盘？</div>
+
+<!--测量数据显示-->
+<switch name="measureType">
+    <case value="bloodPressure">
+        <table class="blood_pressure" cellspacing="0px">
+            <tr class="table_head">
+                <td>检测项目</td>
+                <td>检测时间</td>
+                <td>收缩压</td>
+                <td>舒张压</td>
+                <td>心率</td>
+                <td>检测结果</td>
+            </tr>
+            <tr class="table_content blood_pressure_content">
+                <td>血压记录</td>
+                <td>{$measureData.date}</td>
+                <td>{$measureData.diastolicPressure}</td>
+                <td>{$measureData.systolicPressure}</td>
+                <td>{$measureData.heartRate}</td>
+                <td>{$measureData.level}</td>
+            </tr>
+        </table>
+    </case>
+    <case value="weight">
+        <table class="weight" cellspacing="0px">
+            <tr class="table_head">
+                <td>检测项目</td>
+                <td>检测时间</td>
+                <td>体重</td>
+                <td>体脂率</td>
+            </tr>
+            <tr id="measure_weight" class="table_content">
+                <td>体脂记录</td>
+                <td>{$measureData.date}</td>
+                <td>{$measureData.fat}</td>
+                <td>体脂率详情>></td>
+            </tr>
+        </table>
+    </case>
+    <case value="bloodSugar">
+        <table class="blood_sugar" cellspacing="0px">
+            <tr class="table_head">
+                <td>检测项目</td>
+                <td>检测时间</td>
+                <td>检测状态</td>
+                <td>检测数值</td>
+                <td>检测结果</td>
+            </tr>
+            <tr class="table_content blood_sugar_content">
+                <td>血糖记录</td>
+                <td>{$measureData.date}</td>
+                <td>{$measureData.status}</td>
+                <td>{$measureData.data}</td>
+                <td>{$measureData.level}</td>
+            </tr>
+        </table>
+    </case>
+    <default/>
+</switch>
+
+<!--上报数据按钮-->
+<img src="__ROOT__/Public/img/hd/HealthTest/V13/btn_report_data_f.png" id="btn_report_data">
+
+<!--免责申明-->
+<div class="disclaimer">
+    注：天翼云盘是中国电信推出的云存储服务,为用户提供跨平台的文件存储、备份、同步及分享服务,是国内领先的免费网盘。
+    <br/>
+    将健康数据上传至天翼云盘，可随时随地在天翼云盘APP上查看健康数据哦～
+    <br/><br/>
+    免责声明：由于使用本功能涉及到互联网服务，可能会受到各个环节不稳定因素的影响，存在因网络、技术、
+    通信线路、信息安全管理措施等不可抗力事件或原因造成的服务中断、受阻等不能满足用户要求的
+    风险，本功能对服务的及时性、安全性、准确性不作担保，对因此导致用户不能发送和接受阅读消
+    息、传递错误、未予储存、数据损坏或损失以及其他问题不承担任何责任。用户须理解并自行承担
+    以上风险，用户因此不能使用本软件及相关服务的，本功能不承担任何责任。
+</div>
+
+</body>
+</html>

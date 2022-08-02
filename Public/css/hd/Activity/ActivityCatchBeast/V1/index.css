@@ -1,0 +1,348 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+body > *,
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*活动首页*/
+#btn_activity_rule{
+    top:330px;
+    left: 10px;
+}
+
+#btn_back{
+    top:240px;
+    left: 1140px;
+}
+
+#btn_winner_list{
+    top:210px;
+    left: 120px;
+}
+
+#btn_start{
+    top:250px;
+    left: 360px;
+}
+
+#icon_firecracker{
+    top: 300px;
+    left: 979px;
+}
+/*剩余次数*/
+#left_times {
+    top: 412px;
+    left: 485px;
+    width: 40px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+}
+/*倒计时*/
+#count_down{
+    top: 243px;
+    left: 762px;
+    width: 50px;
+    height: 50px;
+    color: #cc3d55;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#btn_close_rule {
+    display:none;
+}
+
+/*活动规则*/
+#btn_close_rule {
+    top: 22px;
+    left: 1086px;
+}
+
+/*爆竹图素*/
+.firecracker{
+    visibility: hidden;
+    z-index: 10;
+}
+#icon_firecracker_1{
+    top: 300px;
+    left: 220px;
+}
+#icon_firecracker_2{
+    top: 300px;
+    left: 590px;
+}
+#icon_firecracker_3{
+    top: 300px;
+    left: 980px;
+}
+#icon_firecracker_4{
+    top: 390px;
+    left: 280px;
+}
+#icon_firecracker_5{
+    top: 390px;
+    left: 580px;
+}
+#icon_firecracker_6{
+    top: 390px;
+    left: 920px;
+}
+
+/*地洞*/
+.btn_burrow{
+    /*width: 140px;*/
+    /*height: 140px;*/
+    /*background-color: #00ffb5;*/
+}
+#btn_burrow_1{
+    top: 360px;
+    left: 180px;
+}
+#btn_burrow_2{
+    top: 360px;
+    left: 560px;
+}
+#btn_burrow_3{
+    top: 360px;
+    left: 950px;
+}
+#btn_burrow_4{
+    top: 450px;
+    left: 240px;
+}
+#btn_burrow_5{
+    top: 450px;
+    left: 560px;
+}
+#btn_burrow_6{
+    top: 450px;
+    left: 890px;
+}
+
+
+
+
+/*中奖名单*/
+#total_list {
+    top: 210px;
+    left: 180px;
+}
+
+#all_marquee {
+    height: 120px;
+}
+
+#my_marquee {
+    height: 30px;
+}
+
+table.marquee_table {
+    width: 920px;
+}
+
+table#all_table tr {
+    height: 40px;
+}
+
+table.marquee_table td {
+    width: 240px;
+    margin-right: 100px;
+    text-align: center;
+    color: #804000;
+    font-size: 24px;
+}
+
+#my_list {
+    top: 470px;
+    left: 180px;
+    font-size: 24px;
+    color: #804000;
+    text-align: center;
+}
+
+.winner_account{
+    padding-left: 0px;
+}
+.winner_time{
+    padding-left: 100px;
+}
+.winner_prize{
+    padding-left: 100px;
+}
+
+
+#reset_tel {
+    color: #804000;
+    top: 563px;
+    left: 370px;
+    width: 360px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 26px;
+    text-align: left;
+    text-align: center;
+}
+
+#btn_list_submit {
+    top: 530px;
+    left: 740px;
+}
+
+#btn_list_cancel {
+    top: 530px;
+    left: 920px;
+}
+
+/*游戏结束*/
+#btn_game_over_sure {
+    top: 400px;
+    left: 550px;
+}
+
+/*游戏页*/
+#game_countdown {
+    top: 243px;
+    left: 762px;
+    width: 50px;
+    height: 50px;
+    color: #cc3d55;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#game_times_count{
+    top: 412px;
+    left: 485px;
+    width: 40px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/*游戏失败*/
+#btn_game_fail_sure {
+    top: 400px;
+    left: 550px;
+}
+
+/*游戏成功*/
+#btn_lottery_sure {
+    top: 400px;
+    left: 520px;
+}
+
+#btn_lottery_exit {
+    visibility: hidden;
+    top: 441px;
+    left: 666px;
+
+}
+
+/*抽奖成功*/
+#prize_image {
+    top: 190px;
+    left: 630px;
+}
+
+#lottery_tel {
+    top: 566px;
+    left: 370px;
+    font-size: 25px;
+    color: #804000;
+    width: 360px;
+    height: 36px;
+    line-height: 30px;
+    text-align: center;
+}
+
+#btn_lottery_submit {
+    top: 530px;
+    left: 740px;
+}
+
+#btn_lottery_cancel {
+    top: 530px;
+    left: 920px;
+}
+
+/*抽奖失败*/
+#btn_lottery_fail {
+    top: 400px;
+    left: 550px;
+}
+
+/*订购VIP*/
+#btn_order_submit {
+    top: 400px;
+    left: 440px;
+}
+
+#btn_order_cancel {
+    top: 400px;
+    left: 660px;
+}
+
+/*倒计时弹窗*/
+#count {
+    top: 290px;
+    left: 703px;
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: bold;
+}
+*img{
+    border: none;
+    outline: none;
+}
+
+#first_page_winner{
+    top: 678px;
+    left: 378px;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    width: 500px;
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+#move_cursor{
+    top: 678px;
+    left: 378px;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    width: 500px;
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    /*border: 1px red solid;*/
+}

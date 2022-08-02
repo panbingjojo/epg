@@ -1,0 +1,99 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-detail {
+    position: absolute;
+    top: 86px;
+    left: 486px;
+    outline: none !important;
+    width: 128px;
+    height: 46px;
+
+}
+
+#btn-start {
+    position: absolute;
+    top: 414px;
+    left: 262px;
+    outline: none !important;
+    width: 128px;
+    height: 46px;
+}
+
+#btn-price {
+    position: absolute;
+    top: 142px;
+    left: 486px;
+    outline: none !important;
+    width: 128px;
+    height: 46px;
+}
+
+#back {
+    position: absolute;
+    top: 30px;
+    left: 486px;
+    outline: none !important;
+    width: 128px;
+    height: 46px;
+}
+
+#btn-book1{
+    position: absolute;
+    top: 392px;
+    left: 15px;
+    outline: none !important;
+    width: 110px;
+    height: 110px;
+}
+#btn-book2{
+    position: absolute;
+    top: 392px;
+    left: 142px;
+    outline: none !important;
+    width: 110px;
+    height: 110px;
+}
+#btn-book3{
+    position: absolute;
+    top: 392px;
+    left: 408px;
+    outline: none !important;
+    width: 110px;
+    height: 110px;
+}
+#btn-book4{
+    position: absolute;
+    top: 392px;
+    left: 534px;
+    outline: none !important;
+    width: 110px;
+    height: 110px;
+}
+#show-box{
+    position: absolute;
+    top: 415px;
+    left: 365px;
+    outline: none !important;
+    width: 27px;
+    height: 28px;
+    z-index: 999;
+    background: url("../../../../../img/sd/Activity/ActivityAnswer/union/show_box.png");
+    line-height: 28px;
+    text-align: center;
+    font-size: 26px;
+    color: #662400;
+}

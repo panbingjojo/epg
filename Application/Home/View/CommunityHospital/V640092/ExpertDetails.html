@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'/>
+    <title>epg-page</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/CommunityHospital/650092/ExpertIntroduce.css?t={$time}">
+    <script>
+        var RenderParam = {
+            channel:"{$channel}"
+        }
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script src="__ROOT__/Public/js/CommunityHospital/V630092/ExpertDetails.js?t={$time}"></script>
+</head>
+<body>
+<p class="title">专家介绍</p>
+<div id="container">
+    <img class="expert-pic" src="__ROOT__/Public/img/hd/CommunityHospital/doctor-pic.png" alt="">
+    <ul class="expert-wrapper" id="expert">
+        <li class="expert-name">张三</li>
+        <li class="dep-and-pos">
+            <span class="expert-department">急诊科</span>
+            <span> | </span>
+            <span class="expert-position">主治医生</span>
+        </li>
+        <li class="expert-skillful"><span class="skillful">擅长：</span> 擅长擅长擅长擅长擅长擅长擅长擅长</li>
+        <li class="expert-intro"><span class="intro">简介：</span>简介简介简介简介简介简介简介</li>
+    </ul>
+</div>
+<div class="arrow-wrapper">
+    <img id="prev-arrow" src="__ROOT__/Public/img/hd/CommunityHospital/prev.png" alt="">
+    <img id="next-arrow" src="__ROOT__/Public/img/hd/CommunityHospital/next.png" alt="">
+</div>
+
+<img id="appoint-btn" style="display:none;position: absolute;top: 510px;left: 195px;z-index: 996" src="__ROOT__/Public/img/hd/CommunityHospital/FifHospital/yuyue.png"/>
+<img id="layer-code" style="display:none;position: absolute;top: 0px;left: 0px;z-index: 996" src="__ROOT__/Public/img/hd/CommunityHospital/FifHospital/layer_code.png"/>
+<script>
+    CommunityHosp.init();
+</script>
+</body>
+</html>
+  
+  

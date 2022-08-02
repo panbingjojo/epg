@@ -1,0 +1,58 @@
+body {
+    width: 1280px;
+    height: 720px;
+    /*background-repeat: no-repeat;*/
+}
+body > *,
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: hidden;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+#bg_1{
+    display: block;
+}
+#bg_2{
+    display: none;
+}
+
+#health_39{
+    position: absolute;
+    top: 246px;
+    left: 0px;
+}
+
+#leisure_fishing{
+    position: absolute;
+    left: 319px;
+    top: 265px;
+}
+
+#qq_music{
+    position: absolute;
+    left: 574px;
+    top: 271px;
+}
+
+#home_health{
+    position: absolute;
+    left: 882px;
+    top: 271px;
+}

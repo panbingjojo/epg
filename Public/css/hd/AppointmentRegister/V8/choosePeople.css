@@ -1,0 +1,144 @@
+#container{
+    height: 100%;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.main{
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg4.png") no-repeat;
+    background-size: 1180px 626px;
+    width: 1180px;
+    height: 626px;
+    padding: 30px;
+    position: relative;
+}
+.title{
+    font-size: 36px;
+    
+    font-weight: 400;
+    line-height: 61px;
+    color: #FFFFFF;
+}
+.line{
+    height: 2px;
+    background: #fff;
+    width: 1120px;
+    margin: 30px 0;
+}
+.people-item{
+    width: 1120px;
+}
+
+.people-item .info{
+    width: 680px;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg-item.png") no-repeat;
+    background-size: 722px 65px;
+    float: left;
+    font-size: 25px;
+    
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 15px 20px;
+}
+
+.people-item .info2{
+    width: 870px;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg-item.png") no-repeat;
+    background-size: 890px 65px;
+    float: left;
+    font-size: 25px;
+    
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 15px 20px;
+}
+
+.people-item .name{
+    display: inline-block;
+    width: 257px;
+    margin-left: 15px;
+
+}
+.people-item .name2{
+    display: inline-block;
+    width: 305px;
+    margin-left: 15px;
+
+}
+
+.people-item .gender{
+    display: inline-block;
+    width: 30px;
+}
+.people-item .card-num{
+    display: inline-block;
+    width: 300px;
+    margin-left: 60px;
+}
+
+.people-item .card-num2{
+    display: inline-block;
+    width: 300px;
+    margin-left: 185px;
+}
+
+.func-btn{
+    float: left;
+    width: 194px;
+    height:62px;
+    background: #0a4076;
+    font-size: 26px;
+    
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 58px;
+    text-align: center;
+    background: url("../../../../img/hd/AppointmentRegister/V8/no_choose.png") no-repeat;
+    background-size: 194px 62px;
+}
+.add{
+    position: absolute;
+    bottom: 126px;
+    left: 460px;
+    width: 260px;
+    height: 65px;
+    font-size: 26px;
+    
+    font-weight: 400;
+    line-height: 60px;
+    text-align: center;
+    color: #FFFFFF;
+    background: url("../../../../img/hd/AppointmentRegister/V8/no_choose.png") no-repeat;
+    background-size: 260px 65px;
+}
+
+.add2{
+    position: absolute;
+    left: 448px;
+    top:270px
+
+}
+.add2 .add-btn{
+    width: 284px;
+    height: 84px;
+    background: url("../../../../img/hd/AppointmentRegister/V8/no_choose.png") no-repeat;
+    background-size: 284px 84px;
+    text-align: center;
+    font-size: 26px;
+    
+    font-weight: bold;
+    line-height: 80px;
+    color: #FFFFFF;
+}
+.add2 .add-tips{
+    font-size: 24px;
+    
+    font-weight: 400;
+    line-height: 38px;
+    color: #5ACEF4;
+}
+#list{
+    height: 320px;
+    overflow: auto;
+}

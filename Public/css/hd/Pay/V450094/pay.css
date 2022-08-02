@@ -1,0 +1,59 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+.tab1 {
+    width: 165px;
+    height: 55px;
+    position: absolute;
+    top:54px;
+    left: 1080px
+}
+
+.tab2 {
+    width: 286px;
+    height: 346px;
+    position: absolute;
+    top: 282px;
+    left: 341px
+}
+
+.tab3 {
+    width: 286px;
+    height: 346px;
+    position: absolute;
+    top: 282px;
+    left: 680px
+}
+.home_btn{
+    width: 145px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 74px;
+}
+.main_btn{
+    width: 150px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 219px;
+}
+.back_btn{
+    width: 150px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 367px;
+}

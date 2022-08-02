@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>问诊记录-首页-V3</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+<!--    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/V3/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/DoctorInquiry/inquiry.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/DoctorP2PRecord/V3/home.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 账号Id
+            isVip: {$isVip},                    // 用户是否是vip(1-vip 0-非vip)
+            focusIndex: "{$focusIndex}",        // 记录保持的焦点ID
+
+            //当前页渲染
+            memberId: "{$memberID}",
+            memberName: "{$memberName}",
+            memberAge: "{$memberAge}",
+            memberGender: "{$memberGender}",
+            phone: "{$phone}",
+            CWS_HLWYY_URL: "{$cwsHlwyyUrl}",
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/DoctorInquiry/V1/inquiry.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/DoctorP2PRecord/V3/RecordHome.js?t={$time}"></script>
+
+</head>
+<body style='background-image: url("__ROOT__/Public/img/hd/Common/V7/bg_home.png")'>
+<div id="content" class="content">
+    <div id="doctor_info" class="doctor_info"></div>
+
+    <div id="page" class="page"></div>
+
+    <img id="arrow_pre" class="arrow_pre" src="__ROOT__/Public/img/hd/DoctorP2P/V1/bg_top_arrows.png" alt=""/>
+    <img id="arrow_next" class="arrow_next" src="__ROOT__/Public/img/hd/DoctorP2P/V1/bg_bottom_arrows.png" alt=""/>
+
+    <div class="center">
+        <!--<div class="suggest_btn">-->
+        <!--<img id="suggest_btn" class="tab_bg" src="__ROOT__/Public/img/hd/DoctorP2P/V3/select_tab.png"/>-->
+        <!--<div class="tab_title">用药建议</div>-->
+        <!--</div>-->
+
+        <div class="result_btn">
+            <img id="result_btn" class="tab_bg" src="__ROOT__/Public/img/hd/DoctorP2P/V3/bg_tab.png" alt=""/>
+            <div class="tab_title">问诊结果</div>
+        </div>
+
+        <img id="delete_btn" class="delete_btn" src="__ROOT__/Public/img/hd/DoctorP2P/V3/bg_del.png" alt=""/>
+        <div id="warm_tips">添加具体问诊人，可归为个人健康档案！</div>
+        <div class="center_bg">
+            <img class="table_bg" src="__ROOT__/Public/img/hd/DoctorP2P/V3/tab_bg.png" alt=""/>
+            <div id="tab_content" class="tab_content">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="no_data"><span>暂无问诊记录哦!</span></div>
+
+</body>
+</html>

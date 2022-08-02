@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <title>医院介绍</title>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            hospitalId:'{$hospitalId}',
+        }
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V8/hospitalIntroDetail.css?t={$time}"/>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="container">
+    <div class="head">
+        <div class="hospital-pic">
+            <img src="" id="hospital-pic" style="width: 280px;height: 180px">
+        </div>
+        <div class="hospital-info">
+            <div class="hospital-name" id="hospital-name"></div>
+            <div class="hospital-address" id="hospital-address"></div>
+        </div>
+        <div class="to-btn" id="to-btn">预约挂号</div>
+        <div style="clear: both"></div>
+    </div>
+
+    <div class="tips">医院简介</div>
+
+    <div class="introduce" id="introduce"></div>
+</div>
+
+<script type="text/javascript">
+var Home={
+    buttons:[],
+    initButton:function (){
+        this.buttons.push({
+            id: 'to-btn',
+            name: '预约挂号',
+            type: 'div',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown:'',
+            backgroundImage: g_appRootPath + '/Public/img/hd/AppointmentRegister/V8/no_choose.png',
+            focusImage: g_appRootPath + '/Public/img/hd/AppointmentRegister/V8/choose_oval.png',
+            click:function (){ LMEPG.Intent.back() },
+            focusChange: '',
+            beforeMoveChange: '',
+            moveChange: this.scrollText,
+            cIdx: ''
+        })
+
+        LMEPG.BM.init("to-btn", Home.buttons, "", true);
+    },
+
+    scrollText:function (pre,cur,dir){
+       if(dir === 'up'){
+           G('introduce').scrollTop-=50
+       }else if(dir === 'down'){
+           G('introduce').scrollTop+=50
+       }
+    },
+
+    renderInfo:function (success){
+        var data = {
+            "functionid":"12020",
+            "data":JSON.stringify({
+                "HospitalId":RenderParam.hospitalId
+            }),
+        };
+
+        LMEPG.ajax.postAPI('Expert/appointmentInterface',data,function (res){
+            success(res.data)
+        },function (){
+
+        });
+    },
+
+    getPic:function (src){
+        var text = src.substring(src.lastIndexOf('/'))
+
+        var json = JSON.stringify({
+            "functionid":"20008",
+            "imgName":text.split('.')[0],
+            "imgUrl":src
+        })
+
+
+        return 'http://120.70.237.86:10000/cws/jiukang/index.php?head={}&json='+encodeURI(json);
+    },
+}
+
+window.onload = function (){
+    Home.renderInfo(function (data){
+        G('hospital-pic').src = Home.getPic(data.PhotoUrl);
+        G('hospital-name').innerText=data.HospitalName;
+        G('hospital-address').innerText='地址: '+data.HospitalAddr;
+        G('introduce').innerHTML = data.Summary || '该医院暂无介绍'
+        Home.initButton()
+    })
+
+}
+
+</script>
+</body>
+</html>

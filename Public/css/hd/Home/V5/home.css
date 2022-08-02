@@ -1,0 +1,399 @@
+img {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+}
+
+#home_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/*应用logo*/
+.logo {
+    position: absolute;
+    left: 46px;
+    top: 19px;
+    width: 49px;
+    height: 41px;
+}
+
+/*公司名称*/
+#company-name {
+    position: absolute;
+    left: 38px;
+    top: 60px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.top_menu {
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    width: 1000px;
+    height: 60px;
+}
+
+.top_menu > div {
+    width: 150px;
+    height: 60px;
+    float: right;
+    margin-right: 10px;
+}
+
+#vip_btn {
+    position: absolute;
+    top: -8px;
+    right: 460px;
+    width: 67px;
+    height: 67px;
+    visibility: hidden;
+}
+
+/*首页导航菜单栏*/
+.navs {
+    position: absolute;
+    left: 70px;
+    top: 65px;
+    width: 1170px;
+    height: 83px;
+}
+
+.navs > div {
+    width: 157px;
+    height: 72px;
+    float: left;
+    margin-right: 8px;
+}
+
+.recommend_zoom_out {
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    width: 102%;
+    height: 102%;
+}
+
+.recommend_zoom_in {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#recommends {
+    position: absolute;
+    left: 0px;
+    top: 150px;
+    width: 1280px;
+    height: 568px;
+}
+
+.recommends {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 568px;
+}
+
+/*推荐位1焦点框*/
+#recommend_border_1 {
+    position: absolute;
+    left: 345px;
+    top: -15px;
+    width: 337px;
+    height: 272px;
+    z-index: 1;
+}
+
+/*推荐位图片放大时的容器*/
+.recommend_parent_1 {
+    position: absolute;
+    left: 360px;
+    top: 0px;
+    width: 310px;
+    height: 245px;
+}
+
+#recommend_border_2 {
+    position: absolute;
+    left: 663px;
+    top: -15px;
+    width: 177px;
+    height: 272px;
+    z-index: 1;
+}
+
+.recommend_parent_2 {
+    position: absolute;
+    left: 680px;
+    top: 0;
+    width: 150px;
+    height: 245px;
+}
+
+/*小屏播放*/
+.small_screen_player {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+}
+
+#iframe_small_screen {
+    width: 1px;
+    height: 1px;
+}
+
+#recommend_border_3 {
+    position: absolute;
+    left: 342px;
+    top: 239px;
+    width: 177px;
+    height: 272px;
+    z-index: 1;
+}
+
+.recommend_parent_3 {
+    position: absolute;
+    left: 360px;
+    top: 257px;
+    width: 150px;
+    height: 245px;
+}
+
+#recommend_border_4 {
+    position: absolute;
+    left: 502px;
+    top: 239px;
+    width: 177px;
+    height: 272px;
+    z-index: 1;
+}
+
+.recommend_parent_4 {
+    position: absolute;
+    left: 520px;
+    top: 257px;
+    width: 150px;
+    height: 245px;
+}
+
+#recommend_border_5 {
+    position: absolute;
+    left: 823px;
+    top: -15px;
+    width: 177px;
+    height: 272px;
+    z-index: 1;
+}
+
+.recommend_parent_5 {
+    position: absolute;
+    left: 840px;
+    top: 0;
+    width: 150px;
+    height: 245px;
+}
+
+
+#recommend_border_6 {
+    position: absolute;
+    left: 666px;
+    top: 239px;
+    width: 337px;
+    height: 272px;
+    z-index: 1;
+}
+
+.recommend_parent_6 {
+    position: absolute;
+    left: 680px;
+    top: 257px;
+    width: 310px;
+    height: 245px;
+}
+
+/*字幕滚动消息*/
+#scroll_message {
+    position: absolute;
+    left: 74px;
+    top: 670px;
+    width: 1130px;
+    height: 30px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 29px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+}
+
+#recommend_border_A0 {
+    position: absolute;
+    left: 65px;
+    top: -17px;
+    width: 297px;
+    height: 144px;
+    z-index: 1;
+}
+.recommend_parent_A0 {
+    position: absolute;
+    left: 80px;
+    top: 0;
+    width: 270px;
+    height: 118px;
+}
+#recommend_border_A1 {
+    position: absolute;
+    left: 65px;
+    top: 110px;
+    width: 297px;
+    height: 144px;
+    z-index: 1;
+}
+.recommend_parent_A1 {
+    position: absolute;
+    left: 80px;
+    top: 128px;
+    width: 270px;
+    height: 118px;
+}
+#recommend_border_A2 {
+    position: absolute;
+    left: 65px;
+    top: 239px;
+    width: 297px;
+    height: 144px;
+    z-index: 1;
+}
+.recommend_parent_A2 {
+    position: absolute;
+    left: 80px;
+    top: 256px;
+    width: 270px;
+    height: 118px;
+}
+#recommend_border_A3 {
+    position: absolute;
+    left: 65px;
+    top: 366px;
+    width: 297px;
+    height: 144px;
+    z-index: 1;
+}
+.recommend_parent_A3 {
+    position: absolute;
+    left: 80px;
+    top: 384px;
+    width: 270px;
+    height: 118px;
+}
+#recommend_border_A4 {
+    position: absolute;
+    left: 982px;
+    top: -18px;
+    width: 227px;
+    height: 102px;
+    z-index: 1;
+}
+.recommend_parent_A4 {
+    position: absolute;
+    left: 1000px;
+    top: 0;
+    width: 200px;
+    height: 75px;
+}
+#recommend_border_A5 {
+    position: absolute;
+    left: 982px;
+    top: 67px;
+    width: 227px;
+    height: 102px;
+    z-index: 1;
+}
+.recommend_parent_A5 {
+    position: absolute;
+    left: 1000px;
+    top: 85px;
+    width: 200px;
+    height: 75px;
+}
+#recommend_border_A6 {
+    position: absolute;
+    left: 982px;
+    top: 152px;
+    width: 227px;
+    height: 102px;
+    z-index: 1;
+}
+.recommend_parent_A6 {
+    position: absolute;
+    left: 1000px;
+    top: 170px;
+    width: 200px;
+    height: 75px;
+}
+#recommend_border_A7 {
+    position: absolute;
+    left: 982px;
+    top: 239px;
+    width: 227px;
+    height: 102px;
+    z-index: 1;
+}
+.recommend_parent_A7 {
+    position: absolute;
+    left: 1000px;
+    top: 257px;
+    width: 200px;
+    height: 75px;
+}
+#recommend_border_A8 {
+    position: absolute;
+    left: 982px;
+    top: 324px;
+    width: 227px;
+    height: 102px;
+    z-index: 1;
+}
+.recommend_parent_A8 {
+    position: absolute;
+    left: 1000px;
+    top: 342px;
+    width: 200px;
+    height: 75px;
+}
+#recommend_border_A9 {
+    position: absolute;
+    left: 982px;
+    top: 409px;
+    width: 227px;
+    height: 102px;
+    z-index: 1;
+}
+.recommend_parent_A9 {
+    position: absolute;
+    left: 1000px;
+    top: 427px;
+    width: 200px;
+    height: 75px;
+}
+#help_img{
+    position: absolute;
+    width:1280px;
+    height: 720px;
+    top:0;
+    left:0;
+}

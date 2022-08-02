@@ -1,0 +1,234 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+#default_focus {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 644px;
+    height: 530px;
+}
+
+.btn-only {
+    position: absolute;
+    top: 306px;
+    left: 256px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+.btn-only2 {
+    position: absolute;
+    top: 306px;
+    left: 256px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+.btn-left {
+    position: absolute;
+    top: 350px;
+    left: 150px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+.btn-right {
+    position: absolute;
+    top: 350px;
+    left: 360px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+.btn-success {
+    position: absolute;
+    top: 476px;
+    left: 660px;
+    outline: none !important;
+    width: 187px;
+    height: 74px;
+}
+
+.btn-one {
+    position: absolute;
+    top: 319px;
+    left: 196px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+.btn-two {
+    position: absolute;
+    top: 319px;
+    left: 327px;
+    outline: none !important;
+    width: 134px;
+    height: 55px;
+}
+
+#searchText {
+    width: 174px;
+    height: 25px;
+    z-index: 999;
+    position: absolute;
+    top: 277px;
+    left: 276px;
+    font-size: 16px;
+    line-height: 25px;
+    color: #4c4c4c;
+    overflow: hidden;
+    text-indent: 10px;
+}
+
+#myPhone {
+    position: absolute;
+    font-size: 18px;
+    color: #414141;
+    top: 355px;
+    left: 597px
+}
+
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+    font-size: 30px
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}
+
+.detail-table {
+    position: absolute;
+    top: 127px;
+    left: 101px;
+    outline: none !important;
+    width: 442px;
+}
+
+.detail-table tr td {
+    height: 5px;
+    font-size: 13px;
+    color: #000000;
+    width: 442px;
+    line-height: 20px
+}
+
+.btn_back {
+    position: absolute;
+    top: 61px;
+    left: 526px;
+    outline: none !important;
+    width: 38px;
+    height: 38px;
+}
+
+.introduce-pay {
+    position: absolute;
+    top: 253px;
+    left: 457px;
+    outline: none !important;
+    width: 400px;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+    line-height: 60px;
+}
+
+#tip_test {
+    position: absolute;
+    top: 150px;
+    left: 544px;
+    outline: none !important;
+    width: 190px;
+    height: 60px;
+}
+
+#pay-one {
+    position: absolute;
+    top: 225px;
+    left: 167px;
+    outline: none !important;
+    width: 122px;
+    height: 131px;
+}
+
+#pay-two {
+    position: absolute;
+    top: 225px;
+    left: 355px;
+    outline: none !important;
+    width: 122px;
+    height: 131px;
+}
+
+#pay-three {
+    position: absolute;
+    top: 369px;
+    left: 167px;
+    outline: none !important;
+    width: 122px;
+    height: 131px;
+}
+
+#pay-four {
+    position: absolute;
+    top: 369px;
+    left: 355px;
+    outline: none !important;
+    width: 122px;
+    height: 131px;
+}
+
+#pay-back {
+    position: absolute;
+    top: 61px;
+    left: 526px;
+    outline: none !important;
+    width: 38px;
+    height: 38px;
+}
+
+.book_text {
+    position: absolute;
+    top: 243px;
+    left: 606px;
+    outline: none !important;
+    font-size: 33px;
+    color: #414141;
+    text-align: center;
+}
+
+.price_word {
+    position: absolute;
+    top: 186px;
+    left: 338px;
+    width: 200px;
+    height: 26px;
+    font-size: 26px;
+    line-height: 26px;
+    z-index: 5;
+}
+
+.price_introduce {
+    position: absolute;
+    top: 243px;
+    left: 199px;
+    height: 18px;
+    font-size: 18px;
+    line-height: 18px;
+    z-index: 5;
+}

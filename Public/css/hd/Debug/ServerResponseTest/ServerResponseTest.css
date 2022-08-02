@@ -1,0 +1,143 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    width: 1280px;
+    height: 720px;
+    /*border: solid 1px red;*/
+}
+#btn_pingTest{
+    text-align: center;
+}
+
+p.ex {
+    color: rgb(255, 255, 255)
+}
+
+table {
+    width: 1200px;
+    /*border: solid 1px #add9c0;*/
+    margin: 0px auto
+}
+
+#table-mode {
+    margin-left: 20px;
+}
+
+#table {
+    position: relative;
+    width: 1200px;
+    height: 50px;
+    margin: auto;
+    border: solid 1px #5fa2ff;
+}
+
+/*.hd-prev {*/
+/*    left: -2px;*/
+/*    !*visibility: hidden;*!*/
+/*}*/
+
+/*.hd-next {*/
+/*    left: 1242px;*/
+/*    !*visibility: hidden;*!*/
+/*}*/
+
+.prev-top-2 {
+    position: absolute;
+    top: 164px;
+}
+
+.prev-top-3 {
+    position: absolute;
+    top: 333px;
+}
+
+.prev-top-4 {
+    position: absolute;
+    top: 511px;
+}
+
+.prev-top-5 {
+    position: absolute;
+    top: 633px;
+}
+
+.hd-prev-2 {
+    position: absolute;
+    top: 164px;
+    left: -2px;
+}
+
+.hd-next-2 {
+    position: absolute;
+    top: 164px;
+    left: 1242px;
+}
+
+
+table tr td {
+    padding: 5px;
+    color: #FFFFFF;
+}
+
+.btn {
+    position: relative;
+    padding: 2px 5px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 25px
+}
+
+/*标题*/
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 27pt;
+    margin: 12px auto;
+}
+
+/*分隔横条*/
+hr {
+    height: 3px;
+    border: none;
+    border-top: 5px double red;
+    width: 1205px;
+    margin: 5px auto;
+    margin-top: 10px;
+}
+
+p {
+    color: white;
+}
+
+.arrow {
+    position: absolute;
+    top: 338px;
+}
+
+#prev-arrow {
+    left: 0;
+}
+
+#next-arrow {
+    left: 1240px;
+}
+
+#thead th {
+    background-color: rgb(171, 130, 255);
+    width: 33.12%;
+    font-size: 30px;
+    color: white
+}
+
+#tbody td {
+    background-color: rgb(171, 130, 255);
+    font-size: 25px;
+    color: white;
+    text-align: center;
+}

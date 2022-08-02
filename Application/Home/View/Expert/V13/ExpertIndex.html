@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>专家约诊- 首页- V13(高清HD可用)</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Expert/V13/ExpertIndex.css?t={$time}"/>
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            isRunOnAndroid: "{$isRunOnAndroid}",// 是否运行在apk平台
+            carrierId: "{$carrierId}",
+            isVip: "{$isVip}",
+            areaCode: "{$areaCode}",
+            userId: "{$userId}",
+            accountId: "{$accountId}",
+            isFirstEnter: '{$isFirstEnter}',    // 用户首次进入
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            platformType: "{$platformType}",    // 平台类型
+            deptId: "{$deptId}",
+            deptName: "{$deptName}",
+            page: "{$page}",
+            focusId: "{$focusId}",
+            lmcid: "{$carrierId}",// 区域ID
+            skin: {$skin},      // 用户自定义背景
+
+            CWS_HLWYY_URL: "{$cwsHlwyyUrl}",
+            CWS_URL_OUT: "{$cwsUrlOut}",
+            expertUrl: "{$expertUrl}",
+            isShowCollect: '{$isShowCollect}',    // 页面是否显示收藏按钮
+            isShowDoctorCode: '{$isShowDoctorCode}'    // 页面是否显示预约二维码
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <if condition="$carrierId eq 420092">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    </if>
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Expert/V13/ExpertIndex.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+
+<p class="title">专家约诊</p>
+
+<div id="header-container">
+    <div id="nav-content-tabs">
+        <div class="tab">
+            <img id="tab-0" src="__ROOT__/Public/img/hd/DoctorP2P/V13/tab0.png">
+            <p id="dept-name">选择科室</p>
+        </div>
+        <img class="tab" id="tab-1" src="__ROOT__/Public/img/hd/Expert/V13/tab2.png">
+    </div>
+</div>
+<div id="doctor-container"></div>
+<div id="department-container"></div>
+<img id="prev-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/left.png">
+<img id="next-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/right.png">
+<script type="text/javascript">
+    Expert.init();
+
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+    };
+
+    LmOrderConf.init({
+        getCurrentPage: Expert.getCurPageObj,
+    });
+</script>
+</body>
+</html>

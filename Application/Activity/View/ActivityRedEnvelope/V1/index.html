@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>红包活动</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityRedEnvelope/V1/index.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <!--当前活动-->
+    <script type="text/javascript">
+
+        var RenderParam = {
+            isVip: '{$isVip}', // 是否是vip（0-非vip 1-vip）
+            inner: '{$inner}',
+            userId: '{$userId}',
+            activityName: '{$activityName}',
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            imgPathPrefix: '{$activityFsImg}{$platformType}/',
+            beClickId: 'test-0',
+        };
+        window.onload = function () {
+            Activity.init();
+            lmInitGo();
+        };
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityRedEnvelope/V1/index.js?t={$time}"></script>
+
+</head>
+<body style="background-image: url('{$activityFsImg}{$platformType}/rule.png');">
+<a href="#" id="default_link" style="width: 1px;height: 1px; position: absolute; left: 80px; top: 200px">.</a>
+<div class="container_wrap">
+    <div id="count_down" class="count_down">10</div>
+    <div id="exit" class="exit" style="background-image: url('{$activityFsImg}{$platformType}/exit.png');"></div>
+</div>
+</body>
+</html>

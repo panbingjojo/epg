@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>预约挂号-V220094</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V220094/appointment.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            fsUrl: '{$resourcesUrl}',
+            platformType: '{$platformType}',
+            hospData: {$hospList},
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script><!--TODO 待整合删除！！-->
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V220094/appointment.js?t={$time}"></script>
+</head>
+<body>
+<p class="title">预约挂号</p>
+<div id="container"></div>
+<div class="arrow-wrapper">
+    <img id="prev-arrow" src="__ROOT__/Public/img/hd/Common/arrow-left.png" alt="">
+    <img id="next-arrow" src="__ROOT__/Public/img/hd/Common/arrow-right.png" alt="">
+</div>
+<div id="iframe"></div>
+<script type="text/javascript">
+    window.onload = function () {
+        level_0.init();
+    };
+</script>
+</body>
+</html>
+  
+  

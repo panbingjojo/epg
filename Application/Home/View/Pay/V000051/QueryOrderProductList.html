@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>查询及退订-V000051</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Pay/V000051/QueryOrderProductList.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共参数
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户账号
+
+            //当前页渲染
+            pageCurrent: parseInt('{$pageCurrent}') | 1,  // 当前页码
+            lastFocusId: "{$lastFocusId}",      // 在当前页的位置
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V000051/QueryOrderProductList.js?t={$time}"></script>
+
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<div class="title">查询及退订</div>
+<div lang="zh-cn" id="tabConent">
+</div>
+<img class="left_page" id="left_page"
+     src="__ROOT__/Public/img/{$platformType}/Pay/V000051/queryOrderProductList/left_page.png" alt=""/>
+<img class="right_page" id="right_page"
+     src="__ROOT__/Public/img/{$platformType}/Pay/V000051/queryOrderProductList/right_page.png" alt=""/>
+<div id="toast">
+</div>
+</body>
+</html>

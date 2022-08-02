@@ -1,0 +1,303 @@
+<?php
+
+define("ANDROID_SERVER_CONFIG_DEBUG", false);
+
+// 测试服配置
+if (ANDROID_SERVER_CONFIG_DEBUG) {
+    define("ANDROID_SERVER_CONFIG", json_encode([
+        // cws服务器
+        'server_cws' => [
+            [
+                'src_addr' => 'http://123.59.206.200:10002',
+                'dest_addr' => 'http://123.59.206.200:10002',
+            ],
+        ],
+        // 消息推送服务器
+        'server_push' => [
+            [
+                'src_addr' => 'ws://123.59.206.200:10006',
+                'dest_addr' => 'ws://123.59.206.200:10006',
+            ],
+        ],
+        // 文件系统服务器
+        'server_file_system' => [
+            [
+                'src_addr' => 'http://123.59.206.200:10013',
+                'dest_addr' => 'http://123.59.206.200:10013',
+            ],
+        ],
+        // 崩溃跟踪服务器
+        'server_crash' => [
+            [
+                'src_addr' => 'http://123.59.206.200:10005/',
+                'dest_addr' => 'http://123.59.206.200:10005/',
+            ],
+        ],
+        // 互联网医院web服务器
+        'hosp_apis' => [
+            [
+                'src_addr' => '',
+                'dest_addr' => '',
+            ],
+        ],
+        // 互联网医院licode服务
+        'hosp_licode' => [
+            [
+                'src_addr' => 'wss://webrtc.hlwyy.cn:3004',
+                'dest_addr' => 'ws://123.59.206.200:10017',
+            ],
+            [
+                'src_addr' => 'wss://webrtc.hlwyy.cn:3004',
+                'dest_addr' => 'ws://123.59.206.200:10018',
+            ],
+            [
+                'src_addr' => 'wss://webrtc.hlwyy.cn:3004',
+                'dest_addr' => 'ws://123.59.206.200:10019',
+            ],
+        ],
+        // 互联网医院ice服务
+        'hosp_stun' => [
+            [
+                'src_addr' => 'stun:webrtc.hlwyy.cn:3478',
+                'dest_addr' => 'gylm39jk-xz-stun.a117.ottcn.com:10050',
+                'turn_username' => 'test',
+                'turn_passwd' => 'testpwd',
+            ],
+        ],
+        // 互联网医院视频问诊WSS服务器
+        'hosp_inquiry_wss' => [
+            [
+                'src_addr' => 'wss://websocket.hlwyy.cn:8282/',
+                'dest_addr' => 'wss://123.59.206.200:10021',
+            ],
+        ],
+        // 健康检测、直播、日志上传ES推送服务器
+        'server_general_push' => [
+            [
+                'src_addr' => 'ws://123.59.206.200:10007',
+                'dest_addr' => 'ws://123.59.206.200:10007',
+            ],
+        ],
+        // 音频适配服务器
+        'audio_adapter' => [
+            [
+                'src_addr' => 'http://app.amx.langma.cn',
+                'dest_addr' => 'http://123.59.206.200:10003',
+            ],
+        ],
+        // APK2.0入口地址
+        'epg_lws_for_apk' => [
+            [
+                'src_addr' => 'http://test-healthiptv.langma.cn:8100/apk-lws/00540001-xizangyd/index.php',
+                'dest_addr' => 'http://test-healthiptv.langma.cn:8100/apk-lws/00540001-xizangyd/index.php',
+            ],
+        ],
+        // 客服电话
+        'customer_service_hotline' => [
+            [
+                'phone_number' => '0898-6856-8003',
+            ],
+        ],
+    ]));
+}
+// 正式服配置
+else {
+    switch ($_GET['area_code']) {
+        // 百视通
+        case 'bestv':
+            define("ANDROID_SERVER_CONFIG", json_encode([
+                // cws服务器
+                'server_cws' => [
+                    [
+                        'src_addr' => 'http://123.59.206.200:10002',
+                        'dest_addr' => 'http://123.59.206.200:10002',
+                    ],
+                ],
+                // 消息推送服务器
+                'server_push' => [
+                    [
+                        'src_addr' => 'ws://123.59.206.200:10006',
+                        'dest_addr' => 'ws://123.59.206.200:10006',
+                    ],
+                ],
+                // 文件系统服务器
+                'server_file_system' => [
+                    [
+                        'src_addr' => 'http://123.59.206.200:10013/',
+                        'dest_addr' => 'http://123.59.206.200:10013/',
+                    ],
+                ],
+                // 崩溃跟踪服务器
+                'server_crash' => [
+                    [
+                        'src_addr' => 'http://123.59.206.200:10005/',
+                        'dest_addr' => 'http://123.59.206.200:10005/',
+                    ],
+                ],
+                // 互联网医院web服务器
+                'hosp_apis' => [
+                    [
+                        'src_addr' => '',
+                        'dest_addr' => '',
+                    ],
+                ],
+                // 互联网医院licode服务
+                'hosp_licode' => [
+                    [
+                        'src_addr' => 'wss://webrtc.hlwyy.cn:3004',
+                        'dest_addr' => 'ws://123.59.206.200:10017',
+                    ],
+                    [
+                        'src_addr' => 'wss://webrtc1.hlwyy.cn:3004',
+                        'dest_addr' => 'ws://123.59.206.200:10018',
+                    ],
+                    [
+                        'src_addr' => 'wss://webrtc2.hlwyy.cn:3004',
+                        'dest_addr' => 'ws://123.59.206.200:10019',
+                    ],
+                ],
+                // 互联网医院ice服务
+                'hosp_stun' => [
+                    [
+                        'src_addr' => 'stun:webrtc.hlwyy.cn:3478',
+                        'dest_addr' => 'turn:123.59.206.200:10050',
+                        'turn_username' => 'test',
+                        'turn_passwd' => 'testpwd',
+                    ],
+                ],
+                // 互联网医院视频问诊WSS服务器
+                'hosp_inquiry_wss' => [
+                    [
+                        'src_addr' => 'wss://websocket.hlwyy.cn:8282/',
+                        'dest_addr' => 'wss://123.59.206.200:10021',
+                    ],
+                ],
+                // 健康检测、直播、日志上传ES推送服务器
+                'server_general_push' => [
+                    [
+                        'src_addr' => 'ws://123.59.206.200:10007',
+                        'dest_addr' => 'ws://123.59.206.200:10007',
+                    ],
+                ],
+                // 音频适配服务器
+                'audio_adapter' => [
+                    [
+                        'src_addr' => 'http://app.amx.langma.cn',
+                        'dest_addr' => 'http://123.59.206.200:10003',
+                    ],
+                ],
+                // APK2.0入口地址
+                'epg_lws_for_apk' => [
+                    [
+                        'src_addr' => 'http://123.59.206.200:10002/epg-lws-for-apk-540001/index.php',
+                        'dest_addr' => 'http://123.59.206.200:10002/epg-lws-for-apk-540001/index.php',
+                    ],
+                ],
+                // 客服电话
+                'customer_service_hotline' => [
+                    [
+                        'phone_number' => '0898-6856-8001',
+                    ],
+                ],
+            ]));
+            break;
+        // 未来电视
+        case 'newtv':
+            define("ANDROID_SERVER_CONFIG", json_encode([
+                // cws服务器
+                'server_cws' => [
+                    [
+                        'src_addr' => 'http://123.59.206.200:10002',
+                        'dest_addr' => 'http://gylm39jk-xz.a117.ottcn.com:10002',
+                    ],
+                ],
+                // 消息推送服务器
+                'server_push' => [
+                    [
+                        'src_addr' => 'ws://123.59.206.200:10006',
+                        'dest_addr' => 'ws://gylm39jk-xz-push.a117.ottcn.com:10006',
+                    ],
+                ],
+                // 文件系统服务器
+                'server_file_system' => [
+                    [
+                        'src_addr' => 'http://123.59.206.200:10013/',
+                        'dest_addr' => 'http://gylm39jk-xz-fs.a117.ottcn.com:10013/',
+                    ],
+                ],
+                // 崩溃跟踪服务器
+                'server_crash' => [
+                    [
+                        'src_addr' => 'http://123.59.206.200:10005/',
+                        'dest_addr' => 'http://gylm39jk-xz-crash.a117.ottcn.com:10005/',
+                    ],
+                ],
+                // 互联网医院web服务器
+                'hosp_apis' => [
+                    [
+                        'src_addr' => '',
+                        'dest_addr' => '',
+                    ],
+                ],
+                // 互联网医院licode服务
+                'hosp_licode' => [
+                    [
+                        'src_addr' => 'wss://webrtc.hlwyy.cn:3004',
+                        'dest_addr' => 'ws://gylm39jk-xz-webrtc.a117.ottcn.com:10017',
+                    ],
+                    [
+                        'src_addr' => 'wss://webrtc1.hlwyy.cn:3004',
+                        'dest_addr' => 'ws://gylm39jk-xz-webrtc1.a117.ottcn.com:10018',
+                    ],
+                    [
+                        'src_addr' => 'wss://webrtc2.hlwyy.cn:3004',
+                        'dest_addr' => 'ws://gylm39jk-xz-webrtc2.a117.ottcn.com:10019',
+                    ],
+                ],
+                // 互联网医院ice服务
+                'hosp_stun' => [
+                    [
+                        'src_addr' => 'stun:webrtc.hlwyy.cn:3478',
+                        'dest_addr' => 'turn:gylm39jk-xz-stun.a117.ottcn.com:10050',
+                        'turn_username' => 'test',
+                        'turn_passwd' => 'testpwd',
+                    ],
+                ],
+                // 互联网医院视频问诊WSS服务器
+                'hosp_inquiry_wss' => [
+                    [
+                        'src_addr' => 'wss://websocket.hlwyy.cn:8282/',
+                        'dest_addr' => 'wss://gylm39jk-xz-hlwyy-wss.a117.ottcn.com:10021',
+                    ],
+                ],
+                // 健康检测、直播、日志上传ES推送服务器
+                'server_general_push' => [
+                    [
+                        'src_addr' => 'ws://123.59.206.200:10007',
+                        'dest_addr' => 'ws://gylm39jk-xz-push-live.a117.ottcn.com:10007',
+                    ],
+                ],
+                // 音频适配服务器
+                'audio_adapter' => [
+                    [
+                        'src_addr' => 'http://app.amx.langma.cn',
+                        'dest_addr' => 'http://gylm39jk-xz-appamx.a117.ottcn.com:10003',
+                    ],
+                ],
+                // APK2.0入口地址
+                'epg_lws_for_apk' => [
+                    [
+                        'src_addr' => 'http://123.59.206.200:10002/epg-lws-for-apk-540001/index.php',
+                        'dest_addr' => 'http://gylm39jk-xz.a117.ottcn.com:10002/epg-lws-for-apk-540001/index.php',
+                    ],
+                ],
+                // 客服电话
+                'customer_service_hotline' => [
+                    [
+                        'phone_number' => '0898-6856-8003',
+                    ],
+                ],
+            ]));
+            break;
+    }
+}

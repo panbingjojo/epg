@@ -1,0 +1,100 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Source Han Sans CN';
+    outline: none !important;
+    background-repeat: no-repeat;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    color: #ffffff
+}
+.line {
+    width: 1200px;
+    height: 3px;
+    position: absolute;
+    top: 87px;
+    left: 41px
+}
+/*.tab-wrap{
+    position: relative;
+    width: 1150px;
+    top: 150px;
+    left: 100px;
+}*/
+.tab{
+    position: absolute;
+    /*display: inline-block;*/
+    width: 350px;
+    height: 220px;
+    line-height:216px;
+    text-align: center;
+}
+.tab1{top: 180px;left: 130px;}
+.tab2{top: 180px; left: 480px;}
+.tab3{top: 180px; left: 830px;}
+.tab4{top: 390px; left: 130px;}
+.tab5{top: 390px; left: 480px;}
+.tab6{top: 390px; left: 830px;}
+.tab>img{
+    vertical-align: middle;
+    width: 320px;
+    height: 180px;
+}
+img.imghover {
+    width: 350px;
+    height: 220px;
+    z-index: 1;
+}
+.img-hover{
+    background: url(../../../../img/hd/Doctor/V2/hd_common_focus.png) center center;
+}
+
+/* 弹出图片提示框*/
+#toast_message_pic{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+}
+
+/* 弹出提示文字内容*/
+#toast_message_text{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    font-family: 'Source Han Sans CN';
+    font-size: 31px;
+    color: #2a4e87;
+    top:270px;
+    left: 450px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* 确定或取消 按钮文字内容*/
+#toast_message_submit{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    font-family: 'Source Han Sans CN';
+    font-size: 35px;
+    color: #ffffff;
+    top:435px;
+    left: 588px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+}

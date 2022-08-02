@@ -1,0 +1,101 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    background-image: url("../../../../../img/hd/Pay/V220001/background.png");
+    background-repeat: no-repeat;
+}
+
+#single_month {
+    position: absolute;
+    top: 351px;
+    left: 435px;
+}
+
+#single_year {
+    position: absolute;
+    top: 351px;
+    left: 664px;
+}
+
+#wechat_payment {
+    position: absolute;
+    top: 322px;
+    left: 315px;
+}
+
+#ali_payment {
+    position: absolute;
+    top: 322px;
+    left: 640px;
+}
+
+#payment_detail {
+    position: absolute;
+    top: 356px;
+    left: 316px;
+    width: 649px;
+    height: 191px;
+    background-color: #89ecba;
+}
+
+.payment_desc {
+    position: absolute;
+    top: 38px;
+    left: 38px;
+    width: 398px;
+    height: 42px;
+    font-size: 18px;
+}
+
+.payment_info {
+    position: absolute;
+    top: 120px;
+    left: 38px;
+}
+
+#price {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#pay_qr_code {
+    width: 150px;
+    height: 150px;
+    top: 20px;
+    left: 470px;
+    position: absolute;
+}
+
+#pay_sure {
+    position: absolute;
+    top: 582px;
+    left: 422px;
+}
+
+#pay_cancel {
+    position: absolute;
+    top: 582px;
+    left: 702px;
+}
+
+.g_toast {
+    position: absolute;
+    left: 364px;
+    top: 279px;
+    width: 551px;
+    height: 126px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 99999;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../../img/hd/Common/bg_toast.png") no-repeat;
+}
+
+
+

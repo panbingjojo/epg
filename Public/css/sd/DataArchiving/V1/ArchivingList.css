@@ -1,0 +1,278 @@
+* {
+    color: #FFFFFF;
+}
+
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    color: #ffffff
+}
+
+.top {
+    position: absolute;
+    top: 110px;
+    left: 107px;
+    width: 1030px;
+    height: 66px;
+}
+
+.top_title {
+    display: inline-block;
+    font-size: 32px;
+    width: 336px;
+    height: 66px;
+    line-height: 66px;
+    text-align: center;
+}
+
+.center {
+    position: absolute;
+    top: 180px;
+    left: 80px;
+    height: 463px;
+    overflow: hidden;
+}
+
+.items {
+    position: relative;
+    /*top: 50px;*/
+    margin-top: 0px;
+    width: 1120px;
+}
+
+.items_bg {
+    width: 1120px;
+    height: 85px;
+}
+
+.items_btn {
+    position: absolute;
+    top: 0px;
+    left: 20px;
+}
+
+.items_content {
+    width: 350px;
+    height: 85px;
+    line-height: 85px;
+    font-size: 28px;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+}
+
+.icon_left {
+    float: left;
+    margin-top: 15px
+}
+
+.icon_right {
+    float: right;
+    margin-top: 35px
+}
+
+.items_expand {
+    position: relative;
+    left: 23px;
+    top: 3px;
+    width: 1090px;
+    height: 0px;
+    overflow: hidden;
+}
+
+.items_expand_hover {
+    height: 300px;
+    width: 1090px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+}
+
+.time_block {
+    /*position: absolute;*/
+    /*margin-top: 0px;*/
+    /*margin-left: 40px;*/
+
+}
+
+.time_code {
+    width: 300px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 25px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 48px;
+}
+
+.time_code_big {
+    width: 300px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 32px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 48px;
+    color: #7fffff;
+}
+
+.border_select {
+    box-shadow: 0 0 6px 4px #ffffff;
+    background: rgba(0, 0, 0, 0) !important;
+    font-weight: bold;
+}
+
+.border_focused {
+    border-radius: 12px;
+    border: 1px rgba(255, 255, 255, 0.3) solid;
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+
+.line {
+    position: absolute;
+    top: 88px;
+    left: 136px;
+    font-size: 24px;
+}
+
+.line2 {
+    position: absolute;
+    top: 88px;
+    left: 219px;
+    font-size: 24px;
+}
+
+.arrow_pre {
+    position: absolute;
+    top: 76px;
+    left: 593px;
+    display: none;
+}
+
+.arrow_next {
+    position: absolute;
+    top: 633px;
+    left: 593px;
+    display: none;
+}
+
+.time_btn {
+    position: absolute;
+    top: 0px;
+    width: 320px;
+    height: 290px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+    /*border: 1px rgba(255, 255, 255, 0.3) solid;*/
+    /*background: rgba(0, 0, 0, 0.3);*/
+    border-radius: 12px;
+}
+
+#integer_btn_2_bg {
+    left: 36px;
+}
+
+#integer_btn_3_bg {
+    left: 387px;
+}
+
+#integer_btn_4_bg {
+    left: 735px;
+}
+
+.warm {
+    position: absolute;
+    left: 80px;
+    top: 668px;
+    width: 1120px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.btn5 {
+    width: 120px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 10px;
+    margin: 0px auto;
+}
+
+.dropDown {
+    position: absolute;
+    z-index: 998;
+    top: 50%;
+    width: 1280px;
+    height: 548px;
+    margin-top: -274px;
+    text-align: center;
+}
+
+.option {
+    width: 345px;
+    height: 548px;
+    display: inline-block;
+    margin-left: 0px;
+    text-align: center;
+    /*margin: 0 auto;*/
+    /*float: left;*/
+}
+
+.option-scroll {
+    position: relative;
+    top: 60px;
+    width: 345px;
+    height: 428px;
+    overflow: auto;
+}
+
+.select-btn {
+    width: 220px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    margin: 5px auto;
+    border-radius: 20px;
+}
+
+.select-btn2 {
+    width: 170px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    margin: 28px auto;
+    border-radius: 20px;
+}
+
+.content-select {
+    width: 100px;
+    height: 50px;
+}
+
+#data_full {
+    display: none;
+}
+
+#data_null {
+    position: relative;
+    top: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.6);
+    display: none;
+}
+
+.btn-bg {
+    position: relative;
+    top: 10px;
+    width: 100px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    font-size: 24px;
+    padding: 5px 10px;
+    margin: 0 auto;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <title>医院介绍</title>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            hospitalId:'{$hospitalId}',
+        }
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V21/hospitalIntroDetail.css?t={$time}"/>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="container">
+    <div class="head">
+        <div class="hospital-pic">
+            <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/hospital.png" id="hospital-pic" style="width: 280px;height: 180px">
+        </div>
+        <div class="hospital-info">
+            <div class="hospital-name" id="hospital-name"></div>
+            <div class="hospital-address" id="hospital-address"></div>
+            <div class="hospital-phone" id="hospital-phone"></div>
+
+        </div>
+        <div class="to-btn" id="to-btn">手机挂号</div>
+        <div style="clear: both"></div>
+    </div>
+    <div class="tips-area">
+        <div class="tips">医院简介</div>
+        <div class="introduce" id="introduce"></div>
+    </div>
+</div>
+<div id="dialog_container" >
+    <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/window.png" class="window" id="window1" alt="" >
+    <div class="introduced">请用手机微信扫描下方二维码进行挂号</div>
+    <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/public.jpg" id="public" alt="">
+</div>
+
+<script type="text/javascript">
+    var Home={
+
+        buttons:[],
+        initButton:function (){
+            Home.buttons.push({
+                id: 'to-btn',
+                name: '预约挂号',
+                type: 'div',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown:'',
+                backgroundImage: '',
+                focusImage: '',
+                click:Home.publicWindow,
+                focusChange:'',
+                beforeMoveChange: '',
+                moveChange: Home.scrollText,
+                cIdx: ''
+            },{
+                id:'window1',
+            })
+
+            LMEPG.BM.init("to-btn", Home.buttons, "", true);
+        },
+
+        publicWindow: function () {
+            G('dialog_container').style.display = 'block'
+            LMEPG.BM.requestFocus('window1')
+        },
+        scrollText:function (pre,cur,dir){
+            if(dir === 'up'){
+                G('introduce').scrollTop-=50;
+            }else if(dir === 'down'){
+                G('introduce').scrollTop+=50;
+            }
+        },
+
+        renderInfo:function (success){
+            LMEPG.ajax.postAPI("AppointmentRegister/getHospitalListInfo", "", function (rsp) {
+                try {
+                    if (rsp.result === 0) {
+                        var res = '';
+                        for(var i =0;i<rsp.list.length;i++) {
+                            if (rsp.list[i].hospital_code === 'QH013') {
+                                res = rsp.list[i]
+                                break;
+                            }
+                        }
+                        console.log(res,'医院信息')
+                        success(res)
+                    } else {
+                        LMEPG.UI.showToast("数据拉取失败:" + rsp);
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("数据拉取失败:" + e);
+                }
+            });
+        },
+    }
+
+    window.onload = function (){
+        Home.renderInfo(function (data){
+            G('hospital-name').innerText=data.hospital_name;
+            G('hospital-address').innerText='地址: '+data.location;
+            G('hospital-phone').innerHTML=data.tel;
+            G('introduce').innerHTML = data.registration_intro || '该医院暂无介绍'
+            Home.initButton()
+        })
+        Home.initButton();
+
+    }
+    function onBack(){
+        if(G('dialog_container').style.display ==='block'){
+            G('dialog_container').style.display = 'none'
+            LMEPG.BM.requestFocus('to-btn')
+        }else {
+            LMEPG.Intent.back()
+        }
+    }
+
+</script>
+</body>
+</html>

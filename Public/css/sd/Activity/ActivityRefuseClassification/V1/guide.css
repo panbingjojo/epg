@@ -1,0 +1,423 @@
+body {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/V640092/bg_home.png");
+}
+
+#activity-time {
+    position: absolute;
+    top: 190px;
+    left: 190px;
+    width: 302px;
+    height: 30px;
+    line-height: 28px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/bg_activity_time.png");
+}
+
+.btn-home-wrap0 {
+    position: absolute;
+    top: 310px;
+    left: 100px;
+    width: 444px;
+    text-align: center;
+}
+
+.btn-home-wrap0 img {
+    margin: 0 14px;
+}
+
+img#btn-begin0 {
+    margin-left: 0;
+}
+
+img#btn-begin2 {
+    margin-right: 0;
+}
+
+.btn-home-wrap1 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+}
+
+.btn-home-wrap2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 100px;
+}
+
+.btn-home-wrap1 img,
+.btn-home-wrap2 img {
+    margin-bottom: 10px;
+}
+
+.btn-home-wrap3 {
+    position: absolute;
+    top: 370px;
+    left: 7px;
+    width: 630px;
+    text-align: center;
+}
+
+.btn-home-wrap3 img {
+    margin: 0 2px;
+    width: 150px;
+    height: 100px;
+}
+
+#btn-pay-0,
+#btn-pay-3 {
+    margin-left: 0;
+}
+
+/*倒计时*/
+#modal-cd {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/cd_bg.png");
+}
+
+#count-down {
+    position: absolute;
+    color: #fff;
+    font-size: 40px;
+    top: 195px;
+    left: 365px;
+    font-weight: bold;
+}
+
+
+#times-count {
+    position: absolute;
+    top: 460px;
+    left: 380px;
+    font-size: 18px;
+    color: #e64560;
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/bg_leave_time.png");
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    background-position: center;
+}
+
+.modal-btn {
+    width: 75px;
+    height: 45px;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+}
+
+/*====活动规则====*/
+#modal-rule {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_rule.png");
+}
+
+/*====中奖名单====*/
+#modal-list {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_win_list.png");
+}
+
+#total-list,
+#my-list {
+    width: 515px;
+    left: 65px;
+    position: absolute;
+}
+
+#total-list {
+    top: 140px;
+}
+
+#all-marquee {
+    height: 80px;
+}
+
+#my-list {
+    top: 350px
+}
+
+#my-marquee {
+    height: 30px;
+}
+
+table.marquee-table {
+    width: 515px;
+}
+
+table#all-table tr {
+    height: 25px;
+}
+
+table.marquee-table td {
+    width: 33%;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.list-tel {
+    position: absolute;
+    top: 404px;
+    left: 210px;
+    width: 184px;
+    font-size: 18px;
+    color: #999999;
+    text-align: center;
+}
+
+img.btn-list {
+    position: absolute;
+    top: 393px;
+}
+
+#btn-list-submit {
+    left: 410px;
+}
+
+#btn-list-cancel {
+    left: 485px;
+}
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/no_times.png");
+}
+
+/*====完成游戏（中奖）====*/
+#modal-accomplish {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_success_exchange.png");
+}
+
+#accomplish-tel {
+    position: absolute;
+    top: 274px;
+    left: 290px;
+    width: 184px;
+    text-align: center;
+    font-size: 18px;
+    color: #cc7a29;
+}
+
+img.btn-win {
+    position: absolute;
+    top: 314px;
+}
+
+#btn-accomplish-submit {
+    left: 290px;
+}
+
+#btn-accomplish-cancel {
+    left: 400px;
+}
+
+/*====分类课堂====*/
+#modal-classified-lesson {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_classified_lesson.png");
+}
+
+#classified-txt {
+    position: absolute;
+    top: 90px;
+    left: 80px;
+    width: 484px;
+    height: 300px;
+}
+
+.classified-btn {
+    position: absolute;
+    top: 400px;
+    width: 100px;
+    height: 45px;
+}
+
+#btn-prev {
+    left: 80px;
+}
+
+#btn-next {
+    left: 460px;
+}
+
+/*====无游戏次数====*/
+#modal-allPay-over {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/no_times.png");
+}
+
+/*====垃圾分类====*/
+#modal-classified {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_classified.png");
+}
+
+.refuse-item {
+    position: absolute;
+    top: 108px;
+    height: 75px;
+}
+
+#refuse-img {
+    left: 84px;
+    width: 100px;
+}
+
+#refuse-name {
+    left: 184px;
+    width: 125px;
+}
+
+#btn-refuse-wrap {
+    position: absolute;
+    top: 230px;
+    left: 65px;
+}
+
+#btn-refuse-wrap img {
+    width: 125px;
+    height: 200px;
+}
+
+/*====分类结果====*/
+.answer-right {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_answer_rigth.png");
+}
+
+.answer-error {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_answer_error.png");
+}
+
+#modal-answer-result img {
+    position: absolute;
+}
+
+#answer-refuse-img {
+    width: 125px;
+    height: 75px;
+    top: 190px;
+    left: 160px;
+}
+
+#answer-refuse-classified {
+    width: 125px;
+    height: 75px;
+    top: 190px;
+    left: 360px;
+}
+
+#answer-gift {
+    top: 262px;
+    left: 297px;
+    width: 50px;
+    height: 45px;
+}
+
+#answer-submit {
+    top: 320px;
+    left: 284px;
+}
+
+/*====联合订购====*/
+#modal-pay-union {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/mdal_pay_union.png");
+}
+
+.union-pay-wrap {
+    position: absolute;
+    top: 220px;
+    left: 150px;
+    width: 390px;
+    height: 222px;
+    text-align: center;
+}
+
+.union-pay-wrap img {
+    width: 150px;
+    height: 100px;
+    margin-right: 60px;
+    margin-bottom: 20px;
+}
+
+#union-pay-1,
+#union-pay-3 {
+    margin-right: 0;
+}
+
+/*====兑换奖品====*/
+#modal-exchange {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_exchange.png");
+}
+
+#total-collect-material {
+    position: absolute;
+    top: 105px;
+    left: 0;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+
+#total-collect-material span {
+    margin-left: 146px;
+}
+
+table#material-wrap {
+    position: absolute;
+    top: 190px;
+    left: 210px;
+}
+
+/*第一行*/
+tr.row-0 {
+    height: 40px;
+}
+
+/*第二行*/
+tr.row-1 {
+    height: 125px;
+}
+
+/*第三行*/
+tr.row-2 {
+    height: 52px;
+}
+
+#material-wrap td {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+
+/*第一列*/
+td.col-0 {
+    width: 70px;
+}
+
+/*第二列*/
+td.col-1 {
+    width: 140px;
+}
+
+/*第三列*/
+td.col-2 {
+    width: 70px;
+}
+
+/*第四列*/
+td.col-3 {
+    width: 100px;
+    background-position: left;
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/exchange.png");
+}
+
+
+
+
+

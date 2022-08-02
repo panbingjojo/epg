@@ -1,0 +1,418 @@
+
+body {
+    width: 644px;
+    height: 530px;
+}
+
+
+div, img, ul {
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+#jump-start {
+    top: 246px;
+    left: 245px;
+}
+
+#jump-knowledge {
+}
+
+#knowledge-next {
+    top: 444px;
+    left: 503px;
+}
+
+#knowledge-pic {
+    /* top: 100px; */
+    left: 25px;
+}
+
+#knowledge-back {
+    top: 422px;
+    left: 288px;
+    visibility: hidden;
+}
+
+.txt-tip,
+#score-count,
+#times-count {
+    font-family: "Source Code Pro", sans-serif;
+    text-align: left;
+    color: #fac79b;
+}
+
+.jump-wrap {
+    top: 28px;
+    right: 0;
+    width: 146px;
+}
+
+.jump-wrap img {
+    position: static;
+    margin-bottom: 10px;
+}
+
+.modify {
+    top: 124px;
+    left: 36px;
+    width: 114px;
+}
+
+#guess-pic {
+    top: 107px;
+    left: 37px;
+    width: 251px;
+    height: 196px;
+}
+
+#piece-word-wrap {
+    top: 107px;
+    left: 333px;
+    width: 280px;
+}
+
+#piece-word-wrap p {
+    color: #fff;
+    font-size: 18px;
+}
+
+#words-inner {
+    margin-top: 10px;
+}
+
+#words-inner li {
+    margin: 10px 13px 10px 0;
+    float: left;
+    color: #fff;
+    font-size: 26px;
+    text-align: center;
+    line-height: 1;
+    padding: 10px;
+    position: relative;
+}
+
+#words-inner li span {
+    position: absolute;
+    font-size: 12px;
+    right: 0;
+    bottom: 0;
+    padding: 1px 3px;
+    background-color: red;
+}
+
+
+.modify img {
+    position: static;
+    margin-top: 10px;
+}
+
+.game-wrapper {
+    top: 210px;
+    left: 300px;
+    width: 750px;
+}
+
+.game-wrapper img {
+    position: static;
+    background-position: bottom;
+    background-size: 164px 202px;
+    margin: 5px 35px;
+}
+
+.txt-tip {
+    text-align: center;
+    position: absolute;
+    top: 444px;
+    left: 20px;
+}
+
+.prize-wrapper {
+    width: 158px;
+    top: 169px;
+    left: 46px;
+}
+
+.prize-wrapper img {
+    position: static;
+}
+
+#score-count {
+    position: absolute;
+    top: 39px;
+    left: 28px;
+    font-size: 18px;
+    line-height: 1;
+    color: #fff;
+}
+
+#times-count {
+    position: absolute;
+    top: 66px;
+    left: 28px;
+    font-size: 18px;
+    line-height: 1;
+    text-align: center;
+    color: #fff;
+}
+
+.modal {
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/*====倒计时====*/
+#modal-cd {
+}
+
+#modal-cd span,
+#count-down {
+    color: #333;
+    font-size: 30px;
+    top: 222px;
+    left: 336px;
+    font-weight: bold;
+}
+
+#modal-cd span {
+    position: absolute;
+    left: 364px;
+}
+
+/*====活动规则====*/
+#modal-rule {
+}
+
+/*====中奖名单====*/
+#modal-list {
+}
+
+
+.winner-list {
+    left: 55px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#total-list {
+    top: 167px;
+}
+
+#all-marquee {
+    height: 88px;
+}
+
+#my-marquee {
+    height: 20px;
+}
+
+table.marquee-table {
+    width: 520px;
+}
+
+table#all-table tr {
+    height: 30px;
+}
+
+table.marquee-table td {
+    width: 33%;
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+}
+
+#my-list {
+    top: 319px;
+}
+
+.list-tel {
+    color: #004475;
+    top: 349px;
+    left: 222px;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #fff311;
+}
+
+img.btn-list {
+    top: 400px;
+}
+
+#btn-list-submit {
+    left: 191px;
+}
+
+#btn-list-cancel {
+    left: 340px;
+}
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+}
+
+#btn-one0 {
+    top: 309px;
+    left: 267px;
+}
+
+/*====普通用户没有游戏次数====*/
+#modal-pay-notimes {
+}
+
+img.btn-pay {
+    top: 307px;
+}
+
+#btn-pay-sure {
+    left: 195px;
+}
+
+#btn-pay-cancel {
+    left: 340px;
+}
+
+/*====兑换/抽奖成功====*/
+#modal-accomplish {
+}
+
+#accomplish-prize {
+    top: 188px;
+    left: 666px;
+}
+
+#accomplish-tel {
+    top: 270px;
+    left: 259px;
+    width: 226px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 2px solid #fff311;
+    color: #004475;
+}
+
+img.btn-win {
+    top: 320px;
+}
+
+#btn-accomplish-submit {
+    left: 195px;
+}
+
+#btn-accomplish-cancel {
+    left: 340px;
+}
+
+/*====游戏主界面====*/
+#modal-game {
+}
+
+#game-start {
+    top: 588px;
+    left: 187px;
+    background-position: center;
+    background-size: 100%;
+}
+
+#game-cd {
+    top: 173px;
+    left: 0;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/*====增加积分界面===*/
+#modal-add-score {
+    top: 0;
+    left: 0;
+}
+
+#p-add-score {
+    position: absolute;
+    top: 230px;
+    left: 400px;
+    font-size: 22px;
+    color: #000;
+    width: 120px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#exchange-total-score {
+    position: absolute;
+    top: 63px;
+    left: 262px;
+    font-size: 22px;
+    color: #fff;
+}
+
+ul.prize-list {
+    top: 147px;
+    left: 52px;
+}
+
+ul.prize-list li {
+    width: 110px;
+    position: absolute;
+}
+
+ul.prize-list li#exchange-0 {
+
+}
+
+ul.prize-list li#exchange-1 {
+    left: 208px;
+}
+
+ul.prize-list li#exchange-2 {
+    left: 400px;
+}
+
+ul.prize-list li img {
+    position: static;
+    /* margin-left: -100px; */
+}
+
+ul.prize-list li p {
+    font-size: 22px;
+    color: #fff;
+    margin: 15px 0;
+    text-align: center;
+}
+
+
+#btn-one,
+#btn-one0,
+#btn-one1 {
+    top: 309px;
+    left: 267px;
+}
+
+
+
+
+
+

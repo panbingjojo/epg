@@ -1,0 +1,481 @@
+<div class="tab1-link-1-wrap">
+    <div id="tab1-link"></div>
+    <img id="tab1-link-1" onerror="this.src='__ROOT__/Public/img/hd/Common/default.png'">
+    <img id="tab1-link-0">
+
+    <div id="tab1-point-wrapper">
+    </div>
+</div>
+<div class="tab1-center-link">
+    <div>
+        <img id="tab1-link-2">
+    </div>
+    <div>
+        <img id="tab1-link-3">
+    </div>
+    <div class="sd-re-pos-1">
+        <img id="tab1-link-4">
+    </div>
+    <div class="sd-re-pos-2">
+        <img id="tab1-link-5">
+    </div>
+
+</div>
+<ul class="hot-video-list" id="hot-wrap"></ul>
+<div class="tab1-bottom-link">
+    <div id="overlay-wrap">
+        <div id="placeholder-0" class="left-placeholder"><img id="placeholder-img-0"
+                                                              src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div id="first-action" class="moveRight"><img id="bottom-link-0"
+                                                      src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div><img id="bottom-link-1" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div><img id="bottom-link-2" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div><img id="bottom-link-3" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div><img id="bottom-link-4" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div id="placeholder-1" class="right-placeholder"><img id="placeholder-img-1"
+                                                               src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+    </div>
+</div>
+<div id="tab1-help" class="tab-help-wrap">
+    <img id="tab1-help0" src="__ROOT__/Public/img/hd/Help/V13/tab1_help0.png">
+</div>
+<script type="text/javascript">
+    var Tab1 = {
+        init: function () {
+            this.renderTab1();
+            Tab1.fadeToggle.points();
+            this.createBtns();
+        },
+        /**
+         * 渲染Tab1
+         */
+        renderTab1: function () {
+            var list = RenderParam.configInfo.data.entry_list;
+            for (var i = 0; i < list.length; i++) {
+                var data = list[i].item_data;
+                switch (parseInt(list[i].position)) {
+                    // banner
+                    case 21:
+                        carouselDataList1 = data;
+                        Tab1.data = [];
+                        for (var j = 0; j < carouselDataList1.length; j++) {
+                            var tmp = {};
+                            tmp.id = j;
+                            tmp.src = Page.getImg(carouselDataList1[j].img_url);
+                            Tab1.data.push(tmp);
+                        }
+                        if (Tab1.data[0])
+                            G('tab1-link-0').src = Tab1.data[0].src;
+                        if (Tab1.data[1])
+                            G('tab1-link-1').src = Tab1.data[1].src;
+                        break;
+                    case 22:
+                        G('tab1-link-2').src = Page.getImg(data[0].img_url);
+                        break;
+                    case 23:
+                        G('tab1-link-3').src = Page.getImg(data[0].img_url);
+                        break;
+                    case 24:
+                        G('tab1-link-4').src = Page.getImg(data[0].img_url);
+                        break;
+                    case 25:
+                        G('tab1-link-5').src = Page.getImg(data[0].img_url);
+                        break;
+                }
+            }
+            var cutWords = function (str, len) {
+                if (str.length > len) {
+                    return str.slice(0, len) + '...';
+                } else {
+                    return str;
+                }
+            };
+            // 热播榜
+            var hotInner = '';
+            for (var i = 0; i < videoRankList.length; i++) {
+                hotInner += ' <li data-title="' + videoRankList[i].title + '" id=hot-' + i + '>' + cutWords(videoRankList[i].title, RenderParam.platformType == 'sd' ? 10 : 12);
+            }
+            G('hot-wrap').innerHTML = hotInner;
+            // 视频栏目
+            var moveCount = LMEPG.Func.getLocationString('moveCount') || 0;
+            Tab1.moveCount = +moveCount;
+            var bottomHtm = '';
+            Tab1.bottomActionData = [];
+            for (var i = 0; i < videoClassList.length; i++) {
+                var tmp = {};
+                tmp.id = i;
+                tmp.src = Page.getImg(videoClassList[i].img_url);
+                Tab1.bottomActionData.push(tmp);
+                if (i <= 4) {
+                    G('bottom-link-' + i).src = Page.getImg(videoClassList[i + +Tab1.moveCount].img_url);
+                }
+                if (i == 0) {
+                    G('placeholder-img-0').src = Page.getImg(videoClassList[videoClassList.length - 1].img_url);
+                }
+                if (i == videoClassList.length - 1) {
+                    G('placeholder-img-1').src = Page.getImg(videoClassList[0].img_url);
+                }
+            }
+
+        },
+        /*点击二级视频入口（页面的最后一行）*/
+        onClickJumpLevel2Page: function (btn) {
+            var currentObj = getCurPageObj();
+            // 通过点击对象id,设置跳转页面对象
+
+            var jumpAgreementObj = LMEPG.Intent.createIntent('channelIndex');
+            var itemIndex = btn.id.slice(12);
+            jumpAgreementObj.setParam('itemIndex', itemIndex);
+            jumpAgreementObj.setParam('modelType', videoClassList[+itemIndex + +Tab1.moveCount].model_type);
+            jumpAgreementObj.setParam('modelName', videoClassList[+itemIndex + +Tab1.moveCount].model_name);
+
+            LMEPG.Intent.jump(jumpAgreementObj, currentObj);
+        },
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+            Tab1.bottomOnFocusIn(btn, hasFocus);
+            Tab1.carouselLink1OnFocus(btn, hasFocus);
+        },
+        /**
+         * 轮播推荐位得失焦点处理
+         * 轮询切换
+         * @param btn
+         * @param hasFocus
+         */
+        carouselLink1OnFocus: function (btn, hasFocus) {
+            if (btn.id != 'tab1-link') {
+                return;
+            }
+            var carousel_0 = G(btn.id + '-0');
+            var carousel_1 = G(btn.id + '-1');
+            if (hasFocus) {
+                carousel_0.setAttribute('class', 'focus');
+                carousel_1.setAttribute('class', 'focus');
+            } else {
+                carousel_0.removeAttribute('class');
+                carousel_1.removeAttribute('class');
+            }
+        },
+        cutWords: function (str, len) {
+            if (str.length > len) {
+                return str.slice(0, len) + '...';
+            } else {
+                return str;
+            }
+        },
+        hotOnFocusIn: function (btn, hasFocus) {
+            var btnEl = G(btn.id);
+            var txtInner = btnEl.getAttribute('data-title');
+            var lenWord = RenderParam.platformType == 'sd' ? 8 : 12;
+            if (btn.id.indexOf('hot') < 0 || txtInner.length <= lenWord) {
+                return;
+            }
+
+            if (hasFocus) {
+                btnEl.innerHTML = '<marquee>' + txtInner;
+            } else {
+                btnEl.innerHTML = Tab1.cutWords(txtInner, lenWord);
+            }
+        },
+        hotBeforeMoveChange: function (dir, current) {
+            if (dir == "up" && current.id == "hot-0") {
+                showTabContent("tab-0");
+            }
+            /*-
+             * BugFix：修复热播榜按钮，按下键移动时，若热播历史未达到6个。则老代码写死的nextFocusDown='hot-上一个索引大1'是无法移动的bug。
+             * Resolved：动态设置，若有热播榜，下移时若没有热播条或非最后热播条，则直接移动到底部推荐位'bottom-link-3'或向前一个。（By Songhui on 2020-3-15）
+             */
+            if (dir === 'down' && !is_element_exist(current.nextFocusDown)) {
+                for (var bottomLinkIndex = 3; bottomLinkIndex > -1; bottomLinkIndex--) {
+                    if (is_element_exist('bottom-link-' + bottomLinkIndex)) {
+                        LMEPG.BM.requestFocus('bottom-link-' + bottomLinkIndex);
+                        return false;
+                    }
+                }
+            }
+        },
+        bottomActionData: [],
+        moveCount: 0,
+        /*处理进入二级视频栏目滚动效果*/
+        bottomOnFocusIn: function (btn, hasFocus) {
+            if (btn.id.indexOf('bottom') < 0) {
+                return;
+            }
+            if (hasFocus) {
+                if (btn.id == 'bottom-link-0') {
+                    showLeft();
+                    Tab1.showPlaceholder(btn);
+                }
+                if (btn.id == 'bottom-link-4') {
+                    showRight();
+                    Tab1.showPlaceholder(btn);
+                }
+            }
+
+            function showLeft() {
+                G('first-action').setAttribute('class', 'moveRight');
+            }
+
+            function showRight() {
+                G('first-action').setAttribute('class', 'moveLeft');
+            }
+        },
+        /*切换滚动*/
+        turnPage: function (dir, btn) {
+            var _this = Tab1;
+            if (dir == 'left' && btn.id == 'bottom-link-0' && _this.moveCount != 0) {
+                _this.moveCount -= 1;
+                _this.renderBottom(btn);
+            }
+            if (dir == 'right' && btn.id == 'bottom-link-4' && _this.bottomActionData.length - _this.moveCount > 5) {
+                _this.moveCount += 1;
+                _this.renderBottom(btn);
+            }
+
+            /*-
+             * BugFix：修复热播榜下的3+个按钮，按上键时，若热播历史未达到6个。则老代码写死的nextFocusUp='hot-5'是无法移动的bug。
+             * Resolved：动态设置，若有热播榜，上移应移至最后一个。否则，移至其左侧的推荐位5'tab1-link-5'位置上。（By Songhui on 2020-3-15）
+             */
+            if (dir === 'up' && (!/^bottom-link-[0-1]$/.test(btn.id))) {
+                for (var hotVDIndex = 5/*热播榜最大个数6*/; hotVDIndex > -1; hotVDIndex--) {
+                    if (is_element_exist('hot-' + hotVDIndex)) {
+                        LMEPG.BM.requestFocus('hot-' + hotVDIndex);
+                        return false;
+                    }
+                }
+                LMEPG.BM.requestFocus('tab1-link-5');//默认第5个推荐位
+                return false;
+            }
+
+            if (dir == "down") {
+                if (btn.id.substr(0, 12) == "bottom-link-") {
+                    showTabContent("tab-2");
+                    LMEPG.BM.requestFocus('sift-2');
+                    return false;
+                }
+
+            }
+        },
+        renderBottom: function (btn) {
+            this.currentData = this.bottomActionData.slice(this.moveCount, this.moveCount + 5);
+            var length = this.currentData.length;
+            while (length--) {
+                G('bottom-link-' + length).src = this.currentData[length].src; // 这里文档结构限制，遍历需要查询至多5次
+            }
+            this.prevImg = this.bottomActionData[+this.currentData[0].id - 1]; // 预支上一个占位元素
+            this.nextImg = this.bottomActionData[+this.currentData[this.currentData.length - 1].id + 1];     // 预支下一个占位符
+            this.showPlaceholder(btn);
+            console.log(this.bottomActionData, this.currentData.length - 1, this.nextImg);
+        },
+        // 展示占位元素
+        showPlaceholder: function (btn) {
+            Hide('placeholder-0');
+            Hide('placeholder-1');
+            var data_length = this.bottomActionData.length;
+            if (data_length < 6) {
+                LMEPG.BM.getButtonById('bottom-link-' + (data_length - 1)).nextFocusRight = '';
+                return;
+            }
+            if (btn.id == 'bottom-link-0' && this.prevImg) {
+                G('placeholder-img-0').src = this.prevImg.src;
+                Show('placeholder-0');
+            }
+            if (btn.id == 'bottom-link-4' && this.nextImg) {
+                G('placeholder-img-1').src = this.nextImg.src;
+                Show('placeholder-1');
+            }
+        },
+        /*=====处理轮播对象封装=====*/
+        data: [], // 配置推荐位轮播数据
+        fadeToggle: {
+            reverseStatus: false,
+            loop: function () {
+                if (Tab1.data.length < 2) {
+                    H('tab1-point-wrapper');
+                    return;
+                }
+                ;
+                this.data = Tab1.data;
+                this.img1 = document.getElementById('tab1-link-0');
+                this.img2 = document.getElementById('tab1-link-1');
+                this.timer = setInterval(this.update, 4333);
+            },
+            toggle: function (e, n, c) {
+                var oS = n;
+                var oE = Math.abs(n - 1);
+                (function op() {
+                    n ? oS -= 0.1 : oS += 0.1;
+                    oS = +(oS.toFixed(1));
+                    e.style.opacity = oS;
+                    var opTimer = setTimeout(op, 50);
+                    if (oS == oE) {
+                        clearTimeout(opTimer);
+                        c && c();
+                    }
+                }());
+            },
+            update: function () {
+                var self = Tab1.fadeToggle;
+                var data = self.data;
+                var runTag = self.getTag();
+                self.toggle(runTag.hideTag, 1, function () {
+                    runTag.hideTag.src = data[1].src;
+                    curTab1CarouselId = data[0].id;
+                });
+                self.toggle(runTag.showTag, 0);
+                self.switchDot(); // 不阻塞切换
+                data.push(data.shift());
+                self.shuffle(data[0].id);
+            },
+            points: function () {
+                var htm = [];
+                var len = Tab1.data.length;
+                while (len--) {
+                    if (len == 0) {
+                        htm.push('<img src="__ROOT__/Public/img/hd/Common/transparent.png" id="tab1-point-' + len + '" class="focus">');
+                    } else {
+                        htm.push('<img src="__ROOT__/Public/img/hd/Common/transparent.png"  id=tab1-point-' + len + '>');
+                    }
+                }
+                document.getElementById('tab1-point-wrapper').innerHTML = htm.reverse().join('');
+            },
+            getTag: function () {
+                this.reverseStatus = !this.reverseStatus;
+                return this.reverseStatus ? {hideTag: this.img1, showTag: this.img2} : {
+                    hideTag: this.img2,
+                    showTag: this.img1
+                };
+                this.toggle();
+            },
+            shuffle: function (id) {
+                var self = this;
+                self.data.sort(function (a, b) {
+                    var sum = a.id - b.id;
+                    if (id == self.data.length - 1) {
+                        return -sum;
+                    } else if (id == 0) {
+                        return sum;
+                    }
+                });
+            },
+            switchDot: function () {
+                document.getElementById('tab1-point-' + this.data[0].id).removeAttribute('class');
+                document.getElementById('tab1-point-' + this.data[1].id).setAttribute('class', 'focus');
+            }
+        },
+        createBtns: function () {
+            // 推荐位1
+            buttons.push({
+                id: 'tab1-link',
+                type: 'img',
+                nextFocusRight: 'tab1-link-2',
+                nextFocusUp: 'b-link-0',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'tab1-link-4' : 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                beforeMoveChange: ScrollControl.moveChange,
+                cNavId: 2,
+                cPosition: 21
+            });
+            // 中间四个推荐位
+            buttons.push({
+                id: 'tab1-link-2',
+                type: 'img',
+                nextFocusLeft: 'tab1-link',
+                nextFocusRight: RenderParam.platformType == 'sd' ? 'hot-0' : 'tab1-link-3',
+                nextFocusUp: 'b-link-0',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'tab1-link-3' : 'tab1-link-4',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                beforeMoveChange: ScrollControl.moveChange,
+                cNavId: 2,
+                cPosition: 22
+            }, {
+                id: 'tab1-link-3',
+                type: 'img',
+                nextFocusLeft: RenderParam.platformType == 'sd' ? 'tab1-link-5' : 'tab1-link-2',
+                nextFocusRight: 'hot-0',
+                nextFocusUp: "b-link-0",
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'bottom-link-1' : 'tab1-link-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                beforeMoveChange: ScrollControl.moveChange,
+                cNavId: 2,
+                cPosition: 23
+            }, {
+                id: 'tab1-link-4',
+                type: 'img',
+                nextFocusLeft: RenderParam.platformType == 'sd' ? '' : 'tab1-link',
+                nextFocusRight: 'tab1-link-5',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link' : 'tab1-link-2',
+                nextFocusDown: 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 24
+            }, {
+                id: 'tab1-link-5',
+                type: 'img',
+                nextFocusLeft: 'tab1-link-4',
+                nextFocusRight: RenderParam.platformType == 'sd' ? 'tab1-link-3' : 'hot-0',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link' : 'tab1-link-3',
+                nextFocusDown: 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 25
+            });
+            // 热播榜
+            var hot_length = 6;
+            while (hot_length--) {
+                var topFocus = hot_length == 0 ? 'b-link-0' : 'hot-' + (hot_length - 1);
+                var downFocus = hot_length == 5 ? 'bottom-link-3' : 'hot-' + (hot_length + 1);
+                buttons.push({
+                    id: 'hot-' + hot_length,
+                    type: 'div',
+                    nextFocusLeft: 'tab1-link-3',
+                    nextFocusUp: topFocus,
+                    nextFocusDown: downFocus,
+                    click: Page.onClickHotVideo,
+                    focusChange: Tab1.hotOnFocusIn,
+                    beforeMoveChange: Tab1.hotBeforeMoveChange,
+                    backgroundImage: RenderParam.platformType == 'sd'
+                        ? ROOT + '/Public/sd/img/unclassified/V13/hot_bg.png'
+                        : ROOT + '/Public/img/hd/Home/V13/home/tab1/hot_bg.png',
+                    focusImage: RenderParam.platformType == 'sd' ? ROOT + '/Public/sd/img/unclassified/V13/hot_f.png' : ROOT + '/Public/img/hd/Home/V13/Home/Tab1/hot_link.png',
+                    cNavId: 2
+                });
+            }
+            // 跳转二级页面按钮
+            var tabCount = 5; // 后台拉去的个数
+            while (tabCount--) {
+                var top1Focus = function () {
+                    var id;
+                    if (tabCount < 2) {
+                        id = 'tab1-link-4';
+                    } else {
+                        id = 'hot-5';
+                    }
+                    return id;
+                }();
+                buttons.push({
+                    id: 'bottom-link-' + tabCount,
+                    type: 'others',
+                    nextFocusLeft: 'bottom-link-' + (tabCount - 1),
+                    nextFocusRight: 'bottom-link-' + (tabCount + 1),
+                    nextFocusUp: top1Focus,
+                    click: Tab1.onClickJumpLevel2Page,
+                    focusChange: Tab1.onFocusIn,
+                    beforeMoveChange: Tab1.turnPage,
+                    cNavId: tabCount
+                });
+            }
+            console.log(buttons);
+        }
+    };
+</script>

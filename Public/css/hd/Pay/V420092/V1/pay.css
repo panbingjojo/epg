@@ -1,0 +1,45 @@
+
+#container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#pay_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+/*确认*/
+#ly_btn {
+    position: absolute;
+    left: 52px;
+    top: 241px;
+}
+
+/* 返回*/
+#health_btn {
+    position: absolute;
+    left: 52px;
+    top: 381px;
+}
+
+#left {
+    position: absolute;
+    left: 689px;
+    top: 348px;
+    width: 29px;
+}
+
+#details {
+    position: absolute;
+    left: 740px;
+    top: 183px;
+    width: 414px;
+    height: 450px;
+}

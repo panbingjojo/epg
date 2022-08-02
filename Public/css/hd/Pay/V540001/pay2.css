@@ -1,0 +1,172 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+#order_options_container {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    background-image: url("/Public/img/hd/Pay/V540001/bg_order_items_2.png");
+}
+
+#order_item_detail {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    background-image: url("/Public/img/hd/Pay/V540001/bg_order_detail.png");
+}
+
+#order_items_container {
+    position: absolute;
+    top: 342px;
+    left: 296px;
+}
+
+#order_items_container div {
+    position: relative;
+    display: inline-block;
+    width: 182px;
+    height: 237px;
+}
+
+#order_items_container div img {
+    position: absolute;
+    top: -45px;
+    left: 18px;
+}
+
+#order_item_1 {
+    background-image: url("/Public/img/hd/Pay/V540001/order_item_1.png");
+}
+#order_item_2 {
+    background-image: url("/Public/img/hd/Pay/V540001/order_item_2.png");
+}
+#order_item_3 {
+    background-image: url("/Public/img/hd/Pay/V540001/order_item_3.png");
+}
+#order_item_4 {
+    background-image: url("/Public/img/hd/Pay/V540001/order_item_4.png");
+}
+#order_item_5 {
+    background-image: url("/Public/img/hd/Pay/V540001/order_item_5.png");
+}
+
+.order_item_desc {
+    position: absolute;
+    width: 225px;
+    height: 146px;
+    padding-top: 34px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 17px;
+    color: #3c3b39;
+    top: 152px;
+    line-height: 26px;
+}
+
+#desc_item_1 {
+    left: 232px;
+}
+
+#desc_item_2 {
+    left: 512px;
+}
+
+#desc_item_3 {
+    left: 790px;
+}
+
+#pay_type_container {
+    position: absolute;
+    top: 347px;
+    left: 373px;
+    width: 534px;
+}
+
+#pay_type_nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#btn_pay_sure {
+    position: absolute;
+    left: 95px;
+    top: 234px;
+}
+
+#btn_pay_cancel {
+    position: absolute;
+    left: 314px;
+    top: 234px;
+}
+
+#pay_type_detail {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    padding-top: 36px;
+    padding-left: 50px;
+    width: 484px;
+    height: 126px;
+    color: #3c3b39;
+    background-color: #89ecba;
+}
+
+#pay_type_detail .row {
+    margin-bottom: 22px;
+}
+
+#bill_payment_container {
+    position: absolute;
+    top: 36px;
+    left: 306px;
+    width: 180px;
+    text-align: center;
+}
+
+#pay_phone {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    border: none;
+    width: 180px;
+    height: 38px;
+    font-size: 22px;
+    text-align: center;
+    line-height: 38px;
+    color: #3c3b39;
+    background-image: url("/Public/img/hd/Pay/V540001/input_phone.png");
+}
+
+#pay_qr_code {
+    position: absolute;
+    left: 354px;
+    top: 30px;
+    width: 120px;
+    height: 120px;
+}
+
+.dismiss {
+    visibility: hidden;
+}
+
+
+
+
+
+
+

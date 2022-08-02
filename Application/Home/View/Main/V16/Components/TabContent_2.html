@@ -1,0 +1,175 @@
+<div>
+    <div class="tab4-recd-1">
+        <img id="tab4-recd-1" class="recd-bg">
+        <!--<img id="tab4-recd-1-mark" src="">-->
+    </div>
+    <div class="tab4-recd-2">
+        <img id="tab4-recd-2" class="recd-bg">
+        <!--<img id="tab4-recd-2-mark" src="">-->
+    </div>
+    <div class="tab4-recd-3">
+        <img id="tab4-recd-3" class="recd-bg">
+        <!--<img id="tab4-recd-3-mark" src="">-->
+    </div>
+
+    <div class="tab4-recd-4">
+        <img id="tab4-recd-4" class="recd-bg">
+        <!--<img id="tab4-recd-4-mark" src="">-->
+    </div>
+
+    <div class="tab4-recd-5">
+        <img id="tab4-recd-5" class="recd-bg">
+        <!--<img id="tab4-recd-5-mark" src="">-->
+    </div>
+    <div class="tab4-recd-6">
+        <img id="tab4-recd-6" class="recd-bg">
+        <!--<img id="tab4-recd-6-mark" src="">-->
+    </div>
+
+</div>
+<script type="text/javascript">
+    var Tab2 = {
+        isLoad:false,
+        init: function() {
+            this.renderTab2();
+            this.createBtns();
+        },
+
+        /**
+         * 渲染Tab1
+         */
+        renderTab2: function () {
+            var list = RenderParam.configInfo.data.entry_list;
+            for (var i = 0; i < list.length; i++) {
+                var data = list[i].item_data;
+                var data0ImgUrl = JSON.parse(data[0].img_url);
+                switch (parseInt(list[i].position)) {
+                    // banner
+                    case 61:
+                        G('tab4-recd-1').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('tab4-recd-1-mark', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                    case 62:
+                        G('tab4-recd-2').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('tab4-recd-2-mark', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                    case 63:
+                        G('tab4-recd-3').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('tab4-recd-3-mark', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                    case 64:
+                        G('tab4-recd-4').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('tab4-recd-5-mark', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                    case 65:
+                        G('tab4-recd-5').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('tab4-recd-5-mark', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                    case 66:
+                        G('tab4-recd-6').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('tab4-recd-6-mark', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                }
+            }
+        },
+        onClickJumpPage: function(btn) {
+            var curObj = getCurPageObj();
+            var jumpId = {
+                'collect-record': 'collect',
+                'play-record': 'historyPlay',
+                'family-record': 'familyEdit',
+                'seek-record': 'seekOnLineRecord',
+                'order-record': 'expertRecordHome',
+                'debook-record': 'debook'
+            };
+            if (RenderParam.platformType == 'sd' && btn.id=="order-record") {
+                LMEPG.UI.showToast('不支持的盒子类型！', 1.5);
+                return;
+            }
+            var dstObj = LMEPG.Intent.createIntent(jumpId[btn.id]);
+            LMEPG.Intent.jump(dstObj,curObj);
+        },
+        createBtns: function() {
+            buttons.push( {
+                id: 'tab4-recd-1',
+                type: 'img',
+                name: '推荐位1',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: "",
+                nextFocusLeft: "",
+                nextFocusRight: "tab4-recd-2",
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 61
+            }, {
+                id: 'tab4-recd-2',
+                type: 'img',
+                name: '推荐位1',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: "tab4-recd-5",
+                nextFocusLeft: "tab4-recd-1",
+                nextFocusRight: "tab4-recd-3",
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 62
+            }, {
+                id: 'tab4-recd-3',
+                type: 'img',
+                name: '推荐位1',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: "tab4-recd-6",
+                nextFocusLeft: "tab4-recd-2",
+                nextFocusRight: "tab4-recd-4",
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 63
+            }, {
+                id: 'tab4-recd-4',
+                type: 'img',
+                name: '推荐位1',
+                nextFocusUp: 'tab-2',
+                nextFocusDown: "tab4-recd-6",
+                nextFocusLeft: "tab4-recd-3",
+                nextFocusRight: "",
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 64
+            }, {
+                id: 'tab4-recd-5',
+                type: 'img',
+                name: '推荐位1',
+                nextFocusUp: 'tab4-recd-2',
+                nextFocusDown: "",
+                nextFocusLeft: "tab4-recd-1",
+                nextFocusRight: "tab4-recd-6",
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 65
+            }, {
+                id: 'tab4-recd-6',
+                type: 'img',
+                name: '推荐位1',
+                nextFocusUp: 'tab4-recd-4',
+                nextFocusDown: "",
+                nextFocusLeft: "tab4-recd-5",
+                nextFocusRight: "",
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 66
+            })
+        },
+        onFocusIn: function(btn, hasFocus) {
+//            alert("fff");
+//            return;
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            }
+            else {
+                btnElement.setAttribute('class', 'recd-bg');
+//                btnElement.removeAttribute('class');
+            }
+        }
+    };
+//    Tab3.init();
+</script>

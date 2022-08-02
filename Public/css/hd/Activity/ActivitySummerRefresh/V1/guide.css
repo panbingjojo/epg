@@ -1,0 +1,417 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+body>div{
+    position: absolute;
+}
+#bg{
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+}
+.btn-group{
+    top: 46px;
+    left: 1060px;
+}
+
+.show-box{
+    position: absolute;
+    top: 670px;
+    left:740px;
+    outline: none !important;
+    width: 188px;
+    height: 26px;
+
+    line-height: 26px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 21px;
+    color: #fff;
+    /*border:1px red solid;*/
+}
+#show-box{
+    color: #ffffff;
+    font-size: 21px;
+}
+
+.countdown-box{
+    position: absolute;
+    top: 15px;
+    left: 1090px;
+    outline: none !important;
+    z-index: 999;
+    line-height: 26px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 21px;
+    color: #fff;
+    /*border:1px red solid;*/
+}
+#countdown-box{
+    color: #fff;
+    font-size: 21px;
+}
+
+#default_tip{
+    position: absolute;
+    top: 680px;
+    left: 15px;
+    outline: none !important;
+    z-index: 999;
+    line-height: 26px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    /*border:1px red solid;*/
+}
+
+#btn-start{
+    position: absolute;
+    top: 619px;
+    left: 513px;
+}
+
+#btn-walk-through {
+    position: absolute;
+    top: 180px;
+    left: 113px;
+}
+#akys {
+    position: absolute;
+    display: none;
+    top: 272px;
+    left: 14px;
+}
+#slh {
+    position: absolute;
+    display: none;
+    top: 472px;
+    left: 14px;
+}
+#jkmf {
+    position: absolute;
+    display: none;
+    top: 472px;
+    left: 226px;
+}
+#frog-status {
+    position: absolute;
+    top: 300px;
+    left: 494px;
+}
+#energy-status-box {
+    position: absolute;
+    top: 301px;
+    left: 815px;
+    height: 270px;
+    width: 47px;
+    background-repeat:no-repeat
+}
+
+/*弹窗相关*/
+.common_back_position {
+    position: absolute;
+    top: 24px;
+    left: 1086px;
+}
+
+#table-wrap {
+    position: absolute;
+    top: 330px;
+    left: 220px;
+}
+
+#btn_game_over {
+    position: absolute;
+    top: 442px;
+    left: 544px;
+}
+
+/*兑换物品*/
+#my_point{
+    position: absolute;
+    top: 15px;
+    left: 452px;
+    font-size: 24px;
+    line-height: 24px;
+    width: 62px;
+    outline: none !important;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#exchange-1 {
+    position: absolute;
+    top: 487px;
+    left: 181px;
+    outline: none !important;
+}
+
+#exchange-2 {
+    position: absolute;
+    top: 487px;
+    left: 552px;
+    outline: none !important;
+}
+
+#exchange-3 {
+    position: absolute;
+    top: 487px;
+    left: 941px;
+    outline: none !important;
+}
+
+#exchange-1-point {
+    position: absolute;
+    top: 447px;
+    left: 307px;
+}
+
+#exchange-2-point {
+    position: absolute;
+    top: 447px;
+    left: 684px;
+}
+
+#exchange-3-point {
+    position: absolute;
+    top: 447px;
+    left: 1068px;
+}
+
+.point {
+    font-size: 26px;
+    color: #fff;
+    width: 52px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.introduce {
+    position: absolute;
+    top: 522px;
+    left: 422px;
+    font-size: 28px;
+    line-height: 28px;
+    outline: none !important;
+    color: #666666;
+}
+
+/*图文介绍*/
+#picture {
+    position: absolute;
+    top: 140px;
+    left: 390px;
+    width: 500px;
+    height: 500px;
+}
+
+.left_page {
+    position: absolute;
+    top: 322px;
+    left: 36px;
+}
+
+.right_page {
+    position: absolute;
+    top: 322px;
+    left: 1167px;
+}
+
+#pr-img {
+    position: absolute;
+    top: 147px;
+    left: 193px;
+}
+
+.pr-content {
+    position: absolute;
+    top: 175px;
+    left: 609px;
+    width: 440px;
+    /*border: 1px red solid;*/
+    color: #28518b;
+    font-size: 28px;
+}
+
+#pages{
+    position: absolute;
+    top: 594px;
+    left: 606px;
+    width: 100px;
+    font-size: 28px;
+    color: #0e4995;
+    /*border: 1px red solid;*/
+}
+
+/*中奖名单*/
+table tr td {
+    width: 230px;
+    text-align: center;
+    list-style: none;
+    font-size: 21px;
+    color: #203d65 !important;
+    height: 36px;
+    overflow: hidden;
+    /*border: 1px red solid;*/
+}
+
+#all-prizes {
+    position: absolute;
+    left: 298px;
+    top: 208px;
+    width: 720px;
+    height: 154px;
+    color: #203d65;
+    /*border: 1px red solid;*/
+}
+
+#my-prizes {
+    position: absolute;
+    left: 298px;
+    top: 466px;
+    width: 720px;
+    /*border: 1px red solid;*/
+    color: #203d65;
+    height: 40px;
+    overflow: hidden;
+}
+
+.abs {
+    position: absolute;
+}
+
+.my-noPrize {
+    top: 476px;
+    left: 560px;
+}
+
+#btn-submit {
+    position: absolute;
+    top: 608px;
+    left: 411px;
+}
+
+#btn-cancel {
+    position: absolute;
+    top: 608px;
+    left: 734px;
+}
+
+#searchText {
+    position: absolute;
+    top: 524px;
+    left: 632px;
+    width: 215px;
+    height: 30px;
+    line-height: 30px;
+    color:  #004475;
+    font-size: 20px;
+    text-align: center;
+    overflow: hidden;
+    /*border: 1px red solid;*/
+}
+
+/*游戏页*/
+#content {
+    position: absolute;
+    width: 1200px;
+    height: 650px;
+    top: 0;
+    margin: 0 auto;
+}
+
+#game-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.fruit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px;
+    text-align: center;
+}
+
+.fruit_img {
+    width: 101px;
+    height: 98px;
+}
+
+#hand {
+    position: absolute;
+    top: 486px;
+}
+
+#timer {
+    position: absolute;
+    top: 24px;
+    left: 15px;
+    font-size: 32px;
+    line-height: 32px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.showTost {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 998;
+}
+
+/*提交兑换信息页面*/
+#exchange_user_phone {
+    position: absolute;
+    top: 402px;
+    left: 641px;
+    width: 302px;
+    height: 40px;
+    line-height: 40px;
+    color: #004475;
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+#btn_commit_exchange {
+    position: absolute;
+    top: 541px;
+    left: 391px;
+}
+
+#btn_cancel_exchange {
+    position: absolute;
+    top: 541px;
+    left: 734px;
+}
+
+#count {
+    top:250px;
+    left: 684px;
+    font-size: 72px;
+    color: #005b9c;
+    width: 84px;
+    height: 84px;
+    line-height: 84px;
+    text-align: center;
+    background: url("../../../../../img/hd/Activity/ActivitySummerRefresh/V1/bg_countdown.png") no-repeat;
+}

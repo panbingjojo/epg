@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    z-index: 0;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 80px;
+    top: 200px
+}
+
+#smallvod {
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    z-index: 998;
+}
+iframe{
+    position: absolute;
+    z-index: 1000;
+}
+
+/*==============HD==================*/
+.hd-videoTv{
+    position: absolute;
+    top: 69px;
+    left: 870px;
+    width: 280px;
+    height: 163px;
+}
+.hd-more{
+    top: 40px;
+    left: 1010px;
+}
+.hd-back {
+    /*top: px;*/
+    left: 1125px;
+}
+.hd-tab-content {
+    top: 247px;
+    left: 303px;
+    /*width: 346px;*/
+}
+
+.hd-tab-content img {
+    margin-left: 15px;
+}
+
+.hd-v-arrow{
+    top: 413px;
+}
+.hd-v-prev {
+    left: 250px;
+}
+
+.hd-v-next {
+    left: 1013px;
+}
+
+
+/*==============SD==================*/
+.sd-more{
+    top: 28px;
+    left: 444px;
+}
+.sd-back {
+    top: 25px;
+    left: 541px;
+}
+.sd-tab-content {
+    top: 179px;
+    left: 114px;
+    /*width: 335px;*/
+}
+
+.sd-tab-content img {
+    /*margin-left: 10px;*/
+}
+
+.sd-v-arrow{
+    top: 291px;
+}
+.sd-v-prev {
+    left: 83px;
+}
+
+.sd-v-next {
+    left: 536px;
+}

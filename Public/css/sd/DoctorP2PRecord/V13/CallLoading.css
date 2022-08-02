@@ -1,0 +1,42 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    color: #fff;
+    background-image: url(../../../../img/sd/Home/V13/Home/bg.png);
+}
+
+#wait-loading {
+    position: absolute;
+    top: 211px;
+    width: 644px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#wait-loading > * {
+    margin-right: 0px;
+}
+
+#text-info {
+    position: relative;
+    font-size: 22px;
+    bottom: 40px;
+}
+
+#doctor-pic {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+#icon-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}

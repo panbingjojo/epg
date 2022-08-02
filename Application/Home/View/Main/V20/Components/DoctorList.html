@@ -1,0 +1,256 @@
+<div class="tab2-box">
+    <!--科室选择-->
+    <div id="depart" class="depart">
+        &nbsp;<span id="depart-name">请选择科室</span>
+    </div>
+
+    <!--推荐位-->
+    <div id="center" class="center">
+        <div id="table-list" class="table-list">
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </div>
+        <div class="position"></div>
+    </div>
+    <img id="m-pre" src="__ROOT__/Public/img/hd/Home/V10/icon_left.png"/>
+    <img id="m-next" src="__ROOT__/Public/img/hd/Home/V10/HomeBox/icon_page_down.png"/>
+    <div id="pages" style="width: 135px;"></div>
+    <div style="position: absolute;color: #ffffff;left: 0;top:512px;">医生接诊时间集中在08:00～22:00，请在该时间段进行问诊哦~</div>
+</div>
+<script>
+    // 定义全局按钮
+    var scroll = "center";
+    var P2PManagerUI = {
+        // 当前页默认有焦点的按钮ID
+        defaultFocusId: 'nav-btn-4',
+        isFirstLoad: false,  //是否第一次加载
+        defaultUrl: "__ROOT__/Public/img/hd/Home/V10/",
+        docArr: "",
+        hospitalCut: 4,
+        hospitalPage: parseInt(RenderParam.pageCurrent),
+        totalPage: 0,
+        _itemRow: function (tempDocObj, index) {
+            var defaultImg = "__ROOT__/Public/img/hd/DoctorP2P/V10/init_doc.png";
+            var tempHtml = "";
+            var tempImgUrl = LMEPG.Inquiry.expertApi.createDoctorUrl(RenderParam.cwsHlwyyUrl, tempDocObj.doc_id, tempDocObj.avatar_url, RenderParam.carrierId);
+            console.log("tempImgUrl::" + tempImgUrl);
+            var imgIndex = LMEPG.Inquiry.p2pApi.switchDocOnlineState(tempDocObj.online_state,tempDocObj.is_fake_busy);
+            if (imgIndex == 3 && tempDocObj.is_im_inquiry == 1) {
+                imgIndex = 1;
+            }
+            // 调整医院名称为空时，不显示null
+            tempDocObj.hospital = tempDocObj.hospital ? tempDocObj.hospital : '';
+
+            tempHtml += '<div id="recommended-' + index + '" class="recommended">';
+            tempHtml += '<img class="recommended-bg" src="__ROOT__/Public/img/hd/Home/V10/status_' + imgIndex + '.png"/>';
+            tempHtml += "<img class='recommended-photo' src='" + tempImgUrl + "' onerror='this.src=" + defaultImg + "'>";
+            tempHtml += '<div id="inquiry-number" class="inquiry-number">已问诊<span>' + LMEPG.Inquiry.p2pApi.switchInquiryNumStr(tempDocObj.inquiry_num) + '</span></div>';
+            tempHtml += '<div class="introduce">';
+            tempHtml += '<div class="introduce-word big-size">' + tempDocObj.doc_name + '</div>';
+            tempHtml += '<div class="introduce-word middle-size">' + tempDocObj.hospital + '</div>';
+            tempHtml += '<div class="introduce-word">科室：<span>' + tempDocObj.department + '</span></div>';
+            tempHtml += '<div class="introduce-word">职称：<span>' + tempDocObj.job_title + '</span></div>';
+            tempHtml += '</div></div>';
+            return tempHtml;
+        },
+        init: function () {
+            G("depart-name").innerHTML = RenderParam.departmentName;
+            LMEPG.UI.showWaitingDialog();
+            P2PManagerUI.createHtml();
+            P2PManagerUI._addButton();
+
+        },
+
+        createHtml: function () {
+
+            LMEPG.Inquiry.p2pApi.getDoctorList(RenderParam.departmentId, RenderParam.departmentIndex,P2PManagerUI.hospitalPage, P2PManagerUI.hospitalCut, function (data) {
+
+                if(data.result==null){
+                    LMEPG.UI.dismissWaitingDialog();
+                    return ;
+                }
+                console.log("data::" + JSON.stringify(data));
+                P2PManagerUI.totalPage = data.result.total;
+                if (data.result.code !== "0") {
+                    console.log("getDoctorList::" + data.result.code);
+                    return null;
+                }
+                var tempList = data.result.list;
+                P2PManagerUI.docArr = tempList;
+                var sHtml = "";
+                for (var i = 0; i < tempList.length; i++) {
+                    var tempDocObj = tempList[i];
+                    sHtml += P2PManagerUI._itemRow(tempDocObj, i);
+                }
+                G("table-list").innerHTML = sHtml;
+                LMEPG.UI.dismissWaitingDialog();
+                G("pages").innerHTML = "" + P2PManagerUI.hospitalPage + "/ " + Math.ceil(P2PManagerUI.totalPage / 4);
+                if (P2PManagerUI.hospitalPage >= Math.ceil(P2PManagerUI.totalPage / 4)) {
+                    Hide("m-next");
+                } else {
+                    Show("m-next");
+                }
+                if (!P2PManagerUI.isFirstLoad) {
+                    P2PManagerUI.isFirstLoad = true;
+                    LMEPG.ButtonManager.requestFocus(RenderParam.focusIndex);
+                } else {
+                    LMEPG.ButtonManager.requestFocus("recommended-0");
+                }
+            });
+        },
+        _addButton: function () {
+            buttons.push({
+                id: 'depart',
+                name: '部门选择',
+                type: 'div',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'tab-4',
+                nextFocusDown: 'recommended-0',
+                backgroundImage: g_appRootPath + "/Public/img/hd/Home/V10/HomeBox/bg_btn_long.png",
+                focusImage: g_appRootPath + "/Public/img/hd/Home/V20/Common/f_btn_long.png",
+                click: P2PManagerUI.jumpP2PDepartment,
+                focusChange: "",
+                cType: "region",
+            });
+            for (var i = 0; i < 4; i++) {
+                buttons.push({
+                    id: 'recommended-' + i,
+                    name: '推荐位',
+                    type: 'div',
+                    nextFocusLeft: 'recommended-' + (i - 1),
+                    nextFocusRight: 'recommended-' + (i + 1),
+                    nextFocusUp: 'recommended-' + (i - 2),
+                    nextFocusDown: 'recommended-' + (i + 2),
+//                    backgroundImage: g_appRootPath + "/Public/img/hd/Home/V10/HomeBox/bg_card.png",
+//                    focusImage: g_appRootPath + "/Public/img/hd/Home/V10/HomeBox/f_card.png",
+                    click: P2PManagerUI.onClickDoc,
+                    focusChange: P2PManagerUI.recommendedFocus,
+                    beforeMoveChange: P2PManagerUI.onRecommendBeforeMoveChange,
+                    cIndex: i,
+                    cDocObj: ""
+                });
+            }
+        },
+        onClickDoc: function (btn) {
+            var tempDocObj = P2PManagerUI.docArr[btn.cIndex];
+            P2PManagerUI.jumpP2PDetail(tempDocObj.doc_id);
+        },
+
+        // 推荐位按键移动
+        onRecommendBeforeMoveChange: function (dir, current) {
+            switch (dir) {
+                case 'up':
+                    switch (current.id) {
+                        case 'recommended-0':
+                        case 'recommended-1':
+                            P2PManagerUI.prevRecommendedPage();
+                            return false;
+                    }
+                    break;
+                case'down':
+                    switch (current.id) {
+                        case 'recommended-2':
+                        case 'recommended-3':
+                            P2PManagerUI.nextRecommendedPage();
+                            return false;
+                        case "recommended-1":
+                            if (!G("recommended-3") && G("recommended-2")) {
+                                LMEPG.BM.requestFocus("recommended-2");
+                            }
+                            break;
+                    }
+
+                    break;
+            }
+        },
+
+        upDateRecommendedArrow: function () {
+            G("m-pre").style.display = "none";
+            G("m-next").style.display = "none";
+            if (P2PManagerUI.hospitalPage > 1) {
+                // G("m-pre").style.display = "block";
+            } else {
+                G("m-pre").style.display = "none";
+            }
+            if (Math.ceil(Math.ceil(parseInt(P2PManagerUI.totalPage)) / P2PManagerUI.hospitalCut) > P2PManagerUI.hospitalPage) {
+                G("m-next").style.display = "block";
+            } else {
+                G("m-next").style.display = "none";
+            }
+        },
+
+
+        prevRecommendedPage: function () {
+            if (P2PManagerUI.hospitalPage > 1) {
+                P2PManagerUI.hospitalPage--;
+                P2PManagerUI.createHtml()//渲染医院列表
+            } else {
+                // LMEPG.ButtonManager.requestFocus("btn-region");
+                LMEPG.ButtonManager.requestFocus("depart");
+            }
+        },
+
+        nextRecommendedPage: function () {
+            if (Math.ceil(parseInt(P2PManagerUI.totalPage) / P2PManagerUI.hospitalCut) > P2PManagerUI.hospitalPage) {
+                P2PManagerUI.hospitalPage++;
+                P2PManagerUI.createHtml()//渲染医院列表
+            } else {
+
+            }
+        },
+
+        /**
+         * 初始化焦点按钮。应当在页面渲染完毕后，最后一步再调用设置焦点按钮。
+         */
+        // 加边框焦点效果
+        recommendedFocus: function (btn, hasFocus) {
+            var imgs = G(btn.id).getElementsByTagName("img");
+            if (hasFocus) {
+                LMEPG.CssManager.addClass(btn.id, "recommended-hover");
+                imgs[0].className += " zoom-img-1";
+                imgs[1].className += " zoom-img-2";
+            } else {
+                LMEPG.CssManager.removeClass(btn.id, "recommended-hover");
+                imgs[0].className = "recommended-bg";
+                imgs[1].className = "recommended-photo";
+            }
+        },
+
+        onClickRegion: function (btn) {
+            G("depart").innerHTML = G(btn.id).innerHTML;
+        },
+
+
+        //跳转在线问诊的医生详情页面
+        jumpP2PDetail: function (docId) {
+            var objHome = getCurPageObj();
+            objHome.setParam("departmentId", RenderParam.departmentId);
+            objHome.setParam("departmentName", RenderParam.departmentName);
+            objHome.setParam("pageCurrent", P2PManagerUI.hospitalPage);
+            objHome.setParam("focusIndex", LMEPG.BM.getCurrentButton().id);
+            var dstObj = LMEPG.Intent.createIntent("doctorDetails");
+            dstObj.setParam("doctorIndex", docId);
+            LMEPG.Intent.jump(dstObj, objHome);
+        },
+        //跳转在线问诊中的科室列表
+        jumpP2PDepartment: function () {
+            var objHome = getCurPageObj();
+            objHome.setParam("departmentId", RenderParam.departmentId);
+            objHome.setParam("departmentName", RenderParam.departmentName);
+            var dstObj = LMEPG.Intent.createIntent("doctorDepartment");
+            dstObj.setParam("departmentId", RenderParam.departmentId);
+            dstObj.setParam("departmentName", RenderParam.departmentName);
+            dstObj.setParam("scrollTop", RenderParam.scrollTop);
+            LMEPG.Intent.jump(dstObj, objHome);
+        },
+
+
+    }
+</script>

@@ -1,0 +1,587 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>答题测试页-V20</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/HealthSelfTest/V20/answer.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            // 公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            isVip: {$isVip},                    // 用户是否是vip(1-vip 0-非vip)
+            focusIndex: "{$focusIndex}",        // 记录保持的焦点ID
+            firstHandle:"{$firstHandle}",         //是否第一次访问当前模块
+
+            // 当前页渲染
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--模块-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Layer/MaskLayer.js?t={$time}"></script>
+</head>
+<body style='background-image: url("__ROOT__/Public/img/hd/Home/V20/Common/bg.png")'>
+<div id="content_container">
+    <div class="prompt">
+        <img class="prompt_title" src="__ROOT__/Public/img/hd/TestList/prompt_title.png"/>
+        <img id="prompt_icon" class="prompt_icon" src="__ROOT__/Public/img/hd/TestList/prompt_icon_1.png"
+             onerror="onerror=null;src=''"/>
+        <div id="total_time" class="total_time yellow"></div>
+        <div class="collect_btn">
+            <img id="collect_btn" class="collect_btn_bg" src="__ROOT__/Public/img/hd/TestList/V20/bg_key.png"/>
+            <div id="collect_btn_title"></div>
+        </div>
+    </div>
+    <div id="title" class="title"></div>
+    <div class="prompt_block" style='background-image: url("__ROOT__/Public/img/hd/TestList/V20/answer_bg.png");'>
+        <div class="show_layer">
+            <div class="topic">
+                <div id="curr_order_num" class="topic_index"
+                     style='background-image: url("__ROOT__/Public/img/hd/TestList/V20/index_box.png")'>
+
+                </div>
+                <div id="curr_order_title" class="topic_title"></div>
+            </div>
+            <div id="answer" class="answer"></div>
+        </div>
+        <div class="progress_produce">测试进度：还剩下<span id="remainder" class="yellow"></span>个问题，请选择答案后自动转到下一题！</div>
+
+        <div class="progress_bar">
+            <div id="progress_step" style="width: 0px" class="progress_step"></div>
+            <img id="progress_box" class="progress_box" src="__ROOT__/Public/img/hd/TestList/progress_box.png"/>
+            <img id="progress_arrow" class="progress_arrow" style="left: -20px"
+                 src="__ROOT__/Public/img/hd/TestList/progress_arrow.gif"/>
+        </div>
+    </div>
+    <div class="introduce">
+        遥控器按<span class="yellow">&nbsp;“上”&nbsp;“下”&nbsp;</span>键可切换选项，按<span class="yellow">&nbsp;“确定键”&nbsp;</span>进行选择
+    </div>
+</div>
+<!--空数据占位-->
+<div id="empty_data">暂无题目</div>
+
+<!--蒙层-->
+<div id="mask-layer" class="layer">
+    <div class="step1">
+        <div class="step1_title_2 layerTitle">遥控器按<span class="yellow">"上" "下"</span>键可切换选项，选择最符合<br/>
+            您状态的选项后按<span class="yellow">“确定”</span>键即可自动跳转到下一题，<br/>答完所有题目后将显示测试结果哦！
+        </div>
+        <img class="arrow step2_arrow" src="__ROOT__/Public/img/hd/TestList/arrow_icon.gif"/>
+        <img class="step2_icon" src="__ROOT__/Public/img/hd/TestList/keyword_icon.png"/>
+    </div>
+
+    <div id="start_step" class="start_step">
+        <img class="step_btn_img" src="__ROOT__/Public/img/hd/TestList/step_btn.png"/>
+        <div class="step_btn_title yellow">我知道啦</div>
+    </div>
+</div>
+<script type="text/javascript">
+    // 当前页面版本唯一标识（新手指导使用）
+    var CURRENT_PAGE_ID = "page_healthSelfTest_v1";
+    var isShowingMaskLayer = false; //正在显示新手指导蒙层标记
+    var isTitleAudioPlaying = true; //正在播放标题语音标志，用于串行播放标题，再到选项。默认为true，以禁止LMEPG.BM.init("默认", buttons, "", true)在播放标题前onFocus触发了还没开始读标题
+
+    function onBack() {
+        if (!isShowingMaskLayer) {
+            LMEPG.Intent.back();
+        }
+    }
+
+    function to_real_url(srcUrl) {
+        if (LMEPG.Func.isObject(RenderParam) && !LMEPG.Func.isEmpty(RenderParam.fsUrl)
+                && !LMEPG.Func.isEmpty(srcUrl)) {
+            return RenderParam.fsUrl + srcUrl;
+        } else {
+            return srcUrl;
+        }
+    }
+
+    /**
+     * 获取当前页面对象
+     */
+    function getCurrentPage() {
+        var currentPage = LMEPG.Intent.createIntent("answer");
+        return currentPage;
+    }
+
+    /**
+     * 跳转到测试结果页面
+     */
+    function jumpTestResult() {
+        var objCurrent = getCurrentPage(); //得到当前页
+        var objHome = LMEPG.Intent.createIntent("testResults");
+        objHome.setParam("topicId", InitData.topicId);
+        objHome.setParam("score", InitData.InitScore);
+        LMEPG.Intent.jump(objHome, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+
+
+    /**
+     * 根据题目id，获取相关数据
+     */
+    function getThemeList(themeId) {
+        var postData = {
+            "topicId": InitData.topicId,
+            "themeId": themeId
+        };
+
+        isTitleAudioPlaying = true;//默认为true，以禁止LMEPG.BM.init("默认", buttons, "", true)在播放标题前onFocus触发了还没开始读标题
+        LMEPG.ajax.postAPI("HealthSelfTest/getThemeList", postData, function (rsp) {
+            LMEPG.UI.dismissWaitingDialog();
+            try {
+                var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                if (data instanceof Object) {
+                    if (data.result === 0) {
+                        setEmptyDataVisible(false);
+                        InitData.WebData = data;
+                        InitData.Theme.choiceArr = JSON.parse(data.data.choice);
+                        updateThemeUI();
+                        updateInitUI(themeId);
+                        // updateLayerUI();
+                        hideMarkUI();
+                    } else {
+                        setEmptyDataVisible(true);
+                    }
+                } else {
+                    LMEPG.UI.showToast("获取题目异常");
+                }
+            } catch (e) {
+                LMEPG.UI.showToast("获取题目异常：" + e.toString());
+            }
+        }, function () {
+            LMEPG.UI.dismissWaitingDialog();
+            LMEPG.UI.showToast("获取题目异常");
+            setEmptyDataVisible(true);
+        });
+    }
+
+/*    function playCurrentTitleAudio() {
+        var optionArr = InitData.WebData.data.audio_urls;
+        if (optionArr.length > 0) {
+            var titleAudioUrl = optionArr[0].ftp_url;
+            if (is_empty(titleAudioUrl)) {
+                isTitleAudioPlaying = false;//设置标题播放语音结束
+            } else {
+                isTitleAudioPlaying = true;
+                AudioPlayer.fgm.play(to_real_url(titleAudioUrl), function () {
+                    isTitleAudioPlaying = false;//设置标题播放语音结束
+                    playCurrentFocusAnswerAudio();
+                }, true);
+            }
+        } else {
+            isTitleAudioPlaying = false;//设置标题播放语音结束
+        }
+    }*/
+
+/*    function playCurrentFocusAnswerAudio() {
+        var btn = LMEPG.BM.getCurrentButton();
+        if (!LMEPG.Func.isObject(btn) || !btn.id.startWith("answer")) {
+            return;
+        }
+
+        var audioIndex = undefined;
+        switch (btn.id) {
+            case "answerA":
+                audioIndex = 1;
+                break;
+            case "answerB":
+                audioIndex = 2;
+                break;
+            case "answerC":
+                audioIndex = 3;
+                break;
+            case "answerD":
+                audioIndex = 4;
+                break;
+        }
+        var audioArr = InitData.WebData.data.audio_urls;
+        if (audioIndex !== undefined && audioIndex < audioArr.length && !isTitleAudioPlaying) {
+            AudioPlayer.fgm.play(to_real_url(audioArr[audioIndex].ftp_url));
+        }
+    }*/
+
+    function setEmptyDataVisible(show) {
+        if (show) {
+            Hide("content_container");
+            Show("empty_data");
+        } else {
+            Show("content_container");
+            Hide("empty_data");
+        }
+    }
+
+    /**
+     * 更新界面的标题、题目、剩余次数、当前题目数
+     */
+    function updateInitUI(themeId) {
+        G("title").innerHTML = InitData.WebData.data.title;
+        G("curr_order_title").innerHTML = InitData.WebData.data.content;//当前题目名称
+        var themeList = InitData.WebData.theme_list;
+        var currOrderNum = getCurrOrderNum(themeList, themeId);
+        var totalNum = themeList.length;
+        var remainderNum = totalNum - currOrderNum;
+        G("total_time").innerHTML = totalNum;//题目总数
+        G("curr_order_num").innerHTML = currOrderNum;//当前的题目序号
+        G("remainder").innerHTML = remainderNum.toString();//剩余题目数
+
+        var progressNum = RenderParam.platformType == 'fhd' ? 1253 : 835; //进度条总长度
+        var arrowLeftOffset = RenderParam.platformType == 'fhd' ? 8 : 5; //进度指示器稍微左偏移以对应进度条末端
+        var stepNum = progressNum / totalNum;//单位移动量
+        var expectedWidth = stepNum * currOrderNum;
+        G("progress_step").style.width = expectedWidth + "px";//进度条
+        G("progress_arrow").style.left = (expectedWidth - arrowLeftOffset) + "px";//箭头
+    }
+
+    /**
+     * 更新题目列表界面效果
+     */
+    function updateThemeUI() {
+        InitData.Theme.MAX_TOTAL = InitData.Theme.choiceArr.length;
+        InitData.Theme.pageTotal = Math.ceil(InitData.Theme.choiceArr.length / InitData.Theme.MAX_PER_COUNT);
+        var start = (InitData.Theme.pageCurrent - 1) * InitData.Theme.MAX_PER_COUNT;//数组截取起始位置
+        var end = InitData.Theme.pageCurrent * InitData.Theme.MAX_PER_COUNT;//数组截取终止位置
+        var tempData = InitData.Theme.choiceArr.slice(start, end);
+
+        G("answer").innerHTML = "";
+        var itemDiv = "";
+        for (var i = 0; i < tempData.length; i++) {
+            buttons[i].cItemData = tempData[i];
+            var tempId = "";
+            switch (i) {
+                case 0:
+                    tempId = "answerA";
+                    break;
+                case 1:
+                    tempId = "answerB";
+                    break;
+                case 2:
+                    tempId = "answerC";
+                    break;
+                case 3:
+                    tempId = "answerD";
+                    break;
+            }
+            var tempTip = tempData[i].txt;
+            itemDiv += '<div class="answer_bg">' +
+                '<img id="' + tempId + '" class="answer_img" src="__ROOT__/Public/img/hd/TestList/V20/bg_answer.png"/>' +
+                '<div class="answer_name">' + tempTip + '</div>' +
+                '</div>';
+        }
+        G("answer").innerHTML = itemDiv;
+    }
+
+    function updateLayerUI() {
+        NewGuidanceUtil.checkIsFirstTimeEntry(CURRENT_PAGE_ID, function () {
+            isShowingMaskLayer = true;
+            Show("mask-layer");
+            LMEPG.BM.requestFocus("start_step");
+        }, hideMarkUI);
+    }
+
+    function hideMarkUI() {
+        LMEPG.BM.requestFocus("answerA");//注：在playCurrentTitleAudio()前调用才能保证"标题->选项"语音播放时序！
+//            playCurrentTitleAudio();
+        isShowingMaskLayer = false;
+        LMEPG.BM.deleteButtons("start_step");
+        LMEPG.BM.refresh();
+    }
+
+    // 用户点击 新手指导“我知道啦”
+    function startStep() {
+        LMEPG.BM.requestFocus("answerA");//注：在playCurrentTitleAudio()前调用才能保证"标题->选项"语音播放时序！
+//        playCurrentTitleAudio();
+        isShowingMaskLayer = false;
+        Hide("mask-layer");
+        NewGuidanceUtil.markFirstTimeEntryFlag(CURRENT_PAGE_ID, 1);
+    }
+
+    // 0-收藏 / 1-取消收藏
+    function setCollectStatus() {
+        var postData = {
+            'itemId': InitData.topicId,
+            'collectStatus': InitData.collectStatus == 1 ? 1 : 0, // 0-收藏 1-取消收藏
+            'itemType': 8 // 8-健康自测项目
+        };
+        LMEPG.ajax.postAPI('Collect/setCollectStatus', postData, function (data) {
+            if (data.result === 0) {
+                InitData.collectStatus = InitData.collectStatus == 1 ? 0 : 1;
+                G('collect_btn_title').innerHTML = InitData.collectStatus == 1 ? '取消收藏' : '收藏';
+            }
+        });
+    }
+
+    /**
+     * 用户点击选项
+     */
+    function submitAnswer(btn) {
+        LMEPG.UI.showWaitingDialog();
+        var nextThemeId = getNextThemeId();
+        var cItemData = btn.cItemData;
+        var cScore = parseInt(cItemData.score);
+        if (isNaN(cScore)) cScore = 0; //加强数据，如果后台未配置选项对应的分值，则默认为0分。
+        InitData.InitScore += cScore;
+        if (nextThemeId === undefined) {
+            jumpTestResult();
+            LMEPG.UI.dismissWaitingDialog();
+        } else {
+            getThemeList(nextThemeId);
+        }
+    }
+
+    /**
+     *获取下一个题目的id
+     */
+    function getNextThemeId() {
+        var retThemeId = undefined;
+        var themeList = InitData.WebData.theme_list;
+        for (var i = 0; i < themeList.length; i++) {
+            var itemList = themeList[i];
+            if (InitData.InitThemeId === itemList.theme_id) {
+                if (i < themeList.length - 1) {
+                    retThemeId = themeList[i + 1].theme_id;
+                }
+                break;
+            }
+        }
+        return retThemeId;
+    }
+
+    /**
+     * 计算当前题目的序号
+     */
+    function getCurrOrderNum(themeList, themeId) {
+        InitData.InitThemeId = themeId;
+        if (themeId === -1) {
+            themeId = themeList[0].theme_id;
+            InitData.InitThemeId = themeId;
+        }
+        for (var i = 0; i < themeList.length; i++) {
+            var itemList = themeList[i];
+            if (themeId === itemList.theme_id) {
+                return i + 1;
+            }
+        }
+    }
+
+
+</script>
+<script type="text/javascript">
+    // 当前页面的频繁播报语音：收藏/取消收藏
+    var audio_btn_collect = to_real_url(get_obj_value_by(RenderParam.sysAudioInfo, "collection_btn_collect"));
+    var audio_btn_uncollect = to_real_url(get_obj_value_by(RenderParam.sysAudioInfo, "collection_btn_uncollect"));
+
+    // 定义全局按钮
+    var buttons = [];
+
+    var InitData = {
+        topicId: "{$topicId}",
+        collectStatus: "{$collectStatus}", // 收藏状态（1-收藏 0-未收藏）
+        WebData: "",
+        Theme: {    //用于做题目分页
+            MAX_PER_COUNT: 4,  //每页显示多少数据
+            pageCurrent: 1,    //当前第几页
+            pageTotal: 0,      //总的页码
+            choiceArr: []      //答案列表
+        },
+        InitThemeId: -1,//初始化的题目id：-1拉取第一道题的数据，并返回相关列表
+        InitScore: 0,   //用户选择的所有分数
+    };
+
+    window.onload = function (ev) {
+        Focus.init();
+        getThemeList(InitData.InitThemeId);
+    };
+
+
+    var Focus = {
+        // 初始化底部导航栏按钮
+        initBottom: function () {
+            buttons.push({
+                id: 'answerA',
+                name: '答案A',
+                type: 'img',
+                nextFocusLeft: 'collect_btn',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'answerB',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/bg_answer.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/f_answer.png',
+                cItemData: "",
+                click: submitAnswer,
+                focusChange: Focus.answerFocus,
+                beforeMoveChange: Focus.onBeforeMoveChange
+            });
+            buttons.push({
+                id: 'answerB',
+                name: '答案B',
+                type: 'img',
+                nextFocusLeft: 'collect_btn',
+                nextFocusRight: '',
+                nextFocusUp: 'answerA',
+                nextFocusDown: 'answerC',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/bg_answer.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/f_answer.png',
+                cItemData: "",
+                click: submitAnswer,
+                focusChange: Focus.answerFocus,
+                beforeMoveChange: Focus.onBeforeMoveChange
+            });
+            buttons.push({
+                id: 'answerC',
+                name: '答案C',
+                type: 'img',
+                nextFocusLeft: 'collect_btn',
+                nextFocusRight: '',
+                nextFocusUp: 'answerB',
+                nextFocusDown: 'answerD',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/bg_answer.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/f_answer.png',
+                cItemData: "",
+                click: submitAnswer,
+                focusChange: Focus.answerFocus,
+                beforeMoveChange: Focus.onBeforeMoveChange
+            });
+            buttons.push({
+                id: 'answerD',
+                name: '答案D',
+                type: 'img',
+                nextFocusLeft: 'collect_btn',
+                nextFocusRight: '',
+                nextFocusUp: 'answerC',
+                nextFocusDown: '',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/bg_answer.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/f_answer.png',
+                cItemData: "",
+                click: submitAnswer,
+                focusChange: Focus.answerFocus,
+                beforeMoveChange: Focus.onBeforeMoveChange,
+            });
+            buttons.push({
+                id: 'collect_btn',
+                name: '收藏',
+                type: 'img',
+                focusable: true,
+                nextFocusRight: 'answerA',
+                nextFocusLeft: 'inquiry_btn',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/bg_key.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/V20/f_key.png',
+                click: setCollectStatus,
+                focusChange: '',//Focus.collectFocus,
+            });
+            buttons.push({
+                id: 'start_step',
+                name: '我知道啦',
+                type: 'div',
+                click: startStep,
+                focusChange: Focus.guideFocus,
+            });
+
+            // 初始化默认UI状态
+            G('collect_btn_title').innerHTML = (InitData.collectStatus == 1 ? '取消收藏' : '收藏');
+        },
+
+        nextPage: function () {
+            if (InitData.Theme.pageCurrent < InitData.Theme.pageTotal) {
+                InitData.Theme.pageCurrent++;
+                updateThemeUI();
+                LMEPG.ButtonManager.requestFocus("answerA");
+            }
+        },
+
+        prePage: function () {
+            if (InitData.Theme.pageCurrent > 1) {
+                InitData.Theme.pageCurrent--;
+                updateThemeUI();
+                LMEPG.ButtonManager.requestFocus("answerD");
+            }
+        },
+
+        onBeforeMoveChange: function (dir, btn) {
+            switch (dir) {
+                case 'down':
+                    isTitleAudioPlaying = false;
+                    if (btn.id === "answerD") {
+                        Focus.nextPage();
+                        return false;
+                    }
+                    break;
+                case 'up':
+                    isTitleAudioPlaying = false;
+                    if (btn.id === "answerA") {
+                        Focus.prePage();
+                        return false;
+                    }
+                    break;
+                case "left":
+                    isTitleAudioPlaying = false;
+                    break;
+            }
+        },
+
+        answerFocus: function (btn, hasFocus) {   //题目获取焦点
+            if (hasFocus) {
+                if (btn.id === "answerA" || btn.id === "answerC") {
+                    G("prompt_icon").src = LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/prompt_icon_' + 1 + '.png';//护士头像
+                } else {
+                    G("prompt_icon").src = LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/prompt_icon_' + 2 + '.png';//护士头像
+                }
+                G(btn.id).setAttribute("src", btn.focusImage);
+
+//                playCurrentFocusAnswerAudio();
+            } else {
+                G(btn.id).setAttribute("src", btn.backgroundImage);
+            }
+        },
+
+        collectFocus: function (btn, hasFocus) {
+            if (hasFocus) {
+                //当前为收藏/未收藏状态（1-收藏 0-未收藏），则显示及语音为反选状态
+                AudioPlayer.fgm.play(InitData.collectStatus == 1 ? audio_btn_uncollect : audio_btn_collect);
+            } else {
+                AudioPlayer.fgm.stop();
+            }
+        },
+
+        guideFocus: function (btn, hasFocus) {
+            if (btn.id === 'start_step') {
+                if (hasFocus) {
+                    AudioPlayer.fgm.play(to_real_url(get_obj_value_by(RenderParam.sysAudioInfo, "help_test_guide_1")));
+                } else {
+                    AudioPlayer.fgm.stop();
+                }
+            }
+        },
+
+        init: function () {
+            Focus.initBottom();       // 初始化底部导航栏按钮
+            var defaultFocusId = typeof(RenderParam.focusIndex) === "undefined" || RenderParam.focusIndex == null || RenderParam.focusIndex != ""
+                ? RenderParam.focusIndex : 'answerA';
+            LMEPG.ButtonManager.init([], buttons, "", true);
+        },
+
+    };
+
+</script>
+</body>
+</html>

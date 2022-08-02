@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小窗口轮询播放视频</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <script type="text/javascript" >
+        var RenderParam = {
+            videoUrl: "{$videoUrl}",                    // 视频url
+            videoTitle: "{$title}",                     // 视频标题
+            returnIP: "{$ENTER_IP}",                    //视频播放完后的返回地址
+            isVip: {$isVip},                            // 用户是不是vip，1 -- 是vip
+            isBack: "{isBack}",
+            recommendVideoUrl: '',                           // 推荐视频播放地址
+            isForbidOrder: "{$Think.cookie.c_is_forbided_order}", // 是否禁止订购
+            areaCode: "{$areaCode}",                        // 省份地区码
+            platformType: "{$platformType}",                // 平台类型（hd--高清 sd--标清）
+            debug: "{$debug}",                              // 调试模式
+            pageSize: "{$pageSize}",                        // 页面尺寸
+            collectStatus: "{$collectStatus}",              // 判断是否收藏 0表示收藏 1表示未收藏
+            sourceId: "{$sourceId}",                        // 视频ID
+            returnUrl: "{$returnUrl}",                      // 返回地址
+            userId: "{$userId}",                            // 用户ID
+            imgHost: "{$resourcesUrl}",                     // 图片host
+            currentPlayTimes: 0,                            // 记录当前播放的时间进度
+            domainUrl: "{$domainUrl}",                      // 江苏电信需要使用的第三方播放器前缀地址
+            videoInfo: {$videoInfo},                        // 视频信息
+            allVideoInfo: {$allVideoInfo},
+            position: {$position},
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--<script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>-->
+    <!--<script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    <script type="text/javascript" src="http://10.1.15.25/webJS/gxgd.config.js?t={$time}"></script>
+    <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/450094/play.gxgd.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer_gzgd.js?t={$time}"></script>
+
+</head>
+<body>
+<script type="text/javascript" src="__ROOT__/Public/js/Player/V4/small.js?t={$time}"></script>
+<script type="text/javascript">
+    window.onload = function () {
+
+        LMEPG.mp.registerCallback(function () {
+
+        }, function () {
+            jumpNextSmallPlayer();
+        });
+        getUrl(RenderParam.videoInfo.videoUrl, function (url) {
+            player(url, RenderParam.position.left, RenderParam.position.top, RenderParam.position.width, RenderParam.position.height);
+        });
+
+    };
+
+    function  getUrl(videoUrl,callback){
+        var geturl_params = {
+            nns_cp_id: "39JK",
+            nns_cp_video_id: videoUrl,
+            nns_video_type: "0"
+        }
+        LMEPG.Log.info("getUrl geturl_params:"+JSON.stringify(geturl_params));
+        starcorCom.apply_play(geturl_params, function (resp) {
+            //console.log(resp);
+            LMEPG.Log.info("getUrl resp:"+JSON.stringify(resp));
+            if ("0" == resp.result.state) {
+                var url = resp.video.index.media.url;
+                callback(url);
+            } else {//错误提示
+                callback(-1);
+            }
+        });
+    }
+
+    function getVersion() {
+        return iPanel.getGlobalVar("VOD_EMBEDDED_VERSION");
+    }
+    
+    function player(url,x,y,width,height) {
+        LMEPG.Log.info("getUrl getVersion:"+getVersion());
+        if (getVersion() >= 1) {
+            iPanel.setGlobalVar("SEND_RETURN_KEY_TO_PAGE", '1');
+            iPanel.setGlobalVar("SEND_EXIT_KEY_TO_PAGE", '1');
+            iPanel.setGlobalVar("VOD_CTRL_LOCATION", "x=" + x +"&y=" + y + "&w=" + width + "&h=" + height + "");
+            iPanel.setGlobalVar("VOD_CTRL_ENABLE_MENU", '1');
+            iPanel.setGlobalVar("VOD_CTRL_IGNORE_MSG", '1');
+            iPanel.setGlobalVar("VOD_CTRL_URL", '' + url + '');
+            iPanel.setGlobalVar("VOD_CTRL_PLAY", '1');
+        } else {
+            window.location.href = url;
+        }
+    }
+</script>
+</body>
+</html>

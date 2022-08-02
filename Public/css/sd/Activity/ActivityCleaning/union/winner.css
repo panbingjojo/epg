@@ -1,0 +1,118 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+}
+
+#back {
+    position: absolute;
+    top: 45px;
+    left: 520px;
+    outline: none !important;
+    width: 40px;
+    height: 40px;
+}
+
+#titel_introduce {
+    position: absolute;
+    width: 1090px;
+    height: 40px;
+    font-size: 34px;
+    color: #fe7727;
+    text-align: center;
+    top: 469px;
+    left: 95px
+}
+
+#searchText {
+    width: 290px;
+    height: 25px;
+    z-index: 999;
+    position: absolute;
+    top: 368px;
+    left: 222px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    line-height: 25px;
+    color: #4c4c4c;
+    overflow: hidden;
+}
+
+#submit {
+    position: absolute;
+    top: 410px;
+    left: 210px;
+    outline: none !important;
+    width: 130px;
+    height: 56px;
+}
+
+#clear {
+    position: absolute;
+    top: 410px;
+    left: 390px;
+    outline: none !important;
+    width: 130px;
+    height: 56px;
+}
+
+#rule {
+    width: 530px;
+    overflow: hidden;
+    position: relative;
+    top: 142px;
+    left:60px;
+}
+
+table tr td {
+    width: 175px;
+    text-align: center;
+    list-style: none;
+    font-size: 16px;
+    color: #666666 !important;
+    height: 25px;
+}
+
+.list2 li {
+    list-style: none;
+}
+
+#myprice {
+    width: 530px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    top: 210px;
+    left:60px;
+
+}
+
+#scoller {
+    position: absolute;
+    top: 0px;
+}
+
+#scoller_box {
+    width: 690px;
+    height: 40px;
+    position: absolute;
+    top: 285px;
+    left: 300px
+}
+.key-table tr td {
+    width: 30px;
+    text-align: center;
+    font-size: 14px
+}
+
+

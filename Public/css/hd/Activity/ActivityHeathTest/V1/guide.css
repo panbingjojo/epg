@@ -1,0 +1,58 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+.start {
+    top: 548px;
+}
+
+#start-1 {
+    left: 190px;
+}
+
+#start-2 {
+    left: 519px;
+}
+
+#start-3 {
+    left: 849px;
+}
+
+.btn-wrap {
+    width: 150px;
+    left: 946px;
+    top: 128px;
+}
+
+#back {
+}
+
+#detail {
+}
+
+#price {
+}
+
+#left-times {
+    top: 235px;
+    left: 255px;
+    width: 45px;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+}

@@ -1,0 +1,471 @@
+#app{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+.head-area{
+    position: relative;
+    height: 80px;
+}
+
+.logo{
+    position: absolute;
+    top: 20px;
+    left: 60px;
+}
+.lamp{
+    position: absolute;
+    left: 260px;
+    top: 20px;
+    background: url("/Public/img/hd/Home/V29/lamp.png");
+    width: 520px;
+    height: 40px;
+    overflow: hidden;
+}
+.lamp .lamp-icon{
+    display: inline-block;
+    margin: 10px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+.lamp .text{
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 20px;
+    width: 470px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.search{
+    position: absolute;
+    top: 20px;
+    left: 1040px;
+    width: 100px;
+    height: 40px;
+}
+
+.vip{
+    position: absolute;
+    top: 20px;
+    left: 1150px;
+    width: 100px;
+    height: 40px;
+}
+
+.nav-area{
+    padding: 15px 40px;
+}
+
+.tab {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.tab:first-child {
+    margin-left: 0;
+}
+
+.main{
+    padding: 0 60px;
+    height: 563px;
+    overflow: hidden;
+}
+
+/*tab1 area*/
+.carousel-area{
+    width: 570px;
+    height: 235px;
+    background-repeat: no-repeat;
+    padding: 5px;
+    position: relative;
+    background-size: 580px 240px;
+    overflow: hidden;
+
+}
+
+.carousel-tip{
+    position: absolute;
+    bottom: 5px;
+    width: 570px;
+    height: 40px;
+    text-align: center;
+}
+
+.carousel-icon{
+    position: absolute;
+    top:20px;
+    left: 20px;
+}
+
+.circle{
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.circle:first-child{
+    margin-left: 0
+}
+
+.func-area{
+    margin-top: 30px;
+}
+
+.area-heard{
+    position: relative;
+}
+
+.area-title{
+    margin-left: 10px;
+    color: #fff;
+    font-size: 30px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+
+.tab1-item{
+    display: inline-block;
+    margin-left: 1px;
+    padding: 5px;
+    background-size: 385px 200px;
+    position: relative;
+    width: 375px;
+    height: 190px;
+}
+
+.pic-icon{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.tab1-item:first-child{
+    margin-left: 0;
+}
+
+.tab1-item-spe{
+    display: inline-block;
+    margin-left: -2px;
+    padding: 5px;
+    background-size: 196px 200px;
+    position: relative;
+    width: 185px;
+    height: 190px;
+    vertical-align: text-bottom;
+}
+
+.back-text{
+    text-align: center;
+    color: #FFFFFF;
+    opacity: 0.5;
+    margin-top: 20px;
+}
+
+
+/*tab2*/
+.tab2-more{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 140px;
+    height: 40px;
+}
+
+.doc-item{
+    width: 227px;
+    height: 360px;
+    display: inline-block;
+    background:url("/Public/img/hd/Home/V29/bg-doc.png");
+    position: relative;
+    text-align: center;
+    color: #fff;
+    margin-left: 5px;
+    background-size: 100% 100%
+}
+
+.doc-item:first-child{
+    margin-left: 0;
+}
+
+.doc-avatar{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.doctor-status{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 20px;
+    position: relative;
+}
+
+.statue-text{
+    position: absolute;
+    bottom: 3px;
+    left: 84px;
+    font-size: 16px;
+    color: #fff;
+}
+
+
+.doc-mask{
+    position: absolute;
+    width: 200px;
+    height: 185px;
+    top: 8px;
+    left: 20px;
+    background: transparent;
+    z-index: -1;
+}
+
+.ex-item{
+    width: 382px;
+    height: 200px;
+    display: inline-block;
+    background:url("/Public/img/hd/Home/V29/bg-ex.png");
+    margin-left: 5px;
+    color: #fff;
+    background-size: 100% 100%;
+}
+
+.ex-item:first-child ,.ex-item:nth-child(4){
+    margin-left: 0;
+}
+
+.ex-avatar{
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 20px 10px 20px 20px;
+}
+
+.left-arrow{
+    position: absolute;
+    left: 30px;
+    top: 380px;
+}
+
+.right-arrow{
+    position: absolute;
+    left: 1220px;
+    top: 380px;
+}
+
+.hospital-area{
+    padding: 15px 52px;
+}
+
+.hospital-item{
+    width: 340px;
+    height: 240px;
+    display: inline-block;
+    position: relative;
+    padding:5px;
+    background-size: 350px 235px;
+}
+
+.hospital-item:nth-child(4),.hospital-item:first-child{
+    margin-left: 0;
+}
+
+.hospital-name{
+    position: absolute;
+    bottom: 20px;
+    width: 340px;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    line-height: 40px;
+    background: rgba(0,0,0,0.8);
+    font-size: 24px;
+}
+
+.page{
+    position: absolute;
+    bottom: 25px;
+    width: 1220px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+.now-time{
+    color: #FFFFFF;
+    opacity: 0.5;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.situation-left {
+    float: left;
+    width: 470px;
+    height: 320px;
+    background: #00eaff;
+}
+
+.situation-right {
+    float: left;
+    width: 665px;
+    height: 320px;
+    margin-left: 20px;
+    background:url("/Public/img/hd/Home/V29/tab4-item-bg.png");
+
+}
+
+.situation-local-box{
+    width: 195px;
+    height: 140px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.situation-box{
+    width: 145px;
+    height: 140px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.situation-box-1{
+    width: 200px;
+    height: 140px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+}
+.knowledge-pic{
+    padding: 3px;
+    display: inline-block;
+    background-size: 386px 200px;
+    width: 380px;
+    height: 195px;
+}
+
+.news-box{
+    width: 1120px;
+    height: 260px;
+    background: url("/Public/img/hd/Home/V29/tab4-item-bg1.png");
+    padding: 20px;
+    font-size: 20px;
+    color: #fff;
+    position: relative;
+}
+
+.comes{
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+}
+
+.tab5-item{
+    display: inline-block;
+    padding: 3px;
+    background-size:  386px 197px;
+    position: relative;
+    width: 380px;
+    height: 190px;
+}
+
+.tab5-spe-item{
+    display: inline-block;
+    width: 187px;
+    height: 60px;
+    background: url("/Public/img/hd/Home/V29/bg-tab5-item.png");
+    margin-left: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    line-height: 60px;
+}
+
+.tab5-spe-item:first-child,.tab5-spe-item:nth-child(7){
+    margin-left: 5px;
+}
+
+.medicine-box{
+    width: 375px;
+    height: 440px;
+    display: inline-block;
+    padding: 5px;
+    background-size: 385px 452px;
+}
+
+.box-info{
+    width: 375px;
+    height: 130px;
+    background: url("/Public/img/hd/Home/V29/box-info.png");
+    background-size: 400px 230px;
+
+}
+
+.medicine-name{
+    color: #fff;
+    font-size: 24px;
+    padding: 10px;
+    width: 360px;
+    overflow: hidden;
+    height: 24px;
+}
+
+.info-area{
+    padding: 0 10px;
+}
+
+.info-icon{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.some-info{
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #fff;
+    width: 325px;
+    height: 25px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.tab7-left{
+    display: inline-block;
+    width: 380px;
+    height: 416px;
+}
+
+.tab7-right{
+    display: inline-block;
+    width: 770px;
+    margin-left: 10px;
+}
+
+.tab7-tip{
+    font-weight: 400;
+    color: #FFFFFF;
+    opacity: 0.5;
+    margin-top: 40px;
+}
+
+.space{
+    margin-top: 10px;
+}
+
+
+
+

@@ -1,0 +1,49 @@
+/*音量调节*/
+#volume_background {
+    width: 520px;
+    height: 60px;
+    position: absolute;
+    top: 60px;
+    left: 330px;
+}
+
+#volume_horn {
+    width: 46px;
+    height: 46px;
+    position: absolute;
+    top: 68px;
+    left: 340px;
+}
+
+#volume_progressbar {
+    height: 9px;
+    width: 400px;
+    background-color: #2d2e2f;
+    position: absolute;
+    top: 87px;
+    left: 400px;
+}
+
+/* 首页轮播的音量进度条长度*/
+#volume_progressbar_home {
+    height: 9px;
+    width: 400px;
+    background-color: #2d2e2f;
+    position: absolute;
+    top: 87px;
+    left: 400px;
+}
+
+#volume_ball {
+    width: 34px;
+    position: relative;
+    bottom: 13px;
+    left: -10px;
+}
+
+#volume_fill {
+    background-color: #62ca2d;
+    height: 9px;
+    width: 0;
+    z-index: 999;
+}

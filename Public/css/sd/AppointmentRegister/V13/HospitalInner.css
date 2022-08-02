@@ -1,0 +1,195 @@
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    background-image: url("../../../../img/sd/Home/V13/Home/bg.png");
+}
+
+ul li {
+    list-style: none;
+}
+
+#container {
+    width: 544px;
+    margin: 0 auto;
+}
+
+#top-positon {
+    height: 108px;
+    margin-top: 50px;
+}
+
+#hosp-pic {
+    width: 166px;
+    height: 108px;
+    border-radius: 10px;
+    float: left;
+}
+
+#addr-tel {
+    margin-left: 15px;
+    width: 350px;
+    margin-top: -10px;
+}
+
+#addr-tel li {
+    margin-top: 8px;
+    position: relative;
+    width: 350px;
+}
+#addr-tel li span {
+  font-size:18px;
+  margin-left: 30px;
+}
+
+#doctor-name {
+    font-size: 24px;
+}
+#tel-wrap{
+    height:30px;
+    line-height:30px;
+}
+#addr-tel img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+}
+
+#top-positon marquee {
+    color: #fff;
+    font-size: 18px;
+    margin-left: 30px;
+}
+ .tel-text{
+     
+width: 320px;
+ }
+#content-position {
+    width: 544px;
+    /* padding: 15px; */
+    height: 288px;
+    background-image: url("../../../../img/sd/AppointmentRegister/V13/content_bg.png");
+    overflow: hidden;
+    position: relative;
+    top: 40px;
+}
+
+#addr-tel,
+#action-wrap,
+#hosp-short-details,
+#qr-code-wrap {
+    float: left;
+}
+
+#action-wrap {
+    margin-top: 20px;
+    width: 100px;
+}
+
+#action-wrap img {
+    width: 100px;
+    height: 38px;
+    margin-top: 30px;
+}
+
+#hosp-short-details {
+    color: #fff;
+    font-size: 18px;
+    text-indent: 30px;
+    width: 195px;
+    margin: 0 19px;
+    line-height: 27px;
+}
+
+#qr-code-wrap img {
+    width: 174px;
+    height: 174px;
+}
+
+#qr-code-wrap p {
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.content {
+    position: absolute;
+    display: none;
+    width: 514px;
+    overflow: hidden;
+    height: 253px;
+    margin: 15px;
+}
+
+/*医院内容导航*/
+#content-0 {
+}
+
+/*医院详情*/
+#content-1 {
+    /*display: block;*/
+}
+
+#content-details {
+    padding-right: 30px;
+    text-indent: 30px;
+    position: absolute;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+#scroll-wrap {
+    width: 5px;
+    height: 253px;
+    position: absolute;
+    top: 0;
+    left: 500px;
+    border-radius: 6px;
+    background-color: #89adf4;
+}
+
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 8px;
+    height: 66px;
+    border-radius: 10px;
+    background-color: #efa8aa;
+}
+
+#scroll-bar.focus {
+    background-color: #ef6188;
+}
+
+/*医院推荐科室*/
+#content-2 {
+}
+
+#content-title {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 24px;
+}
+
+p.dep {
+    width: 146px;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    color: #000;
+    padding: 8px 2px 12px 2px;
+    margin: 10px;
+    background-image: url("../../../../img/sd/AppointmentRegister/V13/dep_bg.png");
+    background-position: center;
+}
+
+div#dep-wrap {
+    position: relative;
+    top: 60px;
+}

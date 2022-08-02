@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+body > * {
+    position: absolute;
+}
+
+#help-introduce {
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+/*上*/
+#top-icon {
+    position: absolute;
+    display: inline;
+    height: 55px;
+    line-height: 60px;
+    /*top: 5px;*/
+    right: 0;
+}
+
+#top-icon > img {
+    top: 20px;
+    margin-right: 22px;
+    vertical-align: middle;
+}
+
+.logo {
+    left: 30px;
+    top: 12px;
+}
+
+/*导航*/
+#nav {
+    top: 70px;
+    left: 180px;
+}
+
+#nav > img {
+    margin-right: 1px;
+    width: 214px;
+    height: 60px;
+}
+
+/*主容器*/
+#container {
+    top: 166px;
+    left:90px;
+    width: 1106px;
+    /*border: 1px red solid;*/
+}
+
+/*左容器*/
+#container-left {
+    width: 228px;
+    position: absolute;
+    top: -10px;
+    left: -19px;
+}
+
+#container-left > img {
+    width: 180px;
+    height: 69px;
+    padding: 10px;
+    margin-top: -3px;
+}
+
+#container-left > img.focus {
+    background-image: url(../../../../../Public/img/hd/Home/V27/tab0/left_link_f.png);
+    background-position: center;
+}
+
+/*中容器*/
+#container-center {
+    position: absolute;
+    top: 0;
+    left: 192px;
+    /*border: 1px red solid;*/
+}
+
+/*轮播*/
+#center-link-1 {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 514px;
+    overflow: hidden;
+}
+
+#carousel-link {
+    position: absolute;
+    /*width: 250px;*/
+    /*height: 514px;*/
+    z-index: 9999;
+    top: -26px;
+    left: -26px;
+}
+
+#carousel-wrapper {
+     position: absolute;
+     width: 250px;
+     height: 514px;
+ }
+
+#carousel-wrapper img {
+    position: absolute;
+    opacity: 0;
+    width: 250px;
+    height: 514px;
+    transition: 1s opacity;
+    border-radius: 10px;
+}
+
+#carousel-wrapper img.active {
+    opacity: 1;
+}
+
+ul#point li {
+    display: inline-block;
+}
+
+/*#point {*/
+/*position: absolute;*/
+/*bottom: 0;*/
+/*width: 506px;*/
+/*height: 27px;*/
+/*line-height: 33px;*/
+/*background: rgba(0, 0, 0, 0.49);*/
+/*list-style-type: none;*/
+/*border-radius: 0 0 10px 10px;*/
+/*}*/
+
+/*#point li {*/
+/*width: 15px;*/
+/*height: 15px;*/
+/*border: 1px solid #fff;*/
+/*margin: 0 3px;*/
+/*background-color: transparent;*/
+/*border-radius: 50%;*/
+/*}*/
+
+/*#point li.currentImg {*/
+/*background-color: #fff;*/
+/*transition: 1s background-color;*/
+/*}*/
+
+/*#point li#point-1 {*/
+/*margin-left: 188px;*/
+/*}*/
+
+#book-and-smile {
+    position: absolute;
+    top: 0px;
+    /*height: 647px;*/
+    left: 268px;
+}
+
+#book-and-smile > img {
+    position: absolute;
+    padding: 21px;
+    left: -20px;
+}
+
+#book-registration {
+    top: -20px;
+}
+
+#do-smile-people {
+    top: 245px;
+}
+
+#book-and-smile > img.focus {
+    background-image: url(../../../../../Public/img/hd/Home/V27/tab0/order_smile_f.png);
+    background-position: center;
+    /*width: 292px;*/
+    /*height: 289px;*/
+}
+
+/*右容器*/
+#container-right {
+    position: absolute;
+    top: 0;
+    left: 715px;
+    width: 356px;
+}
+
+#container-right > img {
+    position: absolute;
+    width: 160px;
+    height: 158px;
+    padding: 20px;
+    left: 0px;
+}
+
+/*#videoTv-link {*/
+/*top: -20px;*/
+/*}*/
+
+#album-inner {
+    top: -20px;
+}
+
+#album-inner-1 {
+    top: 160px;
+}
+
+#album-inner-2 {
+    top: 337px;
+}
+
+#container-right > img.focus {
+    background-image: url(../../../../../Public/img/hd/Home/V27/tab0/rightLink_f.png);
+    background-position: center;
+}
+
+/*右容器*/
+#container-end {
+    position: absolute;
+    top: 0;
+    left: 891px;
+    width: 256px;
+}
+
+#container-end > img {
+    position: absolute;
+    width: 200px;
+    height: 158px;
+    padding: 20px;
+    left: 0px;
+}
+
+/*#videoTv-link {*/
+/*top: -20px;*/
+/*}*/
+
+#end-inner {
+    top: -20px;
+}
+
+#end-inner-1 {
+    top: 160px;
+}
+
+#end-inner-2 {
+    top: 337px;
+}
+
+#container-end > img.focus {
+    background-image: url(../../../../../Public/img/hd/Home/V27/tab0/endLink_f.png);
+    background-position: center;
+}
+
+#home_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#iframe_small_screen {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}
+
+/*挽留页*/
+.retain {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 10000;
+}
+
+.retain > .hold-bg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+
+.retain > .continue-btn {
+    position: absolute;
+    left: 167px;
+    top: 597px;
+    width: 199px;
+    height: 77px;
+
+}
+
+.retain > .close-btn {
+    position: absolute;
+    left: 428px;
+    top: 597px;
+    width: 199px;
+    height: 77px;
+
+}
+/*img{*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*}*/
+
+.retain > .hold_bg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+
+.retain > .continue_btn {
+    position: absolute;
+    left: 427px;
+    top: 601px;
+    width: 189px;
+    height: 70px;
+
+}
+
+.retain > .close_btn {
+    position: absolute;
+    left: 679px;
+    top: 601px;
+    width: 189px;
+    height: 70px;
+}
+.video-list{
+    position: absolute;
+    top: 175px;
+    left: 220px;
+    width: 840px;
+    height: 373px;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+.video-title{
+    position: absolute;
+    top: 57px;
+    left: 230px;
+    width: 840px;
+    height: 373px;
+    font-size: 32px;
+    color: #fffc00;
+    text-align: center;
+}
+.video-img{
+    width: 267px;
+    height: 373px;
+    margin-left:10px;
+    border-radius: 12px;
+    /*margin:0px auto;*/
+}
+.retention-hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    box-shadow: 0 0 0 4px #2bf3ff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    z-index: 996;
+}
+
+/*推荐位*/
+.recommended-hover-no-scale {
+    position: absolute;
+    /*-webkit-transform: scale(1.1);*/
+    /*-moz-transform: scale(1.1);*/
+    box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    border-radius: 12px;
+    z-index: 996;
+    /*-webkit-transition: all 0.1s;*/
+    /*-moz-transition: all 0.1s;*/
+}
+
+.img_QRCode {
+    position: absolute;
+    top: 288px;
+    left: 535px;
+    width: 175px;
+    height: 175px;
+}
+
+#to-ask{
+    position: absolute;
+    top: 288px;
+    left: 332px;
+    width: 175px;
+    height: 175px;
+}

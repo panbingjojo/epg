@@ -1,0 +1,35 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.container_wrap{
+    position: relative;
+    height: inherit;
+    width: inherit;
+}
+
+.count_down{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    left: 44px;
+    top: 45px
+}
+.exit{
+    position: absolute;
+    left: 1162px;
+    top: 22px;
+    height: 95px;
+    width: 95px;
+}

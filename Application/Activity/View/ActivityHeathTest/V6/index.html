@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康测一测（中国联通EPG-山东省独立活动）</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="/Public/css/{$platformType}/activity/activityHeathTest/V6/index.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityHeathTest/V1/dialog.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug">.</div>
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/icon_modify.png" id="icon-modify" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/title_bg.png" id="title-bg">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/prev.png" id="prev-arrow" class="arrow">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/next.png" id="next-arrow" class="arrow">
+<div id="topic-title">话题标题</div>
+<div id="question-container">
+    <p id="question-index">题目索引</p>
+    <p id="question-title">题目标题</p>
+</div>
+<ul id="question-key">
+    <!--题目选项-->
+</ul>
+<ul id="points-container">
+    <!--题目指示圆点-->
+</ul>
+<script>
+
+	var ftp = g_appRootPath+'/Public/img/hd/Activity/activityHeathTest/V6/';
+	window.onload = function() {
+
+		$.renderQuestion();
+		LMEPG.ButtonManager.init(['key-0'], buttons, '', true);
+	};
+
+	(function() {
+
+		function Question() {
+			var answersType = {$answersType};
+			var answers = JSON.parse('{$answers}');
+			var topic = JSON.parse('{$topic}').topic;
+			var saveAnswered = []; //  记录已答过了的题
+			var currentQuestionIndex = 0;
+			var questionTitle = G('question-title');
+			var questionIndex = G('question-index');
+			var questionListWrap = G('question-key');
+			// 话题标题
+			G('topic-title').innerText = topic[answersType];
+			var pointsWrapper = G('points-container');
+
+			return {
+				/**
+				 * 小圆点提示功能
+				 * completed 完成样式
+				 * active 当前对应题目样式
+				 */
+				renderPoints: function() {
+					var pointHtm = '';
+					answers.forEach(function(t, e) {
+						var pointClassName = '';
+						// 已完成的小圆点样式
+						saveAnswered.forEach(function(x, y) {
+							e == y ? pointClassName = 'completed' : null;
+						});
+						// 设置当前小圆点样式
+						if (e == currentQuestionIndex) {
+							pointClassName = 'active';
+						}
+						pointHtm += '<li class=' + pointClassName + '>';
+					});
+					pointsWrapper.innerHTML = pointHtm;
+					// 动态设置小圆点提示的width
+					var liElementObj = pointsWrapper.getElementsByTagName('li');
+					var parentObjMaxWidth = 1100;
+					var limitCount = answers.length;
+
+					if (limitCount > 13) {
+						for (var i = 0; i < liElementObj.length; i++) {
+							liElementObj[i].style.width = parentObjMaxWidth / limitCount + 'px';
+						}
+					}
+				},
+				/**
+				 * 渲染当前题目
+				 * currentQuestionIndex 题目索引值
+				 * currentItem 当前索引到的题目
+				 */
+				renderQuestion: function() {
+
+					// 题目
+					questionListWrap.innerHTML = '';
+					var currentItem = answers[currentQuestionIndex];
+					var even = document.createElement('div');
+					var odd = document.createElement('div');
+					even.className = 'item even';
+					odd.className = 'item odd';
+
+					// 题目选项
+					currentItem.answerList.forEach(function(k, e) {
+
+						var htm = '';
+						htm += '<li>';
+						htm += '<input type="button" id=key-' + e + ' class="key-bg">';
+						htm += '<label class="key-text">' + k;
+						htm += '</li>';
+
+						if (e % 2) {
+							odd.innerHTML += htm;
+						}
+						else {
+							even.innerHTML += htm;
+						}
+					});
+					// 题目标题
+					questionTitle.innerText = currentItem.title;
+					// 题目页数
+					questionIndex.innerText = currentQuestionIndex + 1;
+					// 题目选项
+					questionListWrap.appendChild(even);
+					questionListWrap.appendChild(odd);
+					LMEPG.ButtonManager.requestFocus('key-0');
+					// 题目小圆点指示
+					$.renderPoints();
+				},
+				/**
+				 * 切换题目
+				 * 事件：1.点击题目进行下一页；
+				 *      2.点击左右按钮切换题目；
+				 *      3.按下遥控器左右按钮切换题目（初始化左右移动对象）。
+				 */
+				turnQuestion: function(key, btn) {
+					if (currentQuestionIndex == answers.length - 1) {
+						// 跳转到答题完成页面
+						jump.answers = saveAnswered;
+						jump.completed();
+					}
+
+					switch (typeof key) {
+						case 'string':
+							// 按遥控器左右箭头上一个或下一个按钮翻页
+							if (key == 'left') {
+								btn.id == 'prev-arrow' && $.prevQuestion();
+							}
+							if (key == 'right') {
+								// 如果上一题选过了才能进行下一题
+								btn.id == 'next-arrow' && saveAnswered[currentQuestionIndex] && $.nextQuestion();
+							}
+							$.initFocus(btn);
+							break;
+						case 'object':
+							if (!key.action) {
+
+								// 按题目选项跳到下一个
+								saveAnswered.push(key.id);
+								// $.judgeDoesRight(key.value);
+								// 等待400毫秒拉取下一题
+								LMEPG.UI.showWaitingDialog('', 0.4, function() {
+									$.nextQuestion();
+								});
+							}
+							else {
+
+								// 点击上一个或下一个按钮翻页
+								key.id == 'prev-arrow' && $.prevQuestion();
+								key.id == 'next-arrow' && $.nextQuestion();
+							}
+							break;
+					}
+				},
+				/**
+				 * 上一个题目
+				 * currentQuestionIndex 题目索引
+				 */
+				prevQuestion: function() {
+
+					currentQuestionIndex = Math.max(0, currentQuestionIndex -= 1);
+					$.renderQuestion();
+				},
+				/**
+				 * 下一个题目
+				 * currentQuestionIndex 题目索引
+				 * answers.length-1 最后一个题目索引
+				 */
+				nextQuestion: function() {
+
+					currentQuestionIndex = Math.min(answers.length - 1, currentQuestionIndex += 1);
+					$.renderQuestion();
+				},
+				/**
+				 * 按遥控器左右切换题目
+				 * 针对已经打过了的题不在选中题目选项，反之
+				 */
+				initFocus: function(btn) {
+
+					var prevArrow = LMEPG.ButtonManager.getButtonById('prev-arrow');
+					var nextArrow = LMEPG.ButtonManager.getButtonById('next-arrow');
+					LMEPG.ButtonManager.requestFocus(btn.id);
+
+					if (saveAnswered[currentQuestionIndex]) {
+						prevArrow.nextFocusRight = 'next-arrow';
+						nextArrow.nextFocusLeft = 'prev-arrow';
+						// 标记已经答过了的题
+						G(saveAnswered[currentQuestionIndex]).style.backgroundImage = 'url(' + ftp + 'option_s.png)';
+					}
+					else {
+						// 还原未答过的题目
+						prevArrow.nextFocusRight = 'key-0';
+						nextArrow.nextFocusLeft = 'key-1';
+					}
+				},
+			};
+		}
+
+		window.$ = new Question();
+	}());
+	var jump = function() {
+		return {
+			getCurrentPage: function() {
+				var objCurrent = LMEPG.Intent.createIntent('healthTestList');
+				objCurrent.setParam('userId', '{$userId}');
+				objCurrent.setParam('inner', '{$inner}');
+				objCurrent.setParam('topicIndex', LMEPG.Func.getLocationString('topicIndex'));
+				return objCurrent;
+			},
+			completed: function(btn) {
+
+				var objCurrent = jump.getCurrentPage();
+				var objActivityHome = LMEPG.Intent.createIntent('completed');
+				objActivityHome.setParam('userId', '{$userId}');
+				objActivityHome.setParam('topicIndex', LMEPG.Func.getLocationString('topicIndex'));
+				objActivityHome.setParam('answersType', '{$answersType}');
+				objActivityHome.setParam('answersResult', JSON.stringify(jump.answers));
+
+				LMEPG.Intent.jump(objActivityHome, objCurrent);
+			},
+		};
+	}();
+
+	function onBack() {
+		LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+	}
+
+	var buttons = [
+		{
+			id: 'key-0',
+			name: '',
+			value: 'A',
+			type: 'div',
+			nextFocusLeft: 'prev-arrow',
+			nextFocusUp: '',
+			nextFocusDown: 'key-2',
+			nextFocusRight: 'key-1',
+			backgroundImage: ftp + 'option.png',
+			focusImage: ftp + 'option_f.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'key-1',
+			name: '',
+			value: 'B',
+			type: 'div',
+			nextFocusLeft: 'key-0',
+			nextFocusUp: '',
+			nextFocusDown: 'key-3',
+			nextFocusRight: 'next-arrow',
+			backgroundImage: ftp + 'option.png',
+			focusImage: ftp + 'option_f.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'key-2',
+			name: '',
+			value: 'C',
+			type: 'div',
+			nextFocusLeft: 'prev-arrow',
+			nextFocusUp: 'key-0',
+			nextFocusDown: 'key-4',
+			nextFocusRight: 'key-3',
+			backgroundImage: ftp + 'option.png',
+			focusImage: ftp + 'option_f.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'key-3',
+			name: '',
+			value: 'D',
+			type: 'div',
+			nextFocusLeft: 'key-2',
+			nextFocusUp: 'key-1',
+			nextFocusDown: 'key-5',
+			nextFocusRight: 'next-arrow',
+			backgroundImage: ftp + 'option.png',
+			focusImage: ftp + 'option_f.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'key-4',
+			name: '',
+			value: 'E',
+			type: 'div',
+			nextFocusLeft: 'prev-arrow',
+			nextFocusUp: 'key-2',
+			nextFocusDown: 'key-6',
+			nextFocusRight: 'key-5',
+			backgroundImage: ftp + 'option.png',
+			focusImage: ftp + 'option_f.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'key-5',
+			name: '',
+			value: 'F',
+			type: 'div',
+			nextFocusLeft: 'key-4',
+			nextFocusUp: 'key-3',
+			nextFocusDown: 'key-7',
+			nextFocusRight: 'next-arrow',
+			backgroundImage: ftp + 'option.png',
+			focusImage: ftp + 'option_f.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'key-6',
+			name: '',
+			value: 'G',
+			type: 'div',
+			nextFocusLeft: 'prev-arrow',
+			nextFocusUp: 'key-4',
+			nextFocusDown: '',
+			nextFocusRight: 'key-7',
+			backgroundImage: ftp + 'option.png',
+			focusImage: ftp + 'option_f.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'key-7',
+			name: '',
+			value: 'H',
+			type: 'div',
+			nextFocusLeft: 'key-6',
+			nextFocusUp: 'key-5',
+			nextFocusDown: 'next-arrow',
+			nextFocusRight: '',
+			backgroundImage: ftp + 'option.png',
+			focusImage: ftp + 'option_f.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'prev-arrow',
+			name: '',
+			value: '',
+			action: 'arrow',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			nextFocusRight: 'key-0',
+			backgroundImage: ftp + 'prev.png',
+			focusImage: ftp + 'prev.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: $.turnQuestion,
+			moveChange: '',
+		}, {
+			id: 'next-arrow',
+			name: '',
+			value: '',
+			action: 'arrow',
+			type: 'img',
+			nextFocusLeft: 'key-1',
+			nextFocusUp: '',
+			nextFocusDown: '',
+			nextFocusRight: '',
+			backgroundImage: ftp + 'next.png',
+			focusImage: ftp + 'next.gif',
+			click: $.turnQuestion,
+			focusChange: '',
+			beforeMoveChange: $.turnQuestion,
+			moveChange: '',
+		}];
+</script>
+</body>
+</html>

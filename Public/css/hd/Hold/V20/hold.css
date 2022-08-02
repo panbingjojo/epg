@@ -1,0 +1,131 @@
+/*背景图*/
+.splash_background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+.btn_position_1 {
+    position: absolute;
+    left: 692px;
+    top: 47px;
+    width: 199px;
+    height: 66px;
+}
+
+.btn_position_2 {
+    position: absolute;
+    left: 960px;
+    top: 47px;
+    width: 199px;
+    height: 66px;
+}
+
+#recommend_container {
+    position: absolute;
+    width: 1260px;
+    height: 700px;
+}
+
+.center {
+     position: absolute;
+     top:300px;
+     width:1200px;
+     height: 400px;
+     left: 40px;
+ }
+.centert {
+    position: absolute;
+    top:300px;
+    width:1200px;
+    height: 400px;
+    left: 40px;
+}
+
+.centero {
+    position: absolute;
+    top:300px;
+    width:1200px;
+    height: 400px;
+    left: 40px;
+}
+
+.recommend_img {
+    width: 330px;
+    height: 210px;
+    border: 5px solid transparent;
+    /*margin: 0px 0px 0px 20px;*/
+    margin-left: 50px;
+}
+
+
+.center #recommend_0{
+    position: absolute;
+    top:110px;
+}
+
+.center #recommend_1{
+    position: absolute;
+    top:110px;
+    left:380px;
+}
+
+.center #recommend_2{
+    position: absolute;
+    top:110px;
+    left:760px;
+}
+
+.centert #recommend_0{
+    position: absolute;
+    top:110px;
+    left:180px;
+}
+
+.centert #recommend_1{
+    position: absolute;
+    top:110px;
+    left:550px;
+}
+
+.centero #recommend_0{
+    position: absolute;
+    top:110px;
+    left:380px;
+}
+
+
+.page_icon{
+    position: absolute;
+    top:500px;
+}
+#prev_page{
+    left:20px
+}
+
+#next_page{
+    left:1230px;
+}
+
+.recommend_img_border {
+    border: 5px #f47e91  solid !important;
+    width: 360px !important;;
+    height: 220px !important;;
+    border-radius: 15px !important;
+}
+
+.hd-continue{
+    top: 24px;
+    left: 884px;
+    width: 178px;
+    height: 68px;
+}
+
+.hd-back{
+    top: 24px;
+    left: 1080px;
+    width: 178px;
+    height: 68px;
+}

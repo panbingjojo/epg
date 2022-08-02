@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>社区医院-新增/绑定用户</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <link rel="stylesheet" href="/Public/css/hd/CommunityHospital/BloodManage/AddUser.css">
+
+
+    <script type="text/javascript">
+        var unPreventDefault = true;
+        var RenderParam = {
+            ROOT: '__ROOT__',
+            userId: "{$userId}",
+            accountId: "{$accountId}",
+            SERVER_IPTVFORWARD_CWS_FS: "{$server_iptvforward_cws_fs}",
+        };
+    </script>
+</head>
+<body>
+<p class="title" id="title">新增/绑定用户</p>
+<div id="container">
+    <div id="bg-content">
+        <div id="input-form">
+            <!--用户名列表-->
+            <div id="user-name-text" class="lable-css">用户名&#12288</div>
+            <input id="user-name" class="input" />
+
+            <!--输入框-->
+            <div id="id-card-text" class="lable-css">身份证&#12288</div>
+            <input type="text" id="id-card" class="input" disabled="ture" placeholder="点击输入身份证（必填）"/>
+            <div id="user-tel-text" class="lable-css">联系方式&#12288</div>
+            <input type="tel" id="user-tel" class="input" disabled="ture" placeholder="点击输入联系方式（必填）"/>
+
+        </div>
+
+        <div id="tip-text1">如遇无法正常输入信息</div>
+        <div id="tip-text2">可用手机扫描二维码进行填写</div>
+        <!--二维码-->
+        <img id="erweima" src="" alt="">
+        <!--确认上传-->
+        <img id="btn-confirm" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_confirm.png" alt="">
+    </div>
+</div>
+
+
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/CommunityHospital/BloodManage/AddUser.js?t={$time}"></script>
+</body>
+
+<script>
+    window.onload = function () {
+        BloodManage.init();
+    }
+</script>
+</html>
+

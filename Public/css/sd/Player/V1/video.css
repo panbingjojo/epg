@@ -1,0 +1,285 @@
+#smallvod {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+}
+
+#smallscreen {
+    width: 1px;
+    height: 1px
+}
+
+#backg {
+    height: 530px;
+    width: 640px;
+    position: relative;
+}
+
+#playbuttom {
+    display: none;
+    position: absolute;
+    width: 43px;
+    left: 45%;
+    top: 35%;
+    border: 0;
+}
+
+#videoback {
+    width: 640px;
+    height: 47px;
+    position: absolute;
+    top: 480px;
+    left: 0;
+}
+
+#ptime {
+    color: #fff;
+    position: absolute;
+    left: 40px;
+    top: 490px;
+    font-weight: bold;
+}
+
+#totaltime {
+    color: #fff;
+    position: absolute;
+    right: 31px;
+    top: 490px;
+    font-weight: bold;
+}
+
+#progressbar {
+    height: 10px;
+    width: 444px;
+    background-color: #2d2e2f;
+    position: absolute;
+    top: 494px;
+    left: 104px;
+}
+
+#fill {
+    background-color: #62ca2d;
+    height: 9px;
+    width: 0;
+    z-index: 999;
+}
+
+#ball {
+    width: 13px;
+    position: relative;
+    bottom: 0px;
+    left: -10px;
+}
+
+a {
+    border: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+li {
+    list-style: none;
+    color: #fff;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+#collectback {
+    width: 640px;
+    height: 530px;
+    background-image: url("../../../../img/sd/Player/V1/collectback.png");
+    position: absolute;
+}
+
+#titletext {
+    color: #fff;
+    font-size: 18px;
+    position: absolute;
+    top: 83px;
+    left: 227px;
+}
+
+.imgback {
+    width: 122px;
+    height: 128px;
+    position: absolute;
+    top: 159px;
+    overflow: hidden;
+}
+
+.imgtitle {
+    position: absolute;
+    width: 122px;
+    height: 30px;
+    background-image: url("../../../../img/sd/Player/V1/collectback.png");
+    top: 98px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.imgtext {
+    color: #fff;
+    font-size: 13px;
+    line-height: 30px;
+}
+
+.picture {
+    width: 122px;
+    height: 128px;
+    margin: 0;
+    padding: 0;
+}
+
+.navimg {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 350px;
+}
+
+.imghover {
+    border: 5px white solid;
+}
+
+#replaytext {
+    font-size: 15px;
+    position: absolute;
+    left: 152px;
+    top: 430px;
+    color: #fff;
+}
+
+#resumeplay {
+    font-size: 15px;
+    position: absolute;
+    left: 142px;
+    top: 430px;
+    color: #fff;
+}
+
+#collecttext {
+    font-size: 15px;
+    position: absolute;
+    left: 280px;
+    top: 430px;
+    color: #fff;
+}
+
+#nocollecttext {
+    font-size: 15px;
+    position: absolute;
+    left: 295px;
+    top: 430px;
+    color: #fff;
+}
+
+#exittext {
+    font-size: 15px;
+    position: absolute;
+    left: 438px;
+    top: 430px;
+    color: #fff;
+}
+
+#focus-1-1 {
+    left: 25px;
+}
+
+#focus-1-2 {
+    left: 173px;
+}
+
+#focus-1-3 {
+    left: 322px;
+}
+
+#focus-1-4 {
+    left: 475px;
+}
+
+#focus-2-3 {
+    left: 420px;
+}
+
+.speed {
+    position: absolute;
+    top: 246px;
+    left: 273px;
+    width: 99px;
+    height: 38px;
+    display: none;
+}
+
+.speed_rewind {
+    position: absolute;
+    top: 256px;
+    left: 232px;
+    width: 33px;
+    height: 21px;
+    display: none;
+}
+
+.speed_forward {
+    position: absolute;
+    top: 256px;
+    left: 379px;
+    width: 33px;
+    height: 21px;
+    display: none;
+}
+
+.debug1 {
+    border: 1px red solid;
+    color: red;
+    top: 50px;
+    left: 30px;
+    width: 550px;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 100;
+    font-size: 15px;
+}
+
+.debug2 {
+    border: 1px deeppink solid;
+    text-align: left;
+    color: deeppink;
+    top: 270px;
+    left: 30px;
+    width: 550px;
+    max-height: 35%;
+    overflow: auto;
+    word-wrap: break-word;
+    position: absolute;
+    z-index: 100;
+    font-size: 15px
+}
+
+/*VIP角标样式*/
+.vip_corner{
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    top: 159px;
+    z-index: 8;
+    visibility: hidden;
+}
+
+#vip_corner_1{
+    left: 107px;
+}
+
+#vip_corner_2{
+    left: 255px;
+}
+
+#vip_corner_3{
+    left: 404px;
+}
+
+#vip_corner_4{
+    left: 557px;
+}

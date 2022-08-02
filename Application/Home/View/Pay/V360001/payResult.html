@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>江西移动--订购结果显示</title>
+
+    <css href="__ROOT__/Public/css/common.css?t={$time}"/>
+    <css href="__ROOT__/Public/css/Common/V13/dialog.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            carrierId: "{$carrierId}",          // 地区id
+            fsUrl: '{$resourcesUrl}',           // fs地址
+            isSuccess: "{$isSuccess}",          // 是否订购成功
+            msg: "{$msg}",                      // 订购提示信息
+            skin: {$skin},                      // 用户自定义背景
+        };
+
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/dialog.1.01.js?t={$time}"></script>
+</head>
+<body>
+<img id="btn-ok" />
+
+<script type="text/javascript">
+
+    var buttons = [];
+
+    /**
+     * 返回事件
+     */
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    /**
+     * 焦点初始化
+     */
+    function initButtons() {
+        buttons.push(
+            {
+                id: 'btn-ok',
+                name: "确定按键",
+                type: "img",
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                backgroundImage: '',
+                focusImage: '',
+                click: 'onBack()',
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange:  '',
+            }
+        );
+    }
+
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        if (!LMEPG.func.isEmpty(RenderParam.skin.cpbjt)) {
+            var bgImg = RenderParam.fsUrl + RenderParam.skin.cpbjt;
+            document.body.style.backgroundImage = 'url(' + bgImg + ')';
+        } else {
+            document.body.style.backgroundImage = 'url(' + ROOT + '/Public/img/HomePage/V13/home/bg.png' + ')';
+        }
+
+        initButtons();
+        LMEPG.ButtonManager.init(["btn-ok"], buttons, '', true);
+        modal.commonDialog({onClick: onBack, onCancel: onBack, onBack: onBack}, '', RenderParam.msg, '');
+    }
+
+</script>
+</body>
+</html>

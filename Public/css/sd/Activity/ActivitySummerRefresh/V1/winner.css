@@ -1,0 +1,86 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+}
+
+body > * {
+    position: absolute;
+}
+
+table tr td {
+    width: 167px;
+    text-align: center;
+    list-style: none;
+    font-size: 16px;
+    color: #203d65 !important;
+    height: 27px;
+    /*border: 1px red solid;*/
+}
+.commonPosition{
+    width: 154px;
+    height: 73px;
+}
+
+#all-prizes {
+    position: absolute;
+    left: 68px;
+    top: 151px;
+    width: 523px;
+    overflow: hidden;
+    color: #203d65;
+    /*border: 1px red solid;*/
+}
+
+#my-prizes {
+    position: absolute;
+    left: 67px;
+    top: 343px;
+    width: 523px;
+    /*border: 1px red solid;*/
+    color: #203d65;
+    height: 27px;
+    overflow: hidden;
+}
+
+#submit {
+    top: 447px;
+    left: 145px;
+}
+
+#clear {
+    top: 447px;
+    left: 383px;
+}
+
+#searchText {
+    top: 387px;
+    left: 315px;
+    width: 160px;
+    color:  #004475;
+    font-size: 15px;
+    /*border: 1px red solid;*/
+}
+
+#top {
+    z-index: 999
+}
+
+.key-table {
+}
+
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+    font-size: 30px;
+    z-index: 999;
+}
+

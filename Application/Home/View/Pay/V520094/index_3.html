@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title> 贵州广电-计费页3</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/V10/general.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <!--<link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Pay/V520004/pay.css?t={$time}"/>-->
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            accountId: "{$accountId}",          // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+
+            //当前页渲染
+            orderItems: {$orderItems},
+            isPlaying: "{$isPlaying}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            isVip: "{$isVip}",
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+    <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+    <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/zf_v2/pay.js"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgdPay.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript"  src="__ROOT__/Public/js/Pay/V520094/pay_activity_2.js?t={$time}"></script>
+
+</head>
+<body id="body">
+<img class="body-bg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_guide_2.png"/>
+<div class="btn-group">
+    <img id="order-1" class="order" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_order_1.png"/>
+    <img id="order-2" class="order" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_order_2.png"/>
+    <img id="order-3" class="order" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_order_3.png"/>
+    <img id="order-4" class="order" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_order_4.png"/>
+</div>
+
+<div class="btn-wap">
+    <img id="back" class="btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_back.png"/>
+    <img id="rule" class="btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_rule.png"/>
+</div>
+<div id="rule-layer">
+    <img class="rule-layer"  src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/rule_bg.png"/>
+    <img id="back-layer" class="btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_back.png"/>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        Pay.init();
+    };
+</script>
+</body>
+</html>

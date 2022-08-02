@@ -1,0 +1,217 @@
+
+/*.recommended-1 {*/
+    /*position: absolute;*/
+    /*top: 140px;*/
+    /*left: 80px;*/
+    /*width: 534px;*/
+    /*height: 334px;*/
+    /*!*z-index: 3;*!*/
+/*}*/
+/*改后样式recommended版本*/
+.recommended-1 {
+    position: absolute;
+    top: 200px;
+    left:120px;
+    width:358px;
+    height: 438px;
+    /*z-index: 3;*/
+}
+/*z-index: 3;*/
+/*.recommended-2 {*/
+    /*position: absolute;*/
+    /*top: 140px;*/
+    /*left: 623px;*/
+    /*width: 289px;*/
+    /*height: 334px;*/
+    /*!*z-index: 3;*!*/
+/*}*/
+.recommended-2 {
+    position: absolute;
+    top: 200px;
+    left: 480px;
+    width: 358px;
+    height: 438px;}
+/*z-index: 3;*/
+
+/*.recommended-3 {*/
+    /*position: absolute;*/
+    /*top: 140px;*/
+    /*left: 922px;*/
+    /*width: 278px;*/
+    /*height: 334px;*/
+    /*!*z-index: 3;*!*/
+/*}*/
+.recommended-3 {
+    position: absolute;
+    top: 200px;
+    left: 840px;
+    width:358px;
+    height:218px;
+    /*z-index: 3;*/
+}
+/*.recommended-4 {*/
+    /*position: absolute;*/
+    /*top: 486px;*/
+    /*left: 80px;*/
+    /*width: 419px;*/
+    /*height: 174px;*/
+    /*!*z-index: 3;*!*/
+/*}*/
+.recommended-4 {
+    position: absolute;
+    top: 420px;
+    left: 840px;
+    width:358px;
+    height:218px;
+    /*z-index: 3;*/
+}
+/*.recommended-5 {*/
+    /*position: absolute;*/
+    /*top: 486px;*/
+    /*left: 508px;*/
+    /*width: 404px;*/
+    /*height: 174px;*/
+    /*!*z-index: 3;*!*/
+/*}*/
+/*.recommended-6 {*/
+    /*position: absolute;*/
+    /*top: 486px;*/
+    /*left: 922px;*/
+    /*width: 278px;*/
+    /*height: 174px;*/
+    /*!*z-index: 3;*!*/
+/*}*/
+
+.recommended-bg1 {
+    position: absolute;
+    top: 19px;
+    left:19px;
+    width:320px;
+    height: 400px;
+    border-radius: 10px;
+}
+.recommended-bg2 {
+    position: absolute;
+    top: 19px;
+    left:19px;
+    width:320px;
+    height: 400px;
+    border-radius: 10px;
+}
+.recommended-bg3 {
+    position: absolute;
+    top:19px;
+    left:19px;
+    width:320px;
+    height: 180px;
+    border-radius: 10px;
+}
+.recommended-bg4 {
+    position: absolute;
+    top: 19px;
+    left: 19px;
+    width:320px;
+    height: 180px;
+    border-radius: 10px;
+}
+
+
+
+
+/*挽留页*/
+.retain {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 10000;
+}
+
+.retain > .hold-bg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+
+.retain > .continue-btn {
+    position: absolute;
+    left: 167px;
+    top: 597px;
+    width: 199px;
+    height: 77px;
+
+}
+
+.retain > .close-btn {
+    position: absolute;
+    left: 428px;
+    top: 597px;
+    width: 199px;
+    height: 77px;
+
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+
+/*--------------------------------------------------
+         按钮选中效果
+ ---------------------------------------------------*/
+/*推荐位*/
+/*.recommended-hover {*/
+    /*position: absolute;*/
+    /*!*-webkit-transform: scale(1.1);*!*/
+    /*!*-moz-transform: scale(1.1);*!*/
+    /*!*box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px rgba(0, 0, 0, 0.4), 0px 10px 40px 10px rgba(0, 0, 0, 0.5);*!*/
+    /*!*border: 1px solid black;*!*/
+    /*!*border-radius: 12px;*!*/
+    /*z-index: 996;*/
+    /*!*-webkit-transition: all 0.1s;*!*/
+    /*!*-moz-transition: all 0.1s;*!*/
+/*}*/
+#recommended-1-f,#recommended-2-f,#recommended-3-f,#recommended-4-f{
+    display: none;
+}
+
+.recommended-hover > #recommended-1-f {
+    display: block;
+}
+.recommended-hover > #recommended-2-f {
+
+    display: block;
+    /*position: absolute;*/
+    /*top: -16px;*/
+    /*left: -15px;*/
+    /*!*width: 289px;*!*/
+    /*!*height: 334px;*!*/
+    /*width: 318px;*/
+    /*height: 367px;*/
+    /*!*padding: 42px;*!*/
+    /*!*z-index: 3;*!*/
+}
+.recommended-hover > #recommended-3-f {
+    display: block;
+    /*position: absolute;*/
+    /*top: -16px;*/
+    /*left: -19px;*/
+    /*!*width: 278px;*!*/
+    /*!*height: 334px;*!*/
+    /*width: 305px;*/
+    /*height: 367px;*/
+    /*!*padding: 42px;*!*/
+    /*!*z-index: 3;*!*/
+}
+.recommended-hover > #recommended-4-f {
+    display: block;
+    /*position: absolute;*/
+    /*top: -16px;*/
+    /*left: -19px;*/
+    /*!*width: 278px;*!*/
+    /*!*height: 334px;*!*/
+    /*width: 305px;*/
+    /*height: 367px;*/
+    /*!*padding: 42px;*!*/
+    /*!*z-index: 3;*!*/
+}

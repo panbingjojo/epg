@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GraphicAlbum_29-身心健康两手抓，确诊患者如何心理自助？</title>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Album/39Featured/album.css?t={$time}"/>
+
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+
+    <script type="text/javascript">
+        // TP框架控制器返回数据应用
+        var RenderParam = {
+            vip: {$isVip},  //当前用户是否VIP
+            userId: '{$userId}',    // 当前用户ID
+            platformType: '{$platformType}',     // hd--高清 sd--标清
+            lmcid: '{$carrierId}',  // 所属地区Id
+            albumName: '{$albumName}',          // 专辑名称
+            data: '{$data}',
+            page: {$moveNum}
+        };
+    </script>
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+</head>
+<body id="body">
+<div id="debug"></div>
+<!--<img id="back" src="__ROOT__/Public/img/{$platformType}/Menu/QHotherPages/back.png" alt="">-->
+<div id="container2">
+    <ul id="item-wrapper">
+
+    </ul>
+</div>
+<img src="__ROOT__/Public/img/{$platformType}/Menu/QHotherPages/prevArrow.png" id="prev-arrow"/>
+<img src="__ROOT__/Public/img/{$platformType}/Menu/QHotherPages/nextArrow.png" id="next-arrow"/>
+<div id="page-index">0/0</div>
+<script>
+
+    window.onload = function () {
+        G("body").style.backgroundImage = 'url(__ROOT__/Public/img/hd/Hospital/V1/album_bg_2.jpg)';
+        renderList();
+        LMEPG.ButtonManager.init(saveCurrentId, buttons, '', true);
+        G("container2").style.backgroundImage = 'url(__ROOT__/Public/img/hd/Hospital/V1/list_box.png)';
+
+        LmOrderConf.init({
+            getCurrentPage: getCurrentPage,
+        });
+    };
+
+    var Data = {
+        videoInfo: [
+            {
+                'sourceId': "nxrmyy001e",
+                'videoUrl': "99100000012020052215574107892612",
+                'title': "风雨同在  春和景明",
+                'unionCode': "nxrmyy001e",
+            },
+
+            {
+                'sourceId': "nxrmyy002e",
+                'videoUrl': "99100000012020052215574207892618",
+                'title': "你的样子",
+                'unionCode': "nxrmyy002e",
+            },
+
+            {
+                'sourceId': "nxrmyy003e",
+                'videoUrl': "99100000012020052215574307892624",
+                'title': "你在哪",
+                'unionCode': "nxrmyy003e",
+            },
+
+            {
+                'sourceId': "nxrmyy004e",
+                'videoUrl': "99100000012020052215574407892630",
+                'title': "逆行无畏志报国",
+                'unionCode': "nxrmyy004e",
+            },
+
+            {
+                'sourceId': "nxrmyy005e",
+                'videoUrl': "99100000012020052215574507892636",
+                'title': "绽放在抗疫一线的铿锵玫瑰",
+                'unionCode': "nxrmyy005e",
+            },
+
+            {
+                'sourceId': "nxrmyy006e",
+                'videoUrl': "99100000012020052215574507892642",
+                'title': "这样的你",
+                'unionCode': "nxrmyy006e",
+            },
+            {
+                'sourceId': "8122",
+                'videoUrl': "99100000012020022520095307093994",
+                'title': "“大白”们的一份家书-视频转自宁夏日报",
+                'unionCode': "",
+            },
+            {
+                'sourceId': "8122",
+                'videoUrl': "99100000012020022520095507094012",
+                'title': "宁夏回族自治区人民医院第三批援助湖北医疗队出征",
+                'unionCode': "",
+            },
+            {
+                'sourceId': "8122",
+                'videoUrl': "99100000012020022520095707094024",
+                'title': "战“疫”日记·湖北一线丨宁夏男护士的护理妙招-视频转自宁夏日报",
+                'unionCode': "",
+            },
+            {
+                'sourceId': "nxrmyy009",
+                'videoUrl': "99100000012020032315203107380003",
+                'title': "巾帼担当，你们最美",
+                'unionCode': "nxrmyy009",
+            },
+
+            {
+                'sourceId': "nxrmyy008",
+                'videoUrl': "99100000012020032315203007379997",
+                'title': "@家乡父老：暖心行李相伴，疫情阻击战必胜 来源：宁夏日报",
+                'unionCode': "nxrmyy008",
+            }, {
+                'sourceId': "nxrmyy010",
+                'videoUrl': "99100000012020032315203207380009",
+                'title': "战役女神最美丽",
+                'unionCode': "nxrmyy010",
+            },
+            {
+                'sourceId': "nxrmyy015",
+                'videoUrl': "99100000012020040717154007501090",
+                'title': "团结奋进的呼吸内科在路上",
+                'unionCode': "nxrmyy015",
+            },
+            {
+                'sourceId': "nxrmyy014",
+                'videoUrl': "99100000012020040717153907501084",
+                'title': "守护生命的急诊人",
+                'unionCode': "nxrmyy014",
+            },
+            {
+                'sourceId': "nxrmyy013",
+                'videoUrl': "99100000012020040717153807501078",
+                'title': "看樱花盛开 迎战士凯旋",
+                'unionCode': "nxrmyy013",
+            },
+            {
+                'sourceId': "nxrmyy012",
+                'videoUrl': "99100000012020040717153807501072",
+                'title': "唱响我和我的祖国",
+                'unionCode': "nxrmyy012",
+            },
+
+            {
+                'sourceId': "nxrmyy011",
+                'videoUrl': "99100000012020040717153707501066",
+                'title': "《生命之路》—宁夏眼科医院",
+                'unionCode': "nxrmyy011",
+            }
+        ],
+    };
+
+    var buttons = [{
+        id: 'back',
+        name: '返回',
+        type: 'img',
+        nextFocusDown: 'focus-1',
+        click: onBack,
+        backgroundImage: "/Public/img/{$platformType}/Menu/QHotherPages/back.png",
+        focusImage: "/Public/img/{$platformType}/Menu/QHotherPages/back_f.png",
+    }, {
+        id: 'debug',
+        name: '脚手架ID',
+        nextFocusUp: 'focus-8',
+        nextFocusLeft: 'focus-8',
+        nextFocusDown: "focus-1",
+        nextFocusRight: "focus-1"
+    }];
+    /**
+     * 渲染图文标题
+     */
+    var page = RenderParam.page;
+    var currentData = null;
+    dataList = JSON.parse('{$data}').data.video_list; //专题节目列表;
+
+    function renderList() {
+        buttons.splice(2);
+        var htm = '';
+        currentData = dataList.slice(page * 8, page * 8 + 8);
+        currentData.forEach(function (item, index) {
+            var itemType = item.content_desc.length ? 1 : 0;
+            htm += '<li id=focus-' + (index + 1) + '>' + item.title + '</li>';
+            buttons.push({
+                id: 'focus-' + (index + 1),
+                name: '',
+                type: 'img',
+                nextFocusUp: 'focus-' + (index),
+                nextFocusDown: 'focus-' + (index + 2),
+                click: enterKey,
+                focusChange: onFocusChangeBg,
+                beforeMoveChange: turnPage,
+                cIdx: index,
+                item: item,
+                itemType: itemType,
+            })
+        });
+        arrow();
+        G("item-wrapper").innerHTML = htm;
+        G("page-index").innerText = (page + 1) + "/" + Math.ceil(dataList.length / 8);
+    }
+
+    /**
+     * 切换箭头指示
+     * @param imgCount
+     * @param lastImgIndex
+     */
+    function arrow(imgCount, lastImgIndex) {
+
+        if (arguments.length > 0) {
+            Show('left-arrow');
+            Show('right-arrow');
+            imgCount === 0 && Hide('left-arrow');
+            imgCount === lastImgIndex && Hide('right-arrow');
+        } else {
+            Hide('prev-arrow');
+            Hide('next-arrow');
+            page > 0 && Show("prev-arrow");
+            page < Math.ceil(dataList.length / 8) - 1 && Show("next-arrow");
+        }
+    }
+
+    /**
+     * 图文标题获得、失去焦点操作
+     * @param btn
+     * @param Focus
+     */
+    function onFocusChangeBg(btn, Focus) {
+
+        var currentDom = G(btn.id);
+        var text = currentDom.innerText;
+        if (Focus) {
+            currentDom.className = "focus";
+            text.length > 13 && (currentDom.innerHTML = "<marquee>" + text + "</marquee>");
+
+        } else {
+            currentDom.className = "";
+            currentDom.innerHTML = text;
+        }
+    }
+
+    /**
+     * 翻页
+     * @param key
+     * @param btn
+     */
+    function turnPage(key, btn) {
+        var totalLastItem = dataList[dataList.length - 1];
+        var curreLastItem = currentData[currentData.length - 1];
+        switch (key) {
+            case "up":
+                btn.id == "focus-1" && prevPage(key, btn);
+                break;
+            case "down":
+                totalLastItem != curreLastItem && btn.id == "focus-8" && nextPage();
+                break;
+            case "left":
+                prevPage(key, btn);
+                break;
+            case "right":
+                // 总条数的最后一条不等与当前渲染条数的最后一条即可翻页
+                totalLastItem != curreLastItem && nextPage();
+                break;
+        }
+    }
+
+
+    /**
+     * 上一页
+     */
+    function prevPage(key, btn) {
+        btn = btn ? btn : "";
+        if (page == 0 && btn.id == "focus-1") {
+            key == "up" && LMEPG.ButtonManager.requestFocus("back");
+        } else if (page != 0) {
+            page = Math.max(0, page -= 1);
+            renderList();
+            LMEPG.ButtonManager.init("debug", buttons, '', true);
+        }
+    }
+
+    /**
+     * 下一页
+     */
+    function nextPage() {
+
+        page = Math.min(Math.floor(dataList.length / 8), page += 1);
+        renderList();
+        LMEPG.ButtonManager.init("debug", buttons, '', true);
+    }
+
+    /**
+     * enter键入操作
+     */
+    var saveCurrentId = "{$focus_index}" == "focus-1-1" ? "focus-1" : "{$focus_index}";
+    function enterKey(btn) {
+        var itemType = btn.itemType;
+        var sourceTitle = btn.item.title;
+        saveCurrentId = btn.id;
+
+        if (itemType == "1") {
+            jumpAlbumPage("TemplateAlbum", btn.item.union_code);
+        } else {
+            var videoData = '';
+            Data.videoInfo.forEach(function (val, index) {
+                if (sourceTitle.indexOf(val.title) > -1) {
+                    videoData = val;
+                }
+            });
+
+            onClickVideoItem(videoData) // 播放视频
+        }
+    }
+
+    /**
+     * 跳转 -- 专辑页面
+     * @param albumName
+     * @param code
+     */
+    function jumpAlbumPage(albumName, code) {
+        var objCurrent = getCurrentPage();
+        var objAlbum = LMEPG.Intent.createIntent('album');
+        objAlbum.setParam('albumName', albumName);
+        //objAlbum.setParam('graphicId', id);
+        objAlbum.setParam('graphicCode', code);
+        objAlbum.setParam('inner', 1);
+        LMEPG.Intent.jump(objAlbum, objCurrent);
+    }
+
+
+    // 处理点击视频列表事件
+    function onClickVideoItem(videoInfo) {
+        var paramJson = {
+            "sourceId": videoInfo.source_id,
+            "videoUrl": videoInfo.videoUrl,
+            "title": videoInfo.title,
+            "type": 2,
+            "entryType": 4,
+            "entryTypeName": "GraphicAlbum_29",
+            "userType": 0,
+            "freeSeconds": 30,
+            "focusIdx": saveCurrentId,
+            "durationTime": ""
+        };
+
+        jumpVideoPlay(paramJson);
+    }
+
+    function jumpVideoPlay(paramJson) {
+        var objCurrent = getCurrentPage();
+
+        var objPlayer = LMEPG.Intent.createIntent("player");
+        objPlayer.setParam("userId", "{$userId}");
+        objPlayer.setParam("videoInfo", JSON.stringify(paramJson));
+
+        LMEPG.Intent.jump(objPlayer, objCurrent);
+    }
+
+    /**
+     * 设置当前页参数
+     */
+    function getCurrentPage() {
+        var objCurrent = LMEPG.Intent.createIntent("album");
+        objCurrent.setParam("userId", "{$userId}");
+        objCurrent.setParam("albumName", RenderParam.albumName);
+        objCurrent.setParam("focus_index", saveCurrentId);
+        objCurrent.setParam("inner", 1);
+        objCurrent.setParam("moveNum", page);
+        return objCurrent;
+    }
+
+    /**
+     * 渲染图文数据
+     * @param key
+     * @param btn
+     */
+    var count = 0;
+    var loader = [];
+
+    function renderImg(key, btn) {
+        if (key == "up" || key == "down") return;
+        var imgWrap = G('img-container');
+        var httpImg = currentData[btn.cIdx].content_desc;
+        count = key === 'left' ? Math.max(1, count -= 1) : Math.min(httpImg.length, count += 1);
+        imgWrap.replaceChild(loader[count - 1], imgWrap.firstElementChild);
+        arrow(count - 1, httpImg.length - 1);
+    }
+
+    /**
+     * 创建当前焦点对应标题的图片数组
+     * @param httpImg
+     */
+    function createImg(httpImg) {
+        count = 0;
+        loader = [];
+        httpImg.forEach(function (item) {
+            var img = new Image();
+            img.src = "{$resourcesUrl}" + item;
+            loader.push(img);
+        });
+    }
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+    if (RenderParam.lmcid == "410092") {
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+</script>
+</body>
+</html>

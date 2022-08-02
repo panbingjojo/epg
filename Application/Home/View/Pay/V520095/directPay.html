@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>贵州电信EPG--局方计费接口（directPay）</title>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+
+</head>
+<body>
+<form action="{$orderUrl}" method="post" hidden>
+    <input type="hidden" name="providerId" value="{$providerId}" id="providerId">
+    <input type="hidden" name="orderInfo" value="{$orderInfo}" id="orderInfo">
+    <input type="hidden" name="returnUrl" value="{$returnUrl}" id="returnUrl">
+
+    <input type="submit" value="" id="goPay">
+</form>
+
+<script type="text/javascript">
+    // 提交
+    document.getElementById("goPay").click();
+</script>
+</body>
+</html>

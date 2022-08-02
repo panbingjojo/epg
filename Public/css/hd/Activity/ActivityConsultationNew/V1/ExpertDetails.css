@@ -1,0 +1,85 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.btn {
+    position: absolute;
+    width: 158px;
+    height: 52px;
+    outline: none;
+}
+#reservation_btn{
+    top: 364px;
+    left: 90px;
+    z-index: 999;
+}
+
+#back_btn {
+    top: 35px;
+    left: 1080px;
+}
+
+.title {
+    top: 48px;
+    left:328px;
+    position: absolute;
+    letter-spacing: 2px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+#doctor {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#content {
+    top: 104px;
+    left: 328px;
+    position: absolute;
+    letter-spacing: 2px;
+    font-size: 20px;
+    line-height: 36px;
+    width: 702px;
+    height: 321px;
+    overflow: hidden;
+    text-indent: 70px;
+}
+
+.good_at {
+    top: 104px;
+    left: 328px;
+    position: absolute;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 36px;
+}
+.common_bg{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 1080px;
+    height: 470px;
+    background: #ececec;
+}
+#photo_img {
+    top: 44px;
+    left: 64px;
+    position: absolute;
+    width: 216px;
+    height: 288px;
+    outline: none;
+}

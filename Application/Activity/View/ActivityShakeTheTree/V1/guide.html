@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>金秋国庆，丰收之旅(广西电信EPG)</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--处理background-img拿取图片fs地址-->
+    <include file="./Application/Activity/View/ActivityShakeTheTree/bgImage.html"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityShakeTheTree/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmbase_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/keypad.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmBase64.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <!--当前活动-->
+    <script type="text/javascript">
+
+        var RenderParam = {
+            activityImg: '{$activityFsImg}{$platformType}/',
+            cdCount: '{$cdCount}',
+            isVip: '{$isVip}',
+            isOrderBack: '{$isOrderBack}', // 是否为订购返回
+            cOrderResult: '{$Think.cookie.c_order_result}',
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            userTel: '{$userTel}',
+            userId: '{$userId}',
+            leftTimes: {$leftTimes},
+            score: '{$score}',
+            activityInfo:{$activityInfo},
+            myPrizeList: {$myPrizeList},                  //
+            AllUserPrizeList: {$AllUserPrizeList},                  // 所用中奖信息
+            beClickId: 'btn-begin0',
+            extraTimes: '{$extraTimes}'
+        };
+        window.onload = function () {
+            Activity.init();
+            lmInitGo();
+        };
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityShakeTheTree/V1/index.js?t={$time}"></script>
+</head>
+<body>
+
+<div id="debug"></div>
+<p id="times-count">0</p>
+<img id="jump-game" src="{$activityFsImg}{$platformType}/jump_game.png">
+<div class="jump-wrap">
+    <img id="jump-back" src="{$activityFsImg}{$platformType}/jump_back.png">
+    <img id="jump-rule" src="{$activityFsImg}{$platformType}/jump_rule.png">
+    <img id="jump-winner" src="{$activityFsImg}{$platformType}/jump_winner.png">
+</div>
+
+<!--普通用户返回时进入触发返回倒计时-->
+<div id="modal-cd" class="modal">
+    <div id="count-down">8</div>
+</div>
+
+<!--活动规则-->
+<div id="modal-rule" class="modal">
+    <img id="btn-rule-close" src="{$activityFsImg}{$platformType}/jump_back.png">
+</div>
+<!--中奖名单-->
+<div id="modal-list" class="modal">
+    <div id="total-list"></div>
+    <div id="my-list"></div>
+    <div id="rewrite-tel" class="list-tel my">请输入有效的电话</div>
+    <img id="btn-list-submit" class="btn-list" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-list-cancel" class="btn-list" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--VIP没有游戏次数-->
+<div id="modal-vip-notimes" class="modal">
+    <img id="btn-one0" src="{$activityFsImg}{$platformType}/btn_sure.png">
+</div>
+
+<!--普通用户没有游戏次数-->
+<div id="modal-pay-notimes" class="modal">
+    <img id="btn-pay-sure" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-pay-cancel" class="btn-pay" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--抽中奖品-->
+<div id="modal-accomplish" class="modal">
+    <img id="accomplish-prize" src="" alt="">
+    <div id="accomplish-tel">请输入有效的电话</div>
+    <img id="btn-accomplish-submit" class="btn-win" src="{$activityFsImg}{$platformType}/btn_sure.png">
+    <img id="btn-accomplish-cancel" class="btn-win" src="{$activityFsImg}{$platformType}/btn_cancel.png">
+</div>
+
+<!--支付反馈UI-->
+<div id="modal-pay" class="modal">
+    <img id="pay-back-tip" src="__ROOT__/Public/img/Common/spacer.gif">
+</div>
+
+<!--游戏UI-->
+<div id="modal-game" class="modal">
+    <p id="get-fruit">0</p>
+    <p id="game-cd">10</p>
+    <img id="tree" src="{$activityFsImg}{$platformType}/tree.png" alt="">
+    <img id="modify-cloud" src="{$activityFsImg}{$platformType}/cloud.png" alt="">
+    <img id="game-start" src="{$activityFsImg}{$platformType}/shake.png">
+</div>
+
+<!--去抽奖UI-->
+<div id="modal-add-score" class="modal">
+    <p id="p-add-score">0</p>
+    <img id="go-lottery" src="{$activityFsImg}{$platformType}/lottery_f.gif">
+</div>
+<!--去抽奖UI-->
+<img id="modal-no-prize" class="modal" src="{$activityFsImg}{$platformType}/m_no_prize.png">
+
+</body>
+</html>

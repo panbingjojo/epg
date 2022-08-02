@@ -1,0 +1,1223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>宝宝健康大测评活动V1-结果页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityBabyHealthTest/V1/dialogue.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+
+    <script>var carrierId = {$carrierId};</script>
+    <if condition="$carrierId eq '07430093' ">
+        <!--湖南联通芒果TV 07430093js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/mongoTV/webview.js?t={$time}"></script>
+    </if>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityBabyHealthTest/V1/DialogMoreThree.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <!--    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityBabyHealthTest/PopRule.js?t={$time}"></script>-->
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-dialog");
+            objCurrent.setParam("focusIndex", LMEPG.BM.getCurrentButton().id);
+            return objCurrent;
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            if (G("result-page-1").style.display == "block") {
+                var src = getCurrentPage();
+                var dst = LMEPG.Intent.createIntent("activity-common-guide");
+                dst.setParam("isNeedJumpMain", "true");
+                LMEPG.Intent.jump(dst, src, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+            }
+            else {
+                G("result-page-1").style.display = "block";
+                G("result-page-2").style.display = "none";
+                LMEPG.BM.requestFocus("chart-btn");
+            }
+        }
+
+        /**
+         * 点击视频
+         */
+        function clickVideo(btn) {
+            if (carrierId == '320092') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：导致孩子发育迟缓的原因有哪些？
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012018111216304303558845",
+                        gq_ftp_url: "99100000012018111216300703558557"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "11841",
+                        "videoUrl": videoUrl,
+                        "title": "导致孩子发育迟缓的原因有哪些？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：哪些生活习惯有助于孩子长高？
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012018111216304003558821",
+                        gq_ftp_url: "99100000012018111216300403558533"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "11837",
+                        "videoUrl": videoUrl,
+                        "title": "哪些生活习惯有助于孩子长高？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：《宝宝夜里睡不安稳 可能是消化问题》
+                    var videoUrlObj = {
+                        bq_ftp_url: "progcpaj0038a7767620000112162709",
+                        gq_ftp_url: "progcpaj0038a6083971000112162639"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "11213",
+                        "videoUrl": videoUrl,
+                        "title": "《宝宝夜里睡不安稳 可能是消化问题》",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-3"
+                    };
+                }
+            }  else if (carrierId == '450092') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：宝宝夜里睡不安稳 可能是消化问题？
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012019122711351606852008",
+                        gq_ftp_url: "99100000012019122711211206846719"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "545",
+                        "videoUrl": videoUrl,
+                        "title": "宝宝夜里睡不安稳 可能是消化问题？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "健康评测",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：孩子秋冬进补 健脾助消化是关键
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012019122711350706851954",
+                        gq_ftp_url: "99100000012019122711210306846665"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "536",
+                        "videoUrl": videoUrl,
+                        "title": "孩子秋冬进补 健脾助消化是关键",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "健康评测",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：小儿多动症对孩子会造成哪些危害？
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012019122711434906855218",
+                        gq_ftp_url: "99100000012019122711294406849926"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "1700",
+                        "videoUrl": videoUrl,
+                        "title": "小儿多动症对孩子会造成哪些危害",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "健康评测",
+                        "focusIdx": "video-3"
+                    };
+                }
+            }  else if (carrierId == '370092') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：《体重低,三岁半不够30斤怎么调整》
+                    var videoUrlObj = {
+                        bq_ftp_url: "P_1006341",
+                        gq_ftp_url: "P_1006341"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "185",
+                        "videoUrl": videoUrl,
+                        "title": "《体重低,三岁半不够30斤怎么调整》",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：导致孩子发育迟缓的原因有哪些？
+                    var videoUrlObj = {
+                        bq_ftp_url: "P_1007011",
+                        gq_ftp_url: "P_1007011"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "855",
+                        "videoUrl": videoUrl,
+                        "title": "导致孩子发育迟缓的原因有哪些？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：孩子有小儿多动症 怎样治疗更安全可靠？
+                    var videoUrlObj = {
+                        bq_ftp_url: "P_1006879",
+                        gq_ftp_url: "P_1006879"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "723",
+                        "videoUrl": videoUrl,
+                        "title": "孩子有小儿多动症 怎样治疗更安全可靠？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-3"
+                    };
+                }
+            } else if (carrierId == '640092') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：如何鉴别小儿多动症？怎么测试和检查？
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012019122711434706855206",
+                        gq_ftp_url: "99100000012019122711294106849908"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "2954",
+                        "videoUrl": videoUrl,
+                        "title": "如何鉴别小儿多动症？怎么测试和检查？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：家长如何及时发现孩子肥胖？
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012019122711461206856088",
+                        gq_ftp_url: "99100000012019122711320206850790"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "3100",
+                        "videoUrl": videoUrl,
+                        "title": "家长如何及时发现孩子肥胖？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：《小孩平时可以吃三公仔小儿七星茶吗》
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012019122711351306851990",
+                        gq_ftp_url: "99100000012019122711210906846701"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "2420",
+                        "videoUrl": videoUrl,
+                        "title": "《小孩平时可以吃三公仔小儿七星茶吗》",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-3"
+                    };
+                }
+            } else if (carrierId == '640094') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：孩子秋冬进补 健脾助消化是关键
+                    var videoUrlObj = {
+                        bq_ftp_url: "03110300000000010000000000000177",
+                        gq_ftp_url: "03110300000000010000000000000177"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "179",
+                        "videoUrl": videoUrl,
+                        "title": "孩子秋冬进补 健脾助消化是关键",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：《二类疫苗中最推荐孩子接种哪些疫苗》
+                    var videoUrlObj = {
+                        bq_ftp_url: "03110300000000010000000000000477",
+                        gq_ftp_url: "03110300000000010000000000000477"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "443",
+                        "videoUrl": videoUrl,
+                        "title": "二类疫苗中最推荐孩子接种哪些疫苗",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：《家长如何及时发现孩子肥胖？》
+                    var videoUrlObj = {
+                        bq_ftp_url: "03110300000000010000000000000903",
+                        gq_ftp_url: "03110300000000010000000000000903"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "851",
+                        "videoUrl": videoUrl,
+                        "title": "《家长如何及时发现孩子肥胖？》",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-3"
+                    };
+                }
+            }else if (carrierId == '620092') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：孩子一年四季都能进补吗
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012020032714583507422370",
+                        gq_ftp_url: "99100000012020032714583507422370"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "180",
+                        "videoUrl": videoUrl,
+                        "title": "孩子一年四季都能进补吗？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：孩子秋冬进补 健脾助消化是关键
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012020032714583407422364",
+                        gq_ftp_url: "99100000012020032714583407422364"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "179",
+                        "videoUrl": videoUrl,
+                        "title": "孩子秋冬进补 健脾助消化是关键",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-2"
+                    }
+                }else {
+                    // 视频名称：家长如何早期识别孩子是否有精神分裂症
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012020032714581307422214",
+                        gq_ftp_url: "99100000012020032714581307422214"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "154",
+                        "videoUrl": videoUrl,
+                        "title": "家长如何早期识别孩子是否有精神分裂症",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-3"
+                    };
+                }
+            } else if (carrierId == '07430093') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：孩子秋冬进补 健脾助消化是关键
+                    var videoUrlObj = {
+                        bq_ftp_url: "5f9b8dad2f60bfcaa723501f355f22e3|0",
+                        gq_ftp_url: "5f9b8dad2f60bfcaa723501f355f22e3|0"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "179",
+                        "videoUrl": videoUrl,
+                        "title": "儿童肥胖易生病怎样防止孩子过度肥胖",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：《二类疫苗中最推荐孩子接种哪些疫苗》
+                    var videoUrlObj = {
+                        bq_ftp_url: "5f9b8de71ccd320a7bc770f5446c2d21|0",
+                        gq_ftp_url: "5f9b8de71ccd320a7bc770f5446c2d21|0"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "443",
+                        "videoUrl": videoUrl,
+                        "title": "哪些因素会影响孩子长高高",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：《家长如何及时发现孩子肥胖？》
+                    var videoUrlObj = {
+                        bq_ftp_url: "5f9b8883bb37049df6701cb925cd3678|0",
+                        gq_ftp_url: "5f9b8883bb37049df6701cb925cd3678|0"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "851",
+                        "videoUrl": videoUrl,
+                        "title": "孩子长不高要做哪些检查",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-3"
+                    };
+                }
+            } else if (carrierId == '410092') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：孩子秋冬进补 健脾助消化是关键
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012020032714583407422364@99100000022020032714583407422365",
+                        gq_ftp_url: "99100000012020032714583407422364@99100000022020032714583407422365"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "179",
+                        "videoUrl": videoUrl,
+                        "title": "孩子秋冬进补 健脾助消化是关键",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：《二类疫苗中最推荐孩子接种哪些疫苗》
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012020032714583507422370@99100000022020032714583507422371",
+                        gq_ftp_url: "99100000012020032714583507422370@99100000022020032714583507422371"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "443",
+                        "videoUrl": videoUrl,
+                        "title": "儿科主任：孩子一年四季都能进补吗？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：《家长如何及时发现孩子肥胖？》
+                    var videoUrlObj = {
+                        bq_ftp_url: "99100000012020032714583607422376@99100000022020032714583607422377",
+                        gq_ftp_url: "99100000012020032714583607422376@99100000022020032714583607422377"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "851",
+                        "videoUrl": videoUrl,
+                        "title": "孩子脾胃虚弱该如何饮食调理",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-3"
+                    };
+                }
+            } else if (carrierId === '440094' || carrierId === '440004') {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：《家长如何及时发现孩子肥胖？》
+                    var videoUrlObj = {
+                        bq_ftp_url: "GDZX1420190510014530",
+                        gq_ftp_url: "GDZX1420190510014530"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "903",
+                        "videoUrl": videoUrl,
+                        "title": "家长如何及时发现孩子肥胖？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：《小孩平时可以吃三公仔小儿七星茶吗》
+                    var videoUrlObj = {
+                        bq_ftp_url: "GDZX7820190509215524",
+                        gq_ftp_url: "GDZX7820190509215524"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "183",
+                        "videoUrl": videoUrl,
+                        "title": "小孩平时可以吃三公仔小儿七星茶吗？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：《《儿科主任：孩子疫苗打错了该怎么办》？》
+                    var videoUrlObj = {
+                        bq_ftp_url: "GDZX5420190509233034",
+                        gq_ftp_url: "GDZX5420190509233034"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "480",
+                        "videoUrl": videoUrl,
+                        "title": "儿科主任：孩子疫苗打错了该怎么办？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "0",
+                        "entryType": 3,
+                        "entryTypeName": "儿童保健",
+                        "focusIdx": "video-3"
+                    };
+                }
+            } else {
+                // 视频跳转
+                if (btn.id == "video-1") {
+                    // 视频名称：医生说-婴儿湿疹
+                    var videoUrlObj = {
+                        bq_ftp_url: "http://202.99.114.93/88888891/16/20181220/270418776/270418776.ts",
+                        gq_ftp_url: "http://202.99.114.93/88888891/16/20181217/270405085/270405085.ts"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "1314",
+                        "videoUrl": videoUrl,
+                        "title": "医生说-婴儿湿疹",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-1"
+                    };
+                } else if (btn.id == "video-2") {
+                    // 视频名称：家长如何及时发现孩子肥胖？
+                    var videoUrlObj = {
+                        bq_ftp_url: "rtsp://202.99.114.93/88888891/16/20180828/270241123/270241123.ts",
+                        gq_ftp_url: "rtsp://202.99.114.93/88888891/16/20180829/270241929/270241929.ts"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "1240",
+                        "videoUrl": videoUrl,
+                        "title": "家长如何及时发现孩子肥胖？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-2"
+                    };
+                } else {
+                    // 视频名称：《小孩平时可以吃三公仔小儿七星茶吗》
+                    var videoUrlObj = {
+                        bq_ftp_url: "http://202.99.114.93/88888891/16/20180419/269912665/269912665.ts",
+                        gq_ftp_url: "http://202.99.114.93/88888891/16/20171109/269711619/269711619.ts"
+                    };
+                    var videoUrl = (platformType == "hd" ? videoUrlObj.gq_ftp_url : videoUrlObj.bq_ftp_url);
+                    var videoInfo = {
+                        "sourceId": "443",
+                        "videoUrl": videoUrl,
+                        "title": "《小孩平时可以吃三公仔小儿七星茶吗》",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-3"
+                    };
+                }
+            };
+            if(carrierId == '610092'){
+                if(btn.id == "video-1"){
+                    var videoInfo = {
+                        "videoUrl": "P:10000717@gylm",
+                        "sourceId": "444",
+                        "title": "什么是小儿多动症,有哪些表现？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-1"
+                    };
+                }else if(btn.id == "video-2"){
+                    var videoInfo = {
+                        "videoUrl": "P:10000718@gylm",
+                        "sourceId": "445",
+                        "title": "如何鉴别小儿多动症？怎么测试和检查？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-2"
+                    };
+                }else if(btn.id == "video-3"){
+                    var videoInfo = {
+                        "videoUrl": "P:10000719@gylm",
+                        "sourceId": "445",
+                        "title": "哪些原因会导致小儿多动症？小儿多动症会遗传吗？",
+                        "type": "4",
+                        "freeSeconds": "30",
+                        "userType": "2",
+                        "entryType": 3,
+                        "entryTypeName": "宝贝天地",
+                        "focusIdx": "video-3"
+                    };
+                }
+                var postData = {"videoInfo": JSON.stringify(videoInfo)};
+                LMEPG.ajax.postAPI("Player/storeVideoInfo", postData, function (data) {
+                    if (data.result == 0) {
+                        jumpBuyVip(videoInfo.focusIdx, videoInfo.title);
+                    } else {
+                        LMEPG.UI.showToast("系统报错");
+                    }
+                });
+                return;
+            }
+
+            if(carrierId == '650092'){
+                if(btn.id == "video-1"){
+                    var videoInfo = {
+                        "videoUrl": "P:10000717@gylm",
+                    };
+                }else if(btn.id == "video-2"){
+                    var videoInfo = {
+                        "videoUrl": "P:10000718@gylm",
+                    };
+                }else if(btn.id == "video-3"){
+                    var videoInfo = {
+                        "videoUrl": "P:10000719@gylm",
+                    };
+                }
+                var postData = {"videoInfo": JSON.stringify(videoInfo)};
+                LMEPG.ajax.postAPI("Player/storeVideoInfo", postData, function (data) {
+                    if (data.result == 0) {
+                        jumpBuyVip(videoInfo.focusIdx, videoInfo.title);
+                    } else {
+                        LMEPG.UI.showToast("系统报错");
+                    }
+                });
+                return;
+            }
+
+//            // 甘肃电信 跳转单条图文
+//            var graphicList ={};
+//            if(carrierId == '620092'){
+//                graphicList = {
+//                    graphicId1:'460',
+//                    graphicId2:'546',
+//                    graphicId3:'613',
+//                }
+//
+//                var objHome = getCurrentPage();
+//                var objGraphic = LMEPG.Intent.createIntent("album");
+//                objGraphic.setParam("userId", "{$userId}");
+//                objGraphic.setParam("inner", 1);
+//                objGraphic.setParam('albumName', 'TemplateAlbum');
+//
+//                if (btn.id == "video-1") {
+//                    objGraphic.setParam("graphicId", graphicList.graphicId1);
+//                } else if (btn.id == "video-2") {
+//                    objGraphic.setParam("graphicId", graphicList.graphicId2);
+//                } else {
+//                    objGraphic.setParam("graphicId", graphicList.graphicId3);
+//                }
+//                LMEPG.Intent.jump(objGraphic, objHome);
+//            };
+
+
+            // 先判断userType：2需要会员才能观看，其他可以直接观看
+            if (parseInt(videoInfo.userType) == 0 || isVip == 1 || parseInt(videoInfo.freeSeconds) != 0) {
+                jumpPlayVideo(videoInfo);
+            } else {
+                var postData = {"videoInfo": JSON.stringify(videoInfo)};
+                LMEPG.ajax.postAPI("Player/storeVideoInfo", postData, function (data) {
+                    if (data.result == 0) {
+                        jumpBuyVip(videoInfo.focusIdx, videoInfo.title);
+                    } else {
+                        LMEPG.UI.showToast("系统报错");
+                    }
+                });
+            }
+
+
+            // 专辑跳转
+            /*var objHome = getCurrentPage();
+            var objAlbum = LMEPG.Intent.createIntent("album");
+            objAlbum.setParam("userId", "{$userId}");
+            objAlbum.setParam("inner", 1);
+            if (btn.id == "video-1") {
+                objAlbum.setParam("albumName", albumList.albumName1);
+            } else if (btn.id == "video-2") {
+                objAlbum.setParam("albumName", albumList.albumName2);
+            } else {
+                objAlbum.setParam("albumName", albumList.albumName3);
+            }
+            LMEPG.Intent.jump(objAlbum, objHome);*/
+        }
+
+        /**
+         * 播放视频
+         * @param videoInfo
+         */
+        function jumpPlayVideo(videoInfo) {
+            var objCurrent = getCurrentPage();
+
+            var objPlayer = LMEPG.Intent.createIntent("player");
+            objPlayer.setParam("userId", "{$userId}");
+            objPlayer.setParam("videoInfo",JSON.stringify(videoInfo));
+
+            LMEPG.Intent.jump(objPlayer, objCurrent);
+        }
+
+        /**
+         * @func 进行购买操作
+         * @param focusIdx 当前页的焦点位置
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip(focusIdx, remark) {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("isPlaying", "1");
+            objOrderHome.setParam("remark", remark);
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent);
+        }
+
+    </script>
+</head>
+<body>
+
+<img id="back-btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/back_btn_out.png" alt="">
+
+<!-- 结果页面1 -->
+<div id="result-page-1">
+    <img id="bg-result-1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/bg_result_1.png" alt="">
+    <img id="chart-btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/chart_btn_out.png" alt="">
+
+    <img id="video-1-img" alt="">
+    <img id="video-2-img" alt="">
+    <img id="video-3-img" alt="">
+
+    <img id="video-1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/video_border_1_out.png" alt="">
+    <img id="video-2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/video_border_1_out.png" alt="">
+    <img id="video-3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/video_border_2_out.png" alt="">
+
+    <!-- 图形画布 -->
+    <if condition="$platformType eq hd">
+        <canvas id="myCanvas" width="1280" height="720"></canvas>
+        <else />
+        <canvas id="myCanvas" width="644" height="530"></canvas>
+    </if>
+</div>
+
+<!-- 结果页面2 -->
+<div id="result-page-2">
+    <img id="bg-result-2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/bg_result_2.png" alt="">
+
+    <div id="item-1-title"></div>
+    <img id="item-1-level" alt="">
+    <div id="item-1-content"></div>
+
+    <div id="item-2-title"></div>
+    <img id="item-2-level" alt="">
+    <div id="item-2-content"></div>
+
+    <div id="item-3-title"></div>
+    <img id="item-3-level" alt="">
+    <div id="item-3-content"></div>
+
+    <div id="item-4-title"></div>
+    <img id="item-4-level" alt="">
+    <div id="item-4-content"></div>
+
+
+</div>
+
+<script type="text/javascript">
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = "__ROOT__/Public/img/{$platformType}/Activity/ActivityBabyHealthTest/V1/";
+    // 答案
+    var answers = {$answers | json_encode};
+    // 用户答案
+    var testVal = "{$testVal}";
+    // 是否是vip，0-不是 1-是
+    var isVip = {$isVip};
+    // 平台类型，高清或标清
+    var platformType = "{$platformType}";
+    // 焦点恢复
+    var focusIndex = "{$focusIndex}";
+    // 推荐专辑
+    var albumList = {$albumList | json_encode};
+    // 区域id
+    var carrierId = "{$carrierId}";
+
+    var buttons = [
+        {
+            id: 'back-btn',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'chart-btn',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'video-1',
+            backgroundImage: imgPathPrefix + 'back_btn_out.png',
+            focusImage: imgPathPrefix + 'back_btn_in.png',
+            click: onBack,
+            focusChange: "",
+            beforeMoveChange: onBeforeMoveChange,
+            moveChange: ""
+        },
+        {
+            id: 'chart-btn',
+            name: '图表',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'video-1',
+            nextFocusUp: 'back-btn',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'chart_btn_out.png',
+            focusImage: imgPathPrefix + 'chart_btn_in.png',
+            click: clickChart,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'video-1',
+            name: '视频1',
+            type: 'img',
+            nextFocusLeft: 'chart-btn',
+            nextFocusRight: '',
+            nextFocusUp: 'back-btn',
+            nextFocusDown: 'video-2',
+            backgroundImage: imgPathPrefix + 'video_border_1_out.png',
+            focusImage: imgPathPrefix + 'video_border_1_in.png',
+            click: clickVideo,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'video-2',
+            name: '视频2',
+            type: 'img',
+            nextFocusLeft: 'chart-btn',
+            nextFocusRight: '',
+            nextFocusUp: 'video-1',
+            nextFocusDown: 'video-3',
+            backgroundImage: imgPathPrefix + 'video_border_1_out.png',
+            focusImage: imgPathPrefix + 'video_border_1_in.png',
+            click: clickVideo,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        },
+        {
+            id: 'video-3',
+            name: '视频3',
+            type: 'img',
+            nextFocusLeft: 'chart-btn',
+            nextFocusRight: '',
+            nextFocusUp: 'video-2',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'video_border_2_out.png',
+            focusImage: imgPathPrefix + 'video_border_2_in.png',
+            click: clickVideo,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }
+    ];
+
+    window.onload = function () {
+        var focus = "chart-btn";
+        if (!LMEPG.Func.isEmpty(focusIndex)) {
+            focus = focusIndex;
+        }
+        LMEPG.ButtonManager.init([focus], buttons, '', true);
+        G("result-page-1").style.display = "block";
+        G("result-page-2").style.display = "none";
+
+        // 设置专辑封面图片
+        if (carrierId == '320092') {
+            G("video-1-img").src = imgPathPrefix + '320092/' + albumList.albumName1 + ".png";
+            G("video-2-img").src = imgPathPrefix + '320092/' + albumList.albumName2 + ".png";
+            G("video-3-img").src = imgPathPrefix + '320092/' + albumList.albumName3 + ".png";
+        } else if (carrierId == '370092') {
+            G("video-1-img").src = imgPathPrefix + '370092/' + albumList.albumName1 + ".png";
+            G("video-2-img").src = imgPathPrefix + '370092/' + albumList.albumName2 + ".png";
+            G("video-3-img").src = imgPathPrefix + '370092/' + albumList.albumName3 + ".png";
+        } else if (carrierId == '640092') {
+            G("video-1-img").src = imgPathPrefix + '640092/' + albumList.albumName1 + ".png";
+            G("video-2-img").src = imgPathPrefix + '640092/' + albumList.albumName2 + ".png";
+            G("video-3-img").src = imgPathPrefix + '640092/' + albumList.albumName3 + ".png";
+        }else if (carrierId == '640094') {
+            G("video-1-img").src = imgPathPrefix + '640094/' + albumList.albumName1 + ".png";
+            G("video-2-img").src = imgPathPrefix + '640094/' + albumList.albumName2 + ".png";
+            G("video-3-img").src = imgPathPrefix + '640094/' + albumList.albumName3 + ".png";
+        }else if (carrierId == '620092') {
+            G("video-1-img").src = imgPathPrefix + '620092/' + albumList.albumName1 + ".png";
+            G("video-2-img").src = imgPathPrefix + '620092/' + albumList.albumName2 + ".png";
+            G("video-3-img").src = imgPathPrefix + '620092/' + albumList.albumName3 + ".png";
+        } else if (carrierId == '610092') {
+            G("video-1-img").src = imgPathPrefix + '610092/' + albumList.albumName1 + ".png";
+            G("video-2-img").src = imgPathPrefix + '610092/' + albumList.albumName2 + ".png";
+            G("video-3-img").src = imgPathPrefix + '610092/' + albumList.albumName3 + ".png";
+        }else {
+            G("video-1-img").src = imgPathPrefix + albumList.albumName1 + ".png";
+            G("video-2-img").src = imgPathPrefix + albumList.albumName2 + ".png";
+            G("video-3-img").src = imgPathPrefix + albumList.albumName3 + ".png";
+        }
+
+        if (carrierId == '650092') {
+            G("video-1-img").src = imgPathPrefix + '650092/' + albumList.albumName1 + ".png";
+            G("video-2-img").src = imgPathPrefix + '650092/' + albumList.albumName2 + ".png";
+            G("video-3-img").src = imgPathPrefix + '650092/' + albumList.albumName3 + ".png";
+        }
+        // 设置结果（页面2）
+        for (var i = 0; i < testVal.length; i++) {
+            var answer = answers[i];
+            var numOfA = parseInt(testVal.charAt(i));
+            var levelImage;
+            var levelContent;
+            if (numOfA == 0) {
+                levelImage = "level_3.png";
+                levelContent = answer.level_3;
+            } else if (numOfA == 3) {
+                levelImage = "level_1.png";
+                levelContent = answer.level_1;
+            } else {
+                levelImage = "level_2.png";
+                levelContent = answer.level_2;
+            }
+            G("item-" + (i + 1) + "-title").innerHTML = answer.type;
+            G("item-" + (i + 1) + "-level").src = imgPathPrefix + levelImage;
+            G("item-" + (i + 1) + "-content").innerHTML = levelContent;
+        }
+
+        // 绘制图形（页面1）
+        //
+        // 坐标：HD
+        // 精细运动：（500， 440）（540， 440）（580， 440）pos1X pos1Y
+        // 大运动：（640， 300）（640， 340）（640， 380）pos2X pos2Y
+        // 语言：（780， 440）（740， 440）（700， 440）pos3X pos3Y
+        // 认知：（640， 580）（640， 540）（640， 500）pos4X pos4Y
+        //
+        // 坐标：SD
+        // 精细运动：（196， 327）（226， 327）（256， 327）pos1X pos1Y
+        // 大运动：（300， 222）（300， 252）（300， 282）pos2X pos2Y
+        // 语言：（404， 327）（374， 327）（344， 327）pos3X pos3Y
+        // 认知：（300， 432）（300， 402）（300， 372）pos4X pos4Y
+        //
+        // 3333：保存的答案代表的意思：大运动-精细运动-语言-认知
+        var pos1X, pos1Y, pos2X, pos2Y, pos3X, pos3Y, pos4X, pos4Y;
+        for (var i = 0; i < testVal.length; i++) {
+            var numOfA = parseInt(testVal.charAt(i));
+            // 一般
+            if (numOfA == 0) {
+                // 大运动
+                if (i == 0) {
+                    if (platformType == "hd") {
+                        pos2X = 640;
+                        pos2Y = 380;
+                    } else {
+                        pos2X = 300;
+                        pos2Y = 282;
+                    }
+                }
+                // 精细运动
+                else if (i == 1) {
+                    if (platformType == "hd") {
+                        pos1X = 580;
+                        pos1Y = 440;
+                    } else {
+                        pos1X = 256;
+                        pos1Y = 327;
+                    }
+                }
+                // 语言
+                else if (i == 2) {
+                    if (platformType == "hd") {
+                        pos3X = 700;
+                        pos3Y = 440;
+                    } else {
+                        pos3X = 344;
+                        pos3Y = 327;
+                    }
+                }
+                // 认知
+                else {
+                    if (platformType == "hd") {
+                        pos4X = 640;
+                        pos4Y = 500;
+                    } else {
+                        pos4X = 300;
+                        pos4Y = 372;
+                    }
+                }
+            }
+            // 优秀
+            else if (numOfA == 3) {
+                // 大运动
+                if (i == 0) {
+                    if (platformType == "hd") {
+                        pos2X = 640;
+                        pos2Y = 300;
+                    } else {
+                        pos2X = 300;
+                        pos2Y = 222;
+                    }
+                }
+                // 精细运动
+                else if (i == 1) {
+                    if (platformType == "hd") {
+                        pos1X = 500;
+                        pos1Y = 440;
+                    } else {
+                        pos1X = 196;
+                        pos1Y = 327;
+                    }
+                }
+                // 语言
+                else if (i == 2) {
+                    if (platformType == "hd") {
+                        pos3X = 780;
+                        pos3Y = 440;
+                    } else {
+                        pos3X = 404;
+                        pos3Y = 327;
+                    }
+                }
+                // 认知
+                else {
+                    if (platformType == "hd") {
+                        pos4X = 640;
+                        pos4Y = 580;
+                    } else {
+                        pos4X = 300;
+                        pos4Y = 432;
+                    }
+                }
+            }
+            // 良好
+            else {
+                // 大运动
+                if (i == 0) {
+                    if (platformType == "hd") {
+                        pos2X = 640;
+                        pos2Y = 340;
+                    } else {
+                        pos2X = 300;
+                        pos2Y = 252;
+                    }
+                }
+                // 精细运动
+                else if (i == 1) {
+                    if (platformType == "hd") {
+                        pos1X = 540;
+                        pos1Y = 440;
+                    } else {
+                        pos1X = 226;
+                        pos1Y = 327;
+                    }
+                }
+                // 语言
+                else if (i == 2) {
+                    if (platformType == "hd") {
+                        pos3X = 740;
+                        pos3Y = 440;
+                    } else {
+                        pos3X = 374;
+                        pos3Y = 327;
+                    }
+                }
+                // 认知
+                else {
+                    if (platformType == "hd") {
+                        pos4X = 640;
+                        pos4Y = 540;
+                    } else {
+                        pos4X = 300;
+                        pos4Y = 402;
+                    }
+                }
+            }
+        }
+        // 画矩形
+        var canvas = G("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.beginPath();
+        ctx.strokeStyle="#36cafd";
+        ctx.lineWidth = 3;
+        ctx.fillStyle= "rgba(54, 202, 253, 0.5)";
+        ctx.moveTo(pos1X, pos1Y);
+        ctx.lineTo(pos2X, pos2Y);
+        ctx.lineTo(pos3X, pos3Y);
+        ctx.lineTo(pos4X, pos4Y);
+        ctx.lineTo(pos1X, pos1Y);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.fill();
+        // 画实心圆
+        ctx.beginPath();
+        ctx.arc(pos1X,pos1Y,3,0,2*Math.PI);
+        ctx.fillStyle="rgba(54, 202, 253, 1)";
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(pos2X,pos2Y,3,0,2*Math.PI);
+        ctx.fillStyle="rgba(54, 202, 253, 1)";
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(pos3X,pos3Y,3,0,2*Math.PI);
+        ctx.fillStyle="rgba(54, 202, 253, 1)";
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(pos4X,pos4Y,3,0,2*Math.PI);
+        ctx.fillStyle="rgba(54, 202, 253, 1)";
+        ctx.fill();
+        ctx.stroke();
+    };
+
+    /**
+     * 点击图表跳转
+     */
+    function clickChart() {
+        G("result-page-1").style.display = "none";
+        G("result-page-2").style.display = "block";
+        LMEPG.BM.requestFocus("back-btn");
+    }
+
+    /**
+     * 焦点方向控制
+     * @param dir
+     * @param current
+     * @returns {boolean}
+     */
+    function onBeforeMoveChange(dir, current) {
+        if (current.id == 'back-btn') {
+            if (G("result-page-1").style.display == "none") {
+                return false;
+            }
+        }
+    }
+
+
+</script>
+</body>
+</html>

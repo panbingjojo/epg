@@ -1,0 +1,42 @@
+/*背景图*/
+.hd-background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+}
+
+#hd_btn_container {
+    position: absolute;
+}
+
+#hd_btn_container img{
+    padding: 12px;
+    background-position: center;
+}
+
+#btn_index_1{
+    position: absolute;
+    left: 450px;
+    top: 96px;
+}
+
+#btn_index_2{
+    position: absolute;
+    left: 846px;
+    top: 96px;
+}
+
+#btn_index_3{
+    position: absolute;
+    left: 450px;
+    top: 375px;
+}
+
+#btn_index_4{
+    position: absolute;
+    left: 846px;
+    top: 375px;
+}

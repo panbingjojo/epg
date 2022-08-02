@@ -1,0 +1,130 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+.bg {
+    top: 0px;
+    left: 0px;
+}
+
+/*产品包 - 父容器*/
+.product-pkg-container {
+    position: absolute;
+    /*left: 321px;*/
+    left: 275px; /*有幸福家庭包比较宽使用的*/
+    top: 333px;
+    /*width: 638px;*/
+    width: 845px; /*有幸福家庭包比较宽使用的*/
+    height: 246px;
+}
+
+/*单个产品包排版*/
+.product-pkg {
+    /*margin: 0 13px;*/
+    /* margin: 0 10px;*/ /*有幸福家庭包比较宽使用的*/
+    display: inline-block;
+}
+
+.pkg-img-1 {
+    width: 180px;
+    height: 246px;
+}
+
+.pkg-img-290 {
+    width: 180px;
+    height: 246px;
+}
+
+.orderDetail {
+    position: absolute;
+    top: 65px;
+    left: 30px;
+}
+
+.row {
+    line-height: 35px;
+}
+
+#introduce-img {
+    position: absolute;
+    top: 59px;
+    left: 284px;
+}
+
+#confirm {
+    position: absolute;
+    top: 574px;
+    left: 458px;
+}
+
+#cancel {
+    position: absolute;
+    top: 574px;
+    left: 681px;
+}
+
+#second-order-toast {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    /*background: url("../../../../../Public/img/Pay/V630001/bg_3.png");*//*代码中根据不同套餐包切换不同*/
+    top: 0px;
+    left: 0px;
+    z-index: 998;
+    display: none;
+}
+
+#second-confirm {
+    position: absolute;
+    top: 514px;
+    left: 458px;
+}
+
+#second-cancel {
+    position: absolute;
+    top: 514px;
+    left: 681px;
+}
+
+/*#textPhone{*/
+/*position: absolute;*/
+/*top: 500px;*/
+/*left: 630px;*/
+/*}*/
+#textPhone-text {
+    position: absolute;
+    width: 110px;
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+    top: 440px;
+    left: 680px;
+    font-size: 28px;
+    color: black;
+    background: transparent;
+    border: none;
+    background: url("../../../../Public/img/Pay/V630001/bg_text.png");
+}
+
+#verify {
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    background: #f0ead8;
+    color: black;
+    line-height: 50px;
+    top: 440px;
+    font-size: 28px;
+    text-align: center;
+    left: 490px;
+}

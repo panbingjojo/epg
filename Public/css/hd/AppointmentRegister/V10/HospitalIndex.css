@@ -1,0 +1,193 @@
+/*.region {*/
+    /*position: absolute;*/
+    /*top: 118px;*/
+    /*left: 80px;*/
+    /*font-size: 24px;*/
+    /*height: 68px;*/
+    /*width: 1000px;*/
+    /*color: #FFFFFF;*/
+/*}*/
+
+/*.region-name {*/
+    /*height: 68px;*/
+    /*line-height: 68px;*/
+/*}*/
+
+/*.region-title {*/
+    /*position: absolute;*/
+    /*top: 13px;*/
+    /*left: 110px;*/
+    /*width: 120px;*/
+    /*height: 44px;*/
+    /*text-align: center;*/
+    /*line-height: 44px;*/
+    /*background: rgba(255, 255, 255, 0.3);*/
+    /*border-radius: 25px;*/
+/*}*/
+
+/*.arrow-pre {*/
+    /*position: absolute;*/
+    /*top: 28px;*/
+    /*left: 256px;*/
+    /*width: 20px;*/
+    /*height: 16px;*/
+/*}*/
+
+/*.arrow-next {*/
+    /*position: absolute;*/
+    /*top: 28px;*/
+    /*left: 1085px;*/
+    /*width: 20px;*/
+    /*height: 16px;*/
+/*}*/
+
+/*.region-list {*/
+    /*position: absolute;*/
+    /*top: 10px;*/
+    /*left: 270px;*/
+    /*width: 800px;*/
+    /*height: 68px;*/
+/*}*/
+
+/*.region-btn {*/
+    /*width: 120px;*/
+    /*height: 44px;*/
+    /*line-height:44px;*/
+    /*text-align: center;*/
+    /*border-radius: 25px;*/
+    /*margin-left: 30px;*/
+    /*float: left;*/
+    /*overflow: hidden;*/
+/*}*/
+
+/*.center{*/
+    /*position: absolute;*/
+    /*top: 172px;*/
+    /*left: 56px;*/
+    /*width: 1170px;*/
+    /*height: 535px;*/
+    /*overflow: scroll;*/
+    /*border: 1px transparent solid;*/
+/*}*/
+/*.recommended{*/
+    /*position: absolute;*/
+    /*top: -30px;*/
+    /*width: 360px;*/
+    /*height: 220px;*/
+    /*float: left;*/
+    /*margin-left: 22px;*/
+    /*margin-top: 50px;*/
+
+/*}*/
+/*.recommended-bg{*/
+    /*position: absolute;*/
+    /*top:0px;*/
+    /*left: 0px;*/
+    /*width: 360px;*/
+    /*height: 220px;*/
+    /*border-radius: 10px;*/
+/*}*/
+/*.recommended-title{*/
+    /*position: absolute;*/
+    /*top: 184px;*/
+    /*left: 0px;*/
+    /*width: 360px;*/
+    /*height: 36px;*/
+    /*font-size: 24px;*/
+    /*line-height: 36px;*/
+    /*color: #FFFFFF;*/
+    /*background: rgba(0,0,0,0.5);*/
+    /*text-align: center;*/
+    /*border-radius: 10px;*/
+    /*border-top-left-radius:0em;*/
+    /*border-top-right-radius:0em;*/
+    /*overflow:hidden;*/
+    /*text-overflow:ellipsis;*/
+    /*white-space:nowrap*/
+/*}*/
+/*.table-list{*/
+    /*width: 97.5%;*/
+/*}*/
+/*table tr td{*/
+    /*position: relative;*/
+    /*text-align: center;*/
+    /*height: 240px;*/
+/*}*/
+/*.position{*/
+    /*width: 100%;*/
+    /*height: 40px;*/
+/*}*/
+/*.line{*/
+    /*position: absolute;*/
+    /*top: 13px;*/
+    /*left: 243px;*/
+    /*font-size: 30px;*/
+    /*color: #898F94;*/
+/*}*/
+/*#region-content{*/
+    /*display: none;*/
+/*}*/
+
+/*!*复写css*!*/
+/*!*EPG大多盒子不支持CSS3的3D动画、过渡、阴影*!*/
+/*.recommended-hover img {*/
+    /*width: 110% !important;*/
+    /*height: 110%!important;*/
+    /*top: -15px !important;*/
+    /*left: -20px !important;*/
+    /*border: 5px solid #77c482 !important;*/
+    /*!*纯属浏览器喜感*!*/
+    /*transition: .1s all;*/
+/*}*/
+/*.recommended-hover .recommended-title{*/
+    /*width: 110%;*/
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+    /*bottom: 0;*/
+    /*top: 194px;*/
+    /*left: -15px;*/
+/*}*/
+/*!*底部提示*!*/
+/*#bottom-tips {*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*z-index: 999;*/
+    /*width: 1280px;*/
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+    /*text-align: center;*/
+    /*color: gold;*/
+    /*font-size: 30px;*/
+/*}*/
+
+
+
+.title{
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    font-size: 38px;
+    color: #fff;
+    font-weight: bold;
+    background-image: url(../../../../img/hd/Home/V11/line.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+
+}
+.btn-hover{
+    font-weight: bold;
+}
+
+.record{
+    width: 146px;
+    height: 68px;
+    line-height: 68px;
+    text-align: center;
+    position: absolute;
+    right: 40px;
+    top: 20px;
+    color: #fff;
+    font-size: 25px;
+}

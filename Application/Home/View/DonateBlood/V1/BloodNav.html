@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>献血模块-报销指引</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/hd/DonateBlood/V1/BloodNav.css?t={$time}"/>
+    <!--<link rel="stylesheet" href="/Public/css/hd/DonateBlood/V1/BloodKnow.css">-->
+    <script>
+        var RenderParam = {
+            carrierId: "{$carrierId}",
+        };
+    </script>
+</head>
+<body>
+
+<p class="title">报销指引</p>
+<img id="title_line" src="__ROOT__/Public/img/hd/DonateBlood/V1/title_line.png" alt="">
+
+<div id="step_content">
+    <img id="video_1" src="__ROOT__/Public/img/hd/DonateBlood/V1/video_bx_1.png" alt="">
+    <img id="video_2" src="__ROOT__/Public/img/hd/DonateBlood/V1/video_bx_2.png" alt="">
+</div>
+
+<img id="video_f_1" src="__ROOT__/Public/img/hd/DonateBlood/V1/video_f.png" alt="">
+<img id="video_f_2" src="__ROOT__/Public/img/hd/DonateBlood/V1/video_f.png" alt="">
+
+
+<if condition="$carrierId eq '640094' ">
+    <img id="btn_zxwy" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_counsel.png" alt="">
+    <else />
+    <img id="btn_zxwy" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_zxwy.png" alt="">
+</if>
+<img id="btn_xxxz" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_xxxz.png" alt="">
+<img id="btn_xxlc" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_xxlc.png" alt="">
+<img id="btn_bxzy" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_bxzy.png" alt="">
+<img id="btn_yyxx" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_yyxx.png" alt="">
+
+
+
+
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<!--<script type="text/javascript" src="__ROOT__/Public/js/DoctorP2P/Vfree/DoctorList.js?t={$time}"></script>-->
+<!--当前模块js-->
+<script type="text/javascript" src="__ROOT__/Public/js/DonateBlood/V1/BloodNav.js?t={$time}"></script>
+<script>
+    DonateBlood.init();
+</script>
+</body>
+</html>
+  
+  

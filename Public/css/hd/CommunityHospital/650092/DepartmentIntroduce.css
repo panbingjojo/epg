@@ -1,0 +1,69 @@
+body {
+    position: absolute;
+    color: #fff;
+    background-image: url("../../../../img/hd/CommunityHospital/bg.png");
+}
+
+p.title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 30px;
+}
+
+div#container {
+    height: 454px;
+    width: 1080px;
+    margin: 133px auto;
+    position: relative;
+    background-image: url("../../../../img/hd/CommunityHospital/expert-bg.png");
+}
+
+img.dep-pic {
+    width: 254px;
+    height: 254px;
+    float: left;
+    margin-top: 103px;
+    margin-left: 54px;
+}
+
+div.intro-wrap {
+    float: left;
+    margin-top: 103px;
+    margin-left: 34px;
+    width: 700px;
+    height: 300px;
+}
+
+div.intro-wrap p.dep-title {
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+div.intro-wrap p.dep-intro {
+    font-size: 24px;
+    height: 220px;
+}
+
+div.arrow-wrapper {
+    position: absolute;
+    width: 1280px;
+    top: 335px;
+    left: 0;
+}
+
+div.arrow-wrapper img {
+    position: absolute;
+    width: 27px;
+    height: 54px;
+}
+
+img#prev-arrow {
+    left: 32px;
+}
+
+img#next-arrow {
+    left: 1229px;
+}
+

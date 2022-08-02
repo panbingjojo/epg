@@ -1,0 +1,385 @@
+<div class="tab0-box">
+    <div id="tab-0-scroll" style="position: absolute;top: 40px;left: 100px;transition: left 0.5s">
+        <div class="tab0-recommended-1-box" id="tab0-recommended-1-box">
+            <img id="tab0-recommended-1" class="recommended-img"
+                 src="">
+                 <!--onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">-->
+            <div id="carousel-1" class="point-area">
+
+            </div>
+        </div>
+
+        <div class="tab0-recommended-2-box" id="tab0-recommended-2-box">
+            <img id="tab0-recommended-2" class="recommended-img"
+                 src=""
+                 onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            <div id="carousel-2" class="point-area">
+
+            </div>
+        </div>
+
+        <div class="tab0-recommended-3-box" id="tab0-recommended-3-box">
+            <img id="tab0-recommended-3" class="recommended-img"
+                 src=""
+                 onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            <div id="carousel-3" class="point-area">
+
+            </div>
+        </div>
+
+        <div class="tab0-recommended-4-box">
+            <img id="tab0-recommended-4" class="recommended-img"
+                 src=""
+                 onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        </div>
+
+        <div class="tab0-recommended-2-list">
+            <div class="tab0-recommended-2-list-1-box">
+                <img id="tab0-recommended-2-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab0-recommended-2-list-2-box">
+                <img id="tab0-recommended-2-list-2" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab0-recommended-2-list-3-box">
+                <img id="tab0-recommended-2-list-3" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+        </div>
+
+        <div class="tab0-recommended-3-list">
+            <div class="tab0-recommended-3-list-1-box">
+                <img id="tab0-recommended-3-list-1" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab0-recommended-3-list-2-box">
+                <img id="tab0-recommended-3-list-2" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab0-recommended-3-list-3-box">
+                <img id="tab0-recommended-3-list-3" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+            <div class="tab0-recommended-3-list-4-box">
+                <img id="tab0-recommended-3-list-4" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+            <div class="tab0-recommended-3-list-5-box">
+                <img id="tab0-recommended-3-list-5" class="recommended-img"
+                     src=""
+                     onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var c1 = null;
+    var c2 = null;
+    var c3 = null;
+
+    Tab0 = {
+        scrollArray: RenderParam.platformType === 'hd'?[100, -800,-1100]:[100, -20,-580],
+        initButton: function () {
+            buttons.push({
+                id: 'tab0-recommended-1',
+                type: 'img',
+                nextFocusRight: 'tab0-recommended-2',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'tab0-recommended-2-list-1',
+                click: function () {
+                    Page.onClickRecommendPosition({
+                        cPosition: 11,
+                        cBanner:c1?c1.getCurrentData():undefined
+                    })
+                },
+                focusChange: Head.recdFocus,
+                beforeMoveChange: Tab0.beforeMoveChange,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 11,
+            },{
+                id: 'tab0-recommended-2',
+                type: 'img',
+                nextFocusRight: 'tab0-recommended-3',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'tab0-recommended-2-list-3',
+                nextFocusLeft: 'tab0-recommended-1',
+                click: function () {
+                    Page.onClickRecommendPosition({
+                        cPosition: 14,
+                        cBanner:c2?c2.getCurrentData():undefined
+                    })
+                },
+                focusChange: Head.recdFocus,
+                beforeMoveChange: Tab0.beforeMoveChange,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 14,
+            },{
+                id: 'tab0-recommended-3',
+                type: 'img',
+                nextFocusRight: 'tab0-recommended-3-list-1',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'tab0-recommended-4',
+                nextFocusLeft: 'tab0-recommended-2',
+                click: function (btn) {
+                    Page.onClickRecommendPosition({
+                        cPosition: 15,
+                        cBanner:c3?c3.getCurrentData():undefined
+                    })
+                },
+                focusChange: Head.recdFocus,
+                beforeMoveChange: Tab0.beforeMoveChange,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 15,
+            },{
+                id: 'tab0-recommended-4',
+                type: 'img',
+                nextFocusRight: 'tab0-recommended-3-list-1',
+                nextFocusUp: 'tab0-recommended-3',
+                nextFocusDown: '',
+                nextFocusLeft: 'tab0-recommended-2-list-3',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                beforeMoveChange: Tab0.beforeMoveChange,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 16,
+            })
+
+            var i = 3;
+            while (i--) {
+                buttons.push({
+                        id: 'tab0-recommended-2-list-' + (i + 1),
+                        type: 'img',
+                        nextFocusLeft: 'tab0-recommended-2-list-' + i,
+                        nextFocusRight:'tab0-recommended-2-list-' + (i + 2),
+                        nextFocusUp: i===2? 'tab0-recommended-2':'tab0-recommended-1',
+                        nextFocusDown: '',
+                        click: Page.onClickRecommendPosition,
+                        focusChange: Head.recdFocus,
+                        cPosition: 12,
+                        beforeMoveChange: Tab0.beforeMoveChange,
+                        cBanner: i,
+                    }
+                )
+            }
+            var j = 5;
+            while (j--) {
+                buttons.push({
+                        id: 'tab0-recommended-3-list-' + (j + 1),
+                        type: 'img',
+                        nextFocusLeft: 'tab0-recommended-3-list-' + j,
+                        nextFocusRight: 'tab0-recommended-3-list-' + (j + 2),
+                        nextFocusUp: 'tab-0',
+                        nextFocusDown: '',
+                        click: Page.onClickRecommendPosition,
+                        focusChange: Head.recdFocus,
+                        beforeMoveChange: Tab0.beforeMoveChange,
+                        cPosition: 13,
+                        cBanner: j,
+                    }
+                )
+            }
+        },
+        /*导航栏得失焦点回调操作*/
+        showTabContent: function (index) {
+            if(index > 0){
+                isTab0TurnPages = true;
+            }else {
+                isTab0TurnPages = false;
+            }
+            reBuildSmallVideo(index);
+            setBodyBackgroundImage(index);
+            G("tab-0-scroll").style.left = this.scrollArray[index] + "px";
+        },
+        createHtml: function () {
+            var list = RenderParam.homeConfigInfo.data.entry_list;
+            var id = '';
+            for (var i = 0; i < list.length; i++) {
+                id = '';
+                var item = list[i];
+                switch (parseInt(item.position)) {
+                    // banner
+                    case 11:
+                        id = 'tab0-recommended-1';
+                        break;
+                    case 12:
+                        id = '';
+                        Head.renderList(item.item_data, "tab0-recommended-2-list-")
+                        break;
+                    case 13:
+                        id = '';
+                        Head.renderList(item.item_data, "tab0-recommended-3-list-")
+                        break;
+                    case 14:
+                        id='tab0-recommended-2'
+                        break
+                    case 15:
+                        id='tab0-recommended-3'
+                        break
+                    case 16:
+                        id='tab0-recommended-4'
+                        break
+                }
+                if (id) {
+                    G(id).src = RenderParam.fsUrl + JSON.parse(item.item_data[0].img_url).normal;
+                }
+            }
+        },
+
+        beforeMoveChange: function (dir, cur) {
+            switch (dir) {
+                case "up":
+                    LMEPG.BM.getButtonById("tab-0").nextFocusDown = cur.id;
+                    break;
+                case "left":
+                    if (cur.id === "tab0-recommended-3-list-1") {
+                        LMEPG.BM.requestFocus("tab0-recommended-3");
+                        Tab0.showTabContent(0);
+                        return false
+                    } else if (cur.id === "tab0-recommended-3-list-2") {
+                        Tab0.showTabContent(1);
+                    }
+                    break;
+                case "right":
+                    if (cur.id === "tab0-recommended-2-list-3") {
+                        LMEPG.BM.requestFocus("tab0-recommended-4");
+                        return false
+                    } else if (cur.id === "tab0-recommended-3" || cur.id == "tab0-recommended-4" ) {
+                        Tab0.showTabContent(1);
+                    }else if(cur.id === "tab0-recommended-3-list-1"){
+                        Tab0.showTabContent(2);
+                    }
+                    break;
+
+            }
+        },
+
+        addCarousel:function(index,id,changeId){
+            var position = 0;
+            switch (changeId) {
+                case 'tab0-recommended-1-box':
+                    position = 11;
+                    break;
+                case 'tab0-recommended-2-box':
+                    position = 14;
+                    break;
+                case 'tab0-recommended-3-box':
+                    position = 15;
+                    break;
+            }
+
+            var list =RenderParam.homeConfigInfo.data.entry_list;
+            for (var i = 0; i < list.length; i++) {
+                if(parseInt(list[i].position) == position){
+                    index = i;
+                    break;
+                }
+            }
+
+            var len =RenderParam.homeConfigInfo.data.entry_list[index].item_data.length
+            if(len>1){
+                var html = ''
+                for (var i=0;i<len;i++){
+                    var src = i<1?"/Public/img/hd/Home/V25/point-choose.png":"/Public/img/hd/Home/V25/point.png";
+                    html+='<img src="'+src+'" style="margin-left: 10px"/>'
+                }
+
+                G(id).innerHTML = html
+
+                return new Carousel(RenderParam.homeConfigInfo.data.entry_list[index].item_data,changeId)
+
+            }
+            return null
+
+        },
+
+        init: function () {
+            try {
+                this.bannerData = [];
+                Play.startPollPlay();
+                Tab0.createHtml();
+                Tab0.initButton();
+                if(!isSmallVideo){
+                    c1 = Tab0.addCarousel(0,'carousel-1','tab0-recommended-1-box')
+                }
+                c2 = Tab0.addCarousel(3,'carousel-2','tab0-recommended-2-box')
+                c3 = Tab0.addCarousel(4,'carousel-3','tab0-recommended-3-box')
+
+                if(!isSmallVideo){
+                    c1 && c1.start()
+                }
+                c3 && c3.start()
+                c2 && c2.start()
+
+            } catch (e) {
+                LMEPG.UI.showToast("首页异常运行！" + e)
+            }
+        }
+        ,
+    };
+
+    (function (w) {
+        function Carousel(data,id) {
+            this.data = data;
+            this.id = id
+            this.max = data.length
+            this.current = 0
+        }
+
+        Carousel.prototype.start = function(){
+            var that = this
+            var ele = G(this.id).children
+            var point = ele[1].children
+
+            setInterval(function () {
+                that.current++
+                if(that.current>= that.max){
+                    that.current = 0
+                }
+
+                ele[0].src = RenderParam.fsUrl + JSON.parse(that.data[that.current].img_url).normal
+
+                var mark =that.data[that.current].inner_parameters ? JSON.parse(that.data[that.current].inner_parameters).cornermark.img_url : ''
+                ele[1].src = mark ? RenderParam.fsUrl+mark : ""
+
+                for(var j=0;j<point.length;j++){
+                    point[j].src = '/Public/img/hd/Home/V25/point.png'
+                }
+
+                point[that.current].src = '/Public/img/hd/Home/V25/point-choose.png'
+
+
+            },2500)
+        }
+
+        Carousel.prototype.getCurrentData = function(){
+            return this.current
+        }
+
+        w.Carousel = Carousel
+    }(window));
+</script>

@@ -1,0 +1,596 @@
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+    background-size: 1280px 720px;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+/*--------------------------------------------------
+           模拟toast弹窗style
+ ---------------------------------------------------*/
+.g_toast {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+    background-size: 1280px 720px;
+    z-index: 999;
+    display: table;
+}
+
+.g_title {
+    position: absolute;
+    top: 270px;
+    left: 290px;
+    width: 700px;
+    height: 300px;
+    color: #fff333;
+    font-size: 46px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 60px;
+    word-break: break-all;
+    display: table-cell;
+
+}
+
+.g_toast_big {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    z-index: 666;
+}
+
+/*.g_waiting_dialog {*/
+    /*position: absolute;*/
+    /*left: 393px;*/
+    /*top: 206px;*/
+    /*width: 66px;*/
+    /*height: 67px;*/
+    /*line-height: 110px;*/
+    /*font-size: 21px;*/
+    /*z-index: 666;*/
+    /*text-align: center;*/
+    /*color: #ff6600;*/
+    /*-moz-background-size: 66px 67px; !* 老版本的 Firefox *!*/
+    /*background-size: 66px 67px;*/
+    /*background: url("../../../../img/hd/Common/bg_waiting_dialog.gif") no-repeat;*/
+/*}*/
+
+/*--------------------------------------------------
+           顶部下滑消息弹窗style
+ ---------------------------------------------------*/
+.g_message {
+    position: absolute;
+    left: 306px;
+    width: 666px;
+    height: 40px;
+    padding-left: 14px;
+    padding-right: 14px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-bottom-left-radius: 33px;
+    border-bottom-right-radius: 33px;
+    color: #00194d;
+    background: white;
+    z-index: 1000;
+}
+
+/*--------------------------------------------------
+           通用对话框style
+ ---------------------------------------------------*/
+/*通用对话框*/
+.g_common_dialog {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: transparent no-repeat;
+    width: 1280px;
+    height: 720px;
+    z-index: 999;
+}
+
+/*背景图*/
+.g_common_dialog_img_bg {
+    width: 1280px;
+    height: 720px;
+}
+
+.g_common_button_img {
+    width: 179px;
+    height: 66px;
+}
+
+/*通用弹框消息文本*/
+.g_common_dialog_message_text {
+    position: absolute;
+    top: 220px;
+    left: 300px;
+    width: 680px;
+    height: 150px;
+    line-height: 68px;
+    font-size: 40px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff333;
+    z-index: 1000;
+
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 2;
+}
+
+/*输入框底部按钮*/
+.g_common_button_container {
+    position: absolute;
+    margin: auto;
+    top: 386px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.g_common_button_border {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_common_button_interval {
+    margin-left: 86px;
+}
+
+/*通用按钮文本*/
+.g_common_button_text {
+    width: 179px;
+    height: 66px;
+    margin-top: -66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 40px;
+    color: white;
+    z-index: 1000;
+}
+
+/*--------------------------------------------------
+           通用对话框 V1 style  --- start
+ ---------------------------------------------------*/
+.g_common_dialog_v1 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: transparent no-repeat;
+    width: 1280px;
+    height: 720px;
+    z-index: 999;
+}
+
+.g_common_button_img_v1 {
+    width: 179px;
+    height: 66px;
+}
+
+.g_common_dialog_img_bg_v1 {
+    width: 1280px;
+    height: 720px;
+}
+
+/*通用弹框消息文本*/
+.g_common_dialog_message_text_v1 {
+    position: absolute;
+    top: 244px;
+    left: 300px;
+    width: 680px;
+    height: 110px;
+    /*font-size: 36px;*/
+    font-size: 28px;
+    text-align: center;
+    color: #ffffff;
+    z-index: 1000;
+}
+
+.g_common_button_container_v1 {
+    position: absolute;
+    margin: auto;
+    /*top: 386px;*/
+    top: 423px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.g_common_button_border_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_common_button_interval_v1 {
+    margin-left: 86px;
+}
+
+.g_common_button_text_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: -66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+
+/*--------------------------------------------------
+           通用对话框 V1 style  --- end
+ ---------------------------------------------------*/
+
+/*--------------------------------------------------
+           通用可输入文本对话框style
+ ---------------------------------------------------*/
+/*可输入文本对话框*/
+.g_common_edit_dialog {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+    background: transparent no-repeat;
+    z-index: 999;
+}
+
+/*背景图*/
+.g_common_edit_dialog_img_bg {
+    width: 1280px;
+    height: 720px;
+}
+
+/*显示文本*/
+.g_common_edit_dialog_message_text {
+    position: absolute;
+    top: 145px;
+    left: 340px;
+    width: 600px;
+    height: 180px;
+    line-height: 45px;
+    font-size: 30px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    z-index: 1000;
+
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 4;
+}
+
+/*输入框前的label文本*/
+.g_common_edit_dialog_message_input_label {
+    position: absolute;
+    top: 346px;
+    left: 325px;
+    width: 235px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff333;
+    font-size: 35px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/*输入框input区域*/
+.g_common_edit_dialog_message_input {
+    position: absolute;
+    top: 344px;
+    left: 550px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 336px;
+    height: 54px;
+    font-size: 35px;
+    font-weight: bold;
+    color: black;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    z-index: 1000;
+}
+
+/*输入框input的focus状态border*/
+.g_common_edit_dialog_message_input_border_focus {
+    border: 3px solid #279BC6;
+}
+
+/*输入框input的unfocus状态border*/
+.g_common_edit_dialog_message_input_border_unfocus {
+    border: 3px solid transparent;
+}
+
+/*输入框底部按钮*/
+.g_common_edit_dialog_button_container {
+    position: absolute;
+    margin: auto;
+    top: 450px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+
+/*--------------------------------------------------
+           可输入文本对话框V1版本开始
+ ---------------------------------------------------*/
+/*可输入文本对话框*/
+.g_common_input_dialog_v1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background: transparent no-repeat;
+    z-index: 999;
+}
+
+.g_common_input_btn_border_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: 6px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_common_input_btn_interval_v1 {
+    margin-left: 86px;
+}
+
+/*背景图*/
+.g_common_input_dialog_img_bg_v1 {
+    width: 1280px;
+    height: 720px;
+}
+
+/*显示文本*/
+.g_common_input_dialog_message_text_v1 {
+    position: absolute;
+    top: 145px;
+    left: 240px;
+    width: 770px;
+    height: 180px;
+    line-height: 45px;
+    font-size: 34px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    z-index: 1000;
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 4;
+}
+
+.g_common_input_dialog_tel_v1 {
+    position: absolute;
+    top: 350px;
+    left: 280px;
+    color: #FFFFFF;
+    font-size: 32px;
+}
+
+input::-ms-input-placeholder {
+    text-align: center;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+input::-webkit-input-placeholder {
+    text-align: center;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/*输入框input区域*/
+.g_common_input_dialog_message_v1 {
+    position: absolute;
+    top: 336px;
+    left: 406px;
+    width: 504px;
+    height: 84px;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    line-height: 84px;
+    background: url("../../../../img/hd/DataArchiving/V10/bg_text.png");
+    z-index: 1000;
+}
+
+/*输入框input的focus状态border*/
+.g_common_input_message_border_focus_v1 {
+    box-shadow: 0 0 6px 4px #ffffff;
+    -moz-box-shadow: 0 0 6px 4px #ffffff;
+    -webkit-box-shadow: 0 0 6px 4px #ffffff;
+}
+
+/*输入框input的unfocus状态border*/
+.g_common_input_dialog_message_border_unfocus_v1 {
+    border: 3px solid transparent;
+}
+
+.g_common_input_btn_img_v1 {
+    width: 192px;
+    height: 72px;
+}
+
+.g_common_input_text_v1 {
+    width: 179px;
+    height: 66px;
+    margin-top: -70px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+
+/*输入框底部按钮*/
+.g_common_input_btn_v1 {
+    position: absolute;
+    margin: auto;
+    top: 450px;
+    left: 300px;
+    width: 680px;
+    height: 80px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.vip-icon {
+    position: absolute;
+    top: 42px;
+    left: 42px;
+    width: 79px;
+    height: 79px;
+    z-index: 4;
+}
+
+/*--------------------------------------------------
+           通用页面debug调试style
+ ---------------------------------------------------*/
+.g_debug {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px; /*width: 100%;*/
+    height: 720px; /*height: 100%;*/
+    -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+    background-size: 1280px 720px;
+    color: #ff0000;
+    background: black;
+    opacity: 0.8;
+    padding: 10px 23px;
+    word-wrap: break-word;
+    z-index: 999;
+    font-size: 20px;
+    box-sizing: border-box; /*W3C标准(IE9+，Safari5.1+,Chrome10.0+,Opera10.6+都符合box-sizing的w3c标准语法)*/
+    -moz-box-sizing: border-box; /*Firefox3.5+*/
+    -webkit-box-sizing: border-box; /*Safari3.2+*/
+    -o-box-sizing: border-box; /*Opera9.6*/
+    -ms-box-sizing: border-box; /*IE8*/
+    border: 2px red dashed;
+    overflow: auto;
+}
+
+.g_debug_pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/*--------------------------------------------------
+           滚动条style
+ ---------------------------------------------------*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-button {
+    background-color: #FF7677;
+    display: none;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2bf3ff;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-corner {
+    background: #2bf3ff;
+    display: none;
+}
+
+/*--------------------------------------------------
+           其他style
+ ---------------------------------------------------*/
+.grubFocusImg {
+    width: 0px;
+    height: 0px;
+}
+
+.corner_free {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 34px;
+}
+
+.g_waiting_dialog {
+    position: absolute;
+    left: 590px;
+    top: 310px;
+    width: 99px;
+    height: 100px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url(../../../../img/hd/Common/bg_waiting_dialog.gif) no-repeat;
+}
+#top{
+    position: absolute;
+    z-index: 1000;
+}

@@ -1,0 +1,171 @@
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-image: url("../../../../img/hd/Pay/V10220095/background.png");
+}
+
+#order_item_container {
+    display: block;
+    position: absolute;
+    width: 600px;
+    height: 440px;
+    top: 210px;
+    left: 40px;
+}
+
+#monthly_renewal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 120px;
+}
+
+#single_monthly {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    width: 600px;
+    height: 120px;
+}
+
+#single_year {
+    position: absolute;
+    top: 320px;
+    left: 0;
+    width: 600px;
+    height: 120px;
+}
+
+.order_price {
+    position: absolute;
+    top: 32px;
+    left: 400px;
+    width: 140px;
+    height: 60px;
+    color: #19b2ff;
+    font-size: 60px;
+    text-align: right;
+    font-weight: bold;
+}
+
+#payment_container {
+    height: 60px;
+    position: absolute;
+    top: 210px;
+    left: 680px;
+}
+
+#payment_container img {
+    margin-right: 10px;
+}
+
+#payment_detail {
+    position: absolute;
+    top: 270px;
+    left: 680px;
+    width: 560px;
+    height: 380px;
+}
+
+#mobile_payment_price {
+    position: absolute;
+    top: 52px;
+    left: 360px;
+    width: 40px;
+    height: 20px;
+    font-size: 18px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+}
+
+#mobile_payment_phone {
+    position: absolute;
+    top: 140px;
+    left: 40px;
+    width: 300px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+#get_mobile_payment_check_code {
+    position: absolute;
+    width: 160px;
+    height: 50px;
+    top: 130px;
+    left: 360px;
+    background-image: url("../../../../img/hd/Pay/V10220095/get_check_code.png");
+}
+
+#mobile_payment_check_code,#bill_payment_check_code {
+    position: absolute;
+    width: 236px;
+    height: 70px;
+    top: 200px;
+    left: 120px;
+    font-size: 40px;
+    color: #fff;
+    letter-spacing: 46px;
+    padding: 0px 42px;
+    background-image: url("../../../../img/hd/Pay/V10220095/payment_check_code.png");
+}
+
+#mobile_payment_sure, #bill_payment_sure{
+    position: absolute;
+    top: 290px;
+    left: 120px;
+}
+
+#mobile_payment_cancel,#bill_payment_cancel {
+    position: absolute;
+    top: 290px;
+    left: 300px;
+}
+
+#payment_check_code_text {
+    position: absolute;
+    top: 150px;
+    left: 210px;
+    width: 80px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+    color: #ffd400;
+}
+
+.third_party_payment_price {
+    position: absolute;
+    top: 52px;
+    left: 460px;
+    width: 40px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.payment_qr_code {
+    position: absolute;
+    top: 110px;
+    left: 160px;
+    width: 240px;
+    height: 240px;
+}
+
+#count_down {
+    position: absolute;
+    top: 11px;
+    left: 121px;
+    width: 26px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    color: #666;
+}

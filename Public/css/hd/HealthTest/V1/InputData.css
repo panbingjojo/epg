@@ -1,0 +1,230 @@
+* {
+    color: #FFFFFF;
+}
+
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+}
+
+/*列表项最外层根容器*/
+.center {
+    position: absolute;
+    top: 100px;
+    left: 280px;
+    height: 496px;
+    overflow: hidden;
+}
+
+.items {
+    margin-top: 20px;
+    width: 712px;
+}
+
+.items_bg {
+    width: 712px;
+    height: 70px;
+}
+
+.items_title {
+    width: 133px;
+    height: 57px;
+    line-height: 57px;
+    font-size: 28px;
+    margin-top: -66px;
+    margin-left: 33px;
+}
+
+.items_content {
+    position: relative;
+    left: 333px;
+    width: 346px;
+    height: 57px;
+    line-height: 57px;
+    font-size: 25px;
+    text-align: center;
+    margin-top: -56px;
+}
+
+.icon_left {
+    float: left;
+    margin-top: 16px;
+    width: 25px;
+    height: 25px;
+}
+
+.icon_right {
+    float: right;
+    margin-top: 16px;
+    width: 25px;
+    height: 25px;
+}
+
+.items_expand {
+    position: relative;
+    left: 33px;
+    width: 658px;
+    height: 0px;
+    background-repeat: no-repeat;
+    -moz-background-size: 658px 0px; /* 老版本的 Firefox */
+    background-size: 658px 0px;
+    overflow: hidden;
+}
+
+.items_expand_hover {
+    height: 224px;
+    width: 658px;
+    background-repeat: no-repeat;
+    -moz-background-size: 658px 224px; /* 老版本的 Firefox */
+    background-size: 658px 224px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+}
+
+/*点击某个list item展开其滚动子列表的根容器*/
+.time_block {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    width: 650px;
+}
+
+/*time_code、time_code_big：为显示6列输入数据限定的width：主要用于日期时间，例如：2019-01-24 18:00:00*/
+.time_code {
+    width: 93px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 25px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 1px;
+}
+
+.time_code_big {
+    width: 93px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 32px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 1px;
+}
+
+/*time_code2、time_code_big2：为显示4列输入数据限定的width：主要用于血糖和胆固醇，例如：16:66*/
+.time_code2 {
+    width: 113px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 32px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 1px;
+}
+
+.time_code_big2 {
+    width: 113px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 32px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 1px;
+}
+
+/*time_code3、time_code_big3：为显示3列输入数据限定的width：主要用于尿酸，例如：355*/
+.time_code3 {
+    width: 127px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 25px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 1px;
+}
+
+.time_code_big3 {
+    width: 127px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 32px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 1px;
+}
+
+.border_select {
+    border-bottom: 1px #7fffff solid;
+    border-top: 1px #7fffff solid;
+    color: #7fffff;
+}
+
+/*日期分隔符1*/
+.line1 {
+    position: absolute;
+    top: 88px;
+    left: 132px;
+    font-size: 24px;
+}
+
+/*日期分隔符2*/
+.line2 {
+    position: absolute;
+    top: 88px;
+    left: 224px;
+    font-size: 24px;
+}
+
+/*时间分隔符1*/
+.colon1 {
+    position: absolute;
+    top: 88px;
+    left: 428px;
+    font-size: 24px;
+}
+
+/*时间分隔符2*/
+.colon2 {
+    position: absolute;
+    top: 88px;
+    left: 533px;
+    font-size: 24px;
+}
+
+/*血糖、胆固醇输入数值中间的小数点*/
+.decimal_point {
+    position: absolute;
+    top: 106px;
+    left: 316px;
+    width: 10px;
+    height: 10px;
+    border-radius: 33px;
+    background: #ffffff;
+}
+
+/*提交按钮*/
+.submit_btn {
+    position: absolute;
+    left: 556px;
+    top: 586px;
+    width: 179px;
+    height: 66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 26px;
+}
+
+.btn_bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 179px;
+    height: 66px;
+}
+
+.btn_title {
+    position: absolute;
+    width: 179px;
+    height: 66px;
+}

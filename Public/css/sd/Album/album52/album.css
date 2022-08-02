@@ -1,0 +1,130 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    position: absolute;
+    height: 530px;
+    width: 644px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#focus-1-1 {
+    position: absolute;
+    top: 63px;
+    left: 40px;
+    z-index: 0;
+    outline: none !important;
+    width: 130px;
+    height: 70px;
+
+}
+#title1{
+    position: absolute;
+    top: 63px;
+    left: 20px;
+    z-index: 0;
+    outline: none !important;
+    width: 20px;
+    height: 70px;
+    display: none;
+}
+
+#focus-2-1 {
+    position: absolute;
+    top: 160px;
+    left: 160px;
+    z-index: 0;
+    outline: none !important;
+    width: 130px;
+    height: 70px;
+}
+#title2{
+    position: absolute;
+    top: 160px;
+    left: 140px;
+    z-index: 0;
+    outline: none !important;
+    width: 20px;
+    height: 70px;
+    display: none;
+}
+
+#focus-3-1 {
+    position: absolute;
+    top: 270px;
+    left: 40px;
+    z-index: 0;
+    outline: none !important;
+    width: 130px;
+    height: 70px;
+
+}
+#title3{
+    position: absolute;
+    top: 270px;
+    left: 20px;
+    z-index: 0;
+    outline: none !important;
+    width: 20px;
+    height: 70px;
+    display: none;
+}
+
+#focus-4-1 {
+    position: absolute;
+    top: 380px;
+    left: 160px;
+    z-index: 0;
+    outline: none !important;
+    width: 130px;
+    height: 70px;
+}
+#title4{
+    position: absolute;
+    top: 380px;
+    left: 140px;
+    z-index: 0;
+    outline: none !important;
+    width: 20px;
+    height: 70px;
+    display: none;
+}
+
+#back {
+    position: absolute;
+    top: 20px;
+    left: 570px;
+    z-index: 0;
+    outline: none !important;
+    width: 54px;
+    height: 48px;
+
+}
+
+#page-left {
+    position: absolute;
+    top: 30px;
+    left: 210px;
+    z-index: 0;
+    outline: none !important;
+    width: 20px;
+    height: 40px;
+}
+#page-right {
+    position: absolute;
+    top: 460px;
+    left: 90px;
+    z-index: 0;
+    outline: none !important;
+    width: 20px;
+    height: 40px;
+}
+
+

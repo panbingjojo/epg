@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <title>关于我们-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Family/V1/about.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<img class="line" src="__ROOT__/Public/img/hd/Doctor/V1/line.png" alt=""/>
+<div>
+    <img class="text_bg" src="__ROOT__/Public/img/hd/Doctor/V1/text_bg.png" alt=""/>
+    <div>
+        <div class="title">关于我们</div>
+    </div>
+    <div class="version">
+        版本号 0. 7. 9
+    </div>
+    <div class="phone">
+        客服联系电话：085183834790
+    </div>
+    <div class="content">
+        39健康以关注每位家庭成员的健康为己任，通过信息化手段，为用户提供优质的健康监护服务。为家庭成员的疾病预防、发现治疗提供全程、专业、个性的“家庭医生”式服务。并丰富电子健康档案的日常体征数据收集。目前支持在线检测血糖、胆固醇、甘油三酯和尿酸这4项数据，还提供视频问诊、名医讲座、疑难重症二次诊断等功能。
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 返回键
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    window.onload = function () {
+        LMEPG.BM.init('', [], '', true);
+    };
+</script>
+</body>
+</html>

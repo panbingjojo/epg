@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>医生详情-V10</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V10/general.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/DoctorP2P/V10/DoctorDetail.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/DoctorInquiry/inquiry.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            isRunOnAndroid: '{$isRunOnAndroid}',                         // 是否运行android平台，既apk2.0
+            carrierId: "{$carrierId}",                                   // 地区id
+            areaCode: "{$areaCode}",                                     // 省份地区码
+            subAreaCode: "{$subAreaCode}",                               // 省份下的子区域
+            platformType: "{$platformType}",                             // 平台类型
+            debug: "{$debug}",                                           // 调试模式
+            pageSize: "{$size}",                                         // 页面尺寸
+            stbModel: "{$stbModel}",                                     // 盒子的型号
+            fsUrl: "{$resourcesUrl}",                                    // fs 地址
+            time: "{$time}",                                             // 开始渲染时间
+            userId: "{$userId}",                                         // 用户Id
+            accountId: "{$accountId}",                                   // 用户Id
+            isVip: {$isVip},                                             // 用户是不是vip，1 -- 是vip
+            docId: "{$docId}",                                           // 医生Id
+            teletextInquiryUrl: '{$teletextInquiryUrl}',                 // 图文问诊地址
+            cwsHlwyyUrl: "{$cwsHlwyyUrl}",                               // cws互联网医院模块地址
+            skin: {$skin},                                               // 用户自定义背景
+            accessInquiryInfo: {$accessInquiryInfo | json_encode = ###}, // 当前模块是否支持问诊信息
+        }
+
+        var initTime = 0; // 页面初始化时间，局方上报模块停留时长使用
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <switch name="carrierId">
+        <case value="520094">     <!--贵州广电js文件-->
+            <script type="text/javascript"
+                    src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript"
+                    src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+        </case>
+    </switch>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/DoctorP2P/V10/DoctorDetail2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+
+</head>
+<body>
+<!--医生简略信息-->
+<div class="doctor-detail border">
+    <!--医生头像-->
+    <img id="avatar" src="" onerror="this.src='__ROOT__/Public/img/hd/DoctorP2P/V10/init_doc.png'" alt="医生头像">
+    <!--医生在线状态-->
+    <img id="status" src="__ROOT__/Public/img/Common/spacer.gif" alt="医生在线状态"/>
+    <!-- 医生推荐状态 -->
+    <div id="doctor-recommend" ></div>
+    <!--医生接诊量-->
+    <img id="reception-times-img" src="__ROOT__/Public/img/hd/DoctorP2P/V10/inquiry_num_bg.png" alt="">
+    <div class="reception-times-container"><span id="reception-times"></span></div>
+
+    <!--医生简介-->
+    <div id="introduce">
+        <!--医生名字-->
+        <div id="name"></div>
+        <!--医生所在医院-->
+        <div id="hospital"></div>
+        <!--医生所在科室-->
+        <div id="department" class="doctor-word"></div>
+        <!--医生职位-->
+        <div id="position" class="doctor-word"></div>
+    </div>
+
+    <p id="inquiry-type-title">请选择问诊方式</p>
+    <!--问诊方式列表-->
+    <ul id="inquiry-type-container"></ul>
+</div>
+
+<!--医院简介-->
+<div class="doctor-desc">
+    <!--医院简介详情-->
+    <div id="doctor-desc-detail"></div>
+</div>
+
+<if condition="$carrierId eq 10000051 and $lmp eq 266">
+    <div style="position: absolute;color: #ffffff;left: 80px;top:690px;">如您未安装摄像头，医生会以电话问诊的形式进行回呼，请注意接听~</div>
+</if>
+
+<script type="text/javascript">
+    window.unPreventDefault = true;
+    window.onload = function () {
+        // 初始化页面加载完成时间
+        initTime = new Date().getTime();
+        // 初始化背景
+        LMEPG.UI.setBackGround();
+        // 页面逻辑初始化
+        doctorDetailController.init();
+    };
+</script>
+
+</body>
+</html>

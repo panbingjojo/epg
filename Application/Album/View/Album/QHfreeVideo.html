@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>免费专区-公用</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Album/QHfreeVideo/freeVideo.css?t={$time}"/>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript">
+        var RenderParam = {
+            page: {$moveNum},
+            fsUrl: "{$resourcesUrl}",
+            data: {$data},
+            userId: "{$userId}",
+            platformType: "{$platformType}",
+            focus_index: "{$focus_index}"
+        };
+    </script>
+</head>
+<body>
+<p id="title">免费专区</p>
+<div id="debug"></div>
+<p id="page-index">0/0</p>
+<div id="topicList-container"></div>
+<img src="__ROOT__/Public/img/hd/Menu/Common/prev.png" id="prev-arrow" class="arrow">
+<img src="__ROOT__/Public/img/hd/Menu/Common/next.png" id="next-arrow" class="arrow">
+
+<script>
+    window.onload = function () {
+        $.looperDataToCurrentPage();
+        LMEPG.ButtonManager.init(saveCurrentId, buttons, '', true);
+    };
+
+    var currentPageData = RenderParam.data.data.video_list; //专题节目列表;
+    var saveCurrentId = RenderParam.focus_index == "focus-1-1" ? "test-0" : RenderParam.focus_index;
+    var buttons = [{
+        id: 'debug',
+        name: '脚手架ID',
+        nextFocusLeft: 'test-7',
+        nextFocusRight: 'test-0'
+    }];
+    /**
+     * 渲染视频列表
+     */
+    function RenderVideoList() {
+
+        var page = RenderParam.page;
+        var maxPage = Math.ceil(currentPageData.length / 8);
+        var prevPageId = [0, 4]; // 翻上一页索引
+        var nextPageId = [3, 7]; // 翻下一页索引
+        return {
+            looperDataToCurrentPage: function () {
+                var htm = "";
+                var cutData = currentPageData.slice(page * 8, page * 8 + 8);
+                cutData.forEach(function (item, index) {
+                    htm += '<div id=test-' + index + '>';
+                    htm += '<img src=' + RenderParam.fsUrl + item.image_url + '>';
+                    htm += '<p>' + item.title;
+                    htm += '</div>';
+                });
+                G("topicList-container").innerHTML = htm ? htm : '<span class="null-data">暂无数据~</span>';
+                G("page-index").innerText = (maxPage ? page : -1) + 1 + "/" + maxPage;
+                $.toggleArrow();
+                $.setButtons(cutData);
+                LMEPG.ButtonManager.init('debug', buttons, '', true);
+            },
+            setButtons: function (cutData) {
+                buttons.splice(1);
+                var lastFocusObj = "test-" + (currentPageData.length - 1 - page * 8);
+                cutData.forEach(function (t, e) {
+                    var downFocusObj = G("test-" + (+e + 4));
+                    buttons.push({
+                        id: 'test-' + e,
+                        name: '话题' + e,
+                        value: t.id,
+                        type: '',
+                        nextFocusLeft: 'test-' + (e - 1),
+                        nextFocusUp: 'test-' + (e - 4),
+                        // 如果当前ID下移没有对象则移动到最后的那个对象上
+                        nextFocusDown: downFocusObj ? 'test-' + (e + 4) : (e < 4 && lastFocusObj),
+                        nextFocusRight: 'test-' + (e + 1),
+                        click: onClickPlay,
+                        focusChange: videoItemOnFocus,
+                        beforeMoveChange: $.turnPage,
+                        cIdx: e,
+                        item: t
+                    });
+                });
+            },
+            turnPage: function (key, btn) {
+
+                var cutId = btn.id.slice(5);
+                switch (key) {
+                    case "left":
+                        prevPageId.filter(judgeCutId).length && page != 0 && prevPage();
+                        break;
+                    case "right":
+                        nextPageId.filter(judgeCutId).length && (page + 1) != maxPage && nextPage();
+                        break;
+                    case "down":
+                        break;
+                }
+
+                function judgeCutId(t) {
+                    return t == cutId;
+                }
+
+                function prevPage() {
+                    page = Math.max(0, page -= 1);
+                    $.looperDataToCurrentPage();
+                }
+
+                function nextPage() {
+                    page = Math.min(maxPage, page += 1);
+                    $.looperDataToCurrentPage();
+                }
+            },
+            toggleArrow: function () {
+                S("prev-arrow");
+                S("next-arrow");
+                page == 0 && H("prev-arrow");
+                (!maxPage || (page + 1) == maxPage) && H("next-arrow");
+            },
+            getCurrentPage: function () {
+                var objCurrent = LMEPG.Intent.createIntent("album");
+                objCurrent.setParam("userId", RenderParam.userId);
+                objCurrent.setParam("albumName", "QHfreeVideo");
+                objCurrent.setParam("focus_index", saveCurrentId);
+                objCurrent.setParam("inner", 1);
+                objCurrent.setParam("moveNum", page);
+                return objCurrent;
+            }
+
+        };
+    }
+
+    window.$ = new RenderVideoList();
+
+    /**
+     * 视频获得焦点
+     * @param btn
+     * @param bol
+     */
+    function videoItemOnFocus(btn, bol) {
+
+        var currentBtn = document.getElementById(btn.id);
+        var currentBtnImg = currentBtn.getElementsByTagName('img')[0];
+        var currentBtnP = currentBtn.getElementsByTagName('p')[0];
+        var currentBtnPinnerText = currentBtnP.innerText;
+        if (bol) {
+            currentBtnImg.className = "focus";
+            var MAX_roll = RenderParam.platformType == "hd" ? 11 : 9;
+            if (currentBtnPinnerText.length > MAX_roll) {
+                currentBtnP.innerHTML = "<marquee>" + currentBtnPinnerText + "</marquee>";
+            }
+        } else {
+            currentBtnP.innerHTML = currentBtnPinnerText;
+            currentBtnImg.removeAttribute("class");
+        }
+    }
+
+    /**
+     * 点击视频进行参数组装
+     * @param btn
+     */
+    function onClickPlay(btn) {
+        saveCurrentId = btn.id;
+        onClickVideoItem(btn.item); // 播放视频
+    }
+
+    /**
+     * 处理点击视频列表事件
+     * @param videoInfo
+     */
+    function onClickVideoItem(videoInfo) {
+        var ftp_url_json;
+        if (videoInfo.ftp_url instanceof Object) {
+            ftp_url_json = videoInfo.ftp_url;
+        } else {
+            ftp_url_json = JSON.parse(videoInfo.ftp_url);
+        }
+        // 视频ID
+        var play_id = ftp_url_json.gq_ftp_url;
+
+
+        var paramJson = {
+            "sourceId": videoInfo.source_id,
+            "videoUrl": play_id,
+            "title": videoInfo.title,
+            "type": 2,
+            "entryType": 4,
+            "entryTypeName": "QHfreeVideo",
+            "userType": videoInfo.user_type,
+            "freeSeconds": videoInfo.free_seconds,
+            "focusIdx": saveCurrentId,
+            "durationTime": videoInfo.duration
+        };
+
+        jumpVideoPlay(paramJson);
+    }
+
+    /**
+     * 跳转视频播放
+     * @param paramJson
+     */
+    function jumpVideoPlay(paramJson) {
+        var objCurrent = $.getCurrentPage();
+
+        var objPlayer = LMEPG.Intent.createIntent("player");
+        objPlayer.setParam("userId", RenderParam.userId);
+        objPlayer.setParam("videoInfo", JSON.stringify(paramJson));
+
+        LMEPG.Intent.jump(objPlayer, objCurrent);
+    }
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+</script>
+</body>
+</html>

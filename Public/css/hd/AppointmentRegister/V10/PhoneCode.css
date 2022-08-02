@@ -1,0 +1,24 @@
+.center{
+    position: absolute;
+    top: 110px;
+    left: 50%;
+    width: 700px;
+    margin-left: -350px;
+    font-size: 36px;
+    text-align: center;
+}
+.code-img{
+    width: 261px;
+    height: 261px;
+}
+.row{
+    height: 100px;
+}
+.row2{
+    margin-top: 40px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+.btn-hover{
+    font-weight: bold;
+}

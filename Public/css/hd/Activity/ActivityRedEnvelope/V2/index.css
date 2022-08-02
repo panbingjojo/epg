@@ -1,0 +1,85 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#btn_container{
+    width: 1280px;
+    height: 720px;
+}
+
+
+.count_down{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    left: 44px;
+    top: 45px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+#btn_close{
+    position: absolute;
+    left: 1162px;
+    top: 22px;
+    height: 95px;
+    width: 95px;
+}
+#btn_sure{
+    position: absolute;
+    top: 619px;
+    left: 396px;
+}
+
+#btn_cancel{
+    position: absolute;
+    top: 619px;
+    left: 740px;
+}
+
+#btn_notice{
+    position: absolute;
+    display: none;
+    width: 1280px;
+    height: 720px;
+}
+#btn_notice_sure{
+    position: absolute;
+    top: 443px;
+    left: 568px;
+}
+
+#reset_tel{
+    position: absolute;
+    top: 536px;
+    left: 560px;
+    width: 468px;
+    height: 54px;
+    font-size: 26px;
+    line-height: 54px;
+    text-indent: 30px;
+    color: #ff6f68;
+}
+#start_bg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+#btn_start{
+    position: absolute;
+    top: 500px;
+    left: 530px;
+}

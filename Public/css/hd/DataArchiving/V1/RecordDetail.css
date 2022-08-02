@@ -1,0 +1,121 @@
+* {
+    color: #FFFFFF;
+}
+
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    color: #ffffff
+}
+
+.center {
+    position: absolute;
+    top: 120px;
+    left: 388px;
+    width: 732px;
+    height: 448px;
+    padding: 40px;
+}
+
+.card {
+    position: absolute;
+    width: 288px;
+    height: 528px;
+    left: 80px;
+    top: 120px;
+    border-radius: 12px;
+}
+
+#member-avatar {
+    position: absolute;
+    width: 152px;
+    height: 152px;
+    border-radius: 50%;
+    top: 40px;
+    left: 65px;
+}
+
+#member-name {
+    position: absolute;
+    width: 284px;
+    text-align: center;
+    top: 210px;
+    font-size: 34px;
+}
+
+.btn-container {
+    position: absolute;
+    width: 284px;
+    text-align: center;
+    top: 226px;
+    font-size: 34px;
+}
+
+.font-s {
+    font-size: 28px;
+}
+
+.btn-middle {
+    width: 174px;
+    height: 64px;
+    line-height: 64px;
+    text-align: center;
+    margin: 5px auto;
+    background-image: url("../../../../../Public/img/hd/HealthTest/bg_button.png");
+    /*margin-top: 15px;*/
+}
+
+table {
+    width: 100%;
+    font-size: 28px;
+}
+
+table tr td {
+    height: 50px;
+}
+
+#arrow-prev {
+    position: absolute;
+    top: 88px;
+    left: 753px;
+    display: none;
+}
+
+#arrow-next {
+    position: absolute;
+    top: 650px;
+    left: 753px;
+    display: none;
+}
+
+#center-box {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+#s-box {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+/*拉取空数据占位*/
+#empty-data {
+    position: absolute;
+    top: 120px;
+    left: 388px;
+    width: 732px;
+    height: 448px;
+    line-height: 448px;
+    padding: 40px;
+    text-align: center;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 auto;
+    display: none;
+}

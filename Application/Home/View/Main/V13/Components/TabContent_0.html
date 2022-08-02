@@ -1,0 +1,444 @@
+<!-- 首页推荐页面-->
+<div id="first-content-row">
+    <img id="video-TV" src="__ROOT__/Public/img/Common/spacer.gif">
+    <!-- 小窗（江苏电信） -->
+    <div class="small_screen_player">
+        <iframe id="iframe_small_screen" frameborder="0" scrolling="no"></iframe>
+    </div>
+
+    <!-- 辽宁、山东，河南电信小窗位置为推荐位 -->
+    <img id="link-0" src="__ROOT__/Public/img/hd/Player/smallvideo_bg.gif"/>
+    <if condition="$carrierId neq '450092'">
+        <img id="small-video-bg" src="__ROOT__/Public/img/hd/Home/V13/Home/smp_bg.png">
+    </if>
+
+    <img id="free-area"/>
+
+
+    <!--    广东广电WEB-EPG-纯WEB版本 -->
+    <if condition="$carrierId eq '440004' ">
+        <div id="link-1-wrapper" style="display: none">
+            <img id="icon-modify1" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_hot.png">
+            <img id="link-1">
+        </div>
+
+        <!--轮播组件-->
+        <div id="carousel-wrapper" class="temp-x">
+            <div id="link-2"></div>
+            <img id="link-2-0" style="width: 464px" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+            <img id="link-2-1" style="width: 464px" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+            <img id="icon-modify2" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_new.png">
+            <div id="point-wrapper" style="left: 110px !important;"></div>
+        </div>
+        <else/>
+        <div id="link-1-wrapper">
+            <if condition="$carrierId eq '320092' ">
+                <img id="icon-modify1" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_VIP.png">
+                <else/>
+                <img id="icon-modify1" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_hot.png">
+            </if>
+            <img id="link-1">
+        </div>
+        <!--轮播组件-->
+        <div id="carousel-wrapper">
+            <div id="link-2"></div>
+            <img id="link-2-0" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+            <img id="link-2-1">
+            <if condition="$carrierId eq '320092' ">
+                <img id="icon-modify2" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_VIP.png">
+                <else/>
+                <img id="icon-modify2" src="__ROOT__/Public/img/hd/Home/V13/Home/icon_new.png">
+            </if>
+            <div id="point-wrapper"></div>
+        </div>
+    </if>
+
+    <!--    -->
+    <div id="keep-watch-wrapper">
+        <div id="keep-watch-title">
+            <marquee id="lately-video-title"></marquee>
+        </div>
+        <img id="keep-watch" src="__ROOT__/Public/img/Common/spacer.gif">
+    </div>
+
+    <!--    继续观看下面的窗口，例如：疫情专区-->
+    <div id="link-3-wrapper">
+        <img id="link-3">
+    </div>
+</div>
+
+<!-- 推荐页面最下方的推荐位-->
+<div id="second-content-row">
+    <div><img id="b-link-0"></div>
+    <div><img id="b-link-1"></div>
+    <div><img id="b-link-2"></div>
+    <div><img id="b-link-3"></div>
+    <div><img id="b-link-4"></div>
+</div>
+
+<!-- 帮助流程 -->
+<div id="tab0-help" class="tab-help-wrap">
+    <img id="tab0-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab0_help0.png">
+    <img id="tab0-help1" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab0_help1.png">
+    <img id="tab0-help2" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab0_help2.png">
+    <img id="tab0-help3" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab0_help3.png">
+</div>
+<script type="text/javascript">
+    // 推荐页面的数据
+    var Tab0 = {
+        isLoad: false,
+        noSmallVideoArea:[],
+        hasSmallVideo : true,
+        init: function () {
+            this.noSmallVideoArea = ['410092', '370092', '210092', '610092', '440004','440001','150002','450001','640001'];
+            this.hasSmallVideo = this.noSmallVideoArea.indexOf(RenderParam.carrierId) === -1;
+            if(RenderParam.carrierId === '430002'){
+                G('keep-watch-wrapper').style.backgroundImage = 'url('+g_appRootPath+'/Public/img/hd/Home/V13/Home/hunan-tab0.png)'
+                G('keep-watch-title').style.width = '135px'
+                G('keep-watch-title').style.top = '36px'
+
+                var choose = G('keep-watch')
+
+                choose.style.left = '6px'
+                choose.style.top = '6px'
+                choose.style.width = '293px'
+                choose.style.height = '98px'
+            }else {
+                G('keep-watch-wrapper').style.backgroundImage = 'url('+g_appRootPath+'/Public/img/hd/Home/V13/Home/keep_watch.png)'
+                G('keep-watch-title').innerHTML = '<marquee> 您还没有点播过视频哦！</marquee>';
+            }
+            this.bannerData = [];
+            this.createBtns();
+            this.renderTab0();
+            this.banner = new Banner(Tab0.bannerData, 'link-2-0', 'link-2-1', 'point-');
+            this.banner.renderDots('point-wrapper');
+            if(this.hasSmallVideo == undefined)
+                this.hasSmallVideo = this.noSmallVideoArea.indexOf(RenderParam.carrierId) === -1;
+
+            if (RenderParam.carrierId == "440004") {
+                G("link-2-0").style.backgroundImage = 'url("__ROOT__/Public/img/hd/Home/V13/Home/a_link_x.png")';
+                G("link-2-1").style.backgroundImage = 'url("__ROOT__/Public/img/hd/Home/V13/Home/a_link_x.png")';
+            }
+
+            if (RenderParam.carrierId == CARRIER_ID_SHANDONG_HICON || RenderParam.carrierId == "371002") {
+                sendNavEventFoHICON("tab-0");
+            }
+
+        },
+        /**
+         * 渲染Tab0
+         */
+        renderTab0: function () {
+            var me = this;
+            var list = RenderParam.configInfo.data.entry_list/*.slice(0, 6)*/;
+            var getImg = Page.getImg;
+            var item = '';
+            var pos = '';
+            var posData = '';
+            var id = '';
+            var tab0Data = [11, 12, 13, 14, 15, 16];// TODO “推荐”模块后台配置位置的position
+            latest_htm(); // 最近播放
+            for (var i = 0; i < list.length; i++) {
+                item = list[i];
+                pos = parseInt(item.position);
+                posData = item.item_data;
+                switch (pos) {
+                    case 11:
+                        id = 'free-area'; // 免费专区
+                        break;
+                    case 12:
+                        id = 'link-0'; // 小窗位置
+                        break;
+                    case 13:
+                        id = 'link-1'; // 热门位置
+                        break;
+                    case 14:
+                        id = '';
+                        banner_htm(posData);
+                        break;
+                    case 15:
+                        id = 'link-3'; // 继续观看下面位置
+                        break;
+                    case 16:
+                        id = '';
+                        bottom_htm(posData);
+                        break;
+                }
+                if (id && tab0Data.indexOf(pos) > -1) G(id).src = getImg(posData[0].img_url);
+            }
+
+            /**
+             * banner数据与渲染
+             */
+            function banner_htm(data) {
+                me.bannerData = [];
+                for (var j = 0; j < data.length; j++) {
+                    var val = data[j];
+                    me.bannerData.push({
+                        id: j,
+                        src: getImg(val.img_url),
+                        entry_type: val.entry_type,
+                        parameters: val.parameters,
+                        inner_parameters: val.inner_parameters
+                    })
+                }
+
+                if (data[0]) G('link-2-0').src = getImg(data[0].img_url);
+                if (data[1]) G('link-2-1').src = getImg(data[1].img_url);
+            }
+
+            /*最近播放渲染*/
+            function latest_htm() {
+                if(RenderParam.carrierId === '430002'){
+                    var value = 0
+                    Tab0.getTestDataLast(function (data) {
+                        if(data.data['10003'] || data.data['10006']){
+                            value = data.data['10003']? data.data['10003'].fatFreeWeight : data.data['10006'].fatFreeWeight
+                            G('keep-watch-title').innerHTML = '<marquee>体重：' +value + 'KG</marquee>';
+
+                        }else if(data.data['10002']){
+                            value = data.data['10002']
+                            G('keep-watch-title').innerHTML = '<marquee> 低压：'+value.diastolicPressure + 'mmHG 高压:'+value.systolicPressure+'mmHG 心率:'+value.heartRate+'bpm' + '</marquee>';
+
+                        }else if(data.data['10005'] || data.data['10004'] ){
+                            value =data.data['10005']? data.data['10005'].bloodGlucose : data.data['10004'].bloodGlucose
+                            G('keep-watch-title').innerHTML = '<marquee>血糖：' +value + 'mmol</marquee>';
+
+                        }else {
+                            G('keep-watch-title').innerHTML = '<marquee>您还未进行检测</marquee>';
+                        }
+                    })
+                }else {
+                    if (RenderParam.latestVideoInfo.result == 0 && RenderParam.latestVideoInfo.val != "undefined") {
+                        var videoInfo = JSON.parse(RenderParam.latestVideoInfo.val);
+                        G('keep-watch-title').innerHTML = '<marquee>' + videoInfo.title + '</marquee>';
+                    }
+                }
+            }
+
+            /*底部渲染*/
+            function bottom_htm(bottomData) {
+                var htm_bom = '';
+                for (var k = 0; k < bottomData.length; k++) {
+                    htm_bom += '<div><img src="' + getImg(bottomData[k].img_url) + '" id="b-link-' + k + '"></div>';
+                }
+                G('second-content-row').innerHTML = htm_bom;
+            }
+        },
+        /**
+         * 当前页面元素获得失去焦点
+         * 修饰图标“热门”，“最新”跟随寄生元素得失焦点变化
+         * 轮播获得焦点与通用元素变化一致
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusIn: function (btn, hasFocus) {
+            var me = Tab0;
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+            me.modifyOnFocus(btn.id, hasFocus);
+            me.link2OnFocus(btn, hasFocus, btnElement);
+        },
+        /**
+         * 轮播推荐位得失焦点处理
+         * 轮询切换
+         * @param btn
+         * @param hasFocus
+         */
+        link2OnFocus: function (btn, hasFocus) {
+            if (btn.id != 'link-2') return;
+
+            var carousel_0 = G(btn.id + '-0');
+            var carousel_1 = G(btn.id + '-1');
+            if (hasFocus) {
+                carousel_0.setAttribute('class', 'focus');
+                carousel_1.setAttribute('class', 'focus');
+            } else {
+                carousel_0.removeAttribute('class');
+                carousel_1.removeAttribute('class');
+            }
+        },
+        /**
+         * 修饰图标得失焦点
+         * @param id
+         * @param hasFocus
+         */
+        modifyOnFocus: function (id, hasFocus) {
+            if (id != 'link-1' && id != 'link-2') return;
+
+            var prevModifyElementId = 'icon-modify' + (id == 'link-1' ? 1 : 2);
+            if (hasFocus) {
+                G(prevModifyElementId).setAttribute('class', 'focus');
+            } else {
+                G(prevModifyElementId).removeAttribute('class');
+            }
+        },
+
+        /**
+         * 底部按钮焦点
+         */
+        bottomBtnOnfocus: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.className = 'focus';
+            } else {
+                btnElement.className = '';
+            }
+        },
+
+        getTestDataLast:function(cb){
+            LMEPG.ajax.postAPI('NewHealthDevice/deviceDataLast', {},function (res) {
+                if(res.code === 200){
+                    console.log(res,9090)
+                    cb(res)
+                }else {
+                    G('keep-watch-title').innerHTML = '<marquee>您还未进行检测</marquee>';
+                }
+            })
+        },
+
+        /**
+         * 创建按钮
+         */
+        createBtns: function () {
+            var videoFocusImagePath = g_appRootPath + '/Public/img/hd/Home/V13/Home/video_f.png';
+            var keepWatchFocusImgPath =RenderParam.carrierId === '430002'?g_appRootPath+'/Public/img/hd/Home/V13/Home/hunan-tab0-f.png': g_appRootPath + '/Public/img/hd/Home/V13/Home/keep_watch_f.png';
+            if(RenderParam.platformType == 'sd') {
+                keepWatchFocusImgPath = g_appRootPath + '/Public/img/sd/Unclassified/V13/keep_watch_f.png';
+            }
+            buttons.push({
+                id: 'video-TV',
+                name: '小窗视频',
+                type: 'img',
+                nextFocusRight: RenderParam.carrierId == "440004" ? 'link-2' : 'link-1',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'free-area',
+                backgroundImage: g_appRootPath + '/Public/img/Common/spacer.gif',
+                focusImage: videoFocusImagePath,
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 12
+            }, {
+                id: 'free-area',
+                name: '免费专区',
+                type: 'img',
+                nextFocusRight: RenderParam.carrierId == "440004" ? 'link-2' : 'link-1',
+                nextFocusUp: 'video-TV',
+                nextFocusDown: 'b-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 11
+            }, {
+                id: 'link-1',
+                name: '推荐位1',
+                type: 'img',
+                nextFocusLeft: 'video-TV',
+                nextFocusRight: 'link-2',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'b-link-2',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 13
+            }, {
+                id: 'link-2',
+                name: '推荐为2（由轮播映射）',
+                type: 'others',
+                nextFocusLeft: RenderParam.carrierId == "440004" ? 'video-TV' : 'link-1',
+                nextFocusRight: 'keep-watch',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'b-link-3',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 14
+            }, {
+                id: 'keep-watch',
+                name: '继续观看',
+                type: 'img',
+                nextFocusLeft: 'link-2',
+                nextFocusRight: '',
+                nextFocusUp: 'tab-0',
+                nextFocusDown: 'link-3',
+                backgroundImage:g_appRootPath + '/Public/img/Common/spacer.gif',
+                focusImage: keepWatchFocusImgPath,
+                click:RenderParam.carrierId==='430002'?PageJump.jumpClassifyPage:PageJump.jumpContinuePlay,
+                focusChange: this.onFocusIn,
+                cNavId: 2
+            }, {
+                id: 'link-3',
+                name: '推荐位3',
+                type: 'img',
+                nextFocusLeft: 'link-2',
+                nextFocusUp: 'keep-watch',
+                nextFocusDown: 'b-link-4',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cNavId: 2,
+                cPosition: 15
+            }, {
+                id: 'b-link-0',
+                name: '第一个功能区',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'b-link-1',
+                nextFocusUp: 'free-area',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-1',
+                name: '第二个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-0',
+                nextFocusRight: 'b-link-2',
+                nextFocusUp: 'free-area',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-2',
+                name: '第三个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-1',
+                nextFocusRight: 'b-link-3',
+                nextFocusUp: 'link-2',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-3',
+                name: '第四个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-2',
+                nextFocusRight: 'b-link-4',
+                nextFocusUp: 'link-2',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            }, {
+                id: 'b-link-4',
+                name: '第五个功能区',
+                type: 'img',
+                nextFocusLeft: 'b-link-3',
+                nextFocusRight: '',
+                nextFocusUp: 'link-3',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.bottomBtnOnfocus,
+                cNavId: 2,
+                cPosition: 16
+            });
+        }
+    };
+</script>

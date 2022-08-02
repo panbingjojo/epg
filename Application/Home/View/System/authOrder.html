@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>订购回调鉴权</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/System/authOrder.css?t={$time}"/>
+    <script type="text/javascript">
+        // TP框架控制器返回数据应用
+        var RenderParam = {
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            accountId: "{$accountId}",          // 局方用户标识
+            orderId: "{$orderId}",              // 订单号
+            payDt: "{$payDt}",                  // 订购时间
+            payState: "{$payState}",            // 计费状态
+
+            productId: "{$productId}",          // 吉林广电联通--魔方：39健康计费套餐id，用于鉴权等操作
+            serverPath:"{$serverPath}",         // 重庆电信EPG 局方计费鉴权地址
+            authCode: "{$authCode}",            // 海看(山东电信)EPG -- 鉴权Code
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+    <switch name="carrierId">
+        <case value="$Think.const.CARRIER_ID_GUANGXIGD">
+            <!--广西广电视频鉴权地址-->
+            <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+        </case>
+        <case value="$Think.const.CARRIER_ID_NINGXIA_YD">
+            <!--广西广电视频鉴权地址-->
+            <script type="text/javascript" src="__ROOT__/Public/js/Pay/V640001/pay_sdk_util.js?t={$time}"></script>
+        </case>
+        <case value="$Think.const.CARRIER_ID_YB_HEALTH_UNIFIED">
+            <!--怡伴健康统一接口-->
+            <script type="text/javascript" src="__ROOT__/Public/js/Pay/V09000001/pay_sdk_util.js?t={$time}"></script>
+        </case>
+        <case value="$Think.const.CARRIER_ID_GUIZHOUGD">
+            <!--贵州广电js文件-->
+            <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+            <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/zf_v2/pay.js"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgdPay.js?t={$time}"></script>
+        </case>
+    </switch>
+
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/System/authOrder.js?t={$time}"></script>
+</head>
+
+<body id="background">
+</body>
+</html>

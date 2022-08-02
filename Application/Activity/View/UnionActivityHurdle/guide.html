@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>title</title>
+    <meta charset="utf-8" name="page-view-size">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Activity/UnionActivityHurdle/index.css">
+    <!--记录传过来的参数-->
+    <script type="text/javascript">
+
+        var renderParam = {
+            userId: '12345', // 用户id
+            resolution: '{$platformType}', // 分辨率
+            backUrl: '{$returnEpgUrl}' // 返回的url
+        };
+    </script>
+</head>
+<body>
+<div id="container" class="{$platformType}-container">
+    <p id="hurdle-count" class="{$platformType}-hurdle-count">跨栏个数：0/10</p>
+    <div id="game-wrapper" class="{$platformType}-game-wrapper">
+        <img id="guy" class="{$platformType}-guy" src="__ROOT__/Public/img/hd/Activity/UnionActivityHurdle/img/{$platformType}/s1.png" alt="人物">
+    </div>
+    <img id="game-start" class="{$platformType}-game-start" src="__ROOT__/Public/img/hd/Activity/UnionActivityHurdle/img/{$platformType}/btn_start.png">
+    <!--活动规则-->
+    <img id="btn-rule" class="{$platformType}-btn-rule" src="__ROOT__/Public/img/hd/Activity/UnionActivityHurdle/img/{$platformType}/btn_rule.png" alt="">
+    <div id="modal-rule" class="{$platformType}-modal-rule"></div>
+</div>
+
+<script type="text/javascript" src="__ROOT__/Public/js/Activity/UnionActivityHurdle/index.js"></script>
+</body>
+</html>

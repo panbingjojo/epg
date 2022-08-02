@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>新疆领取摄像头主页-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__../../../../../Public/css/{$platformType}/common.css?t={$time}"/>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__../../../../../Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__../../../../../Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__../../../../../Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__../../../../../Public/Common/js/lmui.js?t={$time}"></script>
+    <script>
+        var RenderParam = {
+            userId: "{$userId}",
+            SERVER_IPTVFORWARD_CWS_FS: "{$server_iptvforward_cws_fs}",
+        };
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            background: url("../../../../../Public/img/hd/Activity/ActivityGetCamera/V1/bg.png") no-repeat;
+            width: 1280px;
+            height: 720px;
+        }
+
+        #code {
+            position: absolute;
+            top: 200px;
+            left: 535px;
+            width: 210px;
+            height: 210px;
+        }
+    </style>
+</head>
+<body id="body">
+<img id="code" src=""/>
+<script>
+    var buttons = [];
+    window.onload = function () {
+        LMEPG.ButtonManager.init("", buttons, '', true);
+        Web.queryDataHeart();
+        Web.getCode();
+    };
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+
+    var Web = {
+        timerId: null,
+        url: "http://10.254.30.100:8015/queryData?",//测试服务器地址
+//        var encodeData = window.btoa("name=xiaoming&age=10")//编码
+
+//        var decodeData = window.atob(encodeData)//解码。
+
+        getCode: function () {
+            var data = {
+                id: RenderParam.userId,
+                router: "blood",
+            };
+//            var jsonStr  = window.btoa(data);
+
+            var jsonStr = JSON.stringify(data)
+            var postData = {
+                "data": jsonStr,
+            };
+            LMEPG.ajax.postAPI('IPTVForward/getQRCode', postData, function (rsp) {
+                console.log(RenderParam.SERVER_IPTVFORWARD_CWS_FS + rsp.file_url);
+                G("code").src = RenderParam.SERVER_IPTVFORWARD_CWS_FS + rsp.file_url;
+                console.log(rsp);
+            });
+        },
+
+        /**
+         请求服务端数据
+         */
+        getPhoneData: function () {
+            var data2 = {
+                user_id: RenderParam.userId,
+                router: "blood",
+            };
+            var jsonStr2 = JSON.stringify(data2)
+            var postData2 = {
+                "data": jsonStr2,
+
+            };
+            LMEPG.ajax.postAPI('IPTVForward/queryData', postData2,
+                    function (data) {
+                        try {
+                            var result = data.result;
+                            if (result == 0 && data.list.length > 0) {
+                                var list = data.list;
+                                clearInterval(Web.timerId);
+                                // console.log(list);
+                                var postData = {
+                                    "userName": list[0].user_name,
+                                    "userTel": list[0].user_tel,
+                                    "address": list[0].address
+                                };
+                                LMEPG.UI.showWaitingDialog('', 2);
+                                // 调用接口保存数据
+                                Web.lwsAddData(postData);
+
+                            } else { // 设置号码失败
+//                            LMEPG.UI.showToast("用户数据上传失败！");
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("数据为空！");
+                            LMEPG.Log.error(e.toString());
+                        }
+                    },
+                    function (data) {
+                        LMEPG.UI.showToast("获取模板发生错误！");
+                    }
+            )
+        },
+        /**
+         * 实时拉取手机端数据请求
+         */
+        queryDataHeart: function () {
+            Web.timerId = setInterval(Web.getPhoneData, 1000);
+        },
+
+
+        lwsAddData: function (postData) {
+            LMEPG.ajax.postAPI('Activity/saveUserInfo', postData,
+                    function (data) {
+                        try {
+                            var res = data;
+                            if (res.result == 0) {
+                                LMEPG.UI.showToast("手机端上传数据成功!", 3);
+                                setTimeout(onBack, 2000);
+                            } else { // 校验失败
+                                LMEPG.UI.showToast(res.message, 3);
+                            }
+                        } catch (e) {
+                            LMEPG.UI.showToast("获取模板处理异常！");
+                            LMEPG.Log.error(e.toString());
+                        }
+                    },
+                    function (rsp) {
+                        LMEPG.UI.showToast("获取模板发生错误！");
+                    }
+            );
+
+        },
+    }
+</script>
+
+</body>
+</html>

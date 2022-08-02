@@ -1,0 +1,156 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    background-image: url(../../../../img/sd/Home/V13/Home/bg.png);
+    background-size:644px 530px;
+}
+
+.doctor-info {
+	position: absolute;
+    top: 73px;
+    left: 0px;
+    width: 196px;
+    height: 420px;
+    padding-top: 15px;
+    background-position: center;
+
+}
+
+.doctor-info li {
+    color: #fff;
+    text-align: center;
+    line-height: 25px;
+    /*overflow: hidden;*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.doctor-info #doctor-pic {
+    margin-top: 10px;
+}
+
+.doctor-info #doctor-pic img {
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+}
+
+.doctor-info #doctor-status {
+    margin-top: -15px;
+}
+.doctor-info #doctor-status img{
+    width: 60px;
+    height: 22px;
+}
+.doctor-info #doctor-name {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.doctor-info #doctor-department,
+.doctor-info #doctor-job-title {
+    font-size: 16px;
+}
+
+.doctor-info #doctor-reception-times {
+    font-size: 14px;
+    color: #b2deff;
+}
+.doctor-info #inquiry-wrap-1{
+    margin-top: 20px;
+}
+
+.doctor-info #inquiry-wrap-1 img {
+    width: 79px;
+    height: 28px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.doctor-info #inquiry-wrap-2 {
+    margin-top: 10px;
+}
+
+.doctor-info #inquiry-wrap-2 img {
+    width: 79px;
+    height: 28px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.doctor-info .doctor-collect{
+    margin-top: 6px;
+}
+.doctor-info .doctor-collect img {
+    width: 91px;
+    height: 30px;
+}
+
+
+/*简介*/
+.auto-overlay {
+    overflow: hidden;
+    width: 384px;
+    height: 374px;
+}
+
+#doctor-intro {
+    position: absolute;
+    top: 53px;
+    left: 198px;
+    width: 384px;
+    height: 390px;
+    overflow: hidden;
+    padding: 30px;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/modal_desc.png);
+    background-size: 100% 100%;
+}
+#code-wrap{
+    float:right;
+    width: 140px;
+}
+img#doctor-code{width: 140px;height:140px;float: right;margin-bottom: 10px;}
+#code-txt{
+   font-size: 12px;
+   color:#b2deff;
+   text-align: center;
+}
+#intro-wrap {
+    position: relative;
+    font-size: 17px;
+    /* font-weight: bold; */
+    color: #fff;
+    /* float: right; */
+    word-break: break-all;
+}
+#text-wrap{
+    width: 240px;
+}
+#text-intro{
+    margin-top: 20px;
+    width: 380px;
+}
+
+#scroll-wrap {
+    width: 4px;
+    height: 400px;
+    position: absolute;
+    top: 25px;
+    left: 420px;
+    border-radius: 4px;
+    background-color: #89adf4;
+}
+#scroll-bar {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 6px;
+    height: 60px;
+    border-radius: 6px;
+    background-color: #efa8aa;
+}

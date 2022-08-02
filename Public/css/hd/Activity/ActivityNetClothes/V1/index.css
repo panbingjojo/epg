@@ -1,0 +1,519 @@
+body {
+    width: 1280px;
+    height: 720px;
+}
+body > *,
+.modal > *{
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: hidden;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*活动首页*/
+#btn_back {
+    position: absolute;
+    top: 38px;
+    left: 1088px;
+    height: 56px;
+    /*width: 139px;*/
+}
+
+#btn_activity_rule {
+    position: absolute;
+    top: 114px;
+    left: 1088px;
+    height: 56px;
+}
+#btn_winner_list {
+    position: absolute;
+    top: 190px;
+    left: 1088px;
+    height: 56px;
+}
+
+#btn_exchange_prize {
+    position: absolute;
+    top: 266px;
+    left: 1088px;
+    height: 56px;
+}
+
+/*#txtLeftTimes {*/
+    /*top: 640px;*/
+    /*left: 53px;*/
+    /*text-align: center;*/
+    /*color: #000000;*/
+    /*font-size: 30px;*/
+    /*font-weight: bold;*/
+/*}*/
+
+#left_times {
+    top: 640px;
+    left: 45px;
+    text-align: center;
+    color: #000000;
+    width: 200px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#btn_start{
+    position: absolute;
+    top: 496px;
+    left: 530px;
+    height: 75px;
+    width: 221px;
+}
+
+#bg_clothe_cnt_1{
+    position: absolute;
+    top: 255px;
+    left: 142px;
+    width: 80px;
+    /*margin-right: 40px;*/
+    text-align: center;
+    font-size: 30px;
+    color: #FFFFFF;
+    /* font-weight: bold; */
+}
+
+#bg_clothe_cnt_2{
+    position: absolute;
+    top: 360px;
+    left: 142px;
+    width: 80px;
+    /*margin-right: 40px;*/
+    text-align: center;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+#bg_clothe_cnt_3{
+    position: absolute;
+    top: 460px;
+    left: 142px;
+    width: 80px;
+    /*margin-right: 40px;*/
+    text-align: center;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+#bg_clothe_cnt_4{
+    position: absolute;
+    top: 555px;
+    left: 142px;
+    width: 80px;
+    /*margin-right: 40px;*/
+    text-align: center;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+/*活动规则*/
+#btn_close_rule {
+    top: 133px;
+    left: 965px;
+}
+
+/*中奖名单*/
+#total_list {
+    top: 220px;
+    left: 275px;
+    height: 128px;
+    width: 750px;
+    color: #ffffff;
+}
+#btn_list_submit {
+    top: 538px;
+    left: 458px;
+}
+
+#btn_list_cancel {
+    top: 538px;
+    left: 668px;
+}
+
+#all_marquee {
+    width: 750px;
+    height: 120px;
+}
+
+#my_marquee {
+    height: 41px;
+}
+
+table.marquee_table {
+    width: 730px;
+}
+
+table#all_table tr {
+    height: 40px;
+}
+
+table.marquee_table td {
+    /* left: 240px; */
+    width: 240px;
+    margin-right: 40px;
+    text-align: center;
+    font-size: 24px;
+}
+
+#my_list {
+    top: 425px;
+    left: 269px;
+    height: 41px;
+    width: 750px;
+    font-size: 28px;
+    color: #fff;
+    text-align: center;
+}
+
+#reset_tel {
+    top: 473px;
+    left: 503px;
+    width: 290px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 27px;
+    text-align: center;
+    color: #12206e;
+}
+
+/*游戏结束*/
+#btn_game_over_sure {
+    top: 470px;
+    left: 557px;
+}
+
+/*游戏页*/
+#game_container{
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+
+#gm_make_clothe{
+    top: 267px;
+    left: 205px;
+}
+
+#game_countdown {
+    top: 30px;
+    left: 40px;
+    width: 50px;
+    font-size: 34px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/*兑换礼品*/
+#exchange_clothe_cnt_1{
+    top: 80px;
+    left: 299px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 40px;
+    color: #FFFFFF;
+    /* font-weight: bold; */
+}
+
+#exchange_clothe_cnt_2{
+    top: 80px;
+    left: 535px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 40px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_clothe_cnt_3{
+    FONT-VARIANT: JIS78;
+    top: 80px;
+    left: 740px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 40px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_clothe_cnt_4{
+    top: 80px;
+    left: 971px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 40px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_1{
+    top: 248px;
+    left: 412px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_12{
+    top: 248px;
+    left: 560px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_13{
+    top: 248px;
+    left: 697px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_14{
+    top: 248px;
+    left: 870px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_2{
+    top: 415px;
+    left: 412px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_22{
+    top: 415px;
+    left: 560px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_23{
+    top: 415px;
+    left: 697px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_24{
+    top: 415px;
+    left: 870px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_3{
+    top: 560px;
+    left: 412px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_32{
+    top: 560px;
+    left: 560px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_33{
+    top: 560px;
+    left: 697px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_point_34{
+    top: 560px;
+    left: 870px;
+    /*width: 70px;*/
+    /*height: 40px;*/
+    text-align: center;
+    font-size: 33px;
+    color: #FFFFFF;
+    /*font-weight: bold;*/
+}
+
+#exchange_prize_1{
+    top: 246px;
+    left:986px;
+}
+
+#exchange_prize_2{
+    top: 410px;
+    left:986px;
+}
+
+#exchange_prize_3{
+    top: 558px;
+    left:986px;
+}
+
+#btn_exchange_back {
+    top: 36px;
+    left: 1160px;
+}
+
+#btn_exchange_submit {
+    top: 451px;
+    left: 459px;
+}
+
+#btn_exchange_cancel {
+    top: 451px;
+    left: 663px;
+}
+
+#exchange_tel {
+    top: 365px;
+    left: 611px;
+    width: 320px;
+    font-size: 28px;
+    color: #12206e;
+    /* text-align: center; */
+}
+
+/*游戏失败*/
+
+#btn_lottery_fail {
+    top: 480px;
+    left: 572px;
+}
+
+/*游戏成功*/
+
+#shot_count {
+    top: 340px;
+    left: 710px;
+    font-size: 36px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#finish_clothe{
+    top:248px;
+    left:467px;
+}
+
+#btn_lottery_submit {
+    top: 614px;
+    left: 571px;
+}
+
+/*抽奖成功*/
+#prize_image {
+    top: 187px;
+    left: 742px;
+}
+
+#lottery_tel {
+    top: 450px;
+    left: 614px;
+    font-size: 25px;
+    color: #251505;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+}
+
+#btn_lottery_submit {
+    top: 614px;
+    left: 571px;
+}
+
+#btn_lottery_cancel {
+    top: 524px;
+    left: 666px;
+}
+
+
+/*订购VIP*/
+#btn_order_submit {
+    top: 474px;
+    left: 434px;
+}
+
+#btn_order_cancel {
+    top: 474px;
+    left: 712px;
+}
+
+
+/*倒计时弹窗*/
+#count {
+    top: 275px;
+    left: 692px;
+    color: #ffff;
+    font-size: 46px;
+    font-weight: bold;
+}

@@ -1,0 +1,267 @@
+body {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+/*返回按键*/
+#back {
+    position: absolute;
+    left: 823px;
+    width: 196px;
+    height: 87px;
+    top: 416px;
+}
+
+/*订购按钮*/
+#order_vip {
+    position: absolute;
+    left: 540px;
+    width: 196px;
+    height: 87px;
+    top: 416px;
+}
+
+#second-model {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    z-index: 88;
+    display: none;
+    background: url(../../../../../img/hd/Pay/V000051/second_sure_filter_bg.png) no-repeat center;
+}
+
+#model-container {
+    position: absolute;
+    z-index: 99;
+    background: url(../../../../../img/hd/Pay/V000051/V2/second_model_bg.png) no-repeat center;
+
+}
+
+#filter-bg {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    z-index: 77;
+}
+
+#second-cancle,
+#second-sure {
+    position: absolute;
+    z-index: 100;
+    width: 183px;
+    height: 78px;
+}
+
+#second-sure {
+    top: 477px;
+    left: 509px;
+}
+
+#second-cancle {
+    top: 477px;
+    left: 792px;
+}
+
+#success,
+#failed {
+    position: absolute;
+    display: none;
+    z-index: 101;
+    top: 176px;
+    left: 287px;
+    width: 720px;
+    height: 421px;
+}
+
+#success {
+    background: url(../../../../../img/hd/Common/toast.png) no-repeat center;
+}
+
+#failed {
+    background: url(../../../../../img/hd/Common/toast.png) no-repeat center;
+}
+
+#success-btn,
+#failed-btn {
+    position: absolute;
+    top: 276px;
+    left: 269px;
+    width: 183px;
+    height: 78px;
+}
+
+
+/*订购相关文字说明*/
+#product_price {
+    z-index: 20;
+    position: absolute;
+    left: 691px;
+    top: 309px;
+    width: 300px;
+
+    font-family: Source Han Sans CN;
+    font-size: 24px;
+}
+
+#product_name {
+    /*产品名称*/
+    z-index: 888;
+    position: absolute;
+    left: 250px;
+    top: 40px;
+    width: 300px;
+
+    font-family: Source Han Sans CN;
+    font-size: 24px;
+}
+
+#product_order_type {
+    /*产品订购包月类型*/
+    z-index: 888;
+    position: absolute;
+    left: 250px;
+    top: 60px;
+    width: 300px;
+
+    font-family: Source Han Sans CN;
+    font-size: 24px;
+}
+
+#product_charge {
+    /*产品资费信息*/
+    z-index: 888;
+    position: absolute;
+    left: 250px;
+    top: 80px;
+    width: 500px;
+
+    font-family: Source Han Sans CN;
+    font-size: 24px;
+}
+
+#product_charge_message {
+    /*产品资费说明*/
+    z-index: 888;
+    position: absolute;
+    left: 250px;
+    top: 100px;
+    width: 650px;
+
+    font-family: Source Han Sans CN;
+    font-size: 24px;
+}
+
+#query_order_cancel {
+    /*查询及退订*/
+    z-index: 888;
+    position: absolute;
+    left: 250px;
+    top: 170px;
+    width: 650px;
+
+    font-family: Source Han Sans CN;
+    font-size: 24px;
+}
+
+/*验证码相关*/
+#content {
+    z-index: 888;
+    position: absolute;
+    top: 410px;
+    left: 500px;
+}
+
+#verify_code_label {
+    /* 验证码输入框 */
+    z-index: 888;
+    position: absolute;
+
+    font-family: Source Han Sans CN;
+}
+
+#verify_code_clean {
+    /* 清空验证码按钮 */
+    z-index: 888;
+    position: absolute;
+    left: 470px;
+    top: -10px;
+
+}
+
+#verify_code_system_text {
+    /* 系统随机生成的文本 */
+    z-index: 888;
+    position: absolute;
+    left: 345px;
+    top: 10px;
+    font-family: Source Han Sans CN;
+    font-size: 26px;
+}
+
+#verify_code_input_text {
+    /* 用户输入的文本 */
+    z-index: 888;
+    position: absolute;
+    left: 200px;
+    top: 10px;
+    font-family: Source Han Sans CN;
+    font-size: 26px;
+}
+
+/*弹框提示*/
+#default_focus {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+}
+
+/* 弹出提示文字内容*/
+#toast_message_text {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    font-family: 'Source Han Sans CN';
+    font-size: 35px;
+    color: #2a4e87;
+    top: 260px;
+    left: 550px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* 确定或取消 按钮文字内容*/
+#toast_message_submit {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    font-family: 'Source Han Sans CN';
+    font-size: 35px;
+    color: #ffffff;
+    top: 435px;
+    left: 600px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* 订购结果文字描述 */
+#pay_result_description {
+    background-Repeat: no-repeat;
+    width: 380px;
+    font-family: 'Source Han Sans CN';
+    font-size: 20px;
+    color: #2a4e87;
+    top: 320px;
+    left: 450px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    text-align: center;
+}

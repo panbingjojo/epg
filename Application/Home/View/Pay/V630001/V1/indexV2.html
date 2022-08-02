@@ -1,0 +1,290 @@
+<html>
+<head>
+    <title>青海移动-计费页（多套餐包）2</title>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Common/V1/common.css?t={$time}"/>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Pay/V630001/V1/pay.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            accountId: "{$accountId}",            // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+
+            // 页面参数
+            isSinglePay: 0,                     // 多套餐包
+            orderItems: {$orderItems},
+            isPlaying: "{$isPlaying}",
+            isDebugPay: "{$isDebugPay}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            returnPageName: "{$returnPageName}",
+            authProductInfo: {$authProductInfo},
+            payPackages: {$payPackages},
+            apkInfo: {$apkInfo},
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V630001/V1/payV2.js?t={$time}"></script>
+    <style>
+        .g_waiting_dialog {
+            position: absolute;
+            left: 393px;
+            top: 206px;
+            width: 300px;
+            height: 100px;
+            line-height: 110px;
+            font-size: 21px;
+            z-index: 666;
+            text-align: center;
+            color: #ff6600;
+            -moz-background-size: 66px 67px; /* 老版本的 Firefox */
+            background-size: 66px 67px;
+            background: url("/Public/img/{$platformType}/Common/bg_waiting_dialog.gif") no-repeat;
+        }
+
+        .product {
+            position: relative;
+            margin-top: 15px;
+            height: 120px;
+        }
+
+        .product-title {
+            position: relative;
+            top: 35px;
+            left: 493px;
+            font-size: 60px;
+            font-style: italic;
+            color: #19b2ff;
+            font-weight: bold;
+            width: 130px;
+            text-align: center;
+            /*border: 1px red solid;*/
+        }
+
+        .product-bg {
+            position: absolute;
+            top: 0px;
+        }
+
+        .title-2 {
+            position: relative;
+            top: 0px;
+        }
+
+        .title-2 {
+            position: relative;
+            top: 20px;
+        }
+    </style>
+
+</head>
+
+<body id="body" style="background-image: url('__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/bg.png'); ">
+
+<!--先将弹框背景给缓存下来-->
+<img style="display: none" src="__ROOT__/Public/img/Common/bg_common_dialog.png" alt="">
+
+
+<div style="position: absolute;top: 30px;left: 30px; overflow: hidden;height: 680px;width: 1120px;">
+    <div id="scroll" style="position: absolute;top: 0px;transition: top .5s;">
+
+        <img class="title-1" style="top: 0px" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/title_love_home.png" alt="">
+
+        <div class="product">
+            <img id="btn-product-lv-2" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_lv_2.png" alt="">
+            <div class="product-title">
+                199
+            </div>
+        </div>
+
+        <div class="product">
+            <img id="btn-product-lv-4" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_lv_4.png" alt="">
+            <div class="product-title">
+                360
+            </div>
+        </div>
+
+        <div class="product">
+            <img id="btn-product-lv-1" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_lv_1.png" alt="">
+            <div class="product-title">
+                39
+            </div>
+        </div>
+
+        <img class="title-2" style="top: -6px" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/title_5.png" alt="">
+        <div  class="product" style="margin-top: -10px">
+            <img id="btn-product-lv-3" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_lv_3.png" alt="">
+            <div class="product-title">
+                35
+            </div>
+        </div>
+
+
+        <img class="title-1" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/title_1.png" alt="">
+        <div class="product">
+            <img id="btn-product-1" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_1.png" alt="">
+            <div class="product-title">
+                20
+            </div>
+        </div>
+
+
+
+        <div  id="love-home-59" style="display: none">
+            <img class="title-3" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/title_3.png" alt="">
+            <div  class="product">
+                <img id="btn-product-8" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_8.png" alt="">
+                <div class="product-title">
+                    59
+                </div>
+            </div>
+        </div>
+
+        <img class="title-2" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/title_2.png" alt="">
+        <div  class="product">
+            <img id="btn-product-2" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_2.png" alt="">
+            <div class="product-title">
+                29
+            </div>
+        </div>
+
+
+        <div  class="product">
+            <img id="btn-product-3" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_3.png" alt="">
+            <div class="product-title">
+                8
+            </div>
+        </div>
+        <div  class="product">
+            <img id="btn-product-4" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_4.png" alt="">
+            <div class="product-title">
+                15
+            </div>
+        </div>
+
+        <div  class="product">
+            <img id="btn-product-5" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_5.png" alt="">
+            <div class="product-title">
+                79
+            </div>
+        </div>
+
+        <div  class="product">
+            <img id="btn-product-6" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_6.png" alt="">
+            <div class="product-title">
+                158
+            </div>
+        </div>
+
+
+        <div  class="product">
+            <img id="btn-product-7" class="product-bg" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/pay_7.png" alt="">
+            <div class="product-title">
+                299
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="tab" style="position: absolute;top: 50px;left: 800px">
+    <img id="tab-0" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V1/tab/tab_1_select.png" alt="">
+    <img id="tab-1" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V1/tab/tab_2.png" alt="">
+</div>
+<div>
+    <div id="tab-1-link" style="position: absolute;top: 130px;left: 800px;display: none">
+        <img src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/details-bottom.png" alt="">
+        <div id="computeId" style="display: none;">
+            <div style="position: absolute;top: 50px;left: 30px;">
+                <p id="formula-p" style="font-size: 45px;color: #0d5980">1+2-3+4 =</p>
+            </div>
+            <div id="btn-count">
+                <div style="position: absolute;top: 40px;left: 280px;">
+                    <img src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V1/enter.png" alt="">
+                </div>
+                <div style="position: absolute;top: 50px;left: 285px;width: 140px;text-align: center;overflow: hidden;">
+                    <p id="count-p" style="font-size: 45px;color: #0d5980">_</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="big-fee-tel" style="position: absolute;top: 60px;left: 70px;font-style: italic">
+            <div style="display: inline-block;">
+                <p style="font-size: 28px;color: #fff">付费号码:</p>
+            </div>
+            <div style="display: inline-block;">
+                <p id="tel-p-1" style="font-size: 28px;color: #fff">188****8888</p>
+            </div>
+        </div>
+
+
+        <div >
+            <div style="position: absolute;top: 160px;left: 40px;">
+                <img id="btn-click" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/confirm.png" alt="">
+            </div>
+        </div>
+        <div >
+            <div style="position: absolute;top: 160px;left: 236px;">
+                <img id="btn-back" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/cancel.png" alt="">
+            </div>
+
+        </div>
+
+        <div>
+
+        </div>
+<!--        <div id="fee-tel" style="position: absolute;top: 390px;left: 20px;">-->
+<!--            <div style="display: inline-block;">-->
+<!--                <p style="font-size: 15px;color: #0d5980">付费号码：</p>-->
+<!--            </div>-->
+<!--            <div style="display: inline-block;">-->
+<!--                <p id="tel-p" style="font-size: 15px;color: #0d5980">188****8888</p>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+
+    <div id="tab-0-link" style="position: absolute;top: 130px;left: 800px;">
+<!--        <img src="__ROOT__/Public/img/Pay/V630001/V1/details-bottom.png" style="position: absolute;top: 0px;" alt="">-->
+        <img id="code-box" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V1/tab/code_box.png"/>
+        <img id="code" src="" style="position: absolute;top: 40px;left: 80px;width: 280px;height: 280px"/>
+    </div>
+    <div  style="position: absolute;top: 530px;left: 800px;">
+        <img id="btn-agreement" src="__ROOT__/Public/img/{$platformType}/Pay/V630001/V2/agreement.png" alt="">
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        LMEPG.KeyEventManager.delKeyEvent([KEY_BACK, KEY_BACK_640, KEY_BACK_ANDROID]);
+        LMEPG.KeyEventManager.addKeyEvent({
+            KEY_BACK: "onBack()",
+            KEY_BACK_640: "onBack()",
+            KEY_BACK_ANDROID: "onBack()"
+        });
+        Pay.init();
+    };
+</script>
+
+
+</html>

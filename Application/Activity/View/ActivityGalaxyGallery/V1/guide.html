@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>《天河画廊，星夜梦幻之旅》联通-主页-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityGalaxyGallery/V1/guide.css?t={$time}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/keypad.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Common/LMActivity.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityGalaxyGallery/guide.js?t={$time}"></script>
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            nPrizeIdx: 0,
+            lmcid: "{$carrierId}",
+            ROOT: "__ROOT__",
+            platformType: "{$platformType}",
+            activityInfo:  LMEPG.Func.checkParamsNull({$activityInfo}),                         // 活动信息
+            activityInfo:  LMEPG.Func.checkParamsNull({$activityInfo}),                         // 活动信息
+            leftTimes: "{$leftTimes}", // 剩余次数
+            remainTimes: "{$remainTimes}", //抽奖剩余次数
+            answeredTimes: LMEPG.Func.checkParamsNull({$leftTimes}).answeredTimes,              // 今日已清理次数
+            prizeConfigItems: LMEPG.Func.checkParamsNull({$prizeConfigItems}), // 兑换奖品配置信息
+            exchangeRecords: LMEPG.Func.checkParamsNull({$exchangeRecords}),   // 已兑换奖品信息
+            userTel: "{$userTel}",                                                              // 中奖电话
+            userAccount: "{$userAccount}",
+            myPrizeList: LMEPG.Func.checkParamsNull({$myPrizeList}),                          // 我的中奖记录
+            AllUserPrizeLis: LMEPG.Func.checkParamsNull({$AllUserPrizeLis}),                  // 所用中奖信息
+            prize_idx: LMEPG.Func.checkParamsNull({$prize_idx}),
+            imagePathPrefix: "__ROOT__/Public/img/{$platformType}/Activity/ActivityGalaxyGallery/",
+            score: "{$score}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: LMEPG.Func.checkParamsNull({$valueCountdown}),
+            keyArrive: "{$keyArrive}",
+            valueArrive: LMEPG.Func.checkParamsNull({$valueArrive}),
+            extraTimes:  "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}"
+        };
+        window.onload = function () {
+            ActivityGalaxyGallery.init();
+        };
+    </script>
+</head>
+<body id="body">
+<div id="debug"></div>
+<!--背景图片-->
+<img id="background" src="">
+ <!--返回-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityGalaxyGallery/V1/btn_back.png" id="btn-back" alt="">
+<!--活动规则-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityGalaxyGallery/V1/btn_rules.png" id="btn-rules" alt="">
+<!--中奖名单-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityGalaxyGallery/V1/btn_winner_list.png" id="btn-winner-list" alt="">
+<!--兑换奖品-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityGalaxyGallery/V1/btn_exchange.png" id="btn-exchange" alt="">
+<!--开始游戏-->
+<img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityGalaxyGallery/V1/btn_start.png" id="btn-start" alt="">
+<!--游戏次数-->
+<div id="activity-times"></div>
+
+<!--游戏容器-->
+<div id="game-wrap">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityGalaxyGallery/V1/bg_vega.png" id="vega" alt="">
+    <img src="__ROOT__/Public/img/{$platformType}/Activity/ActivityGalaxyGallery/V1/bg_cowherd.png" id="cowherd" alt="">
+</div>
+<div id="remain-times"></div>
+
+</body>
+</html>

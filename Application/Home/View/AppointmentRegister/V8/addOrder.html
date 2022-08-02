@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加预约人信息</title>
+
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V8/addOrder.css?t={$time}"/>
+    <script type="text/javascript">
+        var RenderParam = {
+            hospitalName:'{$hospitalName}',
+            docName:'{$docName}',
+            docTime:'{$docTime}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V8/addOrder.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div style="padding: 60px 50px 34px 50px;">
+        <div class="content">
+            <div class="info"id="hospital-name"></div>
+            <div class="info" id="name"></div>
+            <div class="info" id="time"></div>
+            <div class="line"></div>
+
+            <div class="people-item" id="people-item"></div>
+
+            <div style="display: none" id="add-area">
+                <div class="add" id="add">添加</div>
+                <div class="no-tips">暂无就诊人信息，请进行添加</div>
+            </div>
+
+
+            <div class="next" id="next">下一步</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

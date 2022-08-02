@@ -1,0 +1,37 @@
+/*背景图*/
+.sd-background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+    background-repeat: no-repeat;
+}
+
+#sd_btn_container {
+    position: absolute;
+}
+
+#btn_index_1{
+    position: absolute;
+    left: 450px;
+    top: 96px;
+}
+
+#btn_index_2{
+    position: absolute;
+    left: 846px;
+    top: 96px;
+}
+
+#btn_index_3{
+    position: absolute;
+    left: 450px;
+    top: 375px;
+}
+
+#btn_index_4{
+    position: absolute;
+    left: 846px;
+    top: 375px;
+}

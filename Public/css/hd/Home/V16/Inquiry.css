@@ -1,0 +1,308 @@
+
+
+#top-action-content-icons {
+    position: absolute;
+    right: 30px;
+    line-height: 78px;
+}
+
+
+#top-action-content-icons img.focus {
+}
+
+#nav-content-tabs {
+    position: absolute;
+    top: 76px;
+    left: 133px;
+}
+
+#nav-content-tabs img {
+    margin-right: 8px;
+    /* width: 178px; */
+    /* height: 62px; */
+}
+
+#nav-content-tabs img.focus {
+    /* width: 152px; */
+    /* height: 62px; */
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/*医生item*/
+#doctor-container {
+    position: relative;
+    top: 150px;
+    left: 93px;
+}
+
+#doctor-container .doctor-item {
+    width: 251px;
+    height: 488px;
+    float: left;
+    margin-right: 8px;
+}
+
+.doctor-item ul {
+    width: 235px;
+    height: 420px;
+    padding-top: 15px;
+    background-position: center;
+    background-image: url(../../../../img/hd/Home/V16/Home/Inquiry/doctor_item_bg.png);
+    /* padding: 15px; */
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.doctor-item ul li {
+    color: #fff;
+    text-align: center;
+    line-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.doctor-item li.doctor-pic {
+    margin-top: 10px;
+}
+
+.doctor-item .doctor-pic img {
+    width: 208px;
+    height: 208px;
+    border-radius: 50%;
+}
+
+.doctor-item li.doctor-status {
+    margin-top: -20px;
+}
+
+.doctor-item li.doctor-title {
+    margin-top: 5px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.doctor-item li.doctor-department,
+.doctor-item .doctor-Attending {
+    font-size: 24px;
+}
+
+.doctor-item li.doctor-case {
+    font-size: 20px;
+    color: #b2deff;
+}
+
+.arrow {
+    position: absolute;
+    top: 238px;
+}
+
+#prev-arrow {
+    left: 0;
+}
+
+#next-arrow {
+    left: 1150px;
+}
+
+/*选中科室*/
+#department-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background-size: 100%;
+    display: none;
+    background-image: url(../../../../img/hd/Home/V16/Home/Inquiry/dep_modal.png);
+}
+#department-wrap{
+    position: absolute;
+    top: 145px;
+    left: 40px;
+}
+#department-wrap div.department {
+    width: 153px;
+    height: 64px;
+    color: #9b3b51;
+    font-size: 24px;
+    background-color: transparent;
+    background-image: url(../../../../img/hd/Home/V16/Home/Inquiry/department.png);
+    border: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    padding: 18px 5px 0 5px;
+    margin: 2px 18px;
+    text-align: center;
+}
+#department-wrap div.department marquee{margin-right: 5px;}
+#department-container p {
+    font-size: 36px;
+    font-weight: bold;
+    position: relative;
+    top: 38px;
+    text-align: center;
+    color: #000;
+}
+.dep-arrow{
+    position: absolute;
+    left: 607px;
+}
+#up-arrow{
+    top: 90px;
+}
+#down-arrow{
+    top: 654px;
+}
+
+/*呼叫等待医生页面*/
+.callDoctor {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.callDoctor #doctor-pic {
+    position: absolute;
+    top: 255px;
+    left: 852px;
+    width: 208px;
+    height: 208px;
+}
+
+.callDoctor .telephone-icon {
+    position: absolute;
+    top: 299px;
+    left: 224px;
+}
+
+.callDoctor .waiting-point {
+    position: absolute;
+    top: 333px;
+    left: 525px;
+}
+
+.callDoctor .waiting-text {
+    position: absolute;
+    top: 391px;
+    left: 545px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.callDoctor .notice-text {
+    position: absolute;
+    top: 606px;
+    left: 151px;
+    color: #fff;
+    font-size: 20px;
+    text-align: left;
+}
+
+#page-num {
+    position: absolute;
+    top: 616px;
+    left: 1120px;
+    color: #b2deff;
+    font-size: 24px;
+}
+#case-help-wrap{
+    position: absolute;
+    top: -156px;
+    left: -40px;
+}
+#case-help-wrap img{
+    position: absolute;
+    visibility: hidden;
+}
+
+#dept-name {
+    position: absolute;
+    top: 10px;
+    left: 55px;
+    font-size: 22px;
+    color: #8b3b51;
+    width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    /* font-weight: bold; */
+}
+.dep-p2p-btn div#dept-name.focus{
+    color:#fff;
+}
+
+/* tab咨询医生 */
+
+.dep-p2p-btn{
+    position: absolute;
+    top: 0;
+    left: 93px;
+    width: 850px;
+    vertical-align: middle;
+}
+.dep-p2p-btn img,
+.dep-p2p-btn div{
+    display:inline-block;
+    vertical-align: middle;
+}
+.dep-p2p-btn div#dept-name{
+    position: static;
+    font-size: 18px;
+    font-family: "Source Han Sans CN";
+    width: 210px;
+    height: 46px;
+    line-height: 44px;
+    padding-left: 177px;
+    padding-right: 20px;
+    margin-right: 12px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    color: #000;
+    font-weight: bold;
+    background-image: url(../../../../img/hd/Home/V16/Home/Inquiry/dept_name.png);
+}
+#select-doctor{
+
+}
+#p2p-just{}
+div#doctor-container{
+    width: 1080px;
+    top: 50px;
+}
+div.doctor-item ul li{
+    color:#000;
+}
+div.doctor-item li.doctor-case{
+    color: #FF9800;
+}
+
+div#department-container{
+
+    top: -156px;
+
+    left: -40px;
+}
+
+#page-num.home-page{
+    position: absolute;
+    top: 488px;
+    left: 1120px;
+    color: #000;
+    font-size: 24px;
+}
+

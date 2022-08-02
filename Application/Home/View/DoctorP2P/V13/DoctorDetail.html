@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>医生详情-V13</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/DoctorP2P/V13/DoctorDetail.css?t={$time}"/>
+    <!-- 全局变量 -->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+            cwsWXServerUrl: '{$cwsWXServerUrl}', // 小程序图片fs地址
+            isRunOnAndroid: '{$isRunOnAndroid}', // 是否站点运行在APK上
+
+            PLUGIN_APP_NAME: '{$pluginVideoName}',
+            doctorId: '{$doctorIndex}',
+            cwsHlwyyUrl: "{$cwsHlwyyUrl}",
+            skin: {$skin},      // 用户自定义背景
+            isVip: '{$isVip}',
+            accountId: '{$accountId}', // 用户账号
+            teletextInquiryUrl: '{$teletextInquiryUrl}', // 图文问诊地址
+            isShowCollect: '{$isShowCollect}',           // 是否显示收藏按钮
+            isShowWeChatType: '{$isShowWeChatType}',     // 是否微信问诊方式
+            sDemoId: '{$sDemoId}', // 新疆社区医院医院访问标识
+            doctorIndex: '{$doctorIndex}',// 医生索引
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUtils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/DoctorP2P/V13/DoctorDetail2.js?t={$time}"></script>
+    <if condition="$carrierId eq 410092"> <!-- 河南电信依赖第三方插件实现问诊插件的下载和安装 -->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <if condition="$carrierId eq 320001"> <!-- 江苏移动由于局方对接计费技术限制，问医触发的计费页在问医详情页调用 -->
+        <script type="text/javascript" src="__ROOT__/Public/js/Pay/V320001/pay.js?t={$time}"></script>
+    </if>
+
+</head>
+<body>
+<div id="debug"></div>
+
+<!-- 医生信息 -->
+<ul class="doctor-info">
+    <!-- 医生头像 -->
+    <li id="doctor-pic" ></li>
+    <!-- 医生推荐状态 -->
+    <li id="doctor-recommend" ></li>
+    <!-- 医生在线状态 -->
+    <li class="doctor-status"><img id="doctor-status" src="__ROOT__/Public/img/hd/DoctorP2P/V13/on_line.png" alt="医生在线状态"></li>
+    <!-- 医生名字 -->
+    <li id="doctor-name"></li>
+    <!-- 医生所属科室 -->
+    <li id="doctor-department"></li>
+    <!-- 医生职称 -->
+    <li id="doctor-job-title"></li>
+    <!-- 医生问诊量（接诊次数） -->
+    <li id="doctor-reception-times"></li>
+    <!-- 医生支持的问诊方式（电视视频，电视电话），医生详情信息通过接口异步获取，支持方式动态创建 -->
+    <li id="inquiry-wrap-1"></li>
+    <!-- 医生支持的问诊方式（微信图文，微信视频），医生详情信息通过接口异步获取，支持方式动态创建 -->
+    <li id="inquiry-wrap-2"></li>
+    <eq name="isShowCollect" value="1"> <!-- 判断后台需要显示收藏按钮 -->
+        <!-- 收藏按钮 -->
+        <li class="doctor-collect">
+            <img id="collect" src="__ROOT__/Public/img/hd/DoctorP2P/V13/collect.png" alt=""/>
+        </li>
+    </eq>
+</ul>
+
+<!-- 医生简介 -->
+<div id="doctor-intro">
+    <!-- 简介信息 -->
+    <div class="auto-overlay">
+        <div id="intro-wrap"></div>
+    </div>
+
+    <!-- 滚动条 -->
+    <div id="scroll-wrap">
+        <p id="scroll-bar"></p>
+    </div>
+</div>
+
+<div id="ask-left-time" style="display: none"></div>
+
+
+<script type="text/javascript">
+
+    /**
+     * 河南电信EPG监听遥控器返回逻辑
+     */
+    function setCallFunction410092() {
+        if (RenderParam.carrierId === "410092") {
+            try {
+                HybirdCallBackInterface.setCallFunction(function (param) {
+                    if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                        LMEPG.Intent.back();
+                    }
+                });
+            } catch (e) {
+                LMEPG.UI.logPanel.show("e");
+            }
+        }
+    }
+
+    /**
+     * DOM文档加载完成时
+     */
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+        // 河南电信EPG监听遥控器返回逻辑
+        setCallFunction410092();
+        // 业务逻辑初始化
+        doctorDetailController.init();
+    };
+</script>
+</body>
+</html>

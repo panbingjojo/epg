@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>弹窗</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/V10/general.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            accountId: "{$accountId}",          // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+
+</head>
+<body>
+<img class="body-bg" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_guide_2.png"/>
+<script type="text/javascript">
+    var buttons = [];
+    var payBackUrl = "{$payBackUrl}";
+    var orderId = "{$orderId}";
+    var Pay = {
+        //提交用户电话号码
+        postTel: function (payBackUrl, orderId) {
+            LMEPG.UI.commonEditDialog.show("尊敬的VIP用户，请留下手机号，工作人员将在3个工作日内与您取得联系并确认赠品发放方式。", ["确&nbsp;&nbsp;定", "取&nbsp;&nbsp;消"], function (btnIndex, inputValue) {
+                if (btnIndex === 0) {
+                    if (LMEPG.Func.isTelPhoneMatched(inputValue)) {
+                        var reqJsonObj = {
+                            "tel": inputValue,
+                            "orderId": orderId
+                        };
+                        LMEPG.ajax.postAPI("User/orderSuccessToAddTel", reqJsonObj, function (data) {
+                            var tempDataObj = data instanceof Object ? data : JSON.parse(data);
+                            if (tempDataObj.result == "0") {
+                                LMEPG.UI.commonEditDialog.dismiss();
+                                LMEPG.UI.showToast("提交成功");
+                                window.location.href = payBackUrl;
+                            } else {
+                                LMEPG.UI.showToast("提交失败，请重新提交");
+                            }
+                        });
+                        return true;
+                    } else {
+                        LMEPG.UI.showToast("请输入正确的电话号码");
+                        return true;
+                    }
+                } else {
+                    window.location.href = payBackUrl;
+                }
+            }, ['联系方式：', "", '在此输入手机号码...', 'tel']);
+        },
+    };
+    window.onload = function () {
+        LMEPG.ButtonManager.init("", buttons);
+        //表示支付成功之后的支付结果显示界面的确认按钮,点击以后在返回
+        Pay.postTel(payBackUrl, orderId);
+    }
+</script>
+</body>
+</html>

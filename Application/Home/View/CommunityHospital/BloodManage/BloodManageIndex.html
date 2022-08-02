@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>社区医院-血压管理</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/CommunityHospital/BloodManage/BloodManageIndex.css">
+
+    <script type="text/javascript">
+        var RenderParam = {
+            ROOT : '__ROOT__',
+            memberId : "{$member_id}",
+            name : "{$name}",
+            age : "{$age}",
+            sex : "{$sex}",
+        };
+    </script>
+</head>
+<body>
+<p class="title" id="title">血压管理</p>
+<div id="container">
+
+    <img id="ask-doctor" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_ask_doctor.png" alt="">
+    <img id="blood-data-up" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_blood_data_up.png" alt="">
+
+    <image id="member-photo" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/pic_default.png" alt=""></image>
+    <div id="member-introduce">
+        <div id="member-name"></div>
+        <div id="member-age"></div>
+        <div id="member-sex"></div>
+    </div>
+    <div id="health-advice">
+
+        <p id="health-advice-title">健康建议</p>
+        <p id="health-advice-content">
+            1、高血压患者首先要控制，提倡吃复合糖类、如淀粉、玉米、少吃葡萄糖、果糖及蔗糖。<br>
+            2、限制脂肪的摄入。烹饪时，选用植物油，可多吃海鱼。<br>
+            3、适量摄入蛋白质。高血压病人每日蛋白质的量为每公斤体重1g为宜。
+        </p>
+    </div>
+
+    <img id="week-detail" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_week_detail.png" alt="">
+    <img id="history-data" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_history_data_b.png" alt="">
+    <div id="tip">
+        <img id="red-point" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/red.png" alt="">
+        <p id="height-text">收缩压</p>
+        <img id="yellow-point" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/yellow.png" alt="">
+        <p id="low-text">舒张压</p>
+    </div>
+    <div id="bg-content">
+        <!--本周情况-->
+        <div id="week-detail-content" >
+            <!--周一-->
+            <img id="height-point-1" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/red.png" alt="">
+            <img id="low-point-1"  class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/yellow.png" alt="">
+            <!--周二-->
+            <img id="height-point-2" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/red.png" alt="">
+            <img id="low-point-2" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/yellow.png" alt="">
+            <!--周三-->
+            <img id="height-point-3" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/red.png" alt="">
+            <img id="low-point-3" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/yellow.png" alt="">
+            <!--周四-->
+            <img id="height-point-4" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/red.png" alt="">
+            <img id="low-point-4" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/yellow.png" alt="">
+            <!--周五-->
+            <img id="height-point-5" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/red.png" alt="">
+            <img id="low-point-5" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/yellow.png" alt="">
+            <!--周六-->
+            <img id="height-point-6" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/red.png" alt="">
+            <img id="low-point-6" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/yellow.png" alt="">
+            <!--周日-->
+            <img id="height-point-0" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/red.png" alt="">
+            <img id="low-point-0" class="modal" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/yellow.png" alt="">
+
+        </div>
+
+        <!--历史数据-->
+        <div id="history-data-content" >
+            <table>
+                <thead>
+                    <th>上传时间</th>
+                    <th>检测数值</th>
+                    <th>检测结果</th>
+                </thead>
+                <tbody id="history-data-form">
+                    <!--js渲染-->
+                </tbody>
+            </table>
+            <div id="line"><hr /></div>
+            <img id="his-prev" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_prev.png" alt="">
+            <img id="his-next" src="__ROOT__/Public/img/hd/CommunityHospital/BloodManage/btn_next.png" alt="">
+        </div>
+        <div id="page-num"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/CommunityHospital/BloodManage/BloodManage.js?t={$time}"></script>
+</body>
+
+<script>
+    window.onload = function () {
+        BloodManage.init();
+    }
+</script>
+</html>
+

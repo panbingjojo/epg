@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    color: #fff;
+    overflow: hidden;
+}
+
+#player-container {
+}
+
+p#video-title,
+div#play-time,
+div.bottom-action-wrap {
+    position: absolute;
+    height: 92px;
+    top: 0;
+}
+
+div.bottom-action-wrap {
+    left: 463px;
+    font-size: 18px;
+}
+
+div.bottom-action-wrap div {
+    float: left;
+}
+
+div.bottom-action-wrap img {
+    width: 62px;
+    height: 62px;
+    padding-top: 10px;
+    margin-bottom: -10px;
+}
+
+
+/*中间弹出层*/
+#center-navigation {
+    position: absolute;
+    top: 160px;
+    left: 277px;
+    width: 726px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, .4);
+    border-radius: 10px;
+    /*background-image: url();*/
+    visibility: hidden;
+    font-size: 24px;
+    color: #fff;
+}
+
+div.center-action-wrap {
+    position: absolute;
+    top: 123px;
+    left: 172px;
+}
+
+div.center-action-wrap div {
+    float: left;
+    margin-left: 25px;
+    text-align: center;
+}
+
+div.center-action-wrap img {
+    width: 92px;
+    height: 92px;
+}
+
+p.center-tip {
+    position: absolute;
+    top: 330px;
+    left: 231px;
+}
+
+p.center-tip span {
+    color: gold;
+}
+
+#tip-press-sure-pay img {
+    width: 100px;
+    height: 48px;
+    vertical-align: middle;
+}
+
+/*推荐视频*/
+#recommend-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background-color: rgba(0, 0, 0, .4);
+    /*background-image: url();*/
+    visibility: hidden;
+    font-size: 24px;
+    color: #fff;
+}
+
+#recommend-page p.title-text {
+    position: absolute;
+    top: 155px;
+    width: 1280px;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+}
+
+#recommend-list {
+    position: absolute;
+    top: 225px;
+    left: 235px;
+    font-size: 24px;
+}
+
+#recommend-list div {
+    width: 260px;
+    height: 160px;
+    padding: 5px;
+    float: left;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+#recommend-list div.focus {
+    background-image: url(../../../../img/hd/Player/V13/video_f.png);
+}
+
+#recommend-list img {
+    width: 250px;
+    height: 160px;
+    border-radius: 10px;
+    /* text-align: center; */
+}
+
+#recommend-list p {
+    position: absolute;
+    bottom: 9px;
+    width: 285px;
+    height: 32px;
+    font-size: 24px;
+    overflow: hidden;
+    line-height: 32px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 0 0 10px 10px;
+    background-image: url(../../../../img/hd/Player/V13/count_bg.png);
+    background-size: 100% 100%;
+}
+
+.btn-action-wrap {
+    position: absolute;
+    top: 477px;
+    left: 337.5px;
+}
+
+.btn-action-wrap div {
+    width: 118px;
+    height: 118px;
+    float: left;
+    text-align: center;
+    margin-right: 47px;
+}
+
+.btn-action-wrap img {
+    width: 118px;
+    height: 118px;
+}

@@ -1,0 +1,75 @@
+#container{
+    height: 100%;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.head{
+    padding: 60px 50px 0 50px;
+    position: relative;
+}
+.hospital-pic{
+    width: 280px;
+    height: 180px;
+    background: #FFFFFF;
+    float: left;
+}
+
+.hospital-info{
+    float: left;
+    padding-left: 25px;
+}
+
+.hospital-name{
+    font-size: 34px;
+
+    font-weight: bold;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+
+.hospital-address{
+    font-size: 30px;
+
+    font-weight: 400;
+    line-height: 51px;
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+.to-btn{
+    width: 194px;
+    height: 74px;
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    right: 50px;
+    text-align: center;
+    background: url("../../../../img/hd/AppointmentRegister/V8/choose_oval.png");
+    background-size: 100% 100%;
+    font-size: 26px;
+
+    font-weight: bold;
+    line-height: 70px;
+}
+
+.tips{
+    font-size: 26px;
+
+    font-weight: 400;
+    line-height: 44px;
+    color: #FFFFFF;
+    padding: 20px 50px;
+}
+
+.introduce{
+    margin: 0 50px;
+    background: rgba(0,0,0,0.2);
+    height: 370px;
+    overflow-y: auto;
+    font-size: 30px;
+
+    font-weight: 400;
+    line-height: 44px;
+    color: #FFFFFF;
+    text-indent:2em
+}

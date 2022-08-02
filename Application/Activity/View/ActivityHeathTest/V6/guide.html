@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康测一测（中国联通EPG-山东省独立活动）</title>
+    <link rel="stylesheet" type="text/css"
+          href="/Public/css/{$platformType}/activity/activityHeathTest/V6/guide.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityHeathTest/V1/dialog.js?t={$time}"></script>
+</head>
+<body>
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/icon_modify.png" id="icon-modify" alt="">
+<!--动效图片-->
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/title_bg.png" id="title-bg">
+
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/activity_title.png" id="activity-title" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/activity_subtitle.png" id="activity-subtitle" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/activity_back.png" id="activity-back" alt="">
+<!--测试项-->
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/test_health.png" id="test-health" class="test-icon" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/test_disease.png" id="test-disease" class="test-icon" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/test_weightLoss.png" id="test-weightLoss" class="test-icon" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/test_cosmetology.png" id="test-cosmetology" class="test-icon" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/test_diet.png" id="test-diet" class="test-icon" alt="">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/test_symptom.png" id="test-symptom" class="test-icon" alt="">
+<script>
+
+	// 获取当前题库
+	var answersType = '{$answersType}'; // 题库类型：1-趣味小常识 2-心理测试 3-亚健康测试
+	var answersSubType = '{$answersSubType}'; // 题目具体的类型 type 1-7
+	var answersSubjectDesc = '{$answersSubjectDesc}';  // 题目主题描述-即大标题下内容
+	var testResultRefer = null; // 当前题目评测结果参考
+	var answers = []; // 题库数组
+	var index = 0; // 当前显示的题库索引号
+	var answeredHistory = []; // 答题历史记录 [key: 当前题目编号index， value: 答题选择的答案]
+	var answersCount = 0; // 题目数量
+	var answersStr = '{$answers}';
+
+	window.onload = function() {
+		moveToRight();
+	};
+
+	/**
+	 * 动效
+	 */
+	var homeFocusId = '{$homeFocusId}' == '' ? 'test-health' : '{$homeFocusId}';
+
+	function moveToRight() {
+		var n = -970;
+		var titleBg = G('title-bg');
+
+		(function looper() {
+			n += 10;
+			titleBg.style.left = n + 'px';
+			if (n != -570) {
+				setTimeout(looper, 1000 / 60);
+			}
+
+			LMEPG.ButtonManager.init([homeFocusId], buttons, '', true);
+		}());
+	}
+
+	// 页面跳转
+	var jump = {
+		getCurrentPage: function() {
+			var objCurrent = LMEPG.Intent.createIntent('activity-common-guide');
+			objCurrent.setParam('userId', '{$userId}');
+			objCurrent.setParam('inner', '{$inner}');
+			return objCurrent;
+		},
+		healthTestList: function(btn) {
+			var objCurrent = jump.getCurrentPage();
+			objCurrent.setParam('homeFocusId', btn.id); // 返回焦点保持
+
+			var objActivityHome = LMEPG.Intent.createIntent('healthTestList');
+			objActivityHome.setParam('userId', '{$userId}');
+			objActivityHome.setParam('topicIndex', btn.value);
+
+			LMEPG.Intent.jump(objActivityHome, objCurrent);
+		},
+	};
+
+	function onBack() {
+		LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+	}
+
+	var ftp = '/Public/img/hd/Activity/activityHeathTest/V6/';
+	var buttons = [
+		{
+			id: 'activity-back',
+			name: '返回',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusUp: '',
+			nextFocusDown: 'test-health',
+			nextFocusRight: '',
+			backgroundImage: ftp + 'activity_back.png',
+			focusImage: ftp + 'activity_back_f.gif',
+			click: '',
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'test-health',
+			name: '健康测试',
+			value: '0',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusUp: 'activity-back',
+			nextFocusDown: 'test-cosmetology',
+			nextFocusRight: 'test-disease',
+			backgroundImage: ftp + 'test_health.png',
+			focusImage: ftp + 'test_health_f.gif',
+			click: jump.healthTestList,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'test-disease',
+			name: '疾病测试',
+			value: '1',
+			type: 'img',
+			nextFocusLeft: 'test-health',
+			nextFocusUp: 'activity-back',
+			nextFocusDown: 'test-diet',
+			nextFocusRight: 'test-weightLoss',
+			backgroundImage: ftp + 'test_disease.png',
+			focusImage: ftp + 'test_disease_f.gif',
+			click: jump.healthTestList,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'test-weightLoss',
+			name: '减肥测试',
+			value: '2',
+			type: 'img',
+			nextFocusLeft: 'test-disease',
+			nextFocusUp: 'activity-back',
+			nextFocusDown: 'test-symptom',
+			nextFocusRight: 'test-cosmetology',
+			backgroundImage: ftp + 'test_weightLoss.png',
+			focusImage: ftp + 'test_weightLoss_f.gif',
+			click: jump.healthTestList,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'test-cosmetology',
+			name: '美容测试',
+			value: '3',
+			type: 'img',
+			nextFocusLeft: 'test-weightLoss',
+			nextFocusUp: 'test-health',
+			nextFocusDown: '',
+			nextFocusRight: 'test-diet',
+			backgroundImage: ftp + 'test_cosmetology.png',
+			focusImage: ftp + 'test_cosmetology_f.gif',
+			click: jump.healthTestList,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'test-diet',
+			name: '饮食测试',
+			value: '4',
+			type: 'img',
+			nextFocusLeft: 'test-cosmetology',
+			nextFocusUp: 'test-disease',
+			nextFocusDown: '',
+			nextFocusRight: 'test-symptom',
+			backgroundImage: ftp + 'test_diet.png',
+			focusImage: ftp + 'test_diet_f.gif',
+			click: jump.healthTestList,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'test-symptom',
+			name: '症状测试',
+			value: '5',
+			type: 'img',
+			nextFocusLeft: 'test-diet',
+			nextFocusUp: 'test-weightLoss',
+			nextFocusDown: '',
+			nextFocusRight: '',
+			backgroundImage: ftp + 'test_symptom.png',
+			focusImage: ftp + 'test_symptom_f.gif',
+			click: jump.healthTestList,
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}];
+</script>
+</body>
+</html>

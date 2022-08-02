@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康测一测（中国联通EPG-山东省独立活动）</title>
+    <link rel="stylesheet" type="text/css"
+          href="/Public/css/{$platformType}/activity/activityHeathTest/V6/healthTestList.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Activity/ActivityHeathTest/V1/dialog.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug">.</div>
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/icon_modify.png" id="icon-modify">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/title_bg.png" id="title-bg">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/activity_back.png" id="activity-back">
+<div id="icon-plate">
+    <p id="page-index">00</p>
+</div>
+<div id="topicList-container">
+
+</div>
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/prev.png" id="prev-arrow" class="arrow">
+<img src="__ROOT__/Public/img/hd/Activity/activityHeathTest/V6/next.png" id="next-arrow" class="arrow">
+<script>
+	// 获取当前题库
+	var answersType = '{$answersType}'; // 题库类型：1-趣味小常识 2-心理测试 3-亚健康测试
+	var answersSubType = '{$answersSubType}'; // 题目具体的类型 type 1-7
+	var answersSubjectDesc = '{$answersSubjectDesc}';  // 题目主题描述-即大标题下内容
+	var testResultRefer = null; // 当前题目评测结果参考
+	var topic = JSON.parse('{$topic}');
+
+	var keepFocusId = '{$focusedId}' == '' ? 'test-0' : '{$focusedId}';
+	var ftp = g_appRootPath+'/Public/img/hd/Activity/activityHeathTest/V6/';
+	window.onload = function() {
+
+		$.looperDataToCurrentPage();
+		LMEPG.ButtonManager.init([keepFocusId], buttons, '', true);
+	};
+
+	var guidePageSelectItem = {$topicIndex};
+	var currentPageData = topic.topic;
+	/**
+	 * 渲染测一测活动2级话题图标
+	 */
+	(function() {
+		function RenderTopic() {
+			console.log(guidePageSelectItem);
+			var page = {$page};
+			var maxPage = Math.floor(currentPageData.length / 9);
+			var prevPageId = [0, 3, 6];
+			var nextPageId = [2, 5, 8];
+			return {
+				looperDataToCurrentPage: function() {
+					var htm = '';
+					var cutData = currentPageData.slice(page * 9, page * 9 + 9);
+					cutData.forEach(function(item, index) {
+						htm += '<div id=test-' + index + '>';
+						htm += '<img src=' + ftp + 'tab' + guidePageSelectItem + '/topic-' + (page * 9 + index) +
+							'.png>';
+						htm += '<p>' + item;
+						htm += '</div>';
+					});
+					$.toggleArrow();
+					$.setButtons(cutData);
+					G('topicList-container').innerHTML = htm;
+					G('page-index').innerText = (page + 1) + ' ' + (maxPage + 1);
+					/*
+                    * 动态生成虚拟按钮数组，必须初始化之后才能拿到自定义对象值；
+                    * */
+					LMEPG.ButtonManager.init(['debug'], buttons, '', true);
+				},
+				setButtons: function(cutData) {
+					buttons.splice(2);
+					cutData.forEach(function(t, e) {
+						buttons.push({
+							id: 'test-' + e,
+							name: '话题' + e,
+							value: currentPageData.indexOf(t),
+							type: '',
+							page: page,
+							nextFocusLeft: 'test-' + (e - 1),
+							nextFocusUp: e < 3 ? 'activity-back' : 'test-' + (e - 3),
+							nextFocusDown: 'test-' + (e + 3),
+							nextFocusRight: 'test-' + (e + 1),
+							backgroundImage: ftp + 'tab' + guidePageSelectItem + 'topic-' + e + '.png',
+							click: jump.index,
+							focusChange: topicItemOnFocus,
+							beforeMoveChange: $.turnPage,
+							moveChange: '',
+						});
+					});
+				},
+				turnPage: function(key, btn) {
+
+					var cutId = btn.id.slice(5);
+					switch (key) {
+						case 'left':
+							prevPageId.filter(judgeCutId).length && page != 0 && prevPage();
+							break;
+						case 'right':
+							nextPageId.filter(judgeCutId).length && page != maxPage && nextPage();
+							break;
+						case 'down':
+							// 如果当前ID下移没有对象则移动到最后的那个对象上
+							if (!G('test-' + (+cutId + 3))) {
+								LMEPG.ButtonManager.getButtonById(btn.id).nextFocusDown = 'test-' +
+									(currentPageData.length - 1 - page * 9);
+							}
+							break;
+					}
+
+					function judgeCutId(t) {
+						return t == cutId;
+					}
+
+					function prevPage() {
+						page = Math.max(0, page -= 1);
+						$.looperDataToCurrentPage();
+					}
+
+					function nextPage() {
+						page = Math.min(maxPage, page += 1);
+						$.looperDataToCurrentPage();
+					}
+				},
+				toggleArrow: function() {
+					S('prev-arrow');
+					S('next-arrow');
+					page == 0 && H('prev-arrow');
+					page == maxPage && H('next-arrow');
+				},
+			};
+		}
+
+		window.$ = new RenderTopic();
+	}());
+
+	function topicItemOnFocus(btn, bol) {
+
+		var currentBtn = document.getElementById(btn.id);
+		var currentBtnP = currentBtn.getElementsByTagName('p')[0];
+		var currentBtnPinnerText = currentBtnP.innerText;
+		if (bol) {
+			currentBtn.className = 'focus';
+			currentBtnPinnerText.length > 10 && (currentBtnP.className = 'focus');
+		}
+		else {
+			currentBtn.removeAttribute('class');
+			currentBtnP.removeAttribute('class');
+		}
+	}
+
+	// 页面跳转
+	var jump = {
+		getCurrentPage: function() {
+			var objCurrent = LMEPG.Intent.createIntent('healthTestList');
+			objCurrent.setParam('userId', '{$userId}');
+			objCurrent.setParam('inner', '{$inner}');
+			objCurrent.setParam('topicIndex', guidePageSelectItem);
+			return objCurrent;
+		},
+		index: function(btn) {
+
+			var objCurrent = jump.getCurrentPage();
+			objCurrent.setParam('focusedId', btn.id); // 返回焦点保持
+			objCurrent.setParam('page', btn.page); // 返回对应页数
+			var objActivityHome = LMEPG.Intent.createIntent('activity-common-home');
+			objActivityHome.setParam('userId', '{$userId}');
+			objActivityHome.setParam('topicIndex', guidePageSelectItem);
+			objActivityHome.setParam('answersType', btn.value);
+
+			LMEPG.Intent.jump(objActivityHome, objCurrent);
+		},
+	};
+
+	function onBack() {
+		LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+	}
+
+	var buttons = [
+		{
+			id: 'activity-back',
+			name: '选项1',
+			value: 'A',
+			type: 'img',
+			nextFocusLeft: '',
+			nextFocusUp: '',
+			nextFocusDown: 'test-1',
+			nextFocusRight: '',
+			backgroundImage: ftp + 'activity_back.png',
+			focusImage: ftp + 'activity_back_f.gif',
+			click: '',
+			focusChange: '',
+			beforeMoveChange: '',
+			moveChange: '',
+		}, {
+			id: 'debug',
+			name: '脚手架ID',
+			nextFocusLeft: 'test-8',
+			nextFocusRight: 'test-0',
+		}];
+</script>
+</body>
+</html>

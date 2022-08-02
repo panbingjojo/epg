@@ -1,0 +1,204 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+.none {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+#home_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 644px;
+    height: 530px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/*应用logo*/
+.logo {
+    position: absolute;
+    left: 19px;
+    top: 16px;
+    width: 32px;
+    height: 28px;
+}
+
+/*公司名称*/
+#company-name {
+    position: absolute;
+    left: 9px;
+    top: 45px;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+#classify-name{
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    width: 100px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    color:#ffffff;
+}
+.menu_position_1 {
+    position: absolute;
+    left: 520px;
+    top: 8px;
+    width: 101px;
+    height: 33px;
+}
+
+.menu_position_2 {
+    position: absolute;
+    left: 410px;
+    top: 5px;
+    width: 106px;
+    height: 38px;
+}
+
+#vip_btn {
+    position: absolute;
+    top: 12px;
+    left: 343px;
+    width: 49px;
+    height: 49px;
+    visibility: hidden;
+}
+.focus1{
+    position: absolute;
+    top: 130px;
+    left:40px;
+}
+.focus2{
+    position: absolute;
+    top: 130px;
+    left:185px;
+}
+.focus3{
+    position: absolute;
+    top: 130px;
+    left:330px;
+}
+.focus4{
+    position: absolute;
+    top: 130px;
+    left:475px;
+}
+.focus5{
+    position: absolute;
+    top: 320px;
+    left:40px;
+}
+.focus6{
+    position: absolute;
+    top: 320px;
+    left:185px;
+}
+.focus7{
+    position: absolute;
+    top: 320px;
+    left:330px;
+}
+.focus8{
+    position: absolute;
+    top: 320px;
+    left:475px;
+}
+.video-border{
+    position: absolute;
+    width: 140px;
+    height: 145px;
+    left: -9px;
+    top: -9px;
+    visibility: hidden;
+}
+.video-img{
+    position: absolute;
+    width: 122px;
+    height: 127px;
+}
+.focus-title{
+    position: absolute;
+    width: 122px;
+    height: 27px;
+    left: 0px;
+    top: 100px;
+    font-size: 14px;
+    line-height: 27px;
+    color: #ffffff;
+    background-image: url("../../../../img/hd/Home/V3/title_bg.png");
+    overflow: hidden;
+    text-align: center;
+}
+#video_left_page{
+    position: absolute;
+    width: 20px;
+    height: 38px;
+    left: 5px;
+    top: 270px;
+}
+#video_right_page{
+    position: absolute;
+    width: 20px;
+    height: 38px;
+    left: 620px;
+    top: 270px;
+}
+#pages{
+    position: absolute;
+    left: 305px;
+    top: 480px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+.nav {
+    position: absolute;
+    left: 25px;
+    top: 55px;
+    width: 720px;
+    height: 45px;
+}
+.navimg {
+    width: 120px;
+    height: 45px;
+    float: left;
+    font-family: "Source Han Sans CN";
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 45px;
+    margin: 0 10px;
+}
+#nav_right{
+    position: absolute;
+    width: 23px;
+    height: 19px;
+    left: 600px;
+    top: 68px;
+}
+#nav_left{
+    position: absolute;
+    width: 23px;
+    height: 19px;
+    left: 5px;
+    top: 68px;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>小程序二维码</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/DoctorP2P/V10/AppletsQrCode.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",             // 地区id
+            areaCode: "{$areaCode}",               // 省份地区码
+            subAreaCode: "{$subAreaCode}",         // 省份下的子区域
+            platformType: "{$platformType}",       // 平台类型
+            debug: "{$debug}",                     // 调试模式
+            pageSize: "{$size}",                   // 页面尺寸
+            stbModel: "{$stbModel}",               // 盒子的型号
+            fsUrl: "{$resourcesUrl}",              // fs 地址
+            time: "{$time}",                       // 开始渲染时间
+            userId: "{$userId}",                   // 用户Id
+            accountId: "{$accountId}",             // 用户Id
+            isVip: {$isVip},                       // 用户是否是vip
+
+            //当前页渲染
+            skin: {$skin},                         // 用户自定义背景
+            firstHandle:"{$firstHandle}",          // 是否第一次访问当前模块
+            firstHandleName:"f_p2p",               // 当前模块名称
+            departmentId: "{$departmentId}",       // 科室Id
+            departmentIndex: "{$departmentIndex}", // 科室索引
+            departmentName: "{$departmentName}",   // 科室名称
+            scrollTop: "{$scrollTop}",             // 科室列表滚动高度
+            focusIndex: "{$focusIndex}",           // 焦点ID
+            page: "{$pageCurrent}",                // 页码
+            cwsHlwyyUrl:"{$cwsHlwyyUrl}",          // cws互联网医院接口地址
+            lmp:'{$lmp}',                          //入口编号
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+</head>
+
+<!--背景-->
+<body>
+<!-- 向下翻页箭头 -->
+<img id="m-applets-qrcode"  src="__ROOT__/Public/img/hd/Home/V10/HomeBox/applets_qrcode.png"/>
+
+<script type="application/javascript">
+    window.onload = function () {
+        LMEPG.BM.init('', '', '', true);
+    };
+
+    var onBack = function () {
+        LMEPG.Intent.back();
+    };
+</script>
+
+</body>
+</html>

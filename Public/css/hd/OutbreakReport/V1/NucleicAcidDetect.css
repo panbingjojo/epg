@@ -1,0 +1,152 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #fff;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+/*背景图*/
+#indexBg {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    z-index: -1;
+}
+#hospital-wrapper {
+    top: 120px;
+    left: 55px;
+}
+
+/*框架集*/
+#level-2-container {
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    position: relative;
+    font-family: "SimHei", sans-serif;
+    background-image: url(../../../../img/hd/OutbreakReport/V1/bg.jpg);
+}
+
+
+#level-2-container > * {
+    position: absolute;
+
+}
+.g-text{
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    top: 78px;
+}
+.g-page{
+    position: absolute;
+    left: 1143px;
+    top: 667px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.g-content-area{
+    position: absolute;
+    font-size: 20px;
+    color: #333;
+    top: 130px;
+    left: 25px;
+    height: 525px;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 300px;
+    height: 2px;
+}
+#title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+#tab-container {
+    width: 1208px;
+    height: 430px;
+    left: 81px;
+    top: 180px;
+    position: relative;
+    z-index: 1;
+}
+.g-hospital{
+    margin-top: 10px;
+}
+.g-item-text{
+    width: 350px;
+    height: 39px;
+    background: url(../../../../img/hd/OutbreakReport/V1/g-text.png);
+    display: inline-block;
+    margin-left: 15px;
+    text-align: center;
+    line-height: 39px;
+    vertical-align: bottom;
+    color: #000;
+    background-size: 100% 100%;
+}
+
+.g-item-phone{
+    width: 150px;
+    height: 39px;
+    background: url(../../../../img/hd/OutbreakReport/V1/g-num.png);
+    display: inline-block;
+    margin-left: 15px;
+    text-align: center;
+    line-height: 39px;
+    color: #000;
+    background-size: 100% 100%;
+}
+
+#tab-container img {
+    /*display:inline-block;*/
+    width: 260px;
+    height: 430px;
+    padding: 10px;
+    /*margin-left: 71px;*/
+}
+#tab-1{
+    position: absolute;
+    left: 0px;;
+    top: 0px;;
+}#tab-2{
+    position: absolute;
+    left: 390px;;
+    top: 0px;;
+}#tab-0{
+    position: absolute;
+    left: 780px;;
+    top: 0px;;
+}
+
+.focus {
+    width: 260px;
+    height: 430px;
+    background-image: url(../../../../img/hd/OutbreakReport/V1/tab_focus.png) !important;
+    background-position: center;
+}
+
+
+

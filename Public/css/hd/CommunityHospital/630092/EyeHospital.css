@@ -1,0 +1,151 @@
+body > * {
+    position: absolute;
+}
+
+#img-body {
+    top: 0px;
+    left: 0px;
+}
+
+#logo {
+    top: 38px;
+    left: 78px;
+}
+
+.title {
+    top: 38px;
+    left: 141px;
+    font-size: 38px;
+    color: #FFFFFF;
+    line-height: 38px;
+}
+
+.recommended {
+    top: 120px;
+    left: 80px;
+}
+
+#recommended-1 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /*width: 250px;*/
+    /*height: 130px;*/
+    background: url(../../../../../Public/img/hd/CommunityHospital/EyeHospital/tab_1_box.png) center;
+}
+
+#recommended-2 {
+    position: absolute;
+    top: 0px;
+    left: 270px;
+    /*width: 580px;*/
+    /*height: 280px;*/
+    background: url(../../../../../Public/img/hd/CommunityHospital/EyeHospital/carousel_1_box.png) center;
+}
+
+#recommended-3 {
+    position: absolute;
+    top: 0px;
+    left: 870px;
+    /*width: 250px;*/
+    /*height: 130px;*/
+    background: url(../../../../../Public/img/hd/CommunityHospital/EyeHospital/tab_1_box.png) center;
+}
+
+#recommended-4 {
+    position: absolute;
+    top: 150px;
+    left: 0px;
+    /*width: 250px;*/
+    /*height: 130px;*/
+    background: url(../../../../../Public/img/hd/CommunityHospital/EyeHospital/tab_1_box.png) center;
+}
+
+#recommended-5 {
+    position: absolute;
+    top: 150px;
+    left: 870px;
+    /*width: 250px;*/
+    /*height: 130px;*/
+    background: url(../../../../../Public/img/hd/CommunityHospital/EyeHospital/tab_1_box.png) center;
+}
+
+.title-model {
+    top: 450px;
+    left: 80px;
+    font-size: 30px;
+    color: #FFFFFF;
+    line-height: 30px;
+}
+
+.album {
+    top: 490px;
+    left: 55px;
+    width: 1180px;
+    /*border: 1px red solid;*/
+}
+
+.album > img {
+    margin-left: 0px;
+    padding: 10px;
+}
+
+.focus {
+    position: absolute;
+    padding: 10px;
+    margin: -10px;
+    z-index: 666;
+    width: 260px;
+    height: 135px;
+}
+
+.carousel {
+    position: absolute;
+    padding: 20px;
+    margin: -30px -36px;
+    z-index: 666;
+    width: 610px;
+    height: 295px;
+}
+
+.album2 {
+    margin: -10px;
+    z-index: 666;
+    width: 275px;
+    height: 188px;
+    background: url(../../../../../Public/img/hd/CommunityHospital/EyeHospital/album_box.png) center;
+    /*border: 1px red solid;*/
+}
+
+.carousel-focus-group {
+    position: absolute;
+    top: 250px;
+    left: 260px;
+    width: 550px;
+    height: 30px;
+    /*border: 1px red solid;*/
+    text-align: center;
+    z-index: 667;
+}
+
+.radius {
+    width: 20px;
+    height: 20px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-left: 30px;
+    border: 1px black solid;
+}
+
+.blue {
+    background: #00ffb5;
+}
+
+.withe {
+    background: #fff;
+}
+
+#top {
+    position: absolute;
+    z-index: 1000;
+}

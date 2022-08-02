@@ -1,0 +1,49 @@
+#picture {
+    position: absolute;
+    top: 140px;
+    left: 390px;
+    width: 500px;
+    height: 500px;
+}
+
+.left_page {
+    position: absolute;
+    top: 238px;
+    left: 2px;
+}
+
+.right_page {
+    position: absolute;
+    top: 238px;
+    left: 581px;
+}
+
+#pr-img {
+    position: absolute;
+    top: 130px;
+    left: 62px;
+}
+
+.pr-content {
+    position: absolute;
+    top: 150px;
+    left: 279px;
+    width: 300px;
+    /*border: 1px red solid;*/
+    color: #28518b;
+    font-size: 20px;
+}
+#back{
+    position: absolute;
+    top: 17px;
+    left: 495px;
+}
+#pages{
+    position: absolute;
+    top: 406px;
+    left: 294px;
+
+    font-size: 19px;
+    color: #0e4995;
+    /*border: 1px red solid;*/
+}

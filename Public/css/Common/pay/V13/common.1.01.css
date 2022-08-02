@@ -1,0 +1,47 @@
+html {
+    color: #000;
+    font-size: 12px
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+body, div, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, figure, form, fieldset, legend, input, textarea, button, p, blockquote, th, td, pre {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+a, ins, s, u, del {
+    text-decoration: none
+}
+
+ul, ol, menu {
+    list-style: none
+}
+
+img, object, input, textarea, button, select {
+    vertical-align: middle;
+    border: none
+}
+
+img.loading {
+    background: url(../imgs/loading.gif) no-repeat center;
+}
+
+#bg {
+    top: 0;
+    left: 0;
+}
+
+.focus {
+    z-index: 1;
+    background-position: center;
+}

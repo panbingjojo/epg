@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>泳池大比拼</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivitySummerSwimming/index.css?t={$time}">
+    <style type="text/css">
+        body {
+            background-image: url("{$activityFsImg}{$platformType}/bg_home.png");
+        }
+
+        #exchange_success {
+            background-image: url("{$activityFsImg}{$platformType}/bg_exchange_success.png");
+        }
+
+        #game_success {
+            background-image: url("{$activityFsImg}{$platformType}/bg_game_success.png");
+        }
+
+        #game_fail {
+            background-image: url("{$activityFsImg}{$platformType}/bg_game_fail.png");
+        }
+
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            carrierId: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown},
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: {$score},
+            fromLaunch: '{$fromLaunch}',
+            gameTimeSingle: 10,
+            lotteryRecordList: {$lotteryRecordList},
+            myLotteryRecord: {$myLotteryRecord},
+            exchangeRecordList: {$exchangeRecordList},
+            exchangePrizeList: {$exchangePrizeList},
+        };
+        window.onload = function () {
+            Activity.init();
+            lmInitGo();
+            G('default_link').focus();
+        };
+    </script>
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivitySummerSwimming/index.js?t={$time}"></script>
+
+</head>
+<body id="body">
+<div id="debug"></div>
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+
+<!--游戏剩余次数-->
+<div id="left_times">{$activityTimes}</div>
+
+<!--积分-->
+<div id="score">{$score}</div>
+
+<!--首页,游戏首页,游戏入口首页-->
+<div id="btn_container">
+
+    <!--    右上角按钮列表-->
+    <div class="btn-list">
+        <img src="{$activityFsImg}{$platformType}/btn_back.png" id="btn_back">
+        <img src="{$activityFsImg}{$platformType}/btn_activity_rule.png" id="btn_activity_rule">
+        <img src="{$activityFsImg}{$platformType}/btn_winner_list.png" id="btn_winner_list">
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_prize.png" id="btn_exchange_prize">
+    </div>
+
+    <!--    进入游戏按钮-->
+    <div class=" id=lipstick">
+        <img src="{$activityFsImg}{$platformType}/btn_start.png" alt="" id="btn_start">
+    </div>
+</div>
+
+<div id="game_container" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_game_container.png" id="bg_game_container">
+    <img src="{$activityFsImg}{$platformType}/bg_game_container1.gif" id="bg_game_container1">
+    <img src="{$activityFsImg}{$platformType}/btn_begin.png" id="btn_begin" alt="">
+    <div id="game_countdown">20</div>
+    <div id="tips"></div>
+    <img src="{$activityFsImg}{$platformType}/tips1.png" alt="" id="tips1">
+</div>
+
+<!--活动规则-->
+<div id="activity_rule" class="modal">
+    <!--活动规则图素js写入-->
+    <img src="" id="bg_activity_rule">
+    <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_rule">
+</div>
+
+<!--中奖名单-->
+<div id="winner_list" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_winner_list.png">
+    <div id="total_list"></div>
+    <div id="my_list"></div>
+    <div id="reset_tel">请输入手机号</div>
+    <img id="btn_list_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_list_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+<!--兑换礼品-->
+<div id="exchange_prize" class="modal">
+    <div id="game_score"></div>
+    <div id="exchange_point_1" class="exchange_text"></div>
+    <div id="exchange_point_2" class="exchange_text"></div>
+    <div id="exchange_point_3" class="exchange_text"></div>
+    <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_1">
+    <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_2">
+    <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_3">
+</div>
+<!--兑换成功页面-->
+<div id="exchange_success" class="modal">
+    <img src="" id="prize_image">
+    <div id="exchange_tel">请输入手机号</div>
+    <img id="btn_exchange_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_exchange_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<!--兑换失败页面-->
+<div id="exchange_fail" class="modal">
+    <img id="bg_exchange_fail" src="{$activityFsImg}{$platformType}/bg_exchange_fail.png">
+</div>
+
+<div id="game_success" class="modal">
+    <!--position名次-->
+    <div id="position">3</div>
+    <div id="add_count"></div>
+    <img id="btn_game_sure" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+</div>
+
+<!--游戏失败页面-->
+<div id="game_fail" class="modal">
+    <img id="btn_game_fail_sure" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+</div>
+
+<!--游戏结束-->
+<div id="game_over" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_no_times.png">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_game_over_sure">
+</div>
+
+<!--游戏次数耗尽，订购VIP-->
+<div id="order_vip" class="modal">
+    <img id="order_vip_bg" src="{$activityFsImg}{$platformType}/bg_order_vip.png">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_order_submit">
+    <img src="{$activityFsImg}{$platformType}/btn_common_cancel.png" id="btn_order_cancel">
+</div>
+
+<!--订购状态-->
+<div id="order_status" class="modal"></div>
+
+<!--倒计时-->
+<div id="countdown" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_countdown.png">
+    <div id="count">8</div>
+</div>
+
+</body>
+</html>

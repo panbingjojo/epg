@@ -1,0 +1,428 @@
+﻿* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+.title {
+    font-size: 40px;
+    color: #ffffff;
+    position: absolute;
+    top: 34px;
+    left: 40px
+}
+
+/*.line {*/
+/*position: absolute;*/
+/*top: 90px;*/
+/*left: 32px;*/
+/*width: 540px;*/
+/*}*/
+
+#page {
+    position: absolute;
+    font-size: 35px;
+    color: white;
+    left: 1000px;
+    top: 34px;
+    display: inline;
+    visibility: hidden;
+}
+
+#content {
+    position: absolute;
+    left: 20px;
+    top: 0px;
+    text-align: center
+}
+
+#leftArrow {
+    position: absolute;
+    width: 35px;
+    height: 60px;
+    left: 20px;
+    top: 320px;
+    visibility: hidden;
+}
+
+#rightArrow {
+    position: absolute;
+    width: 35px;
+    height: 60px;
+    top: 320px;
+    left: 1200px;
+    visibility: hidden;
+}
+
+#focus-1-1 {
+    width: 150px;
+    position: absolute;
+    height: 400px;
+}
+
+#focus-1-1-border {
+    position: absolute;
+    width: 290px;
+    height: 210px;
+    top: 135px;
+    left: 60px;
+}
+
+#focus-1-1-src {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    top: 150px;
+    left: 80px;
+}
+
+#focus-1-1-title {
+    vertical-align: middle;
+    position: absolute;
+    left: 80px;
+    height: 30px;
+    width: 250px;
+    color: white;
+    top: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 26px;
+    font-size: 30px;
+    background: url('../../../../img/hd/Channel/V3/after.png');
+}
+
+#focus-1-2 {
+    width: 150px;
+    position: absolute;
+    left: 150px;
+    text-align: center;
+    height: 400px;
+}
+
+#focus-1-2-border {
+    position: absolute;
+    width: 290px;
+    height: 210px;
+    top: 135px;
+    left: 180px;
+}
+
+#focus-1-2-src {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    top: 150px;
+    left: 200px;
+}
+
+#focus-1-2-title {
+    vertical-align: middle;
+    position: absolute;
+    left: 200px;
+    height: 30px;
+    width: 250px;
+    color: white;
+    top: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 26px;
+    font-size: 30px;
+    background: url('../../../../img/hd/Channel/V3/after.png');
+}
+
+#focus-1-3 {
+    width: 150px;
+    position: absolute;
+    left: 300px;
+    text-align: center;
+    height: 400px;
+}
+
+#focus-1-3-border {
+    position: absolute;
+    width: 290px;
+    height: 210px;
+    top: 135px;
+    left: 300px;
+}
+
+#focus-1-3-src {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    top: 150px;
+    left: 320px;
+}
+
+#focus-1-3-title {
+    vertical-align: middle;
+    position: absolute;
+    left: 320px;
+    height: 30px;
+    width: 250px;
+    color: white;
+    top: 300px;
+    line-height: 26px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 30px;
+    background: url('../../../../img/hd/Channel/V3/after.png');
+}
+
+#focus-1-4 {
+    width: 150px;
+    position: absolute;
+    left: 450px;
+    text-align: center;
+    height: 400px;
+    /*background: #c0a16b*/
+}
+
+#focus-1-4-border {
+    position: absolute;
+    width: 290px;
+    height: 210px;
+    top: 135px;
+    left: 420px;
+}
+
+#focus-1-4-src {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    top: 150px;
+    left: 440px;
+}
+
+#focus-1-4-title {
+    vertical-align: middle;
+    position: absolute;
+    left: 440px;
+    height: 30px;
+    width: 250px;
+    color: white;
+    top: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 26px;
+    font-size: 30px;
+    background: url('../../../../img/hd/Channel/V3/after.png');
+}
+
+#focus-2-1 {
+    width: 130px;
+    position: absolute;
+    height: 400px;
+    top: 130px;
+}
+
+#focus-2-1-border {
+    position: absolute;
+    width: 290px;
+    height: 210px;
+    top: 230px;
+    left: 60px;
+}
+
+#focus-2-1-src {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    top: 245px;
+    left: 80px;
+}
+
+#focus-2-1-title {
+    vertical-align: middle;
+    position: absolute;
+    left: 80px;
+    height: 30px;
+    width: 250px;
+    color: white;
+    top: 395px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 26px;
+    font-size: 30px;
+    background: url('../../../../img/hd/Channel/V3/after.png');
+}
+
+#focus-2-2 {
+    width: 130px;
+    position: absolute;
+    left: 130px;
+    text-align: center;
+    height: 400px;
+    top: 130px;
+    /*background: yellow*/
+}
+
+#focus-2-2-border {
+    position: absolute;
+    width: 290px;
+    height: 210px;
+    top: 230px;
+    left: 200px;
+}
+
+#focus-2-2-src {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    top: 245px;
+    left: 220px;
+}
+
+#focus-2-2-title {
+    vertical-align: middle;
+    position: absolute;
+    left: 220px;
+    height: 30px;
+    width: 250px;
+    color: white;
+    top: 395px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 26px;
+    font-size: 30px;
+    background: url('../../../../img/hd/Channel/V3/after.png');
+}
+
+#focus-2-3 {
+    width: 130px;
+    position: absolute;
+    left: 260px;
+    text-align: center;
+    height: 400px;
+    top: 130px;
+    /*background: black*/
+}
+
+#focus-2-3-border {
+    position: absolute;
+    width: 290px;
+    height: 210px;
+    top: 230px;
+    left: 340px;
+}
+
+#focus-2-3-src {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    top: 245px;
+    left: 360px;
+}
+
+#focus-2-3-title {
+    vertical-align: middle;
+    position: absolute;
+    left: 360px;
+    height: 30px;
+    width: 250px;
+    color: white;
+    top: 395px;
+    font-size: 30px;
+    line-height: 26px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: url('../../../../img/hd/Channel/V3/after.png');
+}
+
+#focus-2-4 {
+    width: 130px;
+    position: absolute;
+    left: 390px;
+    text-align: center;
+    height: 400px;
+    top: 130px;
+    /*background: #c0a16b*/
+}
+
+#focus-2-4-border {
+    position: absolute;
+    width: 290px;
+    height: 210px;
+    top: 230px;
+    left: 480px;
+}
+
+#focus-2-4-src {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    top: 245px;
+    left: 500px;
+}
+
+#focus-2-4-title {
+    vertical-align: middle;
+    position: absolute;
+    left: 500px;
+    height: 30px;
+    width: 250px;
+    color: white;
+    top: 395px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 26px;
+    font-size: 30px;
+    background: url('../../../../img/hd/Channel/V3/after.png');
+}
+
+.home_btn {
+    width: 145px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 74px;
+}
+
+.main_btn {
+    width: 145px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 219px;
+}
+
+.back_btn {
+    width: 145px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 364px;
+}
+/*跑马灯*/
+#scroll_div {
+    width: 670px;
+    height: 30px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    top: 670px;
+    left: 534px;
+    font-size: 29px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+}

@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+.bg{
+    position: relative;
+    height: 720px;
+    width: 1280px;
+    background-image: url("../../../../img/hd/Hospital/BeiCaoYuanHospital/Hospital_bg.png");
+}
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    font-weight:900;
+    color: #dbd8d8
+}
+.content{
+    position: absolute;
+    margin-top: 148px;
+    margin-left: 45px;
+}
+.content img{
+    float: left;
+}

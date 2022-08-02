@@ -1,0 +1,85 @@
+#area_local_health {
+    position: relative;
+    background: url("/Public/img/hd/CustomizeModule/V3/bg_home.png");
+    height: 100%;
+    color: #fff;
+}
+
+#local_health {
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 25px;
+    left: 40px;
+}
+
+#tongji_medicine {
+    position: absolute;
+    top: 214px;
+    left: 145px;
+}
+
+#yekaitai {
+    position: absolute;
+    top: 214px;
+    left: 650px;
+}
+
+#tongji_medical {
+    position: absolute;
+    width: 1280px;
+    display: none;
+    height: 100%;
+    background: url("/Public/img/hd/CustomizeModule/V3/bg_home2.png");
+}
+
+#yekaitai_page {
+    position: absolute;
+    width: 1280px;
+    display: none;
+    height: 100%;
+    background: url("/Public/img/hd/CustomizeModule/V3/yekaitai_bg.png");
+}
+
+#yekaitai_page {
+    position: absolute;
+    width: 1280px;
+    display: none;
+    height: 100%;
+}
+
+#business,#wenhuayuan {
+    position: absolute;
+    top: 486px;
+    left: 58px;
+}
+
+#ecological,#guoyitang {
+    position: absolute;
+    top: 486px;
+    left: 359px;
+}
+
+#package,#wenhua {
+    position: absolute;
+    top: 486px;
+    left: 649px;
+}
+
+#packInformation,#jiaoyu {
+    position: absolute;
+    top: 486px;
+    left: 939px;
+}
+.function {
+    padding: 10px;
+    width: 270px;
+    height: 170px;
+}
+
+#informationPage {
+    position: relative;
+    width: 1280px;
+    height: 100%;
+    background: url("/Public/img/hd/CustomizeModule/V3/businessPage.jpg");
+}

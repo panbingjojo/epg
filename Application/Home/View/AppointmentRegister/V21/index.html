@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <title>青海预约挂号</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V21/index.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            /*焦点保持*/
+            backIndex:'{$backIndex}',
+            hosId:'{$hosId}',
+            hospitalId:'{$hospitalId}',
+            backDepIndex:'{$backDepIndex}',
+            docBtnId:'{$docBtnId}',
+            openDepId:'{$openDepId}',
+            code:'{$code}',
+            docNum:'{$docNum}',
+            depCode: '{$depCode}',
+            depBackIndex: '{$depBackIndex}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V21/index.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="index-container">
+    <div id="head-func">
+        <div id="patient-admin">
+            <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/management.png" alt="" class="img1">
+            <div class="head-text-people">就诊人管理</div>
+        </div>
+        <div id="record">
+            <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/record.png" alt="" class="img1">
+            <div class="head-text">订单记录</div>
+        </div>
+    </div>
+    <div class="head-area">
+        <div class="hospital-pic-area">
+            <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/hospital.png" id="hospital-img">
+        </div>
+        <div class="hospital-intro-area">
+            <div class="hospital-name" id="hospital-name"></div>
+            <div class="hospital-intro" id="hospital-intro"></div>
+            <img src="__ROOT__/Public/img/hd/AppointmentRegister/V21/address.png" alt="" class="img2">
+            <div class="hospital-addr" id="hospital-addr"></div>
+            <div id="to-detail" class="hospital-probably">医院概况</div>
+        </div>
+    </div>
+    <div class="doctor-area">
+        <div class="appointment">预约挂号</div>
+        <div class="department-area" id="department-area">
+        </div>
+
+        <div class="doctor-list-area" id="doctor-list-area">
+            <div class="left_arrow" id="left_arrow"></div>
+            <div class="right_arrow" id="right_arrow"></div>
+            <!--医生的列表-->
+            <div class="list-row" id="list-row">
+
+            </div>
+
+            <div id="no-result">暂无专家</div>
+        </div>
+    </div>
+    <div class="more-dep" style="display: none" id="more-dep">
+<!--        <div class="close" id="close">关闭</div>-->
+        <div id="depArea">
+            <div class="all-dep-area" id="all-dep-area">
+        </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        LMEPG.Log.info('onload size : ' + RenderParam.pageSize);
+
+        Home.init();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-image: url(../../../../img/hd/Home/V24/bg.png);
+    background-position: left;
+    color: #000;
+    overflow: hidden;
+}
+.head-title{
+    position: absolute;
+    left: 60px;
+    top: 60px;
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+}
+.arrow {
+    position: absolute;
+    top: 325px;
+}
+
+#prev-arrow {
+    left: 40px;
+}
+
+#next-arrow {
+    left: 1225px;
+}
+
+#nav-container {
+    position: absolute;
+    top: 130px;
+    left: 80px;
+    height: 50px;
+    width: 880px;
+    /*border: 1px red solid;*/
+}
+
+#nav-container p {
+    height: 50px;
+    line-height: 50px;
+    width: 160px;
+    text-align: center;
+    font-size: 24px;
+    color: #ffffff;
+    display: inline-block;
+    margin-left: -5px;
+    background-position: 0 -1px;
+    background-size: 100% 100%;
+}
+
+#nav-container p.focus {
+    color: #fffefe;
+    background-size: 100% 100%;
+}
+
+#nav-container p#nav-0 {
+    margin-left: -6px;
+}
+
+#list-container {
+    position: absolute;
+    top: 200px;
+    left: -30px;
+    width: 1280px;
+}
+
+#list-container .arrow {
+    position: absolute;
+    top: 180px;
+}
+
+#list-container #prev-arrow {
+    left: 50px;
+}
+
+#list-container #next-arrow {
+    right: 50px;
+}
+
+ul#list-wrapper {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    list-style: none;
+}
+
+ul.person {
+    padding-top: 100px;
+}
+
+ul#list-wrapper li {
+    position: relative;
+    float: left;
+    width: 255px;
+    height: 164px;
+    text-align: center;
+    padding: 15px;
+    background-size: 280px 190px;
+}
+
+ul#list-wrapper.person li {
+    width: 146px;
+    height: 146px;
+    margin-right: 33px;
+}
+ul#list-wrapper.person li img.uncollect{
+    left: 18px;
+}
+
+ul#list-wrapper.person li img {
+    width: 155px;
+    height: 155px;
+    border-radius: 50%;
+    margin-left: -3px;
+    margin-top: -3px;
+}
+
+ul#list-wrapper li img {
+    width: 255px;
+    height: 164px;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+}
+
+ul#list-wrapper li img.play {
+    position: absolute;
+    left: 54px;
+    top: 30px;
+    width: 142px;
+    height: 48px;
+    border-radius: 0;
+}
+
+ul#list-wrapper li img.uncollect {
+    position: absolute;
+    left: 54px;
+    top: 95px;
+    width: 142px;
+    height: 48px;
+    border-radius: 0;
+}
+
+ul#list-wrapper li p {
+    position: absolute;
+    top: 110px;
+    left: 15px;
+    font-size: 24px;
+    color: #fff;
+    width: 104px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-image: url(../../../../img/hd/Collect/V13/number_bg.png);
+}
+
+p#page-index {
+    position: absolute;
+    top: 430px;
+    right:60px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.null-data {
+    font-size: 20px;
+    font-style: italic;
+    color: #fff;
+    text-align: center;
+}
+
+.mask{
+    position: absolute;
+    width: 255px;
+    height: 164px;
+    background: url("../../../../img/hd/Collect/V24/mask.png") no-repeat;
+    background-size: 257px 166px;
+}
+
+.how-long{
+    background: url(../../../../img/hd/Channel/V13/number_bg.png) no-repeat;
+    position: absolute;
+    width: 104px;
+    height: 40px;
+    bottom: 20px;
+    color: #FFFFFF;
+    line-height: 40px;
+    font-size: 24px;
+}

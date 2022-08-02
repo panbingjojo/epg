@@ -1,0 +1,165 @@
+<img id="tab2-prev-arrow" class="tab2-arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/left.png" alt="">
+<img id="tab2-next-arrow" class="tab2-arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/right.png" alt="">
+<div id="tab2-carousel-wrapper"></div>
+<div id="tab2-help" class="tab-help-wrap">
+    <img id="tab2-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab2_help0.png">
+</div>
+<script type="text/javascript">
+    var Tab2 = {
+        isLoad: false,
+        init: function () {
+            this.data = [];
+            this.linkAlbum = null;
+            this.albumName = LMEPG.Func.getLocationString('albumName') || "";
+            this.addItem();
+            this.tab2KeepData();
+            this.createBtns();
+            this.renderImg();
+            LMEPG.BM.getSelectedButton()
+
+        },
+
+        /**
+         * 对tab2做专辑焦点数据保持
+         */
+        tab2KeepData: function () {
+            var me = this;
+            var data = me.data;
+            var albumName = me.albumName;
+
+            if (Page.tabId === 'tab-2' && albumName) {
+                data.forEach(function (v, i) {
+                    if (v.alias_name === albumName) {
+                        me.data[i] = me.data[2];
+                        me.data[2] = v;
+                    }
+                })
+            }
+        },
+
+        /**
+         * 专辑跳转
+         */
+        onClickAlbum: function (btn) {
+            var album = Tab2.linkAlbum;
+            if (!album) {
+                LMEPG.UI.showToast('未配置该专辑哦 ~');
+                return;
+            }
+            var albumAliasName = album.alias_name;
+            PageJump.jumpAlbumPage(albumAliasName, btn);
+        },
+        /**
+         * 对数据处理：
+         * 始终保持渲染最大个数
+         */
+        addItem: function () {
+            var data = RenderParam.albumList.list || [];
+            if (!data || (data && data.length < 3)) {
+                data.length = 5;
+            }
+            this.data = data;
+        },
+
+        /**
+         * 对流操作
+         */
+        loop: function (direction) {
+            Tab2.key = direction;
+            Tab2.updateImageArray();
+        },
+        /**
+         * 渲染当前专辑
+         * Np：当前图片数组长度
+         * linkAlbum: 跳转专辑对象
+         */
+        renderImg: function () {
+            var data = this.data;
+            var len = 5; // 一次渲染最大长度
+            var wrap = G('tab2-carousel-wrapper');
+            var htm = '';
+            var src = '';
+            var item = null;
+            var img = null;
+            var isLoaderImage = null;
+            var placeHolderImage = g_appRootPath + '/Public/img/Common/default.png';
+            while (len--) {
+                item = data[len];
+                if(typeof item.list_image_url == "string"){
+                    item.list_image_url = JSON.parse(item.list_image_url);
+                }
+                src = item && item.list_image_url && RenderParam.fsUrl + item.list_image_url.large;
+
+                isLoaderImage = !/.*\.(jpg|png)/.test(src) ? placeHolderImage : src;
+                img = '<img '
+                    + 'onerror="' + placeHolderImage + '"'
+                    + 'id="sift-' + len + '" '
+                    + 'class="lv-' + len + '" '
+                    + 'src="' + isLoaderImage + '">';
+
+                // 中间位置
+                if (len === 2) {
+                    img = '<div id="item-center">' + img + '</div>';
+                    this.linkAlbum = item;
+                }
+                htm += img;
+            }
+            console.log("innerHTML = " + htm)
+            // 渲染banner
+            wrap.innerHTML = htm;
+            // 空数据处理
+            LMEPG.UI.isEmptyAddTip(data.length === 0, wrap, function () {
+                H('tab2-prev-arrow');
+                H('tab2-next-arrow');
+            });
+        },
+
+        /**
+         * 更新当前图片数组
+         */
+        updateImageArray: function () {
+            if (this.key == 'left') {
+                this.data.unshift(this.data.pop());
+            } else {
+                this.data.push(this.data.shift());
+            }
+
+            this.renderImg();
+        },
+
+        createBtns: function () {
+            buttons.push({
+                id: 'sift-2',
+                type: 'others',
+                nextFocusUp: 'tab-2',
+                click: this.onClickAlbum,
+                focusChange: this.onFocusIn,
+                beforeMoveChange: this.onMoveChange
+            });
+        },
+
+        onFocusIn: function (btn, hasFocus) {
+            var focusElement = G('item-center');
+            if (hasFocus) {
+                focusElement.className = 'focus';
+            } else {
+                focusElement.className = '';
+            }
+        },
+
+        onMoveChange: function (direction, btn) {
+            if (direction == 'left' || direction == 'right') {
+                Tab2.loop(direction);
+                LMEPG.BM.requestFocus('sift-2');
+                return false;
+            }
+        },
+
+        /**
+         * 自动轮播（已被CP丢掉）
+         */
+        carousel: function () {
+            this.timer = setInterval(this.loop, 3222);
+        }
+    };
+</script>

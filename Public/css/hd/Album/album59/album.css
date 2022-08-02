@@ -1,0 +1,120 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#videoTv {
+    position: absolute;
+    top: 120px;
+    left: 44px;
+    z-index: 0;
+    outline: none !important;
+    width: 453px;
+    height: 307px;
+
+}
+#focus-2-1 {
+    position: absolute;
+    top: 343px;
+    left: 95px;
+    z-index: 0;
+    outline: none !important;
+    width: 641px;
+    height: 336px;
+
+}
+
+#focus-2-2 {
+    position: absolute;
+    top: 387px;
+    left: 517px;
+    z-index: 0;
+    outline: none !important;
+    width: 641px;
+    height: 336px;
+}
+
+
+#back{
+    position: absolute;
+    top: 23px;
+    left:1155px;
+    z-index: 0;
+    outline: none !important;
+    width: 101px;
+    height: 75px;
+
+}
+
+
+#page-left{
+    position: absolute;
+    top: 579px;
+    left: 0;
+    z-index: 0;
+    outline: none !important;
+    width: 207px;
+    height: 141px;
+}
+#page-right{
+    position: absolute;
+    top: 579px;
+    left: 1075px;
+    z-index: 0;
+    outline: none !important;
+    width: 205px;
+    height: 141px;
+}
+
+
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+.none{ display: none}
+.g_toast {
+    position: absolute;
+    left: 364px;
+    top: 279px;
+    width: 551px;
+    height: 126px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 1000;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../img/hd/Common/bg_toast.png") no-repeat;
+}
+
+

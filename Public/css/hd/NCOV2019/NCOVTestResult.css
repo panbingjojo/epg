@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/bg_result.png");
+    position: relative;
+}
+
+#result-container {
+    position: relative;
+    top: 160px;
+    width: 1160px;
+    height: 540px;
+    margin: 0 auto;
+    padding: 10px;
+    overflow: scroll;
+}
+
+#result-txt {
+    /* width: 1160px; */
+    height: 136px;
+    text-align: justify;
+    padding: 32px 20px;
+    color: #193d69;
+    font-size: 22px;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/result_txt_bg.png");
+}
+
+#btn-wrap {
+    height: 90px;
+    text-align: center;
+    margin: 30px auto 40px auto;
+}
+
+#btn-wrap img {
+    margin: 0 60px;
+}
+
+#suggest-container {
+    font-size: 22px;
+
+}
+
+#suggest-container div ul {
+    text-indent: 40px;
+}
+
+#suggest-container div ul li {
+    line-height: 1.6;
+}
+
+.suggest-wrap {
+    margin: 20px 0;
+}
+
+.suggest-title {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.center-img {
+    text-align: center;
+    margin: 25px 0;
+}
+
+#suggest-3,
+#suggest-5 {
+    padding-bottom: 50px;
+}
+
+#suggest-4,
+#suggest-5 {
+    display: none;
+}
+
+#second-model {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    z-index: 88;
+    display: none;
+    background: url(../../../../Public/img/hd/OutbreakReport/V1/no_inquiry_show.jpg) no-repeat center;
+}
+#down-arrow {
+    position: absolute;
+    bottom: 0;
+}

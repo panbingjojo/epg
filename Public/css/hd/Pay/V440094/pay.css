@@ -1,0 +1,103 @@
+#default_focus{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#btn-ok-one {
+    position: absolute;
+    left: 322px;
+    top: 482px;
+    width: 291px;
+    height: 119px;
+}
+
+#btn-cancle-one {
+    position: absolute;
+    left: 662px;
+    top: 482px;
+    width: 291px;
+    height: 119px;
+}
+
+#btn-text-one {
+    position: absolute;
+    left: 380px;
+    top: 304px;
+    font-size: 40px;
+    color: white;
+}
+
+#btn-ok-two {
+    position: absolute;
+    left: 322px;
+    top: 482px;
+    width: 291px;
+    height: 119px;
+}
+
+#btn-cancle-two {
+    position: absolute;
+    left: 662px;
+    top: 482px;
+    width: 291px;
+    height: 119px;
+}
+
+#btn-text-two{
+    position: absolute;
+    left: 349px;
+    top: 270px;
+    font-size: 36px;
+    color: white;
+}
+
+#btn-ok-agreement {
+    position: absolute;
+    left: 319px;
+    top: 577px;
+    width: 242px;
+    height: 99px;
+}
+
+#btn-cancle-agreement {
+    position: absolute;
+    left: 699px;
+    top: 577px;
+    width: 242px;
+    height: 99px;
+}
+#btn-upPage-agreement{
+     position: absolute;
+     left: 968px;
+     top: 546px;
+     width: 72px;
+     height: 24px;
+ }
+
+#btn-downPage-agreement{
+    position: absolute;
+    left: 1087px;
+    top: 546px;
+    width: 72px;
+    height: 24px;
+}
+#btn-check-agreement{
+    position: absolute;
+    left: 108px;
+    top: 495px;
+    width: 315px;
+    height: 48px;
+}
+
+#btn-text-agreement{
+    position: absolute;
+    left: 108px;
+    top: 156px;
+    width: 1050px;
+    height: 380px;
+    color: white;
+    font-size: 40px;
+}

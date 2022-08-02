@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="http://180.141.207.157:33200/EPG/jsp/AAAHD/en/js/md5.js"></script>
+    <!--当前模块js-->
+    <script type="text/javascript">
+        // 监听返回键
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+    </script>
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<div id="debug" style=" display: block;color:white;z-index:999;"></div>
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+<script type="text/javascript">
+    !(function (win) {
+        // 随机数
+        function randomNumber(lower, upper) {
+            return Math.floor(Math.random() * (upper - lower + 1)) + lower;
+        }
+
+        function getUrlParamByName(url, name) {
+            var decodeUrl = decodeURIComponent(url);
+            LMEPG.Log.info("task::getUrlParamByName url:" + decodeUrl);
+            var hash = decodeUrl.slice(decodeUrl.indexOf("?") + 1).split('&');
+            LMEPG.Log.info("task::getUrlParamByName params:" + JSON.stringify(hash));
+            for (var i = 0; i < hash.length; i++) {
+                var params = hash[i].split("=");
+                if (params[0] == name) {
+                    return params[1];
+                }
+            }
+            return null;
+        };
+
+
+        //通过Class类查找元素对象
+        function printObjInfo(obj, tag) {
+            // LMEPG.Log.info("printObjInfo ---> start " + tag);
+            try {
+                var strInfo = "TAG->" + tag;
+                if (typeof obj !== "undefined" || obj) {
+                    strInfo = strInfo + " ----> object[";
+                    for(var key in obj) {
+                        // LMEPG.Log.info("printObjInfo ---> key： " + key);
+                        var strValue = key + "->";
+                        if (typeof(obj[key]) == "function") {
+                            strValue = strValue + "function"; //+ obj[key];
+                        } else {
+                            strValue = strValue + obj[key];
+                        }
+                        strValue = strValue + ",";
+                        strInfo = strInfo + strValue;
+                    }
+                    strInfo = strInfo + "]";
+                } else {
+                    strInfo = strInfo + "is null or undefined]";
+                }
+                LMEPG.Log.info(strInfo);
+            } catch(e) {
+                LMEPG.Log.info("TAG->:" + tag + " ---> exception: " + e.toString());
+            }
+        };
+
+        function runTask() {
+            LMEPG.Log.info("runTask::runTask ---> start");
+            // 获取目标地址
+            LMEPG.ajax.postAPI("Pay/buildDirectPayUrlForPage", null, function (data) {
+                try {
+                    data = data instanceof Object ? data : JSON.parse(data);
+                    if (data && data.result == 0) {
+                        LMEPG.Log.info("runTask::runTask Exchange ---> payUrl:" + data.payUrl);
+                        task.initAndJump(data.payUrl);
+                    } else {
+                        LMEPG.Log.error("runTask::runTask Exchange ---> get url: failed!");
+                    }
+                } catch (e) {
+                    LMEPG.Log.error("runTask::runTask Exchange ---> get url: exception(" + e.toString() + ")");
+                }
+            });
+        }
+
+        function setPageSize(){
+            var meta = document.getElementsByTagName('meta');
+            LMEPG.Log.error("task::setPageSize ---> meta" + meta);
+            if (typeof meta !== "undefined"){
+                meta["page-view-size"].setAttribute('content',"1280*720");
+                LMEPG.Log.error("task::setPageSize ---> meta set 1280*720");
+            }
+            LMEPG.Log.error("task::setPageSize ---> meta end");
+            setTimeout(setPageSize, 500);
+        }
+
+        var task = {
+            id: "exchange_iframe",
+            objIFrame: null,
+            url: "",
+            isReport: false,
+            lmTradeNo: "",
+            loadId: 0,
+            // 构建IFrame对象
+            buildIFrameObject: function (id) {
+                if (!task.objIFrame) {
+                    task.objIFrame = document.createElement("iframe");
+                    task.objIFrame.name = id;
+                    task.objIFrame.id = id;
+
+                    //设置iframe的样式
+                    task.objIFrame.style.overflow = "hidden";
+                    task.objIFrame.style.border = "none";
+                    task.objIFrame.style.zIndex = "9999";
+                    task.objIFrame.style.position = "absolute";
+                    task.objIFrame.style.top = "0px";
+                    task.objIFrame.style.left = "0px";
+                    task.objIFrame.width = "1280px";
+                    task.objIFrame.height = "720px";
+                    task.objIFrame.scrolling = "no";
+                    task.objIFrame.frameborder = "0";
+                }
+                return task.objIFrame;
+            },
+            // 增加IFrame对象到body中
+            addIFrameToBody: function (obj) {
+                var body = document.body;
+                if (body){
+                    body.appendChild(obj);
+                }
+                return body;
+            },
+            // 加载IFrame
+            loadIFrame: function (url) {
+                if (task.objIFrame) {
+                    LMEPG.Log.info("task::loadIFrame ---> url:" + url);
+                    task.objIFrame.onload = function() {
+                        task.loadId = task.loadId + 1;
+                        var title = "";
+                        if (typeof task.objIFrame.contentWindow.document.title !== "undefined") {
+                            title = task.objIFrame.contentWindow.document.title;
+                        }
+
+                        // 设置分辨率，否则可能会出现页面放大的问题
+                        var meta = task.objIFrame.contentWindow.document.getElementsByTagName('meta');
+                        if (typeof meta !== "undefined") {
+                            if (task.platformType == "hd") {
+                                if (typeof meta["page-view-size"] !== "undefined") {
+                                    meta["page-view-size"].setAttribute('content',"1280*720");
+                                    LMEPG.Log.error("task::loadIFrame ---> meta set 1280*720");
+                                }
+                            }
+                        }
+                        // 抢回焦点
+                        var defaultId = window.document.getElementById('default_link');
+                        if (typeof defaultId !== "undefined"
+                            && typeof defaultId.focus !== "undefined") {
+                            defaultId.focus();
+                        }
+                        LMEPG.Log.info("task::loadIFrame ---> "+title+"URL:"+task.objIFrame.contentWindow.window.self.location.href);
+
+                        if (title == "订购展示页面") {
+                            var strPayHost = task.objIFrame.contentWindow.window.self.location.host;
+                            strPayHost = "http://" + strPayHost;
+                            //得到支付函数并修改支付函数
+                            var strPayOrder = task.objIFrame.contentWindow.commmit.toString();
+                            strPayOrder = strPayOrder.replace("window", "window.self");
+                            strPayOrder = strPayOrder.replace("/main", strPayHost + "/main");
+                            task.objIFrame.contentWindow.eval(strPayOrder);
+
+                            setTimeout(
+                                function(){
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":13});
+                                    }
+                                , 300);
+
+                        }else if (title == "30元以下二次确认页面") {
+                            var strPayHost = task.objIFrame.contentWindow.window.self.location.host;
+                            strPayHost = "http://" + strPayHost;
+                            //得到支付函数并修改支付函数
+                            var strPayOrder = task.objIFrame.contentWindow.commmit.toString();
+                            strPayOrder = strPayOrder.replace("window", "window.self");
+                            strPayOrder = strPayOrder.replace("/main", strPayHost + "/main");
+                            task.objIFrame.contentWindow.eval(strPayOrder);
+
+                            setTimeout(
+                                function(){
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":37});
+                                    setTimeout(
+                                        function(){
+                                            task.objIFrame.contentWindow.keyPressHandler({"keyCode":13});
+                                        }
+                                        , 500);
+                                }
+                                , 500);
+
+                        }else if (title == "话费支付校验选择页") {
+                            var strPayHost = task.objIFrame.contentWindow.window.self.location.host;
+                            strPayHost = "http://" + strPayHost;
+                            //得到支付函数并修改支付函数
+                            var strPayOrder = task.objIFrame.contentWindow.commmit.toString();
+                            strPayOrder = strPayOrder.replace("window", "window.self");
+                            strPayOrder = strPayOrder.replace("/main", strPayHost + "/main");
+                            task.objIFrame.contentWindow.eval(strPayOrder);
+
+                            setTimeout(
+                                function(){
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":37});
+                                    setTimeout(
+                                        function(){
+                                            task.objIFrame.contentWindow.keyPressHandler({"keyCode":13});
+                                        }
+                                        , 300);
+                                    }
+                                , 300);
+
+                        }else if (title == "密码二次确认页面") {
+                            var strPayHost = task.objIFrame.contentWindow.window.self.location.host;
+                            strPayHost = "http://" + strPayHost;
+                            //得到支付函数并修改支付函数
+                            var strPayOrder = task.objIFrame.contentWindow.commmit.toString();
+                            strPayOrder = strPayOrder.replace("window", "window.self");
+                            strPayOrder = strPayOrder.replace("/main", strPayHost + "/main");
+                            task.objIFrame.contentWindow.eval(strPayOrder);
+
+                            setTimeout(
+                                function(){
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":50});//2
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":48});//0
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":48});//0
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":55});//7
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":50});//2
+                                    task.objIFrame.contentWindow.keyPressHandler({"keyCode":51});//3
+                                    setTimeout(
+                                        function(){
+                                            task.objIFrame.contentWindow.keyPressHandler({"keyCode":39});
+                                        }
+                                        , 300);
+                                    setTimeout(
+                                        function(){
+                                            task.objIFrame.contentWindow.keyPressHandler({"keyCode":13});
+                                        }
+                                        , 300);
+                                }
+                                , 300);
+
+                        }else{
+                            LMEPG.Log.info("task::loadIFrame ---> 错误页面URL:"+task.objIFrame.contentWindow.window.self.location.href);
+                            LMEPG.Log.info("task::loadIFrame ---> 错误页面 innerHTML = " + task.objIFrame.contentWindow.G("exchange_iframe").innerHTML);
+                        }
+
+                        // 抢回焦点
+                        var defaultId = window.document.getElementById('default_link');
+                        if (typeof defaultId !== "undefined"
+                            && typeof defaultId.focus !== "undefined") {
+                            defaultId.focus();
+                        }
+                    };
+
+                    LMEPG.Log.info("task::loadIFrame ---> task.objIFrame url: " + url);
+                    task.objIFrame.src = url;
+                } else {
+                    LMEPG.Log.info("task::loadIFrame ---> task.objIFrame is null");
+                }
+            },
+
+            initAndJump: function (url) {
+                if (typeof url != "undefined") {
+                    task.url = url;
+                    task.lmTradeNo = getUrlParamByName(task.url, "lmTradeNo");
+                }
+                var obj = task.buildIFrameObject(task.id);
+                if (!obj) {
+                    setTimeout(task.initAndJump, 1000);
+                    return;
+                }
+                var body = task.addIFrameToBody(obj);
+                if (!body) {
+                    setTimeout(task.initAndJump, 1000);
+                    return;
+                }
+                task.loadIFrame(task.url);
+            },
+        };
+        win.initInjectTask = runTask;
+        win.initInjectTask(); // 加载后立即执行
+    })(window);
+
+</script>
+</body>
+</html>

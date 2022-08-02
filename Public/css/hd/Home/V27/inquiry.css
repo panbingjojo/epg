@@ -1,0 +1,196 @@
+/*--------------------------------------------------
+           在线问诊电话校验
+ ---------------------------------------------------*/
+/*可输入文本对话框*/
+.g_verify_call_dialog {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+    background: transparent no-repeat;
+    z-index: 999;
+}
+
+/*背景图*/
+.g_verify_call_dialog_img_bg {
+    width: 1280px;
+    height: 720px;
+}
+
+/*显示文本*/
+.g_verify_number_edit_dialog_message_text {
+    position: absolute;
+    top: 160px;
+    left: 298px;
+    width: 750px;
+    height: 140px;
+    line-height: 70px;
+    font-size: 36px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    z-index: 1000;
+
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 4;
+}
+
+/*输入框前的label文本*/
+.g_verify_phone_edit_dialog_message_input_label {
+    position: absolute;
+    top: 330px;
+    left: 330px;
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff333;
+    font-size: 32px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/*输入框input区域*/
+.g_verify_phone_edit_dialog_message_input {
+    position: absolute;
+    top: 314px;
+    left: 460px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 486px;
+    height: 75px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    border: 3px solid transparent;
+    border-radius: 15px;
+    -moz-border-radius: 5px;
+    z-index: 1000;
+}
+
+/*输入框前的label文本*/
+.g_verify_number_edit_dialog_message_input_label {
+    position: absolute;
+    top: 410px;
+    left: 330px;
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff333;
+    font-size: 32px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+
+/*输入框input区域*/
+.g_verify_number_edit_dialog_message_input {
+    position: absolute;
+    top: 399px;
+    left: 460px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 270px;
+    height: 75px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    border: 3px solid transparent;
+    border-radius: 15px;
+    -moz-border-radius: 5px;
+    z-index: 1000;
+}
+
+.g_verify_phone_button_border {
+    width: 192px;
+    height: 72px;
+    margin-top: 26px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_verify_phone_button_interval {
+    margin-left: 86px;
+}
+
+/*通用按钮文本*/
+.g_verify_phone_button_text {
+    width: 192px;
+    height: 72px;
+    margin-top: -72px;
+    text-align: center;
+    line-height: 72px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+
+/*输入框底部按钮*/
+.g_verify_phone_edit_dialog_button_container {
+    position: absolute;
+    margin: auto;
+    top: 493px;
+    left: 300px;
+    width: 680px;
+    height: 72px;
+    text-align: center;
+    z-index: 1000;
+}
+
+/*输入框底部按钮*/
+.g_verify_phone_get_edit_dialog_button_container {
+    position: absolute;
+    margin: auto;
+    top: 390px;
+    left: 742px;
+    width: 194px;
+    height: 84px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.g_verify_phone_get_button_border {
+    width: 194px;
+    height: 84px;
+    margin-top: 6px;
+    margin-left: 26px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.g_verify_phone_get_button_img {
+    width: 194px;
+    height: 84px;
+}
+
+.g_verify_phone_get_button_text {
+    width: 194px;
+    height: 84px;
+    margin-top: -84px;
+    text-align: center;
+    line-height: 84px;
+    font-size: 28px;
+    color: white;
+    z-index: 1000;
+}
+
+/*输入框input的focus状态border*/
+.g_verify_edit_dialog_message_input_border_focus {
+    border: 2px solid #ffffff;
+}
+
+/*输入框input的unfocus状态border*/
+.g_verify_edit_dialog_message_input_border_unfocus {
+    border: 2px solid transparent;
+}

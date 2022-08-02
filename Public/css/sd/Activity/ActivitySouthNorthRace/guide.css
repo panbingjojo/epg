@@ -1,0 +1,478 @@
+
+body {
+    width: 644px;
+    height: 530px;
+}
+
+div, img, ul {
+    position: absolute;
+}
+
+
+.modal {
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+    background-position: center;
+    /* background-color: rgba(0, 0, 0, 0.7); */
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.prize-list {
+    position: absolute;
+    top: 328px;
+    left: 10px;
+}
+
+.prize-list p {
+    font-size: 20px;
+    color: #fde164;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-bottom: 20px;
+}
+
+p#exchange-total-score {
+    position: absolute;
+    left: 138px;
+    top: 17px;
+    font-size: 22x;
+}
+
+#modal-exchange li {
+    float: left;
+    text-align: center;
+    width: 210px;
+}
+
+#modal-exchange img {
+    position: static;
+    margin-left: 10px;
+}
+
+#times-count {
+    position: absolute;
+    top: 490px;
+    left: 300px;
+    font-size: 20px;
+    line-height: 1;
+    text-align: center;
+    color: #fff;
+    font-family: "Source Code Pro", sans-serif;
+}
+
+#score-count {
+    position: absolute;
+    top: 494px;
+    left: 76px;
+    font-size: 20px;
+    color: #fff;
+}
+
+#jump-start1 {
+    top: 188px;
+    left: 25px;
+}
+
+#jump-start2 {
+    top: 218px;
+    left: 260px;
+}
+
+#knowledge-next {
+
+top: 446px;
+
+left: 488px;
+}
+
+#knowledge-back {
+    top: 446px;
+    left: 288px;
+    visibility: hidden;
+}
+
+#jump-knowledge {
+    top: 28px;
+    left: 20px;
+}
+
+#wheel-img {
+    top: 223px;
+    left: 446px;
+}
+
+.jump-wrap {
+    top: 238px;
+    right: 0;
+    width: 150px;
+}
+
+.jump-wrap img {
+    position: static;
+}
+
+#jump-back,
+#jump-winner {
+}
+
+.game-wrapper {
+    top: 210px;
+    left: 300px;
+    width: 750px;
+}
+
+.game-wrapper img {
+    position: static;
+    background-position: bottom;
+    background-size: 164px 202px;
+    margin: 5px 35px;
+}
+
+.txt-tip {
+    text-align: center;
+    position: absolute;
+    top: 444px;
+    left: 20px;
+}
+
+.prize-wrapper {
+    width: 158px;
+    top: 169px;
+    left: 46px;
+}
+
+.prize-wrapper img {
+    position: static;
+}
+
+
+/*====倒计时====*/
+#modal-cd {
+    /* background-color: rgba(0, 0, 0, 0.7); */
+}
+
+.count-down {
+    position: absolute;
+    color: #ff7171;
+    font-size: 35px;
+    top: 210px;
+    left: 327px;
+    font-weight: bold;
+    /* border-radius: 10px; */
+    /* padding: 0 50px; */
+    /* margin: 300px 200px 0 200px; */
+    /* background-color: #ffc107cf; */
+    text-align: center;
+}
+
+#modal-cd span {
+    /* position: absolute; */
+    /* top: 200px; */
+    /* line-height: 1; */
+    color: #ff7171;
+}
+
+/*====活动规则====*/
+#modal-rule {
+}
+
+/*====中奖名单====*/
+#modal-list {
+}
+
+.winner-list {
+    left: 78px;
+    font-size: 24px;
+    text-align: center;
+}
+
+#total-list {
+    top: 142px;
+}
+
+#all-marquee {
+    height: 125px;
+}
+
+#my-marquee {
+    height: 45px;
+}
+
+table.marquee-table {
+    width: 500px;
+}
+
+table#all-table tr {
+    height: 40px;
+}
+
+table.marquee-table td {
+    width: 25%;
+    text-align: center;
+    color: #4864cc;
+    font-size: 18px;
+}
+
+#my-list {
+    top: 338px;
+}
+
+.list-tel {
+    color: #004475;
+    top: 380px;
+    left: 220px;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+img.btn-list {
+    top: 430px;
+}
+
+#btn-list-submit {
+    left: 161px;
+}
+
+#btn-list-cancel {
+    left: 360px;
+}
+
+
+#foods-wrapper div.food-item0 {
+    top: 332px;
+    left: 250px;
+}
+
+#foods-wrapper div.food-item1 {
+    top: 382px;
+    left: 470px;
+}
+
+#foods-wrapper div.food-item2 {
+    top: 302px;
+    left: 660px;
+}
+
+#foods-wrapper div.food-item3 {
+    top: 332px;
+    left: 850px;
+}
+
+#foods-wrapper div p {
+    position: relative;
+    width: 140px;
+    height: 38px;
+    color: #fff;
+    text-align: center;
+    background-position: center;
+}
+
+#foods-wrapper div.food-item0 p {
+}
+
+#foods-wrapper div.food-item1 p {
+}
+
+#foods-wrapper div.food-item2 p {
+    padding-bottom: 30px;
+}
+
+#foods-wrapper div.food-item3 p {
+}
+
+#foods-wrapper div p span {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -10px;
+    right: 20px;
+    font-size: 13px;
+    text-align: center;
+}
+
+#foods-wrapper div img {
+    position: static;
+}
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+}
+
+#btn-one0 {
+    top: 418px;
+    left: 586px;
+}
+
+/*====普通用户没有游戏次数====*/
+#modal-pay-notimes {
+}
+
+img.btn-pay {
+    top: 481px;
+}
+
+#btn-pay-sure {
+    left: 432px;
+}
+
+#btn-pay-cancel {
+    left: 674px;
+}
+
+/*====兑换/抽奖成功====*/
+#modal-accomplish {
+}
+
+#accomplish-prize {
+    top: 246px;
+    left: 666px;
+}
+
+#accomplish-tel {
+    top: 288px;
+    left: 296px;
+    width: 200px;
+    height: 40px;
+    line-height: 1;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+    color: #004475;
+}
+
+img.btn-win {
+    top: 350px;
+}
+
+#btn-accomplish-submit {
+    left: 252px;
+}
+
+#btn-accomplish-cancel {
+    left: 674px;
+}
+
+/*====游戏主界面====*/
+#modal-game {
+}
+
+#foods-wrapper {
+}
+
+#foods-wrapper img {
+    z-index: 2;
+    top: -100px;
+}
+
+img#bowl {
+    left: 200px;
+    top: 333px;
+    z-index: 1;
+}
+
+
+#game-start {
+    top: 588px;
+    left: 187px;
+    background-position: center;
+    background-size: 100%;
+}
+
+#count-wrapper {
+
+top: 18px;
+
+left: 10px;
+
+width: 222px;
+
+z-index: 2;
+}
+#count-wrapper p.foods{
+     color: #d86f43;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    padding-left: 65px;
+}
+
+#count-wrapper #jiaozi {
+    margin-top: 5px;
+}
+
+#count-wrapper #tangyuan {
+    margin-top: 0px;
+}
+
+#game-cd {
+    top: 263px;
+    left: 0;
+    font-size: 26px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    /* width: 75px; */
+    padding-left: 80px;
+}
+
+
+/*====增加积分界面===*/
+#modal-add-score {
+    top: 0;
+    left: 0;
+}
+
+#p-add-score {
+    position: absolute;
+    top: 260px;
+    left: 400px;
+    font-size: 30px;
+    color: #000;
+    width: 120px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#btn-one-add {
+
+top: 360px;
+
+left: 265px;
+}
+
+#exchange-total-score {
+    position: absolute;
+    top: 36px;
+    left: 555px;
+    font-size: 26px;
+    color: yellow;
+}
+
+#btn-one,
+#btn-one0,
+#btn-one1 {
+    top: 344px;
+    left: 254px;
+}
+
+
+
+
+
+

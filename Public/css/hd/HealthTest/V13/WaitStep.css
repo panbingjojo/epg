@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+p.title {
+    position: absolute;
+    top: 30px;
+    left: 58px;
+    font-size: 35px;
+    color: #fff;
+}
+
+#write-btn {
+    position: absolute;
+    top: 46px;
+    left: 1024px;
+}
+
+.warm-tips {
+    top: 462px;
+    left: 176px;
+    width: 926px;
+    height: 170px;
+    font-size: 24px;
+    text-align: left;
+    padding-top: 40px;
+    position: absolute;
+    background-image: url(../../../../img/hd/HealthTest/V13/tip_bg.png);
+}
+
+.warm-tips p {
+    margin-left: 68px;
+    margin-bottom: 5px;
+}
+
+.warm-title {
+    font-weight: bold;
+}
+#key-table{
+    top: -135px !important;
+    left: 38px !important;
+}
+
+#wait-step{
+   position: absolute;
+    top: 105px;
+    left: 293px;
+}

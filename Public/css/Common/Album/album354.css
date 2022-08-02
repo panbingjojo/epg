@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+body {
+    /*position:absolute;;*/
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    top: 0px
+}
+
+#small-video-wrap{
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#small-video {
+    top: 370px;
+    left: 135px;
+}
+
+.hd-corner-mark{
+    top: 517px;
+    left: 737px;
+    visibility: hidden;
+}
+
+.hd-back {
+    top: 25px;
+    left: 1061px;
+}
+
+.hd-view-more {
+    top: 90px;
+    left: 1081px;
+}
+
+.hd-video-list {
+    top: 605px;
+    left: 57px;
+    width: 1205px;
+    /*border: 1px red solid;*/
+}
+.hd-video-list img{
+    margin-left: 5px;
+}
+
+.hd-v-arrow {
+    top: 622px;
+}
+
+.hd-v-prev {
+	top: 622px;
+    left: 19px;
+    visibility: hidden;
+}
+
+.hd-v-next {
+	top: 622px;
+    left: 1216px;
+}
+
+/*==============SD==================*/
+.sd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+.sd-body{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    /*border: 1px solid red;*/
+}
+.sd-view-more {
+    position:absolute;
+    top: 73px;
+    left: 492px;
+    width: 131px;
+    height: 37px;
+}
+
+.sd-back {
+    position: absolute;
+    top: 26px;
+    left: 477px;
+    width: 146px;
+    height: 37px;
+}
+
+.sd-video-list {
+    position: absolute;
+    top: 451px;
+    left: 23px;
+    width: 570px;
+    height: 70px;
+    /*border: 1px red solid;*/
+}
+
+.sd-video-list img {
+    /*position: absolute;*/
+    width: 252px;
+    height: 63px;
+    margin-left: 30px;
+}
+
+.sd-v-arrow {
+    position:absolute;
+    top: 463px;
+    width: 27px;
+    height: 37px;
+}
+
+.sd-v-prev {
+    left: 10px;
+    visibility: hidden;
+}
+
+.sd-v-next {
+    left: 608px;
+}
+
+

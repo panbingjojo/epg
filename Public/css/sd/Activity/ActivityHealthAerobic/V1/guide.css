@@ -1,0 +1,292 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+    color: #fff;
+}
+
+body > * {
+    position: absolute;
+}
+
+.abs {
+    position: absolute;
+}
+
+#bg {
+    top: 0;
+    left: 0;
+}
+
+.right-btn-wrapper {
+    top: 21px;
+    left: 517px;
+}
+
+#lottery-count {
+    top: 336px;
+    left: 220px;
+    font-size: 21px;
+}
+
+#total-oxygen {
+    top: 370px;
+    left: 236px;
+    font-size: 21px;
+}
+
+
+.collect-wrapper {
+    top: 400px;
+    left: 124px;
+}
+
+.collect-wrapper img {
+    margin-right: 18px;
+}
+
+#water,
+#bug,
+#weeding {
+    position: absolute;
+    width: 79px;
+    height: 89px;
+    opacity: 0;
+}
+
+#water {
+    top: 153px;
+    left: 210px;
+}
+
+#bug {
+    top: 6px;
+    left: 343px;
+}
+
+#weeding {
+    top: 202px;
+    left: 435px;
+}
+#modify-tips{
+    top: 245px;
+    left: 138px;
+}
+/*倒计时*/
+#count-down {
+    position: absolute;
+}
+
+#game-intro {
+    position: absolute;
+}
+
+/*+++++++++++++++常规弹框+++++++++++++++++*/
+#searchText {
+    position: absolute;
+    z-index: 99;
+    width: 250px;
+    overflow: hidden;
+}
+
+#btn-one {
+    position: absolute;
+    top: 353px;
+    left: 263px;
+}
+
+/*中奖名单*/
+#win-table {
+    top: 136px;
+    left: 21px;
+    width: 600px;
+    height: 110px;
+}
+
+table {
+    width: 600px;
+}
+
+#win-table tr {
+}
+
+#win-table tr td {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 15px;
+    overflow: hidden
+}
+
+/*中奖名单排版*/
+#win-table tr td.user,
+.single-table tr td.user {
+    width: 31%;
+}
+
+#win-table tr td.winTime,
+.single-table tr td.winTime {
+    width: 38%;
+}
+
+#win-table tr td.prize,
+.single-table tr td.prize {
+    width: 31%;
+}
+
+.list-submit {
+    top: 402px;
+    left: 192px;
+}
+
+.list-cancle {
+    top: 402px !important;
+    left: 334px !important;
+}
+
+.tel-wrap {
+    position: absolute;
+    font-size: 15px;
+
+}
+
+.tel-list {
+    top: 368px;
+    left: 274px;
+}
+
+.single-table {
+    top: 331px;
+    left: 21px;
+    width: 600px;
+    height: 20px;
+    font-size: 18px;
+    text-align: center;
+}
+/*兑换奖品*/
+#exchange-wrap{
+    font-size: 24px;
+    position: absolute;
+    top: 205px;
+    left: 350px;
+    width: 222px;
+}
+#exchange-wrap div{
+    position: relative;
+}
+#exchange-wrap p{
+    line-height: 40px;
+}
+#exchange-wrap img{
+    position: absolute;
+    top: -5px;
+    left: 100px;
+}
+.myScore{
+    top: 55px;
+    left: 127px;
+    font-size: 25px;
+}
+.hasExchange{
+    top: 104px;
+    left: 156px;
+    font-size: 25px;
+}
+#exchange-close{
+    top: 28px;
+    left: 558px;
+}
+.tel-exchange{
+    top: 264px;
+    left: 311px;
+    font-size: 15px;
+}
+.tel-exchange>span{
+    font-size: 15px !important;
+}
+
+/*活动规则*/
+
+#rule-close {
+    top: 12px;
+    left: 579px;
+}
+
+/*订购相关*/
+#btn-sure-pay {
+    top: 353px;
+    left: 191px;
+}
+
+#btn-cancle {
+    top: 353px;
+    left: 334px;
+}
+
+/*完成游戏*/
+.complete-submit {
+    top: 336px;
+    left: 210px;
+}
+
+.complete-cancle {
+    top: 336px !important;
+    left: 335px !important;
+}
+
+.tel-complete {
+
+}
+
+#win-prize {
+    top: 259px;
+    left: 688px;
+}
+.total-noPrize{
+    top: 250px;
+    left: 580px;
+    font-style: italic;
+}
+.my-noPrize{
+    top: 330px;
+    left: 280px;
+    font-style: italic;
+    font-size: 15px;
+}
+/*等待框*/
+
+.g_waiting_dialog {
+    position: absolute;
+    left: 272px;
+    top: 190px;
+    width: 66px;
+    height: 77px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 1000;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../../img/sd/Common/bg_waiting_dialog.gif") no-repeat;
+}
+/*提示语*/
+
+.g_toast {
+    position: absolute;
+    left: 148px;
+    top: 210px;
+    width: 348px;
+    height: 81px;
+    line-height: 106px;
+    font-size: 15px;
+    z-index: 1000;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../../img/sd/Common/bg_toast.png") no-repeat;
+}

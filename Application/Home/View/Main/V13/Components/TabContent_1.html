@@ -1,0 +1,578 @@
+<div class="tab1-link-1-wrap">
+    <div id="tab1-link">
+        <img src="__ROOT__/Public/img/hd/Home/V13/Home/free_icon.png" class="sign-area" style="top: 0;display: none"
+             id="free-icon-0">
+    </div>
+    <img id="tab1-link-1" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+    <img id="tab1-link-0">
+    <div id="tab1-point-wrapper"></div>
+</div>
+<div class="tab1-center-link">
+    <div>
+        <img id="tab1-link-2">
+        <img src="__ROOT__/Public/img/hd/Home/V13/Home/free_icon.png" class="sign-area" style="top: 0;display: none"
+             id="free-icon-1">
+    </div>
+    <div>
+        <img id="tab1-link-3">
+        <img src="__ROOT__/Public/img/hd/Home/V13/Home/free_icon.png" class="sign-area" style="top: 0;display: none"
+             id="free-icon-2">
+    </div>
+    <!--标清位置改变-->
+    <div class="sd-re-pos-1">
+        <img src="__ROOT__/Public/img/hd/Home/V13/Home/free_icon.png" class="sign-area" style="top: 0;display: none"
+             id="free-icon-3">
+        <img id="tab1-link-4">
+    </div>
+    <div class="sd-re-pos-2">
+        <img src="__ROOT__/Public/img/hd/Home/V13/Home/free_icon.png" class="sign-area" style="top: 0;display: none"
+             id="free-icon-4">
+        <img id="tab1-link-5">
+    </div>
+</div>
+<ul class="hot-video-list" id="hot-wrap"></ul>
+
+<!--底部容器，按钮导航-->
+<div class="tab1-bottom-link">
+    <div id="overlay-wrap"></div>
+</div>
+<div id="tab1-help" class="tab-help-wrap">
+    <img id="tab1-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab1_help0.png">
+</div>
+
+<script type="text/javascript">
+    var Tab1 = {
+        isLoad: false,
+        temp_id: "", //  辅助变量
+        init: function () {
+            Tab1.hotRefVideo = [];
+            Tab1.bottomData = [];
+            Tab1.bottomPageSize = 5;
+            Tab1.bottomPage = +LMEPG.Func.getLocationString('bottomPage') || 0;
+            Tab1.getBottomData();
+            Tab1.createBtns();
+            Tab1.renderTab1();
+            Tab1.renderBottom();
+            Tab1.banner = new Banner(Tab1.bannerData, 'tab1-link-0', 'tab1-link-1', 'tab1-point-');
+            Tab1.banner.renderDots('tab1-point-wrapper');
+        },
+        /**
+         * 渲染Tab1
+         */
+        renderTab1: function () {
+            Tab1.setHotWrapBg()
+            Tab1.hotVideo_htm();
+            Tab1.updatePageDisPlay()
+        },
+
+        /**
+         *
+         */
+        updatePageDisPlay: function () {
+            var list = RenderParam.configInfo.data.entry_list;
+            var tab1Data = [21, 22, 23, 24, 25];               //  “发现”模块后台配置位置的position
+            for (var i = 0; i < list.length; i++) {
+                this.displayByPos(list, i)
+                var pos = parseInt(list[i].position);
+                if (this.temp_id && tab1Data.indexOf(pos) > -1) {
+                    G(this.temp_id).src = Page.getImg(list[i].item_data[0].img_url);
+                }
+            }
+        },
+
+        /**
+         *
+         */
+        displayByPos: function (list, index) {
+            var pos = parseInt(list[index].position);
+            switch (pos) {
+                case 21:
+                    Tab1.temp_id = '';
+                    this.banner_htm(list[index].item_data);
+                    this.addFreeIcon('free-icon-0', list, index);
+                    break;
+                case 22:
+                    Tab1.temp_id = 'tab1-link-2';
+                    this.addFreeIcon('free-icon-1', list, index);
+                    break;
+                case 23:
+                    Tab1.temp_id = 'tab1-link-3';
+                    this.addFreeIcon('free-icon-2', list, index);
+                    break;
+                case 24:
+                    Tab1.temp_id = 'tab1-link-4';
+                    this.addFreeIcon('free-icon-3', list, index);
+                    break;
+                case 25:
+                    Tab1.temp_id = 'tab1-link-5';
+                    this.addFreeIcon('free-icon-4', list, index);
+                    break;
+                default:
+                    Tab1.temp_id = "";
+                    break
+            }
+        },
+
+        /**
+         * 设置热播背景
+         */
+        setHotWrapBg: function () {
+            var bgListTitle = 'url("__ROOT__/Public/img/' + RenderParam.platformType + '/Home/V13/Home/Tab1/hot_title.png")';
+            if (RenderParam.carrierId == '371092') {
+                bgListTitle = 'url("__ROOT__/Public/img/hd/Unclassified/V13/hot_title_371092.png")';
+            }
+            G('hot-wrap').style.backgroundImage = bgListTitle;
+        },
+
+        /**
+         * 热播榜html数据包
+         */
+        hotVideo_htm: function () {
+            var data = LMEPG.Func.shuffle(RenderParam.videoPlayRank.list);
+            var currentBtn = LMEPG.BM.getCurrentButton();
+            if (data.length === 0) return;
+            Tab1.hotRefVideo = data;
+            Tab1.renderHotWrap(data)
+            Tab1.moveFocusOnFirst(currentBtn)
+            Tab1.refreshHotWrap(data);
+        },
+
+        /**
+         * 渲染banner
+         */
+        banner_htm: function (carouselData) {
+            Tab1.bannerData = this.buildBannerData(carouselData)
+            if (Tab1.bannerData[0]) G('tab1-link-0').src = Tab1.bannerData[0].src;
+            if (Tab1.bannerData[1]) G('tab1-link-1').src = Tab1.bannerData[1].src;
+        },
+
+        /**
+         * 构建banner数据包
+         */
+        buildBannerData: function (carouselData) {
+            var temp_list = []
+            for (var j = 0; j < carouselData.length; j++) {
+                var val = carouselData[j];
+                temp_list.push({
+                    id: j,
+                    src: Page.getImg(val.img_url),
+                    entry_type: val.entry_type,
+                    parameters: val.parameters,
+                    inner_parameters: val.inner_parameters
+                })
+            }
+            return temp_list;
+        },
+
+        /**
+         * 渲染热播列表html
+         */
+        renderHotWrap: function (data) {
+            var hotInner = '';
+            var staticCount = 6; // 固定的位置个数
+            for (var i = 0; i < staticCount; i++) {
+                var hotItem = data[i];
+                var titleTxt = hotItem ? hotItem.title : '';
+                var titlen = RenderParam.platformType == 'sd' ? 10 : 12;
+                var title = titleTxt.length > titlen ? titleTxt.slice(0, titlen) + "..." : titleTxt;
+                if (RenderParam.carrierId == '371092') {
+                    hotInner += ' <li data-title="' + titleTxt + '" id="hot-' + i + '" style="background-image: url(' + g_appRootPath + '/Public/img/hd/Unclassified/V13/hot_bg_371092.png)">' + title;
+                } else {
+                    hotInner += ' <li data-title="' + titleTxt + '" id="hot-' + i + '" style="background-image: url(' + g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab1/hot_bg.png)">' + title;
+
+                }
+            }
+            G('hot-wrap').innerHTML = hotInner;
+        },
+
+        /**
+         * 添加免费角标
+         */
+        addFreeIcon: function (id, list, index) {
+            if (!list[index].item_data[0].inner_parameters) {
+                return
+            }
+
+            var type = JSON.parse(list[index].item_data[0].inner_parameters).user_type
+
+            if (!type) {
+                return;
+            }
+
+            if (RenderParam.carrierId === '430002' &&
+                RenderParam.isVip === 0 &&
+                list[index].item_data[0].entry_type === '5' &&
+                type !== '2') {
+
+                G(id).style.display = 'block'
+            }
+        },
+
+        /**
+         * 如果焦点在热播榜上，每次刷新时把焦点移到第一条
+         */
+        moveFocusOnFirst: function (currentBtn) {
+            if (currentBtn && currentBtn.id.substr(0, 4) === 'hot-') {
+                LMEPG.BM.requestFocus('hot-0');
+            }
+        },
+
+        /**
+         * 隔十秒刷新一下热播榜
+         */
+        refreshHotWrap: function (data) {
+            if (data.length > 6) {
+                clearTimeout(this.hotTimer);
+                this.hotTimer = setTimeout(this.hotVideo_htm, 10000);
+            }
+        },
+        /**
+         * 通用位置获得焦点
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+            Tab1.bottomOnFocusIn(btn, hasFocus);
+            Tab1.carouselLink1OnFocus(btn, hasFocus);
+        },
+        /**
+         * 轮播推荐位得失焦点处理
+         * 轮询切换
+         * @param btn
+         * @param hasFocus
+         */
+        carouselLink1OnFocus: function (btn, hasFocus) {
+            if (btn.id != 'tab1-link') {
+                return;
+            }
+            var carousel_0 = G(btn.id + '-0');
+            var carousel_1 = G(btn.id + '-1');
+            if (hasFocus) {
+                carousel_0.setAttribute('class', 'focus');
+                carousel_1.setAttribute('class', 'focus');
+            } else {
+                carousel_0.removeAttribute('class');
+                carousel_1.removeAttribute('class');
+            }
+        },
+
+        /**
+         * 点击热播视频
+         * @param btn
+         */
+        onClickHotVideo: function (btn) {
+            var videoData = Tab1.hotRefVideo[btn.id.slice(-1)];
+
+            PageJump.jumpPlayVideo(videoData);
+        },
+        hotOnFocusIn: function (btn, hasFocus) {
+            var btnEl = G(btn.id);
+            var txtInner = btnEl.getAttribute('data-title');
+            var lenWord = RenderParam.platformType == 'sd' ? 8 : 12;
+            if (btn.id.indexOf('hot') < 0) {
+                return;
+            }
+
+            if (hasFocus) {
+                if (txtInner.length > lenWord) btnEl.innerHTML = '<marquee>' + txtInner;
+                btnEl.style.color = '#000';
+            } else {
+                if (txtInner.length > lenWord) btnEl.innerHTML = txtInner.length > lenWord ? txtInner + '...' : txtInner;
+                btnEl.style.color = '#fff';
+            }
+        },
+
+        /**
+         * 点击二级视频入口（页面的最后一行）
+         */
+        onClickJumpLevel2Page: function (btn) {
+            if (RenderParam.carrierId === '440001'){
+                Page.onClickRecommendPosition(btn)
+            }else {
+                var currentObj = getCurPageObj();
+                var lastIdx = +btn.id.slice(-1);
+                var btnJumpData = Tab1.jumpBottomData[lastIdx];
+                if (RenderParam.carrierId == CARRIER_ID_SHANDONG_HICON || RenderParam.carrierId == "371002") {
+                    // 山东电信海看埋点上报推荐位点击事件
+                    var clickId = Page._getHICONClickId(btn.id);
+                    var turnPageInfo = {
+                        currentPage: location.href,
+                        turnPage: location.origin + "/Home/Channel/channelIndexV13",
+                        turnPageName: btnJumpData.model_name,
+                        turnPageId: "39_" + btnJumpData.model_type,
+                        clickId: clickId
+                    };
+                    ShanDongHaiKan.sendReportData('6', turnPageInfo);
+                }
+                // 通过点击对象id,设置跳转页面对象
+                var jumpAgreementObj = LMEPG.Intent.createIntent('channelIndex');
+                jumpAgreementObj.setParam('itemIndex', Tab1.bottomPage);
+                jumpAgreementObj.setParam('modelType', btnJumpData.model_type);
+                jumpAgreementObj.setParam('modelName', btnJumpData.model_name);
+                LMEPG.Intent.jump(jumpAgreementObj, currentObj);
+            }
+        },
+        /**
+         * 视频栏目获得焦点
+         * 处理进入二级视频栏目滚动效果
+         * @param btn
+         * @param hasFocus
+         */
+        bottomOnFocusIn: function (btn, hasFocus) {
+            if (btn.id.indexOf('bottom') < 0) {
+                return;
+            }
+            if (hasFocus) {
+                if (btn.id == 'bottom-link-0') {
+                    showLeft();
+                }
+                if (btn.id == 'bottom-link-4') {
+                    showRight();
+                }
+            }
+
+            function showLeft() {
+                G('first-action').setAttribute('class', 'moveRight');
+                if (Tab1.prevImage) {
+                    Show('placeholder-0');
+                    Hide('placeholder-1');
+                }
+            }
+
+            function showRight() {
+                G('first-action').setAttribute('class', 'moveLeft');
+                if (Tab1.nextImage) {
+                    Hide('placeholder-0');
+                    Show('placeholder-1');
+                }
+            }
+        },
+        /**
+         * 视频栏目焦点移动
+         * 切换滚动
+         * @param dir
+         * @param btn
+         */
+        turnBottomPage: function (dir, btn) {
+            var me = Tab1;
+            if (dir == 'left' && btn.id == 'bottom-link-0' && me.bottomPage != 0) {
+                me.bottomPage -= 1;
+                me.renderBottom(btn);
+                LMEPG.BM.requestFocus('bottom-link-0');
+            }
+            if (dir == 'right' && btn.id == 'bottom-link-4' && me.bottomPage < me.bottomData.length - 5) {
+                me.bottomPage += 1;
+                me.renderBottom(btn);
+                LMEPG.BM.requestFocus('bottom-link-4');
+            }
+        },
+        /**
+         * 转换组装底部视频栏目数据
+         */
+        getBottomData: function () {
+            var bom_data = RenderParam.videoClass.data || [];
+            var getImgFun = Page.getImg;
+            if (RenderParam.carrierId==='440001' && RenderParam.configInfo.result==0) {
+                var recommentData = RenderParam.configInfo.data.entry_list[10].item_data;
+                var position = RenderParam.configInfo.data.entry_list[10].position
+                for (var i = 0; i < recommentData.length; i++) {
+                    this.bottomData.push({
+                        id: i,
+                        src: getImgFun(recommentData[i].img_url),
+                        dataType: recommentData[i],
+                        position: position
+                    });
+                }
+            }else {
+                for (var k = 0; k < bom_data.length; k++) {
+                    this.bottomData.push({
+                        id: k,
+                        src: getImgFun(bom_data[k].img_url),
+                        show_title: bom_data[k].show_title,
+                        model_type: bom_data[k].model_type,
+                        model_name: bom_data[k].model_name
+                    });
+                }
+            }
+        },
+
+        /**
+         * 底部视频栏目
+         */
+        renderBottom: function (btn) {
+            var bottomInner = '';
+            var parentNodeId = '';
+            var parentNodeClass = '';
+            var src = '';
+            var start = this.bottomPage;
+            var end = this.bottomPage + this.bottomPageSize;
+            var data = this.bottomData.slice(start, end);
+
+            if (data.length === 0) return;
+            for (var k = 0; k < this.bottomPageSize; k++) {
+                src = data[k] ? data[k].src : '';
+                parentNodeId = k === 0 ? 'first-action' : '';
+                parentNodeClass = k === 0 ? 'moveRight' : '';
+                LMEPG.Log.info("TabContent_1.html--renderBottom--src::" + src);
+                bottomInner += '<div class="' + parentNodeClass + '" id="' + parentNodeId + '"><img id="bottom-link-' + k + '" src="' + src + '"></div>';
+            }
+
+            // 添加站位元素
+            bottomInner = '<div id="placeholder-0" class="left-placeholder"><img id="placeholder-img-0" src=""></div>' + bottomInner;
+            bottomInner += '<div id="placeholder-1" class="right-placeholder"><img id="placeholder-img-1" src=""></div>';
+
+            G('overlay-wrap').innerHTML = bottomInner;
+            this.jumpBottomData = data;
+            this.prevImage = start ? this.bottomData[start - 1] : null;
+            this.nextImage = this.bottomData[end] ? this.bottomData[end] : null;
+            this.refPlaceholder(this.prevImage, this.nextImage);
+        },
+
+        /**
+         * 视频栏目
+         * 展示占位元素
+         * @param prevImage
+         * @param nextImage
+         */
+        refPlaceholder: function (prevImage, nextImage) {
+            if (this.bottomData.length < 6) {
+                return;
+            }
+
+            if (prevImage && prevImage.src) {
+                G('placeholder-img-0').src = prevImage.src;
+            }
+
+            if (nextImage && nextImage.src) {
+                G('placeholder-img-1').src = nextImage.src;
+            }
+        },
+
+        /**
+         * 构建按钮
+         */
+        createBtns: function () {
+            // 推荐位1
+            buttons.push({
+                id: 'tab1-link',
+                type: 'img',
+                nextFocusRight: 'tab1-link-2',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'tab1-link-4' : 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 21
+            });
+            // 中间四个推荐位
+            buttons.push({
+                id: 'tab1-link-2',
+                type: 'img',
+                nextFocusLeft: 'tab1-link',
+                nextFocusRight: RenderParam.platformType == 'sd' ? 'hot-0' : 'tab1-link-3',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'tab1-link-3' : 'tab1-link-4',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 22
+            }, {
+                id: 'tab1-link-3',
+                type: 'img',
+                nextFocusLeft: RenderParam.platformType == 'sd' ? 'tab1-link-5' : 'tab1-link-2',
+                nextFocusRight: 'hot-0',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link-2' : 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'bottom-link-1' : 'tab1-link-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 23
+            }, {
+                id: 'tab1-link-4',
+                type: 'img',
+                nextFocusLeft: RenderParam.platformType == 'sd' ? '' : 'tab1-link',
+                nextFocusRight: 'tab1-link-5',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link' : 'tab1-link-2',
+                nextFocusDown: 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 24
+            }, {
+                id: 'tab1-link-5',
+                type: 'img',
+                nextFocusLeft: 'tab1-link-4',
+                nextFocusRight: RenderParam.platformType == 'sd' ? 'tab1-link-3' : 'hot-0',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link' : 'tab1-link-3',
+                nextFocusDown: 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 25
+            });
+            // 热播榜
+            var hot_length = 6;
+            while (hot_length--) {
+                var topFocus = hot_length == 0 ? 'tab-1' : 'hot-' + (hot_length - 1);
+                var downFocus = hot_length == 5 ? 'bottom-link-3' : 'hot-' + (hot_length + 1);
+                var bgItemImgPath = g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab1/hot_bg.png';
+                var bgItemFImgPath = g_appRootPath + '/Public/img/hd/Home/V13/Home/Tab1/hot_link.png';
+                if (RenderParam.platformType == 'sd') {
+                    bgItemImgPath = g_appRootPath + '/Public/img/sd/Unclassified/V13/hot_f.png';
+                    bgItemFImgPath = g_appRootPath + +'/Public/img/hd/Home/V13/Home/Tab1/hot_link.png';
+                }
+                if (RenderParam.carrierId == '371092') {
+                    bgItemImgPath = g_appRootPath + '/Public/img/hd/Unclassified/V13/hot_bg_371092.png';
+                    bgItemFImgPath = g_appRootPath + '/Public/img/hd/Unclassified/V13/hot_f_371092.png';
+                }
+                buttons.push({
+                    id: 'hot-' + hot_length,
+                    type: 'div',
+                    nextFocusLeft: 'tab1-link-3',
+                    nextFocusUp: topFocus,
+                    nextFocusDown: downFocus,
+                    click: this.onClickHotVideo,
+                    focusChange: Tab1.hotOnFocusIn,
+                    backgroundImage: bgItemImgPath,
+                    focusImage: bgItemFImgPath,
+                    cNavId: 2
+                });
+            }
+            // 跳转二级页面按钮
+            var tabCount = 5; // 后台拉去的个数
+            while (tabCount--) {
+                var top1Focus = function () {
+                    var id;
+                    if (tabCount < 2) {
+                        id = 'tab1-link-4';
+                    } else if (tabCount == 2 || RenderParam.videoPlayRank.count == 0) {
+                        id = 'tab1-link-5';
+                    } else {
+                        id = 'hot-5';
+                    }
+                    return id;
+                }();
+                buttons.push({
+                    id: 'bottom-link-' + tabCount,
+                    type: 'others',
+                    nextFocusLeft: 'bottom-link-' + (tabCount - 1),
+                    nextFocusRight: 'bottom-link-' + (tabCount + 1),
+                    nextFocusUp: top1Focus,
+                    click: Tab1.onClickJumpLevel2Page,
+                    focusChange: Tab1.onFocusIn,
+                    beforeMoveChange: Tab1.turnBottomPage,
+                    cNavId: tabCount,
+                    cIdx: (RenderParam.carrierId==='440001'?this.bottomData[tabCount].dataType:''),
+                    cPosition: (RenderParam.carrierId==='440001'?this.bottomData[tabCount].position:''),
+                    isButton: (RenderParam.carrierId==='440001'?'button':'')
+                });
+            }
+        }
+    };
+</script>

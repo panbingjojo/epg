@@ -1,0 +1,54 @@
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    background-image: url("../../../../img/sd/Home/V13/Home/bg.png");
+}
+
+ul li {
+    list-style: none;
+}
+
+
+#container {
+    width: 544px;
+    margin: 0 auto;
+    position: relative;
+    top: 120px;
+}
+
+#qr-code {
+    width: 260px;
+    height: 320px;
+    text-align: center;
+    margin-right: 24px;
+    float: left;
+    background-image: url("../../../../img/hd/AppointmentRegister/V13/more_hosp_bg.png");
+    padding-top: 15px;
+}
+
+#qr-code img {
+    width: 200px;
+    height: 200px;
+}
+
+#qr-code p {
+    font-size: 15px;
+    color: #fff;
+    margin-top: 20px;
+    line-height: 24px;
+}
+
+#more-39-intro {
+    width: 230px;
+    height: 290px;
+    padding: 15px;
+    text-indent: 20px;
+    float: left;
+    font-size: 18px;
+    line-height: 25px;
+    background-image: url("../../../../img/hd/AppointmentRegister/V13/intro_bg.png");
+}

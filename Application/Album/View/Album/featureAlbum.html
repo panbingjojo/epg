@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精选图文1</title>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Album/featureAlbum/album.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+            dataList: {$data}.data.video_list, //专题节目列表;
+            //当前页渲染
+            skin: {$skin}      // 用户自定义背景
+        };
+    </script>
+
+
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+<body bgcolor="transparent">
+<div id="debug"></div>
+<div class="container">
+    <img id="left-arrow" class="arrow" src="__ROOT__/Public/img/hd/Album/FeatureAlbum/left_arrow.png" alt="">
+    <img id="right-arrow" class="arrow" src="__ROOT__/Public/img/hd/Album/FeatureAlbum/right_arrow.png" alt="">
+    <ul id="list-wrapper"></ul>
+    <div id="page-count">0/0</div>
+</div>
+<div id="iframe">
+    <div id="img-wrapper">
+        <img id="iframe-img" src="__ROOT__/Public/img/hd/Common/transparent.png">
+    </div>
+    <div id="img_count">0/0</div>
+    <img id="img_prevArrow" class="arrow" src="__ROOT__/Public/img/hd/Album/FeatureAlbum/left_arrow.png">
+    <img id="img_nextArrow" class="arrow" src="__ROOT__/Public/img/hd/Album/FeatureAlbum/right_arrow.png">
+</div>
+<script type="text/javascript">
+    var List = {
+        page: 0,
+        maxPage: 0,
+        buttons: [],
+        beClickBtnId: 'focus-0',
+        data: RenderParam.dataList,
+        init: function () {
+            /**
+             * 起始页数为零
+             * 数据最后一个除以条数再向下取整得到最大页数
+             * @type {number}
+             */
+            this.maxPage = Math.floor((this.data.length - 1) / 7);
+            this.render();
+            this.createBtns();
+        },
+        setPage: function (count) {
+            var page = this.page * count;
+            this.currentData = this.data.slice(page, page + count);
+        },
+        render: function () {
+            this.setPage(7);
+            var htm = '';
+            this.currentData.forEach(function (t, i) {
+                htm += '<li data-title="' + t.title + '" id="focus-' + i + '">' + List.cutWords(t.title, RenderParam.platformType == 'sd' ? 17 : 22);
+            });
+            G('list-wrapper').innerHTML = htm;
+            G('page-count').innerHTML = (this.page + 1) + '/' + (this.maxPage + 1);
+            this.toggleArrow();
+        },
+        onClick: function (btn) {
+            List.beClickBtnId = btn.id;
+            var index = btn.id.slice(btn.id.length - 1);
+            var img_array = List.currentData[index].content_desc;
+            Iframe.init(img_array);
+
+        },
+        cutWords: function (str, len) {
+            if (str.length > len) {
+                return str.slice(0, len) + '...';
+            } else {
+                return str;
+            }
+        },
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            var btnEl = G(btn.id);
+            var txtInner = btnEl.getAttribute('data-title');
+            var lenWord = RenderParam.platformType == 'sd' ? 17 : 22;
+            if (txtInner.length < lenWord) {
+                return;
+            }
+            if (hasFocus) {
+                btnElement.innerHTML = '<marquee>' + txtInner;
+            } else {
+                btnElement.innerHTML = List.cutWords(txtInner, lenWord);
+            }
+        },
+        onBeforeMoveChange: function (key, btn) {
+            switch (true) {
+                case key == 'left':
+                case key == 'up' && btn.id == 'focus-0':
+                    List.prevPage();
+                    return false;
+                    break;
+                case key == 'right':
+                case key == 'down' && btn.id == 'focus-6':
+                    List.nextPage();
+                    return false;
+                    break;
+            }
+        },
+        prevPage: function () {
+            if (this.page == 0) return;
+            this.page--;
+            this.render();
+            LMEPG.ButtonManager.requestFocus('focus-6');
+        },
+        nextPage: function () {
+            if (this.page == this.maxPage) return;
+            this.page++;
+            this.render();
+            LMEPG.ButtonManager.requestFocus('focus-0');
+        },
+        toggleArrow: function () {
+            S('left-arrow');
+            S('right-arrow');
+            this.page == 0 && H('left-arrow');
+            this.page == this.maxPage && H('right-arrow');
+        },
+        createBtns: function () {
+            var FOCUS_COUNT = 7;
+            while (FOCUS_COUNT--) {
+                this.buttons.push({
+                    id: 'focus-' + FOCUS_COUNT,
+                    type: 'div',
+                    nextFocusLeft: '',
+                    nextFocusRight: '',
+                    nextFocusUp: 'focus-' + (FOCUS_COUNT - 1),
+                    nextFocusDown: 'focus-' + (FOCUS_COUNT + 1),
+                    backgroundImage: RenderParam.platformType == 'sd' ? g_appRootPath + '/Public/img/sd/Unclassified/V13/item.png' : g_appRootPath + '/Public/img/hd/Album/FeatureAlbum/item.png',
+                    focusImage: RenderParam.platformType == 'sd' ? g_appRootPath + '/Public/img/sd/Unclassified/V13/item_f.png' : g_appRootPath + '/Public/img/hd/Album/FeatureAlbum/item_f.png',
+                    click: this.onClick,
+                    focusChange: this.onFocusIn,
+                    beforeMoveChange: this.onBeforeMoveChange
+                });
+            }
+            this.buttons.push({
+                id: 'iframe-img',
+                type: 'others',
+                beforeMoveChange: Iframe.switch_img
+            });
+            LMEPG.ButtonManager.init('focus-0', this.buttons, '', true);
+        }
+    };
+
+    var Iframe = {
+        count: 0,
+        maxCount: 0,
+        imgArray: [],
+        isShow: false,
+        init: function (data) {
+            Show('iframe');
+            this.count = 0;
+            this.preLoader(data);
+            this.maxCount = this.imgArray.length - 1;
+            this.render_img();
+            this.isShow = true;
+            LMEPG.BM.requestFocus('iframe-img');
+        },
+        preLoader: function (data) {
+            var that = this;
+            that.imgArray = [];
+            data.forEach(function (t) {
+                var imgObj = document.createElement('img');
+                imgObj.id = 'iframe-img';
+                imgObj.src = RenderParam.fsUrl + t;
+                that.imgArray.push(imgObj);
+            });
+        },
+        render_img: function () {
+            // 使用替换节点可以解决上一个图组间隙显现
+            G('img-wrapper').replaceChild(this.imgArray[this.count], G('iframe-img'));
+            G('img_count').innerHTML = (this.count + 1) + '/' + this.imgArray.length;
+            this.toggle_img_arrow();
+        },
+        switch_img: function (key, btn) {
+            if (key == 'left') {
+                Iframe.switch_prev();
+            }
+            ;
+            if (key == 'right') {
+                Iframe.switch_next();
+            }
+        },
+        switch_prev: function () {
+            if (this.count == 0) {
+                return;
+            } else {
+                this.count--;
+                this.render_img();
+            }
+        },
+        switch_next: function () {
+            if (this.count == this.maxCount) {
+                return;
+            } else {
+                this.count++;
+                this.render_img();
+            }
+        },
+        toggle_img_arrow: function () {
+            S('img_prevArrow');
+            S('img_nextArrow');
+            this.count == 0 && H('img_prevArrow');
+            this.count == this.maxCount && H('img_nextArrow');
+        }
+    };
+
+    List.init();
+    var onBack = function () {
+        if (Iframe.isShow) {
+            Iframe.isShow = false;
+            Hide('iframe');
+            LMEPG.ButtonManager.requestFocus(List.beClickBtnId);
+        } else {
+            LMEPG.Intent.back();
+        }
+    };
+
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        if (!LMEPG.Func.isEmpty(RenderParam.skin.cpbjt)) {
+            var bgImg = RenderParam.fsUrl + RenderParam.skin.cpbjt;
+            document.body.style.backgroundImage = 'url(' + bgImg + ')';
+        }
+    };
+</script>
+</body>
+</html>

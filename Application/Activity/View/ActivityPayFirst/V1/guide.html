@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>首订有礼-v1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__../../../../../PublicCommon/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__../../../../../PublicCommon/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__../../../../../PublicCommon/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__../../../../../PublicCommon/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__../../../../../PublicCommon/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__../../../../../PublicCommon/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            background-repeat: no-repeat;
+        }
+
+        body {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+            background-image: url(../../../../../Public/img/hd/Activity/ActivityPayFirst/V1/bg_home.png)
+        }
+
+        body > * {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            /*visibility: hidden;*/
+        }
+
+        body img {
+            position: absolute;
+        }
+
+        /*订购成功返回得到奖品弹框*/
+        #may-prize {
+            background-image: url(../../../../../Public/img/hd/Activity/ActivityPayFirst/V1/get_may_prize.png);
+        }
+
+        #may-prize #prize {
+            top: 150px;
+            left: 530px;
+        }
+
+        #may-prize #btn-close {
+            top: 40px;
+            left: 1010px;
+        }
+
+        #btn-get-prize {
+            top: 530px;
+            left: 540px;
+        }
+
+        #btn-detail {
+            top: 530px;
+            left: 750px;
+        }
+
+        /*活动细则弹框*/
+        #activity-details {
+            background-image: url(../../../../../Public/img/hd/Activity/ActivityPayFirst/V1/activity_details.png);
+        }
+
+        #activity-details #btn-close {
+            top: 400px;
+            left: 1010px;
+        }
+
+        #activity-details #prize {
+            top: 190px;
+            left: 140px;
+        }
+
+        /*确认领取奖品弹框*/
+        #take-prize-sure {
+            background-image: url(../../../../../Public/img/hd/Activity/ActivityPayFirst/V1/take_prize_sure.png);
+        }
+
+        #take-prize-sure #prize {
+            top: 150px;
+            left: 140px;
+        }
+
+        #take-prize-sure #btn-giveup {
+            top: 540px;
+            left: 410px;
+        }
+
+        #take-prize-sure #btn-sure {
+            top: 540px;
+            left: 620px;
+        }
+    </style>
+</head>
+<body>
+<script type="application/javascript">
+
+    // 全局参数
+    var A = {
+        isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+        imgPathPrefix: g_appRootPath+"/Public/img/hd/Activity/ActivityPayFirst/V1/",
+    };
+
+    window.onload = function () {
+        PayFirst.showDom("btn-get-prize")
+    };
+
+    /**
+     * 首订活动对象
+     */
+    var PayFirst = {
+        modalId: "",
+        showDom: function (focusId) {
+            var htm = '';
+            switch (focusId) {
+                case "btn-get-prize":
+                    htm += '<div id="may-prize">';
+                    htm += '<img id="prize" src=' + A.imgPathPrefix + 'prize.png>';
+                    htm += '<img id="btn-close" src=' + A.imgPathPrefix + 'btn_close.png>';
+                    htm += '<img id="btn-get-prize" src=' + A.imgPathPrefix + 'btn_get_prize.png>';
+                    htm += '<img id="btn-detail" src=' + A.imgPathPrefix + 'btn_details.png>';
+                    this.modalId = "may-prize";
+                    break;
+                case "btn-giveup":
+                    htm += '<div id="take-prize-sure">';
+                    htm += '<img id="prize" src=' + A.imgPathPrefix + 'prize.png>';
+                    htm += '<img id="btn-giveup" src=' + A.imgPathPrefix + 'btn_giveup.png>';
+                    htm += '<img id="btn-sure" src=' + A.imgPathPrefix + 'btn_sure.png>';
+                    this.modalId = "take-prize-sure";
+                    break;
+                case "btn-close":
+                    htm += '<div id="activity-details">';
+                    htm += '<img id="prize" src=' + A.imgPathPrefix + 'prize.png>';
+                    htm += '<img id="btn-close" src=' + A.imgPathPrefix + 'btn_close.png>';
+                    this.modalId = "activity-details";
+                    break;
+            }
+            document.body.innerHTML = htm;
+            this.initButton(focusId)
+        },
+        initButton: function (Id) {
+            LMEPG.ButtonManager.init(Id, buttons, '', true);
+        },
+    };
+
+    /**
+     * 遥控器返回键---返回事件
+     */
+    function onBack() {
+        switch (PayFirst.modalId) {
+
+            case "may-prize":
+                PayFirst.showDom("btn-giveup");
+                break;
+            case "activity-details":
+                PayFirst.showDom("btn-get-prize");
+                break;
+            // 应用内活动，直接返回上一级页面
+            default:
+                LMEPG.Intent.back();
+                break;
+        }
+    }
+
+    function jumpPayBackUrl() {
+        LMEPG.Intent.back();
+    }
+
+    var buttons = [{
+        id: 'btn-close',
+        name: '关闭当前弹框',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: 'btn-get-prize',
+        backgroundImage: A.imgPathPrefix + "btn_close.png",
+        focusImage: A.imgPathPrefix + "btn_close_f.png",
+        click: onBack,
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-get-prize',
+        name: '',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: 'btn-detail',
+        nextFocusUp: 'btn-close',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + "btn_get_prize.png",
+        focusImage: A.imgPathPrefix + "btn_get_prize_f.png",
+        click: '', // 点击“确认领奖”调局方
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-detail',
+        name: '',
+        type: 'img',
+        nextFocusLeft: 'btn-get-prize',
+        nextFocusRight: '',
+        nextFocusUp: 'btn-close',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + "btn_details.png",
+        focusImage: A.imgPathPrefix + "btn_details_f.png",
+        click: 'PayFirst.showDom("btn-close")',
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-giveup',
+        name: '',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: 'btn-sure',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + "btn_giveup.png",
+        focusImage: A.imgPathPrefix + "btn_giveup_f.png",
+        click: jumpPayBackUrl, // 从哪儿支付返回哪儿去（活动，专辑，首页，视频播放）
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: 'btn-sure',
+        name: '',
+        type: 'img',
+        nextFocusLeft: 'btn-giveup',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: A.imgPathPrefix + "btn_sure.png",
+        focusImage: A.imgPathPrefix + "btn_sure_f.png",
+        click: '',// 点击"我想想"调局方
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }, {
+        id: '',
+        name: '',
+        type: 'img',
+        nextFocusLeft: '',
+        nextFocusRight: '',
+        nextFocusUp: '',
+        nextFocusDown: '',
+        backgroundImage: '',
+        focusImage: '',
+        click: '',
+        focusChange: "",
+        beforeMoveChange: "",
+        moveChange: ""
+    }]
+</script>
+</body>
+</html>

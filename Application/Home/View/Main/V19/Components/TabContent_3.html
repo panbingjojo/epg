@@ -1,0 +1,176 @@
+<div id="user-container">
+    <img id="user-pic" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/unvip.png">
+    <p id="user-account"></p>
+    <img id="join-vip" src="__ROOT__/Public/img/hd/Home/V13/Home/Tab3/join_vip.png">
+</div>
+<div id="record-container">
+    <img src="" id="tab3-link-1">
+    <img src="" id="tab3-link-2">
+    <img src="" id="tab3-link-3">
+    <img src="" id="tab3-link-4">
+    <img src="" id="tab3-link-5">
+    <img src="" id="tab3-link-6">
+</div>
+<div id="tab3-help" class="tab-help-wrap">
+    <img id="tab3-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help0.png">
+    <img id="tab3-help1" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help1.png">
+    <img id="tab3-help2" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help2.png">
+    <img id="tab3-help3" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help3.png">
+    <!--<img id="tab3-help4" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab3_help4.png">-->
+</div>
+<script type="text/javascript">
+    var Tab3 = {
+        init: function () {
+            this.renderTab3();
+            this.createBtns();
+        },
+        onClickJumpPage: function (btn) {
+            var curObj = getCurPageObj();
+            var jumpId = {
+                'collect-record': 'collect',
+                'play-record': 'historyPlay',
+                'family-record': 'familyEdit',
+                'seek-record': 'seekOnLineRecord',
+                'order-record': 'expertRecordHome',
+                'debook-record': 'debook'
+            };
+            if (RenderParam.platformType == 'sd' && btn.id == "order-record") {
+                LMEPG.UI.showToast('不支持的盒子类型！', 1.5);
+                return;
+            }
+            var dstObj = LMEPG.Intent.createIntent(jumpId[btn.id]);
+            LMEPG.Intent.jump(dstObj, curObj);
+        },
+
+        /**
+         * 渲染Tab3
+         */
+        renderTab3: function () {
+            // 辽宁电信隐藏“我的”tab页面
+            if (RenderParam.carrierId == '210092') {
+                var el = G("content-3");
+                el.parentNode.removeChild(el);
+                el = G("tab-3");
+                el.parentNode.removeChild(el);
+                return;
+            }
+
+            var data = RenderParam.configInfo && RenderParam.configInfo.data;
+            var indexStart = RenderParam.carrierId == '370092' ? 11 : 17;
+            var indexEnd =  RenderParam.carrierId == '370092' ? 15 :23;
+            // 甘肃电信 先获取我的模块
+            if(RenderParam.carrierId == '620092'){
+                // “我的”模块后台配置位置的position 从41开始
+                for(var i =0; i<data.entry_list.length;i++){
+                    if(data.entry_list[i].position == 41) {
+                        indexStart =i;
+                        indexEnd = i+6;
+                        break;
+                    }
+                }
+            }
+            var configList = data && data.entry_list && data.entry_list.slice(indexStart, indexEnd);
+            var tab3Data = [41, 42, 43, 44, 45, 46]; // “我的”模块后台配置位置的position
+            var item = '';
+            var htm = '';
+            for (var i = 0; i < configList.length; i++) {
+                item = configList[i];
+                if (tab3Data.indexOf(+item.position) > -1) {
+                    htm += '<img src="' + Page.getImg(item.item_data[0].img_url) + '"  id="tab3-link-' + (i + 1) + '">'
+                }
+            }
+
+            // 如果是vip，隐藏加入会员按钮
+            if (RenderParam.isVip == 1) {
+                H('join-vip');
+                G('user-pic').src = g_appRootPath+'/Public/img/hd/Home/V13/Home/Tab3/vip.png';
+            }
+
+            G('record-container').innerHTML = htm;
+            G('user-account').innerHTML = '账户ID：' + RenderParam.accountId;
+        },
+        createBtns: function () {
+            buttons.push({
+                id: 'join-vip',
+                type: 'img',
+                name: '加入会员',
+                nextFocusUp: 'tab-3',
+                nextFocusRight: 'tab3-link-1',
+                backgroundImage: g_appRootPath+'/Public/img/hd/Home/V13/Home/Tab3/join_vip.png',
+                focusImage: g_appRootPath+'/Public/img/hd/Home/V13/Home/Tab3/join_vip_f.png',
+                click: PageJump.jumpBuyVip,
+                focusChange: this.onFocusIn
+            }, {
+                id: 'tab3-link-1',
+                type: 'img',
+                name: '推荐位1',
+                nextFocusUp: 'tab-3',
+                nextFocusDown: isShow('tab3-link-4') ? 'tab3-link-4' : '',
+                nextFocusLeft: RenderParam.isVip == 0 ? 'join-vip' : "",
+                nextFocusRight: 'tab3-link-2',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 41
+            }, {
+                id: 'tab3-link-2',
+                type: 'img',
+                name: '推荐位2',
+                nextFocusUp: 'tab-3',
+                nextFocusDown: isShow('tab3-link-5') ? 'tab3-link-5' : '',
+                nextFocusLeft: 'tab3-link-1',
+                nextFocusRight: 'tab3-link-3',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 42
+            }, {
+                id: 'tab3-link-3',
+                type: 'img',
+                name: '推荐位3',
+                nextFocusUp: 'tab-3',
+                nextFocusDown: isShow('tab3-link-6') ? 'tab3-link-6' : '',
+                nextFocusLeft: 'tab3-link-2',
+//				nextFocusRight: G('tab3-link-4').style.display !== 'none' ? 'tab3-link-4' : '',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 43
+            }, {
+                id: 'tab3-link-4',
+                type: 'img',
+                name: '推荐位4',
+                nextFocusUp: 'tab3-link-1',
+                nextFocusLeft: RenderParam.isVip == 0 ? 'join-vip' : "",
+                nextFocusRight: isShow('tab3-link-5') ? 'tab3-link-5' : '',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 44
+            }, {
+                id: 'tab3-link-5',
+                type: 'img',
+                name: '推荐位5',
+                nextFocusUp: 'tab3-link-2',
+                nextFocusLeft: 'tab3-link-4',
+                nextFocusRight: 'tab3-link-6',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 45
+            }, {
+                id: 'tab3-link-6',
+                type: 'img',
+                name: '推荐位6',
+                nextFocusUp: 'tab3-link-3',
+                nextFocusLeft: 'tab3-link-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: this.onFocusIn,
+                cPosition: 46
+            });
+        },
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+        }
+    };
+</script>

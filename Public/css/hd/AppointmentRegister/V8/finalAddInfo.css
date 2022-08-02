@@ -1,0 +1,102 @@
+#container{
+    height: 100%;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.content{
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg4.png") no-repeat;
+    background-size: 1180px 626px;
+    width: 1180px;
+    height: 626px;
+    padding: 30px;
+    position: relative;
+}
+.title-left{
+    float: left;
+    width: 560px;
+}
+.title-right{
+    float: left;
+}
+.hospital-name{
+    font-size: 36px;
+    
+    font-weight: 400;
+    line-height: 61px;
+    color: #FFFFFF;
+}
+.info{
+    font-size: 30px;
+    
+    font-weight: 400;
+    line-height: 51px;
+    color: #FFFFFF;
+}
+.line{
+    height: 2px;
+    width: 1120px;
+    background:#fff;
+    margin: 20px 0;
+}
+.area{
+    float: left;
+}
+.check{
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+}
+.label{
+    display: inline-block;
+    width: 178px;
+    height: 70px;
+    background-size: 200px 70px;
+    padding: 5px 10px;
+}
+.label-text{
+    vertical-align: bottom;
+    display: inline-block;
+    font-size: 30px;
+    
+    font-weight: 400;
+    line-height: 51px;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+.input{
+    width: 740px;
+    height: 66px;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg-item.png") no-repeat;
+    background-size: 740px 70px;
+}
+.input-label{
+    font-size: 30px;
+    
+    font-weight: 400;
+    line-height: 65px;
+    color: #FFFFFF;
+    margin-left:35px;
+}
+.tips{
+    font-size: 24px;
+    
+    font-weight: 400;
+    color: #5ACEF4;
+    margin-left: 35px;
+}
+.up{
+    position: absolute;
+    bottom: 68px;
+    left: 520px;
+    width: 170px;
+    height: 70px;
+    background: url("../../../../img/hd/AppointmentRegister/V8/no_choose.png") no-repeat;
+    background-size: 170px 70px;
+    text-align: center;
+    font-size: 26px;
+    
+    font-weight: 400;
+    line-height: 65px;
+    color: #FFFFFF;
+}

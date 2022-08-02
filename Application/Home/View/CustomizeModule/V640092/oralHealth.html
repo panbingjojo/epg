@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>银川互动口腔健康科普馆主页</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'/>
+    <title>epg-page</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/CustomizeModule/V640092/oralHealth.css">
+    <!--公用库-->
+    <script type="text/javascript">var ROOT = '__ROOT__'</script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+    <script>
+        var RenderParam = {
+            focusIndex: "{$focusIndex}",                        // 焦点ID
+            moduleConfig: {$moduleConfig},
+            fsUrl: "{$resourcesUrl}",
+        };
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/CustomizeModule/V640092/oralHealth.js?t={$time}"></script>
+</head>
+
+
+<!--页面跳转-->
+<script type="text/javascript">
+
+</script>
+<body>
+<!--背景-->
+<img id="img-body" class="bg" src="__ROOT__/Public/img/hd/Home/V13/Home/bg.png"/>
+<img id="logo" alt="" src="__ROOT__/Public/img/hd/CommunityHospital/EyeHospital/logo.png"/>
+<div class="title">
+    银川互动口腔健康科普馆
+</div>
+
+<div class="recommended">
+    <img id="recommended-1" src="__ROOT__/Public/img/hd/CustomizeModule/V640092/tab_1.png"/>
+    <img id="recommended-2" src="__ROOT__/Public/img/hd/CustomizeModule/V640092/carousel_1.png" alt="">
+    <img id="recommended-3" src="__ROOT__/Public/img/hd/CustomizeModule/V640092/tab_2.png" alt="">
+    <img id="recommended-4" src="__ROOT__/Public/img/hd/CustomizeModule/V640092/tab_3.png" alt="">
+    <img id="recommended-5" src="__ROOT__/Public/img/hd/CustomizeModule/V640092/tab_4.png" alt="">
+    <div class="carousel-focus-group" id="bottom">
+    </div>
+</div>
+
+<div id="informationPage" style="display: none;z-index: 999;background-image: url('__ROOT__/Public/img/hd/Home/V13/Home/bg.png')">
+    <div id="title">科普馆概况</div>
+    <div id="general_situation">
+        <img src="__ROOT__/Public/img/hd/CustomizeModule/V640092/general_situation.png" class="situation">
+        <div id="contentBox">
+            <p>
+                银川互动口腔健康科普馆，是目前宁夏区内面积最大的、以口腔健康为主题
+                的健康科普基地，位于银川市兴庆区兴庆府大院西区东门2号院。
+                由银川艾齿口腔医院携手银川市科学技术协会、银川市科学技术局、自治区健康教育所和银川市健康教育所共同打造。
+                区别于传统的说教式科普，银川互动口腔健康科普馆采用高科技数字化技术，以口腔科普宣教和多媒体互动体验为一体的功能型开放场馆。
+            </p>
+            <p>
+                馆内设计风格科技感十足，整体运用线性灯带、触感游戏互动、VR 实景模拟等系统，
+                通过科普+互动+娱乐为一体的方式，以亲身体验和趣味学习结合、教育性和娱乐性结合的设计理念，
+                以图文、动画、实物等多种形式展示口腔疾病的发展过程，并通过专业人士讲解指导、口腔知识大闯关、
+                科学小实验等多种形式对民众进行口腔知识的科普和宣传，让市民在视觉盛宴和游戏的互动中学习，寓教于乐，
+                普及大众口腔保健知识，增强口腔保健意识。
+            </p>
+        </div>
+    </div>
+    
+</div>
+
+<div class="title-model">
+    护齿小常识
+</div>
+
+<div class="album">
+    <img id="album-1" src=""/>
+    <img id="album-2" src="" alt="">
+    <img id="album-3" src="" alt="">
+    <img id="album-4" src="" alt="">
+</div>
+<script>
+    Pages.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+.bg_unsubscribe_vip {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+}
+
+.bg_unsubscribe_result {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+}
+
+#back{
+    position: absolute;
+    left: 39px;
+    top: 376px;
+    width: 146px;
+    height: 46px;
+}
+
+#unsubscribe_vip{
+    position: absolute;
+    left: 209px;
+    top: 376px;
+    width: 146px;
+    height: 46px;
+}
+
+.bg_second_unsubscribe_vip {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+}
+
+#cancel {
+    position: absolute;
+    left: 39px;
+    top: 376px;
+    width: 146px;
+    height: 46px;
+}
+
+#second_unsubscribe_vip{
+    position: absolute;
+    left: 209px;
+    top: 376px;
+    width: 146px;
+    height: 46px;
+}
+
+#btn_ok {
+    position: absolute;
+    left: 116px;
+    top: 374px;
+    width: 146px;
+    height: 46px;
+}

@@ -1,0 +1,58 @@
+/*背景图*/
+.splash_background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+}
+
+.btn_position_1 {
+    position: absolute;
+    left: 116px;
+    top: 365px;
+    width: 154px;
+    height: 63px;
+}
+
+.btn_position_2 {
+    position: absolute;
+    left: 350px;
+    top: 365px;
+    width: 154px;
+    height: 63px;
+}
+
+#recommend_container {
+    position: absolute;
+    width: 640px;
+    height: 500px;
+    text-align: center
+}
+
+.center {
+    margin: 100px auto;
+    padding-left: 11px
+}
+
+.recommend_img {
+    width: 178px;
+    height: 250px;
+    border: 6px solid transparent;
+    margin: 0px 0px 0px -3px;
+}
+
+.recommend_img_border {
+    border: 6px #ffffff solid !important;
+    border-radius: 10px
+}
+
+
+.sd-continue{
+    top: 20px;
+    left: 300px;
+}
+.sd-back{
+    top: 20px;
+    left: 480px;
+}

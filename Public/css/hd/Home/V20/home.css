@@ -1,0 +1,960 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    background: url("../../../../img/hd/Home/V20/Common/bg.png") no-repeat;
+    overflow: hidden;
+}
+
+/*导航栏*/
+.nav-content {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.nav-tool {
+    position: absolute;
+    top: 24px;
+    left: 80px;
+    width: 1120px;
+}
+
+.logo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 48px;
+    height: 52px;
+}
+
+.notice {
+    position: absolute;
+    top: 6px;
+    left: 170px;
+    width: 600px;
+    background-image: url("../../../../img/hd/Home/V20/Nav/bg.png");
+    /*border: 1px red solid;*/
+    height: 40px;
+}
+
+#notice {
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: 570px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.notice-icon {
+    position: absolute;
+    top: 9px;
+    left: 0px;
+}
+
+.tool-list {
+    position: absolute;
+    top: 6px;
+    left: 800px;
+    width: 390px;
+}
+
+.btn {
+    margin-left: 20px;
+}
+
+#nav-content-tabs {
+    position: absolute;
+    top: 98px;
+    left: 58px;
+    width: 1154px;
+    /*border: 1px red solid;*/
+}
+
+#nav-content-tabs > img {
+    height: 72px;
+    margin-left: 27px;
+}
+
+#content-container {
+    position: absolute;
+    left: 80px;
+    top: 179px;
+    width: 1120px;
+}
+
+.content {
+    display: none;
+}
+
+.tab0-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+/*首页*/
+
+.tab0-recommended-1-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 280px;
+    height: 500px;
+}
+
+.tab0-recommended-2-box {
+    position: absolute;
+    left: 290px;
+    top: 0px;
+    width: 480px;
+    height: 270px;
+}
+
+.tab0-recommended-3-box {
+    position: absolute;
+    left: 780px;
+    top: 0px;
+    width: 340px;
+    height: 270px;
+}
+
+.tab0-recommended-4-box {
+    position: absolute;
+    left: 290px;
+    top: 280px;
+    width: 235px;
+    height: 220px;
+}
+
+.tab0-recommended-5-box {
+    position: absolute;
+    left: 535px;
+    top: 280px;
+    width: 235px;
+    height: 220px;
+}
+
+.tab0-recommended-6-box {
+    position: absolute;
+    left: 780px;
+    top: 281px;
+    width: 340px;
+    height: 130px;
+}
+.tab0-recommended-7-box {
+    position: absolute;
+    left: 780px;
+    top: 421px;
+    width: 340px;
+    height:80px;
+}
+
+.recommended-img {
+    width: 100%;
+    height: 100%;
+}
+
+#tab0-recommended-1.focus {
+    position: absolute;
+    top: -33px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/index/tab1_box_1.png) no-repeat center;
+
+}
+
+#tab0-recommended-2.focus {
+    position: absolute;
+    top: -42px;
+    left: -38px;
+    width: 98%;
+    height: 99%;
+    padding: 44px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/index/tab1_box_2.png) no-repeat center;
+}
+
+#tab0-recommended-3.focus {
+    position: absolute;
+    top: -42px;
+    left: -44px;
+    padding: 44px;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/index/tab1_box_3.png) no-repeat center;
+}
+
+#tab0-recommended-4.focus {
+    position: absolute;
+    top: -34px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/index/tab1_box_4.png) no-repeat center;
+}
+
+#tab0-recommended-5.focus {
+    position: absolute;
+    top: -36px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/index/tab1_box_5.png) no-repeat center;
+}
+
+#tab0-recommended-6.focus {
+     position: absolute;
+     top: -34px;
+     left: -34px;
+     width: 100%;
+     height: 100%;
+     padding: 34px;
+     background-position: center;
+     background: url(../../../../img/hd/Home/V20/index/tab1_box_6.png) no-repeat center;
+ }
+
+#tab0-recommended-7.focus {
+    position: absolute;
+    top: -34px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/index/tab1_box_7.png) no-repeat center;
+}
+/*健康视频*/
+
+.tab1-recommended-1-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 289px;
+    height: 500px;
+}
+
+.tab1-recommended-2-box {
+    position: absolute;
+    left: 301px;
+    top: 0px;
+    width: 264px;
+    height: 272px;
+}
+
+.tab1-recommended-3-box {
+    position: absolute;
+    left: 577px;
+    top: 0px;
+    width: 246px;
+    height: 272px;
+}
+
+.tab1-recommended-4-box {
+    position: absolute;
+    left: 838px;
+    top: 0px;
+    width: 291px;
+    height: 383px;
+}
+
+.tab1-recommended-5-box {
+    position: absolute;
+    left: 301px;
+    top: 282px;
+    width: 520px;
+    height: 219px;
+}
+
+.tab1-recommended-6-box {
+    position: absolute;
+    left: 838px;
+    top: 393px;
+    width: 291px;
+    height: 108px;
+}
+
+#tab1-recommended-1.focus {
+    position: absolute;
+    top: -33px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthVideo/tab2_box_1.png) no-repeat center;
+
+}
+
+#tab1-recommended-2.focus {
+    position: absolute;
+    top: -42px;
+    left: -44px;
+    width: 100%;
+    height: 100%;
+    padding: 44px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthVideo/tab2_box_2.png) no-repeat center;
+}
+
+#tab1-recommended-3.focus {
+    position: absolute;
+    top: -42px;
+    left: -44px;
+    padding: 44px;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthVideo/tab2_box_3.png) no-repeat center;
+}
+
+#tab1-recommended-4.focus {
+    position: absolute;
+    top: -34px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthVideo/tab2_box_4.png) no-repeat center;
+}
+
+#tab1-recommended-5.focus {
+    position: absolute;
+    top: -36px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthVideo/tab2_box_5.png) no-repeat center;
+}
+
+#tab1-recommended-6.focus {
+    position: absolute;
+    top: -34px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthVideo/tab2_box_6.png) no-repeat center;
+}
+
+/*健康知识*/
+
+.tab2-recommended-1-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 520px;
+    height: 218px;
+}
+
+.tab2-recommended-2-box {
+    position: absolute;
+    left: 532px;
+    top: 0px;
+    width: 290px;
+    height: 382px;
+}
+
+.tab2-recommended-3-box {
+    position: absolute;
+    left: 834px;
+    top: 0px;
+    width: 280px;
+    height: 500px;
+}
+
+.tab2-recommended-4-box {
+    position: absolute;
+    left: 0px;
+    top: 231px;
+    width: 264px;
+    height: 271px;
+}
+
+.tab2-recommended-5-box {
+    position: absolute;
+    left: 276px;
+    top: 231px;
+    width: 246px;
+    height: 271px;
+}
+
+.tab2-recommended-6-box {
+    position: absolute;
+    left: 532px;
+    top: 393px;
+    width: 291px;
+    height: 108px;
+}
+
+#tab2-recommended-1.focus {
+    position: absolute;
+    top: -43px;
+    left: -44px;
+    width: 100%;
+    height: 100%;
+    padding: 44px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthKnowledge/tab3_box_1.png) no-repeat center;
+
+}
+
+#tab2-recommended-2.focus {
+    position: absolute;
+    top: -42px;
+    left: -44px;
+    width: 100%;
+    height: 100%;
+    padding: 44px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthKnowledge/tab3_box_2.png) no-repeat center;
+}
+
+#tab2-recommended-3.focus {
+    position: absolute;
+    top: -32px;
+    left: -34px;
+    padding: 34px;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthKnowledge/tab3_box_3.png) no-repeat center;
+}
+
+#tab2-recommended-4.focus {
+    position: absolute;
+    top: -34px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthKnowledge/tab3_box_4.png) no-repeat center;
+}
+
+#tab2-recommended-5.focus {
+    position: absolute;
+    top: -36px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthKnowledge/tab3_box_5.png) no-repeat center;
+}
+
+#tab2-recommended-6.focus {
+    position: absolute;
+    top: -34px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/HealthKnowledge/tab3_box_6.png) no-repeat center;
+}
+
+/*健康自测*/
+/*.tab3-recommended-1-box {*/
+/*    position: absolute;*/
+/*    top: 0px;*/
+/*    left: 255px;*/
+/*    height: 303px;*/
+/*    width: 636px;*/
+/*}*/
+/*.tab3-recommended-1-box>p{*/
+/*    position: absolute;*/
+/*    bottom: 0px;*/
+/*    height: 40px;*/
+/*    width: 100%;*/
+/*    line-height:40px ;*/
+/*    background-image: url(../../../../img/hd/Home/V20/Common/title_bg.png);*/
+/*    font-size: 24px;*/
+/*    color: #fff;*/
+/*    text-indent: 15px;*/
+/*    !*text-indent: 10px;*!*/
+/*    !*border: 1px red solid;*!*/
+/*}*/
+/*p{*/
+/*    position: absolute;*/
+/*    bottom: -1px;*/
+/*    height: 39px;*/
+/*    width: 100%;*/
+/*    line-height:39px ;*/
+/*    background-image: url(../../../../img/hd/Home/V20/Common/title_bg.png);*/
+/*    font-size: 24px;*/
+/*    color: #fff;*/
+/*    overflow: hidden;*/
+/*    text-indent: 15px;*/
+/*}*/
+
+/*#tab3-recommended-1.focus {*/
+/*    position: absolute;*/
+/*    top: -34px;*/
+/*    left: -34px;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    padding: 34px;*/
+/*    background-position: center;*/
+/*    background: url(../../../../img/hd/Home/V20/test/banner.png) no-repeat center;*/
+/*}*/
+
+/*#tab3-pre {*/
+/*    position: absolute;*/
+/*    top: 20px;*/
+/*    left: 92px;*/
+/*    height: 263px;*/
+/*    width: 262px;*/
+/*    opacity: 0.6;*/
+/*    filter: alpha(opacity=60);*/
+
+/*}*/
+
+/*#tab3-next {*/
+/*    position: absolute;*/
+/*    top: 20px;*/
+/*    left: 790px;*/
+/*    height: 263px;*/
+/*    width: 262px;*/
+/*    opacity: 0.6;*/
+/*    filter: alpha(opacity=60);*/
+
+/*}*/
+
+/*.list-test {*/
+/*    position: absolute;*/
+/*    top: 320px;*/
+/*    left: -19px;*/
+/*    width: 1200px;*/
+/*    !*border: 1px red solid;*!*/
+/*}*/
+
+/*.list-test > img {*/
+/*    position: relative;*/
+/*    top: 0px;*/
+/*    width: 214px;*/
+/*    height: 175px;*/
+/*    margin-left: 5px;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*.focus {*/
+/*    background-position: center;*/
+/*    background: url(../../../../img/hd/Home/V20/test/list.png) no-repeat center;*/
+/*}*/
+
+/*#banner-show {*/
+/*    position: absolute;*/
+/*    width: 626px;*/
+/*    height: 30px;*/
+/*    text-align: center;*/
+/*    bottom: 0px;*/
+/*    !*border: 1px red solid;*!*/
+/*    line-height: 30px;*/
+/*}*/
+
+/*.un-show {*/
+/*    width: 15px;*/
+/*    height: 15px;*/
+/*    border-radius: 7px;*/
+/*    background: #898F94;*/
+/*    display: inline-block;*/
+/*    margin-left: 10px;*/
+/*}*/
+
+/*.show {*/
+/*    width: 15px;*/
+/*    height: 15px;*/
+/*    border-radius: 7px;*/
+/*    background: #fff;*/
+/*    display: inline-block;*/
+/*    margin-left: 10px;*/
+/*}*/
+
+
+/*q奇妙中医*/
+.tab3-recommended-1-box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 500px;
+    height: 300px;
+}
+
+.tab3-recommended-2-box {
+    position: absolute;
+    left: 510px;
+    top: 0px;
+    width: 320px;
+    height: 200px;
+}
+
+.tab3-recommended-3-box {
+    position: absolute;
+    left: 840px;
+    top: 0px;
+    width: 280px;
+    height: 500px;
+}
+
+.tab3-recommended-4-box {
+    position: absolute;
+    left: 0px;
+    top: 310px;
+    width: 300px;
+    height: 191px;
+}
+
+.tab3-recommended-5-box {
+    position: absolute;
+    left: 310px;
+    top: 310px;
+    width: 190px;
+    height: 191px;
+}
+
+.tab3-recommended-6-box {
+    position: absolute;
+    left: 510px;
+    top: 210px;
+    width: 320px;
+    height: 290px;
+}
+
+#tab3-recommended-1.focus {
+    position: absolute;
+    top: -43px;
+    left: -44px;
+    width: 100%;
+    height: 100%;
+    padding: 44px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/tab3/tab3_box_1.png) no-repeat center;
+
+}
+
+#tab3-recommended-2.focus {
+    position: absolute;
+    top: -42px;
+    left: -44px;
+    width: 100%;
+    height: 100%;
+    padding: 44px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/tab3/tab3_box_2.png) no-repeat center;
+}
+
+#tab3-recommended-3.focus {
+    position: absolute;
+    top: -32px;
+    left: -34px;
+    padding: 34px;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/tab3/tab3_box_3.png) no-repeat center;
+}
+
+#tab3-recommended-4.focus {
+    position: absolute;
+    top: -34px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/tab3/tab3_box_4.png) no-repeat center;
+}
+
+#tab3-recommended-5.focus {
+    position: absolute;
+    top: -36px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/tab3/tab3_box_5.png) no-repeat center;
+}
+
+#tab3-recommended-6.focus {
+    position: absolute;
+    top: -34px;
+    left: -34px;
+    width: 100%;
+    height: 100%;
+    padding: 34px;
+    background-position: center;
+    background: url(../../../../img/hd/Home/V20/tab3/tab3_box_6.png) no-repeat center;
+}
+p{
+    position: absolute;
+    bottom: -1px;
+    height: 39px;
+    width: 100%;
+    line-height:39px ;
+    background-image: url(../../../../img/hd/Home/V20/Common/title_bg.png);
+    font-size: 24px;
+    color: #fff;
+    overflow: hidden;
+    text-indent: 15px;
+}
+
+
+
+/*在线问诊*/
+.depart {
+    position: absolute;
+    top: -5px;
+    left: 0px;
+    width: 1144px;
+    height: 68px;
+    text-align: center;
+    line-height: 68px;
+    font-size: 24px;
+    border-radius: 12px;
+    color: #fff;
+    background: url("../../../../..../../../../img/hd/Home/V10/HomeBox/bg_btn_long.png");
+}
+
+.depart img {
+    vertical-align: middle;
+}
+
+.center {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    width: 1130px;
+    height: 458px;
+    /*border: 1px red solid;*/
+}
+
+.recommended {
+    position: absolute;
+    width: 554px;
+    height: 214px;
+    background: #fff;
+    border-radius: 12px;
+    background-position: center;
+    /*border: 1px red solid;*/
+
+}
+
+.recommended-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 172px;
+    height: 214px;
+    border-radius: 12px;
+}
+
+.recommended-photo {
+    position: absolute;
+    top: 34px;
+    left: 0px;
+    width: 170px;
+    height: 144px;
+}
+
+.introduce {
+    position: absolute;
+    top: 15px;
+    left: 199px;
+    width: 330px;
+    height: 190px;
+    font-size: 22px;
+    color: #393838;
+}
+
+.big-size {
+    font-size: 30px;
+}
+
+.middle-size {
+    font-size: 24px;
+}
+
+.introduce-word {
+    width: 330px;
+    text-align: left;
+    height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*border: 1px red solid;*/
+}
+
+.inquiry-number {
+    position: absolute;
+    top: 180px;
+    left: 0px;
+    width: 165px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 22px;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#recommended-0 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#recommended-1 {
+    position: absolute;
+    top: 0px;
+    left: 570px;
+}
+
+#recommended-2 {
+    position: absolute;
+    top: 228px;
+    left: 0px;
+}
+
+#recommended-3 {
+    position: absolute;
+    top: 228px;
+    left: 570px;
+}
+
+#m-pre {
+    position: absolute;
+    top: 410px;
+    left: 10px;
+    display: none;
+}
+
+#m-next {
+    position: absolute;
+    top: 500px;
+    left: 550px;
+}
+
+#pages {
+    position: absolute;
+    top: 505px;
+    left: 1060px;
+    font-size: 23px;
+    color: #FFFFFF;
+}
+
+/*--------------------------------------------------
+         按钮选中效果
+ ---------------------------------------------------*/
+/*推荐位*/
+.recommended-hover {
+    position: absolute;
+    z-index: 996;
+    /*padding: 5px;*/
+    background: #dfdfdf;
+    border: 5px #f47e91 solid;
+}
+
+/*.recommended-hover > .inquiry-number {*/
+    /*top: 187px;*/
+    /*!*left: 59px;*!*/
+/*}*/
+
+/*.recommended-hover > .introduce {*/
+    /*!*top: 270px;*!*/
+    /*!*left: 59px;*!*/
+    /*font-weight: bold;*/
+    /*top: 15px;*/
+    /*left: 199px;*/
+/*}*/
+
+/*.zoom-img-1 {*/
+    /*top: 0px;*/
+    /*width: 172px;*/
+    /*height: 224px;*/
+    /*!*left: 0px;*!*/
+    /*!*width: 182px;*!*/
+    /*!*height: 268px;*!*/
+
+/*}*/
+
+/*.zoom-img-2 {*/
+    /*top: 45px;*/
+    /*width: 170px;*/
+    /*height: 140px;*/
+    /*!*left: 0px;    *!*/
+    /*!*width: 179px;*!*/
+    /*!*height: 182px;*!*/
+
+/*}*/
+.hidden{
+  display: none;
+}
+.left{
+    position: absolute;
+    top: 130px;
+    left: 7px;
+}
+.right{
+    position: absolute;
+    top: 130px;
+    left: 1100px;
+}
+
+.pop{
+    position: absolute;
+    background: url("../../../../img/hd/Home/V16/Home/pop-bg.png");
+    width: 800px;
+    height: 434px;
+    top:125px;
+    left:300px;
+    visibility: hidden;
+    z-index: 999;
+}
+
+.pop-back{
+    position: absolute;
+    bottom: 10px;
+    left: 160px;
+}
+
+.pop-continue{
+    position: absolute;
+    bottom: 10px;
+    right: 160px;
+}
+
+.cut-down{
+    position: absolute;
+    font-size: 50px;
+    color: #fff;
+    right: 63px;
+    top: 45px;
+}
+/*.active {*/
+/*top: 300px*/
+/*}*/

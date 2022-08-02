@@ -1,0 +1,43 @@
+* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.btn {
+    position: absolute;
+    width: 158px;
+    height: 52px;
+    outline: none;
+}
+#back_btn {
+    top: 35px;
+    left: 1080px;
+}
+.btn1 {
+    position: absolute;
+    top: 360px;
+    left: 528px;
+    width: 224px;
+    height: 66px;
+}
+#introduce{
+    position: absolute;
+    top: 180px;
+    left: 262px;
+    width: 758px;
+    height: 66px;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 70px;
+    text-align: center;
+}

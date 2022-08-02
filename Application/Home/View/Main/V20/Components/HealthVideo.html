@@ -1,0 +1,192 @@
+<div class="tab1-box">
+    <div class="tab1-recommended-1-box">
+        <img id="tab1-recommended-1" class="recommended-img"
+             src="http://202.99.114.152:30214/fs/mofang/imgs/1000051/faster_entry/20200605092905.png"
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab1-recommended-1-title"></p>
+    </div>
+
+    <div class="tab1-recommended-2-box">
+        <img id="tab1-recommended-2" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab1-recommended-2-title"></p>
+    </div>
+
+    <div class="tab1-recommended-3-box">
+        <img id="tab1-recommended-3" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab1-recommended-3-title"></p>
+    </div>
+    <div class="tab1-recommended-4-box">
+        <img id="tab1-recommended-4" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab1-recommended-4-title"></p>
+    </div>
+
+    <div class="tab1-recommended-5-box">
+        <img id="tab1-recommended-5" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab1-recommended-5-title"></p>
+    </div>
+
+    <div class="tab1-recommended-6-box">
+        <img id="tab1-recommended-6" class="recommended-img"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <p id="tab1-recommended-6-title" class="hidden"></p>
+    </div>
+</div>
+
+<script>
+    Tab1 = {
+        initButton: function () {
+            buttons.push({
+                id: 'tab1-recommended-1',
+                type: 'img',
+                nextFocusRight: 'tab1-recommended-2',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 21,
+                cBanner:"",
+            })
+            buttons.push({
+                id: 'tab1-recommended-2',
+                type: 'img',
+                nextFocusLeft: 'tab1-recommended-1',
+                nextFocusRight: 'tab1-recommended-3',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: 'tab1-recommended-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                show_title: true,
+                show_num: 10,
+                cPosition: 22
+            })
+            buttons.push({
+                id: 'tab1-recommended-3',
+                type: 'img',
+                nextFocusLeft: 'tab1-recommended-2',
+                nextFocusRight: 'tab1-recommended-4',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: 'tab1-recommended-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                show_title: true,
+                show_num: 10,
+                cNavId: 2,
+                cPosition: 23
+            })
+            buttons.push({
+                id: 'tab1-recommended-4',
+                type: 'img',
+                nextFocusLeft: 'tab1-recommended-3',
+                nextFocusRight: '',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: 'tab1-recommended-6',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                show_title: true,
+                show_num: 10,
+                cNavId: 2,
+                cPosition: 24,
+                cBanner:"",
+            })
+            buttons.push({
+                id: 'tab1-recommended-5',
+                type: 'img',
+                nextFocusLeft: 'tab1-recommended-1',
+                nextFocusRight: 'tab1-recommended-6',
+                nextFocusUp: 'tab1-recommended-2',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                show_title: true,
+                show_num: 20,
+                cNavId: 2,
+                cPosition: 25
+            })
+            buttons.push({
+                id: 'tab1-recommended-6',
+                type: 'img',
+                nextFocusLeft: 'tab1-recommended-5',
+                nextFocusRight: '',
+                nextFocusUp: 'tab1-recommended-4',
+                nextFocusDown: '',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                show_title: true,
+                show_num: 10,
+                cNavId: 2,
+                cPosition: 26
+            })
+        },
+        /**
+         * 通用位置获得焦点
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.setAttribute('class', 'recommended-img');
+            }
+        },
+        createHtml: function () {
+            var list = RenderParam.homeConfigInfo.data.entry_list;
+            var id = '';
+            for (var i = 0; i < list.length; i++) {
+                id = 0;
+                var item = list[i];
+                switch (parseInt(item.position)) {
+                        // banner
+                    case 21:
+                        id = 'tab1-recommended-1';
+                        this.banner3 = new Banner('tab1-recommended-1',item.item_data);
+                        this.banner3.banner();
+                        break;
+                    case 22:
+                        id = 'tab1-recommended-2';
+                        break;
+                    case 23:
+                        id = 'tab1-recommended-3';
+                        break;
+                    case 24:
+                        id = 'tab1-recommended-4';
+                        this.banner4 = new Banner('tab1-recommended-4',item.item_data);
+                        this.banner4.banner();
+                        break;
+                    case 25:
+                        id = 'tab1-recommended-5';
+                        break;
+                    case 26:
+                        id = 'tab1-recommended-6';
+                        break;
+                }
+                if (id) {
+                    G(id).src = RenderParam.fsUrl + JSON.parse(item.item_data[0].img_url).normal;
+                    G(id + '-title').innerHTML = JSON.parse(item.item_data[0].inner_parameters).title;
+                }
+            }
+        },
+        init: function () {
+            try {
+                Tab1.initButton();
+                Tab1.createHtml();
+            } catch (e) {
+                LMEPG.UI.showToast("健康视频异常运行！" + e)
+            }
+        },
+    }
+</script>

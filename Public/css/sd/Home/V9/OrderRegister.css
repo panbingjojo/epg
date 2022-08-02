@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+html {
+    background-image: url(../../../../img/sd/Menu/Common/spacer.gif);
+}
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+    background-image: url(../../../../img/sd/Menu/Common/bg.png);
+    background-position: left;
+}
+
+body > * {
+    position: absolute;
+}
+
+#title {
+    top: 62px;
+    left: 22px;
+    width: 123px;
+    height: 30px;
+}
+
+#prev-arrow {
+    top: 274px;
+    left: 22px;
+    width: 26px;
+    height: 26px;
+}
+
+#next-arrow {
+    top: 274px;
+    left: 597px;
+    width: 26px;
+    height: 26px;
+
+}
+
+#hospital-wrapper {
+    top: 150px;
+    left: 51px;
+}
+#hospital-wrapper div{
+    display: inline-block;
+    position: relative;
+}
+#hospital-wrapper  img {
+    width: 166px;
+    height: 121px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: -10px;
+}
+
+#hospital-wrapper  img.focus {
+    background-image: url(../../../../img/sd/Menu/QHotherPages/hospital_f.png) !important;
+    background-size: 100% 100%;
+}
+#hospital-wrapper p,
+#hospital-wrapper marquee
+{
+    width: 126px;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+/*框架集*/
+#level2Wrapper {
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    position: relative;
+    font-family: "SimHei", sans-serif;
+    background-image: url(../../../../img/sd/Menu/Common/bg.png);
+}
+
+#level2Wrapper > * {
+    position: absolute;
+
+}
+
+
+.hos-pic {
+    top: 71px;
+    left: 8px;
+}
+
+#detail-wrapper {
+    top: 79px;
+    left: 263px;
+    width: 360px;
+    height: 376px;
+    background-image: url(../../../../img/sd/Menu/QHotherPages/detail_bg.png);
+}
+
+#detail-wrapper > * {
+    position: absolute;
+}
+
+
+#detail-wrapper p.departments-hospital-title {
+    position: static;
+    margin-bottom: 30px;
+}
+
+#detail-wrapper p.departments {
+    position: static;
+    margin-bottom: 10px;
+}
+
+.code {
+    width: 163px;
+    height: 163px;
+    top: 182px;
+    left: 20px;
+}
+
+.btn-wrap-intro {
+    top: 182px;
+    left: 220px;
+    width: 182px;
+    height: 72px;
+}
+
+.btn-wrap-intro img{
+    width: 102px;
+    height: 38px;
+    margin-bottom: 20px;
+}
+.iframe-title {
+    top: 12px;
+    left: 17px;
+    overflow: hidden;
+    font-size: 28px;
+    width: 360px;
+}
+
+.iframe-address {
+    top: 88px;
+    left: 50px;
+    overflow: hidden;
+    font-size: 18px;
+    width: 300px;
+    text-align: left;
+
+}
+
+.iframe-tel {
+    top: 130px;
+    left: 50px;
+    overflow: hidden;
+    font-size: 18px;
+    width: 300px;
+    text-align: left;
+}
+
+.icon-address {
+    top: 88px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.icon-tel {
+    top: 130px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.code-text {
+    top: 346px;
+    left: 40px;
+    width: 110px;
+}
+
+
+#hos-details {
+    width: 360px;
+    height: 375px;
+    z-index: 99;
+}
+
+#hos-details-prevPage {
+    position: absolute;
+    top: -50px;
+    left: 150px;
+    width: 31px;
+    height: 30px;
+}
+
+#hos-details-nextPage {
+    position: absolute;
+    bottom: -50px;
+    left: 150px;
+    width: 31px;
+    height: 30px;
+}
+
+.departments {
+    width: 166px;
+    height: 56px;
+    font-size: 19px;
+    text-align: center;
+    line-height: 56px;
+    display: inline-block;
+    background-image: url(../../../../img/sd/Menu/QHotherPages/departments_f.png);
+    background-size: 100% 100%;
+    margin-left: 10px;
+}
+
+.departments-hospital-title {
+    margin: 10px;
+    font-size: 28px;
+}
+
+.doctors {
+    position: relative !important;
+    width: 342px;
+    height: 54px;
+    margin-top: 40px;
+    margin-left: 10px;
+
+}
+
+#doc-page-index {
+    position: absolute !important;
+    top: 50px;
+    left: 296px;
+    font-size: 16px;
+}
+
+#doctor-page-up {
+    top: -50px;
+    left: 150px;
+    width: 31px;
+    height: 30px;
+}
+
+#doctor-page-down {
+    bottom: -50px;
+    left: 150px;
+    width: 31px;
+    height: 30px;
+}
+
+.doctor-male {
+    background-image: url(../../../../img/sd/Menu/QHotherPages/doctor_male.png);
+    background-size: 100%;
+}
+
+.doctor-female {
+    background-image: url(../../../../img/sd/Menu/QHotherPages/doctor_female.png);
+    background-size: 100%;
+}
+
+#detail-wrapper p.doctor-name {
+    font-size: 15px;
+    margin-bottom: 0;
+    margin-left: 50px;
+}
+
+#detail-wrapper p .doctor-position {
+    font-size: 12px;
+    color: #80d4ff;
+    display: block;
+    top: 0;
+    left: 115px;
+    position: absolute;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+#detail-wrapper p.doctor-subject-name {
+    height: 54px;
+    width: 342px;
+    overflow: hidden;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+#detail-wrapper p.doctor-subject-name span.doctor-good-at {
+    position: absolute;
+    display: block;
+    width: 210px;
+    overflow: hidden;
+    height: 30px;
+    top: 30px;
+    left: 125px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#qr-code{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 200px;
+    height: 400px;
+    padding: 10px;
+    background-color: rgba(239, 247, 246, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+#qr-code p{
+    font-size: 20px;
+    color: #fff;
+    margin-top: 24px;
+    line-height: 30px;
+}
+#qr-code img{
+    width: 180px;
+    height: 180px;
+    margin-top: 6px;
+}
+#more-39-intro {
+    position: absolute;
+    top: 50px;
+    left: 310px;
+    width: 270px;
+    height: 400px;
+    padding: 10px;
+    text-indent: 20px;
+    font-size: 20px;
+    line-height: 35px;
+    /* background-image: url(../../../img/AppointmentRegister/V13/intro_bg.png); */
+    background-color: rgba(239, 247, 246, 0.1);
+    border-radius: 10px;
+}
+

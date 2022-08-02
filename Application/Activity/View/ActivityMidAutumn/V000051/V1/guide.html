@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>月饼欢乐送V000051-V1-首页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/guide.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityMidAutumn/PopRule.js?t={$time}"></script>
+
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 活动详情
+         */
+        function jumpActivityInfo() {
+            jumpDialog(ACTIVITY_RULE_DETAIL);
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         */
+        function jumpPlayUI() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            objActivityHome.setParam("userId", "{$userId}");
+            objActivityHome.setParam("inner", "{$inner}");
+            objActivityHome.setParam("leftTimes", leftTimes);
+            objActivityHome.setParam("demoTimes", demoTimes);
+
+            LMEPG.Intent.jump(objActivityHome, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 显示中奖信息
+         */
+        function jumpPriceInfo() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityWinList = LMEPG.Intent.createIntent("activity-common-winList");
+            objActivityWinList.setParam("userId", "{$userId}");
+            objActivityWinList.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityWinList, objCurrent);
+        }
+
+        /**
+         * @func 进行购买操作
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip(contentId) {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("directPay", "1");
+            objOrderHome.setParam("orderReason", "101");
+            objOrderHome.setParam("contentId", contentId); // sp订购的内容id
+            objOrderHome.setParam("isJointActivity", "1"); // 表示联合活动
+            objOrderHome.setParam("remark", "{$activityName}");
+
+            var objActivityGuide = LMEPG.Intent.createIntent("activity-common-guide");
+            objActivityGuide.setParam("userId", "{$userId}");
+            objActivityGuide.setParam("inner", "{$inner}");
+            objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_DEFAULT, objActivityGuide);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+        }
+
+    </script>
+</head>
+<body style='background-image: url("__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/guide_bg.png");'>
+<img id="jump1" class="jump" style="visibility: visible"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/falling_1.png" alt="" />
+<img id="jump2" class="jump"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/falling_2.png" alt="" />
+<img id="jump3" class="jump"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/falling_3.png" alt="" />
+<img id="jump4" class="jump"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/falling_4.png" alt="" />
+<img id="jump5" class="jump"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/falling_5.png" alt="" />
+<img id="btn-detail" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/rule_out.png" alt="" />
+<img id="btn-start" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/play_out.png" alt="" />
+<img id="btn-price"
+     src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/winner_list_out.png" alt="" />
+<img id="back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/guide_back_out.png" alt="" />
+<div id="show-box"></div>
+<div id="default_tip"></div>
+<script type="text/javascript">
+    var jumpNUm = 1; // 花瓣图片替换参数
+    var timerID1; // 跳跃定时器
+    var leftTimes = 0; // 剩余抽奖次数
+    var demoTimes = 0; // 免费体验次数
+    var isVip = {$isVip}; // 是否是vip（0-非vip 1-vip）
+
+    var isOrderBack = "{$isOrderBack}"; // 是否为订购返回
+    var cOrderResult = "{$Think.cookie.c_order_result}";
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivityMidAutumn/V000051/V1/';
+    var paySuccessUrl = imgPathPrefix + 'book_success.png';//订购成功弹窗背景
+    var payFailedUrl = imgPathPrefix + 'book_false.png';//订购失败弹窗背景
+
+    var buttons = [
+        {
+            id: 'btn-detail',
+            name: '活动详情',
+            type: 'img',
+            nextFocusLeft: 'btn-start',
+            nextFocusUp: 'back',
+            nextFocusDown: 'btn-price',
+            backgroundImage: imgPathPrefix + 'rule_out.png',
+            focusImage: imgPathPrefix + 'rule_in.png',
+            click: jumpActivityInfo,
+            focusChange: '',
+            beforeMoveChange: '',
+            moveChange: ''
+        },
+        {
+            id: 'btn-price',
+            name: '中奖名单',
+            type: 'img',
+            nextFocusLeft: 'btn-start',
+            nextFocusRight: '',
+            nextFocusUp: 'btn-detail',
+            nextFocusDown: 'btn-start',
+            backgroundImage: imgPathPrefix + 'winner_list_out.png',
+            focusImage: imgPathPrefix + 'winner_list_in.png',
+            click: jumpPriceInfo,
+            focusChange: '',
+            beforeMoveChange: '',
+            moveChange: ''
+        },
+        {
+            id: 'btn-start',
+            name: '开始游戏',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-price',
+            nextFocusUp: 'btn-price',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'play_out.png',
+            focusImage: imgPathPrefix + 'play_in.png',
+            click: onClickPlay,
+            focusChange: '',
+            beforeMoveChange: '',
+            moveChange: ''
+        },
+        {
+            id: 'back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'btn-start',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'btn-detail',
+            backgroundImage: imgPathPrefix + 'guide_back_out.png',
+            focusImage: imgPathPrefix + 'guide_back_in.png',
+            click: onBack,
+            focusChange: '',
+            beforeMoveChange: '',
+            moveChange: ''
+        },
+        {
+            id: 'default',
+            name: '',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            productId: '',
+            backgroundImage: '',
+            focusImage: '',
+            click: '',
+            focusChange: '',
+            beforeMoveChange: '',
+            moveChange: ''
+        }
+    ];
+
+    window.onload = function () {
+        // 山西联通某款盒子焦点会有问题，对方提供的
+        if ('<?php echo ($carrierId == "000051") ?>') {
+            var stbModel = LMEPG.STBUtil.getSTBModel();
+            if (stbModel === "B700V5C") {
+                if (top.location !== self.location) {
+                    top.location = self.location;
+                }
+            }
+        }
+
+        // 弹出订购结果的提示框
+        showOrderResult();
+
+        canAnswer();
+        flowMove();
+    };
+
+    window.onerror = function (message, filename, lineno) {
+        // if (debug) {
+        //     var errorLog = "发生错误>>> " +
+        //         "\nmessage:" + message +
+        //         "\nfile_name:" + filename +
+        //         "\nline_NO:" + lineno;
+        //     LMEPG.UI.showToast(errorLog, 5);
+        // }
+        LMEPG.UI.dismissWaitingDialog();
+    };
+
+    //检查并显示订购结果
+    function showOrderResult() {
+        if (isOrderBack == "1") {
+            LMEPG.UI.showToastBig(3, cOrderResult == "1" ? paySuccessUrl : payFailedUrl);
+        }
+    }
+
+    /**
+     * 判断用户是否可以答题
+     */
+    function canAnswer() {
+        LMEPG.ajax.postAPI('Activity/canAnswer', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        leftTimes = data.leftTimes || data.left_times || 0;
+                        demoTimes = data.demoTimes || data.demo_times || 0;
+                        setPrizeNum(leftTimes);
+                    } else {
+                        leftTimes = 0;
+                        setPrizeNum(leftTimes);
+                    }
+                    initButton();
+                } catch (e) {
+                    LMEPG.UI.showToast("判断用户是否可以试玩，解析异常！");
+                    LMEPG.Log.error(e.toString());
+                    LMEPG.ButtonManager.init('', [], '', true); // 失败异常处理，保证至少可以响应返回按键
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("判断用户是否可以试玩失败");
+                LMEPG.ButtonManager.init('', [], '', true); // 失败异常处理，保证至少可以响应返回按键
+            }
+        );
+    }
+
+    /**
+     * 初始化焦点
+     */
+    function initButton() {
+        LMEPG.ButtonManager.init('btn-start', buttons, '', true);
+    }
+
+    // 当用户点击开始玩游戏时触发
+    function onClickPlay() {
+        LMEPG.UI.showWaitingDialog("", 10);
+        if (leftTimes > 0) {     // 进入游戏页
+            jumpPlayUI();
+        } else if (LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {     // VIP用户次数用尽，弹窗提示明日再来
+            jumpDialog(VIP_USER_TIMES_OVER);
+        } else {                // 非VIP用户次数用尽，弹窗提示订购VIP
+            jumpDialog(VIP_USER_PLAY_TIMES_OVER);
+        }
+    }
+
+    /**
+     * 设置剩余抽奖次数
+     */
+    function setPrizeNum(leftTimes) {
+        var last = document.getElementById("show-box");
+        last.innerHTML = leftTimes;
+    }
+
+    /**
+     * 花瓣飘落
+     */
+    function flowMove() {
+        try {
+            flowAnimate();
+            timerID1 = setTimeout("flowMove()", 480);
+        } catch (e) {
+        }
+    }
+
+    /**
+     * 熊跳跃动画
+     */
+    function flowAnimate() {
+        //当气任务图片完成第四帧时循环
+        var jumpId = G("jump" + jumpNUm);
+        jumpId.style.visibility = "hidden";
+        jumpNUm++;
+        if (jumpNUm == 6) {
+            jumpNUm = 1
+        }
+        jumpId = G("jump" + jumpNUm);
+        jumpId.style.visibility = "visible";
+    }
+
+</script>
+</body>
+</html>

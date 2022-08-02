@@ -1,0 +1,239 @@
+#container {
+    height: 100%;
+    background: #0D8080;
+    color: #FFF;
+}
+
+.appointment {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    top: 50px;
+    left: 80px;
+}
+
+.hospital-name {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 400;
+    top: 111px;
+    left: 80px;
+}
+
+.dep {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 400;
+    top: 111px;
+    left: 701px;
+}
+.tips {
+    position: absolute;
+    top: 660px;
+    left: 395px;
+    font-size: 22px;
+    color: #fff;
+}
+.doctor-name {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 400;
+    top: 161px;
+    left: 80px;
+}
+
+.dayTime {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 400;
+    top: 161px;
+    left: 701px;
+}
+
+.title1 {
+    position: absolute;
+    top: 167px;
+    left: 350px;
+    font-size: 18px;
+    width: 50px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    background: #F94C4C;
+    color: #fff;
+}
+
+.line {
+    position: absolute;
+    background: #FFF;
+    width: 1120px;
+    height: 1px;
+    top: 224px;
+    left: 80px;
+    opacity: 0.2;
+}
+
+.second {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    top: 265px;
+    left: 80px;
+}
+
+.pay {
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    top: 329px;
+    left: 80px;
+}
+
+.money {
+    position: absolute;
+    font-size: 34px;
+    font-weight: bold;
+    top: 317px;
+    left: 210px;
+}
+
+.choose {
+    position: absolute;
+    font-weight: 400;
+    font-size: 20px;
+    top: 379px;
+    left: 80px;
+}
+
+.weixin {
+    position: absolute;
+    font-weight: 400;
+    font-size: 24px;
+    top: 377px;
+    left: 301px;
+}
+
+.zhifubao {
+    position: absolute;
+    font-weight: 400;
+    font-size: 24px;
+    top: 377px;
+    left: 411px;
+}
+
+#weixin_btn {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 383px;
+    left: 269px;
+    border-radius: 50%;
+}
+.btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(1,1,1,0.2);
+}
+#zhifubao_btn {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 383px;
+    left: 379px;
+    border-radius: 50%;
+}
+
+.common {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    top: 560px;
+    left: 540px;
+    background: url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    background-size: 100% 100%;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 60px;
+}
+.common1 {
+    position: absolute;
+    color: #fff;
+    top: 389px;
+    left: 420px;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 500;
+    background-image: url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    background-size: 100% 100%;
+    border-radius: 30px;
+}
+.cancel1 {
+    position: absolute;
+    top: 389px;
+    left: 660px;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 500;
+    background-image: url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    background-size: 100% 100%;
+    border-radius: 30px;
+    color: #fff;
+}
+.information1 {
+    position: absolute;
+    top: 250px;
+    left: 493px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+#container .img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    top: 419px;
+    left: 279px;
+    background: rgba(1,1,1,0.2);
+}
+.test-tab-f{
+    background-image: url("../../../../img/hd/AppointmentRegister/V21/yellow_btn.png");
+}
+#window1 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    text-align: center;
+    background-color: rgba(1, 1, 1, 0.5);
+    color: #FFF
+}
+
+#window1 .img1 {
+    position: absolute;
+    top: 305px;
+    left: 390px;
+}
+#isBack {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#window1 .information {
+    position: absolute;
+    top: 348px;
+    left: 532px;
+    font-size: 24px;
+    font-weight: bold;
+}

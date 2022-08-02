@@ -1,0 +1,160 @@
+#container {
+    height: 100%;
+    background: #0D8080;
+    color: #FFF;
+}
+
+.title {
+    position: absolute;
+    top: 50px;
+    left: 80px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.line {
+    position: absolute;
+    top: 114px;
+    left: 80px;
+    width: 1120px;
+    height: 1px;
+    opacity: 0.2;
+    background: #FFF;
+}
+.span_text {
+    position: absolute;
+    top: 660px;
+    left: 480px;
+    font-size: 24px;
+    color: #fff;
+}
+.records {
+    position: absolute;
+    top: 660px;
+    left: 950px;
+    font-size: 22px;
+    color: #fff;
+}
+#name_area {
+    position: absolute;
+    width: 730px;
+    height: 40px;
+    float: left;
+    top: 70px;
+    left: 400px;
+}
+#left-arrow {
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    top: 82px;
+    left: 300px;
+}
+#right-arrow {
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    top: 82px;
+    right: 180px;
+}
+.order-state {
+    float: left;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    margin-right: 37px;
+    background-size: 100% 100%;
+}
+
+.test-tab-f{
+    border-bottom: 5px;
+    border-bottom-color: #17a1e5;
+    border-bottom-style: solid;
+}
+
+#list {
+    width: 1150px;
+}
+
+.order-item {
+    position: relative;
+    width: 1120px;
+    height: 144px;
+    border-radius: 10px;
+    background: rgba(1,1,1,0.2);
+    margin-bottom: 20px;
+    background-size: 100% 100%;
+}
+
+.hospital_name {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 264px;
+    height: 24px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.dep {
+    position: absolute;
+    top: 40px;
+    left: 524px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.doctor_name {
+    position: absolute;
+    top: 90px;
+    left: 40px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.title1 {
+    position: absolute;
+    top: 95px;
+    left: 242px;
+    width: 50px;
+    height: 24px;
+    background: #F94C4C;
+    text-align: center;
+    line-height: 24px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.dayTime {
+    position: absolute;
+    top: 90px;
+    left: 524px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.state {
+    position: absolute;
+    top: 60px;
+    left: 994px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#tips {
+    position: absolute;
+    top: 350px;
+    left: 580px;
+}
+
+
+#listArr {
+    position: relative;
+    top: 155px;
+    left: 80px;
+    width: 1150px;
+    height: 472px;
+    overflow: hidden;
+}

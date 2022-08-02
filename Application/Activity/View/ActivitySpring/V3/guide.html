@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>春天活动-首页V3</title>
+    <meta charset="utf-8" name="page-view-size"  content="{$size}" >
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivitySpring/V3/guide.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivitySpring/V3/DialogMoreThree.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivitySpring/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 活动详情
+         */
+        function jumpActivityInfo() {
+            jumpDialog(ACTIVITY_RULE_DETAIL);
+        }
+
+        /**
+         * 页面跳转 - 游戏主界面
+         */
+        function jumpPlayUI() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityHome = LMEPG.Intent.createIntent("activity-common-home");
+            objActivityHome.setParam("userId", "{$userId}");
+            objActivityHome.setParam("inner", "{$inner}");
+            objActivityHome.setParam("leftTimes", leftTimes);
+
+            LMEPG.Intent.jump(objActivityHome, objCurrent);
+        }
+
+        /**
+         * 显示次数用尽弹窗，可能是答题次数用尽，也可能是抽奖次数用尽
+         */
+        function jumpTimesOutDialog() {
+            var context;
+            // 用户抽奖次数用完
+            if (!LMEPG.Func.isAllowAccess(isVip, ACCESS_NO_TYPE)) {
+                //不是vip，弹出订购弹窗
+                context = NOT_VIP_USER_PLAY_TIMES_OVER;
+            } else {
+                //是vip，提示用户今天次数用尽，明天再来
+                context = VIP_USER_PLAY_TIMES_OVER;
+            }
+            jumpDialog(context);
+        }
+
+        /**
+         * 页面跳转 - 显示中奖信息
+         */
+        function jumpPriceInfo() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityWinList = LMEPG.Intent.createIntent("activity-common-winList");
+            objActivityWinList.setParam("userId", "{$userId}");
+            objActivityWinList.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityWinList, objCurrent);
+        }
+
+        /**
+         * 设置号码页
+         */
+        function jumpSetPhoneNum() {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeIdx", "{$prizeIdx}");
+            objDialog.setParam("prizeName", "{$prizeName}");
+            objDialog.setParam("context", INPUT_USER_PHONE_NUMBER);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            var dialogText = G("dialog").innerHTML;
+            if(dialogText != null && dialogText != ""){
+                G("dialog").innerHTML="";
+                LMEPG.ButtonManager.requestFocus("btn-start");
+            } else{
+                LMEPG.Intent.back();
+            }
+        }
+    </script>
+
+</head>
+<body style='background-image: url("__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/guide_bg_unicom_.png")'>
+<div id="times">您还剩余0次出游机会</div>
+<div id="default_tip"></div>
+<div id="dialog"></div>
+<div>
+    <img id="btn-back" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/guide_back_out.png" alt="" />
+    <if condition="$inner eq 0">
+        <img id="btn-goHome2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/home_out.png" alt="" />
+    </if>
+    <img id="btn-start" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/hand_out_unicom.png" alt="" />
+    <div id="price_name">参与春游：5元、50元、100元翼支付红包,合肥海洋世界亲子票,合肥万达主题乐园亲子票等你来拿！</div>
+    <img id="sound" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/soud.png" alt="" />
+    <img id="scoller_box" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/scoller_box.png" alt="" />
+    <img id="btn-price" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/price_message_out.png" alt="" />
+    <img id="btn-detail" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/rule_out.png" alt="" />
+
+</div>
+<script type="text/javascript">
+    var inner = "{$inner}";
+    var leftTimes = -99;//剩余抽奖次数;//剩余抽奖次数
+    var prizeIdx = "{$prizeIdx}"; // 奖品ID
+    var prizeName = "{$prizeName}"; // 奖品名称
+    var isVip = {$isVip};//是否是vip
+    var platformType = "hd";
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = '__ROOT__/Public/img/{$platformType}/Activity/ActivitySpring/V3/';
+
+    var dialogFocusId;
+    var buttons2;
+    var buttons = [
+        {
+            id: 'btn-back',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'btn-goHome2',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: 'btn-start',
+            backgroundImage: imgPathPrefix + 'guide_back_out.png',
+            focusImage: imgPathPrefix + 'guide_back_in.png',
+            click: "onBack()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        },
+        {
+            //第二排，返回按钮左边
+            id: 'btn-goHome2',
+            name: '进入大厅',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-back',
+            nextFocusUp: '',
+            nextFocusDown: 'btn-start',
+            backgroundImage: imgPathPrefix + 'home_out.png',
+            focusImage: imgPathPrefix + 'home_in.png',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        },
+        {
+            id: 'btn-start',
+            name: '开始游戏',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: 'btn-back',
+            nextFocusDown: 'btn-price',
+            backgroundImage: imgPathPrefix + 'hand_out_unicom.png',
+            focusImage: imgPathPrefix + 'hand_in_unicom.gif',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: '',
+            moveChange: "",
+        },
+        {
+            id: 'btn-price',
+            name: '中奖名单',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: 'btn-detail',
+            nextFocusUp: 'btn-start',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'price_message_out.png',
+            focusImage: imgPathPrefix + 'price_message_in.png',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'btn-detail',
+            name: '活动详情',
+            type: 'img',
+            nextFocusLeft: 'btn-price',
+            nextFocusRight: '',
+            nextFocusUp: 'btn-start',
+            nextFocusDown: '',
+            backgroundImage: imgPathPrefix + 'rule_out.png',
+            focusImage: imgPathPrefix + 'rule_in.png',
+            click: "onClick()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        }
+
+    ];
+    
+    window.onload = function () {
+        LMEPG.UI.Marquee.start("price_name",7, 2, 10, "left", "scroll");
+        LMEPG.ButtonManager.init(['btn-start'], buttons, '', true);
+        selectParticipationNum();
+    };
+
+    /**
+     * 初始化弹窗按钮焦点数组
+     */
+    function initDialogBtns(){
+        var focus51 = G("focus-5-1");
+        var focus61 = G("focus-6-1");
+        var focus71 = G("focus-7-1");
+        var focus81 = G("focus-8-1");
+        var focus91 = G("focus-9-1");
+        var focus101 = G("focus-10-1");
+        buttons2 = [
+            {
+                id: 'default_focus',
+                name: 'default_focus',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                backgroundImage: '',
+                focusImage: '',
+                click: "onBack()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-5-1',
+                name: 'focus-5-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'focus-6-1',
+                backgroundImage: focus51 != null ? focus51.getAttribute('confirmurl'): '',
+                focusImage: focus51 != null ? focus51.getAttribute('onfocusurl'): '',
+                click: "onClick()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-6-1',
+                name: 'focus-6-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-5-1',
+                nextFocusDown: 'focus-7-1',
+                backgroundImage: focus61 != null ? focus61.getAttribute('confirmurl'): '',
+                focusImage: focus61 != null ? focus61.getAttribute('onfocusurl'): '',
+                click: "onClick()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-7-1',
+                name: 'focus-7-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-6-1',
+                nextFocusDown: 'focus-8-1',
+                backgroundImage: focus71 != null ? focus71.getAttribute('confirmurl'): '',
+                focusImage: focus71 != null ? focus71.getAttribute('onfocusurl'): '',
+                click: "onClick()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-8-1',
+                name: 'focus-8-1',
+                type: 'input-test',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-7-1',
+                nextFocusDown: 'focus-9-1',
+                backgroundImage: focus81 != null ? focus81.getAttribute('confirmurl'): '',
+                focusImage: focus81 != null ? focus81.getAttribute('onfocusurl'): '',
+                click: "",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-9-1',
+                name: 'focus-9-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-8-1',
+                nextFocusDown: 'focus-10-1',
+                backgroundImage: focus91 != null ? focus91.getAttribute('confirmurl'): '',
+                focusImage: focus91 != null ? focus91.getAttribute('onfocusurl'): '',
+                click: "",
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange: "",
+            },
+            {
+                id: 'focus-10-1',
+                name: 'focus-10-1',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: 'focus-9-1',
+                nextFocusDown: '',
+                backgroundImage: focus101 != null ? focus101.getAttribute('confirmurl'): '',
+                focusImage: focus101 != null ? focus101.getAttribute('onfocusurl'): '',
+                click: "onClick()",
+                focusChange: "",
+                beforeMoveChange: '',
+                moveChange: "",
+            }
+        ];
+    }
+
+    function onClick() {
+        var currentButton = LMEPG.ButtonManager.getCurrentButton();
+        if (currentButton != null) {
+            var id = currentButton.id;
+        } else {
+            return;
+        }
+        if (id == "btn-back") {
+            if (inner == "1" || inner == 1) {
+                LMEPG.Intent.back();
+            } else {
+                LMEPG.Intent.back();
+            }
+        }else if (id == "focus-7-1") {
+            
+        } else if (id == "focus-6-1") {
+            G("dialog").innerHTML="";
+            LMEPG.ButtonManager.init(['btn-start'], buttons, '', true);
+        } else if(id == "focus-5-1"){
+            G("dialog").innerHTML="";
+            LMEPG.ButtonManager.init(['btn-start'], buttons, '', true);
+        } else if (id == "btn-price") {
+            jumpPriceInfo();
+        } else if (id == "btn-goHome2") {
+           LMEPG.Intent.back();
+        } else if (id == "btn-detail") {
+            dialogCreateActivity.show(platformType); //弹出活动详情弹窗
+            initDialogBtns();
+            LMEPG.ButtonManager.init([dialogFocusId], buttons2, '', true);
+        } else if (id == "btn-start") {
+            if (leftTimes <= 0) { //判断还没有获取抽奖次数
+                LMEPG.UI.showToast("今日次数已用完~");
+            } else {
+                // 跳转到游戏界面
+                jumpPlayUI();
+            }
+        }
+
+    }
+
+    //拉取抽奖剩余次数
+    function selectParticipationNum() {
+        LMEPG.ajax.postAPI('Activity/canAnswer', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        leftTimes = data.leftTimes;
+                        if (leftTimes == null) {
+                            leftTimes = 0;
+                        }
+                    } else {
+                        LMEPG.UI.showToast("获取剩余抽奖次数失败！" + result);
+                    }
+                    setPrizeNum(leftTimes);
+                } catch (e) {
+                    LMEPG.UI.showToast("获取剩余抽奖次数，解析异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("获取剩余抽奖次数失败");
+                isPopUp = 1;
+            }
+        );
+    }
+
+    /**
+     * 设置剩余抽奖次数
+     * @param num
+     */
+    function setPrizeNum(leftTimes) {
+        var last = document.getElementById("times");
+        last.innerHTML ="您还剩余"+ leftTimes+"次出游机会";
+    }
+</script>
+</body>
+</html>

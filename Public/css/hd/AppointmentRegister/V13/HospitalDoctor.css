@@ -1,0 +1,112 @@
+body {
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/Common/bg.png);
+}
+
+div#container {
+    position: relative;
+    top: 70px;
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+#top-positon {
+    height: 180px;
+    padding-left: 30px;
+}
+
+#hosp-pic {
+    width: 280px;
+    height: 180px;
+    border-radius: 10px;
+    float: left;
+}
+
+#addr-tel {
+    margin-left: 30px;
+    float: left;
+    width: 800px;
+}
+
+#addr-tel li {
+    margin-top: 15px;
+    text-align: left;
+    position: relative;
+    line-height: 40px;
+}
+#addr-tel li span {
+   font-size:22px;
+    position: relative;
+}
+
+#hosp-name {
+    font-size: 30px;
+}
+
+#addr-tel img {
+    margin-bottom: -6px;
+    width: 30px;
+    height: 30px;
+}
+
+#top-positon marquee {
+    color: #fff;
+    font-size: 22px;
+    text-align: left;
+    margin-left: 10px;
+    line-height: 35px;
+    position: absolute;
+}
+div#list-wrapper {
+    width: 1000px;
+    margin: 0 auto;
+    height: 360px;
+    position: relative;
+    top: 45px;
+}
+div#icon-arrow {
+    position: absolute;
+    top: 400px;
+    left: 0;
+}
+div#icon-arrow img{
+    position: absolute;
+}
+img#icon-next {
+    left: 1134px;
+}
+#page-count{
+    position: absolute;
+    left: 1150px;
+    top: 576px;
+    color: #b2deff;
+
+}
+.doctor-item{
+    float: left;
+    background-image: url("../../../../img/hd/AppointmentRegister/V13/doctor_item.png");
+    width: 218px;
+    height: 348px;
+    background-position: center;
+    padding: 15px;
+    text-align: center;
+}
+#doctor-pic{
+    width: 205px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.doctor-item p{
+    margin-top: 6px;
+}
+p#doctor-name{
+    font-size: 30px;
+}
+p#doctor-dep,
+p#doctor-pos{
+    text-align: center;
+    font-size: 24px;
+}

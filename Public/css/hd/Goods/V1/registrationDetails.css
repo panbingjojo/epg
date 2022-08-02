@@ -1,0 +1,120 @@
+
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+.infoList{
+    position: absolute;
+    top: 101px;
+    left: 80px;
+    width: 1150px;
+    height: 595px;
+    overflow: auto;
+    border: 1px transparent solid;
+}
+.form{
+    position: relative;
+    margin-top: 25px;
+    width: 1040px;
+    padding: 40px;
+    text-align: center;
+    font-size: 28px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    border: 1px #898F94 solid;
+    text-align: left;
+
+}
+.infoList:after{
+    content: '';
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+table{
+    margin-top: 15px;
+    width: 100%;
+}
+.status-info{
+    width: 1060px;
+    padding: 20px 30px;
+    text-align: center;
+    font-size: 28px;
+    color: #FFFFFF;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    margin-top: 20px;
+    line-height: 45px;
+}
+
+.status-content{
+    margin-top: 10px;
+}
+/*.form-box{*/
+    /*position: relative;*/
+    /*text-align: left;*/
+    /*margin:0px auto;*/
+/*}*/
+.form-title{
+    font-size: 32px;
+    line-height: 50px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.form-row{
+    line-height: 47px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.icon-img{
+    position: relative;
+    width: 37px;
+    height: 37px;
+    top: 7px;
+}
+.btn {
+    width: 140px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 25px;
+    float: left;
+    margin-left: 30px;
+    /*display: inline;*/
+}
+.btn-list{
+    position: relative;
+    top: 30px;
+    width:fit-content;
+    width:-webkit-fit-content;
+    width:-moz-fit-content;
+    margin: 0 auto;
+    text-align: center;
+}
+#countdown{
+    position: absolute;
+    top: 38px;
+    left: 570px;
+    color: #ffa647;
+}
+.code{
+    width: 150px;
+    height: 150px;
+    float: left;
+}

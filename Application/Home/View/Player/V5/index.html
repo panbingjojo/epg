@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>广西广电播放器</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V5/video.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="http://10.1.15.25/webJS/gxgd.config.js?t={$time}"></script>
+    <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/450094/play.gxgd.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+</head>
+
+<body>
+<div id="debug"></div>
+<div id="content">
+    <div id="tips-title">提示</div>
+    <div id="tips">播放已结束，请退出视频播放</div>
+    <div id="confirm">确定</div>
+</div>
+<div id="info"></div>
+</body>
+<script type="text/javascript">
+    var DEBUG = false;//是否打印日志
+    var RenderParam = {
+        isForbidOrder:"{$Think.cookie.c_is_forbided_order}", // 是否禁止订购 1--表示禁止订购
+        albumName: "{$albumName}", //专辑跳转传入专辑别名参数
+    };
+
+    var videoTitle = "{$title}"; // 视频标题
+    var isVip = "{$isVip}"; // 用户是不是vip，1 -- 是vip
+    var isStarcInit = false;
+    var sourceId = "{$sourceId}";
+    var userType = "{$userType}";
+    var platformType = "{$platformType}";
+    var allVideoInfo = {$allVideoInfo};
+
+    var videoUrl = "{$videoUrl}"; // 视频url
+    // var videoUrl = "00031X00000000000000000000239367"; // 广西广电测试视频id
+
+    var eleContent = document.getElementById("content");
+    var eleConfirm = document.getElementById("confirm");
+    var eleTips = document.getElementById("tips");
+    var importId = videoUrl;
+    var arr = [];
+    var isShowExitDialog = false;   //是否结束
+    var buttons = [];
+    var isPlay = false;
+    var fTime;
+
+    for (var i = 0; i < allVideoInfo.length; i++) {
+        var data = allVideoInfo[i];
+        if(sourceId<=data['sourceId']){
+            arr.push(data['videoUrl']);
+        }
+    }
+
+    window.onunload = function() {
+        iPanel.setGlobalVar("VOD_CTRL_STOP", "1");
+    }
+
+    window.onload = function (ev) {
+        consoleDebug("版本号：" + STBPlay.getVersion());
+        if(arr.length == 0){
+            arr.push(importId);
+        }
+        STBPlay.play(importId, arr);
+        isPlay = true;
+        setTimeout("getPlayParam()", 2000);
+        LMEPG.KeyEventManager.addKeyEvent(
+            {
+                KEY_399: function () {     //广西广电返回键
+                    exitPlay(false);
+                },
+                KEY_514: function () {  //广西广电退出键
+                    exitPlay(false);
+                },
+                KEY_5002: function () {
+                    STBPlay.monit();
+                },
+                KEY_5004: function () {
+                    LMEPG.UI.showToast("播放异常:" + KEY_5004);
+                    setTimeout("window.history.go(-1);", 2000);
+                },
+                KEY_5006: function () {      //正常播放结束
+                    if (STBPlay.index < STBPlay.len) {
+                        var data = allVideoInfo[STBPlay.index];//待播放的数据
+                        if (LMEPG.Func.isAllowAccess(isVip, ACCESS_PLAY_VIDEO_TYPE, data)) {
+                            STBPlay.pn();//下条
+                        } else {
+                            var postData = {"videoInfo": JSON.stringify(data)};
+                            LMEPG.ajax.postAPI("Player/storeVideoInfo", postData, function (data) {
+                                if (data.result == 0) {
+                                    jumpBuyVip(paramJson.focusIdx, paramJson.title);
+                                } else {
+                                    LMEPG.UI.showToast("系统报错", 3);
+                                }
+                            });
+                        }
+                    } else {
+                        exitPlay(true);
+                    }
+                },
+                KEY_5007: function () {
+
+                },
+                KEY_5008: function () {
+                    LMEPG.UI.showToast("播放异常:" + KEY_5008);
+                    setTimeout("window.history.go(-1);", 2000);
+                },
+                KEY_5010: function () {
+
+                },
+            }
+        );
+        buttons.push({
+            id: 'confirm',
+            name: '',
+            click: 'onKeyDown()',
+        });
+        LMEPG.ButtonManager.init("confirm", buttons, '', true);
+    }
+    function onKeyDown() {
+        if(fTime == null){
+            fTime = iPanel.getGlobalVar("VOD_FILM_TIME");
+        }
+        var pt = iPanel.getGlobalVar("VOD_PLAY_TIME");
+        var st = getTime(pt);
+        if (st >= (fTime - 0)) {
+            //播放结束
+            isShowExitDialog = true;
+        }
+        if (isShowExitDialog) {
+            exitPlay(false);
+        }else{
+            if (isPlay == true){
+                iPanel.setGlobalVar('VOD_CTRL_PAUSE', '1');
+                isPlay = false;
+            }else{
+                iPanel.setGlobalVar('VOD_CTRL_PAUSE', '0');
+                isPlay = true;
+            }
+        }
+    }
+    function getTime(time) {
+        var s = '';
+        var hour = time.split(':')[0];
+        var min = time.split(':')[1];
+        var sec = time.split(':')[2];
+        s = Number(hour * 3600) + Number(min * 60) + Number(sec);
+        return s;
+    }
+    //日志打印
+    function consoleDebug(text) {
+        if (DEBUG) {
+            document.getElementById("debug").innerHTML += "<br/>" + text;
+        }
+    }
+
+    function exitPlay(isShowDetain) {
+        if (isShowDetain) {
+            playFinish();
+        } else {
+            if(fTime == null){
+                fTime = iPanel.getGlobalVar("VOD_FILM_TIME");
+            }
+            var pt = iPanel.getGlobalVar("VOD_PLAY_TIME");
+            var st = getTime(pt);
+            if (st >= (fTime - 0)) {
+                //播放结束
+            }else{
+                //未结束，保存时间
+                savePlayParam(videoUrl, st);
+            }
+            iPanel.setGlobalVar("VOD_CTRL_STOP", "1");
+            LMEPG.Intent.back();
+        }
+
+    }
+
+    //视频播放结束时退出应用
+    function playFinish(text) {
+        if (text != undefined && text != null && text != "") {
+            eleTips.innerText = text;
+        }
+        eleContent.style.display = "block";
+        eleConfirm.style.color = "#ffa66b";
+    }
+    /**
+     * 得到当前页面对象
+     */
+    function getCurrentPage(_thisfocus) {
+        var objCurrent = LMEPG.Intent.createIntent("player");
+        objCurrent.setParam("userId", userId);
+        objCurrent.setParam("videoInfo", JSON.stringify(videoInfo));
+        objCurrent.setParam("allVideoInfo", JSON.stringify(allVideoInfo));
+        return objCurrent;
+    }
+    /**
+     * @func 进行购买操作
+     * @param focusIdx 当前页的焦点位置
+     * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+     * @returns {boolean}
+     */
+    function jumpBuyVip(focusIdx, remark) {
+        var objCurrent = getCurrentPage();
+        objCurrent.setParam("fromId", 1);
+        objCurrent.setParam("focus_index", focusIdx);
+
+        var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+        objOrderHome.setParam("userId", userId);
+        objOrderHome.setParam("isPlaying", "1");
+        objOrderHome.setParam("remark", remark);
+
+        LMEPG.Intent.jump(objOrderHome, objCurrent);
+    }
+    function savePlayParam(assetId,time) {
+        var postData = {
+            assetId:assetId,
+            time:time
+        };
+        LMEPG.ajax.postAPI("Player/savePlayParam", postData, function (data) {
+            if (data.result == 0) {
+                //保存成功
+            }
+        });
+    }
+    function getPlayParam() {
+        LMEPG.ajax.postAPI("Player/getPlayParam", null, function (data) {
+            data = data instanceof Object ? data : eval('(' + data + ')');
+            var play_time = 0;
+            if (data.result == 0) {
+                var play_time_obj = data.param_info;
+                if(play_time_obj != ""){
+                    play_time_obj = eval('(' + play_time_obj + ')');
+                    if(play_time_obj.assetId == videoUrl){
+                        play_time = play_time_obj.time;
+                        iPanel.setGlobalVar("VOD_CTRL_SEEK_TIME", play_time);
+                    }
+                }
+            }
+        });
+    }
+</script>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>更多视频-V3</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Channel/V3/more.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            modeTitle: "{$modeTitle}",
+            userId: "{$userId}",
+            platformType: "{$platformType}",
+            isVip: "{$isVip}",
+            fsUrl: '{$resourcesUrl}',
+            fromId: {$fromId},
+            modeType: "{$modeType}",
+            showCornerFree: '{$showCornerFree}',
+            focusIndex: "{$focusIndex}",
+            page: "{$page}",
+            currentPage: "{$currentPage}",
+            carrierId: "{$carrierId}",
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Channel/V3/index.js?t={$time}"></script>
+
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<!--提示弹框-->
+<div id="default_tip"></div>
+<div id="debug" style=" display: block;color:red;z-index:999;"></div>
+<div class="title" id="title">{$modeTitle}</div>
+<div id="page"></div>
+<div class="content" id="content">
+</div>
+<img id="leftArrow" class="leftArrow" src="__ROOT__/Public/img/{$platformType}/Channel/left-arrow.png" alt=""/>
+<img id="rightArrow" class="rightArrow" src="__ROOT__/Public/img/{$platformType}/Channel/right-arrow.png" alt=""/>
+
+
+<img id="focus-3-1" class="home_btn" src="__ROOT__/Public/img/hd/Home/V4/bg_home_btn.png" alt=""
+     onfocusurl="__ROOT__/Public/img/hd/Home/V4/f_home_btn.png"
+     confirmurl="__ROOT__/Public/img/hd/Home/V4/bg_home_btn.png"/>
+<img id="focus-3-2" class="main_btn" src="__ROOT__/Public/img/hd/Home/V4/bg_main_btn.png" alt=""
+     onfocusurl="__ROOT__/Public/img/hd/Home/V4/f_main_btn.png"
+     confirmurl="__ROOT__/Public/img/hd/Home/V4/bg_main_btn.png"/>
+<img id="focus-3-3" class="back_btn" src="__ROOT__/Public/img/hd/Home/V4/bg_back_btn.png" alt=""
+     onfocusurl="__ROOT__/Public/img/hd/Home/V4/f_back_btn.png"
+     confirmurl="__ROOT__/Public/img/hd/Home/V4/bg_back_btn.png"/>
+
+<div id="scroll_div" class="scroll_div">
+    <if condition="$platformType eq 'sd' ">
+        <marquee direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1" width="288"/>
+            <else/>
+            <marquee direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1" width="670"/>
+    </if>
+    <span><?php echo $marqueeText ?></span>
+</div>
+
+<script>
+    window.onload = function () {
+    LMEPG.KeyEventManager.addKeyEvent(
+            {
+                KEY_399: function () { //广西广电返回键
+                    LMEPG.Intent.back();
+                },
+                KEY_514: function () {  //广西广电退出键
+                    Page.jumpHoldPage();
+                },
+            }
+    );
+// 判断如果是购买、播放回来，就跳到原来的焦点位置
+    if (!LMEPG.Func.isEmpty(RenderParam.fromId) && RenderParam.fromId != "0") {
+        var focusIdx = RenderParam.focusIndex;
+        pageCurrent = RenderParam.page;
+        initFocusID = focusIdx;
+    } else {
+    }
+    getData();
+};
+</script>
+</body>
+</html>

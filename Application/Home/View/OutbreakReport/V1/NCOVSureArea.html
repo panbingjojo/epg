@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>2019nCoV</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/NCOV2019/NCOVSureArea.css?t={$time}"/>
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            lmcid: '{$carrierId}',
+            carrierId: '{$carrierId}',
+            areaCode: '{$areaCode}',
+            areaCodes: {$areaCodes},
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            firstEnter: '{$firstEnter}',                          // 用户首次进入
+            historyLength: "{$historyLength}",
+            splashHistory: "{$splashHistory}", // 获取欢迎页在浏览器中的历史步长
+        };
+        window.onload = function () {
+            SureArea.init();
+        }
+
+        if (RenderParam.carrierId == "410092") {
+            LMEPG.Log.info('init HybirdCallBackInterface !!!!!');
+            try {
+                HybirdCallBackInterface.setCallFunction(function (param) {
+                    LMEPG.Log.info('HybirdCallBackInterface param : ' + JSON.stringify(param));
+                    if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                        LMEPG.Intent.back();
+                    }
+                });
+            }catch (e){
+                LMEPG.UI.logPanel.show("e");
+            }
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/NCOV2019/NCOVSureArea.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<p id="tip-wrap">来自卫健委等机构数据02-11更新</p>
+<div id="sure-area-container">
+    <ul id="input-wrap">
+        <li>
+            <p class="input-txt" id="input-province">省/直辖市</p>
+            <ul class="select-modal-wrap" id="modal-province"></ul>
+        </li>
+        <li>
+            <p class="input-txt" id="input-city">市/区</p>
+            <ul class="select-modal-wrap" id="modal-city"></ul>
+        </li>
+        <li>
+            <p class="input-txt" id="input-district">全部</p>
+            <ul class="select-modal-wrap" id="modal-district"></ul>
+        </li>
+    </ul>
+    <div id="list-wrap">
+        <table id="list-title">
+            <tr>
+                <td id="left-line">&nbsp;</td>
+                <td id="title-txt">确诊地区</td>
+                <td id="right-line">&nbsp;</td>
+            </tr>
+        </table>
+        <ul id="list-area-wrap"><span class="null-data">请选择确诊地区~</span></ul>
+        <img class="arrow" id="left-arrow" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/left_arrow.png" alt="">
+        <img class="arrow" id="right-arrow" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/right_arrow.png" alt="">
+    </div>
+</div>
+<span id="action-tip">按左、右键切换区/县</span>
+<img class="arrow" id="down-arrow" src="__ROOT__/Public/img/hd/OutbreakReport/NCOV/down_arrow.png" alt="">
+</body>
+</html>

@@ -1,0 +1,221 @@
+#container {
+    height: 100%;
+    background: #0D8080;
+    color: #FFF;
+}
+
+.title {
+    position: absolute;
+    width: 120px;
+    height: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    top: 50px;
+    left: 80px;
+}
+
+.line {
+    position: absolute;
+    width: 1120px;
+    height: 1px;
+    top: 114px;
+    left: 80px;
+    background: #fff;
+    opacity: 0.2;
+}
+
+.add-btn {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: 500;
+    top: 330px;
+    left: 540px;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 30px;
+}
+
+.add-tips {
+    position: absolute;
+    width: 280px;
+    height: 20px;
+    font-size: 20px;
+    top: 420px;
+    left: 515px;
+}
+
+.add {
+    position: absolute;
+    top: 560px;
+    left: 540px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 30px;
+    width: 200px;
+    height: 60px;
+    background: url("../../../../img/hd/AppointmentRegister/V21/box2.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+#window1 {
+    position: absolute;
+    top: 155px;
+    left: 300px;
+}
+
+.information {
+    position: absolute;
+    top: 218px;
+    left: 400px;
+    width: 480px;
+    height: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+
+#window2 {
+    position: absolute;
+    top: 292px;
+    left: 540px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+#peopleList {
+    width: 1150px;
+    position: relative;
+    top: 155px;
+    left: 80px;
+    height: 260px;
+    overflow: hidden;
+}
+
+#list {
+    width: 1150px;
+}
+.people-item{
+    width: 1120px;
+    margin-bottom: 46px;
+    padding: 0 0 20px 0;
+}
+
+.people-item .info{
+    width: 740px;
+    height: 50px;
+    float: left;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.people-item .info2{
+    width: 740px;
+    height: 50px;
+    float: left;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.people-item .name {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+    text-align: left;
+    line-height: 50px;
+    display: inline-block;
+
+}
+.people-item .name2 {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+    text-align: left;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.people-item .gender {
+    width: 195px;
+    height: 50px;
+    font-size: 24px;
+    text-align: left;
+    line-height: 50px;
+    display: inline-block;
+}
+.people-item .gender2 {
+    width: 215px;
+    height: 50px;
+    font-size: 24px;
+    text-align: left;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.people-item .card-num {
+    width: 280px;
+    height: 50px;
+    font-size: 24px;
+    text-align: left;
+    line-height: 50px;
+    display: inline-block;
+}
+.people-item .card-num2 {
+    width: 280px;
+    height: 50px;
+    font-size: 24px;
+    text-align: left;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.func-btn{
+    float: left;
+    width: 160px;
+    margin-left: 10px;
+    height:50px;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    background: url("../../../../img/hd/AppointmentRegister/V21/box2.png") no-repeat;
+    background-size: 100% 100%;
+    border-radius: 48px;
+}
+.top_row {
+    width: 1145px;
+    height: 60px;
+    position: relative;
+    top: 155px;
+    left: 80px;
+}
+
+.top_row .name {
+    width: 200px;
+    height: 25px;
+    opacity: 0.5;
+    font-size: 20px;
+    text-align: left;
+    display: inline-block;
+    margin-bottom: 47px;
+}
+.top_row .gender {
+    width: 200px;
+    height: 25px;
+    opacity: 0.5;
+    font-size: 20px;
+    text-align: left;
+    display: inline-block;
+}
+.top_row .card-num {
+    width: 200px;
+    height: 25px;
+    opacity: 0.5;
+    font-size: 20px;
+    text-align: left;
+    display: inline-block;
+}

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="http://180.141.207.157:33200/EPG/jsp/AAAHD/en/js/md5.js"></script>
+    <!--当前模块js-->
+    <script type="text/javascript">
+        // 监听返回键
+        function onBack() {
+            LMEPG.Intent.back();
+        }
+    </script>
+</head>
+<body style="background-image: url('../../../../../Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<div id="debug" style=" display: block;color:white;z-index:999;"></div>
+<a id="default_link" href="#"><img class="grubFocusImg" src="__ROOT__/Public/img/Common/spacer.gif"/></a>
+<script type="text/javascript">
+    !(function (win) {
+        function getUrlParamByName(url, name, decode) {
+            var decodeUrl = url;
+            if (typeof decode !== "undefined" && decode) {
+                var decodeUrl = decodeURIComponent(url);
+            }
+            LMEPG.Log.info("taskEx::getUrlParamByName url:" + decodeUrl);
+            var hash = decodeUrl.slice(decodeUrl.indexOf("?") + 1).split('&');
+            LMEPG.Log.info("taskEx::getUrlParamByName params:" + JSON.stringify(hash));
+            for (var i = 0; i < hash.length; i++) {
+                var params = hash[i].split("=");
+                if (params[0] == name) {
+                    return params[1];
+                }
+            }
+            return null;
+        };
+
+        function reportOrderInfo(orderId, status, msg){
+            LMEPG.Log.info("runTask::runTask ---> start");
+            var postData = {
+                "orderId": orderId,
+                "status": status,
+                "msg": msg,
+            };
+            // 获取目标地址
+            LMEPG.ajax.postAPI("Pay/reportOrderInfo", postData, function (data) {
+                try {
+                    data = data instanceof Object ? data : JSON.parse(data);
+                    if (data) {
+                        LMEPG.Log.info("reportOrderInfo::reportOrderInfo ---> result:" + data.result);
+                    }
+                } catch (e) {
+                    LMEPG.Log.error("reportOrderInfo::reportOrderInfo ---> exception(" + e.toString() + ")");
+                }
+            });
+        }
+
+        function getBase64Image(win, img) {
+            var canvas = win.document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            var dataURL = canvas.toDataURL();
+            return dataURL;
+        }
+
+        //通过Class类查找元素对象
+        function printObjInfo(obj, tag) {
+            // LMEPG.Log.info("printObjInfo ---> start " + tag);
+            try {
+                var strInfo = "TAG->" + tag;
+                if (typeof obj !== "undefined" || obj) {
+                    strInfo = strInfo + " ----> object[";
+                    for(var key in obj) {
+                        // LMEPG.Log.info("printObjInfo ---> key： " + key);
+                        var strValue = key + "->";
+                        if (typeof(obj[key]) == "function") {
+                            strValue = strValue + "function"; //+ obj[key];
+                        } else {
+                            strValue = strValue + obj[key];
+                        }
+                        strValue = strValue + ",";
+                        strInfo = strInfo + strValue;
+                    }
+                    strInfo = strInfo + "]";
+                } else {
+                    strInfo = strInfo + "is null or undefined]";
+                }
+                LMEPG.Log.info(strInfo);
+            } catch(e) {
+                LMEPG.Log.info("TAG->:" + tag + " ---> exception: " + e.toString());
+            }
+        };
+
+
+        function getVerifyCode(pic, type, callback){
+            var data = {
+                "pic": pic,
+                "type": type
+            };
+            LMEPG.ajax.postAPI("System/getVerifyCode", data, callback);
+        }
+
+        function runTask() {
+            try {
+                LMEPG.Log.info("task::runTask ---> start");
+                // 获取目标地址
+                LMEPG.ajax.postAPI("Pay/buildDirectPayUrlForPage", null, function (data) {
+                    try {
+                        data = data instanceof Object ? data : JSON.parse(data);
+                        if (data && data.result == 0) {
+                            LMEPG.Log.info("task::runTask ---> get url:" + data.payUrl);
+                            var realPayUrl = data.payUrl;
+                            if (data.payUrl != null && data.payUrl !== "" && data.payUrl.length > 0) {
+                                var index = data.payUrl.lastIndexOf("&");
+                                if (index > 0) {
+                                    task.lmTradeNo = data.payUrl.substring(index + 1 + 10, data.payUrl.length);
+                                    realPayUrl = data.payUrl.substring(0, index);
+                                }
+                            }
+                            task.platformType = typeof RenderParam !== "undefined" ? RenderParam.platformType : task.platformType;
+                            task.initAndJump(realPayUrl);
+                        } else {
+                            LMEPG.Log.error("task::runTask ---> get url: failed!");
+                        }
+                    } catch (e) {
+                        LMEPG.Log.error("task::runTask ---> get url: exception(" + e.toString() + ")");
+                    }
+                });
+            } catch(e) {
+                LMEPG.Log.error("task::runTask exception: " + e.toString());
+            }
+        }
+
+        function setPageSize(){
+            var meta = document.getElementsByTagName('meta');
+            LMEPG.Log.error("task::setPageSize ---> meta" + meta);
+            if (typeof meta !== "undefined"){
+                meta["page-view-size"].setAttribute('content',"1280*720");
+                LMEPG.Log.error("task::setPageSize ---> meta set 1280*720");
+            }
+            LMEPG.Log.error("task::setPageSize ---> meta end");
+            setTimeout(setPageSize, 500);
+        }
+
+        var task = {
+            id: "inject_iframe",
+            objIFrame: null,
+            url: "",
+            isReport: false,
+            lmTradeNo: "",
+            loadId: 0,
+            platformType: "hd",
+            // 构建IFrame对象
+            buildIFrameObject: function (id) {
+                if (!task.objIFrame) {
+                    task.objIFrame = document.createElement("iframe");
+                    task.objIFrame.name = id;
+                    task.objIFrame.id = id;
+                    //设置iframe的样式
+                    task.objIFrame.style.overflow = "hidden";
+                    task.objIFrame.style.border = "none";
+                    task.objIFrame.style.zIndex = "9999";
+                    task.objIFrame.style.position = "absolute";
+                    task.objIFrame.style.top = "0px";
+                    task.objIFrame.style.left = "0px";
+                    task.objIFrame.width = "1280px";
+                    task.objIFrame.height = "720px";
+                    task.objIFrame.scrolling = "no";
+                    task.objIFrame.frameborder = "0";
+                }
+                return task.objIFrame;
+            },
+            // 增加IFrame对象到body中
+            addIFrameToBody: function (obj) {
+                var body = document.body;
+                if (body){
+                    body.appendChild(obj);
+                }
+                return body;
+            },
+            // 加载IFrame
+            loadIFrame: function (url) {
+                try {
+                    if (task.objIFrame) {
+                        LMEPG.Log.info("task::loadIFrame ---> url:" + url);
+                        task.objIFrame.onload = task.onload;
+
+                        var msg = "loadIFrame: url:" + escape(url);
+                        reportOrderInfo(task.lmTradeNo, 1, msg);
+                        LMEPG.Log.error("task::objIFrame.src ---> url: " + url);
+                        task.objIFrame.src = url;
+                    } else {
+                        LMEPG.Log.info("task::loadIFrame ---> task.objIFrame is null");
+                    }
+                } catch(e) {
+                    LMEPG.Log.info("task::loadIFrame ---> exception:" + e.toString());
+                }
+            },
+            // 启动任务
+            startTask: function () {
+            },
+            // 任务处理
+            run: function () {
+            },
+            initAndJump: function (url) {
+                if (typeof url != "undefined") {
+                    task.url = url;
+                }
+                var obj = task.buildIFrameObject(task.id);
+                if (!obj) {
+                    setTimeout(task.initAndJump, 1000);
+                    return;
+                }
+                var body = task.addIFrameToBody(obj);
+                if (!body) {
+                    setTimeout(task.initAndJump, 1000);
+                    return;
+                }
+                task.loadIFrame(task.url);
+                //task.startTask();
+            },
+            onload: function() {
+                try {
+                    task.loadId = task.loadId + 1;
+                    var title = "";
+                    if (typeof task.objIFrame.contentWindow.document.title !== "undefined") {
+                        title = task.objIFrame.contentWindow.document.title;
+                    }
+                    LMEPG.Log.info("task::onload ---> onload finish loadId:" + task.loadId + ",title:" + title);
+
+                    var html = task.objIFrame.contentWindow.document.getElementsByTagName("html");
+                    if (html){
+                        LMEPG.Log.info("task::onload ---> onload finish loadId:" + task.loadId + ",html:" + html[0].innerHTML);
+                    }
+
+
+                    var msg = "页面加载成功 --- taskId:" + task.loadId + ",title:" + title;
+                    reportOrderInfo(task.lmTradeNo, 2, msg);
+
+                    // 设置分辨率，否则可能会出现页面放大的问题
+                    var meta = task.objIFrame.contentWindow.document.getElementsByTagName('meta');
+                    if (typeof meta !== "undefined") {
+                        if (task.platformType == "hd") {
+                            if (typeof meta["page-view-size"] !== "undefined") {
+                                meta["page-view-size"].setAttribute('content',"1280*720");
+                                LMEPG.Log.error("task::onload ---> meta set 1280*720");
+                            }
+                        }
+                    }
+                    // 抢回焦点
+                    var defaultId = window.document.getElementById('default_link');
+                    if (typeof defaultId != "undefined") {
+                        defaultId.focus();
+                    }
+
+                    if (title == "产品订购页") {
+                        if (typeof task.objIFrame.contentWindow.init_page !== "undefined") {
+                            task.objIFrame.contentWindow.init_page.apply(task.objIFrame.contentWindow, []);
+                        }
+
+                        // 获取加载后的地址主页
+                        var strPayHost = task.objIFrame.contentWindow.window.self.location.host;
+                        strPayHost = "http://" + strPayHost;
+
+                        // 修改toSecond函数的跳转地址代码
+                        if (typeof task.objIFrame.contentWindow.toSecond !== "undefined") {
+                            var strtoSecond = task.objIFrame.contentWindow.toSecond.toString();
+                            strtoSecond = strtoSecond.replace("window", "window.self");
+                            strtoSecond = strtoSecond.replace("/ott_payment", strPayHost + "/ott_payment");
+                            task.objIFrame.contentWindow.eval.apply(task.objIFrame.contentWindow, [strtoSecond]);
+                            LMEPG.Log.error("task::onload ---> modify toSecond after:" + task.objIFrame.contentWindow.toSecond.toString());
+                        }
+
+                        //直接确认默认项
+                        if(typeof task.objIFrame.contentWindow.gokeyvalue !== "undefined") {
+                            var msg = "用户点击默认订购项";
+                            reportOrderInfo(task.lmTradeNo, 3, msg);
+                            task.objIFrame.contentWindow.gokeyvalue.apply(task.objIFrame.contentWindow, [13]);
+                        } else {
+                            var msg = "产品订购页未找到gokeyvalue函数对象";
+                            reportOrderInfo(task.lmTradeNo, -1, msg);
+                        }
+                    } else if (title == "商品订购") {
+                        // 2次确认页
+                        // onload 是一个匿名函数，先不加载试试是否能正常运行。否则要在外部实现该匿名函数并调用。
+                        // 获取加载后的地址主页
+                        var strPayHost = task.objIFrame.contentWindow.window.self.location.host;
+                        strPayHost = "http://" + strPayHost;
+
+                        // 修改toSecond函数的跳转地址代码
+                        if (typeof task.objIFrame.contentWindow.tosecond !== "undefined") {
+                            var selfHerf = task.objIFrame.contentWindow.window.self.location.href.split("PayCodePrefixServiceNew")[0];
+
+                            var strtosecond = task.objIFrame.contentWindow.tosecond.toString();
+                            strtosecond = strtosecond.replace(/window/g, "window.self");
+                            strtosecond = strtosecond.replace(/\/ott_payment/g, strPayHost + "/ott_payment");
+
+                            strtosecond = strtosecond.replace(/top.location.href.split(\"PayCodePrefixServiceNew\")[0]/g, selfHerf);
+                            strtosecond = strtosecond.replace(/parent.location.href.split(\"PayCodePrefixServiceNew\")[0]/g, selfHerf);
+                            strtosecond = strtosecond.replace(/parent.parent.location.href.split(\"PayCodePrefixServiceNew\")[0]/g, selfHerf);
+                            strtosecond = strtosecond.replace(/self.location.href.split(\"PayCodePrefixServiceNew\")[0]/g, selfHerf);
+
+                            task.objIFrame.contentWindow.eval.apply(task.objIFrame.contentWindow, [strtosecond]);
+                            LMEPG.Log.error("task::onload ---> modify strtosecond after:" + task.objIFrame.contentWindow.tosecond.toString());
+                        }
+
+
+                        //直接确认
+                        if(typeof task.objIFrame.contentWindow.gokeyvalue !== "undefined") {
+                            var msg = "用户点击商品订购（二次确认）";
+                            reportOrderInfo(task.lmTradeNo, 4, msg);
+                            task.objIFrame.contentWindow.gokeyvalue.apply(task.objIFrame.contentWindow, [13]);
+                        } else if (typeof task.objIFrame.contentWindow.tosecond !== "undefined") {
+                            var msg = "用户点击商品订购（二次确认）";
+                            reportOrderInfo(task.lmTradeNo, 4, msg);
+                            var focusId = "huafeirenewdiv";
+                            task.objIFrame.contentWindow.tosecond.apply(task.objIFrame.contentWindow, [focusId]);
+                        } else {
+                            var msg = "商品订购未找到gokeyvalue或者tosecond函数对象";
+                            reportOrderInfo(task.lmTradeNo, -2, msg);
+                        }
+                    } else if (title == "Insert title here") {
+                        //验证码页判断，
+                        var codeimg = task.objIFrame.contentWindow.document.getElementById('codeimg');
+                        if (typeof codeimg !== "undefined" && codeimg != null) {
+                            // 获取图片的base64编码
+                            var base64img = getBase64Image(task.objIFrame.contentWindow, codeimg);
+                            if (base64img) {
+                                //
+                                var data = {
+                                    "pic": base64img,
+                                    "type": "n4"
+                                };
+                                LMEPG.ajax.postAPI("System/getVerifyCode", data, function (data) {
+                                    try {
+                                        data = data instanceof Object ? data : JSON.parse(data);
+                                        LMEPG.Log.info("task::onload ---> getVerifyCode data");
+                                        if (data && data.errCode == 0) {
+                                            var code = data.v_code;
+                                            var codeElement = task.objIFrame.contentWindow.document.getElementById('code');
+                                            if (codeElement) {
+                                                codeElement.value = code;
+                                                //获取确认按钮标签提交
+                                                var confirm = task.objIFrame.contentWindow.document.getElementsByTagName('a');
+                                                if (confirm && confirm.length > 0) {
+                                                    var msg = "输入验证码并点击确认 code:" + code;
+                                                    reportOrderInfo(task.lmTradeNo, 5, msg);
+                                                    task.objIFrame.contentWindow.eval(confirm[0].href);
+                                                }
+                                            }
+                                        } else {
+                                            var msg = "获取验证码失败";
+                                            reportOrderInfo(task.lmTradeNo, -3, msg);
+                                            LMEPG.Log.error("task::getVerifyCode ---> failed ! msg=" + msg);
+                                        }
+                                    } catch (e) {
+                                        LMEPG.Log.error("task::getVerifyCode ---> exception:" + e.toString());
+                                    }
+                                });
+                            } else {
+                                var msg = "验证码图片转Base64失败";
+                                reportOrderInfo(task.lmTradeNo, -4, msg);
+                                LMEPG.Log.error("task::getVerifyCode ---> failed ! msg=" + msg);
+                            }
+                        } else {
+                            var msg = "未找到验证码图片";
+                            reportOrderInfo(task.lmTradeNo, -3, msg);
+                        }
+
+                    } else if (title == "订购成功结果页面") {
+                        //不用处理
+                        var msg = "订购成功结果页面";
+                        reportOrderInfo(task.lmTradeNo, 6, msg);
+                        if (typeof  task.objIFrame.contentWindow.goback !== "undefined") {
+                            task.objIFrame.contentWindow.goback.apply(task.objIFrame.contentWindow, []);
+                        }
+                    } else if (title == "订购失败结果页面") {
+                        // 不用处理
+                        var msg = "订购失败结果页面";
+                        reportOrderInfo(task.lmTradeNo, -5, msg);
+                    } else if (title == "订购提示") {
+                        var msg = "订购提示";
+                        reportOrderInfo(task.lmTradeNo, -6, msg);
+                    } else {
+                        var msg = "未知类型";
+                        reportOrderInfo(task.lmTradeNo, -7, msg);
+                    }
+
+                    // 抢回焦点
+                    var defaultId = window.document.getElementById('default_link');
+                    if (typeof defaultId != "undefined") {
+                        defaultId.focus();
+                    }
+                } catch(e) {
+                    LMEPG.Log.error("task::onload() ---> exception:" + e.toString());
+                }
+            },
+        };
+        win.initInjectTask = runTask;
+        win.initInjectTask(); // 加载后立即执行
+    })(window);
+
+
+
+</script>
+</body>
+</html>

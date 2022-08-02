@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>预约记录</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityConsultation/V1/AppointmentRecord.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmapkplugin.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+</head>
+<body>
+
+<div style="position: absolute;left: 20px;top: 20px;width:169px;height:59px;text-align: center;line-height:59px;">
+    <div style="position: absolute;left: 40px;top: 0px;z-index: 88">专家详情</div>
+    <img id="detail" style="position: absolute;left: 0px;top: 0px;width:169px;height:59px;"
+         src="__ROOT__/Public/img/{$platformType}/Expert/btn1.png" alt="">
+</div>
+<div style="position: absolute;left: 220px;top: 20px;width:169px;height:59px;text-align: center;line-height:59px;">
+    <div style="position: absolute;left: 40px;top: 0px;z-index: 88">约诊记录</div>
+    <img id="record" src="__ROOT__/Public/img/{$platformType}/Expert/btn1.png" alt="">
+</div>
+
+<script type="text/javascript">
+
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    /**
+     * 跳转 - 大专家主页
+     * @param id
+     */
+    function jumpExpertHome() {
+        var objHome = LMEPG.Intent.createIntent("activity-consultation-guide");
+        var objExpertHome = LMEPG.Intent.createIntent("expertHome");
+        LMEPG.Intent.jump(objExpertHome, objHome);
+    }
+
+    /**
+     * 跳转 - 专家约诊记录
+     */
+    function jumpExpertRecordHome() {
+        var objHome = LMEPG.Intent.createIntent("activity-consultation-guide");
+        var objExpertRecord = LMEPG.Intent.createIntent("expertRecordHome");
+        LMEPG.Intent.jump(objExpertRecord, objHome);
+    }
+
+    var buttons = [
+        {
+            id: 'detail',
+            name: '专家详情',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusUp: '',
+            nextFocusRight: 'record',
+            nextFocusDown: 'reservation_btn',
+            background: '__ROOT__/Public/img/{$platformType}/Expert/btn1.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Expert/btn1_select.png',
+            click: "jumpExpertHome()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        },
+        {
+            id: 'record',
+            name: '约诊记录',
+            type: 'img',
+            nextFocusLeft: 'detail',
+            nextFocusUp: '',
+            nextFocusRight: '',
+            nextFocusDown: '',
+            background: '__ROOT__/Public/img/{$platformType}/Expert/btn1.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Expert/btn1_select.png',
+            click: "jumpExpertRecordHome()",
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        }]
+
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init("detail", buttons, '', true);
+    }
+
+</script>
+</body>

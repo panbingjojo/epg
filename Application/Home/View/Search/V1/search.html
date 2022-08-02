@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>搜索页面-V1</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Search/V1/search.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            isVip: {$isVip},                    // 用户是否是vip
+
+            //当前页渲染
+            focusIndex: "{$focusIndex}",
+            pageCurrent: "{$pageCurrent}",
+            searchText: "{$searchText}",
+            modeTitle: "{$modeTitle}",
+            page: '{$currentPage}',
+            isReturnFlag: "{$isReturn}", // 0--表示直接进来，1--表示购买返回，2--表示播放返回
+            keyWords: "{$keyWords}", // 搜索的关键字
+            fromId: "{$fromId}",
+            focusId: "{$focusIndex}",
+            showCornerFree: "{$showCornerFree}",                // 是否显示免费角标
+            isShowVipCorner: false,              //vip角标显示开关
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+</head>
+<body style="background-image: url('__ROOT__/Public/img/{$platformType}/Common/{$commonImgsView}/bg_home.png');">
+<div id="left">
+    <div id="searchText">请输入首字母进行搜索</div>
+    <hr class="line"/>
+    <div id="focus-1-1" class="common focus-row-1 focus-col-1">A</div>
+    <div id="focus-1-2" class="common focus-row-1 focus-col-2">B</div>
+    <div id="focus-1-3" class="common focus-row-1 focus-col-3">C</div>
+    <div id="focus-1-4" class="common focus-row-1 focus-col-4">D</div>
+    <div id="focus-1-5" class="common focus-row-1 focus-col-5">E</div>
+    <div id="focus-1-6" class="common focus-row-1 focus-col-6">F</div>
+
+    <div id="focus-2-1" class="common focus-row-2 focus-col-1">G</div>
+    <div id="focus-2-2" class="common focus-row-2 focus-col-2">H</div>
+    <div id="focus-2-3" class="common focus-row-2 focus-col-3">I</div>
+    <div id="focus-2-4" class="common focus-row-2 focus-col-4">J</div>
+    <div id="focus-2-5" class="common focus-row-2 focus-col-5">K</div>
+    <div id="focus-2-6" class="common focus-row-2 focus-col-6">L</div>
+
+    <div id="focus-3-1" class="common focus-row-3 focus-col-1">M</div>
+    <div id="focus-3-2" class="common focus-row-3 focus-col-2">N</div>
+    <div id="focus-3-3" class="common focus-row-3 focus-col-3">O</div>
+    <div id="focus-3-4" class="common focus-row-3 focus-col-4">P</div>
+    <div id="focus-3-5" class="common focus-row-3 focus-col-5">Q</div>
+    <div id="focus-3-6" class="common focus-row-3 focus-col-6">R</div>
+
+    <div id="focus-4-1" class="common focus-row-4 focus-col-1">S</div>
+    <div id="focus-4-2" class="common focus-row-4 focus-col-2">T</div>
+    <div id="focus-4-3" class="common focus-row-4 focus-col-3">U</div>
+    <div id="focus-4-4" class="common focus-row-4 focus-col-4">V</div>
+    <div id="focus-4-5" class="common focus-row-4 focus-col-5">W</div>
+    <div id="focus-4-6" class="common focus-row-4 focus-col-6">X</div>
+
+    <div id="focus-5-1" class="common focus-row-5 focus-col-1">Y</div>
+    <div id="focus-5-2" class="common focus-row-5 focus-col-2">Z</div>
+    <div id="focus-5-3" class="common focus-row-5 focus-col-3">1</div>
+    <div id="focus-5-4" class="common focus-row-5 focus-col-4">2</div>
+    <div id="focus-5-5" class="common focus-row-5 focus-col-5">3</div>
+    <div id="focus-5-6" class="common focus-row-5 focus-col-6">4</div>
+
+    <div id="focus-6-1" class="common focus-row-6 focus-col-1">5</div>
+    <div id="focus-6-2" class="common focus-row-6 focus-col-2">6</div>
+    <div id="focus-6-3" class="common focus-row-6 focus-col-3">7</div>
+    <div id="focus-6-4" class="common focus-row-6 focus-col-4">8</div>
+    <div id="focus-6-5" class="common focus-row-6 focus-col-5">9</div>
+    <div id="focus-6-6" class="common focus-row-6 focus-col-6">0</div>
+
+    <div id="focus-7-1"></div>
+    <div id="focus-7-6"></div>
+
+</div>
+
+<img id="topArrow" src="__ROOT__/Public/img/Common/icon_arrows_up.png">
+<img id="bottomArrow" src="__ROOT__/Public/img/Common/icon_arrows_down.png"/>
+
+<img id="vip_corner_1" class="vip_corner_up" src="__ROOT__/Public/img/Common/corner_hainan.png"/>
+<img id="vip_corner_2" class="vip_corner_up" src="__ROOT__/Public/img/Common/corner_hainan.png"/>
+<img id="vip_corner_3" class="vip_corner_up" src="__ROOT__/Public/img/Common/corner_hainan.png"/>
+<img id="vip_corner_4" class="vip_corner_down" src="__ROOT__/Public/img/Common/corner_hainan.png"/>
+<img id="vip_corner_5" class="vip_corner_down" src="__ROOT__/Public/img/Common/corner_hainan.png"/>
+<img id="vip_corner_6" class="vip_corner_down" src="__ROOT__/Public/img/Common/corner_hainan.png"/>
+
+<div id="searchTitle">大家都在看</div>
+<div id="pagePlag"></div>
+<div class="rightWrap" id="rightWrap"></div>
+<!--字幕层-->
+<div id="scroll_div" class="scroll_div">
+    <if condition="$platformType eq 'sd' ">
+        <marquee direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1"  width="588">
+            <else />
+            <marquee  direction="left" behavior="scroll" scrollamount="2" scrolldelay="0" loop="-1"  width="1130">
+    </if>
+    <span id="hljltMarquee"><?php echo $marqueeText ?></span>
+    </marquee>
+</div>
+
+<script type="text/javascript" src="__ROOT__/Public/js/Search/V1/search.js?t={$time}">
+</script>
+<script>
+    window.onload = function () {
+
+//        marquee.start(7,"scroll_div",2,50,"left","scroll");
+
+        if (parseInt(RenderParam.isReturnFlag) > 0) {
+            if (RenderParam.keyWords != '') {
+                uiSearchTextElement.innerHTML = RenderParam.keyWords;
+            }
+        }
+        for(var i= 1; i< 7; i++){
+            H('vip_corner_' + i);
+        }
+        LMEPG.ButtonManager.init('focus-1-1', buttons);
+        searchVideoByHotWord(RenderParam.keyWords, is_empty(RenderParam.focusId) ? 'focus-1-1' : RenderParam.focusId);
+    };
+</script>
+</body>
+</html>

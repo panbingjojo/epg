@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+}
+html{
+    background: #fff;
+}
+
+body {
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    background-image: url("../../../../img/sd/AppointmentRegister/V0/bg.png");
+}
+
+body > * {
+    position: absolute;
+}
+
+p.title {
+    top: 20px;
+    left: 40px;
+    font-size: 26px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+#left-wrap {
+    position: absolute;
+    top: 114px;
+    left: 20px;
+    width: 202px;
+    height: 302px;
+    text-align: center;
+    background-image: url("../../../../img/sd/AppointmentRegister/V0/left_bg.png");
+    /* background-color: rgba(247, 241, 241, 0.1); */
+    border-radius: 10px;
+}
+
+#left-wrap img {
+    width: 160px;
+    height: 160px;
+    margin-top: 20px;
+}
+
+#left-wrap p {
+    color: #fff;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+#prev-arrow {
+    position: absolute;
+    top: 0;
+    left: 166px;
+    margin-top: -35px;
+    width: 40px;
+    height: 30px;
+}
+
+#next-arrow {
+    position: absolute;
+    left: 166px;
+    bottom: 0;
+    margin-bottom: -35px;
+    width: 40px;
+    height: 30px;
+}
+
+#right-wrap {
+    top: 114px;
+    left: 232px;
+    color: #fff;
+    font-size: 24px;
+    width: 362px;
+    height: 262px;
+    padding: 20px 15px;
+    background-image: url("../../../../img/sd/AppointmentRegister/V0/right_bg.png");
+}
+
+.hos-icon {
+    width: 50px;
+    height: 50px;
+    float: left;
+    border-radius: 6px;
+}
+
+.hos-title {
+    float: left;
+    background-image: url("../../../../img/sd/AppointmentRegister/V0/hos_name.png");
+    width: 72%;
+    background-position: center;
+    text-align: center;
+    /* overflow: hidden; */
+    padding: 0 24px;
+    color: #fff;
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+.hos-title.focus {
+    color: #000;
+}
+
+#right-wrap div.hos-item {
+    margin: 6px auto;
+    width: 97%;
+    height: 60px;
+    line-height: 60px;
+}
+
+.hos-intro {
+}
+
+#hos-intro-gather {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.hos-intro-icon {
+    float: left;
+    width: 42px;
+    height: 42px;
+    margin-right: 8px;
+    border-radius: 6px;
+}
+
+.gather {
+    float: left;
+    width: 81%;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    color: #fff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.hos-intro-name{
+    font-size: 19px;
+}
+.hos-intro-addr{
+    font-size: 13px;
+}
+
+.hos-intro-txt {
+    text-indent: 20px;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: left;
+    height: 212px;
+    overflow: hidden;
+}

@@ -1,0 +1,137 @@
+body {
+    /*background-image: url(../../../../img/hd/DateMark/bg.png);*/
+    color: #fff;
+}
+
+body > * {
+    position: absolute;
+}
+
+#btn-rules {
+    top: 40px;
+    left: 1054px;
+}
+
+#btn-lottery {
+    top: 273px;
+    left: 936px;
+}
+
+#btn-mark {
+    top: 593px;
+    left: 345px;
+}
+
+/*分数*/
+.score-wrapper {
+    top: 142px;
+    left: 70px;
+    font-size: 24px;
+}
+
+.keep-mark-day {
+    padding-top: 5px;
+    width: 200px;
+    text-align: center;
+}
+
+.score-content {
+    margin-top: 62px;
+}
+
+.score-content p {
+    width: 295px;
+    height: 37px;
+    line-height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.score-content img {
+    margin-right: 10px;
+    margin-bottom: -8px;
+}
+
+.score-content span {
+}
+
+.score-content b {
+    color: #ffdc19;
+    margin-left: 50px;
+}
+
+.score-content .today-score {
+}
+
+.score-content .total-score {
+    margin-top: 24px;
+}
+
+/*日期*/
+#date-wrapper {
+    top: 488px;
+    left: 125px;
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    font-size: 24px;
+    text-align: center;
+    list-style: none;
+}
+
+#date-wrapper li {
+    width: 80px;
+    height: 98px;
+    line-height: 90px;
+    float: left;
+    margin-right: 38px;
+    background-repeat: no-repeat;
+    background-position: 0 8px;
+}
+
+/*mark-had:已经签到，mark-miss:漏签，mark-will:待签到*/
+#date-wrapper li.mark-had {
+    background-image: url(../../../../img/hd/DateMark/mark_had.png);
+}
+
+#date-wrapper li.mark-miss {
+    background-image: url(../../../../img/hd/DateMark/mark_miss.png);
+}
+
+#date-wrapper li.mark-will {
+    color: #fff;
+    background-image: url(../../../../img/hd/DateMark/mark_will.png);
+}
+
+/*签到规则弹框*/
+div.rules {
+    height: 584px;
+    color: #fffefe;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+div.rules .title {
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    font-size: 30px;
+    position: absolute;
+    top: 46px;
+    left: 94px;
+    font-weight: bold;
+}
+
+.rules .rules-desc {
+    position: absolute;
+    top: 132px;
+    left: 94px;
+    font-size: 24px;
+}
+
+.rules p {
+    margin-bottom: 10px;
+}
+
+.rules .placeholder {
+    margin-top: 60px;
+}

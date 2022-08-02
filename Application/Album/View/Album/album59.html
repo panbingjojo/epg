@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>专辑59—第一批90后的胃已经垮了？(单独处理个别特例)</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/Album/album59.css?t={$time}"/>
+
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <if condition="$carrierId eq '520092'"><!--贵州广电引用-->
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <if condition="$carrierId eq '450094' ">
+        <!-- 广西广电小窗视频播放 -->
+        <script type="text/javascript" src="http://10.1.15.25/webJS/gxgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Album/album.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Album/AlbumSMP4.1.01.js?t={$time}"></script>
+
+</head>
+<body id="body" class="{$platformType}-body">
+<div id="debug"></div>
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+<if condition="$platformType eq 'hd' ">
+    <div id="smallvod" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+        <iframe id="smallscreen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+    </div>
+    <img id="videoTv" class="hd-videoTv" useType="video" data-v="0"
+         src="__ROOT__/Public/img/hd/Album/album59/bg_small_video.png"/>
+    <!--<img class="hd-free" src="__ROOT__/Public/img/hd/Album/album59/free.png" alt="">-->
+    <else/>
+</if>
+<div id="tab-content" class="{$platformType}-tab-content">
+</div>
+<img id="v-prev" class="{$platformType}-v-arrow {$platformType}-v-prev"
+     src="__ROOT__/Public/img/hd/Album/album59/icon_prev_page.gif"/>
+<img id="v-next" class="{$platformType}-v-arrow {$platformType}-v-next"
+     src="__ROOT__/Public/img/hd/Album/album59/icon_next_page.gif"/>
+<img id="back" class="{$platformType}-back" useType="back"
+     src="__ROOT__/Public/img/hd/Album/album59/bg_back.png"/>
+<div id="history-album" class="{$platformType}-history-album">
+
+</div>
+<script type="text/javascript">
+	// TP框架控制器返回数据应用
+	var TP = RenderParam = {
+		vip: {$isVip},
+		listMovePages: {$moveNum},           // 页数
+		albumMovePages: {$moveAlbumNum},
+		userId: '{$userId}',
+		focusIDName: '{$focus_index}' == 'focus-1-1' ? 'focus-1' : '{$focus_index}',
+		videoData: {$data}.data.video_list,  // 专题节目列表
+		platformType: '{$platformType}',     // hd--高清 sd--标清
+		lmcid: '{$carrierId}',
+		carrierId: '{$carrierId}',
+		inner: '{$inner}',
+		albumName: '{$albumName}',          // 专辑名称
+		domainUrl: '{$domainUrl}'           // 江苏电信需要使用的第三方播放器前缀地址\
+	};
+	// 小窗播放参数
+	(function smallPlay(keyCode) {
+        //if (LMSmallPlayer.isInterceptPlayException(keyCode)) return;
+		if (TP.platformType == 'hd') {
+			var tempPosition = {
+				top: 183,    // 小窗播放距离上
+				left: 76,   // 距离左
+				width: 390,  // 宽
+				height: 220  // 高
+			};
+			smallVideo.startPollPlay(tempPosition);
+			//虚拟按键触发，轮询播放
+			LMEPG.KeyEventManager.addKeyEvent({
+				EVENT_MEDIA_END: smallPlay,	         //视频播放结束
+				EVENT_MEDIA_ERROR: smallPlay        //视频播放错误
+			});
+		}
+	}());
+
+	var moveNum = {$moveNum};                 // 页数
+	var moveAlbumNum = {$moveAlbumNum};
+	var userId = '{$userId}';
+	var focusIDName = '{$focus_index}' == 'focus-1-1' ? 'focus-1' : '{$focus_index}';
+	var videoData = {$data}.data.video_list;  // 专题节目列表
+	var platformType = '{$platformType}';     // hd--高清 sd--标清
+	var lmcid = '{$carrierId}';
+	var inner = '{$inner}';
+	var stbModel = 'test';
+	var albumName = '{$albumName}';           // 专辑名称
+	var domainUrl = '{$domainUrl}';           // 江苏电信需要使用的第三方播放器前缀地址\
+	var currentAlbum;
+	var fileIndex = '__ROOT__/Public/img/hd/Album/album59/';
+
+	var buttons = [];
+	window.onload = function() {
+		$.init({
+			V: 2,   // 渲染视频列表的个数
+			A: 4,   // 渲染往期专辑的个数
+			direction: 'right',   // Video列表下一个翻页方向
+			allVideoList: 9, // 所有视频个数
+			mockVideoIndex: function() {
+				var arr = [];
+				for (var i = 0; i < this.allVideoList; i++) {
+					arr.push(i);
+				}
+				platformType == 'hd' && arr.shift();
+				return arr;
+			},
+			different: function() {
+				if (platformType == 'hd') {
+					var bodyBg = 'bg_album.png';
+					G('body').style.backgroundImage = 'url(' + fileIndex + bodyBg + ')';
+				}
+				if (platformType == 'sd') {
+					document.body.style.backgroundImage = 'url(' + fileIndex + 'bg_album_sd.png)';
+				}
+			}
+		});
+	}
+
+	(function(w) {
+		function AlbumObj() {
+		}
+
+		AlbumObj.prototype = {
+			// 设置当前页面上的视频列表、专辑个数
+			set: function(arr, atMove, count) {
+				return arr.slice(atMove, atMove + count);
+			},
+			init: function(opt) {
+				for (var item in opt) {
+					if (typeof opt[item] == 'function') {
+						this[item] = opt[item]();
+					} else{
+						this[item] = opt[item];
+					}
+				}
+				this.videoList(moveNum);
+				this.buttons();
+				LMEPG.ButtonManager.init(focusIDName, buttons, '', true);
+			},
+			// 视频列表
+			videoList: function(atMove) {
+
+				var insertDom = '';
+				var videoList = this.set(this.mockVideoIndex, atMove, this.V);
+				for (var i = 0; i < videoList.length; i++) {
+					var src = fileIndex + 'bg_video_item_' + (videoList[i] + 1) + '.png';
+					var focusBg = fileIndex + 'f_video_item_' + (videoList[i] + 1) + '.png';
+					insertDom += '<img id="focus-' + (i + 1) + '" useType="video" data-v="' + videoList[i] + '"   src="' + src + '" onfocusurl="' +
+						focusBg + '" confirmurl="' + src + '"/>';
+				}
+				this.arrowToggle();
+				G('tab-content').innerHTML = insertDom;
+			},
+			// 框架焦点虚拟按钮
+			buttons: function() {
+				var videoList = this.set(this.mockVideoIndex, 0, this.V);
+
+				// 视频列表按钮
+				for (var j = 0; j < videoList.length; j++) {
+					var up = TP.platformType == 'hd' ? 'videoTv' : 'back', down = '', left = '', right = '';
+					if ($.direction == 'right') {
+						left = 'focus-' + j;
+						right = 'focus-' + (j + 2);
+					} else{
+						up = 'focus-' + j;
+						down = 'focus-' + (j + 2);
+					}
+					buttons.push({
+						id: 'focus-' + (j + 1),
+						name: '视频' + (j + 1),
+						type: 'img',
+						nextFocusUp: up,
+						nextFocusDown: down,
+						nextFocusLeft: left,
+						nextFocusRight: right,
+						click: this.keyEnter,
+						focusChange: this.onFocus,
+						beforeMoveChange: this.beforeFocusMove
+					});
+				}
+				buttons.push({
+					id: 'back',
+					name: '返回',
+					type: 'img',
+					nextFocusLeft: 'more',
+					nextFocusRight: 'more',
+					nextFocusDown: 'focus-1',
+					backgroundImage: fileIndex + 'bg_back.png',
+					focusImage: fileIndex + 'f_back.png',
+					click: this.onBack
+				}, {
+					id: 'more',
+					name: '更多精彩',
+					type: 'img',
+					nextFocusLeft: 'back',
+					nextFocusRight: 'back',
+					nextFocusDown: 'focus-1',
+					nextFocusUp: '',
+					backgroundImage: fileIndex + 'bg_more_video.png',
+					focusImage: fileIndex + 'f_more_video.png',
+					click: this.jumpVideoMore
+				}, {
+					id: 'videoTv',
+					name: '视频小窗',
+					type: 'img',
+					nextFocusLeft: '',
+					nextFocusRight: 'focus-1',
+					nextFocusDown: 'focus-1',
+					nextFocusUp: 'back',
+					backgroundImage: fileIndex + 'bg_small_video.png',
+					focusImage: fileIndex + 'f_small_video.png',
+					click: this.keyEnter
+				});
+			},
+			// 指示箭头切换
+			arrowToggle: function() {
+				var videoList = (this.mockVideoIndex.length) - moveNum;
+				Hide('v-prev');
+				Hide('v-next');
+				moveNum > 0 && Show('v-prev');
+				videoList > this.V && Show('v-next');
+			},
+			// 焦点移动前回调
+			beforeFocusMove: function(direction, current) {
+				var nextDirection = $.direction;
+				var prevDirection = nextDirection == 'right' ? 'left' : 'up';
+				switch (direction) {
+					case prevDirection:
+						current.id == 'focus-1' && $.prev(current.id);
+						break;
+					case nextDirection:
+						current.id == 'focus-' + $.V && $.next(current.id);
+						break;
+				}
+			},
+			// 上一页
+			prev: function(id) {
+				if (moveNum > 0) {
+					moveNum--;
+					this.videoList(moveNum);
+					LMEPG.ButtonManager.requestFocus('focus-1');
+				} else{
+					// LMEPG.ButtonManager.requestFocus('back');
+				}
+			},
+			// 下一页
+			next: function(id) {
+				var videoList = (this.mockVideoIndex.length) - moveNum;
+				if (videoList > this.V) {
+					moveNum++;
+					this.videoList(moveNum);
+					LMEPG.ButtonManager.requestFocus('focus-' + $.V);
+				} else{
+					// platformType == 'hd' && LMEPG.ButtonManager.requestFocus('videoTv');
+				}
+			},
+			flickerTimer: null,
+			// 获得焦点、失去焦点添加样式
+			onFocus: function(btn, hasFocus) {
+				var btnEl = G(btn.id);
+				var Nc = true;
+				var flickerImg = function() {
+					Nc = !Nc;
+					if (Nc) {
+						btnEl.src = btnEl.getAttribute('confirmurl');
+					} else{
+						btnEl.src = btnEl.getAttribute('onfocusurl');
+					}
+				};
+				if (hasFocus) {
+					G('debug').innerHTML = '.'; // 防止焦点丢失
+					G(btn.id).src = G(btn.id).getAttribute('onfocusurl');//获取焦点
+					$.flickerTimer = setInterval(flickerImg, 400);
+				} else{
+					G('debug').innerHTML = '';
+					G(btn.id).src = G(btn.id).getAttribute('confirmurl');//获取焦点
+					clearInterval($.flickerTimer);
+				}
+			},
+			// 键入事件
+			keyEnter: function(btn) {
+				var useType = G(btn.id).getAttribute('useType');
+				var videoDataIndex = G(btn.id).getAttribute('data-v');
+
+				switch (true) {
+					case videoDataIndex == 9:
+						$.jumpVideoMore();
+						break;
+					case useType == 'video':
+						try {
+							var videoInfo = videoData[videoDataIndex];
+							$.onClickVideoItem(btn.id, videoInfo);
+						} catch (e) {
+							LMEPG.UI.showToast('系统报错！' + e.toString());
+						}
+						break;
+					case btn.id == 'back':
+						$.onBack();
+						break;
+				}
+			},
+			onClickVideoItem: function(id, videoInfo) {
+				var that = this;
+				var ftp_url_json, play_id;
+				if (videoInfo.ftp_url instanceof Object) {
+					ftp_url_json = videoInfo.ftp_url;
+				} else{
+					ftp_url_json = JSON.parse(videoInfo.ftp_url);
+				}
+
+				// 视频ID
+				if (platformType == 'hd') {
+					play_id = ftp_url_json.gq_ftp_url;
+				} else{
+					play_id = ftp_url_json.bq_ftp_url;
+				}
+				var paramJson = {
+					'sourceId': videoInfo.source_id,
+					'videoUrl': play_id,
+					'title': videoInfo.title,
+					'type': 2,
+					'entryType': 4,
+					'entryTypeName': albumName,
+					'userType': videoInfo.user_type,
+					'freeSeconds': videoInfo.free_seconds,
+					'focusIdx': id,
+					'durationTime': videoInfo.duration
+				};
+				if (LMEPG.Func.isAllowAccess('{$isVip}', ACCESS_PLAY_VIDEO_TYPE, paramJson)) {
+					that.jumpVideoPlay(paramJson);
+				} else{
+					var postData = {'videoInfo': JSON.stringify(paramJson)};
+					LMEPG.ajax.postAPI('Player/storeVideoInfo', postData, function(data) {
+						if (data.result == 0) {
+							that.jumpBuyVip(paramJson.focusIdx, paramJson.title);
+						} else{
+							LMEPG.UI.showToast('系统报错', 3);
+						}
+					});
+				}
+			},
+			jumpBuyVip: function(focusIdx, remark) {
+				var objCurrent = $.getCurrentPage();
+				objCurrent.setParam('fromId', 1);
+				objCurrent.setParam('focus_index', focusIdx);
+				objCurrent.setParam('page', 0);
+				objCurrent.setParam('moveNum', moveNum);
+
+				var objOrderHome = LMEPG.Intent.createIntent('orderHome');
+				objOrderHome.setParam('userId', userId);
+				objOrderHome.setParam('isPlaying', '1');
+				objOrderHome.setParam('remark', remark);
+
+				LMEPG.Intent.jump(objOrderHome, objCurrent);
+			},
+			jumpVideoPlay: function(paramJson) {
+				var objCurrent = $.getCurrentPage();
+				objCurrent.setParam('fromId', 2);
+				objCurrent.setParam('focus_index', paramJson.focusIdx);
+				objCurrent.setParam('moveNum', moveNum);
+
+				var objPlayer = LMEPG.Intent.createIntent('player');
+				objPlayer.setParam('userId', userId);
+				objPlayer.setParam('videoInfo', JSON.stringify(paramJson));
+
+				LMEPG.Intent.jump(objPlayer, objCurrent);
+			},
+			jumpHomeTab: function(tabName, focusIndex) {
+				var objCurrent = $.getCurrentPage();
+
+				var objHomeTab = LMEPG.Intent.createIntent(tabName);
+				objHomeTab.setParam('userId', userId);
+				objHomeTab.setParam('classifyId', '');
+				objHomeTab.setParam('focusIndex', focusIndex);
+
+				LMEPG.Intent.jump(objHomeTab, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+			},
+			getCurrentPage: function() {
+				var objCurrent = LMEPG.Intent.createIntent('album');
+				objCurrent.setParam('userId', userId);
+				objCurrent.setParam('albumName', albumName);
+				objCurrent.setParam('focus_index', focusIDName);
+				objCurrent.setParam('fromId', 1);
+				objCurrent.setParam('inner', inner);
+				return objCurrent;
+			},
+
+			jumpVideoMore: function() {
+				var morePageName = TP.lmcid == '520092' ? 'healthVideoList' : 'channel';
+				var objMoreVideo = LMEPG.Intent.createIntent(morePageName);
+				objMoreVideo.setParam('modeType', 4);
+				objMoreVideo.setParam('modeTitle', '更多精彩');
+				objMoreVideo.setParam('currentTabIndex', 3);
+				objMoreVideo.setParam('homeTabIndex', 5);
+				objMoreVideo.setParam('pageCurrent', 1); // 内容页数
+				objMoreVideo.setParam('navCurrent', 0);  // 导航焦点
+				objMoreVideo.setParam('classifyId', 1);
+				objMoreVideo.setParam('modelType', 4);
+
+				var objBack = LMEPG.Intent.createIntent('home');
+				objBack.setParam('userId', '{$userId}');
+				LMEPG.Intent.jump(objMoreVideo, objBack);
+			},
+			onBack: function() {
+				LMEPG.Intent.back();
+			}
+		};
+		w.$ = new AlbumObj();
+		w.onBack = $.onBack;
+	}(window));
+</script>
+</body>
+</html>

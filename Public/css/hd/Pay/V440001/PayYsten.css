@@ -1,0 +1,27 @@
+#default_focus {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#select_item_first {
+    position: absolute;
+    left: 415px;
+    top: 439px;
+}
+
+#select_item_year {
+    position: absolute;
+    left: 663px;
+    top: 439px;
+}
+
+
+
+
+
+
+
+

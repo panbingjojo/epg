@@ -1,0 +1,68 @@
+body {
+    color: #fff;
+    background-image: url("../../../../../Public/img/hd/DonateBlood/V1/bg_content.png");
+    background-repeat: no-repeat;
+}
+p.title {
+    position: absolute;
+    top: 20px;
+    left: 80px;
+    font-size: 38px;
+    color: #FFFFFF;
+}
+#title_line{
+    position: absolute;
+    top: 88px;
+    left: 80px;
+    width: 152px;
+}
+#video_1{
+    position: absolute;
+    top: 224px;
+    left: 278px;
+}
+#video_2{
+    position: absolute;
+    top: 224px;
+    left: 673px;
+}
+
+#video_f_1{
+    position: absolute;
+    top: 188px;
+    left: 242px;
+    display: none;
+}
+#video_f_2{
+    position: absolute;
+    top: 188px;
+    left: 637px;
+    display: none;
+}
+
+
+#btn_zxwy{
+    position: absolute;
+    top: 528px;
+    left: 80px;
+}
+#btn_xxxz{
+    position: absolute;
+    top: 528px;
+    left: 308px;
+}
+#btn_xxlc{
+    position: absolute;
+    top: 528px;
+    left: 536px;
+}
+#btn_bxzy{
+    position: absolute;
+    top: 528px;
+    left: 764px;
+}
+#btn_yyxx{
+    position: absolute;
+    top: 528px;
+    left: 992px;
+}

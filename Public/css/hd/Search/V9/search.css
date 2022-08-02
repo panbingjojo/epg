@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+html {
+    color: #fff;
+    background-color: transparent;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background-image: url(../../../../img/hd/Menu/Common/bg.png);
+    /*background-color: #cccccc;*/
+}
+
+body > * {
+    position: absolute;
+}
+
+#input-key-wrapper {
+    position: absolute;
+    width: 474px;
+    height: 668px;
+    top: 37px;
+    left: 30px;
+    background-image: url(../../../../img/hd/Search/V9/key_model.png);
+    text-align: center;
+}
+
+div.key-container div {
+    width: 166px;
+    height: 166px;
+    /*居中*/
+    position: absolute;
+    vertical-align: middle;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+div.key-container div img{
+}
+
+/*行*/
+.row-key-1 {
+    top: -20px;
+}
+
+.row-key-2 {
+    top: 100px;
+}
+
+.row-key-3 {
+    top: 223px;
+}
+
+.row-key-4 {
+    top: 338px;
+}
+
+/*列*/
+.col-key-1 {
+    left: 15px;
+}
+
+.col-key-2 {
+    left: 155px;
+}
+
+.col-key-3 {
+    left: 310px;
+}
+
+.key-container {
+    position: absolute;
+    top: 165px;
+    text-align: left;
+    height: 82%;
+}
+
+#search-value {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 28px;
+    width: 474px;
+    border: none;
+    color: #fff;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.show-letter{
+    top: -40px;
+    position: relative;
+}
+
+#content-container {
+    top: 165px;
+    left: 525px;
+}
+
+#prev-arrow {
+    top: 109px;
+    left: 867px;
+    visibility: hidden;
+}
+
+#next-arrow {
+    top: 637px;
+    left: 867px;
+    visibility: hidden;
+}
+
+#page-index {
+    top: 74px;
+    left: 1209px;
+    font-size: 24px;
+    visibility: hidden;
+}
+
+#title {
+    top: 65px;
+    left: 537px;
+    width: 160px;
+    height: 35px;
+    font-size: 30px;
+}
+
+.item {
+    display: inline-block;
+
+}
+
+.item img {
+    width: 225px;
+    height: 162px;
+    padding: 15px;
+    margin-right: -15px;
+    border-radius: 25px;
+}
+
+.item img.focus {
+    background-image: url(../../../../img/hd/Search/V9/imgbox.png);
+    background-position: center;
+}
+
+.item p,
+.item marquee {
+    display: block;
+    width: 225px;
+    font-size: 21px;
+}
+
+.item p {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 15px;
+}
+
+.item marquee {
+    margin-left: 15px;
+}
+
+
+.null-data {
+    width: 755px;
+    height: 456px;
+    text-align: center;
+    line-height: 455px;
+    font-style: italic;
+}

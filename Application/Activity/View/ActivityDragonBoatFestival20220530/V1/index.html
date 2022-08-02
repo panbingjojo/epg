@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>快乐搬砖人</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <if condition="($carrierId eq '520092') OR ($carrierId eq '520094') OR ($carrierId eq '520095')">
+        <!--该活动贵州三个地区css文件-->
+        <link rel="stylesheet" type="text/css"
+              href="__ROOT__/Public/css/{$platformType}/Activity/ActivityDragonBoatFestival20220530/V2/index.css?t={$time}">
+    <else/>
+        <link rel="stylesheet" type="text/css"
+              href="__ROOT__/Public/css/{$platformType}/Activity/ActivityDragonBoatFestival20220530/V1/index.css?t={$time}">
+    </if>
+
+    <style type="text/css">
+        body {
+            background-image: url("{$activityFsImg}{$platformType}/bg_home.png");
+        }
+        #winner_list{
+            background-image: url("{$activityFsImg}{$platformType}/bg_winner_list.png");
+        }
+        #winner_list_gx {
+            background-image: url("{$activityFsImg}{$platformType}/bg_winner_list_gx.png");
+        }
+        #game_container {
+            background-image: url("{$activityFsImg}{$platformType}/bg_game_container.png");
+        }
+        #game_success{
+            background-image: url("{$activityFsImg}{$platformType}/bg_game_success.png");
+        }
+        #game_fail{
+            background-image: url("{$activityFsImg}{$platformType}/bg_game_fail.png");
+        }
+
+        #game_over{
+            background-image: url("{$activityFsImg}{$platformType}/bg_no_times.png");
+        }
+        #order_vip{
+            background-image: url("{$activityFsImg}{$platformType}/bg_order_vip.png");
+        }
+        #exchange_success{
+            background-image: url("{$activityFsImg}{$platformType}/bg_exchange_success.png");
+        }
+        #exchange_success_gx{
+            background-image: url("{$activityFsImg}{$platformType}/bg_exchange_success_gx.png");
+        }
+        #left_times{
+            background-image: url("{$activityFsImg}{$platformType}/lifeTimes.png");
+        }
+
+        #user_privacy_page {
+            background-image: url("{$activityFsImg}{$platformType}/bg_user_privacy_policy.png");
+        }
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            valueCountdown: {$valueCountdown},
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}{$platformType}/',
+            score: '{$score}',
+            fromLaunch: '{$fromLaunch}',
+            exchangeRecordList: {$exchangeRecordList},
+            exchangePrizeList: {$exchangePrizeList},
+            endDt: '{$endDt}',
+        };
+        window.onload = function () {
+            G('default_link').focus();
+            Activity.init();
+            lmInitGo();
+        };
+    </script>
+
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityDragonBoatFestival20220530/V1/index.js?t={$time}"></script>
+
+</head>
+<body id="body">
+<div id="debug"></div>
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+
+<!--积分-->
+<div id="score">{$score}</div>
+
+<div id="btn_container">
+    <div class="btn-list">
+        <img src="{$activityFsImg}{$platformType}/btn_back.png" id="btn_back">
+        <img src="{$activityFsImg}{$platformType}/btn_activity_rule.png" id="btn_activity_rule">
+        <img src="{$activityFsImg}{$platformType}/btn_winner_list.png" id="btn_winner_list">
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_prize.png" id="btn_exchange_prize">
+    </div>
+</div>
+
+<img src="{$activityFsImg}{$platformType}/btn_start.png" id="btn_start">
+<!--游戏剩余次数-->
+<div id="left_times">{$activityTimes}</div>
+<!--活动规则-->
+<div id="activity_rule" class="modal">
+    <!--活动规则图素js写入-->
+    <img src="" id="bg_activity_rule">
+    <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_rule">
+</div>
+
+<!--中奖名单-->
+<div id="winner_list" class="modal">
+    <div id="total_list"></div>
+    <div id="my_list"></div>
+    <div id="reset_tel">请输入手机号</div>
+    <img id="btn_list_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_list_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<!--广西电信中奖名单-->
+<div id="winner_list_gx" class="modal">
+    <div id="total_list_gx"></div>
+    <div id="my_list_gx"></div>
+    <div id="reset_tel_gx">请输入手机号</div>
+    <img id="btn_list_submit_gx" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_list_cancel_gx" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+    <img id="check" src="{$activityFsImg}{$platformType}/btn_uncheck.png">
+    <div id="authorization">
+        <img id="user_privacy_policy" src="{$activityFsImg}{$platformType}/btn_user_privacy_policy.png">
+    </div>
+</div>
+
+<if condition="($carrierId eq '520092') OR ($carrierId eq '520094') OR ($carrierId eq '520095')">
+    <!--该活动贵州三个地区css文件-->
+    <div id="exchange_prize" class="modal">
+        <div id="game_score"></div>
+        <div id="exchange_point_1" class="exchange_text"></div>
+        <div id="exchange_point_2" class="exchange_text"></div>
+        <div id="exchange_point_3" class="exchange_text"></div>
+        <div id="exchange_point_4" class="exchange_text"></div>
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_1">
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_2">
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_3">
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_4">
+        <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_exchange">
+    </div>
+<else/>
+    <div id="exchange_prize" class="modal">
+        <div id="game_score"></div>
+        <div id="exchange_point_1" class="exchange_text"></div>
+        <div id="exchange_point_2" class="exchange_text"></div>
+        <div id="exchange_point_3" class="exchange_text"></div>
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_1">
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_2">
+        <img src="{$activityFsImg}{$platformType}/btn_exchange_enable.png" id="exchange_prize_3">
+        <img src="{$activityFsImg}{$platformType}/btn_close.png" id="btn_close_exchange">
+    </div>
+</if>
+
+<!--兑换成功页面-->
+<div id="exchange_success" class="modal">
+    <img src="" id="prize_image">
+    <div id="exchange_tel">请输入手机号</div>
+    <img id="btn_exchange_submit" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_exchange_cancel" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+</div>
+
+<div id="exchange_success_gx" class="modal">
+    <div id="exchange_tel_gx">请输入有效手机号</div>
+    <img id="btn_exchange_submit_gx" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+    <img id="btn_exchange_cancel_gx" src="{$activityFsImg}{$platformType}/btn_common_cancel.png">
+    <img id="exchangeCheck" src="{$activityFsImg}{$platformType}/btn_uncheck.png">
+    <div id="authorization_gx">
+        <img id="user_privacy_policy_gx" src="{$activityFsImg}{$platformType}/btn_user_privacy_policy.png">
+    </div>
+</div>
+
+<!--兑换失败页面-->
+<div id="exchange_fail" class="modal">
+    <img id="bg_exchange_fail" src="{$activityFsImg}{$platformType}/bg_no_prize.png">
+</div>
+
+<!--游戏页-->
+<div id="game_container" class="modal">
+    <img src="{$activityFsImg}{$platformType}/Zongzi.png" id="zongZi" style="position: absolute">
+    <img src="{$activityFsImg}{$platformType}/cover.png" id="cover-1" class="cover-1" data-position="1">
+    <img src="{$activityFsImg}{$platformType}/cover.png" id="cover-2" class="cover-2" data-position="2">
+    <img src="{$activityFsImg}{$platformType}/cover.png" id="cover-3" class="cover-3" data-position="3">
+    <img src="{$activityFsImg}{$platformType}/cover.png" id="cover-4" class="cover-4" data-position="4">
+    <img src="{$activityFsImg}{$platformType}/cover.png" id="cover-7" class="cover-7" data-position="7">
+    <img src="{$activityFsImg}{$platformType}/cover.png" id="cover-5" class="cover-5" data-position="5">
+    <img src="{$activityFsImg}{$platformType}/cover.png" id="cover-6" class="cover-6" data-position="6">
+
+    <img src="{$activityFsImg}{$platformType}/pig.png" id="pig" style="z-index: 999;">
+    <div id="game_countdown"></div>
+</div>
+
+<!--游戏成功页面-->
+<div id="game_success" class="modal">
+    <div id="shot_count"></div>
+    <img id="btn_game_sure" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+</div>
+
+<!--游戏失败页面-->
+<div id="game_fail" class="modal">
+    <img id="btn_game_fail_sure" src="{$activityFsImg}{$platformType}/btn_common_sure.png">
+</div>
+
+
+<!--游戏结束-->
+<div id="game_over" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_game_over_sure">
+</div>
+
+<!--游戏次数耗尽，订购VIP-->
+<div id="order_vip" class="modal">
+    <img src="{$activityFsImg}{$platformType}/btn_common_sure.png" id="btn_order_submit">
+    <img src="{$activityFsImg}{$platformType}/btn_common_cancel.png" id="btn_order_cancel">
+</div>
+
+<!--订购状态-->
+<div id="order_status" class="modal"></div>
+
+<!--活动结束-->
+<div id="bg_game_over" class="modal">
+    <img src="{$activityFsImg}{$platformType}/bg_activity_end.png">
+</div>
+
+
+<div id="user_privacy_page" class="modal">
+    <img id="btn_close_authorization" src="{$activityFsImg}{$platformType}/btn_close.png">
+    <div id="text">
+        <div id="scroll">
+            <img id="scroll_bar" src="{$activityFsImg}{$platformType}/scroll_bar.png">
+            <img id="scroll_bar_f" src="{$activityFsImg}{$platformType}/scroll_bar_f.png">
+            <img id="up" src="{$activityFsImg}{$platformType}/up.png">
+            <img id="down" src="{$activityFsImg}{$platformType}/down.png">
+        </div>
+        <div id="textList" style="margin-top: 0">
+            <p>
+            <p>发布日期：2022年3月1日</p>
+            <p>生效日期：2022年3月1日</p>
+            <p>本政策将帮助您了解以下内容：</p>
+            <p>一、引言</p>
+            <p>二、我们如何收集和使用您的个人信息</p>
+            <p>三、您如何管理您的个人信息</p>
+            <p>四、我们如何使用 Cookie</p>
+            <p>五、我们如何共享、转让、公开披露您的个人信息</p>
+            <p>六、我们如何存储和保护您的个人信息</p>
+            <p>七、未成年人隐私权特别约定</p>
+            <p>八、第三方责任说明</p>
+            <p>九、本政策适用与修订</p>
+            <p>十、如何联系我们</p>
+
+            <p>一、引言</p>
+            <p style="text-indent: 2em">中国电信股份有限公司广西分公司（简称“中国电信广西公司”或“我们”）的注册地址为：广西壮族自治区南宁市建信路1号。我们致力于维持您对我们的信任，保护您的个人信息，恪守权责一致原则、目的明确原则、选择同意原则、最少够用原则、确保安全原则、主体参与原则、公开透明原则等要求。同时，我们将遵守并落实《网络安全法》《个人信息保护法》的各项规定，依照业界成熟的安全标准，采取相应的安全保护措施来保护您的个人信息。
+                中国电信股份有限公司广西分公司提供的产品及服务，均适用于本隐私政策，包括但不限于中国电信广西公司网上营业厅、中国电信广西公司微信公众号等由中国电信股份有限公司广西分公司提供的各项产品及服务。
+
+                请您在使用我们的产品或服务前，仔细阅读本《隐私政策》，尤其是划线或加粗内容，了解我们对您个人信息的处置原则和保护措施。阅读过程中，如您有任何疑问或任何投诉意见，请与我们的客服4008771189联系咨询。您使用或在我们更新本隐私政策后继续使用我们的产品或服务，即意味着您同意本隐私政策(含更新版本)内容，并且同意我们按照本隐私政策收集、使用、保存和共享您的相关信息。</p>
+
+            <p>二、我们如何收集和使用您的个人信息</p>
+            <p style="text-indent: 2em">个人信息是指以电子或者其他方式记录的与已识别或者可识别的自然人有关的各种信息，不包括匿名化处理后的信息 。
+                敏感个人信息是指一旦泄露或者非法使用，容易导致自然人的人格尊严受到侵害或者人身、财产安全受到危害的个人信息，包括生物识别、宗教信仰、特定身份、医疗健康、金融账户、行踪轨迹等信息，以及不满十四周岁未成年人的个人信息。当我们在处理您的敏感个人信息时，我们会通过弹窗的方式单独征求您的授权。
+                （一）我们会出于本政策所述的以下目的，收集和使用您的信息：
+                1. 登录功能和相关服务
+                使用中国电信广西公司手机号码、宽带账号、固话及微信登录的用户（简称“电信用户”）在使用我们提供的产品及服务时，需要您提供登录手机号码、宽带账号或固话号码。对于该登录手机号码、宽带账号的入网人姓名、入网人证件信息您在办理电信手机号码、宽带产品时已按照实名制要求提供；如果需要变更入网人信息请前往中国电信广西公司实体营业厅办理。
+                2.为您提供网络交易服务
+                在为您提供的网络交易服务时，购买需要物流发货的商品（非号卡套餐、宽带组网类产品）或者参加营销活动获得需要物流发货的中奖奖品时，可能需要您提供收货人姓名、收货人联系电话、收货人地址等信息；
+                3. 为您办理电信业务入网手续
+                您订购的电信业务产品需要办理入网手续的，根据《电话用户真实身份信息登记规定》（工业和信息化部令第25号）等规定，您在办理入网手续时应当向我们出示有效证件、提供真实身份信息；同时，为了验证该类信息的准确性和完整性，我们会将您提供的信息与合法存有您信息的机构（政府机关、事业单位、商业机构）进行验证核对；通过核验后，我们将通过识别仪、高拍仪、纸质/电子表单等方式对您的个人身份信息进行登记，通过拍照或在线视频方式留存您的个人信息，办理入网手续。收集的个人信息包括：个人用户姓名、有效通信联系方式、有效证件类型及号码、有效证件所载登记信息、装机地址、交费账号、电子邮箱、拍照或在线视频方式获得的影像资料、服务账号及密码、密码保护答案、办理的业务。如您拒绝提供上述信息，将无法办理入网手续，无法使用我们的产品或服务。
+                4. 为您提供个性化或定制化产品和服务，向您展现或推荐相关程度更高信息流或者推广信息结果，但我们不会向您推送基于您个人信息的商业广告。如您不希望收到这些信息，可以联系客服4008771189。
+                5. 为共同向您提供产品服务或改进产品服务的质量或出于对产品服务安全性的考量等合理需要，我们可能按照相关法律法规及监管政策的要求或经过您的授权从关联公司、合作伙伴及其他受信任的第三方接收您的个人信息及其他信息。例如当您通过我们关联公司、业务合作伙伴网站订购我们的产品，您向其提供的预订信息可能会转交给我们，以便我们处理您的订单。
+                （二）为改善服务质量，在遵守国家法律法规及监管政策的前提下，我们可能将收集到的信息用于以下用途：
+                1.在我们提供服务时，用于身份验证、客服服务、安全防范、诈骗监测、存档和备份用途，确保我们向您提供的产品和服务的安全性；
+                2.通过信息数据分析，帮助我们设计为您提供更好感知的新服务，改善我们现有服务；
+                3.使我们更加了解您如何使用我们的服务，从而针对性地满足您的个性化需求，例如语言设定、位置设定、个性化的帮助服务和指示，或对您和其他使用我们服务的用户做出其他方面的回应；
+                4.评估我们服务中功能、产品、广告和其他促销及推广活动的效果，并加以改善；
+                5.软件认证和管理软件升级；
+                6.邀请您参与有关我们产品和服务的调查。
+                （三） 根据相关法律法规规定，对于满足与国家安全、国防安全直接相关的；与公共安全、公共卫生、重大公共利益直接相关的；犯罪侦查、起诉、审判和判决执行等直接相关的；或法律法规规定的其他情形等情况的描述，我们会破格在您未同意授权的情况下来收集、使用您的个人信息。
+                （四）您了解并同意，我们可以通过技术手段对您的个人信息进行匿名化处理，匿名化处理的信息将无法识别您的身份。在此情况下，并在符合相关法律法规及监管政策的前提下，我们可以使用已经匿名化的信息，对其进行分析和使用。
+                （五）如果我们需要将信息用于本政策未载明的其它用途时，会事先征求您的同意。
+                （六） 第三方SDK与代码的使用
+                在您使用我们提供的功能或者服务时，在某些特定使用场景下，我们可能会使用具有相应业务资质及能力的第三方服务商提供的软件服务工具包（简称SDK）和代码来为您提供服务。以下是具体调用的第三方SDK/代码的名称，收集信息的目的、方式和范围。
+                名称 调用目的   涉及的信息权限    开发者/公司 第三方隐私政策/开发者协议链接
+                公众号及小程序开放平台    实现同微信公众号、小程序和开发平台提供的接口交互，完成了广西电信公众号、广西电信小程序和广西电信矩阵平台   查询、发送信息    腾讯 https://api.weixin.qq.com
+                客户经理   获取用户指定客户经理和客户经理二维码 查询 中国电信广西公司信产公司（云计算中心）    https://nb.gx.189.cn/pushEvaluation
+                活体验证   无纸化业务办理获取活体验证结果    查询 新东网科技有限公司  http://134.192.231.102/GXHK/api/rest
+                欢go    同欢go平台的单点登录    查询 中国电信集团公司   http://132.63.6.180:9002/tymhinter/services/ClientUAMService
+                alipay-sdk-java20161010120103  支付宝支付  发送支付数据 支付宝
+                alipay-sdk-1.5.jar 支付宝支付  发送支付数据 支付宝
+                企业微信JS-SDK 借助企业微信高效地使用拍照、选图、语音、位置等手机系统的能力，同时可以直接使用企业微信分享、扫一扫等企业微信特有的能力    查询、存储  腾讯 https://work.weixin.qq.com/nl/eula
+                需要特别说明的是，您通过我们接入使用的第三方产品或服务，查看第三方创建的网页或使用第三方开发的应用程序时，向您提示这些第三方可能会收集您的信息，第三方服务收集的用户信息及权限获取由第三方自行取得用户的同意与授权，我们对第三方服务提供方对您的个人信息采取保护措施会尽到法律规定的义务，但我们无法保证这些主体一定会按照我们的要求标准采取保护措施，我们不对第三方如何使用他们向您收集的个人信息负责，也不能控制其使用。
+                服务提供方应有自己的独立隐私权保护政策，您使用的第三方服务受其隐私政策约束，因此，我们强烈建议您花时间阅读该第三方的隐私政策。如果您发现这些第三方服务存在风险时，建议您终止操作以保护您的合法权益。</p>
+
+
+            <p>三、我们如何使用 Cookie 和同类技术</p>
+            <p style="text-indent: 2em">为确保本网站正常运转，我们会在您的移动设备上存储名为 Cookie的小数据文件。Cookie通常包含标识符、站点名称以及一些号码和字符。借助于Cookie能够存储您的偏好或购物篮内的商品等数据。
+                我们不会将Cookie用于本政策所述目的之外的任何用途。您可根据自己的偏好管理或删除Cookie。有关详情，请参见AboutCookies.org。您可以清除本设备上保存的所有Cookie，大部分网络浏览器都设有阻止Cookie的功能。但如果您这么做，则需要在每一次使用本网站时更改用户设置。</p>
+            <p>四、我们如何共享、转移和公开披露个人信息</p>
+            <p style="text-indent: 2em">（一）共享
+                未经您事先同意,我们不会与中国电信以外的任何公司、组织和个人分享您的个人信息，但以下情况除外：
+                1.在获取明确同意的情况下共享：获得您的事先明确同意后，我们会与其他方共享您的个人信息。
+                2.我们可能会根据法律法规及监管政策要求，或按行政、司法机关的强制性要求，与第三方或者行政、司法机关共享您的个人信息。
+                3.您授权银行、征信机构等第三方向我们查询、收集您在本网站的信息，或者我们会在法律法规及监管政策允许范围内及您对第三方的授权范围内向第三方共享您的信息，我们会依据与第三方的约定，在对个人信息来源的合法性进行确认后，在符合法律法规及监管政策的前提下共享您的这些个人信息。
+                4.与我们的关联公司共享：经过您的授权后，我们可能会将您的个人信息与我们的关联公司共享。我们只会共享必要的个人信息，且受本隐私政策所声明目的的约束。关联公司如要改变个人信息的处理目的，将再次征求您的授权同意。
+                我们的关联公司包括中国电信集团有限公司及其各分支机构、控股子公司及其分支机构。
+                5.与授权合作伙伴共享：仅为实现本政策中声明的目的，我们的某些服务将由授权合作伙伴提供，如：中国电信集团号百信息服务有限公司、中国电信股份有限公司云计算分公司、天翼电子商务有限公司等。经过您的授权后，我们可能会与合作伙伴共享您的某些个人信息，以提供更好的客户服务和用户体验。例如，在您通过本网站购买商品或订购业务时，我们必须与物流服务提供商共享您的个人信息才能安排送货，或者安排合作伙伴提供服务。我们仅会在您的授权范围内，出于合法、正当、必要、特定、明确的目的共享您的个人信息，并且只会共享提供服务所必要的个人信息。我们的合作伙伴无权将共享的个人信息用于任何其他用途。 如果您不同意我们将您的个人信息共享给第三方，可前往中国电信广西公司当地营业厅、拨打10000号客服热线、使用本网站等多种方式联系取消订购。
+                我们的授权合作伙伴包括以下三大类型：
+                （1）供应商、服务提供商和其他合作伙伴。我们将信息发送给支持我们业务的供应商、服务提供商和其他合作伙伴，这些支持包括提供技术基础设施服务、分析我们服务的使用方式、衡量广告和服务的有效性、提供客户服务、支付便利或进行学术研究和调查。
+                （2）第三方商家。我们需要将您的订单信息以及与交易有关的必要信息与第三方商家共享来实现您向其购买商品或服务的需求，并促使其可以完成后续的售后服务。
+                （3）广告、分析服务类的授权合作伙伴。除非得到您的许可，否则我们不会将您的个人身份信息（指可以识别您身份的信息）与提供广告、分析服务的合作伙伴共享。但我们可能会将使用您的信息而形成的用户画像与提供广告、分析服务的合作伙伴共享，在不识别您个人身份的前提下提升广告及服务信息的有效触达率。
+                我们与之共享个人信息的公司、组织和个人，我们会与其签署相应的保密协议，要求他们按照我们的说明、隐私政策以及其他任何相关的保密和安全措施来处理个人信息。
+                关于具体合作伙伴详情，敬请查阅《第三方信息共享清单》。
+                （二）转移
+                我们不会将您的个人信息转移给任何公司、组织和个人，但以下情况除外：
+                1.在获取明确同意的情况下转移：获得您的明确同意后，我们会向其他方转移您的个人信息；
+                2.在涉及合并、收购或破产清算时，如涉及到个人信息转移，我们会要求新的持有您个人信息的公司、组织继续受此隐私政策的约束，否则我们将要求该公司、组织重新向您征求授权同意；
+                3. 相关法律法规规定的或我们与您约定的其他情形。
+                （三）公开披露
+                我们仅会在以下情况下，公开披露您的个人信息：
+                1.获得您明确同意后；
+                2.基于法律的披露：在法律、法律程序、诉讼或政府主管部门强制性要求的情况下，我们可能会公开披露您的个人信息。</p>
+            <p>五、我们如何保护您的个人信息</p>
+            <p style="text-indent: 2em">（一） 我们承诺将严格按照国家有关规定做好用户信息安全防护工作。为保障您的信息安全，我们会使用必要安全技术及配套的管理体系来防止您的信息被泄露、毁损或者丢失。我们已建立相关内控制度，对可能接触到您信息的工作人员采取最小够用授权原则；不断对工作人员培训相关法律法规、隐私政策和安全意识，对工作人员处理您的信息的行为进行系统监控。我们并将接受相关国家机构的信息安全检查。
+                （二） 您应当妥善保存登录的账号、密码等信息，由于您的原因造成账号、密码等信息的泄露产生的后果由您承担。 为防止信息泄露，我们将采取防泄漏、反爬虫等技术手段，限制频繁查询您的信息等异常操作行为，以防止账号密码泄露、他人冒用身份造成您产生不良行为记录或者您的信息泄露。
+                （三） 由于技术水平限制及可能存在的各种恶意手段，安全问题有可能因我们可控范围外的因素而出现。在发生个人信息安全事件后，我们将按照相关法律法规及监管政策的要求，及时向您告知，难以逐一告知个人信息主体时，我们会采取合理方式发布公告。同时，我们还将按照监管部门要求，主动上报个人信息安全事件的处置情况。
+                （四）我们已使用符合业界标准的安全防护措施保护您提供的个人信息，避免数据遭到未经授权访问、公开披露、使用、修改、损坏或丢失。我们会采取一切合理可行的措施，确保您个人信息的安全性、完整性、真实性、有效性，例如：
+                1.使用加密技术对个人信息数据进行存储，使用受信赖的保护机制防止数据遭到攻击；在涉及个人信息需要展示的网页界面，我们采用必要的掩码脱敏手段以确保不受非法窃取；
+                2.在您初次使用本网站时，我们会遵循最小化原则，结合具体业务场景及其所涉设备权限，按需阐明用途，征求您的充分授权，保障您的知情权和隐私权不受侵犯。
+                （五） 对于所收集的信息，我们仅在本政策所述目的所必须且最短的时限内保存您的个人信息，超出保存期限后，我们将对所收集的信息进行匿名化处理。</p>
+            <p>六、 您的个人信息如何在全球范围转移</p>
+            <p style="text-indent: 2em">我们通过本网站在中华人民共和国境内（下称“中国大陆境内”，为本隐私政策之目的，不含香港、澳门、台湾地区，下同）收集的个人信息，将存储在中国大陆境内。如果需要将您的个人信息转移到境外，我们将：
+                1.另行获得您的授权同意，并履行法定程序，在符合届时适用法律的情形下使您的个人信息得到足够的保护；
+                2.该等转移将在符合届时适用法律要求的前提下进行，即便获得您的授权但是转移方式或者目的不符合相关法律法规规定的，我们也不会进行转移。</p>
+            <p>七、未成年人信息保护</p>
+            <p style="text-indent: 2em">如您是未成年人的，我们要求您请您的父母或监护人仔细阅读本隐私政策，并在征得您的父母或其他监护人同意的前提下使用我们的服务或向我们提供信息。
+                如您是不满14周岁未成年人的，我们定义为儿童，在您使用我们的服务前，您和您的监护人应仔细阅读我们专门制定的《儿童个人信息保护政策及监护人须知》，确保在取得监护人对《儿童个人信息保护政策及监护人须知》的同意后，您才可在监护人的指导下使用我们的服务。对于经监护人同意使用我们的产品或服务而收集儿童个人信息的情况，我们只会在法律法规允许、监护人明确同意或者保护儿童所必要的情况下使用、共享、转让或披露此信息。如您的监护人不同意您按照本政策使用我们的服务或向我们提供信息，请您立即终止使用我们的服务并及时通知我们，以便我们采取相应的措施。
+                若您是未成年人的父母或其他监护人，请您关注您监护的未成年人是否是在取得您的授权同意之后使用我们的服务。如您对您所监护的未成年人的个人信息有疑问，请通过本隐私政策中的联系方式与我们联系。</p>
+            <p>八、您的权利</p>
+            <p style="text-indent: 2em">（一）查询、修改、更正您的个人信息
+                您可前往中国电信广西公司当地营业厅，查询、修改、更正您的个人信息。
+                （二）删除您的个人信息
+                对于电信用户的手机号码、宽带产品入网人信息，您可前往中国电信广西公司实体营业厅进行销户和删除。
+                （三）对于您关于用户个人信息的合理请求，我们原则上不收取费用，但对多次重复、超出合理限度的请求，我们将视情况收取一定成本费用。对于无端重复、需要过多技术手段、给他人合法权益带来风险或者非常不切实际的请求，我们可能会予以拒绝。在以下情形中，按照法律法规及监管政策要求，我们将无法响应您的请求：
+                1.与国家安全、国防安全直接相关的；
+                2.与公共安全、公共卫生、重大公共利益直接相关的；
+                3.与犯罪侦查、起诉、审判和判决执行等直接相关的；
+                4.有充分证据表明您存在主观恶意或滥用权利的；
+                5.响应您的请求将导致您或其他个人、组织的合法权益受到严重损害的；
+                6.涉及商业秘密的</p>
+            <p>九、本政策如何更新</p>
+            <p style="text-indent: 2em">基于为给您提供更好的服务的目的，并根据电信业务的发展或法律法规及监管政策变化的要求，我们可能会适时对本政策进行修订和更新。对于修订或更新后的隐私政策，我们将在本网站发布公告的方式来通知您。若您在本政策修订后继续使用本网站的服务，即表示您已充分阅读、理解并接受修订后的隐私政策约束。
+            </p>
+            <p>十、如何联系我们</p>
+            <p style="text-indent: 2em">如您对本隐私政策或您个人信息的相关事宜有任何问题、意见或建议，您可拨打4008771189客服热线与我们联系，我们会在15个工作日处理。<br>
+                公司名称：中国电信股份有限公司广西分公司<br>
+                注册地址：广西壮族自治区南宁市建信路1号<br></p>
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

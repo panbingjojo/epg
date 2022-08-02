@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>跳转局方播放器页面V8</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!--目前使用的地区有：江苏电信EPG、海南电信EPG(EC6108)、青海电信EPG、陕西电信EPG--->
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            userId: "{$userId}",                            // 用户ID
+            accountId: "{$accountId}",                            // 用户ID
+            carrierId: "{$carrierId}",                      // 地区id
+            domainUrl: "{$domainUrl}",                      // 江苏电信需要使用的第三方播放器前缀地址
+            videoUrl: "{$videoUrl}",                        // 视频url：中国联通的高清视频地址http 转换成为rtsp进行播放。
+            recommendVideoUrl: '',                           // 推荐视频播放地址
+            playerCallbackUrl: "{$playerCallbackUrl}",    // 播放视频结束时返回
+            albumName: "{$albumName}", //专辑跳转传入专辑别名参数
+            videoInfo: {$videoInfo},                        // 视频信息
+            userToken: '{$userToken}',
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+
+</head>
+
+<body bgcolor="transparent" style="margin:0; padding:0;">
+<script type="text/javascript" src="__ROOT__/Public/js/Player/V8/index.js"></script>
+<script type="text/javascript">
+    /**
+     * 网络请求
+     */
+    var Network = {
+        /**
+         * 保存用户播放进度
+         */
+        savePlayerProgress: function (value, callback) {
+            var postData = {
+                "key": "EPG-LWS-LATEST-VIDEOINFO-" + RenderParam.carrierId + "-" + RenderParam.userId,
+                "value": value
+            };
+            LMEPG.ajax.postAPI('Activity/saveStoreData', postData, function (rsp) {
+                console.log(rsp);
+                if (callback)
+                    callback();
+            });
+        },
+        /**跳转购买vip页面*/
+        jumpBuyVip: function (videoInfo) {
+            var postData = {
+                "videoInfo": JSON.stringify(videoInfo)
+            };
+            // 存储视频信息
+            LMEPG.ajax.postAPI("Player/storeVideoInfo", postData, function (data) {
+            });
+
+            var objCurrent = LMEPG.Intent.createIntent("player");
+            objCurrent.setParam("isOrderBack", 1);
+
+            var jumpObj = LMEPG.Intent.createIntent('orderHome');
+            jumpObj.setParam("userId", RenderParam.userId);
+            jumpObj.setParam("isPlaying", "1");
+
+            LMEPG.Intent.jump(jumpObj, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        },
+    };
+
+    window.onload = function () {
+        if (RenderParam.carrierId != '610092') {
+            // 保存播放的视频，用于首页“继续观看”
+            Network.savePlayerProgress(JSON.stringify(RenderParam.videoInfo));
+        }
+
+        var playUrl = "";
+        if (RenderParam.carrierId == '460092') {
+            LMEPG.Log.error("PlayUrl460092 ---- onload !!!!!!!!!!!!!!");
+
+            if (false) {
+                // RenderParam.accountId == "1162937225" || RenderParam.accountId == "11118007"
+                LMEPG.Log.error("PlayUrl460092 ---- getUrlWith460092HN !!!!!!!!!!!!!!");
+                playUrl = getUrlWith460092HN(RenderParam.videoUrl, RenderParam.playerCallbackUrl);
+            } else {
+                playUrl = getUrlWith460092(0, 0, 1280, 720, RenderParam.videoUrl, RenderParam.playerCallbackUrl);
+            }
+
+            LMEPG.Log.error("PlayUrl460092 ---- playUrl:" + playUrl);
+            LMEPG.Log.error("PlayUrl460092 ---- callback:" + RenderParam.playerCallbackUrl);
+
+            // http://10.39.64.197:33200/EPG/MediaService/FullScreen.jsp?ContentID=99100000012018122111152303743499
+            // &ReturnURL=http://10.255.6.22:10302/index.php/Home/Player/playerCallback/
+        } else if (RenderParam.carrierId == '320092') {
+            LMEPG.Log.error("PlayUrl320092 ---- onload !!!!!!!!!!!!!!");
+            var info = getUrlWith320092(0, 0, 1280, 720, RenderParam.videoUrl, RenderParam.playerCallbackUrl);
+            playUrl = RenderParam.domainUrl + info;
+            LMEPG.Log.error("PlayUrl320092 ---- playUrl:" + playUrl);
+            LMEPG.Log.error("PlayUrl320092 ---- callback:" + RenderParam.playerCallbackUrl);
+
+            // http://180.100.17.134:8080/iptvepg/frame315/third_to_epg_hd.jsp?
+            // THIRD_INFO=%3Cplay_action%3Evod%3C%2Fplay_action%3E%3Cplay_id%3E99100000012018011615505701390808%3C%2Fplay_id%3E
+            // %3Cplay_time%3E2019%3A01%3A21%3A17%3A33%3A17%3C%2Fplay_time%3E%3Cplay_mode%3Efull%3C%2Fplay_mode%3E
+            // %3Cplay_area%3E0%3A0%3A1280%3A720%3C%2Fplay_area%3E
+            // %3Cback_vas_url%3Ehttp%3A%2F%2F180.100.134.116%3A10013%2Findex.php%2FHome%2FPlayer%2FplayerCallback%2F%3C%2Fback_vas_url%20%3E
+            // %3Cadd_info%3Eplay%20time%3A2019%3A01%3A21%3A17%3A33%3A17%3C%2Fadd_info%3E
+            // 视频播放器拼接好后，直接跳转到播放器页
+        } else if (RenderParam.carrierId == '360092') {
+            info = "<mediacode>" + RenderParam.videoUrl + "</mediacode><vas_action>play_vod</vas_action><vas_back_url>"
+                + RenderParam.playerCallbackUrl + "</vas_back_url><additional></additional><amod>00</amod>";
+
+            playUrl = RenderParam.domainUrl + "?vas_info=" + encodeURIComponent(info);
+            LMEPG.Log.error("PlayUrl360092 ---- playUrl:" + playUrl);
+            // http://115.153.236.206:8282/EPG/jsp/8601_4Kdazhongban/en/HD_vasToMemInterface.jsp?
+            // vas_info=<mediacode>99100000012019031416424804409537</mediacode><vas_action>play_vod</vas_action>
+            // <vas_back_url>http://59.53.85.199:10364/index.php/Home/Player/playerCallback/</vas_back_url>
+            // <additional></additional><amod>00</amod>
+        } else if (RenderParam.carrierId == '630092') {
+            /**
+             * EPG全屏统一播放的入口IP地址需获取到当前登录的CDN模板IP地址：
+             * Authentication.CTCGetConfig("EPGDomain") 中截取IPURL= http://ip:port,再拼接播放页面接口地址：
+             * 华为平台地址:
+             * 测试模板：Url =IPURL+“/EPG/jsp/zhihuiyunying/en/pubPlay/play_auth.jsp”
+             * 中兴平台地址:
+             * 测试模板：Url =IPURL+“/iptvepg/frame71/pubPlay/play_auth.jsp”
+             *
+             * 请求示例:
+             * http://{ip:port}/XXX?AUTHCODE=xxx&CODE=xxx&PARENTCODE=&USERID=&PLAYTYPE=1&ISPLAYNEXT=0&BOOKMARK=0
+             * &ISAUTHORIZATION=1&BACKURL=$BACKURL&PICURL=$PICURL
+             *
+             *  http://220.167.163.11:8080/iptvepg/frame71/pubPlay/play_auth.jsp?AUTHCODE=Program848&CODE=Program848&PARENTCODE=2&USERID=09718143843itv&PLAYTYPE=2&ISPLAYNEXT=0&BOOKMARK=0&ISAUTHORIZATION=0&BACKURL=http://223.221.36.146:10001/index.php/Home/Player/playerCallback/&PICURL=
+             */
+                //数据探针上报  页面探针         青海电信EPG
+            var dataRP = {
+                    userId: RenderParam.userId,
+                    pageKey: window.location.pathname,
+                    pageType: 'vodDetail',
+                    pageMParam: RenderParam.videoUrl,
+                }
+            DataReport.getValue(1, dataRP);
+
+            playUrl = getUrlWith630092(RenderParam.videoUrl, RenderParam.playerCallbackUrl);
+        } else if (RenderParam.carrierId == '610092') {
+            /**
+             * EPG全屏统一播放的入口IP地址需获取到当前登录的CDN模板IP地址：
+             * Authentication.CTCGetConfig("EPGDomain") 中截取IPURL= http://ip:port,再拼接播放页面接口地址：
+             * 华为平台地址:
+             * 测试模板：Url =IPURL+“/EPG/jsp/zhihuiyunying/en/pubPlay/play_auth.jsp”
+             * 中兴平台地址:
+             * 测试模板：Url =IPURL+“/iptvepg/frame71/pubPlay/play_auth.jsp”
+             *
+             * 请求示例:
+             * http://{ip:port}/XXX?AUTHCODE=xxx&CODE=xxx&PARENTCODE=&USERID=&PLAYTYPE=1&ISPLAYNEXT=0&BOOKMARK=0
+             * &ISAUTHORIZATION=1&BACKURL=$BACKURL&PICURL=$PICURL
+             *
+             *  http://220.167.163.11:8080/iptvepg/frame71/pubPlay/play_auth.jsp?AUTHCODE=Program848&CODE=Program848&PARENTCODE=2&USERID=09718143843itv&PLAYTYPE=2&ISPLAYNEXT=0&BOOKMARK=0&ISAUTHORIZATION=0&BACKURL=http://223.221.36.146:10001/index.php/Home/Player/playerCallback/&PICURL=
+             */
+
+            if(RenderParam.accountId == "29056250374" || RenderParam.accountId == "29069415760"  || RenderParam.accountId == "29017342523"){
+                playUrl = getUrlWith610092(RenderParam.videoUrl, RenderParam.playerCallbackUrl);
+            }else {
+                Network.jumpBuyVip(RenderParam.videoInfo);
+                return
+            }
+        } else if (RenderParam.carrierId == '620092') {
+            // 甘肃电信EPG
+            playUrl = getUrlWith620092(RenderParam.videoUrl, RenderParam.playerCallbackUrl);
+        }else if (RenderParam.carrierId == '640092' || RenderParam.carrierId == '10640092') {
+            // 宁夏电信EPG
+            playUrl = getUrlWith640092(RenderParam.videoUrl, RenderParam.playerCallbackUrl);
+        }
+
+        if (playUrl != "") {
+            LMEPG.Log.error("window.location ---- playUrl:" + playUrl);
+//            setTimeout(window.location = playUrl,3000)
+            window.location = playUrl;
+        } else {
+            LMEPG.Intent.back();
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<div class="tab1-box">
+    <div class="banner">
+        <img id="tab3-pre" class=""
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <img id="tab3-next" class=""
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <div class="tab3-recommended-1-box">
+            <img id="tab3-recommended-1" class="recommended-img"
+                 src=""
+                 onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+
+            <div id="banner-show">
+            </div>
+            <p id="tab3-recommended-1-title"></p>
+        </div>
+    </div>
+
+    <div class="list-test">
+        <img id="list-test-1"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <img id="list-test-2"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <img id="list-test-3"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <img id="list-test-4"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+        <img id="list-test-5"
+             src=""
+             onerror="this.src='__ROOT__/Public/img/hd/Home/V20/Common/default.png'">
+    </div>
+
+
+    <img class="left" src="__ROOT__/Public/img/hd/Home/V20/Common/left.png"/>
+    <img class="right" src="__ROOT__/Public/img/hd/Home/V20/Common/right.png"/>
+</div>
+<script>
+    Tab3 = {
+        bannerData: "",
+        bannerPoc: 0,
+        bannerShow: 1,
+        initButton: function () {
+            buttons.push({
+                id: 'tab3-recommended-1',
+                type: 'img',
+                nextFocusRight: '',
+                nextFocusUp: 'tab-3',
+                nextFocusDown: 'list-test-1',
+                click: Page.onClickRecommendPosition,
+                focusChange: Head.recdFocus,
+                cNavId: 2,
+                cPosition: 41,
+                show_title: true,
+                show_num: 15,
+                beforeMoveChange: Tab3.bannerSwitch
+            });
+            for (var i = 1; i < 6; i++) {
+                buttons.push({
+                    id: 'list-test-' + i,
+                    type: 'img',
+                    nextFocusRight: 'list-test-' + (i + 1),
+                    nextFocusLeft: 'list-test-' + (i - 1),
+                    nextFocusUp: 'tab3-recommended-1',
+                    nextFocusDown: '',
+                    click: Page.onClickRecommendPosition,
+                    focusChange: Head.recdFocus,
+                    cNavId: 2,
+                    cPosition: 40 + (i + 1)
+                });
+            }
+        },
+        /**
+         * 通用位置获得焦点
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.setAttribute('class', 'recommended-img');
+            }
+        },
+        createHtml: function () {
+            var list = RenderParam.homeConfigInfo.data.entry_list;
+            var id = '';
+            for (var i = 0; i < list.length; i++) {
+                id = 0;
+                var item = list[i];
+                switch (parseInt(item.position)) {
+                        // banner
+                    case 41:
+                        id = '';
+                        Tab3.bannerData = item;
+                        Tab3.banner_html();
+//                        setInterval(Tab3.nextPage, 3000)
+                        break;
+                    case 42:
+                        id = 'list-test-1';
+                        break;
+                    case 43:
+                        id = 'list-test-2';
+                        break;
+                    case 44:
+                        id = 'list-test-3';
+                        break;
+                    case 45:
+                        id = 'list-test-4';
+                        break;
+                    case 46:
+                        id = 'list-test-5';
+                        break;
+                }
+
+                if (id) G(id).src = RenderParam.fsUrl + JSON.parse(item.item_data[0].img_url).normal;
+            }
+        },
+        banner_html: function () {
+            if (Tab3.bannerData.item_data.length > 2) {
+                G("tab3-pre").src = RenderParam.fsUrl + JSON.parse(Tab3.bannerData.item_data[0].img_url).normal;
+                G("tab3-recommended-1").src = RenderParam.fsUrl + JSON.parse(Tab3.bannerData.item_data[1].img_url).normal;
+                G("tab3-next").src = RenderParam.fsUrl + JSON.parse(Tab3.bannerData.item_data[2].img_url).normal;
+                G("tab3-recommended-1-title").innerHTML = JSON.parse(Tab3.bannerData.item_data[1].inner_parameters).title;
+
+                Tab3.bannerPoc = Tab3.bannerData.item_data[1];
+//                G("banner-show").innerHTML = "";
+//                var strHtml = "";
+//                for (var i = 0; i < Tab3.bannerData.item_data.length; i++) {
+//                    if (Tab3.bannerShow == i) {
+//                        strHtml += '<div class="show"></div>';
+//                    } else {
+//                        strHtml += '<div class="un-show"></div>';
+//                    }
+//                }
+//                G("banner-show").innerHTML = strHtml;
+            }
+        },
+        prePage: function () {
+            Tab3.bannerData.item_data.unshift(Tab3.bannerData.item_data[Tab3.bannerData.item_data.length - 1]);
+            Tab3.bannerData.item_data.splice(Tab3.bannerData.item_data.length - 1);
+            if (Tab3.bannerShow == 0) {
+                Tab3.bannerShow = Tab3.bannerData.item_data.length;
+            }
+            Tab3.bannerShow--;
+            Tab3.banner_html();
+        },
+        nextPage: function () {
+            Tab3.bannerData.item_data.push(Tab3.bannerData.item_data[0]);
+            Tab3.bannerData.item_data.shift();
+            Tab3.bannerShow++;
+            if (Tab3.bannerShow == Tab3.bannerData.item_data.length) {
+                Tab3.bannerShow = 0;
+            }
+            Tab3.banner_html();
+        },
+        bannerSwitch: function (dir, current) {
+            switch (dir) {
+                case "left":
+                    Tab3.prePage();
+                    break;
+                case "right":
+                    Tab3.nextPage();
+                    break;
+            }
+        },
+        init: function () {
+            try {
+                Tab3.initButton();
+                Tab3.createHtml();
+            } catch (e) {
+                LMEPG.UI.showToast("健康自测组件异常运行！" + e)
+            }
+        },
+    }
+
+</script>

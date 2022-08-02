@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>分地区医院列表&医院详情-集成cws-V22</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/AppointmentRegister/V22/index.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共参数
+            isRunOnAndroid: "{$isRunOnAndroid}",// 是否运行在apk平台
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户账号
+            isExitApp: '{$isExitApp}',          // 是否需要退出应用
+
+            //当前页渲染
+            data: {$hospList},
+        };
+    </script>
+
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V22/index.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="hospital_list" style="display: block;">
+    <p class="title1">预约挂号</p>
+    <div id="left_side">
+        <div id="areaList">
+
+        </div>
+    </div>
+    <div id="right_side">
+
+    </div>
+</div>
+<div id="hospital_details" style="display: none">
+    <p class="title2">预约挂号</p>
+    <div id="left-wrap"></div>
+    <div id="right-wrap"></div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        HospList.init();
+        if(RenderParam.carrierId === "440001"){
+            uploadVideoData();
+        }
+    }
+    function uploadVideoData(){
+        LMEPG.ajax.postAPI('Player/getRecommendVideoInfo', null, function (rsp) {
+            if(rsp.result === 0){
+                var val = JSON.parse(rsp.data[0].ftp_url);
+                var data = {
+                    startTime:getNowDate() ,
+                    contentId:val.gq_ftp_url,
+                    contentName:rsp.data[0].title,
+                };
+                LMEPG.Log.info("uploadData data:"+JSON.stringify(data));
+                LMAndroid.jsCallAndroid('doExportContentDetail', JSON.stringify(data), '');
+            }
+        });
+    }
+    function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    function getNowDate() {
+        var dateTime=new Date();
+        dateTime=dateTime.setSeconds(dateTime.getSeconds()- getRandom(40,120));
+        var date = new Date(dateTime);
+        var year = date.getFullYear() // 年
+        var month = date.getMonth() + 1; // 月
+        var day  = date.getDate(); // 日
+        var hour = date.getHours(); // 时
+        var minutes = date.getMinutes(); // 分
+        var seconds = date.getSeconds() //秒
+        // 给一位数数据前面加 “0”
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (day >= 0 && day <= 9) {
+            day = "0" + day;
+        }
+        if (hour >= 0 && hour <= 9) {
+            hour = "0" + hour;
+        }
+        if (minutes >= 0 && minutes <= 9) {
+            minutes = "0" + minutes;
+        }
+        if (seconds >= 0 && seconds <= 9) {
+            seconds = "0" + seconds;
+        }
+        var currentdate = year  + month  + day +  hour  + minutes  + seconds;
+        return currentdate;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    top: 0;
+    left: 0;
+}
+
+body > * {
+    position: absolute;
+}
+
+.commonDialog {
+    width: 644px;
+    height: 530px;
+    /*background: url(../../../../img/Activity/ActivitySeaBattle/V1/bg_dialog.png) no-repeat;*/
+}
+
+.marker {
+    width: 644px;
+    height: 530px;
+    background-color: black;
+    opacity: 0.3;
+    position: relative;
+}
+
+img.dialogContext {
+    position: absolute;
+    left: 18px;
+    top: 68px;
+}
+
+.abs {
+    position: absolute;
+}
+
+#bg {
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+}
+
+.right-btn-wrapper {
+    top: 24px;
+    left: 508px;
+}
+
+.right-btn-wrapper img {
+    display: block;
+    margin-bottom: 22px;
+}
+
+.left-prize-wrapper {
+    top: 66px;
+    left: 15px;
+}
+
+.left-prize-wrapper img {
+    display: block;
+    margin-bottom: 35px;
+}
+
+#activity-time {
+    top: 258px;
+    left: 535px;
+    font-size: 25px;
+    line-height: 25px;
+    color: #e4581e;
+    width: 305px;
+}
+
+#game-time {
+    top: 14px;
+    left: 1096px;
+    font-size: 24px;
+    position: absolute;
+}
+
+#go-gamePage-count {
+    top: 482px;
+    left: 271px;
+    font-size: 18px;
+    line-height: 18px;
+    color: #000;
+}
+
+#go-gamePage {
+    top: 355px;
+    left: 264px;
+}
+
+#goLottery {
+    top: 327px;
+    left: 399px;
+}
+
+#lottery-dialog {
+    top: 333px;
+    left: 483px;
+    visibility: hidden;
+}
+
+#modify,
+#count-down {
+    position: absolute;
+    top: 555px;
+    left: 1048px;
+    font-size: 24px;
+    width: 213px;
+    height: 156px;
+    line-height: 258px;
+    text-align: center;
+    /*background-image: url(../../../../../img/hd/Activity/ActivityScissors/V1/count_down.png);*/
+}
+
+#game-intro {
+    position: absolute;
+    width: 1280px;
+    text-align: center;
+    font-size: 24px;
+    top: 675px;
+    left: 0;
+}
+
+#searchText {
+    position: absolute;
+    z-index: 99;
+    width: 227px;
+    height: 34px;
+    left: 0px;
+    text-align: center;
+    line-height: 34px;
+    overflow: hidden;
+    color: #808080;
+    font-size: 18px;
+}
+
+#btn-one {
+    position: absolute;
+    top: 294px;
+    left: 270px;
+}
+
+/*+++++++++++++++常规弹框+++++++++++++++++*/
+
+/*中奖名单*/
+
+table {
+    width: 544px;
+}
+
+#win-table {
+    top: 168px;
+    left: 112px;
+    height: 80px;
+    color: #033542;
+}
+
+#win-table tr {
+}
+
+#win-table tr td {
+    text-align: left;
+    padding: 10px 0;
+    font-size: 14px;
+    overflow: hidden;
+    color: #033542;
+}
+
+/*中奖名单排版*/
+#win-table tr td.user,
+.single-table tr td.user {
+    width: 30%;
+}
+
+#win-table tr td.winTime,
+.single-table tr td.winTime {
+    width: 30%;
+}
+
+#win-table tr td.prize,
+.single-table tr td.prize {
+    width: 40%;
+}
+
+.list-submit {
+    top: 385px;
+    left: 204px;
+}
+
+.list-cancel {
+    top: 385px !important;
+    left: 334px !important;
+}
+
+.tel-wrap {
+    position: absolute;
+    color: #251505;
+    font-size: 14px;
+}
+
+.tel-list {
+    top: 344px;
+    left:212px;
+}
+
+.single-table {
+    top: 320px;
+    left: 112px;
+    width: 544px;
+    height: 20px;
+    font-size: 14px;
+    color: #033542;
+    text-align: left;
+}
+
+
+/*订购相关*/
+#btn-sure-pay {
+    top: 297px;
+    left: 204px;
+}
+
+#btn-cancel {
+    top: 297px;
+    left: 334px;
+}
+
+.my-noPrize {
+    position: absolute;
+    top: 320px;
+    left: 271px;
+    font-size: 14px;
+    color: #251505;
+}
+
+.g_waiting_dialog {
+    position: absolute;
+    left: 275px;
+    top: 215px;
+    width: 50px;
+    height: 50px;
+    line-height: 220px;
+    font-size: 1px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url(../../../../../img/hd/Common/bg_waiting_dialog.gif) no-repeat center;
+}
+
+#theme {
+    position: absolute;
+    top: 51px;
+    left: 32px;
+}
+
+#prizePhone {
+    position: absolute;
+    left: 36px;
+    z-index: 99;
+    width: 190px;
+    overflow: hidden;
+    color: #f41454;
+    text-align: left;
+    font-size: 18px;
+    height: 33px;
+    line-height: 33px;
+}
+
+/*+++++++++++++++常规弹框+++++++++++++++++*/
+.prize-intro{
+    position: absolute;
+    top: 185px;
+    left: 155px;
+    font-size: 24px;
+    line-height: 24px;
+    color: #ff9036;
+}
+
+/*完成游戏*/
+.complete-submit {
+    position: absolute;
+    top: 368px;
+    left: 204px;
+}
+
+.complete-cancel {
+    position: absolute;
+    top: 368px !important;
+    left: 334px;
+}
+
+.tel-complete {
+    position: absolute;
+    top: 315px;
+    left: 260px;
+}
+.tel-wrap {
+    position: absolute;
+    color: #000;
+    font-size: 18px;
+}
+
+#win-prize {
+    position: absolute;
+    top: 137px;
+    left: 395px;
+}
+
+#count {
+    position: absolute;
+    top: 219px;
+    left: 334px;
+    font-size: 24px;
+    color: #ff9036;
+}

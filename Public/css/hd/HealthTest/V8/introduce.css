@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-position: left;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+p.title {
+    position: absolute;
+    top: 30px;
+    left: 58px;
+    font-size: 29px;
+    color: #fff;
+}
+
+.step{
+    position: absolute;
+    top: 98px;
+    left: 110px;
+    color: #fff;
+}
+.step p{
+    font-size: 29px;
+}
+.step div{
+    position: absolute;
+    top: 228px;
+    left: 198px;
+    width: 800px;
+    font-size: 29px;
+    /*border: 1px red solid;*/
+}
+.step-img{
+    position: absolute;
+    top: 55px;
+}
+.arrow{
+    position: absolute;
+    top: 334px;
+}
+#left{
+    left: 45px;
+}
+#right{
+    left: 1175px;
+}
+#pages{
+    position: absolute;
+    left: 1178px;
+    top: 655px;
+    font-size: 20px;
+}
+#blood_step_6 {
+    height: 395px;
+    left: 54px;
+    top: 92.5px;
+}
+#blood_step_7 {
+    height: 396px;
+    left: 54px;
+    top: 92.5px;
+}
+#blood_step_8, #blood_step_12 {
+    height: 397px;
+    left: 56.5px;
+    top: 92.5px;
+}
+#blood_step_9 {
+    height: 465px;
+    left: 140px;
+    top: 80px;
+}
+#blood_step_10 {
+    height: 656px;
+    left: 80px;
+    top: 80px;
+}
+#blood_step_11 {
+    height: 510px;
+    left: 110px;
+    top: 77.5px;
+}

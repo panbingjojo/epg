@@ -1,0 +1,29 @@
+/*背景图*/
+.background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#content_title {
+    position: absolute;
+    top: 47px;
+    left: 73px;
+    font-size: 47px;
+    line-height: 45px;
+    color: #fff;
+}
+
+#btn_tuwen{
+    position: absolute;
+    top: 144px;
+    left: 73px;
+}
+
+#btn_test{
+    position: absolute;
+    top: 144px;
+    left: 677px;
+}

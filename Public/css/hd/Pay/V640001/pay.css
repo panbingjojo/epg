@@ -1,0 +1,83 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+#order_items_container {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    background-image: url("/Public/img/hd/Pay/V640001/bg_order_items_2.png");
+}
+
+#order_item_1 {
+    position: absolute;
+    top: 242px;
+    left: 538px;
+}
+
+
+
+
+
+.g_toast {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background: url("../../img/sd/Common/bg_common_dialog.png") no-repeat;
+    -moz-background-size: 1280px 720px; /* 老版本的 Firefox */
+    background-size: 1280px 720px;
+    z-index: 99999;
+    display: table;
+}
+
+.g_title {
+    position: absolute;
+    /*top: 270px;
+    left: 290px;*/
+    width: 700px;
+    height: 300px;
+    color: #fff333;
+    font-size: 46px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 60px;
+    word-break: break-all;
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /*居中显示*/
+    left: 50%;
+    top: 50%;
+    transition-property: translate;
+    -o-transition-property: translate;
+    -moz-transition-property: translate;
+    -webkit-transition-property: translate;
+    transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+
+    /*显示块控制*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 5;
+}
+
+

@@ -1,0 +1,61 @@
+#container{
+    height: 100%;
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.doctor-area{
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg2.png");
+    background-size: 330px 600px;
+    width: 330px;
+    height: 600px;
+    float: left;
+    text-align: center;
+}
+.info-area{
+    background: url("../../../../img/hd/AppointmentRegister/V8/bg3.png");
+    background-size: 830px 600px;
+    width: 830px;
+    height: 600px;
+    float: left;
+    margin-left: 20px;
+}
+.name{
+    font-size: 36px;
+   
+    font-weight: bold;
+    line-height: 61px;
+    color: #FFFFFF;
+}
+.doctor-info{
+    font-size: 30px;
+   
+    font-weight: 400;
+    line-height: 51px;
+    color: #FFFFFF;
+    background-size: 100% 235px;
+}
+.order-state{
+    width: 178px;
+    height: 80px;
+    float: left;
+}
+.order-info{
+    text-align: center;
+    width: 112px;
+    font-size: 15px;
+   
+    color: #333333;
+}
+
+.line{
+    height: 2px;
+    background: #fff;
+    margin-top: 25px;
+}
+
+#introduce{
+    height: 150px;
+    overflow: hidden;
+    display: block;
+}

@@ -1,0 +1,273 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+#default_focus {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none !important;
+    width: 644px;
+    height: 530px;
+}
+
+.btn-only {
+    position: absolute;
+    top: 334px;
+    left: 341px;
+    outline: none !important;
+    width: 117px;
+    height: 47px;
+}
+
+.btn-success {
+    position: absolute;
+    top: 349px;
+    left: 341px;
+    outline: none !important;
+    width: 117px;
+    height: 47px;
+}
+
+/*.btn-only {*/
+    /*position: absolute;*/
+    /*top: 456px;*/
+    /*left: 680px;*/
+    /*outline: none !important;*/
+    /*width: 187px;*/
+    /*height: 74px;*/
+/*}*/
+
+.introduce {
+    position: absolute;
+    top: 211px;
+    left: 279px;
+    outline: none !important;
+    width: 277px;
+    font-size: 20px;
+    color: #414141;
+    text-align: center;
+    line-height: 45px;
+    font-weight: 900;
+}
+
+.introduce-success {
+    position: absolute;
+    top: 192px;
+    left: 220px;
+    outline: none !important;
+    width: 320px;
+    font-size: 20px;
+    color: #414141;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-one {
+    position: absolute;
+    top: 334px;
+    left: 292px;
+    outline: none !important;
+    width: 117px;
+    height: 47px;
+}
+
+.btn-two {
+    position: absolute;
+    top: 334px;
+    left: 419px;
+    outline: none !important;
+    width: 117px;
+    height: 47px;
+}
+
+#searchText {
+    width: 232px;
+    height: 37px;
+    z-index: 999;
+    position: absolute;
+    top: 285px;
+    left: 299px;
+    font-size: 22px;
+    border: none;
+    outline: none;
+    line-height: 37px;
+    color: #e16d1e;
+    border: 1px red solid;
+    border-radius: 5px;
+    overflow: hidden;
+    text-indent: 5px;
+}
+
+.introduce-price-text {
+    position: absolute;
+    top: 192px;
+    left: 254px;
+    outline: none !important;
+    font-size: 29px;
+    color: #ff850d
+
+}
+
+#myPhone {
+    position: absolute;
+    font-size: 13px;
+    color: #414141;
+    top: 258px;
+    left: 299px
+}
+
+.introduce-price-name {
+    font-size: 29px;
+    color: #fc5f1a;
+}
+
+.key-table tr td {
+    width: 50px;
+    text-align: center;
+    font-size: 30px
+}
+
+#top {
+    position: absolute;
+    z-index: 999
+}
+
+.detail-table {
+    position: absolute;
+    top: 152px;
+    left: 123px;
+    outline: none !important;
+    color:#FFFFFF;
+}
+.detail-table tr td{ height: 24px; font-size: 13px !important;color:#FFFFFF;}
+.btn_back {
+    position: absolute;
+    top: 32px;
+    left: 564px;
+    outline: none !important;
+    width: 67px;
+    height: 69px;
+}
+.price_one{
+    position: absolute;
+    top: 372px;
+    left: 133px;
+    outline: none !important;
+    width: 79px;
+    height: 74px;
+}
+.price_two{
+    position: absolute;
+    top: 375px;
+    left: 297px;
+    outline: none !important;
+    width: 79px;
+    height: 73px;
+}
+.price_three{
+    position: absolute;
+    top: 375px;
+    left: 476px;
+    outline: none !important;
+    width: 50px;
+    height: 73px;
+}
+
+
+.introduce-pay{
+    position: absolute;
+    top: 203px;
+    left: 126px;
+    outline: none !important;
+    width: 400px;
+    font-size: 21px;
+    color: #414141;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.pay-one{
+    position: absolute;
+    top: 294px;
+    left: 119px;
+    outline: none !important;
+    width: 75px;
+    height: 79px;
+}
+#pay-two{
+    position: absolute;
+    top: 294px;
+    left: 230px;
+    outline: none !important;
+    width: 75px;
+    height: 79px;
+}
+#pay-three{
+    position: absolute;
+    top: 294px;
+    left: 346px;
+    outline: none !important;
+    width: 75px;
+    height: 79px;
+}
+#pay-four{
+    position: absolute;
+    top: 294px;
+    left: 463px;
+    outline: none !important;
+    width: 75px;
+    height: 79px;
+}
+.book_text{
+    position: absolute;
+    top: 183px;
+    left: 300px;
+    outline: none !important;
+    font-size: 22px;
+    color: #414141;
+    text-align: center;
+}
+.book_text_name{
+    position: absolute;
+    top: 178px;
+    left: 370px;
+    outline: none !important;
+    font-size: 27px;
+    color: #e21212;
+    text-align: center;
+    font-weight: bold;
+}
+.price_text{
+    position: absolute;
+    top: 227px;
+    left: 300px;
+    outline: none !important;
+    font-size: 22px;
+    color: #414141;
+    text-align: center;
+}
+.price_text_name{
+    position: absolute;
+    top: 224px;
+    left: 370px;
+    outline: none !important;
+    font-size: 27px;
+    color: #ef7101;
+    text-align: center;
+    font-weight: bold;
+}
+.introduce_text{
+    position: absolute;
+    top: 280px;
+    left: 290px;
+    outline: none !important;
+    font-size: 13px;
+    color: #414141;
+    text-align: center;
+}

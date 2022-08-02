@@ -1,0 +1,274 @@
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+}
+
+#header {
+    position: absolute;
+    top: 76px;
+    left: 133px;
+    width: 1030px;
+}
+
+#header img {
+    margin-right: 8px;
+    /* width: 178px; */
+    height: 62px;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/*医生item*/
+#doctor-container {
+    position: relative;
+    top: 150px;
+    left: 93px;
+    width: 1150px;
+}
+
+#doctor-container .doctor-item {
+    width: 251px;
+    height: 488px;
+    float: left;
+    margin: 0 12px;
+}
+
+#doctor-container ul {
+    width: 235px;
+    height: 420px;
+    padding-top: 15px;
+    background-position: center;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/doctor_item_bg.png);
+    /* padding: 15px; */
+    padding-left: 5px;
+    padding-right: 5px;
+    float: left;
+    margin: 0 12px;
+    overflow: hidden;
+}
+
+#doctor-container ul li {
+    color: #fff;
+    text-align: center;
+    line-height: 35px;
+}
+
+#doctor-container li.doctor-avatar {
+    margin-top: 10px;
+}
+
+#doctor-container .doctor-avatar img {
+    width: 208px;
+    height: 208px;
+    border-radius: 50%;
+}
+
+#doctor-container li.doctor-status {
+    margin-top: -20px;
+}
+
+#doctor-container li.doctor-recommend {
+    position: absolute;
+    margin: -220px 0 0 1px;
+}
+
+#doctor-container li.doctor-recommend img{
+    display: block;
+}
+
+#doctor-container li.doctor-name {
+    margin-top: 5px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#doctor-container li.doctor-only-job {
+    margin-top: 8px;
+    font-size: 24px;
+    overflow: hidden;
+}
+
+#doctor-container li.doctor-department,
+#doctor-container li.doctor-job {
+    font-size: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#doctor-container li.doctor-reception-times {
+    font-size: 20px;
+    color: #b2deff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.arrow {
+    position: absolute;
+    top: 338px;
+}
+
+#doctor-prev-arrow {
+    left: 0;
+}
+
+#doctor-next-arrow {
+    left: 1200px;
+}
+
+/*选中科室*/
+#department-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background-size: 100%;
+    display: none;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/dep_modal.png);
+}
+#department-wrap{
+    position: absolute;
+    top: 145px;
+    left: 40px;
+}
+#department-wrap div.department-item {
+    width: 153px;
+    height: 64px;
+    line-height: 2.2;
+    color: #9b3b51;
+    font-size: 24px;
+    background-color: transparent;
+    background-image: url(../../../../img/hd/DoctorP2P/V13/department.png);
+    background-position: center;
+    background-size: 100%;
+    border: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    padding: 8px;
+    margin: 2px 16px;
+    text-align: center;
+}
+.department-title {
+    font-size: 36px;
+    font-weight: bold;
+    position: relative;
+    top: 38px;
+    text-align: center;
+    color: #fff;
+}
+.department-arrow{
+    position: absolute;
+    left: 607px;
+}
+#department-prev-arrow{
+    top: 90px;
+}
+#department-next-arrow{
+    top: 654px;
+}
+
+/*呼叫等待医生页面*/
+.callDoctor {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.callDoctor #doctor-pic {
+    position: absolute;
+    top: 255px;
+    left: 852px;
+    width: 208px;
+    height: 208px;
+}
+
+.callDoctor .telephone-icon {
+    position: absolute;
+    top: 299px;
+    left: 224px;
+}
+
+.callDoctor .waiting-point {
+    position: absolute;
+    top: 333px;
+    left: 525px;
+}
+
+.callDoctor .waiting-text {
+    position: absolute;
+    top: 391px;
+    left: 545px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.callDoctor .notice-text {
+    position: absolute;
+    top: 606px;
+    left: 151px;
+    color: #fff;
+    font-size: 20px;
+    text-align: left;
+}
+
+#page-num {
+    position: absolute;
+    top: 650px;
+    left: 1120px;
+    color: #b2deff;
+    font-size: 24px;
+}
+
+
+#case-help-wrap.doctor-page{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#case-help-wrap img{
+    position: absolute;
+    visibility: hidden;
+}
+
+#department-name {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    font-size: 24px;
+    color: #8b3b51;
+    width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    /* font-weight: bold; */
+}
+.dep-p2p-btn div#dept-name.focus{
+    color:#fff;
+}
+
+/* 底部提示语 */
+#footer {
+    position: absolute;
+    color: #ffffff;
+    left: 110px;
+    top:655px;
+}
+
+

@@ -1,0 +1,98 @@
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+
+.center {
+    position: absolute;
+    top: 101px;
+    left: 80px;
+    font-size: 27px;
+    height: 618px;
+    /*overflow: auto;*/
+    width: 1160px;
+    /*border: 1px transparent solid;*/
+}
+
+.pop-tip{
+    position: absolute;
+    background: url("/Public/img/hd/Home/V10/small-title.png") no-repeat;
+    width: 265px;
+    height: 60px;
+    top: 30px;
+    left: 850px;
+    text-align: center;
+    padding-top: 7px;
+}
+.two-code{
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    left: 1120px;
+    top: 0;
+}
+.detail-info {
+    padding: 30px;
+    width: 1060px;
+    height: 210px;
+    position: relative;
+    margin-top: 30px;
+}
+
+dt {
+    /*border-bottom: 1px rgba(255, 255, 255, 0.3) solid;*/
+    font-size: 32px;
+    height: 50px;
+    line-height: 35px;
+}
+
+dd {
+    height: 40px;
+    line-height: 40px;
+    font-size: 28px;
+}
+
+.status {
+    float: right;
+}
+
+.btn-detail {
+    position: absolute;
+    top: 178px;
+    left: 870px;
+    /*width: 140px;*/
+    /*height: 45px;*/
+    /*line-height: 45px;*/
+    /*border-radius: 25px;*/
+}
+.center:after{
+    content: ' ';
+    height: 30px;
+    width: 100%;
+    display: inline-block;
+}
+.border{
+    background: url("../../../../../Public/img/hd/AppointmentRegister/V10/BtnBox/box_record_1.png");
+}
+#m-next {
+    position: absolute;
+    top: 680px;
+    left: 620px;
+}
+.btn-hover{
+    font-weight: bold;
+}
+

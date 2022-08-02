@@ -1,0 +1,142 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+
+.toy {
+    position: absolute;
+    top: 168px;
+    left: 130px;
+    outline: none !important;
+    width: 305px;
+    height: 469px;
+    display: none;
+}
+
+.topic {
+    position: absolute;
+    top: 141px;
+    left: 110px;
+    outline: none !important;
+    width: 141px;
+    height: 89px;
+}
+
+.topicName {
+    position: absolute;
+    top: 142px;
+    left: 269px;
+    outline: none !important;
+    width: 267px;
+    height: 67px;
+    font-size: 19px;
+    color: #FFFFFF;
+}
+
+.answerA {
+    position: absolute;
+    top: 257px;
+    left: 260px;
+    outline: none !important;
+    width: 274px;
+    font-size: 19px;
+    color: #FFFFFF;
+}
+
+.answerB {
+    position: absolute;
+    top: 291px;
+    left: 260px;
+    outline: none !important;
+    width: 274px;
+    font-size: 19px;
+    color: #FFFFFF;
+}
+
+.answerC {
+    position: absolute;
+    top: 324px;
+    left: 260px;
+    outline: none !important;
+    width: 374px;
+    font-size: 19px;
+    color: #FFFFFF;
+}
+
+#replayA {
+    position: absolute;
+    top: 377px;
+    left: 164px;
+    outline: none !important;
+    width: 84px;
+    height: 64px;
+}
+
+#replayB {
+    position: absolute;
+    top: 377px;
+    left: 291px;
+    outline: none !important;
+    width: 84px;
+    height: 64px;
+}
+
+#replayC {
+    position: absolute;
+    top: 377px;
+    left: 417px;
+    outline: none !important;
+    width: 84px;
+    height: 64px;
+}
+
+#back {
+    position: absolute;
+    top: 32px;
+    left: 564px;
+    outline: none !important;
+    width: 67px;
+    height: 69px;
+}
+
+/*提示窗样式*/
+#default_tip
+{
+    position: absolute;
+    left: 450px;
+    top: 210px;
+    width: 370px;
+    height: 81px;
+    line-height:106px;
+    text-align: center;
+    font-size: 30px;
+    color: #090609;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+.g_toast {
+    position: absolute;
+    left: 138px;
+    top: 160px;
+    width: 367px;
+    height: 233px;
+    line-height: 203px;
+    font-size: 20px;
+    z-index: 1000;
+    text-align: center;
+    text-indent: 75px;
+    color: #ff6600;
+    background: url("../../../../img/sd/Activity/ActivityAnswer/V1/answer_result.png") no-repeat;
+}

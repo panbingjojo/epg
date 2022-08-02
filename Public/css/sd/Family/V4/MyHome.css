@@ -1,0 +1,163 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+}
+
+.tb-1-1 {
+    position: absolute;
+    top: 128px;
+    left: 73px;
+    width: 157px;
+    height: 127px;
+}
+
+.tb-1-2 {
+    position: absolute;
+    top: 128px;
+    left: 246px;
+    width: 157px;
+    height: 127px;
+}
+
+.tb-1-3 {
+    position: absolute;
+    top: 128px;
+    left: 419px;
+    width: 157px;
+    height: 127px;
+}
+
+.tb-2-1 {
+    position: absolute;
+    top: 290px;
+    left: 73px;
+    width: 157px;
+    height: 127px;
+}
+
+.tb-2-2 {
+    position: absolute;
+    top: 290px;
+    left: 246px;
+    width: 157px;
+    height: 127px;
+}
+
+.tb-2-3 {
+    position: absolute;
+    top: 290px;
+    left: 419px;
+    width: 157px;
+    height: 127px;
+}
+
+#focus-1-1-box {
+    position: absolute;
+    top: 93px;
+    left: 50px;
+    width: 205px;
+    height: 187px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-1-2-box {
+    position: absolute;
+    top: 93px;
+    left: 223px;
+    width: 205px;
+    height: 187px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-1-3-box {
+    position: absolute;
+    top: 93px;
+    left: 396px;
+    width: 205px;
+    height: 187px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-2-1-box {
+    position: absolute;
+    top: 255px;
+    left: 50px;
+    width: 205px;
+    height: 187px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-2-2-box {
+    position: absolute;
+    top: 255px;
+    left: 223px;
+    width: 205px;
+    height: 187px;
+    visibility: hidden;
+    z-index: 1
+}
+
+#focus-2-3-box {
+    position: absolute;
+    top: 255px;
+    left: 396px;
+    width: 205px;
+    height: 187px;
+    visibility: hidden;
+    z-index: 1
+}
+
+.title {
+    position: absolute;
+    top: 39px;
+    left: 21px;
+    font-size: 24px;
+    color: #ffffff
+}
+
+.none {
+    visibility: hidden !important;
+}
+
+.show {
+    visibility: visible !important;
+}
+
+.imghover {
+    width: 108%;
+    height: 108%;
+    z-index: 1;
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    outline: none;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+}
+
+.line {
+    width: 600px;
+    height: 2px;
+    position: absolute;
+    top: 87px;
+    left: 21px
+}

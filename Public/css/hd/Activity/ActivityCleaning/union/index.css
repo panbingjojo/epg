@@ -1,0 +1,252 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+.leave_time {
+    position: absolute;
+    top: 106px;
+    left: 1076px;
+    outline: none !important;
+    font-size: 21px;
+    line-height: 21px;
+    color: #333333;
+}
+
+.integral {
+    position: absolute;
+    top: 40px;
+    left: 1084px;
+    outline: none !important;
+    font-size: 21px;
+    line-height: 21px;
+    color: #333333;
+}
+.introduce2{
+    position: absolute;
+    top: 20px;
+    left: 500px;
+    outline: none !important;
+    font-size: 28px;
+    line-height: 28px;
+    color: #333333;
+}
+
+#sweep1_tool {
+    position: absolute;
+    top: 380px;
+    left: 50px;
+    outline: none !important;
+    width: 222px;
+    height: 204px;
+
+}
+
+#sweep2_tool {
+    position: absolute;
+    top: 130px;
+    left: 340px;
+    outline: none !important;
+    width: 206px;
+    height: 454px;
+
+}
+
+#sweep3_tool {
+    position: absolute;
+    top: 370px;
+    left: 640px;
+    outline: none !important;
+    width: 220px;
+    height: 220px;
+
+}
+
+#sweep4_tool {
+    position: absolute;
+    top: 410px;
+    left: 960px;
+    outline: none !important;
+    width: 140px;
+    height: 172px;
+
+}
+
+#rubbish1 {
+    position: absolute;
+    top: 600px;
+    left: 0;
+    outline: none !important;
+    width: 1078px;
+    height: 116px;
+}
+
+#rubbish2 {
+    position: absolute;
+    top: 415px;
+    left: 100px;
+    outline: none !important;
+    width: 1184px;
+    height: 304px;
+}
+
+#rubbish3 {
+    position: absolute;
+    top: 416px;
+    left: 641px;
+    outline: none !important;
+    width: 230px;
+    height: 300px;
+}
+
+#rubbish4 {
+    position: absolute;
+    top: 520px;
+    left: 10px;
+    outline: none !important;
+    width: 1254px;
+    height: 200px;
+}
+
+#arrow1{
+    position: absolute;
+    top: 440px;
+    left: 160px;
+    outline: none !important;
+    width: 170px;
+    height: 220px;
+    visibility: hidden;
+}
+#arrow2{
+    position: absolute;
+    top: 400px;
+    left: 430px;
+    outline: none !important;
+    width: 170px;
+    height: 220px;
+    visibility: hidden;
+}
+#arrow3{
+    position: absolute;
+    top: 440px;
+    left: 550px;
+    outline: none !important;
+    width: 170px;
+    height: 220px;
+    visibility: hidden;
+}
+#arrow4{
+    position: absolute;
+    top: 460px;
+    left: 850px;
+    outline: none !important;
+    width: 170px;
+    height: 220px;
+    visibility: hidden;
+}
+#title1{
+    position: absolute;
+    top: 350px;
+    left: 84px;
+    outline: none !important;
+    width: 40px;
+    height: 140px;
+    visibility: hidden;
+}
+#title2{
+    position: absolute;
+    top: 300px;
+    left: 440px;
+    outline: none !important;
+    width: 40px;
+    height: 140px;
+    visibility: hidden;
+}
+#title3{
+    position: absolute;
+    top: 370px;
+    left: 670px;
+    outline: none !important;
+    width: 130px;
+    height: 44px;
+    visibility: hidden;
+}
+#title4{
+    position: absolute;
+    top: 410px;
+    left: 970px;
+    outline: none !important;
+    width: 130px;
+    height: 44px;
+    visibility: hidden;
+}
+#showTip{
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: none !important;
+    width: 1280px;
+    height: 720px;
+    z-index: 999;
+    background: url("../../../../../img/hd/Activity/ActivityCleaning/union/show_toast.png");
+    line-height: 26px;
+    text-align: center;
+    font-size: 26px;
+    color: #994c00;
+    visibility: hidden;
+}
+.title{
+    position: absolute;
+     left: 546px;
+    top: 229px;
+    outline: none !important;
+    width: 235px;
+    z-index: 999;
+    line-height: 28px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+.content{
+    position: absolute;
+    top: 308px;
+    left: 470px;
+    outline: none !important;
+    width: 400px;
+    z-index: 999;
+    line-height: 50px;
+    text-align: center;
+}
+.black{
+    color: #4d2600;
+}
+#back_btn{
+    position: absolute;
+    top: 429px;
+    left: 572px;
+    outline: none !important;
+    width: 190px;
+    height: 80px;
+}
+.introduce{
+    position: absolute;
+    top: 318px;
+    left: 470px;
+    outline: none !important;
+    width: 400px;
+    z-index: 999;
+    line-height: 40px;
+    text-align: center;
+    font-size: 40px;
+    color: #994c00;
+}

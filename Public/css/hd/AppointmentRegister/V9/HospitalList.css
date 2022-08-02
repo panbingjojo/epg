@@ -1,0 +1,97 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    color: #ffffff;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    border: 0;
+}
+
+div {
+    position: absolute;
+}
+
+div.title {
+    top: 24px;
+    left: 58px;
+    font-size: 35px;
+}
+
+
+div.hos_focus1 {
+    left: 68px;
+    top: 135px;
+}
+
+div.hos_focus2 {
+    left: 463px;
+    top: 135px;
+}
+
+div.hos_focus3 {
+    left: 856px;
+    top: 135px;
+}
+
+div.hos_focus4 {
+    left: 68px;
+    top: 386px;
+}
+
+div.hos_focus5 {
+    left: 463px;
+    top: 386px;
+}
+
+div.hos_focus6 {
+    left: 856px;
+    top: 386px;
+}
+
+.hos-img {
+    position: absolute;
+    width: 357px;
+    height: 226px;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+}
+
+.hos-border {
+    position: absolute;
+    width: 392px;
+    height: 264px;
+    top: -21px;
+    left: -18px;
+    border-radius: 10px;
+    visibility: hidden;
+}
+
+
+.left_page {
+    position: absolute;
+    width: 47px;
+    height: 67px;
+    top: 340px;
+    left: 13px;
+}
+
+.right_page {
+    position: absolute;
+    width: 47px;
+    height: 67px;
+    top: 340px;
+    left: 1229px;
+}

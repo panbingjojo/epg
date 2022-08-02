@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>甘肃移动-计费页</title>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/Common/V1/common.css?t={$time}"/>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/Pay/V620007/V2/pay.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            accountId: "{$accountId}",            // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+            serverHost: "{$serverHost}",     // cws服务器主机地址
+            exchangePoint: {$exchangePoint},
+
+            // 页面参数
+            orderItems: {$orderItems},
+            isPlaying: "{$isPlaying}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            returnPageName: "{$returnPageName}",
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-3.6.0.min.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/keypad.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <!--订购-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V620007/V2/pay.js?t={$time}"></script>
+</head>
+<body id="body">
+<img class="bg" src="__ROOT__/Public/img/Pay/V620007/V2/bg.png"/>
+<div class="order-group">
+    <img id="order-type-1" src="__ROOT__/Public/img/Pay/V620007/V2/bg_buy_1.png"/>
+    <img id="order-type-2" src="__ROOT__/Public/img/Pay/V620007/V2/bg_buy_2.png"/>
+    <img id="order-type-3" src="__ROOT__/Public/img/Pay/V620007/V2/bg_buy_3.png"/>
+    <img id="order-type-4" src="__ROOT__/Public/img/Pay/V620007/V2/bg_buy_4.png"/>
+</div>
+
+<div id="second-order-toast">
+    <!--    套餐订购说明-->
+    <div id="desc_item_1" class="order_item_desc">您即将订购智慧健康包月产品，资费<span id="desc_price">29元/月</span>，此业务可向您提供视频问诊，大专家问诊，家庭医生免费咨询，健康视频点播等业务，订购后立即生效。</div>
+    <div id="desc_item_2" class="order_item_desc">自订购日起每月自动续费，费用将从您办理业务的手机号码费用中扣除，请及时关注费用情况。</div>
+    <div id="desc_item_3" class="order_item_desc">如您要退订智慧健康产品，您可以通过以下途径进行：<br/>
+        1、魔百和我的页面-我的订购-智慧健康产品进行退订<br/>
+        2、下载和陇原APP-我的-我的订购-增值业务进行退订<br/>
+        3、发送0000至10086进行退订<br/>
+        4、营业厅退订</div>
+
+    <div class="orderInfo">
+        <img id="btn-order-1" class="order" src="__ROOT__/Public/img/Pay/V620007/V2/bg_order_1.png"/>
+        <img id="btn-order-2" class="order" src="__ROOT__/Public/img/Pay/V620007/V2/bg_order_2.png"/>
+        <img id="btn-order-3" class="order" src="__ROOT__/Public/img/Pay/V620007/V2/bg_order_3.png"/>
+        <div class="block"></div>
+        <div class="orderDetail">
+            <div class="row">产品名称：<span id="name">电视家庭医生</span></div>
+            <div class="row">产品类型：<span id="type">包月</span></div>
+            <div class="row">资费信息：<span id="price"></span></div>
+        </div>
+        <div id="phone_num_container">
+            <div class="order_phone_tips">订购手机号</div>
+            <div id="phone_num">{$accountId}</div>
+        </div>
+        <div id="check_code_container">
+            <div class="verify_code_tips">验&ensp;证&ensp;码：</div>
+            <div id="verify_code"></div>
+            <div class="input_verify_tips">请输入验证码：</div>
+            <div id="input_verify_code"></div>
+        </div>
+        <img id="code-img" src="__ROOT__/Public/img/Pay/V620007/V2/bg_order_2.png" style="display: none"/>
+        <div id="score"></div>
+    </div>
+    <img id="confirm" src="__ROOT__/Public/img/Pay/V630001/bg_confirm.png"/>
+    <img id="cancel" src="__ROOT__/Public/img/Pay/V630001/bg_cancel.png"/>
+</div>
+<script>
+    window.onload = function () {
+        Pages.init();
+    };
+</script>
+</body>
+</html>

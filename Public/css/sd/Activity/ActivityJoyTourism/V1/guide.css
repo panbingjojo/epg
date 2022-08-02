@@ -1,0 +1,191 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    margin: 0 auto;
+}
+
+body > * {
+    position: absolute;
+}
+
+img.loading {
+    background: url(../../../../../img/Common/loading.gif) no-repeat center;
+}
+
+.abs {
+    position: absolute;
+}
+
+#bg {
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+}
+
+.right-btn-wrapper {
+    top: 48px;
+    left: 545px;
+}
+
+.right-btn-wrapper img {
+    margin-bottom: 10px;
+}
+
+#activity-time {
+    top: 125px;
+    left: 28px;
+    font-size: 12px;
+    color: #cc7aa7;
+}
+
+#btn-go-count {
+    top: 400px;
+    left: 346px;
+    font-size: 18px;
+    color: #ff5a00;
+}
+
+#btn-go {
+    top: 260px;
+    left: 212px;
+}
+
+#count-down {
+    position: absolute;
+    text-align: center;
+}
+
+#game-intro {
+    position: absolute;
+    text-align: center;
+}
+
+#userTel {
+    position: absolute;
+    z-index: 99;
+    width: 250px;
+    overflow: hidden;
+    color: #92ff7d;
+}
+
+#btn-one {
+    top: 430px;
+    left: 248px;
+}
+
+/*+++++++++++++++常规弹框+++++++++++++++++*/
+
+/*中奖名单*/
+
+table {
+    width: 622px;
+}
+#win-table {
+    position: absolute;
+    top: 166px;
+    left: 12px;
+    height: 130px;
+    color: #333;
+}
+
+
+#win-table tr {
+}
+
+#win-table tr td {
+    text-align: center;
+    padding: 5px 0;
+    font-size: 12px;
+    overflow: hidden
+}
+
+/*中奖名单排版*/
+td.user {
+    width: 40%;
+}
+
+td.winTime {
+    width: 20%;
+}
+
+td.prize {
+    width: 40%;
+}
+
+.list-submit {
+    top: 369px;
+    left: 396px;
+    width: 88px;
+    height: 27px;
+}
+
+.list-cancel {
+    top: 369px !important;
+    left: 505px !important;
+    width: 88px;
+    height: 27px;
+}
+
+.tel-wrap {
+    position: absolute;
+    color: #92ff7d;
+    font-size: 12px;
+}
+
+.tel-list {
+    top: 375px;
+    left: 161px;
+}
+
+
+/*活动规则*/
+
+#rule-close {
+    position: absolute;
+    top: 22px;
+    left: 581px;
+}
+
+/*订购相关*/
+#btn-sure-pay {
+    top: 430px;
+    left: 139px;
+}
+
+#btn-cancel {
+    top: 430px;
+    left: 357px;
+}
+
+.current-user {
+    position: absolute;
+    color: #92ff7d;
+    width: 100px;
+    text-align: left;
+    font-size: 12px;
+    top: 333px;
+}
+
+.already-get-prize-user {
+    left: 145px;
+
+}
+
+.already-get-prize-time {
+    left: 310px;
+}
+
+.already-get-prize-name {
+    left: 495px;
+}

@@ -1,0 +1,93 @@
+.title {
+    position: absolute;
+    top: 26px;
+    left: 60px;
+    font-size: 32px;
+    color: #ffffff
+}
+
+#btn_data_input {
+    position: absolute;
+    width: 200px;
+    height: 72px;
+    top: 8px;
+    left: 1052px;
+}
+
+.show_box {
+    position: absolute;
+    left: 80px;
+    top: 120px;
+    width: 1120px;
+    height: 522px;
+}
+
+.border {
+    border-radius: 12px;
+    border: 1px rgba(255, 255, 255, 0.3) solid !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+}
+
+#step_1 {
+    position: absolute;
+    left: 128px;
+    top: 44px;
+    width: 386px;
+    height: 169px;
+    display: none;
+}
+
+#step_2 {
+    position: absolute;
+    left: 532px;
+    top: 117px;
+    width: 40px;
+    height: 42px;
+    display: none;
+}
+
+#step_3 {
+    position: absolute;
+    left: 645px;
+    top: 44px;
+    width: 386px;
+    height: 169px;
+    display: none;
+}
+
+#step_4 {
+    position: absolute;
+    left: 850px;
+    top: 222px;
+    width: 42px;
+    height: 40px;
+    display: none;
+}
+
+#step_5 {
+    position: absolute;
+    left: 645px;
+    top: 278px;
+    width: 386px;
+    height: 169px;
+    display: none;
+}
+
+#step_6 {
+    position: absolute;
+    left: 532px;
+    top: 347px;
+    width: 40px;
+    height: 42px;
+    display: none;
+}
+
+#step_7 {
+    position: absolute;
+    left: 128px;
+    top: 278px;
+    width: 386px;
+    height: 169px;
+    display: none;
+}
+

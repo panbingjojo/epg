@@ -1,0 +1,92 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 530px;
+    width: 644px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#focus-1-1 {
+    position: absolute;
+    top: 178px;
+    left: 4px;
+    z-index: 0;
+    outline: none !important;
+    width: 246px;
+    height: 81px;
+
+}
+
+#focus-1-2 {
+    position: absolute;
+    top: 178px;
+    left: 268px;
+    z-index: 0;
+    outline: none !important;
+    width: 246px;
+    height: 81px;
+
+}
+
+#focus-2-1 {
+    position: absolute;
+    top: 246px;
+    left: 4px;
+    z-index: 0;
+    outline: none !important;
+    width: 246px;
+    height: 81px;
+
+}
+
+#focus-2-2 {
+    position: absolute;
+    top: 246px;
+    left: 268px;
+    z-index: 0;
+    outline: none !important;
+    width: 246px;
+    height: 81px;
+}
+
+#focus-3-1 {
+    position: absolute;
+    top: 315px;
+    left: 4px;
+    z-index: 0;
+    outline: none !important;
+    width: 246px;
+    height: 81px;
+
+}
+#back {
+    position: absolute;
+    top: 330px;
+    left: 358px;
+    z-index: 0;
+    outline: none !important;
+    width: 101px;
+    height: 65px;
+
+}
+#focus-4-1 {
+    position: absolute;
+    top: 382px;
+    left: 373px;
+    z-index: 0;
+    outline: none !important;
+    width: 101px;
+    height: 65px;
+
+}
+
+
+

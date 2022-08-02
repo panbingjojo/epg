@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+html {
+    color: #fff;
+    background-color: transparent;
+    background-image: url(../../../../img/hd/Menu/Common/spacer.gif);
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    background-image: url(../../../../img/hd/Menu/Common/bg.png);
+    /*background-color: #cccccc;*/
+}
+
+body > * {
+    position: absolute;
+}
+
+#input-key-wrapper {
+    position: absolute;
+    width: 300px;
+    height: 480px;
+    top: 20px;
+    left: 10px;
+    background-image: url(../../../../img/sd/Search/V9/key_model.png);
+    text-align: center;
+}
+
+div.key-container div {
+    position: absolute;
+    width: 104px;
+    height: 104px;
+    /*居中*/
+    line-height: 140px;
+    text-align: center;
+}
+
+/*行*/
+.row-key-1 {
+    top: -60px;
+}
+
+.row-key-2 {
+    top: 20px;
+}
+
+.row-key-3 {
+    top: 100px;
+}
+
+.row-key-4 {
+    top: 178px;
+}
+
+/*列*/
+.col-key-1 {
+    left: 0;
+}
+
+.col-key-2 {
+    left: 99px;
+}
+
+.col-key-3 {
+    left: 196px;
+}
+
+.key-container {
+    position: absolute;
+    top: 150px;
+    text-align: left;
+}
+
+#search-value {
+    text-align: center;
+    margin-top: 45px;
+    font-size: 18px;
+    width: 300px;
+    border: none;
+    color: #fff;
+    background-color: transparent;
+}
+
+#content-container {
+    top: 160px;
+    left: 344px;
+}
+
+#prev-arrow {
+    top: 96px;
+    left: 469px;
+}
+
+#next-arrow {
+    top: 463px;
+    left: 469px;
+}
+
+#page-index {
+    top: 62px;
+    left: 585px;
+    font-size: 18px;
+}
+
+#title {
+    top: 56px;
+    left: 347px;
+    width: 110px;
+    height: 24px;
+    font-size: 20px;
+}
+
+.item {
+    display: inline-block;
+}
+
+.item img {
+    width: 120px;
+    height: 86px;
+    padding: 10px;
+    margin-right: -10px;
+    border-radius: 20px;
+}
+
+.item img.focus {
+    background-image: url(../../../../img/sd/Search/V9/imgbox.png);
+    background-position: center;
+}
+
+.item p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.item p,
+.item marquee {
+    display: block;
+    width: 120px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.null-data {
+    width: 255px;
+    height: 256px;
+    text-align: center;
+    line-height: 255px;
+    font-style: italic;
+}

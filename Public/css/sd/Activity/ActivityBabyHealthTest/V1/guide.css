@@ -1,0 +1,80 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 644px;
+    height: 530px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#entry-btn {
+    position: absolute;
+    top: 330px;
+    left: 210px;
+    width: 252px;
+    height: 104px;
+}
+
+#main {
+    display: none;
+}
+
+#time {
+    position: absolute;
+    top: 250px;
+    left: 213px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+#left-times {
+    position: absolute;
+    top: 415px;
+    left: 380px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+#tips {
+    position: absolute;
+    top: 500px;
+    left: 10px;
+    font-size: 16px;
+    color: #bb5072;
+}
+
+#phone {
+
+    position: absolute;
+    top: 500px;
+    left: 442px;
+    font-size: 16px;
+    color: #bb5072;
+}
+
+#back-btn {
+    position: absolute;
+    top: 20px;
+    left: 500px;
+}
+
+#unsubscribe-btn {
+    position: absolute;
+    top: 90px;
+    left: 500px;
+}
+
+#begin-btn {
+    position: absolute;
+    top: 340px;
+    left: 240px;
+}

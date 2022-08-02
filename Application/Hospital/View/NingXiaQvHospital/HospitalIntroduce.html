@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>医院简介</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/Hospital/NingXiaQvHospital/HospitalIntroduce.css?t={$time}"/>
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            firstEnter: '{$firstEnter}',                          // 用户首次进入
+        };
+        window.onload = function () {
+            Hosp.init();
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Hospital/NingXiaQvHospital/HospitalIntroduce.js?t={$time}"></script>
+</head>
+<body>
+
+<div id="container">
+    <div id="debug"></div>    <img id="bg" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/HospitalIntroduce/bg.jpg" alt="">
+
+</div>
+
+</body>
+</html>

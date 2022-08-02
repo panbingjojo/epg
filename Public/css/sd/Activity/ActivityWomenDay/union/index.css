@@ -1,0 +1,418 @@
+body {
+    width: 640px;
+    height: 530px;
+    overflow: hidden;
+}
+
+body > *,
+.modal > * {
+    position: absolute;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 640px;
+    height: 530px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+#score {
+    top: 485px;
+    left: 90px;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 22px;
+    color: #fff;
+}
+
+#btn-start {
+    position: absolute;
+    top: 320px;
+    left: 260px;
+}
+#btn_back {
+    position: absolute;
+    top: 20px;
+    left: 560px;
+}
+
+#left_times {
+    top: 484px;
+    left: 330px;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+    /*border: 1px red solid;*/
+}
+
+#btn_container {
+    top: 10px;
+    left: 20px;
+}
+
+#btn_container > img {
+    margin-top: 10px;
+}
+
+#btn_container > * {
+    display: block;
+}
+
+#btn_knowledge {
+    top: 96px;
+    left: 470px;
+}
+
+/*====中奖名单====*/
+#total_list {
+    top: 120px;
+    left: 70px;
+}
+
+#all_marquee {
+    height: 106px;
+}
+
+#my_marquee {
+    height: 38px;
+}
+
+table.marquee_table {
+    width: 510px;
+}
+
+table#all_table tr {
+    height: 20px;
+}
+
+table.marquee_table td {
+    width: 170px;
+    margin-right: 10px;
+    text-align: center;
+    color: #663300;
+    font-size: 20px;
+}
+
+#my_list {
+    top: 305px;
+    left: 70px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+#reset_tel {
+    color: #fff;
+    top: 357px;
+    left: 280px;
+    width: 190px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 22px;
+    text-align: center;
+}
+
+#btn_list_submit {
+    top: 400px;
+    left: 280px;
+}
+
+#btn_list_cancel {
+    top: 400px;
+    left: 410px;
+}
+
+/*====兑换奖品====*/
+#game_score {
+    top: 473px;
+    left: 100px;
+    font-size: 24px;
+    color:#fff;
+}
+
+
+#exchange_prize_1 {
+    top: 270px;
+    left: 90px;
+}
+
+#exchange_prize_2 {
+    top: 270px;
+    left: 267px;
+}
+
+#exchange_prize_3 {
+    top: 270px;
+    left: 445px;
+}
+
+#exchange_point_1 {
+    top: 365px;
+    left: 300px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#exchange_point_2 {
+    top: 365px;
+    left: 110px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+#exchange_point_3 {
+    top: 365px;
+    left: 480px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    /*border: 1px red solid;*/
+}
+
+/*====游戏成功====*/
+
+#btn_game_success {
+    top: 300px;
+    left: 270px;
+}
+#btn_fail{
+    top: 306px;
+    left: 260px;
+
+}
+
+#add_score{
+    position: absolute;
+    top: 211px;
+    left: 450px;
+    font-size: 28px;
+    color:#fff;
+    /*border: 1px red solid;*/
+}
+
+/*====订购VIP====*/
+#btn_order_submit {
+    top: 300px;
+    left: 200px;
+}
+
+#btn_order_cancel {
+    top: 300px;
+    left: 358px;
+}
+
+/*====兑换成功====*/
+#exchange_tel {
+    color: #fff;
+    top: 267px;
+    left: 300px;
+    width: 180px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 22px;
+    text-align: center;
+    /*border: 1px red solid;*/
+}
+
+#btn_exchange_submit {
+    top: 320px;
+    left: 280px;
+}
+
+#btn_exchange_cancel {
+    top: 320px;
+    left: 420px;
+}
+
+#count {
+    top: 208px;
+    left: 360px;
+    color: #fff;
+    font-size: 35px;
+}
+
+#btn_close_rule{
+    top: 10px;
+    left: 554px;
+    display: none;
+}
+
+/*====游戏部分====*/
+#animal-bg {
+    position: absolute;
+    top: 170px;
+    left: 0px;
+
+}
+
+#animal-car {
+    position: absolute;
+    top: 164px;
+    left:178px;
+}
+
+#animal-timer {
+    position: absolute;
+    top: 26px;
+    left: 85px;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+    /*border: 1px red solid;*/
+}
+
+#btn-play {
+    position: absolute;
+    top: 260px;
+    left:430px;
+}
+
+#btn_game_over_sure {
+    position: absolute;
+    top: 10px;
+    left:554px;
+}
+
+
+#bar-box{
+    position: absolute;
+    top: 43px;
+    left:160px;
+    width: 30px;
+    overflow: hidden;
+
+}
+.man-box{
+    position: absolute;
+    top: 43px;
+    left:150px;
+
+}
+.bar{
+    top: 0px;
+    left:0px;
+    width: 380px;
+    height: 34px;
+}
+#bar-man{
+    position: absolute;
+    top: -5px;
+    left:0px;
+    z-index: 11;
+}
+.start{
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+}
+.start-box{
+    position: absolute;
+    top: 30px;
+    left:160px;
+    width: 380px;
+}
+#start-1{
+    left: 0px;
+}
+#start-2{
+    left: 50px;
+}
+#start-3{
+    left: 110px;
+}
+#start-4{
+    left: 170px;
+}
+#start-5{
+    left: 230px;
+}
+#start-6{
+    left: 290px;
+}
+
+
+#btn_order_1{
+    position: absolute;
+    top: 220px;
+    left: 0px;
+}
+#btn_order_2{
+    position: absolute;
+    top: 330px;
+    left: 0px;
+}
+#btn_order_3{
+    position: absolute;
+    top: 220px;
+    left: 360px;
+}
+#btn_order_4{
+    position: absolute;
+    top: 330px;
+    left: 360px;
+}
+
+
+#dg_order_1{
+    position: absolute;
+    top: 210px;
+    left: 70px;
+}
+#dg_order_2{
+    position: absolute;
+    top: 210px;
+    left: 330px;
+}
+#dg_order_3{
+    position: absolute;
+    top: 320px;
+    left: 70px;
+}
+#dg_order_4 {
+    position: absolute;
+    top: 320px;
+    left: 330px;
+}
+.tost_bg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#intercept-back{
+    position: absolute;
+    top: 20px;
+    left: 560px;
+}
+#btn-go{
+    position: absolute;
+    top: 420px;
+    left: 250px;
+}
+
+
+

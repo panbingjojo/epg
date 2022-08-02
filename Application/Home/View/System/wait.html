@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>wait页面</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/System/update.css?t={$time}"/>
+
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+
+<!--第一个是背景图，下面两个分别是转圈与文字滚动-->
+<div class="update_background">
+    <img id="update_img" src="__ROOT__/Public/img/{$platformType}/System/Update/back_gd.jpg" alt=""/>
+</div>
+
+<div>
+    <img id="update_round" src="" alt=""/>
+</div>
+
+<script type="text/javascript">
+    window.onload =function () {
+        if (parent) {
+            LMEPG.Log.info("parent.releaseFrame!!!!!!!!!!!!!");
+            try {
+                parent.releaseFrame();
+            } catch (e) {
+                LMEPG.Log.error("parent.releaseFrame exception: " + e.toString());
+            }
+        }
+    }
+</script>
+</body>
+</html>

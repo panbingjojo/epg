@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>播放页面-河南电信EPG-V15</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V1/video.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Player/V1/volume.css?t={$time}"/>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!-- 当前页所用自定义js -->
+    <switch name="carrierId">
+        <case value="410092">     <!--河南电信EPG播放器-->
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js"></script>
+        </case>
+    </switch>
+
+</head>
+<body bgcolor="transparent" style="margin:0; padding:0;">
+<script type="text/javascript">
+    var RenderParam = {
+        carrierId: "{$carrierId}",                      // 地区id
+        areaCode: "{$areaCode}",                        // 省份地区码
+        platformType: "{$platformType}",                // 平台类型（hd--高清 sd--标清）
+        debug: "{$debug}",                              // 调试模式
+        sourceId: "{$sourceId}",                        // 视频ID
+        userId: "{$userId}",                            // 用户ID
+        accountId: "{$accountId}",                      // 业务账号
+        isVip: {$isVip},                                // 用户是不是vip，1 -- 是vip
+        freeSeconds: {$freeSeconds},                    // 免费观看时长
+        currentPlayTimes: 0,                            // 记录当前播放的时间进度
+        totalTimes: 0,                                  // 总时长
+        userType: {$userType},                          // 视频的播放策略（0-不限，1-普通用户可看, 2-vip可看）
+        videoInfo: {$videoInfo},                        // 视频信息
+        videoUrl: decodeURIComponent("{$videoUrl}"),    // 视频url：中国联通的高清视频地址http 转换成为rtsp进行播放。
+        isForbidOrder: "{$Think.cookie.c_is_forbided_order}", // 是否禁止订购 1--表示禁止订购
+        albumName: "{$albumName}",                      //专辑跳转传入专辑别名参数
+        playerPlatForm: "{$playerPlatForm}",            // 播放器平台类型 （hw:华为平台、zte:中兴平台）
+        status: 1,
+        interval: "",
+    };
+
+    // 日志打印
+    function logLocal(msg, errorLevel) {
+        var logMsg = "[HeNan:V15-Player]--->" + msg;
+        if (errorLevel === true) {
+            LMEPG.Log.error(logMsg);
+        } else {
+            LMEPG.Log.info(logMsg);
+        }
+    }
+
+    function startTimer() {
+        RenderParam.interval = setInterval(function () {
+            logLocal("check time...");
+            RenderParam.currentPlayTimes = HybirdCallBackInterface.getCurrentTime();
+            if (RenderParam.currentPlayTimes >= RenderParam.totalTimes) {
+                HybirdCallBackInterface.closeVideo();
+                history.go(-1);
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        registerKeys();
+
+        //上报视频历史
+        Network.savePlayerProgress(JSON.stringify(RenderParam.videoInfo));
+
+        if (typeof MediaPlayer === "undefined") {
+            logLocal("no MediaPlayer!!!");
+        }
+
+        /**
+         * 解析视频参数
+         * 由于河南地区的中兴平台与华为平台使用的视频code值不一样
+         * 所以让产品人员在管理后台对视频code进行拼接
+         * 格式：华为@中兴 ===》 9955255858522@86521569
+         * 所以，如果是华为平台，则获@符号之前的code
+         * 中兴平台，则获取@符号后面的code
+         * */
+        logLocal("Starting [HeNan] player.....");
+        logLocal("videoUrl: " + RenderParam.videoUrl);
+        logLocal("playerPlatForm: " + RenderParam.playerPlatForm);
+
+        // 屏显打印 - 允许测试账号列表
+        var openDebug = LMEPG.Func.array.contains(RenderParam.accountId,
+            [
+                "837112898685@HAITV", //该盒子为烽火，不支持播放环境！还发现：839513094906@HAITV、
+                "837110753111@HAITV",
+                "837115815080@HAITV",
+                "dxrmcs",
+            ]);
+        var videoTitle = RenderParam.videoInfo.title;
+
+        // 最初测试视频
+        if (openDebug) {
+            var md1 = "99100000012019022515322604129220@99100000022019022515322604129221"; //ERROR:不通过![脊髓损伤的急性处理和康复治疗][gylm002]-[99100000012019022515322604129220@99100000022019022515322604129221]
+            var md2 = "99100000012019090216301705921726@99100000022019090216301705921727"; //ERROR:不通过!
+            var md3 = "99100000012019022515322504129214@99100000012019022515322504129214"; //ERROR:不通过![脊髓损伤的定义,危害][]-[99100000012019022515322504129214@??]
+            var md4 = "99100000012018091310355502812277@99100000012018091310355502812277"; //ERROR:不通过!gylm559.ts
+            var md5 = "99100000012018091310355502812279@99100000012018091310355502812279"; //ERROR:不通过!gylm560.ts
+            var md6 = "99100000012020021011584407015881@99100000022020021011584507015882"; //其它：教育的内容
+            var md7 = "99100000012019122711215406846983@99100000022019122711215406846984"; //OK:通过![声音嘶哑吃什么好得快]
+            var md8 = "99100000012019041616355604627458@99100000022019041616355604627459"; //OK:通过![其它家：萌鸡小队252]
+            // videoTitle = "其它家：萌鸡小队252";
+            // RenderParam.videoUrl = md8;
+            // RenderParam.videoUrl = (function () {
+            //     var sameIndex = 0;
+            //     var strs = RenderParam.videoUrl.split("@");
+            //     logLocal("播放测试：统一编码所属" + (sameIndex === 0 ? "HW" : "ZTE"));
+            //     return strs[sameIndex] + "@" + strs[sameIndex];
+            // }());
+            logLocal("[播放测试][" + RenderParam.playerPlatForm + "][" + videoTitle + "]" + RenderParam.videoUrl);
+        }
+
+        var mediaCode = RenderParam.videoUrl.split("@");
+        var playVideoUrl = ""; //传入接口的播放地址（分平台设置不同）
+        var logMsg = ""; //分平台调试日志打印
+
+        // 华为平台
+        if (RenderParam.playerPlatForm === "hw") {
+            logLocal("huawei MediaPlayer...");
+
+            // 设置播放源（串）
+            playVideoUrl = mediaCode[0];
+
+            logMsg = "华为-播放串[" + RenderParam.accountId + "][" + videoTitle + "]：" + playVideoUrl;
+            logLocal(logMsg);
+            openDebug && LMEPG.UI.logPanel.e(logMsg);
+
+            // loglocal("华为-启动播放前：HybirdCallBackInterface=" + (typeof HybirdCallBackInterface));
+            // loglocal("华为-启动播放前：HybirdCallBackInterface.isAndroidDevice=" + LMEPG.Func.isObject(HybirdCallBackInterface) ? typeof HybirdCallBackInterface.isAndroidDevice : "no android device...");
+            // loglocal("华为-启动播放前：HybirdCallBackInterface.sendOpenBSTBroadcast=" + LMEPG.Func.isObject(HybirdCallBackInterface) ? typeof HybirdCallBackInterface.sendOpenBSTBroadcast : "no type...");
+
+            HybirdCallBackInterface.sendOpenBSTBroadcast(playVideoUrl);
+
+            logLocal("华为-启动播放后，HybirdCallBackInterface.sendOpenBSTBroadcast");
+            onBack();
+        } else {
+            logLocal("zte MediaPlayer...");
+
+            // 设置播放源（串）
+            // mediaCode[1] = "99100000022018050212062602214928"; //测试视频
+            // mediaCode[1] = "99100000022019022515322604129221"; //测试视频
+            // mediaCode[1] = "99100000022019041616351304627153"; //测试视频（别人家应用视频，可以播放：萌鸡小队）
+            playVideoUrl = "http://222.85.81.15:6060/SCMS0017/32/" + mediaCode[1] + "?virtualDomain=SCMS0017.vod_hpd.zte.com";
+
+            logMsg = "中兴-播放串[" + RenderParam.accountId + "][" + videoTitle + "]：" + playVideoUrl;
+            logLocal(logMsg);
+            openDebug && LMEPG.UI.logPanel.e(logMsg);
+
+            var location = I_HD() ? [0, 0, 1280, 720] : [0, 0, 640, 530];
+            HybirdCallBackInterface.setCallFunction(recvJaveEvent);
+            HybirdCallBackInterface.closeVideo();
+            HybirdCallBackInterface.playUrlVideoInFrame(playVideoUrl, location[0], location[1], location[2], location[3], false);
+        }
+    };
+
+    /**
+     * 处理从C端接收到的事件
+     * @param param 传过来的参数
+     */
+    function recvJaveEvent(param) {
+        logLocal("param:" + JSON.stringify(param));
+        var tag = param.tag;
+        logLocal("recvJaveEvent:" + tag);
+        switch (tag) {
+            case HybirdCallBackInterface.EVENT_KEYBOARD_BACK:
+                logLocal("[recvJaveEvent]: play keybackEvent!");
+                HybirdCallBackInterface.closeVideo();
+                break;
+            case HybirdCallBackInterface.EVENT_PLAY_PRE:
+                logLocal("[recvJaveEvent]: play vodPreprePlay!");
+                RenderParam.totalTimes = HybirdCallBackInterface.getTotalTime();
+                logLocal("RenderParam.totalTimes：" + RenderParam.totalTimes);
+                startTimer();
+                break;
+            case HybirdCallBackInterface.EVENT_PLAY_END:
+                logLocal("[recvJaveEvent]: play end!");
+                HybirdCallBackInterface.closeVideo();
+                break;
+            case HybirdCallBackInterface.EVENT_PLAY_ERROR:
+                logLocal("[recvJaveEvent]: play error!");
+                HybirdCallBackInterface.closeVideo();
+                break;
+            case HybirdCallBackInterface.EVENT_PAGE_APPEAR:
+                logLocal("[recvJaveEvent]: play refresh!");
+                break;
+        }
+    }
+
+    /**
+     * 监听特殊按键实现
+     */
+    function registerKeys() {
+        LMEPG.KeyEventManager.init();
+        LMEPG.KeyEventManager.addKeyEvent
+        (
+            {
+                /* 物理功能按键（方向相关） */
+                KEY_ENTER: function () {
+                    onKeyPress_OK();
+                },
+
+                /* 其它按键 */
+                KEY_BACK: function () {
+                    onBackWithCloseVideo();
+                }
+            }
+        );
+    }
+
+    /**
+     * 系统事件回调监听
+     * @param event 事件对象
+     */
+    document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        // var keyCode = e.which ? e.which : e.keyCode;
+        logLocal("onkeydown ---> event.which=" + e.which + ",keyCode=" + e.keyCode);
+        var keyCode = e.keyCode;
+        logLocal("onkeydown ---> keyCode=" + keyCode);
+        switch (keyCode) {
+            case KEY_ENTER:
+                onKeyPress_OK();
+                break;
+            case KEY_BACK:
+                onBackWithCloseVideo();
+                break;
+        }
+    };
+
+    function onKeyPress_OK() {
+        if (RenderParam.status == "1") {
+            RenderParam.status = "2";
+        } else {
+            RenderParam.status = "1";
+        }
+        if (RenderParam.status == "2") {
+            HybirdCallBackInterface.pause();
+            clearInterval(RenderParam.interval);
+        } else {
+            HybirdCallBackInterface.play();
+            RenderParam.interval = setInterval(function () {
+                if (RenderParam.currentPlayTimes >= RenderParam.totalTimes) {
+                    HybirdCallBackInterface.closeVideo();
+                    history.go(-1);
+                }
+            }, 1000);
+        }
+    }
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    function onBackWithCloseVideo() {
+        logLocal("on back with close video...");
+        HybirdCallBackInterface.closeVideo();
+        LMEPG.Intent.back();
+    }
+
+    // 页面销毁前
+    window.onbeforeunload = function () {
+        logLocal("onbeforeunload...");
+    };
+
+    // 页面销毁
+    window.onunload = function () {
+        logLocal("onunload...");
+        HybirdCallBackInterface.closeVideo();
+    };
+
+    // 页面错误
+    window.onerror = function (message, filename, lineno) {
+        var stbModelWithPT = LMEPG.STBUtil.getSTBModel() + (I_HD() ? "（高清）" : "（标清）");
+        var errorLog = LMEPG.Func.string.format("[V15/play.html]window.onerror[{0}][捕获全局错误]：\nmessage:{1}\nfile_name:{2}\nline_NO:{3}", [stbModelWithPT, message, filename, lineno]);
+        logLocal(errorLog, true);
+    };
+
+    var Network = {
+
+        /**
+         * 保存用户播放进度
+         */
+        savePlayerProgress: function (value, callback) {
+            var postData = {
+                "key": "EPG-LWS-LATEST-VIDEOINFO-" + RenderParam.carrierId + "-" + RenderParam.userId,
+                "value": value
+            };
+            LMEPG.ajax.postAPI('Activity/saveStoreData', postData, function (rsp) {
+                console.log(rsp);
+                if (callback)
+                    callback();
+            });
+        },
+    };
+
+</script>
+</body>
+</html>

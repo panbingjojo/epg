@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/sd/Home/V13/Home/bg.png);
+    background-size: 644px 530px;
+}
+
+body > * {
+    position: absolute;
+}
+p.title {
+    top: 20px;
+    left: 38px;
+    font-size: 22px;
+    color: #fff;
+}
+div.container {
+}
+
+
+#list-wrapper{
+    position: absolute;
+    top: 192px;
+    width: 644px;
+    text-align: center;
+}
+#list-wrapper img{
+    padding: 6px;
+    width: 136px;
+    height: 136px;
+    margin: 6px;
+}
+.text-sure{
+    position: absolute;
+    top: 432px;
+    width: 644px;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+}
+.text-sure span{
+    color: #ffc426;
+}

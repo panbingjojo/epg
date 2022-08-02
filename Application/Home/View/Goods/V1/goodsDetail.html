@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>商品详情</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css"/>
+
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var scrollPosition = {$scrollTop};
+
+        var RenderParam = {
+            // 公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",            // 页面尺寸
+            stbModel: "{$stbModel}",                            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",                // 用户Id
+            focusIndex: "{$focusIndex}",                        // 焦点ID
+            focusBackId: "{$focusBackId}",                        // 焦点ID
+            isVip: {$isVip},                                    // 用户是否是vip
+        };
+    </script>
+
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUI.js?t={$time}"></script>
+    <style>
+        body > * {
+            position: absolute;
+        }
+
+        .prompt {
+            top: 32px;
+            left: 162px;
+            width: 40px;
+            height: 400px;
+            font-size: 26px;
+            color: #FFFFFF;
+            text-align: center;
+            word-wrap: break-word;
+            word-break: nomal;
+        }
+
+        .step_box {
+            top: 0px;
+            left: 216px;
+            width: 871px;
+            height: 592px;
+            overflow: auto;
+            border: 1px transparent solid;
+        }
+
+        #buy {
+            top: 643px;
+            left: 544px;
+            width: 162px;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            text-align: center;
+        }
+        /*按钮*/
+        .btn-hover {
+            box-shadow: 0 0 6px 4px #ffffff;
+            background: rgba(0, 0, 0, 0) !important;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .step {
+            padding-top: 0;
+            margin-top: -4px;
+            width: 860px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="center" class="step_box"></div>
+<div class="prompt">
+    点击<br/>"<br/>确认<br/>"<br/>立即购买<br/>&nbsp;！
+</div>
+
+<div id="buy" class="btn-bg btn-hover">
+    立即购买
+</div>
+<script>
+    var scroll = "center";
+
+    // 返回按键
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    //页面跳转控制
+    var Jump = {
+        /**
+         * 获取当前页面对象
+         */
+        getCurrentPage: function () {
+            var currentPage = LMEPG.Intent.createIntent("goodsDetail");
+            currentPage.setParam("scrollTop", G("center").scrollTop);
+            currentPage.setParam("goodInfo", DataHandle.InitData.goodInfo);
+            return currentPage;
+        },
+        /**
+         * 跳转到弹框页
+         */
+        jumpBuy: function () {
+            if (RenderParam.carrierId == "450004" && DataHandle.InitData.goodInfo.goods_type != 2) {
+                LMEPG.UI.showToastV1("正在备货，敬请期待…");
+                return;
+            }
+            var objCurrent = Jump.getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("goodsBuy");
+            objDialog.setParam("goodInfo", DataHandle.InitData.goodInfo);
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+    };
+
+    var buttons = [
+        {
+            id: "buy",
+            name: '购买',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: '',
+            nextFocusDown: '',
+            click: Jump.jumpBuy,
+            focusChange: "",
+            beforeMoveChange: "",
+        }
+    ];
+
+    var DataHandle = {
+        InitData: {
+            /*goodInfo: {$goodInfo}*/
+        }
+    };
+
+    var UIHandle = {
+        init: function () {
+            try {
+                var imgObj = JSON.parse(DataHandle.InitData.goodInfo.goods_detail_img);
+                var imgArr = imgObj.url;
+                var strHtml = "";
+                for (var i = 0; i < imgArr.length; i++) {
+                    var imgUrl = RenderParam.fsUrl + imgArr[i];
+                    strHtml += '<img class="step" src="' + imgUrl + '" />';
+                }
+                G("center").innerHTML = strHtml;
+                LMEPG.UI.initScrollTop(scrollPosition);
+                LMEPG.ButtonManager.init("buy", buttons, "", true);
+            } catch (e) {
+                LMEPG.UI.showToast("商品解析异常");
+                LMEPG.ButtonManager.init("buy", buttons, "", true);
+            }
+
+        }
+    };
+
+    window.onload = function () {
+        document.body.style.backgroundImage = 'url(__ROOT__/Public/img/hd/Home/V15/Home/bg.png)';
+        UIHandle.init();
+    }
+
+</script>
+</body>
+</html>

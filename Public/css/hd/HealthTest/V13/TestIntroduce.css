@@ -1,0 +1,109 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    color: #fff;
+    background-image: url(../../../../img/hd/Home/V13/Home/bg.png);
+    background-repeat: no-repeat;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    height: 66px;
+    line-height: 66px;
+    color: #fff;
+}
+
+#record-container{
+    position: absolute;
+    top: 107px;
+    left: 120px;
+    width: 1040px;
+    height: 220px;
+    background-image: url(../../../../img/hd/HealthTest/V8/weight/fat_bg.png);
+    color: #000;
+}
+#advice-content{
+    position: absolute;
+    top: 357px;
+    left: 120px;
+    width: 1040px;
+    height: 343px;
+    background-image: url(../../../../img/hd/HealthTest/V8/weight/advice.png);
+}
+#fat{
+    position: absolute;
+    top: 25px;
+    left: 370px;
+    font-weight: bold;
+    font-size: 50px;
+    width: 300px;
+    /*border: 1px red solid;*/
+    text-align: center;
+}
+.process{
+    position: absolute;
+    top: 125px;
+    left: 90px;
+    font-size: 24px;
+    width: 820px;
+    /*border: 1px red solid;*/
+}
+#fat-icon{
+    position: absolute;
+    left:610px;
+    top: 20px;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-image: url(../../../../img/hd/HealthTest/V8/weight/fat_h_1.png);
+    color: #fff;
+}
+.percent{
+    position: absolute;
+    top: -20px;
+    color: #939496;
+    font-size: 24px;
+}
+
+.type{
+    position: absolute;
+    top: 45px;
+    color: #939496;
+    font-size: 24px;
+    width: 100px;
+}
+.advice{
+    margin: 20px;
+    font-size: 24px;
+    width: 990px;
+    height: 90px;
+    /*border: 1px red solid;*/
+    overflow: hidden;
+}
+.advice-title{
+    font-weight: bold;
+}
+#fat-pos{
+    position: absolute;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 15px;
+    background: red;
+}
+
+

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>帮助carrierIdSet-v13</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Help/V13/HelpIndex.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+            accountId: '{$accountId}',          // 用户账号
+            loginId: '{$loginId}',              // 用户登录id
+            skin: {$skin},      // 用户自定义背景
+            // 焦点
+            focusId: '{$focusId}'
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="debug"></div>
+<p class="title">帮助</p>
+<if condition="($carrierId neq '371092') OR ($carrierId neq '371002')">
+<div class="container">
+    <div id="list-wrapper" class="focus-0 list-wrapper-{$carrierId}">
+        <div id="item-0">
+            <img id="focus-0" src="__ROOT__/Public/img/hd/Help/V13/test_0.png" alt="">
+            <p>新手指南</p>
+        </div>
+        <if condition="($carrierId neq '650092') and  $carrierId neq '620092' and ($carrierId neq '450092') and ($carrierId neq '420092') and ($carrierId neq '410092')">
+            <div>
+                <img id="focus-1" src="__ROOT__/Public/img/hd/Help/V13/test_1.png" alt="">
+                <p>视频介绍</p>
+            </div>
+        </if>
+        <div>
+            <img id="focus-2" src="__ROOT__/Public/img/hd/Help/V13/test_2.png" alt="">
+            <p>关于我们</p>
+        </div>
+    </div>
+</div>
+</if>
+
+<div id="demo-wrap">
+    <p class="demo-title">新手指南</p>
+    <if condition = " $carrierId eq '320092'">
+        <img id="demo-0" src="__ROOT__/Public/img/{$platformType}/Help/V13/demo0_320092.gif" alt="">
+        <elseif condition = " $carrierId eq '620092'" />
+        <img id="demo-0" src="__ROOT__/Public/img/{$platformType}/Help/V13/demo0_620092.gif" alt="">
+        <else/>
+        <img id="demo-0" src="__ROOT__/Public/img/{$platformType}/Help/V13/demo0.gif" alt="">
+    </if>
+    <img id="demo-1" src="__ROOT__/Public/img/{$platformType}/Help/V13/demo1.gif">
+    <img id="demo-2" src="__ROOT__/Public/img/{$platformType}/Help/V13/demo2.gif">
+    <img id="demo-3" onerror="this.src ='__ROOT__/Public/img/{$platformType}/Help/V13/demo3.gif'" src="__ROOT__/Public/img/{$platformType}/Help/V13/demo3_{$carrierId}.gif">
+    <img id="demo-4" src="__ROOT__/Public/img/{$platformType}/Help/V13/demo4.gif">
+    <img id="demo-5" src="__ROOT__/Public/img/{$platformType}/Help/V13/demo5.gif">
+    <img id="left-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/left.png">
+    <img id="right-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/right.png">
+    <div class="bottom-demo-title">按遥控器的“左” “右”键进行翻看</div>
+</div>
+<div id="about-wrap">
+    <p class="about-title" id="about-title">关于我们</p>
+    <img id="about-desc" onerror="this.src='__ROOT__/Public/img/hd/Help/V13/about_000051.png'" src="__ROOT__/Public/img/hd/Help/V13/about_{$carrierId}.png" alt="">
+    <p>版本号：V1.1.0</p>
+</div>
+<script type="text/javascript" src="__ROOT__/Public/js/Help/HelpIndex.js?t={$time}"></script>
+<script type="text/javascript" src="__ROOT__/Public/js/Unclassified/ByCarrierIdSet.js?t={$time}"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var isSHowAboutPage = RenderParam.carrierId == '371092' || RenderParam.carrierId == '371002';
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+
+        // 山东电信海看项目直接显示关于我们
+        if(isSHowAboutPage) {
+            Show('about-wrap');
+            G('about-title').innerHTML = '关于我们';
+        }
+        loadByCarrierId();
+    };
+</script>
+</body>
+</html>

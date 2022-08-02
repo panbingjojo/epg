@@ -1,0 +1,447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>设备购买</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            focusIndex: "{$focusIndex}",        // 焦点ID
+            focusBackId: "{$focusBackId}",      // 焦点ID
+            isVip: {$isVip},                    // 用户是否是vip
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmUI.js?t={$time}"></script>
+    <!--模块-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Goods/GoodsAPI.js?t={$time}"></script>
+
+    <style>
+        .title {
+            position: absolute;
+            left: 80px;
+            top: 38px;
+            line-height: 37px;
+            font-size: 37px;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .title-line {
+            position: absolute;
+            left: 80px;
+            top: 87px;
+            width: 150px;
+            height: 2px;
+        }
+
+        .form {
+            position: absolute;
+            top: 140px;
+            left: 80px;
+            width: 1120px;
+            height: 540px;
+            font-size: 32px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .form-table {
+            width: 985px;
+            margin: 38px auto;
+        }
+
+        .table tr td {
+            height: 80px;
+            text-align: left;
+        }
+
+        .introduce {
+            font-size: 22px;
+        }
+
+        .table {
+            margin: 0px auto;
+        }
+
+        #confirm {
+            width: 125px;
+            display: inline-block;
+            font-size: 28px;
+        }
+
+        #cancel {
+            width: 125px;
+            display: inline-block;
+            font-size: 28px;
+            margin-left: 50px;
+        }
+
+        .introduce {
+            padding: 10px 70px;
+        }
+
+        #telPhone {
+            width: 377px;
+            padding: 10px 10px;
+            background-image: url("__ROOT__/Public/img/hd/Goods/V1/input_purchase_device.png");
+            background-position: center;
+            color: #0a4076;
+        }
+
+        .row {
+            height: 40px;
+            text-align: center;
+            margin-left: 170px;
+        }
+
+        .select {
+            float: left;
+        }
+
+        .label {
+            font-size: 23px;
+            float: left;
+            margin-top: 7px;
+        }
+    </style>
+</head>
+<body>
+<div class="title">
+    设备购买
+</div>
+<img class="title-line" src="__ROOT__/Public/img/hd/Home/V15/Home/line.png"/>
+<div class="form" style='background-image: url("__ROOT__/Public/img/hd/Goods/V1/rgb_bg.png")'>
+    <div class="form-table">
+        <table class="table">
+            <tr>
+                <td>
+                    设备类型：
+                </td>
+                <td>
+                    <div id="type">健康盒子</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    设备金额：
+                </td>
+                <td>
+                    <div id="price">￥00.00</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    联系电话：
+                </td>
+                <td>
+                    <div id="telPhone">请填写正确的手机号码</div>
+                    <!--<input id="telPhone" type="tel"  oninput="LMEPG.UI.commonEditDialog.onInputContentChanged(this);" placeholder="请填写正确的手机号码" size="18" disabled="true"/>-->
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <div id="confirm" class="btn-bg">确&nbsp;&nbsp;定</div>
+                    <div id="cancel" class="btn-bg">取&nbsp;&nbsp;消</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="row">
+                        <img id="radio-1" class="select"
+                             src="__ROOT__/Public/img/hd/Goods/V1/select_radio_btn_s_bg.png"/>
+                        <div id="rule" class="label">同意服务条款</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div id="tips" class="border introduce">
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    // 返回按键
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    //页面跳转控制
+    var Jump = {
+        /**
+         * 跳转 -- 规则
+         * @param activityName
+         */
+        jumpRule: function () {
+            var objCurr = Jump.getCurrentPage();
+            var objRule = LMEPG.Intent.createIntent("goodsRule");
+            LMEPG.Intent.jump(objRule, objCurr);
+        },
+
+        /**
+         * 跳转 -- 付款
+         * @param activityName
+         */
+        jumpPay: function (orderId, payUrl) {
+            var objCurr = Jump.getCurrentPage();
+            var objPay = LMEPG.Intent.createIntent("goodsPay");
+            objPay.setParam("goodInfo", DataHandle.InitData.goodInfo);
+            objPay.setParam("orderId", orderId);
+            objPay.setParam("payUrl", payUrl);
+            LMEPG.Intent.jump(objPay, objCurr,LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        },
+
+        /**
+         * 获取当前页面对象
+         */
+        getCurrentPage: function () {
+            var currentPage = LMEPG.Intent.createIntent("goodsBuy");
+            currentPage.setParam("goodInfo", DataHandle.InitData.goodInfo);
+            currentPage.setParam("defaultFocus", LMEPG.ButtonManager.getCurrentButton().id);
+            currentPage.setParam("telephone", G("telPhone").value);
+            return currentPage;
+        },
+
+    };
+
+    var buttons = [];   // 定义全局按钮
+
+    var imgUrl = ROOT + "/Public/img/Common/V3/";
+    var defaultFocus = "{$defaultFocus}";
+    var phone = "{$telephone}";
+
+    var DataHandle = {
+        InitData: {
+           /* goodInfo: {$goodInfo}*/
+        },
+        //获取订购信息
+        getOrderId: function (userTel) {
+            var goodId = DataHandle.InitData.goodInfo.goods_id;
+            GoodsAPI.getOrderId(goodId, userTel, function (data) {
+                if (data.result == "0") {
+                    var orderId = data.order_id;
+                    var payUrl = data.pay_url;
+                    Jump.jumpPay(orderId, payUrl);
+                } else if (data.result == "-101") {
+                    LMEPG.UI.showToast("抱歉，商品已售完！看看其他商品吧！");
+                } else {
+                    LMEPG.UI.showToast("网络不给力，请稍后重试！");
+                }
+            });
+        }
+    };
+
+    UIHandle = {
+        init: function () {
+            var tempGoodInfo = DataHandle.InitData.goodInfo;
+            //G("type").innerHTML = tempGoodInfo.goods_name;
+            //var tempPrice = (tempGoodInfo.goods_price / 100).toFixed(2);
+            //G("price").innerHTML = "￥"+tempPrice ;
+            //G("tips").innerHTML = "为了您更舒适的体验电视家庭医生！收货人地址信息将由我们的工作人员在2个工作日内与您核实，请保持手机畅通！如有疑问请拨打：" + tempGoodInfo.service_tel;
+            //G("telPhone").value = phone;
+        }
+    };
+
+    window.onload = function () {
+        document.body.style.backgroundImage = 'url(__ROOT__/Public/img/hd/Home/V15/Home/bg.png)';
+        UIHandle.init();
+        Pages.initBottom();     //初始化焦点按钮
+        LMEPG.ButtonManager.init([defaultFocus], buttons, "", true);
+    };
+
+    var Pages = {
+        initBottom: function () {
+            buttons.push({
+                id: 'telPhone',
+                name: '购买电话',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'confirm',
+                backgroundImage: "",
+                focusImage: "",
+                click: "",
+                focusChange: Pages.inputFocus,
+                beforeMoveChange: "",
+                cType: "region",
+            });
+            buttons.push({
+                id: 'radio-1',
+                name: '儿童选项',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'rule',
+                nextFocusUp: 'confirm',
+                nextFocusDown: '',
+                backgroundImage: imgUrl + "select_radio_btn_s_bg.png",
+                focusImage: imgUrl + "select_radio_btn_s_f.png",
+                cBackgroundImage: imgUrl + "radio_btn_s_bg.png",
+                cFocusImage: imgUrl + "radio_btn_s_f.png",
+                fBackgroundImage: imgUrl + "select_radio_btn_s_bg.png",
+                fFocusImage: imgUrl + "select_radio_btn_s_f.png",
+                click: Pages.radioBtnEnter,
+                focusChange: "",
+                beforeMoveChange: "",
+                cType: "select",
+            });
+
+            buttons.push({
+                id: 'confirm',
+                name: '购买电话',
+                type: 'img',
+                nextFocusLeft: '',
+                nextFocusRight: 'cancel',
+                nextFocusUp: 'telPhone',
+                nextFocusDown: 'radio-1',
+                backgroundImage: "",
+                focusImage: "",
+                click: Pages.submit,
+                focusChange: Pages.btnFocus,
+                beforeMoveChange: "",
+                cType: "region",
+            });
+            buttons.push({
+                id: 'cancel',
+                name: '购买电话',
+                type: 'img',
+                nextFocusLeft: 'confirm',
+                nextFocusRight: '',
+                nextFocusUp: 'telPhone',
+                nextFocusDown: 'radio-1',
+                backgroundImage: "",
+                focusImage: "",
+                click: onBack,
+                focusChange: Pages.btnFocus,
+                beforeMoveChange: "",
+                cType: "region",
+            });
+
+            buttons.push({
+                id: 'rule',
+                name: '服务条款',
+                type: 'img',
+                nextFocusLeft: 'radio-1',
+                nextFocusRight: '',
+                nextFocusUp: 'cancel',
+                nextFocusDown: '',
+                backgroundImage: "",
+                focusImage: "",
+                click: Jump.jumpRule,
+                focusChange: Pages.wordFocus,
+                beforeMoveChange: "",
+                cType: "region",
+            });
+
+        },
+        inputFocus: function (btn, hasFocus) {
+            var idDom = G(btn.id);
+            if (hasFocus) {
+                LMEPG.CssManager.addClass(btn.id, "btn-hover");
+                idDom.disabled = false;
+                setTimeout(function () {
+                    //LMEPG.UI.moveCursorTo(idDom, idDom.value.length)
+                });
+            } else {
+                LMEPG.CssManager.removeClass(btn.id, "btn-hover");
+                idDom.disabled = true;
+                idDom.blur();
+            }
+        },
+
+
+        btnFocus: function (btn, hasFocus) {
+            if (hasFocus) {
+                LMEPG.CssManager.addClass(btn.id, "btn-hover");
+            } else {
+                LMEPG.CssManager.removeClass(btn.id, "btn-hover");
+            }
+        },
+
+        wordFocus: function (btn, hasFocus) {
+            if (hasFocus) {
+                G(btn.id).style.color = "#ffee99"
+            } else {
+                G(btn.id).style.color = "#fff"
+            }
+        },
+        /**
+         * 按键移动前事件
+         */
+        onBeforeMoveChange: function (direction, current) {
+            //翻页
+            switch (direction) {
+                case "right":
+                    if (current.id == "device-2") {
+                        List.nextMenu();
+                        return false;
+                    }
+                    break;
+                case "left":
+                    if (current.id == "device-1") {
+                        List.preMenu();
+                        return false;
+                    }
+                    break;
+            }
+        },
+        // 点击选中事件
+        radioBtnEnter: function (btn) {
+            if (btn.cType == "select") {
+                btn.backgroundImage = btn.cBackgroundImage;
+                btn.focusImage = btn.cFocusImage;
+                btn.cType = "un-select";
+                G(btn.id).src = btn.cFocusImage;
+            } else if (btn.cType == "un-select") {
+                btn.backgroundImage = btn.fBackgroundImage;
+                btn.focusImage = btn.fFocusImage;
+                btn.cType = "select";
+                G(btn.id).src = btn.fFocusImage;
+            }
+        },
+        /**
+         * 初始化焦点按钮
+         */
+        submit: function () {
+            //判断手机号是否正确
+            var selected = LMEPG.ButtonManager.getButtonById("radio-1").cType;
+            var userTel = G("telPhone").value;
+            if (!LMEPG.func.checkTelPhoneNumberValid(userTel)) {
+                LMEPG.UI.showToast("请填写正确的手机号！", 3);
+                return;
+            }
+            if (selected == "un-select") {
+                LMEPG.UI.showToast("请同意服务条款！", 3);
+                return;
+            }
+            DataHandle.getOrderId(userTel);
+        },
+    }
+
+</script>
+</body>
+</html>

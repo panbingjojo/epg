@@ -1,0 +1,301 @@
+
+body {
+    width: 1280px;
+    height: 720px;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.jump-wrap img {
+    position: absolute;
+}
+
+#jump-back{
+    top: 84px;
+    left: 40px;
+}
+
+#jump-rule {
+    top: 64px;
+    left: 140px;
+}
+
+#jump-winner{
+    top: 36px;
+    left: 280px;
+}
+
+#jump-game {
+    position: absolute;
+    top: 580px;
+    left: 180px;
+}
+
+#times-count {
+    position: absolute;
+    top: 590px;
+    left: 277px;
+    font-size: 21px;
+    font-weight: bold;
+    color: #333;
+    z-index: 1;
+    width: 60px;
+    text-align: center;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+/*====倒计时====*/
+#modal-cd {
+}
+
+#count-down {
+    position: absolute;
+    color: #e55231;
+    font-size: 43px;
+    top: 318px;
+    left: 676px;
+    font-weight: bold;
+}
+
+/*====活动规则====*/
+#modal-rule {
+}
+
+#btn-rule-close {
+    position: absolute;
+    top: 88px;
+    left: 1110px;
+}
+
+/*====中奖名单====*/
+#modal-list {
+}
+
+#total-list {
+    top: 188px;
+    left: 240px;
+    position: absolute;
+}
+
+#all-marquee {
+    height: 166px;
+}
+
+#my-marquee {
+    height: 58px;
+}
+
+table.marquee-table {
+    width: 800px;
+}
+
+table#all-table tr {
+    height: 40px;
+}
+
+table.marquee-table td {
+    width: 33%;
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+}
+
+#my-list {
+    position: absolute;
+    top: 420px;
+    left: 240px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.list-tel {
+    position: absolute;
+    color: #6b6868;
+    top: 500px;
+    left: 500px;
+    width: 400px;
+    font-size: 21px;
+    text-align: center;
+    font-weight: bold;
+}
+
+img.btn-list {
+    position: absolute;
+    top: 580px;
+}
+
+#btn-list-submit {
+    left: 490px;
+}
+
+#btn-list-cancel {
+    left: 770px;
+}
+
+/*====VIP没有游戏次数====*/
+#modal-vip-notimes {
+}
+
+#btn-one0 {
+    position: absolute;
+    top: 418px;
+    left: 536px;
+}
+
+/*====普通用户没有游戏次数====*/
+#modal-pay-notimes {
+}
+
+img.btn-pay {
+    position: absolute;
+    top: 380px;
+}
+
+#btn-pay-sure {
+    left: 550px;
+}
+
+#btn-pay-cancel {
+    left: 770px;
+}
+
+/*====兑换/抽奖成功====*/
+#modal-accomplish {
+}
+
+#accomplish-prize {
+    position: absolute;
+    top: 188px;
+    left: 666px;
+}
+
+#accomplish-tel {
+    position: absolute;
+    top: 496px;
+    left: 588px;
+    width: 250px;
+    text-align: center;
+    font-size: 24px;
+}
+
+img.btn-win {
+    position: absolute;
+    top: 580px;
+}
+
+#btn-accomplish-submit {
+    left: 490px;
+}
+
+#btn-accomplish-cancel {
+    left: 770px;
+}
+
+/*====游戏主界面====*/
+#modal-game {
+}
+
+
+#game-start {
+    position: absolute;
+    top: 588px;
+    left: 187px;
+    background-position: center;
+    background-size: 100%;
+}
+
+#get-fruit{
+    position: absolute;
+    top: 240px;
+    left: 250px;
+    font-size: 36px;
+    color: #ee4a8d;
+    text-align: center;
+    font-weight: bold;
+    width: 75px;
+}
+#tree{
+    position:absolute;
+    bottom: 0;
+    left: 450px;
+}
+
+#modify-cloud{
+    position:absolute;
+    bottom: 0;
+}
+
+#game-cd {
+    position: absolute;
+    top: 310px;
+    left: 250px;
+    font-size: 36px;
+    color: #ee4a8d;
+    text-align: center;
+    font-weight: bold;
+    width: 75px;
+}
+
+
+/*====增加积分界面===*/
+#modal-add-score {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#p-add-score {
+    position: absolute;
+    top: 324px;
+    left: 680px;
+    font-size: 36px;
+    color: #d56000;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+#ready-txt{
+    position: absolute;
+    top: 600px;
+    left: 500px;
+    font-size: 16px;
+    color: #969696;
+    width: 280px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#btn-one-add {
+    position: absolute;
+    top: 466px;
+    left: 574px;
+}
+#go-lottery,
+#go-again {
+    position: absolute;
+    top: 468px;
+    left: 558px;
+}
+
+
+
+
+

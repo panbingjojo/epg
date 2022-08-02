@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+    background-position: left;
+    color: #fff;
+    background-image: url(../../../../img/sd/Home/V13/Home/bg.png);
+}
+
+p.title {
+    position: absolute;
+    top: 10px;
+    left: 28px;
+    font-size: 28px;
+    color: #fff;
+}
+
+#write-btn {
+    position: absolute;
+    top: 16px;
+    left: 476px;
+    width: 144px;
+    height: 44px;
+}
+
+.warm-tips {
+    top: 340px;
+    left: 20px;
+    width: 604px;
+    height: 154px;
+    font-size: 16px;
+    text-align: left;
+    padding-top: 20px;
+    position: absolute;
+    background-image: url(../../../../img/sd/Unclassified/V13/tip_bg.png);
+    background-size: 100% 100%;
+    }
+
+.warm-tips p {
+    margin-left: 68px;
+    margin-bottom: 5px;
+}
+
+.warm-title {
+    font-weight: bold;
+}
+#key-table{
+    top: -135px !important;
+    left: 38px !important;
+}
+
+#wait-step{
+   position: absolute;
+   top: 115px;
+   left: 123px;
+   width: 400px;
+   height: 189px;
+}

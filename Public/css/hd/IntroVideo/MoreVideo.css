@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    background: transparent url(../../../img/hd/IntroVideo/bg_home.png) no-repeat;
+}
+
+body > * {
+    position: absolute;
+}
+
+#case-img {
+    top: 75px;
+    left: 62px;
+    width: 324px;
+    height: 501px;
+}
+
+#static-btn {
+    top: 9px;
+    left: 820px;
+}
+
+#video-desc {
+
+    list-style: none;
+    top: 74px;
+    left: 411px;
+    color: #fff;
+    width: 803px;
+    font-size: 26px;
+}
+
+#video-desc li {
+    margin-top: 10px;
+}
+br{
+    line-height: 50px;
+}
+#title {
+    font-size: 36px;
+}
+
+
+li#play {
+    margin-top: 30px;
+}
+#introduce{
+    max-height: 240px;
+    overflow: hidden;
+}
+
+.list-container,
+.item-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 25px;
+    text-align: center;
+    width: 149px;
+    height: 66px;
+    line-height: 66px;
+}
+
+.list-container {
+    background-image: url(../../img/IntroVideo/video_label.png);
+}
+
+#title, #introduce, #play {
+    margin-left: 15px;
+}

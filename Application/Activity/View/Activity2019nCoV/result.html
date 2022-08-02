@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>2019nCoV</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Activity/Activity2019nCoV/V1/result.css?t={$time}">
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            isVip: '{$isVip}', // 是否是vip（0-非vip 1-vip）
+            inner: '{$inner}',
+            splashHistory: '{$splashHistory}',
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+        };
+        window.onload = function () {
+            Result.init();
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Activity2019nCoV/result.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<!--评测结果-->
+<div id="result-container">
+    <div id="result-txt">
+        根据自查结果，您现有的症状不能列为疑似新型冠状病毒感染病例，请勿过度担心！保持正常生活规律，充分休息，保持良好心态，适当转移注意力，有助于您更快恢复健康。注意休息，观察病情。关注生活本身，享受悠闲的时光，在家适当活动，陪伴家人，也是不错的选择哦！冬季也是流感高发季节，应注意与新型冠状病毒肺炎区分，普通感染多在1周后恢复，也无须过度担心哦。您可在线咨询了解详细防护措施。
+    </div>
+    <div id="btn-wrap">
+        <img id="btn-1" src="__ROOT__/Public/img/hd/Activity/Activity2019nCoV/btn1.png" alt="">
+        <img id="btn-2" src="__ROOT__/Public/img/hd/Activity/Activity2019nCoV/btn2.png" alt="">
+        <img id="btn-3" src="__ROOT__/Public/img/hd/Activity/Activity2019nCoV/btn3.png" alt="">
+    </div>
+    <div id="suggest-container">
+        <div id="suggest-1">
+            <p class="suggest-title">家庭消毒</p>
+            <ul>
+                <li>使用75%酒精、含氯消毒剂、过氧乙酸和氯仿等脂溶剂对卧室房间进行消毒处理。注意氯已定不能有效灭活病毒。</li>
+                <li>1.酒精：消毒皮肤可以使用75%的医用酒精。</li>
+                <li>2.蒸笼：从沸腾后20分钟可以达到消毒的目的，适用于消毒餐具、衣物。</li>
+                <li>3.煮沸：100℃可以使细菌蛋白质变性，需要消毒杀菌的物品需要全部浸过水面。</li>
+                <li>4.天然紫外线：太阳照射可以有效杀菌。</li>
+                <li>5.空气清洁：保持室内空气清洁，常通风换气。</li>
+                <li>6.高锰酸钾溶液：使用5‰高锰酸钾可以消毒餐具，蔬菜和水果，浸泡一分钟之后洗净。</li>
+                <li>7.消毒液/消毒粉：适用于桌、椅、床、墙面、地板的消毒。</li>
+            </ul>
+        </div>
+        <div class="suggest-wrap" id="suggest-2">
+            <p class="suggest-title">个人支持治疗</p>
+            <ul>
+                <li>卧床休息、加强支持治疗，保证充分的热量摄入，提高免疫力。</li>
+                <li>每日早晚监测体温，体温维持在≤37.3℃（低热是指37.4℃～38℃；中度热为38.1℃～39℃；高热为39.1℃～41℃；超高热是体温＞41℃）。出现低热可以通过冷毛巾或冰袋物理降温。</li>
+                <li>冬季也是流感高发季节，应注意与新型冠状病毒肺炎区分。部分患者仅为低热、轻微乏力症状，多在1周后恢复。</li>
+                <li>尽量减少人群密集场所活动，避免接触呼吸道感染患者。出门佩戴口罩等防护措施。</li>
+                <li>勤洗手，掌握正确洗手步骤。
+                    <div class="center-img"><img src="__ROOT__/Public/img/hd/Activity/Activity2019nCoV/wash_hand.png" alt=""></div>
+                </li>
+                <li>有呼吸道等症状患者居家休息自我隔离7-14天，观察病情变化。满足以下症状认为疑似新型冠状肺炎病毒感染患者，建议再次进行线上门诊自查评估：</li>
+                <li>1.近14天内有疫情高风险地区或其他有本地病例持续传播地区的旅行史或居住史。</li>
+                <li>2.近14天内曾接触过来自武汉市或其他有本地病例持续传播地区的发热或有呼吸道症状的患者。</li>
+                <li>3.近期有聚集性发病或新型冠状病毒感染者接触史。</li>
+                <li>4.发热、干咳、乏力等症状持续超过7天，可伴有呼吸不畅、腹泻等症状，流涕、咳痰症状少见。</li>
+            </ul>
+        </div>
+        <div id="suggest-3">
+            <p class="suggest-title">解除隔离自我观察标准：</p>
+            <ul>
+                <li>1.体温恢复正常：≤37.3℃。</li>
+                <li>2.咳嗽、呼吸窘迫等呼吸道症状明显好转。</li>
+                <li>3.乏力、腹泻等消化道症状明显好转。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

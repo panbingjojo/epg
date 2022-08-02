@@ -1,0 +1,101 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+html {
+    background-image: url("../../../../img/Common/spacer.gif");
+}
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/hd/Menu/Common/bg.png);
+}
+
+body > * {
+    position: absolute;
+}
+
+#title {
+    font-size: 25px;
+    color: #fff;
+    top: 40px;
+    left: 78px;
+}
+
+#container > div.null-data {
+    width: 630px;
+    font-size: 20px;
+    font-style: italic;
+    color: #ccc;
+    line-height: 300px;
+    vertical-align: middle;
+}
+
+
+#topicList-container {
+    top: 150px;
+    left: 35px;
+}
+
+#topicList-container > div {
+    display: inline-block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#topicList-container img {
+    width: 131px;
+    height: 98px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-right: -10px;
+}
+
+#topicList-container img.focus {
+    background-image: url(../../../../img/hd/Menu/Tab5/levelThree_f.png);
+    background-size: 100% 100%;
+}
+
+#topicList-container p {
+    color: #fff;
+    width: 131px;
+    height: 25px;
+    font-size: 14px;
+    overflow: hidden;
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: -10px;
+}
+#page-index {
+    top: 464px;
+    left: 566px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+#prev-arrow {
+    width: 24px;
+    height: 25px;
+    top: 270px;
+    left: 10px;
+    visibility: hidden;
+}
+
+#next-arrow {
+    width: 24px;
+    height: 25px;
+    top: 270px;
+    left: 610px;
+    visibility: hidden;
+}
+

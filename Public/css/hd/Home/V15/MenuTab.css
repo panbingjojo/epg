@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Source Han Sans CN';
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+
+body > * {
+    position: absolute;
+}
+.logo{
+    width: 48px;
+    height: 40px;
+    top: 20px;
+    left:40px ;
+}
+
+/*上*/
+#top-item {
+    position: relative;
+}
+
+#title {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#action-icon {
+    position: absolute;
+    display: inline;
+    height: 55px;
+    line-height: 55px;
+    /*top: 5px;*/
+    right: 0;
+}
+
+#action-icon > img {
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+/*轮播*/
+#carousel-wrapper {
+    position: absolute;
+    width: 1280px;
+    height: 300px;
+    top: 80px;
+}
+
+#carousel-wrapper > img {
+    position: absolute;
+    /*transition: .3s all;*/
+    /*border-radius: 10px;*/
+}
+
+#carousel-link {
+    top: -48px;
+    left: 273px;
+    z-index: 99;
+    width: 738px;
+    height: 387px;
+}
+
+#prev-container,
+#next-container {
+    top: 20px;
+    width: 518px;
+    height: 259px;
+}
+
+.prev-container {
+    left: 166px;
+}
+
+.current-container {
+    width: 634px;
+    height: 300px;
+    left: 323px;
+    z-index: 99;
+}
+.current-container-hover {
+    top: -12px;
+    width: 665px;
+    height: 315px;
+    left: 309px;
+    z-index: 99;
+}
+.next-container {
+    left: 600px;
+}
+
+#arrow-prev {
+    position: absolute;
+    top: 112px;
+    left: 86px;
+}
+
+#arrow-next {
+    position: absolute;
+    top: 112px;
+    right: 86px;
+}
+/*指示标点*/
+.point-img {
+    position: absolute;
+    bottom: 0;
+    left: 323px;
+    width: 634px;
+    height: 27px;
+    line-height: 33px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.49);
+    list-style-type: none;
+    /*border-radius: 0 0 10px 10px;*/
+}
+
+.point-img-hover {
+    position: absolute;
+    bottom: -3px;
+    left: 310px;
+    width: 665px;
+    height: 27px;
+    line-height: 33px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.49);
+    list-style-type: none;
+    /*border-radius: 0 0 10px 10px;*/
+}
+
+ul#point li {
+    display: inline-block;
+}
+
+#point li {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fff;
+    margin: 0 3px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+#point li.currentImg {
+    background-color: #fff;
+    transition: 1s background-color;
+}
+
+#point li#point-1 {
+    margin-left: 270px;
+}
+
+/*下*/
+#bottom-container {
+    position: absolute;
+    top: 420px;
+    left: 90px;
+}
+
+#bottom-container > div {
+    position: absolute;
+}
+
+/*下左*/
+#bottom-left {
+    width: 375px;
+    left: -12px;
+    /*border: 1px red solid;*/
+    /*position: relative;*/
+}
+
+#bottom-left > img{
+    padding: 11px;
+    margin-top: -14px;
+    margin-bottom: -2px;
+    margin-right: -8px;
+    width: 153px;
+    height: 130px;
+}
+.hover{
+}
+#bottom-left > img.focus{
+    /*position: absolute;*/
+    margin-right: -17px;
+    margin-bottom: -8px;
+    width: 162px;
+    height: 135px;
+    background-image: url(../../../../img/hd/Home/V15/Home/leftBottomLink.png);
+}
+
+    /*下中*/
+#bottom-center {
+    position: absolute;
+    top: -20px;
+    left: 310px;
+    width: 800px;
+}
+
+#bottom-center img {
+    height: 267px;
+    width: 181px;
+    margin-right: -36px;
+    padding: 19px 25px;
+    /*padding: 10px;*/
+    /*border-radius: 35px;*/
+}
+
+#bottom-center-link1 {
+    left: 0;
+}
+
+#bottom-center-link2 {
+    left: 148px;
+}
+
+#bottom-center-link3 {
+    left: 295px;
+}
+
+#bottom-center > img.focus {
+    /*position: absolute;*/
+    height: 280px;
+    width: 190px;
+    margin-top: -14px;
+    margin-left: -9px;
+    /*margin-right: -26px;*/
+    background-image: url(../../../../img/hd/Home/V15/Home/bottom_center_f.png);
+    /*border: 1px red solid;*/
+}
+
+/*下右*/
+#bottom-right {
+}
+
+
+#home_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#iframe_small_screen {
+    width: 1px;
+    height: 1px;
+}

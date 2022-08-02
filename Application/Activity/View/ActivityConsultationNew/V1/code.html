@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>扫码</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityConsultation/V1/ScanCode.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+</head>
+<body style=" background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/bg.png')">
+<img id="back_btn" class="btn" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png"/>
+<div class="common_bg">
+    <img id="photo_box" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/photo_box_out.png"/>
+    <img id="photo_img" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/photo_img.png"
+         onerror="this.src='__ROOT__/Public/img/hd/Expert/init_doctor.png'"/>
+
+    <img id="code" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/photo_img.png"
+    />
+    <div class="introdece"><span class="grenn">扫码填写个人信息，即可免费预约专家</span><br/>(问诊仅限智能机顶盒)</div>
+    <div id="doctor">姜育恒</div>
+    <div id="job_name">主任医师</div>
+    <div id="hospital">北京医科大学附属医院</div>
+</div>
+
+<div class="introdece2">每个VIP用户仅能免费预约一次，多次预约仅以第一次预约信息为准。<br/>专家出诊时间待定，如与专家无法出诊，则安排同级别其他专家出诊，预约视为同意该条款。</div>
+<script type="text/javascript">
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    var buttons = [
+        {
+            id: 'back_btn',
+            name: '返回',
+            type: 'img',
+            nextFocusLeft: 'reservation_btn',
+            nextFocusUp: '',
+            nextFocusRight: '',
+            nextFocusDown: 'reservation_btn',
+            backgroundImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_out.png',
+            focusImage: '__ROOT__/Public/img/{$platformType}/Activity/ActivityConsultation/V1/inde_back_in.png',
+            click: onBack,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: "",
+        }]
+</script>
+
+<script type="text/javascript">
+    var expertUrl = "{$expertUrl}";
+    var initClinicId = "{$clinicId}";
+    var eleName = G("doctor");
+    var eleJob = G("job_name");
+    var eleHospital = G("hospital");
+    var eleQrCode = G("code");
+    var eleHeaderImg = G("photo_img");
+    var lmcid = "{$carrierId}";// 区域ID
+
+    var mOrderTimer;
+
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init(['back_btn'], buttons, '', true);
+        updateUI();
+    };
+
+    window.unload = function () {
+        ActionTime.clearInquiryTimer();
+    };
+
+    function updateUI() {
+        LMEPG.UI.showWaitingDialog("");
+        LMEPG.Inquiry.expertApi.getExpertDetail(initClinicId, function (rsp) {
+            try {
+                var tempData = rsp instanceof Object ? rsp :  JSON.parse(rsp);
+                var code = parseInt(tempData.code);
+                if (code === 0) {
+                    var expertObj = tempData["data"][0];
+                    eleHeaderImg.src = LMEPG.Inquiry.expertApi.createDoctorUrl(expertUrl, expertObj.doctor_user_id, expertObj.doctor_avatar, lmcid);
+                    eleName.innerHTML = expertObj.doctor_name;
+                    eleJob.innerHTML = expertObj.doctor_level;
+                    eleHospital.innerHTML = expertObj.doctor_hospital_name;
+                    getActivityQrCode();
+                } else {
+                    LMEPG.UI.dismissWaitingDialog();
+                    LMEPG.UI.showToast("获取专家详情失败:" + code);
+                }
+            } catch (e) {
+                LMEPG.UI.dismissWaitingDialog();
+                LMEPG.UI.showToast("获取专家详情数据解析异常！");
+            }
+        }, function (rsp) {
+            LMEPG.UI.dismissWaitingDialog();
+            LMEPG.UI.showToast("获取专家详情请求失败");
+        });
+    }
+
+
+    function getActivityQrCode() {
+        LMEPG.Inquiry.expertApi.getQrCodeViaClinicIDWithActivity(initClinicId, function (rsp) {
+            LMEPG.UI.dismissWaitingDialog();
+            try {
+                var qrCodeJsonObj = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                if (qrCodeJsonObj.code == 0) {
+                    eleQrCode.setAttribute("src", qrCodeJsonObj.base);
+                    ActionTime.startOrderTimer(qrCodeJsonObj.timestamp);
+                } else {
+                    LMEPG.UI.showToast("获取二维码失败" + qrCodeJsonObj.code);
+                    eleQrCode.setAttribute("src", "");
+                }
+
+            } catch (e) {
+                LMEPG.UI.showToast("解析二维码异常");
+                eleQrCode.setAttribute("src", "");
+            }
+        }, function (rsp) {
+            LMEPG.UI.dismissWaitingDialog();
+            LMEPG.UI.showToast("加载二维码请求失败");
+            eleQrCode.setAttribute("src", "");
+        });
+    }
+
+
+    var Action = {
+        getCurrentPage: function () {
+            var objCurrent = LMEPG.Intent.createIntent("activity-consultation-new-code");
+            objCurrent.setParam("clinicId",initClinicId);
+            return objCurrent;
+        },
+        jumpExpertSuccess: function (appointmentID) {
+            var objCurrent = Action.getCurrentPage();
+            var objExpertSuccess = LMEPG.Intent.createIntent("activity-consultation-new-success");
+            objExpertSuccess.setParam("appointmentID", appointmentID);
+            LMEPG.Intent.jump(objExpertSuccess, objCurrent);
+        },
+    };
+
+    var ActionTime = {
+        startOrderTimer: function (timestamp) {
+            mOrderTimer = setInterval(function () {
+                LMEPG.Inquiry.expertApi.getAppointmentInfo(timestamp, function (rsp) {
+                    try {
+                        var appointmentJsonObj = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                        console.log("获取订单信息API返回数据-res-->" + JSON.stringify(appointmentJsonObj));
+                        if (appointmentJsonObj == null) {
+                            return;
+                        }
+
+                        if (appointmentJsonObj.code == 0) {
+                            var tempData = appointmentJsonObj.data[0];
+                            if (tempData.clinic_is_pay == 1) {
+                                ActionTime.clearOrderTimer();
+                                LMEPG.UI.showToast("跳转预约成功");
+                                Action.jumpExpertSuccess(tempData.appointment_id);
+                            }
+                        } else {
+                            console.log("暂无订单信息。code=" + appointmentJsonObj.code);
+                        }
+                    } catch (e) {
+                        LMEPG.UI.showToast("解析订单信息异常" + e.toString());
+                    }
+                }, function (rsp) {
+                });
+            }, 3000);
+        },
+        clearOrderTimer: function () {
+            clearInterval(mOrderTimer);
+        }
+    };
+
+</script>
+</body>
+</html>

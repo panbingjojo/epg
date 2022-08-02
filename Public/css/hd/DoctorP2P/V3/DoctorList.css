@@ -1,0 +1,300 @@
+
+.title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 40px;
+    line-height: 40px;
+    width: 300px;
+}
+
+.subject_btn {
+    position: absolute;
+    top: 32px;
+    /*left: 573px;*/
+    left: 802px;
+    width: 210px;
+    height: 58px;
+}
+
+#subject_btn {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 210px;
+    height: 58px;
+}
+
+#subject_btn_title {
+    position: absolute;
+    top: 0px;
+    left: 65px;
+    width: 138px;
+    height: 58px;
+    font-size: 30px;
+    line-height: 58px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 997;
+}
+
+#inquiry_btn {
+    position: absolute;
+    top: 32px;
+    left: 802px;
+}
+
+#record_btn {
+    position: absolute;
+    top: 32px;
+    left: 1028px;
+}
+
+.doctor_list {
+    position: absolute;
+    top: 133px;
+    left: 56px;
+}
+
+.doctor_1 {
+    position: relative;
+    width: 279px;
+}
+
+.doctor_2 {
+    position: relative;
+    left: 293px;
+    width: 279px;
+}
+
+.doctor_3 {
+    position: relative;
+    left: 586px;
+    width: 279px;
+}
+
+.doctor_4 {
+    position: relative;
+    left: 873px;
+    width: 279px;
+}
+
+
+.doctor_img {
+    position: absolute;
+    top: 46px;
+    left: 53px;
+    width: 172px;
+    height: 172px;
+    border-radius: 100px;
+    /*margin:0px auto;*/
+    box-shadow: 0px 0px 10px #ffffff;
+}
+
+.doctor_introduce2 {
+    font-size: 21px;
+    width: 249px;
+    line-height: 18px;
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+    overflow: hidden;
+    margin-left: 15px;
+    height: 23px;
+    line-height: 23px;
+}
+
+.doctor_introduce {
+    font-size: 21px;
+    width: 279px;
+    line-height: 18px;
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.top1 {
+    position: absolute;
+    top: 220px;
+}
+
+.top2 {
+    position: absolute;
+    top: 260px;
+}
+
+.top3 {
+    position: absolute;
+    top: 293px;
+}
+
+.top4 {
+    position: absolute;
+    top: 333px;
+}
+
+.big_size {
+    font-size: 32px;
+}
+
+.yellow {
+    font-size: 16px;
+    color: yellow;
+}
+
+.submit_btn {
+    position: absolute;
+    left: 52px;
+    top: 453px;
+    width: 180px;
+    height: 67px;
+    text-align: center;
+    line-height: 67px;
+    font-size: 26px;
+}
+
+.btn_bg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 180px;
+    height: 67px;
+}
+
+.btn_title {
+    position: absolute;
+    width: 180px;
+    height: 67px;
+    line-height: 67px;
+}
+
+.icon_status {
+    position: absolute;
+    left: 176px;
+    top: 180px;
+    width: 44px;
+    height: 44px;
+}
+
+.arrow_left {
+    position: absolute;
+    top: 320px;
+    left: 0px;
+    display: none;
+}
+
+.arrow_right {
+    position: absolute;
+    top: 320px;
+    left: 1222px;
+    display: none;
+}
+
+#page_num {
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    font-size: 36px;
+    color: #FFFFFF;
+    left: 50%;
+    margin-left: -200px;
+    bottom: 10px;
+}
+
+/*蒙层*/
+.layer {
+    width: 100%;
+    height: 720px;
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 0px;
+    z-index: 660;
+    display: none;
+
+}
+
+.secondary_menu {
+    position: absolute;
+    width: 1213px;
+    top: 126px;
+    left: 46px;
+    max-height: 550px;
+    overflow: auto;
+}
+
+.secondary_list {
+    margin-top: 0px;
+}
+
+.secondary_btn {
+    width: 122px;
+    height: 58px;
+    color: #ffffff;
+    position: relative;
+    float: left;
+    margin: 8px 14px;
+    text-align: center;
+    line-height: 58px;
+    font-size: 24px;
+}
+
+.secondary_img {
+    position: absolute;
+    width: 122px;
+    height: 58px;
+    top: 0px;
+    left: 0px;
+}
+
+.secondary_title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 122px;
+    height: 58px;
+    overflow: hidden;
+}
+
+.third_menu {
+    clear: left;
+    width: 1146px;
+    margin-top: 73px;
+    margin-left: 16px;
+    border: 1px #ffffff solid;
+    padding-left: 14px;
+    display: none;
+}
+
+.third_btn {
+    width: 130px;
+    height: 46px;
+    color: #d6d6d6;
+    margin: 8px 3px;
+    text-align: center;
+    line-height: 46px;
+    font-size: 20px;
+    display: inline-block;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.border {
+    border: 1px #2bf3ff solid;
+}
+
+.focus{
+    background-position: center;
+    background: url("../../../../../Public/img/hd/DoctorP2P/V3/card_focus.png");
+    background-position: 0px -4px;
+    background-repeat: no-repeat;
+    /*width: 298px;*/
+    /*height: 438px;*/
+}
+.doctor_bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 270px;
+    height: 410px;
+    padding: 14px;
+}

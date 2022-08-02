@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>献血模块-公益献血</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/hd/DonateBlood/V1/Commonweal.css?t={$time}"/>
+    <script>
+        var RenderParam = {
+            carrierId: "{$carrierId}",
+            userId:"{$userId}"
+        };
+    </script>
+</head>
+<body>
+
+<p class="title">公益献血</p>
+<img id="logo" src="__ROOT__/Public/img/hd/DonateBlood/V1/logo.png" alt="">
+
+<div id="img_list"></div>
+<div id="bar_content">
+    <div id="bar_list" class="bar"></div>
+</div>
+
+
+<div id="introduce">
+    <p>1.在本市无偿献血者就医需要临床用血的，5年内可以使用5倍于献血量的血液；超过5年等量报销；累计献血超过1000ML并检测合格，可以终身免费用血。</p>
+    <p>2.直系亲属用血5年内按合格献血量等量报销；超过5年，不予报销。</p>
+    <p>3.自愿献血的公民，血液检测不合格，本人等量报销。其直系亲属不予报销。</p>
+</div>
+<img id="btn_blood_ask" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_blood_ask.png" alt="">
+<img id="btn_f_1" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_f.png" alt="">
+<img id="btn_blood_step" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_blood_step.png" alt="">
+<img id="btn_f_2" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_f.png" alt="">
+<img id="btn_blood_order" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_blood_order.png" alt="">
+<img id="btn_f_3" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_f.png" alt="">
+<img id="btn_personal" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_personal.png" alt="">
+<img id="btn_f_4" src="__ROOT__/Public/img/hd/DonateBlood/V1/btn_f.png" alt="">
+
+
+
+<!--第三方依赖库-->
+<script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+<!--公用库-->
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+<script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+<!--当前模块js-->
+<script type="text/javascript" src="__ROOT__/Public/js/DonateBlood/V1/Commonweal.js?t={$time}"></script>
+<script>
+    DonateBlood.init();
+</script>
+</body>
+</html>
+  
+  

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>取消订单</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V8/cancelOrder.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            info:'{$info}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V8/cancelOrder.js?t={$time}"></script>
+</head>
+<body>
+<div id="container">
+    <div style="padding: 60px 50px 0 50px">
+        <div class="main">
+            <div class="content">
+                <div class="float">
+                    <div class="info">预约医院：<span id="hospital-name"></span></div>
+                    <div class="info">预约科室：<span id="depName"></span></div>
+                    <div class="info">预约专家：<span id="docName"></span></div>
+                    <div class="info">就诊人姓名：<span id="name"></span></div>
+                    <div class="info">身份证号：<span id="card-num"></span></div>
+                    <div class="info">联系电话：<span id="tel"></span></div>
+                </div>
+                <div class="float" style="margin-left: 100px">
+                    <div class="info">当前状态：<span id="state"></span></div>
+                    <div class="info">就诊时间：<span id="time"></span></div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            <div class="tips">温馨提示:请您提前取号，逾时将自动作废。如有问题请致电健康云客服热线:02583502133</div>
+            <div class="btn" id="cancel"></div>
+            <div class="btn" style="bottom: 75px" id="back">返回</div>
+
+        </div>
+    </div>
+</div>
+<div class="dialog" style="display: none" id="dialog">
+    <div class="dialog-main">
+        <div class="tip-text">确定要取消订单？</div>
+
+        <div class="cancel-btn" id="dialog-sure">确定</div>
+        <div class="cancel-btn" style="left: 330px" id="dialog-cancel">取消</div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

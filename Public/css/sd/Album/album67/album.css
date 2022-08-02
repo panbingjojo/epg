@@ -1,0 +1,120 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0;
+    margin: 0;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    position: relative;
+    height: 530px;
+    width: 644px;
+    /*margin: 0 auto;*/
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#tabConent img {
+    position: absolute;
+    height: 216px;
+    width: 53px;
+}
+#focus-1{
+    position: absolute;
+    top: 84px;
+    left: 25px;
+}
+#focus-2{
+    position: absolute;
+    top: 84px;
+    left: 99px;
+}
+#focus-3{
+    top: 84px;
+    left: 174px;
+}
+#focus-4{
+    position: absolute;
+    top: 84px;
+    left: 251px;
+}
+#focus-5{
+    position: absolute;
+    top: 84px;
+    left: 328px;
+}
+#focus-6{
+    position: absolute;
+    top: 84px;
+    left: 400px;
+}
+
+
+#page-prev {
+    position: absolute;
+    top: 162px;
+    left: 0px;
+    z-index: 0;
+    width: 25px;
+    height: 42px;
+}
+
+#page-next {
+    position: absolute;
+    top: 162px;
+    left: 458px;
+    z-index: 0;
+    width: 25px;
+    height: 42px;
+}
+#page-prev1 {
+    position: absolute;
+    top: 423px;
+    left: 13px;
+}
+
+#page-next1 {
+    position: absolute;
+    top: 423px;
+    left: 607px;
+}
+#back {
+    position: absolute;
+    top: 8px;
+    left: 584px;
+    z-index: 0;
+    width: 54px;
+    height: 39px;
+}
+#album1{
+    position: absolute;
+    top: 381px;
+    left: 52px;
+}
+#album2{
+    position: absolute;
+    top: 381px;
+    left: 245px;
+}
+#album3{
+    position: absolute;
+    top: 381px;
+    left: 429px;
+}
+#history-ablum img{
+    width: 161px;
+    height: 141px;
+ }
+#free{
+    position: absolute;
+    top: 66px;
+    left:0px;
+    z-index: 0;
+    width: 51px;
+    height: 47px;
+    z-index: 999;
+}
+
+
+

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>医生简介</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}" URIEncoding="utf-8">
+    <!--URIEncoding="utf-8"-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/hd/Hospital/NingXiaQvHospital/DoctorIntroduce.css?t={$time}"/>
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            lmcid: '{$carrierId}',
+            platformType: '{$platformType}',
+            loginUserAccount: '{$userAccount}',
+            firstEnter: '{$firstEnter}',                          // 用户首次进入
+            resourceUrl:'{$resourcesUrl}'
+        };
+        window.onload = function () {
+            Dep.init();
+        }
+    </script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript"
+            src="__ROOT__/Public/js/Hospital/NingXiaQvHospital/DoctorIntroduce.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<img id="back" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/back.png" alt="">
+<img id="down-arrow" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/down_arrow.png" alt="">
+<!--导航区-->
+<div id="nav-wrap">
+    <!--<img id="dep-2" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/dep2.png" alt="">-->
+    <!--<img id="dep-3" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/dep3.png" alt="">-->
+    <!--<img id="dep-4" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/dep4.png" alt="">-->
+    <!--<img id="dep-5" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/dep5.png" alt="">-->
+    <!--<img id="dep-6" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/dep6.png" alt="">-->
+</div>
+<!--内容区-->
+<div id="content-wrap">
+    <div id="content">
+
+        <!--<img id="doc-1" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/doc1_dep2.png" alt="">-->
+        <!--<img id="doc-2" src="__ROOT__/Public/img/hd/Hospital/NingXiaQvHospital/DoctorIntroduce/doc1_dep2.png" alt="">-->
+    </div>
+</div>
+</body>
+</html>

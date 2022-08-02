@@ -1,0 +1,157 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 530px;
+    width: 644px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+
+#focus-1-1 {
+    position: absolute;
+    top: 141px;
+    left: 365px;
+    outline: none !important;
+    width: 232px;
+    height: 61px;
+    background: url("../../../../img/sd/Album/album45/tab1_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 15px;
+    line-height: 45px;
+
+}
+
+#focus-2-1 {
+    position: absolute;
+    top: 189px;
+    left: 365px;
+    z-index: 0;
+    outline: none !important;
+    width: 232px;
+    height: 61px;
+    background: url("../../../../img/sd/Album/album45/tab1_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 15px;
+    line-height: 45px;
+}
+
+#focus-3-1 {
+    position: absolute;
+    top: 237px;
+    left: 365px;
+    z-index: 0;
+    outline: none !important;
+    width: 232px;
+    height: 61px;
+    background: url("../../../../img/sd/Album/album45/tab1_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 15px;
+    line-height: 45px;
+
+}
+
+#focus-4-1 {
+    position: absolute;
+    top: 285px;
+    left: 365px;
+    z-index: 0;
+    outline: none !important;
+    width: 232px;
+    height: 61px;
+    background: url("../../../../img/sd/Album/album45/tab1_out.png") no-repeat;
+    color: #FFFFFF;
+    font-size: 15px;
+    line-height: 45px;
+}
+
+
+
+#back {
+    position: absolute;
+    top: 6px;
+    left: 566px;
+    z-index: 0;
+    outline: none !important;
+    width: 65px;
+    height: 77px;
+
+}
+
+#page-left{
+    position: absolute;
+    top: 120px;
+    left: 471px;
+    z-index: 0;
+    outline: none !important;
+    width: 25px;
+    height: 27px;
+}
+#page-right{
+    position: absolute;
+    top: 333px;
+    left: 471px;
+    z-index: 0;
+    outline: none !important;
+    width: 25px;
+    height: 27px;
+}
+
+
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+.none{ display: none}
+
+.focus_name {
+    position: absolute;
+    width: 124px;
+    font-size: 15px;
+    overflow: hidden;
+    height: 20px;
+    position: absolute;
+    line-height: 20px;
+    top: 15px;
+    left: 59px;
+
+}
+.free{
+    position: absolute;
+    width: 19px;
+    height: 40px;
+    position: absolute;
+    top: 143px;
+    left: 355px;
+    z-index: 999;
+}
+
+

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>顶级专家-V10</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/New39hospital/V10/expert.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            accountId: "{$accountId}",          // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: "{$isVip}",                  // 用户是否是vip
+            userId: "{$userId}",                // 用户Id
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <switch name="carrierId">
+        <case value="520094">     <!--贵州广电js文件-->
+            <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+            <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+        </case>
+    </switch>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer_gzgd.js?t={$time}"></script>
+</head>
+<body>
+<!--<img id="bodyImg" src="__ROOT__/Public/img/hd/New39hospital/V10/bg-002.png"/>-->
+<img id="bodyDefaultImg" src="__ROOT__/Public/img/hd/New39hospital/V10/bg.png"/>
+
+<div id="container-left">
+    <div id="logo"></div>
+    <ul id="nav">
+        <li id="tab-home">首页</li>
+        <li id="tab-experts">顶级专家</li>
+        <li id="tab-guide">就诊指南</li>
+        <li id="tab-case">患者案例</li>
+        <div id="tab-order">立即咨询</div>
+    </ul>
+    <div id="qr-code">
+        <img align="bottom" src="__ROOT__/Public/img/hd/New39hospital/V10/qr_code.png" alt="">
+        <p id="qr-code-desc">扫描下载39互联网医院手机应用</p>
+    </div>
+</div>
+<img src="__ROOT__/Public/img/hd/New39hospital/V10/up.png" id="pre-arrow" alt="">
+<div id="debug" style="position: absolute;z-index: 100; top: 0px"></div>
+
+<div id="container-right">
+
+    <!--顶级专家-->
+    <div id="content-experts">
+        <div id="experts-bg">
+            <img id="experts-img">
+        </div>
+        <div id="experts-introduce">
+            <div>
+                <div id="expert-name"></div>
+                <div id="expert-title"></div>
+            </div>
+            <div id="expert-hospital" class="expert-info"></div>
+            <div id="expert-job" class="expert-info"></div>
+            <div id="expert-Specialty" class="expert-info"></div>
+            <div id="expert-detail" class="expert-info"></div>
+        </div>
+        <div id="expert-num"></div>
+
+    </div>
+</div>
+<img src="__ROOT__/Public/img/hd/New39hospital/V10/down.png" id="next-arrow" alt="">
+<p id="service-tel">全国免费客服热线：400-061-3939</p>
+
+<script type="text/javascript">
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    var dataLength = 0;
+    var index = 0;
+    var dataInfo = "";
+    var fileIndex = "__ROOT__/Public/img/hd/New39hospital/V10/";
+    var Constat = {
+        fileIndex: "__ROOT__/Public/img/hd/New39hospital/V10/",
+    };
+    var buttons = [
+        {
+            id: "tab-experts",
+            name: "顶级专家",
+            type: 'div',
+            nextFocusUp: 'tab-home',
+            nextFocusDown: 'tab-guide',
+            nextFocusRight: 'content-experts',
+            backgroundImage: Constat.fileIndex + "experts.png",
+            focusImage: Constat.fileIndex + "experts_hover.png",
+            selectedImage: Constat.fileIndex + 'experts_active.png',
+            active: false,
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+            groupId: "department",
+        }, {
+            id: "content-experts",
+            name: "右边内容视图",
+            type: 'div',
+            nextFocusLeft: 'tab-experts',
+            backgroundImage:  g_appRootPath+ "/Public/img/hd/Home/V10/HomeBox/bg_btn_null.png",
+            focusImage: fileIndex + "experts_selected.png",
+            focusChange: onFocus,
+            click: "",
+            beforeMoveChange: onBeforeMoveChange,
+        }];
+
+
+    /**
+     * 获取焦点后操作
+     * */
+    function onFocus(btn, hasFocus) {
+        var pdname = btn.id.slice(0, 3);
+        if (hasFocus) {
+            G(btn.id).style.color = "#ffffff";
+        } else {
+            var currentId = LMEPG.ButtonManager.getSelectedButton("department").id;
+            G(currentId).style.color = "#000";
+        }
+    }
+
+
+    /**
+     * 焦点移动后的操作
+     */
+    function onBeforeMoveChange(direction, current) {
+        switch (direction) {
+            case "up":
+                if (current.id == "content-experts") {
+                    prevPage();
+                } else {
+                    jumpHomeUI();
+                }
+                break;
+            case "down":
+                if (current.id == "content-experts") {
+                    nextPage()
+                } else {
+                    jumpGuideUI();
+                }
+                break;
+        }
+    }
+
+    function getCurrentPageUI() {
+        return LMEPG.Intent.createIntent("Hospital39Expert");
+    }
+
+    function jumpHomeUI() {
+        var nextPage = LMEPG.Intent.createIntent("Hospital39Home");
+        LMEPG.Intent.jump(nextPage, getCurrentPageUI(), LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+
+    function jumpGuideUI() {
+        var nextPage = LMEPG.Intent.createIntent("Hospital39Guide");
+        LMEPG.Intent.jump(nextPage, getCurrentPageUI(), LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+    }
+
+
+    window.onload = function (ev) {
+        LMEPG.ButtonManager.init("tab-experts", buttons, "", true);
+        LMEPG.ButtonManager.setSelected("tab-experts", true);
+        getexpertsTopInfo();
+    };
+
+    /**
+     * 顶级专家视图
+     * */
+    function expertsTopView(dataInfo) {
+        try {
+            var data = dataInfo.list;
+            var tempObj = data[index];
+            var content = tempObj.content.replace(/&quot;/g, "\"");
+            var jsonContent = JSON.parse(content);
+
+            var tempImgUrl = RenderParam.fsUrl + tempObj.image_url;
+            var tempDocName = tempObj.doctor_name;
+            var tempClass = tempObj.doc_class;
+            var tempHospital = tempObj.hospital;
+            var temDocJob = tempObj.doctor_job;
+            var tempDocGood = tempObj.disease_good;
+            var tempIntro = jsonContent.introduce;
+            var perNum = (index + 1) + '/' + data.length;
+
+            G("experts-img").src = tempImgUrl;
+            G("expert-name").innerHTML = tempDocName;
+            G("expert-title").innerHTML = tempClass;
+            G("expert-hospital").innerHTML = tempHospital;
+            G("expert-job").innerHTML = temDocJob;
+            G("expert-Specialty").innerHTML = tempDocGood;
+            G("expert-detail").innerHTML = tempIntro;
+            G("expert-num").innerHTML = perNum;
+            arrow();
+        } catch (e) {
+            alert(e);
+        }
+
+    }
+
+    function prevPage() {
+        if (index > 0) {
+            index--;
+            expertsTopView(dataInfo);
+        } else {
+
+        }
+    }
+
+    function nextPage() {
+        if (parseInt(dataLength - index) > 1) {
+            index++;
+            expertsTopView(dataInfo);
+        } else {
+
+        }
+    }
+
+    //箭头指示
+    function arrow() {
+        setDisplay(G("pre-arrow"), 'none');
+        setDisplay(G("next-arrow"), 'none');
+        if (index > 0) {
+            setDisplay(G("pre-arrow"), 'block');
+        }
+        if (parseInt(dataLength - index) > 1) {
+            setDisplay(G("next-arrow"), 'block');
+        }
+    }
+
+    function setDisplay(el, val) {
+        el.style.display = val;
+    }
+
+
+    function getexpertsTopInfo() {
+        LMEPG.ajax.postAPI("Hospital39/getTopExpert", {}, function (data) {
+            if (data.result == 0) {
+                dataLength = data.list.length;
+                dataInfo = data;
+                expertsTopView(dataInfo);
+            } else {
+                LMEPG.UI.showToast("数据拉取失败");
+            }
+        });
+    }
+
+    /**
+     * 添加fs地址
+     * @param path
+     * @returns {string}
+     */
+    function addFsUrl(path) {
+        return RenderParam.fsUrl + path;
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>在线问诊- 首页- V13</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/DoctorP2P/V13/DoctorIndex.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            /** 通用参数 */
+            isRunOnAndroid: '{$isRunOnAndroid}',// 是否运行android平台，既apk2.0
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 账号Id
+            isVip: {$isVip},                    // 用户是否是vip(1-vip 0-非vip)
+            focusIndex: "{$focusIndex}",        // 记录保持的焦点ID
+            parentPage: "{$parentPage}",        // 父页面
+            returnUrl: "{$returnUrl}",          // 返回页
+            focusId: "{$focusId}",              // 默认焦点
+            skin: {$skin},                      // 配置背景（CWS管理后台配置）
+            isHeartAsk:'{$isHeartAsk}',
+
+            /** 页面参数 */
+            cwsWXServerUrl: '{$cwsWXServerUrl}',         // 页面参数 - 小程序图片fs地址
+            cwsHlwyyUrl: '{$cwsHlwyyUrl}',               // 页面参数 - CWS互联网医院模块访问地址
+            teletextInquiryUrl: '{$teletextInquiryUrl}', // 页面参数 - 图文问诊地址
+            hospitalId: '{$hospitalId}',                 // 页面参数 - 新疆社区医院访问时，医院ID
+            title: '{$title}',                           // 页面参数 - 新疆社区医院访问时，医院名称
+            deptId: '{$deptId}',                         // 页面参数 - 医生所属部门ID
+            deptIndex: '{$deptIndex}',                   // 页面参数 - 医生所属部门编码
+            page: '{$page}',                             // 页面参数 - 当前展示列表所在页码
+            isExitApp: '{$isExitApp}',                   // 页面参数 - 是否需要退出应用（部分地区只有在线问医模块，当监听遥控器返回按键时退出整个应用）
+            sDemoId: '{$sDemoId}',                       // 页面参数 - 新疆社区医院医院访问标识（参数有值说明新疆社区医院访问，无值表示其他方式访问）
+            headerFunctions: '{$headerFunctions}',       // 页面参数 - 显示头部功能函数
+        };
+    </script>
+
+    <!--河南电信EPG js文件-->
+    <if condition="$carrierId eq '410092' ">
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lminquiry.js?t={$time}"></script>
+
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/DoctorP2P/V13/DoctorIndex2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+
+<!-- 模块名称 -->
+<p id="hospital-name" class="title">{$title}</p>
+
+<!--头部部分-->
+<div id="header"></div>
+
+<!--医生列表-->
+<div id="doctor-container"></div>
+
+<!--分页箭头 - 左-->
+<img id="doctor-prev-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/left.png" style="display: none">
+<!--分页箭头 - 右-->
+<img id="doctor-next-arrow" class="arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/right.png" style="display: none">
+
+<!--页码显示-->
+<div id="page-num">0/0</div>
+
+<!--科室列表容器-->
+<div id="department-container" style="display: none">
+    <!--科室列表选择页标题-->
+    <div class="department-title">选择科室</div>
+    <!--向上移动箭头-->
+    <img id="department-prev-arrow" class="department-arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/up.png" alt="科室列表页向上移动箭头">
+    <!--向下移动箭头-->
+    <img id="department-next-arrow" class="department-arrow" src="__ROOT__/Public/img/hd/Home/V13/Home/Common/down.png" alt="科室列表页向下移动箭头">
+    <!--单页科室列表数据-->
+    <div id="department-wrap"></div>
+</div>
+
+<!--底部部分-->
+<div id="footer">
+    <!-- 由变量isShowFooter判断是否显示底部信息 -->
+    <div id="ask-left-time" style="display: none;margin-bottom: 10px"></div>
+    <if condition="$isShowFooter eq 1">
+<!--        非会员用户有3次免费问诊次数，订购会员用户不限问诊次数-->
+        <div>医生接诊时间集中在08:00～22:00，请在该时间段进行问诊哦~</div>
+    </if>
+</div>
+
+
+<script type="text/javascript">
+
+
+    window.onload = function () {
+
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+
+        // 海看探针
+        if(RenderParam.carrierId === "371092" || RenderParam.carrierId === "371002") {
+            var turnPageInfo = {
+                currentPage: document.referrer,
+                turnPage: location.href,
+                turnPageName: document.title,
+                turnPageId: "",
+                clickId: "39JKTJ-2-1"
+            };
+            ShanDongHaiKan.sendReportData('6', turnPageInfo);
+        }
+
+        // 河南电信监听遥控器返回按键
+        if (RenderParam.carrierId === "410092") {
+            LMEPG.Log.info('init HybirdCallBackInterface !!!!!');
+            try {
+                HybirdCallBackInterface.setCallFunction(function (param) {
+                    LMEPG.Log.info('HybirdCallBackInterface param : ' + JSON.stringify(param));
+                    if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                        LMEPG.Intent.back();
+                    }
+                });
+            } catch (e) {
+                LMEPG.UI.logPanel.show("e");
+            }
+        }
+
+        // 界面初始化
+        doctorIndexController.init();
+        if(RenderParam.carrierId === "440001"){
+            uploadVideoData();
+        }
+    };
+
+
+    function uploadVideoData(){
+        LMEPG.ajax.postAPI('Player/getRecommendVideoInfo', null, function (rsp) {
+            if(rsp.result === 0){
+                var val = JSON.parse(rsp.data[0].ftp_url);
+                var data = {
+                    startTime:getNowDate() ,
+                    contentId:val.gq_ftp_url,
+                    contentName:rsp.data[0].title,
+                };
+                LMEPG.Log.info("uploadData data:"+JSON.stringify(data));
+                LMAndroid.jsCallAndroid('doExportContentDetail', JSON.stringify(data), '');
+            }
+        });
+    }
+    function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    function getNowDate() {
+        var dateTime=new Date();
+        dateTime=dateTime.setSeconds(dateTime.getSeconds()- getRandom(40,120));
+        var date = new Date(dateTime);
+        var year = date.getFullYear() // 年
+        var month = date.getMonth() + 1; // 月
+        var day  = date.getDate(); // 日
+        var hour = date.getHours(); // 时
+        var minutes = date.getMinutes(); // 分
+        var seconds = date.getSeconds() //秒
+        // 给一位数数据前面加 “0”
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (day >= 0 && day <= 9) {
+            day = "0" + day;
+        }
+        if (hour >= 0 && hour <= 9) {
+            hour = "0" + hour;
+        }
+        if (minutes >= 0 && minutes <= 9) {
+            minutes = "0" + minutes;
+        }
+        if (seconds >= 0 && seconds <= 9) {
+            seconds = "0" + seconds;
+        }
+        var currentdate = year  + month  + day +  hour  + minutes  + seconds;
+        return currentdate;
+    }
+</script>
+</body>
+</html>

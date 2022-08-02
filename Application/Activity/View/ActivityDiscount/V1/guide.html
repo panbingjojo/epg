@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>健康一元购</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/Activity/ActivityDiscount/V1/guide.css?t={$time}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-guide");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 页面跳转 - 活动详情
+         */
+        function jumpActivityInfo() {
+            jumpDialog(ACTIVITY_RULE_DETAIL);
+        }
+
+
+        /**
+         * 页面跳转 - 显示中奖信息
+         */
+        function jumpPriceInfo() {
+            var objCurrent = getCurrentPage();
+
+            var objActivityWinList = LMEPG.Intent.createIntent("activity-common-winList");
+            objActivityWinList.setParam("userId", "{$userId}");
+            objActivityWinList.setParam("inner", "{$inner}");
+
+            LMEPG.Intent.jump(objActivityWinList, objCurrent);
+        }
+
+        /**
+         * @func 进行购买操作
+         * @param remark 备注字段，补充说明reason。如订购是通过视频播放，则remark为视频名称；如是通过活动，则remark为活动名称。
+         * @returns {boolean}
+         */
+        function jumpBuyVip(contentId) {
+            var objCurrent = getCurrentPage();
+
+            var objOrderHome = LMEPG.Intent.createIntent("orderHome");
+            objOrderHome.setParam("userId", "{$userId}");
+            objOrderHome.setParam("directPay", "1");
+            objOrderHome.setParam("orderReason", "101");
+            objOrderHome.setParam("contentId", contentId); // sp订购的内容id
+            objOrderHome.setParam("isJointActivity", "0"); // 表示联合活动
+            objOrderHome.setParam("remark", "{$activityName}");
+
+            var objActivityGuide = LMEPG.Intent.createIntent("activity-common-guide");
+            objActivityGuide.setParam("userId", "{$userId}");
+            objActivityGuide.setParam("inner", "{$inner}");
+            objActivityGuide.setParam("isOrderBack", "1"); // 表示订购回来
+
+            LMEPG.Intent.jump(objOrderHome, objCurrent, LMEPG.Intent.INTENT_FLAG_NOT_STACK, objActivityGuide);
+        }
+
+        /**
+         * 返回事件
+         * 中国联通联合活动，返回时只能回到局方
+         */
+        function onBack() {
+            LMEPG.Intent.back(); // 应用内活动，直接返回上一级页面
+        }
+
+    </script>
+</head>
+<!--<body style="background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_guide.png');">-->
+<body>
+<!--<img id="back" class="btnInfo" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_back.png"/>-->
+<!--<img id="order" class="btnInfo" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_order.png"/>-->
+<script type="text/javascript">
+    var buttons = [];
+    /**
+     * 初始化焦点
+     */
+    var Button = {
+        initBtn: function () {
+            buttons.push({
+                id: 'back',
+                name: '返回',
+                type: 'img',
+                nextFocusLeft: 'btn-start-3-bg',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: 'order',
+                backgroundImage: g_appRootPath+'/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_back.png',
+                focusImage: g_appRootPath+'/Public/img/{$platformType}/Activity/ActivityDiscount/V1/f_back.png',
+                click: onBack,
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange: ''
+            }, {
+                id: 'order',
+                name: '中奖名单',
+                type: 'img',
+                nextFocusLeft: 'btn-start-3-bg',
+                nextFocusRight: '',
+                nextFocusUp: 'back',
+                nextFocusDown: '',
+                backgroundImage: g_appRootPath+'/Public/img/{$platformType}/Activity/ActivityDiscount/V1/bg_order.png',
+                focusImage: g_appRootPath+'/Public/img/{$platformType}/Activity/ActivityDiscount/V1/f_order.png',
+                click: jumpBuyVip,
+                focusChange: '',
+                beforeMoveChange: '',
+                moveChange: ''
+            })
+        },
+
+    }
+
+    window.onload = function () {
+//        Button.initBtn();
+//        LMEPG.ButtonManager.init("order", buttons, '', true);
+        jumpBuyVip();
+    }
+</script>
+</body>
+</html>

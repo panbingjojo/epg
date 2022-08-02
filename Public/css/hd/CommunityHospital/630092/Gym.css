@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#gym-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#top {
+    position: absolute;
+    z-index: 999;
+}
+
+#dialog-phone, #dialog-success {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+    display: none;
+}
+
+#phoneText {
+    position: absolute;
+    top: 332px;
+    left: 455px;
+    width: 370px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 30px;
+    overflow: hidden;
+    color: black;
+    /*border: 1px red solid;*/
+}
+
+#submit {
+    position: absolute;
+    top: 440px;
+    left: 450px;
+}
+
+#clear {
+    position: absolute;
+    top: 440px;
+    left: 700px;
+}
+
+img.hd-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+}
+
+.hd-left-arrow {
+    left: 10px;
+}
+
+.hd-right-arrow {
+    right: 10px;
+}

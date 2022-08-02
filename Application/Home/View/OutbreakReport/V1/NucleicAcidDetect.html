@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>抗原检测疫苗接种</title>
+    <!--公用库-->
+    <script>
+        Root = "__ROOT__";
+        var RenderParam = {
+            isVip: {$isVip},  //当前用户是否VIP
+            userId: '{$userId}',    // 当前用户ID
+            carrierId: "{$carrierId}",          // 地区id
+            platformType: 'hd',     // hd--高清 sd--标清
+            focusIndex: '{$focusIndex}',     // hd--高清 sd--标清
+        };
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Common/V1/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/OutbreakReport/V1/NucleicAcidDetect.css?t={$time}">
+
+    <if condition="$carrierId eq '410092' ">
+        <!--河南电信EPG js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/410092/vod_utils.js?t={$time}"></script>
+    </if>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V220094/hospitalList.js?t={$time}"></script>
+
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/OutbreakReport/V1/NucleicAcidDetect.js?t={$time}"></script>
+</head>
+<body>
+<!--背景-->
+<div style="position: absolute;width: 1280px;height: 720px;left: 0;top: 0;z-index: -1">
+    <img id="indexBg"/>
+    <div id="title">抗原检测疫苗接种</div>
+    <img class="title-line" src="__ROOT__/Public/img/hd/OutbreakReport/V1/title_line.png"/>
+    <div id="tab-container">
+        <img id="tab-0" src="__ROOT__/Public/img/hd/OutbreakReport/V1/tab_epidemic_information.png">
+        <img id="tab-1" src="__ROOT__/Public/img/hd/OutbreakReport/V1/tab_vaccine_vaccination.png">
+
+        <img id="tab-2" src="__ROOT__/Public/img/hd/OutbreakReport/V1/tab_agency_reservation.png">
+        <!--<img id="tab-3" src="__ROOT__/Public/img/hd/OutbreakReport/V1/tab_hot_phone.png">-->
+    </div>
+</div>
+<div id="information" style="position:absolute;z-index: 99; display: none;font-size: 28px;top: 20px;left: 20px;font-weight: bold;">疾控机构咨询热线</div>
+<div id="hospital-wrapper"></div>
+<div id="inner-wrapper-test"></div>
+</body>
+<script>
+    window.onload = function () {
+        Controller.init();
+    }
+
+    if (RenderParam.carrierId == "410092") {
+        LMEPG.Log.info('init HybirdCallBackInterface !!!!!');
+        try {
+            HybirdCallBackInterface.setCallFunction(function (param) {
+                LMEPG.Log.info('HybirdCallBackInterface param : ' + JSON.stringify(param));
+                if (param.tag == HybirdCallBackInterface.EVENT_KEYBOARD_BACK) {
+                    LMEPG.Intent.back();
+                }
+            });
+        }catch (e){
+            LMEPG.UI.logPanel.show("e");
+        }
+    }
+    if  (RenderParam.carrierId == '220094' || RenderParam.carrierId == '220095'){
+        G('tab-2').src = '__ROOT__/Public/img/hd/OutbreakReport/V1/tab_CDC_information_hotline.png'
+    }
+</script>
+</html>

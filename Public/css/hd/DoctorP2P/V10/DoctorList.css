@@ -1,0 +1,430 @@
+.module_name {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+.split_line {
+    position: absolute;
+    left: 41px;
+    top: 92px;
+}
+
+img#split_line {
+    width: 1200px;
+    height: 3px;
+}
+
+.all_depart {
+    position: absolute;
+    left: 802px;
+    top: 32px;
+}
+
+.buy_vip {
+    position: absolute;
+    left: 702px;
+    top: 10px;
+}
+
+#buy_vip_text {
+    position: absolute;
+    left: 2px;
+    top: 56px;
+    font-size: 18px;
+    width: 174px;
+    color: #ffffff;
+}
+
+div#all_depart_text {
+    position: absolute;
+    left: 55px;
+    top: 0px;
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+    width: 150px;
+    height: 60px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+#all_depart_text_marquee {
+    color: white;
+    font-size: 23px;
+}
+
+img#all_depart {
+    width: 212px;
+    height: 60px;
+}
+
+#one_key_inquiry {
+    position: absolute;
+    left: 1030px;
+    top: 32px;
+    width: 212px;
+    height: 60px;
+}
+
+
+.left_page {
+    position: absolute;
+    left: 40px;
+    top: 314px;
+    visibility: hidden;
+}
+
+img#left_page {
+    width: 52px;
+    height: 90px;
+}
+
+.right_page {
+    position: absolute;
+    left: 1188px;
+    top: 314px;
+    visibility: hidden;
+}
+
+img#right_page {
+    width: 52px;
+    height: 90px;
+}
+
+div#page_num {
+    position: absolute;
+    left: 1188px;
+    top: 672px;
+    color: white;
+    font-size: 22px
+}
+
+.doctor_list {
+    width: 448px;
+    height: 238px;
+    position: absolute;
+
+}
+
+.doctor_info_1 {
+    top: 145px;
+    left: 178px;
+    position: absolute
+}
+
+.doctor_info_2 {
+    top: 145px;
+    left: 670px;
+    position: absolute
+}
+
+.doctor_info_3 {
+    top: 416px;
+    left: 178px;
+    position: absolute
+}
+
+.doctor_info_4 {
+    top: 416px;
+    left: 670px;
+    position: absolute
+}
+
+img#doctor_info_bg_1 {
+    width: 448px;
+    height: 238px;
+    position: absolute;
+}
+
+img#doctor_info_bg_2 {
+    width: 448px;
+    height: 238px;
+    position: absolute;
+}
+
+img#doctor_info_bg_3 {
+    width: 448px;
+    height: 238px;
+    position: absolute;
+}
+
+img#doctor_info_bg_4 {
+    width: 448px;
+    height: 238px;
+    position: absolute;
+}
+
+.doctor_avater {
+    position: absolute;
+    left: 33px;
+    top: 33px;
+}
+
+.doctor_avater_size {
+    width: 141px;
+    height: 141px;
+    z-index: -1
+}
+
+.doctor_name {
+    position: absolute;
+    left: 227px;
+    top: 46px;
+    width: 180px;
+    font-size: 33px;
+    color: #333333;
+    font-weight: 900;
+}
+
+.doctor_hospital {
+    position: absolute;
+    left: 227px;
+    top: 110px;
+    width: 190px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: black;
+}
+
+.doctor_job {
+    position: absolute;
+    top: 140px;
+    left: 227px;
+    width: 180px;
+    font-weight: 400;
+    color: black;
+}
+
+.doctor_access_num {
+    position: absolute;
+    top: 191px;
+    left: 226px;
+    width: 200px;
+    font-weight: 400;
+    overflow: hidden;
+    color: black;
+}
+
+.doctor_online_status {
+    position: absolute;
+    top: 193px;
+    left: 77px;
+}
+
+img#doctor_online_status_1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 19px;
+    height: 24px;
+}
+
+img#doctor_online_status_2 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 19px;
+    height: 24px;
+}
+
+img#doctor_online_status_3 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 19px;
+    height: 24px;
+}
+
+img#doctor_online_status_4 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 19px;
+    height: 24px;
+}
+
+div#doctor_online_status_1_text {
+    position: absolute;
+    left: 23px;
+    top: 2px;
+    width: 40px;
+    height: 24px;
+    font-size: 17px;
+}
+
+div#doctor_online_status_2_text {
+    position: absolute;
+    left: 23px;
+    top: 2px;
+    width: 40px;
+    height: 24px;
+    font-size: 17px;
+}
+
+div#doctor_online_status_3_text {
+    position: absolute;
+    left: 23px;
+    top: 2px;
+    width: 40px;
+    height: 24px;
+    font-size: 17px;
+}
+
+div#doctor_online_status_4_text {
+    position: absolute;
+    left: 23px;
+    top: 3px;
+    width: 40px;
+    height: 24px;
+    font-size: 17px;
+}
+
+.doctor_online_status_color_online {
+    color: #6ac5f4;
+}
+
+.doctor_online_status_color_offline {
+    color: #666666;
+}
+
+.doctor_online_status_color_line {
+    color: #ff9966;
+}
+
+.start_inquiry {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.center_text {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    line-height: 130px;
+    width: 451px;
+    height: 130px;
+    font-size: 30px;
+}
+
+.focus_text {
+    color: white !important;
+}
+
+.unfocus_text {
+    color: black !important;
+}
+
+img#start_inquiry_1 {
+    width: 451px;
+    height: 130px;
+}
+
+img#start_inquiry_2 {
+    width: 451px;
+    height: 130px;
+}
+
+img#start_inquiry_3 {
+    width: 451px;
+    height: 130px;
+}
+
+img#start_inquiry_4 {
+    width: 451px;
+    height: 130px;
+}
+
+.doctor_detail {
+    position: absolute;
+    top: 110px;
+    left: 0px;
+}
+
+img#doctor_detail_1 {
+    width: 451px;
+    height: 130px;
+}
+
+img#doctor_detail_2 {
+    width: 451px;
+    height: 130px;
+}
+
+img#doctor_detail_3 {
+    width: 451px;
+    height: 130px;
+}
+
+img#doctor_detail_4 {
+    width: 451px;
+    height: 130px;;
+}
+
+div#help-introduce {
+    position: absolute;
+    display: none;
+}
+
+div#help-introduce img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+#free_time {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 12;
+    background: url("../../../img/DoctorP2P/V1/free_bg.png");
+    width: 1280px;
+    height: 720px;
+    visibility: hidden;
+}
+
+#free_dialog {
+    position: absolute;
+    left: 406px;
+    top: 204px;
+    background: url("../../../img/DoctorP2P/V1/free_dialog_bg.png");
+    width: 495px;
+    height: 326px;
+}
+
+#free_btn_confirm {
+    position: absolute;
+    left: 90px;
+    top: 240px;
+    width: 318px;
+    height: 63px;
+}
+
+#free_btn_cancel {
+    position: absolute;
+    left: 434px;
+    top: 5px;
+    width: 57px;
+    height: 57px;
+}
+
+.free_dialog_text {
+    position: absolute;
+    left: 91px;
+    top: 63px;
+    font-size: 38px;
+    color: white;
+    text-align: center;
+}

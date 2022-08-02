@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Source Han Sans CN';
+}
+
+
+body {
+    width: 644px;
+    height: 530px;
+    position: relative;
+    background-position: left;
+    background-image: url(../../../../img/sd/Home/V16/Home/bg.png);
+    background-size: 644px 530px;
+    font-size: 22px;
+    color: #000;
+}
+
+body > * {
+    position: absolute;
+}
+
+p#title {
+    top: 20px;
+    left: 38px;
+    font-size: 22px;
+    color: #000;
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    clear: both;
+}
+
+#member-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#icon-member {
+    position: absolute;
+    top: 102px;
+    left: 25px;
+    width: 102px;
+    height: 102px;
+}
+
+#call-wrap {
+    position: absolute;
+    top: 213px;
+    left: 25px;
+}
+
+#call-wrap li {
+    width: 102px;
+    height: 48px;
+    padding-top: 18px;
+    background-size: 100% 66%;
+}
+
+#call-wrap li.edit-member {
+    font-size: 20px;
+}
+
+/*身体特征输入*/
+.body-characteristic {
+    position: absolute;
+    top: 123px;
+    left: 156px;
+}
+.icon-wrap{
+    width: 371px;
+    height: 64px;
+}
+.body-characteristic ul li {
+    float: left;
+    text-align: center;
+    /* padding-top: 40px; */
+}
+
+.age {
+    width: 66px;
+}
+
+.height {
+    width: 230px;
+}
+
+.weight {
+    width: 80px;
+}
+
+ul#prev-wrap,
+ul#select-wrap,
+ul#next-wrap{
+    padding-left: 45px;
+    margin-left: -45px;
+    width: 440px;
+    height: 40px;
+}
+ul#prev-wrap{
+    /* margin-top: 25px; */
+    padding-top: 40px;
+}
+ul#select-wrap{
+    background-image: url(../../../../img/sd/Unclassified/V13/select_bg.png);
+    line-height: 40px;
+    margin-top: 15px;
+}
+ul#next-wrap{
+    margin-top: 40px;
+}
+ul#select-wrap li span.focus {
+    color: #ef6188;
+    border-bottom: 1px solid #ef6188;
+}
+
+#submit {
+    position: absolute;
+    top: 292px;
+    left: 540px;
+    width: 104px;
+    height: 38px;
+}
+
+#delete-member {
+    position: absolute;
+    top: 230px;
+    left: 540px;
+    width: 104px;
+    height: 38px;
+}
+
+.text-info {
+    position: absolute;
+    top: 486px;
+    left: 110px;
+    font-size: 14px;
+}

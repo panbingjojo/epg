@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>西藏移动APK-订购页</title>
+
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/Common/common.css?t={$time}"/>
+    <link type="text/css" rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Pay/V540001/pay2.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+            // 公用参数
+            accountId: "{$accountId}",            // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+
+            // 页面参数
+            orderItems: {$orderItems},
+            isPlaying: "{$isPlaying}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            returnPageName: "{$returnPageName}",
+            authProductInfo: {$authProductInfo},
+            apkInfo: {$apkInfo},
+            payPackages: {$payPackages},
+            isLoopPayResult: "{$isLoopPayResult}",
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V{$carrierId}/pay2.js?t={$time}"></script>
+    <script type="text/javascript ">
+        // 页面载完执行
+        window.onload = function () {
+            try {
+                // 展示我方订购页
+                XZPay.init();
+            }catch (e) {
+                console.log(e);
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div id="default_tip"></div>
+
+<!--套餐类型-->
+<div id="order_options_container">
+    <div id="order_items_container">
+        <div id="order_item_1">
+        </div>
+        <div id="order_item_2" style="display: none">
+        </div>
+        <div id="order_item_3">
+        </div>
+        <div id="order_item_4">
+        </div>
+        <div id="order_item_5">
+        </div>
+    </div>
+</div>
+
+<!--套餐详情-->
+<div id="order_item_detail" class="dismiss">
+    <!--    套餐订购说明-->
+    <div id="desc_item_1" class="order_item_desc">您即将订购电视家庭医生包月产品  资费<span id="desc_price">29元/月</span>,订购后可观看电视家庭医生所有产品及健康问诊。如有疑问，请详询：0851-83834790</div>
+    <div id="desc_item_2" class="order_item_desc">自订购之日起，VIP功能根据您付款的时间、选择的套餐进行到期时间结算，套餐时间越长折扣越高。</div>
+    <div id="desc_item_3" class="order_item_desc">如需查询或者退订请拨打“10086”或发送短信“0000”至10086后台，按照提示进行退订。</div>
+
+    <!--支付类型-->
+    <div id="pay_type_container">
+
+        <!--    支付导航-->
+        <div id="pay_type_nav">
+            <img src="__ROOT__/Public/img/hd/Pay/V540001/bill_payment.png" id="pay_item_1">
+            <img src="__ROOT__/Public/img/hd/Pay/V540001/ali_payment.png" id="pay_item_2">
+            <img src="__ROOT__/Public/img/hd/Pay/V540001/wechat_payment.png" id="pay_item_3">
+        </div>
+
+        <!--    支付类型详情-->
+        <div id="pay_type_detail">
+            <div class="row">产品名称：<span id="pay_type_name">电视家庭医生</span></div>
+            <div class="row">产品类型：<span id="pay_type"></span></div>
+            <div class="row">资费信息：<span id="pay_price"></span></div>
+
+            <!--        支付二维码-->
+            <img src="" id="pay_qr_code" class="dismiss">
+
+            <!--        手机验证码输入框-->
+            <div id="bill_payment_container" class="dismiss">
+                <div class="pay_phone_label_1">请确认订购手机号</div>
+                <div id="update_phone_tips" class="pay_phone_label_2">(可修改)</div>
+                <input type="tel" id="pay_phone" disabled="true" oninput="onInputChange(event)"
+                       onporpertychange="maxLength(event)">
+            </div>
+        </div>
+
+        <!--支付按钮 确定-->
+        <img src="__ROOT__/Public/img/hd/Pay/V540001/pay_sure.png" id="btn_pay_sure">
+
+        <!--支付按钮 取消-->
+        <img src="__ROOT__/Public/img/hd/Pay/V540001/pay_cancel.png" id="btn_pay_cancel">
+    </div>
+</div>
+
+</body>
+</html>

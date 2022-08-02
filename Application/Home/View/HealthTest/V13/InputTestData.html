@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康检测-输入数据-V13</title>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/HealthTest/V13/InputTestData.css?t={$time}"/>
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: '{$carrierId}',          // 地区id
+            areaCode: '{$areaCode}',            // 省份地区码
+            platformType: '{$platformType}',    // 平台类型
+            debug: '{$debug}',                  // 调试模式
+            pageSize: '{$size}',                // 页面尺寸
+            stbModel: '{$stbModel}',            // 盒子的型号
+            fsUrl: '{$resourcesUrl}',           // fs 地址
+            time: '{$time}',                    // 开始渲染时间
+            userId: '{$userId}',                // 用户Id
+            accountId: '{$accountId}',          // 用户账号
+            loginId: '{$loginId}',              // 用户登录id
+
+            //当前页渲染
+            testType: '{$testType}', // 选择的检测类型
+            addedMemberList: {$addedMemberList},  // 已添加的家庭成员
+            momentData: {$momentData},            // 时段和就餐状态
+            skin: {$skin},      // 用户自定义背景
+
+            // 焦点和数据保持
+            focusId: "{$focusId}",
+            testMemberIndex: "{$testMemberIndex}", // 家庭成员数组下标
+            testTime: "{$testTime}", // 检测时间
+            testTypeIndex: "{$testTypeIndex}", // 检测类型数组下标
+            testValue: "{$testValue}", // 检测数值
+            testStatusIndex: "{$testStatusIndex}", // 检测状态数组下标
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/DataArchiving/V13/measure.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V13/InputTestData.js?t={$time}"></script>
+</head>
+<body>
+<div id="debug"></div>
+<p class="title">输入数据</p>
+<div id="container">
+    <ul class="data-wrapper">
+        <li class="test-time">
+            <span class="type-name">检测时间</span>
+            <p id="input-time" style="background-image: url('__ROOT__/Public/img/hd/HealthTest/V13/test_time.png');">请输入检测时间</p>
+            <ul id="date-modal"></ul>
+        </li>
+        <li class="test-type">
+            <span class="type-name">检测类型</span>
+            <img align="center" id="type-prev" src="__ROOT__/Public/img/hd/HealthTest/V13/prev.png" alt="">
+            <span id="input-type" class="bold">胆固醇</span>
+            <img align="center" id="type-next" src="__ROOT__/Public/img/hd/HealthTest/V13/next.png" alt="">
+        </li>
+        <li class="test-number">
+            <span class="type-name">检测数值</span>
+            <p id="input-number">请输入检测数值</p>
+            <span id="number-name" class="bold">胆固醇</span>
+            <ul id="number-modal">
+
+            </ul>
+        </li>
+        <li class="test-member">
+            <span class="type-name">检测成员</span>
+            <img class="prev-arrow" align="center" id="member-prev" src="__ROOT__/Public/img/hd/HealthTest/V13/prev.png" alt="">
+            <span id="input-member" class="bold"></span>
+            <img align="center" id="member-next" src="__ROOT__/Public/img/hd/HealthTest/V13/next.png" alt="">
+        </li>
+        <li class="test-status">
+            <span class="type-name">检测时段</span>
+            <img class="prev-arrow" align="center" id="status-prev" src="__ROOT__/Public/img/hd/HealthTest/V13/prev.png" alt="">
+            <span id="input-status" class="bold"></span>
+            <img align="center" id="status-next" src="__ROOT__/Public/img/hd/HealthTest/V13/next.png" alt="">
+        </li>
+        <li class="test-submit"><img id="test-submit" src="__ROOT__/Public/img/hd/HealthTest/V13/submit.png" alt=""></li>
+    </ul>
+</div>
+<script>
+    window.onload = function() {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+
+	    InputData.init();
+    }
+</script>
+</body>
+</html>

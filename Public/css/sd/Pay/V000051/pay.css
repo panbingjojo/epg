@@ -1,0 +1,40 @@
+#container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+}
+
+#pay_container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 530px;
+}
+
+/*订购项1-包月*/
+#pay_item_0 {
+    position: absolute;
+    left: 148px;
+    top: 384px;
+
+}
+
+/*订购项2 - 单月*/
+#pay_item_1 {
+    position: absolute;
+    top: 384px;
+    left: 328px;
+    visibility: hidden;
+}
+
+/*底部文字*/
+#pay_marquee_message {
+    position: absolute;
+    left: 25px;
+    top: 497px;
+    font-size: 10px;
+    color: #515050
+}

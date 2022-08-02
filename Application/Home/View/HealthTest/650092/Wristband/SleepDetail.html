@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>步数-V13</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/{$platformType}/HealthTest/V8/general.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/HealthTest/V8/Wristband/SleepDetail.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            isVip: {$isVip},                    // 用户是不是vip，1 -- 是vip
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            returnUrl: "{$returnUrl}",          // 父页面
+            focusId: "{$focusId}",              // 默认焦点
+
+            //当前页渲染
+            positionTwoConfig: "{$positionTwoConfig}",
+            checkTime: "{$checkTime}",
+            commonImgsView: "{$commonImgsView}",                // 公用图片模式
+            themeImage: "{$themePicture}",                      // 应用主题背景
+            focusIndex: "{$focusIndex}",                        // 焦点ID
+            classifyId: "{$classifyId}",                        // 导航栏ID
+            member_id: "{$member_id}",                          // 成员id
+            member_image_id: "{$member_image_id}",              // 头像id
+            member_name: "{$member_name}",                      // 成员姓名
+            member_gender: "{$member_gender}",                  // 成员性别（0-男 1-女）
+            //当前页渲染
+            skin: {$skin},      // 用户自定义背景
+            focusId: "{$focusId}",// 焦点保持
+            page: "{$page}",
+            measure_id: "{$measure_id}",                      // 成员姓名
+        }
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+            <script type="text/javascript" src="__ROOT__/Public/js/HealthTest/V8/Wristband/SleepDetail.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmOrderConf.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="debug"></div>
+<p class="title2"><img align="middle" id="person-pic" alt=""> <span id="title"></span>睡眠详情</p>
+<div class="container" id="default">
+    <div class="time"><span id="daily_dt"></span>夜间睡眠时长 <span id="sleep_duration"></span></div>
+    <div class="sleep-status">
+        <ul class="sleep-percent">
+            <li>
+                <div class="list-bg">
+                    <div class="list-content">
+                        <span id="deep_sleep"></span>%
+                        <br/><span class="low-font">正常</span>
+                    </div>
+                </div>
+                <p>深睡<span id="deep_duration"></span></p></li>
+            <li>
+                <div class="list-bg">
+                    <div class="list-content">
+                        <span id="light_sleep"></span>%
+                        <br/><span class="low-font">正常</span>
+                    </div>
+                </div>
+                <p >浅睡<span id="light_duration"></span></p></li>
+            <li>
+                <div class="list-bg">
+                    <div class="list-content">
+                        <span id="awake_sleep"></span>%
+                        <br/><span class="low-font">正常</span>
+                    </div>
+                </div>
+                <p>清醒<span id="awake_duration"></span></p></li>
+        </ul>
+
+        <div class="sleep-bar">
+            <img class="bar" src="__ROOT__/Public/img/hd/HealthTest/V8/Wristband/sleep_bar.png" alt="">
+            <div id="fall-sleep"><span id="sleep_dt">23:55</span>入睡</div>
+            <div id="un-sleep"><span id="getup_dt">23:55</span>清醒</div>
+        </div>
+    </div>
+
+    <div class="sleep-compare">
+        <div id="sleep-compare-content">昨日夜间睡眠最高心率<span id="max_rate"></span>次/分，最低心率<span id="min_rate"></span>次/分，睡眠基准心率<span id="average_rate"></span>次/分</div>
+<!--        <div id="sleep-compare-status">正常</div>-->
+    </div>
+
+<!--    <div class="sleep-level-box">-->
+<!--        <div class="sleep-level-info">-->
+<!--            <div class="sleep-level-title">-->
+<!--                <div class="level-name">睡眠等级</div>-->
+<!--                <div id="level">优</div>-->
+<!--            </div>-->
+<!--            <div id="sleep-level-content">-->
+<!--                发大水发大水 地方阿斯顿富士达发阿迪斯发生的发撒旦发士大夫十大发十大方式阿道夫阿斯顿发撒旦法撒旦发十大发第三方撒旦发-->
+<!--                发大水发大水 地方阿斯顿富士达发阿迪斯发生的发撒旦发士大夫十大发十大方式阿道夫阿斯顿发撒旦法撒旦发十大发第三方撒旦发-->
+<!--                发大水发大水 地方阿斯顿富士达发阿迪斯发生的发撒旦发士大夫十大发十大方式阿道夫阿斯顿发撒旦法撒旦发十大发第三方撒旦发-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="seven-data">-->
+<!--        <table class="seven-table">-->
+<!--            <tr>-->
+<!--                <td style="width: 313px">近七天理想睡眠天数：2天</td>-->
+<!--                <td>夜均7.3小时</td>-->
+<!--                <td>日均2.1小时</td>-->
+<!--                <td>工作日均7.1小时</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--    </div>-->
+
+
+    <div class="sleep-time">
+        <table class="sleep-time-table">
+            <tr>
+                <td>最晚夜间入睡<br/><span id="max_dt">周一</span></td>
+                <td>最长夜间睡眠<br/><span id="max_duration">02:00周一</span></td>
+                <td>最短夜间睡眠<br/><span id="min_duration">02:00周一</span></td>
+                <td>最晚夜间入睡<br/><span id="min_dt">02:00周一</span></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<!--<img id="left-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/left.png" alt="上页箭头">-->
+<!--<img id="right-arrow" class="arrow" src="__ROOT__/Public/img/hd/Common/V13/right.png" alt="下页箭头">-->
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        // 设置皮肤（产品背景图）
+        LMEPG.UI.setBackGround();
+        // Test.init();
+        G('title').innerHTML = RenderParam.member_name + name;
+        // G('test-item').src = g_appRootPath + '/Public/img/hd/HealthTest/V13/test_' + item + '.png';
+        G('person-pic').src = g_appRootPath + '/Public/img/hd/HealthTest/V13/member_' + RenderParam.member_image_id + '.png';
+        Test.init()
+    };
+</script>
+</body>
+</html>

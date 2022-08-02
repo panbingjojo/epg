@@ -1,0 +1,468 @@
+* {
+    outline: none !important;
+    padding: 0px;
+    margin: 0px
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    background-repeat: no-repeat;
+    position: absolute;
+    overflow: hidden;
+}
+
+#focus-8-1 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 0px;
+    left: 20px;
+    text-align: left;
+    overflow: hidden;
+}
+
+#focus-8-1-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+}
+
+#focus-8-1-src {
+    position: absolute;
+    width: 215px;
+    height: 160px;
+    left: 22px;
+    top: 15px;
+}
+
+#focus-8-1-title {
+    position: absolute;
+    background: url('../../../../img/hd/Search/V3/txtbg.png');
+    z-index: 888;
+    left: 22px;
+    text-align: center;
+    width: 215px;
+    height: 30px;
+    top: 145px;
+    font-size: 25px;
+    color:white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+
+    /*z-index: 888;*/
+    /*position: absolute;*/
+    /*left: 22px;*/
+    /*width: 215px;*/
+    /*height: 30px;*/
+    /*top: 145px;*/
+    /*font-size: 25px;*/
+    /*color:white;*/
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+}
+
+#focus-8-2 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 0px;
+    left: 260px;
+    text-align: center;
+    /*overflow: hidden;*/
+}
+
+#focus-8-2-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+}
+
+#focus-8-2-src {
+    position: absolute;
+    width: 215px;
+    height: 160px;
+    left: 22px;
+    top: 15px;
+}
+
+#focus-8-2-title {
+    background: url('../../../../img/hd/Search/V3/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 22px;
+    width: 215px;
+    height: 30px;
+    top: 145px;
+    font-size: 25px;
+    color:white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-8-3 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 0px;
+    left: 500px;;
+    text-align: center;
+}
+
+#focus-8-3-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+}
+
+#focus-8-3-src {
+    position: absolute;
+    width: 215px;
+    height: 160px;
+    left: 22px;
+    top: 15px;
+}
+
+#focus-8-3-title {
+    background: url('../../../../img/hd/Search/V3/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 22px;
+    width: 215px;
+    height: 30px;
+    top: 145px;
+    font-size: 25px;
+    color:white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-9-1 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 180px;
+    left: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#focus-9-1-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+    top: 10px;
+}
+
+#focus-9-1-src {
+    position: absolute;
+    width: 217px;
+    height: 160px;
+    left: 21px;
+    top: 25px;
+}
+
+#focus-9-1-title {
+    background: url('../../../../img/hd/Search/V3/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 21px;
+    width: 217px;
+    height: 30px;
+    top: 155px;
+    font-size: 25px;
+    color:white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-9-2 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 180px;
+    left: 260px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#focus-9-2-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+    top: 10px;
+}
+
+#focus-9-2-src {
+    position: absolute;
+    width: 217px;
+    height: 160px;
+    left: 21px;
+    top: 25px;
+}
+
+#focus-9-2-title {
+    background: url('../../../../img/hd/Search/V3/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 21px;
+    width: 217px;
+    height: 30px;
+    top: 155px;
+    font-size: 25px;
+    color:white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#focus-9-3 {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    top: 180px;
+    left: 500px;;
+    text-align: center;
+    overflow: hidden;
+}
+
+#focus-9-3-border {
+    position: absolute;
+    width: 260px;
+    height: 190px;
+    left: 0px;
+    top: 10px;
+}
+
+#focus-9-3-src {
+    position: absolute;
+    width: 216px;
+    height: 160px;
+    left: 22px;
+    top: 25px;
+}
+
+#focus-9-3-title {
+    background: url('../../../../img/hd/Search/V3/txtbg.png');
+    z-index: 888;
+    position: absolute;
+    left: 22px;
+    width: 216px;
+    height: 30px;
+    top: 155px;
+    font-size: 25px;
+    color:white;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+#searchText {
+    position: absolute;
+    width: 400px;
+    height: 50px;
+    font-size: 35px;
+    text-align: center;
+    color: #FFFFFF;
+    outline: none !important;
+    top: 20px;
+    left: 35px;
+    overflow: hidden;
+    white-space: nowrap;
+    /*text-overflow: ellipsis;*/
+}
+
+.line {
+    position: absolute;
+    top: 70px;
+    width: 450px;
+    left: 10px;
+}
+
+#left {
+    height: 640px;
+    width: 480px;
+    left: 24px;
+    top: 11px;
+    background-image: url("../../../../img/hd/Search/V3/keywordmodel.png");
+    position: absolute;
+}
+
+.common {
+    width: 70px;
+    height: 70px;
+    background: url('../../../../img/hd/Search/V3/defaultbg.png') no-repeat;
+    text-align: center;
+    line-height: 70px;
+    color: #ffffff;
+    font-size: 45px;
+    position: absolute;
+}
+
+.focus-col-1 {
+    left: 10px;
+}
+
+.focus-col-2 {
+    left: 90px;
+}
+
+.focus-col-3 {
+    left: 165px;
+}
+
+.focus-col-4 {
+    left: 240px;
+}
+
+.focus-col-5 {
+    left: 315px;
+}
+
+.focus-col-6 {
+    left: 390px;
+}
+
+.focus-row-1 {
+    top: 80px;
+}
+
+.focus-row-2 {
+    top: 160px;
+}
+
+.focus-row-3 {
+    top: 240px;
+}
+
+.focus-row-4 {
+    top: 320px;
+}
+
+.focus-row-5 {
+    top: 400px;
+}
+
+.focus-row-6 {
+    top: 480px
+}
+
+#focus-1-1 {
+    color: #1d4377;
+    background: url("../../../../img/hd/Search/V3/wordbg.png") no-repeat;
+}
+
+#focus-7-1 {
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    top: 560px;
+    left: 2px;
+    background: url("../../../../img/hd/Search/V3/delbtnfault.png") no-repeat;
+
+}
+
+#focus-7-2 {
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    top: 560px;
+    left: 325px;
+    background: url("../../../../img/hd/Search/V3/backbtnfault.png") no-repeat;
+
+}
+
+.rightWrap {
+    position: absolute;
+    top: 180px;
+    left: 500px;
+    width: 650px;
+    height: 420px;
+}
+
+#topArrow {
+    position: absolute;
+    left: 850px;
+    top: 130px;
+    width: 30px;
+    height: 20px;
+    visibility: hidden;
+}
+
+#bottomArrow {
+    position: absolute;
+    left: 850px;
+    top: 620px;
+    width: 30px;
+    height: 20px;
+    visibility: hidden;
+}
+
+#pagePlag {
+    position: absolute;
+    left: 1120px;
+    top: 70px;
+    width: 60px;
+    height: 20px;
+    color: white;
+    font-size: 30px;
+}
+
+#searchTitle {
+    position: absolute;
+    left: 520px;
+    top: 65px;
+    width: 200px;
+    height: 20px;
+    color: white;
+    font-size: 35px;
+}
+
+/*跑马灯*/
+#scroll_div {
+    width: 670px;
+    height: 30px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    top: 670px;
+    left: 534px;
+    font-size: 29px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+}
+
+.home_btn {
+    width: 145px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 44px;
+}
+
+.main_btn {
+    width: 145px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 189px;
+}
+
+.back_btn {
+    width: 145px;
+    height: 57px;
+    position: absolute;
+    top: 660px;
+    left: 334px;
+}

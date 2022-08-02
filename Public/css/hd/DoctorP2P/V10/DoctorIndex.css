@@ -1,0 +1,212 @@
+
+.title{
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    font-size: 38px;
+    color: #fff;
+    font-weight: bold;
+    background-image: url(../../../../img/hd/Home/V11/line.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+}
+
+/*科室选择按钮*/
+#department {
+    position: absolute;
+    top: 100px;
+    left: 75px;
+    width: 1144px;
+    height: 68px;
+    text-align: center;
+    line-height: 68px;
+    font-size: 24px;
+    border-radius: 12px;
+    color: white;
+    background: url("../../../../../Public/img/hd/Home/V10/HomeBox/bg_btn_long.png");
+}
+
+#department img {
+    vertical-align: middle;
+}
+
+#center {
+    position: absolute;
+    top: 115px;
+    left: 8px;
+    width: 1240px;
+    height: 508px;
+}
+
+/*医生项*/
+.doctor-item {
+    position: absolute;
+    width: 686px;
+    height: 345px;
+    background: url("../../../../../Public/img/hd/Home/V10/HomeBox/bg_card.png");
+    border-radius: 12px;
+    background-position: center;
+}
+
+.doctor-status {
+    position: absolute;
+    top: 50px;
+    left: 69px;
+    width: 162px;
+    height: 244px;
+    border-radius: 10px;
+}
+
+.doctor-avatar {
+    position: absolute;
+    top: 92px;
+    left: 69px;
+    width: 162px;
+    height: 160px;
+}
+
+.doctor-recommend {
+    position: absolute;
+    top: 201px;
+    left: 69px;
+}
+
+.doctor-recommend img{
+    display: block;
+}
+
+.zoom-doctor-recommend {
+    position: absolute;
+    top: 213px;
+    left: 39px;
+    display: flex;
+    flex-direction: column;
+}
+
+.doctor-reception-times {
+    position: absolute;
+    top: 260px;
+    left: 69px;
+    width: 162px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 22px;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.introduce {
+    position: absolute;
+    top: 65px;
+    left: 269px;
+    width: 330px;
+    height: 230px;
+    font-size: 26px;
+    color: #393838;
+}
+.introduce-word {
+    width: 330px;
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.doctor-name {
+    font-size: 40px;
+}
+
+.hospital-name {
+    font-size: 30px;
+}
+
+#doctor-item-0 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#doctor-item-1 {
+    position: absolute;
+    top: 0px;
+    left: 580px;
+}
+
+#doctor-item-2 {
+    position: absolute;
+    top: 258px;
+    left: 0px;
+}
+
+#doctor-item-3 {
+    position: absolute;
+    top: 258px;
+    left: 580px;
+}
+
+.doctor-item-hover {
+    position: absolute;
+    z-index: 996;
+}
+
+.doctor-item-hover > .doctor-reception-times {
+    top: 270px;
+    left: 59px;
+}
+.doctor-item-hover > .introduce {
+    font-weight: bold;
+    top: 80px;
+    left: 269px;
+}
+
+.zoom-img-1 {
+    top: 40px;
+    left: 39px;
+    width: 182px;
+    height: 268px;
+}
+
+.zoom-img-2 {
+    top: 83px;
+    left: 41px;
+    width: 179px;
+    height: 182px;
+}
+
+/*翻页箭头*/
+#m-next {
+    position: absolute;
+    top: 680px;
+    left: 620px;
+}
+
+/*显示页码*/
+#pages {
+    position: absolute;
+    top: 685px;
+    left: 1050px;
+    font-size: 25px;
+    color: #FFFFFF;
+}
+
+/*底部提示文案*/
+.footer {
+    position: absolute;
+    color: #ffffff;
+    left: 80px;
+    top:690px;
+}
+
+#doctor-tel{
+    display: none;
+    position: absolute;
+    color: #ffffff;
+    left: 1056px;
+    top: 12px;
+}

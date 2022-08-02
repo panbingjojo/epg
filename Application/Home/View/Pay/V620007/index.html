@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <title>甘肃移动-计费页</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Common/V1/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/Pay/V620007/pay.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var ROOT = "__ROOT__";
+        var RenderParam = {
+                // 公用参数
+                accountId: "{$accountId}",            // 账号
+                carrierId: "{$carrierId}",          // 地区id
+                areaCode: "{$areaCode}",            // 省份地区码
+                platformType: "{$platformType}",    // 平台类型
+                debug: "{$debug}",                  // 调试模式
+                pageSize: "{$size}",                // 页面尺寸
+                stbModel: "{$stbModel}",            // 盒子的型号
+                fsUrl: "{$resourcesUrl}",           // fs 地址
+                time: "{$time}",                    // 开始渲染时间
+                userId: "{$userId}",                // 用户Id
+                isTestAccount: "{$isTestAccount}",   // 是否是测试账号
+
+                // 页面参数
+                orderItems: {$orderItems},
+                isPlaying: "{$isPlaying}",
+                orderReason: "{$orderReason}",
+                remark: "{$remark}",
+                returnPageName: "{$returnPageName}",
+            };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/jquery-3.6.0.min.js"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/common/js/android.js?t={$time}"></script>
+    <!--订购-->
+    <script type="text/javascript"  src="__ROOT__/Public/js/Pay/V620007/pay.js?t={$time}"></script>
+</head>
+<body id="body">
+<p id="head_title">开通VIP</p>
+<img id="head_line" src="__ROOT__/Public/img/Pay/V620007/icon_header_line.png"/>
+<div id="show_area">
+    <p id="choose_order_text">尊敬的{$accountId}用户，请选择VIP会员套餐</p>
+    <div id="vip_permission">
+        <div class="vip_permission_item">
+            <img class="vip_permission_img" src="__ROOT__/Public/img/Pay/V620007/bg_buy_vip_doctor.png"/>
+            <p class="vip_permission_text">医生免费咨询</p>
+        </div>
+        <div class="vip_permission_item">
+            <img class="vip_permission_img" src="__ROOT__/Public/img/Pay/V620007/bg_buy_vip_video.png"/>
+            <p class="vip_permission_text">海量健康视频免费看</p>
+        </div>
+        <div class="vip_permission_item">
+            <img class="vip_permission_img" src="__ROOT__/Public/img/Pay/V620007/bg_buy_vip_health.png"/>
+            <p class="vip_permission_text">健康监测管理无忧</p>
+        </div>
+        <div class="vip_permission_item">
+            <img class="vip_permission_img" src="__ROOT__/Public/img/Pay/V620007/bg_buy_vip_crown.png"/>
+            <p class="vip_permission_text">尊享标识尊贵身份</p>
+        </div>
+    </div>
+    <div id="orderList">
+        <div id="buy_vip_1" class="order">
+            <img  src="__ROOT__/Public/img/Pay/V620007/bg_buy_vip_one.png"/>
+            <p class="vip_price_text"></p>
+            <p class="vip_time_text"></p>
+        </div>
+        <div id="buy_vip_2" class="order">
+            <img src="__ROOT__/Public/img/Pay/V620007/bg_buy_vip_two.png"/>
+            <p class="vip_price_text"></p>
+            <p class="vip_time_text"></p>
+        </div>
+        <div id="buy_vip_3" class="order">
+            <img src="__ROOT__/Public/img/Pay/V620007/bg_buy_vip_three.png"/>
+            <p class="vip_price_text"></p>
+            <p class="vip_time_text"></p>
+        </div>
+        <div id="buy_vip_4" class="order">
+            <img src="__ROOT__/Public/img/Pay/V620007/bg_buy_vip_four.png"/>
+            <p class="vip_price_text"></p>
+            <p class="vip_time_text"></p>
+        </div>
+
+    </div>
+</div>
+<div id="confirm_dialog">
+    <img id="btn_order" src="__ROOT__/Public/img/Pay/V620007/order_out.png">
+    <img id="btn_cancle" src="__ROOT__/Public/img/Pay/V620007/cancle_out.png">
+</div>
+
+<script type="text/javascript">
+    G("body").style.backgroundImage = "url('" + ROOT + "/Public/img/Pay/V620007/bg_home.png')";
+    G("confirm_dialog").style.backgroundImage = "url('" + ROOT + "/Public/img/Pay/V620007/confirm_bg.png')";
+    Pay.init();
+</script>
+</body>
+</html>

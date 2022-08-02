@@ -1,0 +1,771 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>健康自测-首页V20</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/HealthSelfTest/V20/testList.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            // 公共渲染
+            skin: {$skin},      // 用户自定义背景
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+            isVip: {$isVip},                    // 用户是否是vip(1-vip 0-非vip)
+            focusIndex: "{$focusIndex}",        // 记录保持的焦点ID
+        };
+
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+</head>
+
+<body  id="container"  style='background-image: url("__ROOT__/Public/img/hd/Home/V20/Common/bg.png")'>
+<div id="container">
+    <!--左侧分类列表-->
+    <div id="knowledge_category_list"
+         style='background-image: url("__ROOT__/Public/img/hd/Home/V10/left_nav.png")'>
+
+        <!--向上翻页箭头-->
+        <img id="category_arrows_up" src="__ROOT__/Public/img/hd/Common/menu_prev.png"/>
+        <!--分类列表-->
+        <div id="category_content"></div>
+        <!--向下翻页箭头-->
+        <img id="category_arrows_down" src="__ROOT__/Public/img/hd/Common/menu_next.png"/>
+    </div>
+    <!--工具条-->
+    <div id="tool_bar">
+        <img id="search" src="__ROOT__/Public/img/hd/Home/V20/Nav/search.png"/>
+    </div>
+    <!--知识内容-->
+    <div id="knowledge_container">
+        <!--标题-->
+        <div id="title">健康自测</div>
+        <!--知识列表-->
+        <div id="knowledge_content">
+            <!--向上翻页箭头-->
+            <img id="up_content_arrows" src="__ROOT__/Public/img/hd/Home/V20/icon_up.png"/>
+            <!--知识列表-->
+            <div id="knowledge_list">
+            </div>
+            <!--页数-->
+            <div id="page_num"></div>
+            <!--向下翻页箭头-->
+            <img id="down_content_arrows" src="__ROOT__/Public/img/hd/Home/V20/icon_down.png"/>
+            <div id="empty_data">暂无测试项目</div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var InitData = {
+        LeftListArr: [],
+        LeftListArrPageCurrent: 1,
+        LeftListArrPageTotal: 0,
+        LEFT_LIST_MAX_PER_PAGE: 7,
+        CONF: {$conf},
+        ColumnId: "{$columnId}",
+        TopicId: "{$topicId}",
+        currentClassId: "{$currentClassId}",
+    };
+
+    function onBack() {
+        LMEPG.Intent.back();
+    }
+
+    window.onload = function () {
+        LMEPG.UI.setBackGround();
+        LMEPG.ButtonManager.init(['category_0'], buttons, '', true);
+        //增加动态创建的按钮
+        ToolBar.initToolBar();
+        TestCategory.init();
+    };
+
+    function getTopicList(linkClassId, columnId) {
+        var postData = {
+            "classId": linkClassId,
+            "pageCurrent": 1,
+            "pageTotal": 10000000,   //TODO 由于现在的分页机制是基于全部数据拉取完成后进行的，先将该值更改为比较大的数，后面有时间需要优化分页机制。
+        };
+
+        InitData.currentClassId = linkClassId;//记录记录选中的分类id
+
+        LMEPG.UI.showWaitingDialog();
+        LMEPG.ajax.postAPI("HealthSelfTest/getTopicList", postData, function (rsp) {
+            LMEPG.UI.dismissWaitingDialog();
+            try {
+//                console.log(JSON.stringify(rsp));
+                var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                if (data instanceof Object) {
+                    if (data.result == 0) {
+                        TestContent.data = data.list;
+                        TestContent.count = TestContent.data.length;
+                        if (TestContent.count > 0) {
+                            InitData.ColumnId = columnId;//拉取数据成功后，保存一下当前的分类id
+                            TestContent.currentPage = 1;
+                            TestContent.countPage = Math.ceil(TestContent.count / TestContent.MAX_ITEM_NUM);
+                            Show("page_num");
+                            Hide('empty_data');
+                        } else {
+                            Hide("page_num");
+                            Show('empty_data');
+                        }
+                        TestContent.calcCurrentPage();
+                        var subData = TestContent.getCurrentData();
+                        TestContent.createElements(subData);
+                        TestContent.InitFocus();
+                        TestContent.updateArrows();
+                        TestContent.updatePageNumUI();
+                    } else {
+                        LMEPG.UI.showToast("暂无测试项目：[{0}]".format(data.result));
+                        Show('empty_data');
+                    }
+                } else {
+                    LMEPG.UI.showToast("暂无测试项目：{0}".format(JSON.stringify(data)));
+                    Show('empty_data');
+                }
+            } catch (e) {
+                LMEPG.UI.showToast("获取自测项目异常：" + e.toString());
+                Show('empty_data');
+            }
+        });
+    }
+
+</script>
+
+<script type="text/javascript">
+    function getCurrentPage() {
+        var currentPage = LMEPG.Intent.createIntent("selfTestList");
+        currentPage.setParam("columnId", InitData.ColumnId);
+        currentPage.setParam("currentClassId", InitData.currentClassId);
+        currentPage.setParam("focusIndex", LMEPG.BM.getCurrentButton().id);
+        return currentPage;
+    }
+
+    function jumpTestAnswer(topicId) {
+        var objCurrent = getCurrentPage();
+        objCurrent.setParam("topicId", topicId);
+        var objHome = LMEPG.Intent.createIntent("answer");
+        objHome.setParam("topicId", topicId);
+        LMEPG.Intent.jump(objHome, objCurrent);
+    }
+
+    function jumpTestSearch() {
+        var objCurrent = getCurrentPage();
+        var objHome = LMEPG.Intent.createIntent("search");
+        objHome.setParam("searchType", 3); // type: 0药品查询 1疾病自查 2症状自查 3健康自测 4健康知识管理
+        LMEPG.Intent.jump(objHome, objCurrent);
+    }
+
+    function jumpTestBuyVip(reason) {
+        var objSrc = getCurrentPage();
+        var objDst = LMEPG.Intent.createIntent('orderHome');
+        objDst.setParam("orderReason", is_empty(reason) ? LMEPG.VipReason.BUY_SELF : reason);
+        LMEPG.Intent.jump(objDst, objSrc);
+    }
+</script>
+
+<script type="text/javascript">
+    // 全局变量
+    var buttons = [];
+    var vipCornerImage = LMEPG.App.getAppRootPath() + "/Public/img/hd/Common/vip_icon.png";
+
+    /**
+     * 分类列表
+     * @type {{}}
+     */
+    var TestCategory = {
+        GROUP_NAME: "self_test_category",
+        MAX_ITEM_NUM: 7,                // 每页最大的子项
+        startIndex: 0,                 // 当前数据开始位置
+        count: 0,                      // 总数
+        totalPage: 0,                  // 总页数
+        data: [],                      // 数据
+        NAV_STATE_SELECT: 1,//导航栏选中状态
+        NAV_STATE_FOCUS: 2,//导航栏获取焦点状态
+        /**
+         * 初始化列表
+         */
+        init: function () {
+            this.data = InitData.CONF.ConfLeftNav;
+            this.count = this.data.length;
+            this.startIndex = 0;
+
+            var tempNavStateObj = this.calcLeftNavState();
+            var data = this.getCurrentData();
+            this.createCategoryListUI(data);
+
+            LMEPG.ButtonManager.refresh();
+            this.updateArrows();
+
+            switch (tempNavStateObj.state) {
+                case this.NAV_STATE_FOCUS:
+                    LMEPG.ButtonManager.requestFocus(tempNavStateObj.navFocusId);
+                    break;
+                case this.NAV_STATE_SELECT:
+                    LMEPG.BM.setSelected(tempNavStateObj.navFocusId, true);
+                    break;
+            }
+
+            var tempInitLinkClassId = "";
+            var tempColumnId = "-1";
+            var tempColumnName = "";
+            if (InitData.ColumnId === undefined || InitData.ColumnId == null || InitData.ColumnId === "") {
+                var FirstItemConfLeftNav = InitData.CONF.ConfLeftNav[0];
+                tempInitLinkClassId = FirstItemConfLeftNav.link_class_id;
+                tempColumnId = FirstItemConfLeftNav.column_id;
+                tempColumnName = FirstItemConfLeftNav.column_name;
+            } else {
+                for (var i = 0; i < InitData.CONF.ConfLeftNav.length; i++) {
+                    var tempNavItem = InitData.CONF.ConfLeftNav[i];
+                    if (InitData.ColumnId == parseInt(tempNavItem.column_id)) {
+                        tempColumnId = InitData.ColumnId;
+                        tempInitLinkClassId = tempNavItem.link_class_id;
+                        tempColumnName = tempNavItem.column_name;
+                        break;
+                    }
+                }
+            }
+            G("title").innerHTML = tempColumnName;
+            getTopicList(tempInitLinkClassId, tempColumnId);
+        },
+        //计算左侧导航栏的焦点
+        calcLeftNavState: function () {
+            var retNavState = {
+                state: this.NAV_STATE_FOCUS,
+                navFocusId: "category_0"
+            };
+
+            if ((InitData.TopicId !== undefined && InitData.TopicId !== null && InitData.TopicId !== "")
+                    || RenderParam.focusIndex === "search") { //焦点返回保持，若跳转前点击的列表项或者搜索按钮，则返回保持
+                retNavState.state = this.NAV_STATE_SELECT;
+            }
+
+            var tempIndex = 0;//计算当前分类在数组中的位置
+            for (var i = 0; i < InitData.CONF.ConfLeftNav.length; i++) {
+                var tempItem = InitData.CONF.ConfLeftNav[i];
+                if (parseInt(tempItem.column_id) == InitData.ColumnId) {
+                    tempIndex = i;
+                    break;
+                }
+
+            }
+            if (tempIndex < 7) {
+                retNavState.navFocusId = "category_" + tempIndex;
+            } else {
+                this.startIndex = tempIndex;
+            }
+
+            return retNavState;
+        },
+
+        /**
+         * 得到当前页数据
+         */
+        getCurrentData: function () {
+            var data = [];
+            if (this.count > 0) {
+                var start = this.startIndex;
+                var end = this.startIndex + this.MAX_ITEM_NUM >= this.count ?
+                    this.count : this.startIndex + this.MAX_ITEM_NUM;
+                data = this.data.slice(start, end);
+            }
+            return data;
+        },
+
+        /**
+         * 向下翻页
+         */
+        nextPage: function () {
+            if (TestCategory.startIndex + TestCategory.MAX_ITEM_NUM < TestCategory.count) {
+                TestCategory.startIndex = TestCategory.startIndex + 1;
+                var categoryData = TestCategory.getCurrentData();
+                TestCategory.createCategoryListUI(categoryData);
+                LMEPG.ButtonManager.refresh();
+                LMEPG.BM.requestFocus("category_" + (TestCategory.MAX_ITEM_NUM));
+
+                // [刷新新位置数据列表]：上/下翻页后（移动1个），亦复用当前第1个/最后1个元素位置（buttonId）。由于TestCategory.onFocusChange
+                // 中处理了，若上一次selected的和当前focused还是同一个的话，不再重新load数据。所以，翻页的时候，需要重新刷新！
+                this.refreshCurrentNavDataListUI();
+            }
+            this.updateArrows();
+        },
+
+        /**
+         * 向上翻页
+         */
+        prevPage: function () {
+            if (TestCategory.startIndex > 0) {
+                TestCategory.startIndex = TestCategory.startIndex - 1;
+                var categoryData = TestCategory.getCurrentData();
+                TestCategory.createCategoryListUI(categoryData);
+                LMEPG.ButtonManager.refresh();
+                LMEPG.BM.requestFocus("category_0");
+
+                // [刷新新位置数据列表]：上/下翻页后（移动1个），亦复用当前第1个/最后1个元素位置（buttonId）。由于TestCategory.onFocusChange
+                // 中处理了，若上一次selected的和当前focused还是同一个的话，不再重新load数据。所以，翻页的时候，需要重新刷新！
+                this.refreshCurrentNavDataListUI();
+            }
+            this.updateArrows();
+        },
+
+        /**
+         * 更新翻页箭头
+         */
+        updateArrows: function () {
+            if (TestCategory.startIndex == 0) {
+                Hide('category_arrows_up');
+            } else {
+                Show('category_arrows_up');
+            }
+            if (TestCategory.startIndex + TestCategory.MAX_ITEM_NUM >= TestCategory.count) {
+                Hide('category_arrows_down');
+            } else {
+                Show('category_arrows_down');
+            }
+        },
+
+        /**
+         * 创建分类列表html
+         * @param categoryData
+         */
+        createCategoryListUI: function (data) {
+            var categoryContent = G('category_content');
+            if (!LMEPG.Func.isArray(data) || data.length == 0) {
+                categoryContent.innerHTML = "";
+                return
+            }
+            var html = "";
+            var buttonList = [];
+            for (var i = 0; i < data.length; i++) {
+                var tempName = data[i].column_name;
+                var tempColumnId = data[i].column_id;
+                var tempImgUrlObj = JSON.parse(data[i].img_url);
+                var tempNormalImg = tempImgUrlObj.normal !== undefined ? RenderParam.fsUrl + tempImgUrlObj.normal : '';
+                var tempFocusIn = tempImgUrlObj.focus_in !== undefined ? RenderParam.fsUrl + tempImgUrlObj.focus_in : '';
+                var tempFocusOut = tempImgUrlObj.focus_out != undefined ? RenderParam.fsUrl + tempImgUrlObj.focus_out : '';
+//                var audioUrl = RenderParam.fsUrl + data[i].audio_url;
+                var buttonId = "category_" + i;
+                html += '<img id="' + buttonId + '" src="' + data[i].backgroundImage + '" alt=""/>';
+                var nextId = i < TestCategory.MAX_ITEM_NUM - 1 && i < data.length - 1 ? 'category_' + (i + 1) : '';
+                // 初始button
+                buttonList.push({
+                    id: buttonId,
+                    name: tempName,
+                    type: 'img',
+                    focusable: true,
+                    nextFocusLeft: '',
+                    nextFocusRight: '',
+                    nextFocusUp: i > 0 ? 'category_' + (i - 1) : 0,
+                    nextFocusDown: nextId,
+                    backgroundImage: tempNormalImg,
+                    focusImage: tempFocusIn,
+                    selectedImage: tempFocusOut,
+                    click: TestCategory.onClick,
+                    focusChange: TestCategory.onFocusChange,
+                    beforeMoveChange: TestCategory.onBeforeMoveChange,
+                    groupId: TestCategory.GROUP_NAME,
+//                    audioUrl: audioUrl,
+                    cItemLeftNav: data[i],
+                    cIdx: TestCategory.startIndex + i,
+                });
+            }
+            LMEPG.ButtonManager.addButtons(buttonList);
+            categoryContent.innerHTML = "";
+            categoryContent.innerHTML = html;
+        },
+
+        /**
+         * 焦点改变
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusChange: function (btn, hasFocus) {
+            if (hasFocus) {
+                G("title").innerHTML = btn.cItemLeftNav.column_name;
+
+                var curSelectedNavBtn = LMEPG.BM.getSelectedButton(TestCategory.GROUP_NAME);
+                if (curSelectedNavBtn && curSelectedNavBtn.id !== btn.id) {
+                    // 如果当前分类导航从刚选中，则加载其下的数据列表。否则，focused状态不重新加载，除非点击它！
+                    var tempLinkClassId = btn.cItemLeftNav.link_class_id;
+                    var tempColumnId = btn.cItemLeftNav.column_id;
+                    getTopicList(tempLinkClassId, tempColumnId);
+                }
+
+                LMEPG.BM.setSelected(btn.id, true);
+//                AudioPlayer.fgm.play(btn.audioUrl);
+            } else {
+//                AudioPlayer.fgm.stop();
+            }
+        },
+
+        /**
+         * 点击事件
+         * @param btn
+         */
+        onClick: function (btn) {
+            var tempLinkClassId = btn.cItemLeftNav.link_class_id;
+            var tempColumnId = btn.cItemLeftNav.column_id;
+            getTopicList(tempLinkClassId, tempColumnId);
+        },
+
+        /**
+         * 焦点移动前
+         * @param dir 移动方向:up、down、right、left
+         * @param btn 对象
+         */
+        onBeforeMoveChange: function (dir, btn) {
+            console.log("btn.name = " + btn.name)
+            switch (dir) {
+                case 'down':
+                    if (btn.id == "category_6") {
+                        TestCategory.nextPage();
+                    }
+                    break;
+                case 'up':
+                    if (btn.id == "category_0") {
+                        TestCategory.prevPage();
+                    }
+                    break;
+                case 'right':
+                    // 判断如果有内容跳到第一个内容，如果没有，跳到搜索按钮
+                    LMEPG.BM.setSelected(btn.id, true);
+                    if (TestContent.count > 0) {
+                        LMEPG.BM.requestFocus('item_container_0');
+                    } else {
+                        LMEPG.BM.requestFocus('search');
+                    }
+                    return false;
+            }
+        },
+
+        // 刷新当前选中分类导航的数据列表并更新UI
+        refreshCurrentNavDataListUI: function () {
+            var selectedNavBtn = LMEPG.BM.getSelectedButton(TestCategory.GROUP_NAME);
+            if (is_exist(selectedNavBtn) && !is_empty(selectedNavBtn.cItemLeftNav.link_class_id)) {
+                var tempLinkClassId = selectedNavBtn.cItemLeftNav.link_class_id;
+                var tempColumnId = selectedNavBtn.cItemLeftNav.column_id;
+                getTopicList(tempLinkClassId, tempColumnId);
+            }
+        }
+    };
+
+    /**
+     * 答题列表管理
+     * @type {{}}
+     */
+    var TestContent = {
+        MAX_ITEM_NUM: 9,    // 最大分页item数
+        MAX_ROW_ITEM_NUM: 3,    // 行最大元素
+        currentPage: 0,     // 当前页
+        count: 0,           // 元素总数
+        countPage: 0,        // 总页数
+        data: [],           // 数据源
+        InitFocusId: "",
+
+        /**
+         * 得到当前页数据
+         */
+        getCurrentData: function () {
+            var data = [];
+            if (this.currentPage > 0 && this.currentPage <= this.countPage) {
+                var start = (this.currentPage - 1) * this.MAX_ITEM_NUM;
+                var end = this.currentPage == this.countPage ?
+                    this.count : this.currentPage * this.MAX_ITEM_NUM;
+                data = this.data.slice(start, end);
+            }
+            return data;
+        },
+        //初始化焦点
+        InitFocus: function () {
+            if (InitData.TopicId === undefined || InitData.TopicId === "" || InitData.TopicId === null) {
+                // 焦点返回保持，若跳转前点击的列表项或者搜索按钮，则返回保持
+                if (RenderParam.focusIndex === "search") LMEPG.BM.requestFocus("search");
+                return;
+            }
+            LMEPG.BM.requestFocus(this.InitFocusId);
+            InitData.TopicId = "";
+        },
+        /**
+         * 计算方法：根据页面跳转回来后，是否存在右侧题目的id：InitData.TopicId，存在则计算相关的焦点、
+         * 页码位置。并保存当前页码以及默认焦点值。拉取数据后，让指定位置获取焦点
+         */
+        calcCurrentPage: function () {
+            if (InitData.TopicId === undefined || InitData.TopicId === "" || InitData.TopicId === null) {
+                return;
+            }
+            var tempIndex = 0;
+            for (var i = 0; i < this.data.length; i++) {
+                var tempItemObj = this.data[i];
+                if (tempItemObj.topic_id === InitData.TopicId + "") {
+                    tempIndex = i;
+                    break;
+                }
+            }
+            var positionLength = tempIndex + 1;   //实际的在数组中的长度
+            var position = tempIndex % this.MAX_ITEM_NUM; //计算当前的位置
+            var tempFocusId = "item_container_" + position;
+            var currentPage = Math.ceil(positionLength / this.MAX_ITEM_NUM);
+            this.currentPage = currentPage;
+            this.InitFocusId = tempFocusId;
+        },
+
+        /**
+         * 向上翻页
+         */
+        prevPage: function () {
+            if (TestContent.currentPage > 1) {
+                TestContent.currentPage = TestContent.currentPage - 1;
+                var data = TestContent.getCurrentData();
+                if (data.length > 0) {
+                    TestContent.createElements(data);
+                    LMEPG.BM.requestFocus('item_container_' + (data.length - 1));
+                    LMEPG.ButtonManager.refresh('');
+                }
+                this.updateArrows();
+                this.updatePageNumUI();
+            }
+        },
+
+        /**
+         * 向下翻页
+         */
+        nextPage: function () {
+            if (TestContent.currentPage <= TestContent.countPage) {
+                TestContent.currentPage = TestContent.currentPage + 1;
+                var data = TestContent.getCurrentData();
+                if (data.length > 0) {
+                    this.createElements(data);
+                    LMEPG.BM.requestFocus('item_container_' + 0);
+                    LMEPG.ButtonManager.refresh();
+
+                }
+                this.updateArrows();
+                this.updatePageNumUI();
+            }
+        },
+
+        updateArrows: function () {
+            if (TestContent.currentPage > 1) {
+                Show('up_content_arrows');
+            } else {
+                Hide('up_content_arrows');
+            }
+            if (TestContent.currentPage < TestContent.countPage) {
+                Show('down_content_arrows');
+            } else {
+                Hide('down_content_arrows');
+            }
+        },
+
+        updatePageNumUI: function () {
+            var pageNum = G('page_num');
+            pageNum.innerHTML = TestContent.currentPage + "/" + TestContent.countPage;
+        },
+
+        /**
+         * 创建元素
+         */
+        createElements: function (data) {
+            var knowledgeContaniner = G('knowledge_list');
+            if (!LMEPG.Func.isArray(data)) {
+                return;
+            }
+            var html = "";
+            var knowledgeButtons = [];
+            var defImg = "'" + LMEPG.App.getAppRootPath() + "/Public/img/hd/HealthTest/default_img_health_test.png'";
+            for (var i = 0; i < data.length; i++) {
+                var imgUrl = RenderParam.fsUrl + data[i].img_url;
+                var accessCtrl = data[i].access_ctrl;
+                var itemContainerId = "item_container_" + i;
+                var itemImgId = "item_img_" + i;
+                var itemTitleId = "item_container_" + i + "_title";
+                var itemVipCornerId = "item_vip_corner_" + i;
+
+                html += '<div id="' + itemContainerId + '" class="recommend">';
+                html += '<img id="' + itemImgId + '" class="item_img" src="' + imgUrl + '" onerror="this.src=' + defImg + '"/>';
+                html += '<div id="' + itemTitleId + '" class="item_title">' + data[i].title + '</div>';
+                // 需要增加是否vip判断，来显示
+                if (accessCtrl== 2) {
+                    html += '<img id="' + itemVipCornerId + '" class="vip_corner" src="' + vipCornerImage + '"/>';
+                }
+                html += '</div>';
+
+                var currentRow = Math.ceil((i + 1) / this.MAX_ROW_ITEM_NUM);
+                var countRow = Math.ceil(data.length / this.MAX_ROW_ITEM_NUM);
+                var downId = currentRow < countRow ? (i + this.MAX_ROW_ITEM_NUM < data.length ? "item_container_" + (i + this.MAX_ROW_ITEM_NUM) : "item_container_" + (data.length - 1)) : '';
+                var upId = currentRow > 1 ? "item_container_" + (i - this.MAX_ROW_ITEM_NUM) : '';
+                knowledgeButtons.push({
+                    id: itemContainerId,
+                    name: data[i].title,
+                    type: 'img',
+                    focusable: true,
+                    nextFocusLeft: i % this.MAX_ROW_ITEM_NUM > 0 ? "item_container_" + (i - 1) : '',
+                    nextFocusRight: i < data.length - 1 && (i + 1) % this.MAX_ROW_ITEM_NUM != 0 ? "item_container_" + (i + 1) : '',
+                    nextFocusUp: upId,
+                    nextFocusDown: downId,
+                    backgroundImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/bg_test_1.png',
+                    focusImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/TestList/f_test_1.png',
+                    click: TestContent.onClick,
+                    cItemData: data[i],
+//                    audioUrl: RenderParam.fsUrl + data[i].title_audio_url,
+                    focusChange: TestContent.onFocusChange,
+                    beforeMoveChange: TestContent.onBeforeMoveChange,
+                    cIndex: i,
+                });
+            }
+            knowledgeContaniner.innerHTML = "";
+            knowledgeContaniner.innerHTML = html;
+            LMEPG.BM.addButtons(knowledgeButtons);
+            LMEPG.BM.refresh();
+        },
+
+        onClick: function (btn) {
+            var item = btn.cItemData;
+            var topicId = item.topic_id;
+            var accessCtrl = item.access_ctrl;
+            if (RenderParam.isVip == 1) {
+                jumpTestAnswer(topicId);
+            } else {
+                if (accessCtrl != "2") {
+                    jumpTestAnswer(topicId);
+                } else {
+                    jumpTestBuyVip(topicId);
+                }
+            }
+        },
+
+        /**
+         * 焦点改变事件
+         * @param btn
+         * @param hasFocus
+         */
+        onFocusChange: function (btn, hasFocus) {
+            if (hasFocus) {
+                LMEPG.CssManager.addClass(G('item_img_'+btn.id.substr(-1)),"img_focus");
+                LMEPG.Func.marquee(G(btn.id + "_title"));
+                LMEPG.Func.marquee(G(btn.id + "_title"),G(btn.id + "_title").innerText,12);
+            } else {
+                LMEPG.Func.marquee(G(btn.id + "_title"));
+                LMEPG.CssManager.removeClass(G('item_img_'+btn.id.substr(-1)),"img_focus");
+            }
+        },
+
+        /**
+         * 焦点改变前回调，如果有特殊处理可以在该函数中处理后返回false。将不在继续往下执行。
+         * @param dir
+         * @param btn
+         */
+        onBeforeMoveChange: function (dir, btn) {
+            switch (dir) {
+                case "left":
+                    if (btn.id == "item_container_0" || btn.id == "item_container_3"|| btn.id == "item_container_6") {
+                        var button = LMEPG.BM.getSelectedButton(TestCategory.GROUP_NAME);
+                        if (button != null) {
+                            LMEPG.Func.marquee(G(btn.id + "_title"));
+                            LMEPG.BM.requestFocus(button.id);
+                            return false;
+                        }
+                    }
+                    break;
+                case "right":
+                    break;
+                case "up":
+                    if (btn.id == "item_container_0"
+                        || btn.id == "item_container_1"
+                        || btn.id == "item_container_2") {
+                        if (TestContent.currentPage > 1) {
+                            TestContent.prevPage();
+                        } else {
+//                            LMEPG.Marquee.stop();
+                            LMEPG.BM.requestFocus("search");
+                        }
+                        return false;
+                    }
+                    break;
+                case "down":
+                    if (btn.id == "item_container_6"
+                        || btn.id == "item_container_7"
+                        || btn.id == "item_container_8") {
+                        if (TestContent.currentPage < TestContent.countPage) {
+                            TestContent.nextPage();
+                            return false;
+                        }
+                    }
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 工具条
+     * @type {{initToolBar: ToolBar.initToolBar}}
+     */
+    var ToolBar = {
+        /**
+         * 初始化工具条
+         */
+        initToolBar: function () {
+            buttons.push({
+                id: 'search',
+                name: '搜索',
+                type: 'img',
+                focusable: true,
+                nextFocusLeft: '',
+                nextFocusRight: '',
+                nextFocusUp: '',
+                nextFocusDown: '',
+                backgroundImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/Home/V20/Nav/search.png',
+                focusImage: LMEPG.App.getAppRootPath() + '/Public/img/hd/Home/V20/Nav/search_f.png',
+                click: jumpTestSearch,
+                focusChange: ToolBar.onSearchFocus,
+                beforeMoveChange: ToolBar.onBeforeMoveChange,
+            });
+            LMEPG.BM.addButtons(buttons);
+        },
+        onSearchFocus: function (btn, hasFocus) {
+            if (!hasFocus) {
+                RenderParam.focusIndex = "";  //清空值。（焦点返回保持，若跳转前点击的列表项或者搜索按钮，则返回保持）
+            }
+        },
+
+        onBeforeMoveChange: function (dir, btn) {
+            switch (dir) {
+                case 'left':
+                    var button = LMEPG.BM.getSelectedButton(TestCategory.GROUP_NAME);
+                    if (button != null) {
+                        LMEPG.BM.requestFocus(button.id);
+                    }
+                    return false;
+                case 'down':
+                    if (TestContent.count > 0) {
+                        LMEPG.BM.requestFocus('item_container_0');
+                    }
+                    return false;
+            }
+        }
+    };
+
+</script>
+
+</body>
+</html>

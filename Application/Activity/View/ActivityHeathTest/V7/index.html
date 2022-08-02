@@ -1,0 +1,581 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>健康测一测活动V7-游戏页</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivityHeathTest/V7/index.css?t={$time}">
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityHeathTest/V7/DialogMoreThree.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivityHeathTest/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("focusedId", "{$focusedId}");//活动主页按钮焦点保持
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示抽到的动物
+         */
+        function jumpDrawnPrizeDialog(prizeName, prizeIdx) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("focusedId", "{$focusedId}");//活动主页按钮焦点保持
+            objDialog.setParam("prizeName", prizeName);
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("context", VIP_USER_DRAWN_PRIZE);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            var src = getCurrentPage();
+            var dst = LMEPG.Intent.createIntent("activity-common-guide");
+            dst.setParam("userId", "{$userId}");
+            dst.setParam("inner", "{$inner}");
+            dst.setParam("focusedId", "{$focusedId}");//活动主页按钮焦点保持
+            LMEPG.Intent.jump(dst, src, LMEPG.Intent.INTENT_FLAG_NOT_STACK);
+        }
+
+    </script>
+</head>
+<body style='background-image: url("../../../../../Public/img/{$platformType}/Activity/ActivityHeathTest/V7/model.png");'>
+<img id="bg" src="" alt="">
+<img id="line" src="" alt="">
+<img id="subject-title" src="" alt="">
+<div id="subject-title-tips"></div>
+<ul class="option-wrap">
+    <li id="question-title"><span id="question-title-num">1</span><span id="question-title-content"></span></li>
+    <li id="option-container-1" class="d-1">
+        <img id="option-1" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/bg_option.png" alt="">
+        <span class="inner" id="option-content-1"></span>
+    </li>
+    <li id="option-container-2">
+        <img id="option-2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/bg_option.png" alt="">
+        <span class="inner" id="option-content-2"></span>
+    </li>
+    <li id="option-container-3">
+        <img id="option-3" src="__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/bg_option.png" alt="">
+        <span class="inner" id="option-content-3"></span>
+    </li>
+</ul>
+<ul id="progress-bar-container" class="current-progress-bar-container" current-progress-index="0">
+    <!-- 答题进度，动态控制 -->
+</ul>
+<!--提示弹框-->
+<div id="default_tip"></div>
+<script type="text/javascript">
+    // 控件
+    var eleProgressBarContainer = G('progress-bar-container');
+
+    // 当前页面使用图片路径目录
+    var imgPathPrefix = "__ROOT__/Public/img/{$platformType}/Activity/ActivityHeathTest/V7/";
+    var progressDotIcon_unAnswer = imgPathPrefix + 'progress_icon_unanswer.png'; // 进度点背景 - 未答过 - 未选中
+    var progressDotIcon_answered = imgPathPrefix + 'progress_icon_answered.png'; // 进度点背景 - 已答题 - 未选中
+    var progressDotIcon_Focused = imgPathPrefix + 'progress_icon_current_focused.png'; // 进度点背景 - 选中
+
+    var buttons = [
+        {
+            id: 'option-1',
+            name: '选项1',
+            value: 'A',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusUp: '',
+            nextFocusDown: 'option-2',
+            nextFocusRight: '',
+            backgroundImage: imgPathPrefix + 'bg_option.png',
+            focusImage: imgPathPrefix + 'bg_option_f.png',
+            click: selectAnswer,
+            focusChange: "",
+            beforeMoveChange: onBeforeMoveChange,
+            moveChange: ""
+        },
+        {
+            id: 'option-2',
+            name: '选项2',
+            value: 'B',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: 'option-1',
+            nextFocusDown: 'option-3',
+            backgroundImage: imgPathPrefix + 'bg_option.png',
+            focusImage: imgPathPrefix + 'bg_option_f.png',
+            click: selectAnswer,
+            focusChange: "",
+            beforeMoveChange: onBeforeMoveChange,
+            moveChange: ""
+        }, {
+            id: 'option-3',
+            name: '选项3',
+            value: 'C',
+            type: 'img',
+            nextFocusLeft: '',
+            nextFocusRight: '',
+            nextFocusUp: 'option-2',
+            nextFocusDown: 'icon-1', // 下移到当前对应选项圆角图标
+            backgroundImage: imgPathPrefix + 'bg_option.png',
+            focusImage: imgPathPrefix + 'bg_option_f.png',
+            click: selectAnswer,
+            focusChange: "",
+            beforeMoveChange: onBeforeMoveChange,
+            moveChange: ""
+        }, {
+            id: 'btn-test-result-open-bag',
+            name: '打开福袋',
+            type: 'img',
+            focusable: true,
+            nextFocusLeft: '',
+            nextFocusUp: 'btn-test-result-close',
+            nextFocusDown: '',
+            nextFocusRight: 'btn-test-result-close',
+            backgroundImage: imgPathPrefix + 'btn_open.png',
+            focusImage: imgPathPrefix + 'btn_open_f.png',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }, {
+            id: 'btn-test-result-close',
+            name: '关闭',
+            type: 'img',
+            focusable: true,
+            nextFocusLeft: 'btn-test-result-open-bag',
+            nextFocusUp: '',
+            nextFocusDown: 'btn-test-result-open-bag',
+            nextFocusRight: '',
+            backgroundImage: imgPathPrefix + 'btn_close.png',
+            focusImage: imgPathPrefix + 'btn_close_f.gif',
+            click: onClick,
+            focusChange: "",
+            beforeMoveChange: "",
+            moveChange: ""
+        }
+    ];
+
+    /*
+        题库数组元素示例：
+            [
+                type: 1
+                index: 4
+                subject: "趣味小常识"
+                subject: "趣味小常识"
+                subjectDesc: "生活中的小常识，你知道吗？"
+                question: "我的肥胖信号"
+                answerA: "A、一个月增重1Kg "
+                answerB: "B、一个月增重1.5Kg"
+                answerC: "C、一个月增重0.5Kg"
+                rightAnswer: "B" / "opened"
+            ]
+        type含义：
+            1 - 趣味小常识       2 - 抑郁症程度自测     3 - 焦虑症程度自测
+            4 - 强迫症程度自测   5 - 肾阴虚自测         6 - 小肠实热自测      7 - 什么问题造成气血虚
+            1 - 趣味小常识               2 - 抑郁症程度自测                 3 - 焦虑症程度自测
+            4 - 测测自己是否有强迫症     5 - 是不是肾阴虚，25秒就知道       6 - 小肠实热自测          7 - 什么问题造成气血虚
+        rightAnswer: 正确答案为"空"或者"opened"，表示开放性答案，无定值
+
+        评测结果参考：
+        {
+            type: 4,
+            subject: "测测自己是否有强迫症"
+            desc: "评测参考(level_1: 正常, level_2: 一般程度, level_3: 严重程度)"
+            level_1: "安全，应该不必担心会患有强迫症，注意保持健康的心理，养成良好的生活习惯。"
+            level_2: "危险，怀疑患有强迫症，应及时注意自我疏导。"
+            level_3: "危险，高度怀疑患有强迫症，应及时就医，接受治疗。"
+         }
+    */
+    // 获取当前题库
+    var answersType = '{$answersType}'; // 题库类型：1-趣味小常识 2-心理测试 3-亚健康测试
+    var answersSubType = '{$answersSubType}'; // 题目具体的类型 type 1-7
+    var answersSubjectDesc = '{$answersSubjectDesc}';  // 题目主题描述-即大标题下内容
+    var testResultRefer = null; // 当前题目评测结果参考
+    var answers = []; // 题库数组
+    var index = 0; // 当前显示的题库索引号
+    var answeredHistory = []; // 答题历史记录 [key: 当前题目编号index， value: 答题选择的答案]
+    var answersCount = 0; // 题目数量
+    (function () {
+        // 解析题库
+        try {
+            var answersStr = '{$answers}';
+            answers = JSON.parse(answersStr);
+            answers = LMEPG.Func.isArray(answers) ? answers : []; // 类型加强判断
+            answersCount = answers.length;
+            console.log(answers);
+        } catch (e) {
+            LMEPG.UI.showToast('解析题库异常：' + e.toString());
+            answers = []; // 空题库
+        }
+
+        // 解析评测结果参考
+        try {
+            var testResultReferStr = '{$testResultRefer}';
+            testResultRefer = JSON.parse(testResultReferStr);
+            console.log(testResultRefer);
+        } catch (e) {
+            LMEPG.UI.showToast('解析测试评测参考异常：' + e.toString());
+            testResultRefer = null; // 空评测参考对象
+        }
+    })();
+
+    window.onload = function () {
+        initBgFirst();
+        updateQuestionUI(index);
+        LMEPG.ButtonManager.init(['option-1'], buttons, '', true);
+    };
+
+    /** 初始化背景等 */
+    function initBgFirst() {
+        // 背景图
+        G('bg').src = imgPathPrefix + 'bg_play.png';
+        // 大主题标题背景
+        G('subject-title').src = imgPathPrefix + 'subject-title-' + answersSubType + '.png';
+        // 大主题标题温馨提示内容
+        G('subject-title-tips').innerHTML = answersSubjectDesc;
+        // 进度条背景
+        G('line').src = imgPathPrefix + 'line_' + answersCount + '.png';
+
+        // 进度条
+        eleProgressBarContainer.innerHTML = '';
+        var progressBarContentStr = '';
+        for (var i = 0; i < answersCount; i++) {
+            var marginIcon = i > 0 ? "current-progress-dot-item" : "";
+            progressBarContentStr += '<li class="' + marginIcon + '"><img id="progress-' + i + '" alt="" src="' + progressDotIcon_unAnswer + '" ' +
+                'onUnfocusUrl="' + progressDotIcon_answered + '" onFocusUrl="' + progressDotIcon_Focused + '">' +
+                '<span id="icon-content-' + i + '">' + (i + 1) + '</span></li>';
+        }
+        eleProgressBarContainer.innerHTML = progressBarContentStr;
+    }
+
+    /** 点击按钮事件 */
+    function onClick(btnObj) {
+        switch (btnObj.id) {
+            case 'btn-test-result-open-bag':
+                uploadPlayRecord();
+                break;
+            case 'btn-test-result-close':
+                onBack();
+                break;
+        }
+    }
+
+    /** 移动焦点 */
+    function onBeforeMoveChange(dir, current) {
+        if (dir === 'down' && current.id === 'option-2') {
+            var currentSubject = getSubjectAtPosition(index);
+            var existAnswerC = currentSubject && currentSubject.answerC;
+            if (!existAnswerC) {
+                return false;
+            }
+        }
+    }
+
+    /** 选择答案 */
+    function selectAnswer(btn) {
+        var answeredResult = answeredHistory[index];
+        if (index >= answersCount || answeredResult) {
+            LMEPG.UI.showToast("您已经答过了~", 1);
+        } else {
+            checkAnswer(btn);
+        }
+    }
+
+    /**
+     * 上报参与记录（上报答题结果）
+     */
+    function uploadPlayRecord() {
+        LMEPG.UI.showWaitingDialog(); // 启动打圈圈，在participationActivity里释放
+        LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    participateActivity();
+                    console.log('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录' + (result == 0 ? '成功！' : '失败！'));
+                } catch (e) {
+                    console.log('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                    LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录解析异常！error:' + e.toString());
+                }
+            },
+            function (rsp) {
+                console.log('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+                LMEPG.Log.info('--->uploadAnswerResult: 上报参与记录发生错误！rsp:' + rsp.toString());
+            }
+        );
+    }
+
+    /** 抽奖 */
+    function participateActivity() {
+        LMEPG.ajax.postAPI('Activity/participateActivity', null,
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+
+                    switch (result) {
+                        //没有抽中奖品
+                        case 0:
+                            jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS);
+                            break;
+                        //抽中奖品
+                        case 1:
+                            jumpDrawnPrizeDialog(getPrizePicName(data.msg), data.prize_idx);
+                            break;
+                        //其它
+                        default:
+                            LMEPG.UI.showToast('打开福袋出错[' + result + ']', 1);
+                            setTimeout(onBack, 1000);
+                            break;
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("打开福袋处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                LMEPG.UI.showToast("请求打开福袋发生错误！");
+            }
+        );
+    }
+
+    /**
+     * 中奖弹窗页要显示中奖图片，通过后台配置的奖品描述（必须为：一等奖，二等奖……，即 “X等奖” 规范命名）
+     *
+     * @param prizeMsg 中奖提示，为“奖品名-描述”，例如：“iPad-一等奖”
+     */
+    function getPrizePicName(prizeMsg) {
+        var prizeNamePics = [];
+        prizeNamePics['一等奖'] = 'goods1.png';
+        prizeNamePics['二等奖'] = 'goods2.png';
+        prizeNamePics['三等奖'] = 'goods3.png';
+        for (var key in prizeNamePics) {
+            if (prizeMsg && prizeMsg.endWith(key)) {
+                return prizeNamePics[key];
+            }
+        }
+    }
+
+    /**
+     * 获取指定序号的题目
+     */
+    function getSubjectAtPosition(index) {
+        if (answersCount <= 0 || index >= answersCount) {
+            return;
+        }
+
+        var subject = answers[index];
+        console.log("--->>>>>>getSubjectAtPosition(" + index + "): " + JSON.stringify(subject));
+        LMEPG.Log.info("--->>>>>>getSubjectAtPosition(" + index + "): " + JSON.stringify(subject));
+        return subject;
+    }
+
+    /**
+     * 更新当前展示题目
+     * @param index 展示到第几个题目
+     */
+    function updateQuestionUI(index) {
+        var subject = getSubjectAtPosition(index);
+        if (subject) {
+            G('question-title-content').innerText = subject.question;
+            G('question-title-num').innerText = index + 1;
+            G('option-content-1').innerHTML = subject.answerA;
+            G('option-content-2').innerHTML = subject.answerB;
+            if (subject.answerC) {
+                Show('option-container-3');
+                G('option-content-3').innerHTML = subject.answerC;
+            } else {
+                Hide('option-container-3');
+            }
+        }
+
+        updateProgressBarUI(index);
+        LMEPG.ButtonManager.requestFocus('option-1');
+    }
+
+    /** 更新当前进度序号选择效果 */
+    function updateProgressBarUI(index) {
+        // 还原上一个选中进度效果
+        var lastProgressedDotIndex = eleProgressBarContainer.getAttribute('current-progress-index');
+        var lastProgressedDot = G('progress-' + lastProgressedDotIndex);
+        if (lastProgressedDot) {
+            lastProgressedDot.src = progressDotIcon_answered;
+        }
+
+        // 更新当前选中进度效果
+        var eleProgressDot = G('progress-' + index);
+        if (eleProgressDot) {
+            eleProgressDot.src = progressDotIcon_Focused;
+            eleProgressBarContainer.setAttribute('current-progress-index', index);
+        }
+    }
+
+    function checkAnswer(btn) {
+        var currentSubject = getSubjectAtPosition(index);
+        if (currentSubject) {
+            // 答题提示过程中，不可响应按键
+            LMEPG.KeyEventManager.setAllowFlag(false);
+
+            var toastInterval = 1;
+            if (currentSubject.rightAnswer === 'opened') {
+                // 开放性答案
+                toastInterval = 1;//1s间隔，因为不加载图片
+                LMEPG.UI.showToast('您选择了：' + btn.value, toastInterval);
+            } else {
+                // 固定答案
+                toastInterval = 2;//2s间隔，因为加载图片
+                if (currentSubject.rightAnswer == btn.value) {
+                    LMEPG.UI.showToastBig(toastInterval, imgPathPrefix + 'tips_answer_correct.png');
+                } else {
+                    LMEPG.UI.showToastBig(toastInterval, imgPathPrefix + 'tips_answer_incorrect.png');
+                }
+                toastInterval = index < answersCount ? toastInterval : 0 ;//如果已经是最后一题目，直接进入评测结果
+            }
+
+            // 记录答过历史
+            answeredHistory[index] = btn.value;
+
+            // 自动切换下一道题目
+            if (window.autoSwitchSubjectTimer) {
+                window.clearTimeout(window.autoSwitchSubjectTimer);
+            }
+            window.autoSwitchSubjectTimer = setTimeout(onAnswerSelected, toastInterval * 1000);
+        } else {
+            LMEPG.UI.showToast("您已经答过了~", 1);
+        }
+    }
+
+    /** 选中答案后，然后切换下一题 */
+    function onAnswerSelected() {
+        // 答题提示结束，可响应按键
+        LMEPG.KeyEventManager.setAllowFlag(true);
+
+        // 如果还有下一道题，继续
+        if (index < answersCount - 1) {
+            index++;
+            updateQuestionUI(index);
+        } else {
+            console.log("--->>>>>>onSelectAnswer(): 这已经是最后题了！" + index);
+            LMEPG.UI.showWaitingDialog("", 2, function () {
+                LMEPG.UI.dismissWaitingDialog();
+                showTestResultUI();
+            });
+        }
+    }
+
+    /** 当前页弹窗显示测试结果 */
+    function showTestResultUI() {
+        dialogTestResultPage.show("{$platformType}", answersType, answersSubType, getTestResultContent());
+        LMEPG.ButtonManager.requestFocus('btn-test-result-open-bag');
+    }
+
+    /** 统计当前答题结果 */
+    function statisticAnsweredResult() {
+        var aCount = 0, bCount = 0, cCount = 0; // A/B/C 结果数量
+        for (var i = 0; i < answeredHistory.length; i++) {
+            if (answeredHistory[i] === 'A') {
+                aCount++;
+            } else if (answeredHistory[i] === 'B') {
+                bCount++;
+            } else if (answeredHistory[i] === 'C') {
+                cCount++;
+            }
+        }
+
+        var answeredResult = [];
+        answeredResult['A'] = aCount;
+        answeredResult['B'] = bCount;
+        answeredResult['C'] = cCount;
+        return answeredResult;
+    }
+
+    /** 获取评价测试结果 */
+    function getTestResultContent() {
+        var answeredResult = statisticAnsweredResult();
+        var aCount = answeredResult['A'];
+        var bCount = answeredResult['B'];
+        var cCount = answeredResult['C'];
+        var halfCount = Math.ceil(answersCount / 2); // 当前题量一半数值
+        console.log(answeredResult);
+
+        // 检测评测结果参考是否存在
+        if (typeof testResultRefer === 'undefined' || testResultRefer === null || !(testResultRefer instanceof Object)) {
+            return '';
+        }
+
+        // 自测评测结果等级 level 1-正常 2-一般程度 3-严重程度, 表示默认表示 - 自测结果：正常
+        var level = 1;
+        switch (answersSubType) {
+            case '1'://趣味小常识
+                return '';
+            case '2'://抑郁症程度自测
+                level = aCount >= halfCount ? 3 : bCount >= halfCount ? 2 : 1;
+                break;
+            case '3'://焦虑症程度自测
+                level = aCount >= halfCount ? 3 : bCount >= halfCount ? 2 : 1;
+                break;
+            case '4'://强迫症程度自测
+                level = aCount >= halfCount ? 3 : bCount >= halfCount ? 2 : 1;
+                break;
+            case '5'://肾阴虚自测
+                level = aCount >= halfCount ? 3 : bCount >= halfCount ? 1 : 2;
+                break;
+            case '6'://小肠实热自测
+                level = aCount >= halfCount ? 3 : bCount >= halfCount ? 1 : 2;
+                break;
+            case '7'://什么问题造成气血虚
+                level = aCount >= halfCount ? 3 : bCount >= halfCount ? 1 : 2;
+                break;
+            default:
+                break;
+        }
+
+        // 获取指定题目自测后的评测结果 level 1-正常 2-一般程度 3-严重程度
+        var msg = eval('testResultRefer.level_' + level);
+        return msg;
+    }
+
+</script>
+</body>
+</html>

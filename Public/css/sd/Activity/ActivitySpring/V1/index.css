@@ -1,0 +1,73 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-image: url("../../../../img/Activity/ActivitySpring/V1/unicom_bg.png");
+    background-Repeat: no-repeat;
+    width: 644px;
+    height: 530px;
+    position: relative;
+    overflow: hidden;
+}
+#btn-area1 {
+    position: absolute;
+    top: 25px;
+    left: 38px;
+    z-index: 0;
+    outline: none !important;
+    width: 193px;
+    height: 202px;
+
+}
+
+#btn-area2 {
+    position: absolute;
+    top: 17px;
+    left: 332px;
+    z-index: 0;
+    width: 193px;
+    height: 202px;
+    outline: none !important;
+}
+#btn-back {
+    position: absolute;
+    top: 13px;
+    left: 551px;
+    z-index: 3;
+    width: 76px;
+    height: 48px;
+    outline: none !important;
+}
+#btn-area3{
+    position: absolute;
+    top: 299px;
+    left: 24px;
+    z-index: 0;
+    width: 193px;
+    height: 202px;
+    outline: none !important;
+}
+
+#btn-area4 {
+    position: absolute;
+    top: 247px;
+    left: 226px;
+    z-index: 0;
+    width: 200px;
+    height: 202px;
+    outline: none !important;
+}
+#btn-area5 {
+    position: absolute;
+    top: 305px;
+    left: 393px;
+    z-index: 0;
+    width: 193px;
+    height: 202px;
+    outline: none !important;
+}

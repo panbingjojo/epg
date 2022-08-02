@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>吉林广电EPG-订购页</title>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Pay/V220094/pay.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript" >
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户账号
+
+            //当前页渲染
+            productId: "{$productId}",          //39健康计费套餐id，用于鉴权等操作
+            orderItems: {$orderItems},
+            returnPageName: "{$returnPageName}",
+            isPlaying: "{$isPlaying}",
+            orderReason: "{$orderReason}",
+            remark: "{$remark}",
+            lmReason:0,
+            orderType:1,
+            isDirectPay: 0,                     // 当前“内部订购展示页”（0-先到内部订购展示页 1-直接跳转局方订购页）
+        };
+    </script>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/V220094/pay.js?t={$time}"></script>
+
+<body style="background-image: url('__ROOT__/Public/img/{$platformType}/Pay/V220094/paybg.png');">
+<div id="default_tip"></div>
+<div>
+    <img id="focus-1-1" class="tab3" src="__ROOT__/Public/img/{$platformType}/Pay/V220094/payback0.png" alt=""/>
+    <img id="focus-2-1" class="tab1" src="__ROOT__/Public/img/{$platformType}/Pay/V220094/paymonth0.png" alt=""/>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+body {
+    /*position:absolute;;*/
+    background-color: transparent;
+}
+
+body > * {
+    position: absolute;
+}
+
+a#default_link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0px;
+    top: 0px
+}
+
+#small-video-wrap{
+    left: 1px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+
+/*==============HD==================*/
+.hd-body{
+    width: 1280px;
+    height: 720px;
+}
+
+.hd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+#small-video {
+    top: 262px;
+    left: 84px;
+}
+
+.hd-corner-mark{
+    top: 517px;
+    left: 737px;
+    visibility: hidden;
+}
+
+.hd-back {
+    top: 33px;
+    left: 1023px;
+}
+
+.hd-view-more {
+    top: 110px;
+    left: 1157px;
+}
+
+.hd-video-list {
+    top: 512px;
+    left: 95px;
+    width: 1150px;
+    /*border: 1px red solid;*/
+}
+.hd-video-list img{
+    margin-left: 53px;
+}
+
+.hd-v-arrow {
+    top: 636px;
+}
+
+.hd-v-prev {
+	top: 570px;
+    left: 60px;
+    visibility: hidden;
+}
+
+.hd-v-next {
+	top: 570px;
+    left: 1189px;
+}
+
+/*中国联通食乐汇-山西地区描述*/
+#hd-router-desc {
+    position:absolute;
+    top: 526px;
+    left: 115px;
+    font-size: 24px;
+    color: red
+}
+
+/*==============SD==================*/
+.sd-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 644px;
+    height: 530px;
+}
+.sd-body{
+    position: absolute;
+    width: 644px;
+    height: 530px;
+    overflow: hidden;
+    /*border: 1px solid red;*/
+}
+.sd-view-more {
+    position:absolute;
+    top: 98px;
+    left: 539px;
+    width: 66px;
+    height: 38px;
+}
+
+.sd-back {
+    position: absolute;
+    top: 35px;
+    left: 448px;
+    width: 157px;
+    height: 38px;
+}
+
+.sd-video-list {
+    position: absolute;
+    top: 362px;
+    left: 71px;
+    /*width: 550px;
+    height: 75px;*/
+    /*border: 1px red solid;*/
+}
+
+.sd-video-list img {
+    /*position: absolute;*/
+    width: 180px;
+    height: 143px;
+    margin-left: 53px;
+}
+
+.sd-v-arrow {
+    position:absolute;
+    top: 410px;
+    width: 34px;
+    height: 35px;
+}
+
+.sd-v-prev {
+    left: 56px;
+    visibility: hidden;
+}
+
+.sd-v-next {
+    left: 571px;
+}
+
+
+/*中国联通食乐汇-山西地区描述*/
+#hd-router-desc {
+    position:absolute;
+    top: 526px;
+    left: 115px;
+    font-size: 24px;
+    color: red
+}

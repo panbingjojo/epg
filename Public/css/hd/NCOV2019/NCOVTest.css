@@ -1,0 +1,297 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/bg_home.png");
+}
+
+#question-container {
+    position: absolute;
+    top: 102px;
+    left: 90px;
+}
+
+#warm-tips {
+    font-size: 20px;
+    color: #e6e6e6;
+    text-align: center;
+    width: 1100px;
+    margin-bottom: 14px;
+}
+
+.question {
+    display: none;
+    padding: 30px 40px;
+    height: 470px;
+    width: 1020px;
+    font-size: 26px;
+    color: #fff;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/border_question1.png");
+}
+
+.question-title {
+    line-height: 1.6;
+    margin-bottom: 8px;
+    vertical-align: middle;
+}
+
+.question-title img{
+    vertical-align: middle;
+}
+
+.answer-option {
+    margin: 0 auto;
+    width: 880px;
+}
+
+.step-wrap {
+    text-align: center;
+}
+
+.line-block {
+    display: inline-block;
+}
+
+/*自测题目1*/
+#question-1 {
+    position: absolute;
+    display: block;
+}
+
+#title-1 img {
+    vertical-align: middle;
+}
+
+#question-1 .answer-option li {
+    padding: 18px 4px;
+    background-position: center;
+}
+
+.answer-option li img {
+    vertical-align: middle;
+}
+
+li#question-1-option-3 {
+}
+
+#question-2-prev-step {
+    margin-right: 50px;
+}
+
+/*自测题目2*/
+#question-2 {
+    /*display: block;*/
+}
+
+#select-area,
+#select-abbreviation,
+#select-board {
+    visibility: hidden;
+}
+
+.select-modal-wrap {
+    position: relative;
+    padding: 12px;
+    margin: 0 auto;
+}
+
+.select-option {
+    margin: 0 auto;
+    width: 700px;
+}
+
+.select-title {
+    text-align: right;
+    width: 130px;
+}
+
+.select-modal {
+    position: absolute;
+    top: 64px;
+    left: 151px;
+    visibility: hidden;
+    z-index: 1;
+    color: #5d83aa;
+    width: 500px;
+    padding: 10px;
+    word-break: keep-all;
+}
+
+.select-modal li{
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.question-2-input-1 {
+    color: #001e43;
+    font-size: 22px;
+    width: 500px;
+    height: 30px;
+    padding: 12px;
+    line-height: 1.5;
+    text-align: left;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/question2_input1.png");
+    background-position: center;
+}
+
+.question-2-input-2 {
+    color: #001e43;
+    font-size: 22px;
+    width: 230px;
+    height: 30px;
+    padding: 10px;
+    margin-right: 14px;
+    line-height: 1.5;
+    text-align: left;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/question2_input2.png");
+    word-break: keep-all;
+}
+
+#date-modal-wrap {
+    z-index: 1;
+    color: #5d83aa;
+    width: 500px;
+    height: 210px;
+    padding: 10px;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/modal_date_bg.png");
+}
+
+#date-modal-wrap ul li {
+    width: 150px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    /* padding: 20px 60px; */
+    background-position: center;
+}
+
+#curr-date {
+    color: #001e43;
+}
+
+#traffic-modal-wrap {
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/modal_date_bg.png");
+}
+
+#input-traffic {
+    font-size: 26px;
+}
+
+#search-text {
+    position: absolute;
+}
+
+.search-trip-number {
+    top: 330px;
+    left: 212px;
+}
+
+.search-area-number {
+    top: 400px;
+    left: 211px;
+}
+
+#traffic-modal-wrap li {
+    padding: 3px 4px;
+}
+
+#question-2 .step-wrap {
+    position: relative;
+    bottom: 50px;
+}
+
+#province-modal-wrap,
+#city-modal-wrap {
+    width: 230px;
+    height: 118px;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/modal_area_bg.png");
+    top: 60px;
+}
+
+#province-modal-wrap {
+    left: 149px;
+}
+#select-abbreviation{
+    top: -73px;
+}
+#input-abbreviation{
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/input_abbreviation.png");
+    width: 145px;
+}
+li.search-abbreviation-number{
+    top: 298px;
+    left: 530px;
+    width: 335px;
+}
+li.search-abbreviation-number #input-keyword{
+    width: 321px;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/search_abbreviation_bg.png");
+}
+
+#abbreviation-modal-wrap{
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/modal_abbreviation_bg.png");
+    width: 145px;
+    height: 118px;
+    top: 60px;
+    left: 149px;
+}
+
+#city-modal-wrap {
+    left: 420px;
+}
+
+#select-board{
+    top: -145px;
+}
+
+#board-modal-wrap{
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/modal_date_bg.png");
+}
+#input-date span,
+#input-board span,
+#input-keyword span,
+#input-traffic span{
+    color: #949494;
+    font-size: 22px
+}
+
+#search-result{
+    position: absolute;
+    top: 50px;
+    left: 139px;
+    z-index: 1;
+    color: #5d83aa;
+    width: 500px;
+    padding: 10px;
+    visibility: hidden;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/modal_date_bg.png");
+}
+
+#search-result.modal-search-wrap-4,
+#search-result.modal-search-wrap-6 {
+    width: 315px;
+    top: 80px;
+    left: 5px;
+    background-image: url("../../../img/hd/OutbreakReport/NCOV/abbreviation_modal_bg.png");
+}
+
+/*自测题目3*/
+#question-3 {}
+#question-3 .answer-option li {
+    padding: 2px 4px;
+    background-position: center;
+    font-size: 22px;
+    background-size: 100% 100%;
+}
+
+#question-3 .step-wrap img{
+    margin: 0 30px;
+}
+

@@ -1,0 +1,19 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+#content{position:absolute;width:660px;height:600px;margin:0 auto; left: 205px;}
+#price{position:absolute;top:0; left:0px; z-index: 999; width: 160px; text-align: center}
+#hand{position: absolute; top: 380px; width: 158px; height: 234px; }
+#warm{ color: red; width: 600px; height: 30px; position:absolute; top:680px; left: 350px; font-size: 24px}

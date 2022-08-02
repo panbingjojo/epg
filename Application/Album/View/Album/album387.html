@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>预防痛风，从青少年开始</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+
+    <link rel="stylesheet" href="__ROOT__/Public/css/Common/Album/album387.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/Common/Album/more_wonderful.css?t={$time}"/>
+    <link rel="stylesheet" href="__ROOT__/Public/css/{$platformType}/Album/common/countdown_new.css?t={$time}"/>
+
+    <script type="text/javascript">
+        // TP框架控制器返回数据应用
+        var RenderParam = {
+            vip: {$isVip},  //当前用户是否VIP
+            payMethod: {$payMethod}, // 订购配置数据
+            firstVideoIndex: {$moveNum},    // 当前视频列表显示的第一条视频下标
+            userId: '{$userId}',    // 当前用户ID
+            focusId: '{$focus_index}',  // 当前页面焦点ID
+            videoData: {$data}.data.video_list,  // 当前专辑视频信息列表
+            platformType: '{$platformType}',     // hd--高清 sd--标清
+            lmcid: '{$carrierId}',  // 所属地区Id
+            inner: '{$inner}',  // 当前专辑是否从应用内跳转 1--应用内部跳转 2--外部局方大厅跳转
+            fromLaunch:"{$fromLaunch}",
+            albumName: '{$albumName}',          // 专辑名称
+            domainUrl: '{$domainUrl}',           // 江苏电信需要使用的第三方播放器前缀地址\
+            commonImgPath: '__ROOT__/Public/img/{$platformType}/Album/common/', // 公用图片文件地址
+            commonHDImgPath: '__ROOT__/Public/img/hd/Album/common/', //  公用高清图片文件地址
+            albumImgPath: '__ROOT__/Public/img/hd/Album/album167/', // 当前专辑图片文件地址
+            splashHistory: {$splashHistory},
+            keyCountdown: "{$keyCountdown}", // 是否挽留页弹窗弹出键值
+            valueCountdown: {$valueCountdown}, // 是否挽留页弹窗弹出值
+            isVideoFree: {$isVideoFree}, // 判断当前专辑普通用户是否可以免费观看所有视频 1--免费观看 0--不能免费观看
+            atFreeTime: {$atFreeTime}, // 当前专辑跳转视频播放页面是否已经观看完免费时长 1--已观看 0--未观看
+            videoTitle: "{$videoTitle}", // 当前专辑跳转视频标题 订购页面需要
+            resourceUrl: "{$resourceUrl}", // 服务器文件地址
+            templateInfo: {$templateInfo}, // 当前专辑配置模板
+            areaCode: "{$areaCode}",          // 省份地区码
+            cornerMarkUrl: "{$cornerMarkUrl}" // 免费角标链接
+        };
+    </script>
+
+    <script>var carrierId = {$carrierId};</script>
+    <if condition="$carrierId eq '07430093' ">
+        <!--湖南联通芒果TV 07430093js文件-->
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/mongoTV/webview.js?t={$time}"></script>
+    </if>
+    <!--第三方解析库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <if condition="$carrierId eq '520092'"><!--贵州广电引用-->
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://epg.interface.gzgd/nn_cms/data/webapp/common/starcorCom.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/gzgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/520094/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmplayer.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <if condition="$carrierId eq '450094' ">
+        <!-- 广西广电小窗视频播放 -->
+        <script type="text/javascript" src="http://10.1.15.25/webJS/gxgd.config.js?t={$time}"></script>
+        <script type="text/javascript" src="http://10.1.15.25/webJS/starcorCom.js?t={$time}"></script>
+    </if>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/lmPayFrame.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Album/Common/LMAlbum.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Player/LMSmallPlayer.js?t={$time}"></script>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            // 初始化专辑内部焦点走向
+            LMAlbum.showVideoLength = RenderParam.platformType == 'hd' ? 3:2; // 视频显示个数
+            LMAlbum.videoLayout = LMAlbum.LayoutDirection.Horizontal; // 视频摆放方向
+
+            // 专辑相关参数预处理
+            LMAlbum.initPretreatment({
+                albumAlias: [151, 152, 153, 155]
+            });
+
+            LMAlbum.backMoveConfig = {
+                up: '',
+                down: LMAlbum.viewMoreId,
+                right: '',
+                left: LMAlbum.hasSmallVideo ? LMAlbum.smallVideoId:LMAlbum.lastVideoId,
+
+            };
+            LMAlbum.viewMoreMoveConfig = {
+                up: LMAlbum.backId,
+                down: LMAlbum.hasSmallVideo ? LMAlbum.smallVideoId:LMAlbum.lastVideoId,
+                left: LMAlbum.hasSmallVideo ? LMAlbum.smallVideoId:LMAlbum.lastVideoId,
+                right: ''
+            };
+            LMAlbum.smallVideoPosition = {
+                top: 236,    // 小窗播放距离上
+                left: 586,   // 距离左
+                width: 585,  // 宽
+                height: 335  // 高
+            };
+            LMAlbum.moreWonderfulMoveConfig = {
+                up: LMAlbum.firstVideoId,
+                down: '',
+                left: '',
+                right: ''
+            };
+            LMAlbum.smallVideoMoveConfig = {
+                up:LMAlbum.viewMoreId,
+                down: LMAlbum.lastVideoId,
+                left: '',
+                right: ''
+            };
+
+            LMAlbum.videoMoveConfig = {
+                prev: '',
+                next: LMAlbum.hasSmallVideo ? LMAlbum.smallVideoId : LMAlbum.viewMoreId,
+                up: LMAlbum.hasSmallVideo ? LMAlbum.smallVideoId : LMAlbum.viewMoreId,
+                down: '',
+                left: '',
+                right: ''
+            };
+
+            if (RenderParam.lmcid === '650092') {
+                // 新疆电信直接返回
+                LMAlbum.goBack = function () {
+                    LMEPG.Intent.back('IPTVPortal');
+                    return;
+                };
+                LMAlbum.onClickBackListener = function (btn) {
+                    LMEPG.Intent.back('IPTVPortal');
+                    return;
+                };
+                // 新疆电信直接取消订购
+                LMAlbum.hidePurchaseDialog = function () {
+                    H('purchase-dialog');
+                    LMEPG.ButtonManager.requestFocus(LMAlbum.focusId);
+                }
+            }
+
+            try {
+//                LMAlbum.initRegional();
+                LMAlbum.init();
+                lmInitGo();
+            } catch (err) {
+                G('debug').innerHTML += err + '</br>';
+            }
+        };
+
+        /**
+         * 释放iframe资源
+         */
+        function releaseFrame() {
+            LMEPG.Log.info("releaseFrame!!!!!!!!!!!!!");
+            LMEPG.PayFrame.releaseFrame();
+        }
+    </script>
+</head>
+<body id="body" class="{$platformType}-body">
+<div id="debug"></div>
+<img src="" alt="" id="background" class="{$platformType}-bg">
+<img id="btn-view-more" class="{$platformType}-view-more" src=""/>
+<!--返回按钮-->
+<img id="btn-back" class="{$platformType}-back"/>
+<if condition="$carrierId neq 640094">
+    <a href="#" id="default_link"></a>
+</if>
+<if condition="$platformType eq 'hd' ">
+    <div id="small-video-wrap" style="left:1px; top:1px; width:1px; height:1px; position:absolute;">
+        <iframe id="small-screen" frameborder="0" scrolling="no" style="width: 1px;height: 1px"></iframe>
+    </div>
+    <img id="small-video" src=""/>
+    <img id="corner-mark" class="{$platformType}-corner-mark" src="" alt="">
+    <else/>
+</if>
+
+<!--视频列表翻页箭头-->
+<img id="image-prev-arrow" class="{$platformType}-v-arrow {$platformType}-v-prev"/>
+<img id="image-next-arrow" class="{$platformType}-v-arrow {$platformType}-v-next"/>
+
+<img id="more-wonderful" src="__ROOT__/Public/img/hd/Album/common/btn_more_album.png"
+     class="{$platformType}-more-wonderful" style="visibility:hidden"/>
+
+<!--视频列表渲染容器-->
+<div id="video-list" class="{$platformType}-video-list"></div>
+
+<div id="history-album" class="{$platformType}-history-album"></div>
+
+<div id="purchase-dialog" style="visibility:hidden">
+    <img class="purchase-dialog-img" src="__ROOT__/Public/img/{$platformType}/Album/common/bg_purchase_dialog.png">
+    <img id="btn-purchase" src="__ROOT__/Public/img/{$platformType}/Album/common/btn_purchase_focus.png">
+    <img id="btn-cancel-purchase" src="__ROOT__/Public/img/{$platformType}/Album/common/btn_cancel_purchase.png">
+</div>
+
+<div id="countdown-dialog" style="visibility:hidden">
+    <img src="__ROOT__/Public/img/{$platformType}/Album/common/bg_countdown_dialog.png">
+    <div id="count">8</div>
+</div>
+
+</body>
+</html>

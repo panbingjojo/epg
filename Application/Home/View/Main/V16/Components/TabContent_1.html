@@ -1,0 +1,563 @@
+<div class="tab1-link-1-wrap">
+    <div id="tab1-link"></div>
+    <img id="tab1-link-1" onerror="this.src='__ROOT__/Public/img/Common/default.png'">
+    <img id="tab1-link-0">
+    <img id="icon-modify4" src="">
+    <div id="tab1-point-wrapper">
+    </div>
+</div>
+<div class="tab1-center-link">
+    <div>
+        <img id="tab1-link-2">
+        <img id="icon-modify5" src="">
+    </div>
+    <div>
+        <img id="tab1-link-3">
+        <img id="icon-modify6" src="">
+    </div>
+    <div class="sd-re-pos-1">
+        <img id="tab1-link-4">
+        <img id="icon-modify7" src="">
+    </div>
+    <div class="sd-re-pos-2">
+        <img id="tab1-link-5">
+        <img id="icon-modify8" src="">
+    </div>
+
+</div>
+<ul class="hot-video-list" id="hot-wrap"></ul>
+<div class="tab1-bottom-link">
+    <div id="overlay-wrap">
+        <div id="placeholder-0" class="left-placeholder"><img id="placeholder-img-0" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div id="first-action" class="moveRight"><img id="bottom-link-0" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div><img id="bottom-link-1" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div><img id="bottom-link-2" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div><img id="bottom-link-3" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div><img id="bottom-link-4" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+        <div id="placeholder-1" class="right-placeholder"><img id="placeholder-img-1" src="__ROOT__/Public/img/hd/Common/transparent.png"></div>
+    </div>
+</div>
+
+<div id="tab1-help" class="tab-help-wrap">
+    <img id="tab1-help0" src="__ROOT__/Public/img/{$platformType}/Help/V13/tab1_help0.png">
+</div>
+<script type="text/javascript">
+    var Tab1 = {
+        isLoad:false,
+        init: function () {
+            this.createBtns();
+            this.renderTab1();
+            clearInterval(Tab1.Carousel.timer);
+            Tab1.Carousel.points();
+            Tab1.Carousel.init();
+        },
+        /**
+         * 渲染Tab1
+         */
+        renderTab1: function () {
+            var list = RenderParam.configInfo.data.entry_list;
+            var carousel_1Data = carouselDataList1;
+            var tab_1 = Tab1;
+            for (var i = 0; i < list.length; i++) {
+                var data = list[i].item_data;
+                var data0ImgUrl = JSON.parse(data[0].img_url);
+                switch (parseInt(list[i].position)) {
+                    // banner
+                    case 21:
+                        carousel_1Data = data;
+                        tab_1.data = [];
+                        for (var j = 0; j < carousel_1Data.length; j++) {
+                            var tmp = {};
+                            tmp.id = j;
+                            tmp.src = Page.getImg(JSON.parse(carousel_1Data[j].img_url).normal);
+                            var corner_mark_url = JSON.parse(data[j].inner_parameters).cornermark.img_url;
+                            tmp.corner_mark_url = corner_mark_url ? Page.getImg(corner_mark_url) : corner_mark_url;
+                            tab_1.data.push(tmp);
+                        }
+                        if (Tab1.data[0])
+                            G('tab1-link-0').src = Tab1.data[0].src;
+                        if (Tab1.data[1])
+                            G('tab1-link-1').src = Tab1.data[1].src;
+                        if (data.length > 0) {
+                            var iconImagesSrc4 = JSON.parse(data[0].inner_parameters).cornermark.img_url;
+                            if (!iconImagesSrc4 && data.length > 1) {
+                                iconImagesSrc4 = JSON.parse(data[1].inner_parameters).cornermark.img_url;
+                            }
+                            Page.setCornerMark('icon-modify4', iconImagesSrc4);
+                        }
+                        break;
+                    case 22:
+                        G('tab1-link-2').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('icon-modify5', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                    case 23:
+                        G('tab1-link-3').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('icon-modify6', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                    case 24:
+                        G('tab1-link-4').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('icon-modify7', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                    case 25:
+                        G('tab1-link-5').src = Page.getImg(data0ImgUrl.normal);
+                        Page.setCornerMark('icon-modify8', JSON.parse(data[0].inner_parameters).cornermark.img_url);
+                        break;
+                }
+            }
+            var cutWords = function (str, len) {
+                if (str.length > len) {
+                    return str.slice(0, len) + '...';
+                } else {
+                    return str;
+                }
+            };
+            // 热播榜
+            setHotVideoData();
+
+            // 视频栏目
+            var moveCount = LMEPG.Func.getLocationString('moveCount') || 0;
+            Tab1.moveCount = +moveCount;
+            Tab1.bottomActionData = [];
+            Array.prototype.indexOf = function (val) {
+                for (var i = 0; i < Page.length; i++) {
+                    if (videoClassList[i].model_name == val) return i;
+                }
+                return -1;
+            };
+            Array.prototype.remove = function (val) {
+                var index = this.indexOf(val);
+                if (index > -1) {
+                    this.splice(index, 1);
+                }
+            };
+            videoClassList.remove("全部美食");
+            for (var k = 0; k < videoClassList.length; k++) {
+                var tmp = {};
+                tmp.id = k;
+                tmp.src = Page.getImg(videoClassList[k].img_url.normal);
+                tmp.src_focus_in = Page.getImg(videoClassList[k].img_url.focus_in);
+                Tab1.bottomActionData.push(tmp);
+                if (k <= 4) {
+                    G('bottom-link-' + k).src = Page.getImg(videoClassList[k + +Tab1.moveCount].img_url.normal);
+                    var bottomBtn = Page.getButtonById('bottom-link-' + k);
+                    if (bottomBtn != null) {
+                        bottomBtn.backgroundImage = Page.getImg(videoClassList[k + +Tab1.moveCount].img_url.normal);
+                        bottomBtn.focusImage = Page.getImg(videoClassList[k + +Tab1.moveCount].img_url.focus_in);
+                    }
+                }
+                if (k == 0) {
+                    G('placeholder-img-0').src = Page.getImg(videoClassList[videoClassList.length - 1].img_url.normal);
+                }
+                if (k == videoClassList.length - 1) {
+                    G('placeholder-img-1').src = Page.getImg(videoClassList[0].img_url.normal);
+                }
+            }
+
+            /**
+             * 设置热播视频
+             */
+            function setHotVideoData() {
+                if (videoRankList.length == 0) {
+                    return;
+                }
+                hotVideoIndex++;
+                if (hotVideoIndex == 5) {
+                    hotVideoIndex = 0;
+                }
+                var beginIndex = hotVideoIndex * 6;
+                var endIndex = beginIndex + 6;
+
+                if (beginIndex >= videoRankList.length) {
+                    setHotVideoData();
+                    return;
+                }
+
+                var hotInner = '';
+                for (var i = beginIndex; i < endIndex; i++) {
+                    if (i < videoRankList.length) {
+                        hotInner += ' <li data-title="' + videoRankList[i].title + '" id=hot-' + (i % 6) + '>' + cutWords(videoRankList[i].title, RenderParam.platformType == 'sd' ? 10 : 12);
+                    }
+                }
+                G('hot-wrap').innerHTML = hotInner;
+                // 如果焦点在热播榜上，每次刷新时把焦点移到第一条
+                if (LMEPG.BM.getCurrentButton() && LMEPG.BM.getCurrentButton().id.substr(0, 4) == 'hot-') {
+                    LMEPG.BM.requestFocus('hot-0');
+                }
+
+                setTimeout(function () {
+                    setHotVideoData();
+                }, 10000);
+            }
+        },
+        /*点击二级视频入口（页面的最后一行）*/
+        onClickJumpLevel2Page: function (btn) {
+            var currentObj = getCurPageObj();
+            // 通过点击对象id,设置跳转页面对象
+
+            var jumpAgreementObj = LMEPG.Intent.createIntent('channelIndex');
+            var itemIndex = btn.id.slice(12);
+            jumpAgreementObj.setParam('itemIndex', itemIndex);
+            jumpAgreementObj.setParam('modelType', videoClassList[+itemIndex + +Tab1.moveCount].model_type);
+            jumpAgreementObj.setParam('modelName', videoClassList[+itemIndex + +Tab1.moveCount].model_name);
+            LMEPG.Intent.jump(jumpAgreementObj, currentObj);
+        },
+        onFocusIn: function (btn, hasFocus) {
+            var btnElement = G(btn.id);
+            if (hasFocus) {
+                btnElement.setAttribute('class', 'focus');
+            } else {
+                btnElement.removeAttribute('class');
+            }
+            Tab1.modifyOnFocus(btn.id, hasFocus);
+            Tab1.bottomOnFocusIn(btn, hasFocus);
+            Tab1.carouselLink1OnFocus(btn, hasFocus);
+        },
+
+        /**
+         * 修饰图标得失焦点
+         * @param id
+         * @param hasFocus
+         */
+        modifyOnFocus: function (id, hasFocus) {
+            var prevModifyNum = 3;
+            var modifyNum = prevModifyNum + 1;
+            var elementID = 'icon-modify';
+            switch (id) {
+                case 'tab1-link':
+                    elementID += modifyNum;
+                    Tab1.modifyFocusChange(elementID, hasFocus);
+                    break;
+                case 'tab1-link-2':
+                case 'tab1-link-3':
+                case 'tab1-link-4':
+                case 'tab1-link-5':
+                    modifyNum = parseInt(id.substr(id.lastIndexOf('-') + 1, 1)) + prevModifyNum;
+                    elementID += modifyNum;
+                    Tab1.modifyFocusChange(elementID, hasFocus);
+                    break;
+            }
+        },
+
+        modifyFocusChange: function(prevModifyElementId, hasFocus){
+            if (hasFocus) {
+                G(prevModifyElementId).setAttribute('class', 'focus');
+            } else {
+                G(prevModifyElementId).removeAttribute('class');
+            }
+        },
+
+        /**
+         * 轮播推荐位得失焦点处理
+         * 轮询切换
+         * @param btn
+         * @param hasFocus
+         */
+        carouselLink1OnFocus: function (btn, hasFocus) {
+            if (btn.id != 'tab1-link') {
+                return;
+            }
+            var carousel_0 = G(btn.id + '-0');
+            var carousel_1 = G(btn.id + '-1');
+            if (hasFocus) {
+                carousel_0.setAttribute('class', 'focus');
+                carousel_1.setAttribute('class', 'focus');
+            } else {
+                carousel_0.removeAttribute('class');
+                carousel_1.removeAttribute('class');
+            }
+        },
+        cutWords: function (str, len) {
+            if (str.length > len) {
+                return str.slice(0, len) + '...';
+            } else {
+                return str;
+            }
+        },
+        hotOnFocusIn: function (btn, hasFocus) {
+            var btnEl = G(btn.id);
+            var txtInner = btnEl.getAttribute('data-title');
+            var lenWord = RenderParam.platformType == 'sd' ? 8 : 12;
+            if (btn.id.indexOf('hot') < 0 || txtInner.length <= lenWord) {
+                return;
+            }
+
+            if (hasFocus) {
+                btnEl.innerHTML = '<marquee>' + txtInner;
+            } else {
+                btnEl.innerHTML = Tab1.cutWords(txtInner, lenWord);
+            }
+        },
+        bottomActionData: [],
+        moveCount: 0,
+        /*处理进入二级视频栏目滚动效果*/
+        bottomOnFocusIn: function (btn, hasFocus) {
+            if (btn.id.indexOf('bottom') < 0) {
+                return;
+            }
+            if (hasFocus) {
+                if (btn.id == 'bottom-link-0') {
+                    showLeft();
+                    Tab1.showPlaceholder(btn);
+                }
+                if (btn.id == 'bottom-link-4') {
+                    showRight();
+                    Tab1.showPlaceholder(btn);
+                }
+            }
+
+            function showLeft() {
+                G('first-action').setAttribute('class', 'moveRight');
+            }
+
+            function showRight() {
+                G('first-action').setAttribute('class', 'moveLeft');
+            }
+        },
+        /*切换滚动*/
+        turnPage: function (diretion, btn) {
+            var me = Tab1;
+            if (diretion == 'left' && btn.id == 'bottom-link-0' && me.moveCount != 0) {
+                me.moveCount -= 1;
+                me.renderBottom(btn);
+            }
+            if (diretion == 'right' && btn.id == 'bottom-link-4' && me.bottomActionData.length - me.moveCount > 5) {
+                me.moveCount += 1;
+                me.renderBottom(btn);
+            }
+        },
+        renderBottom: function (btn) {
+            this.currentData = this.bottomActionData.slice(this.moveCount, this.moveCount + 5);
+            var length = this.currentData.length;
+            while (length--) {
+                if (LMEPG.BM.getCurrentButton() && LMEPG.BM.getCurrentButton().id == 'bottom-link-' + length) {
+                    G('bottom-link-' + length).src = this.currentData[length].src_focus_in; // 这里文档结构限制，遍历需要查询至多5次
+                } else {
+                    G('bottom-link-' + length).src = this.currentData[length].src; // 这里文档结构限制，遍历需要查询至多5次
+                }
+                var bottomBtn = Page.getButtonById('bottom-link-' + length);
+                if (bottomBtn != null) {
+                    bottomBtn.backgroundImage = this.currentData[length].src;
+                    bottomBtn.focusImage = this.currentData[length].src_focus_in;
+                }
+            }
+            this.prevImg = this.bottomActionData[+this.currentData[0].id - 1]; // 预支上一个占位元素
+            this.nextImg = this.bottomActionData[+this.currentData[this.currentData.length - 1].id + 1];     // 预支下一个占位符
+            this.showPlaceholder(btn);
+            console.log(this.bottomActionData, this.currentData.length - 1, this.nextImg);
+        },
+        // 展示占位元素
+        showPlaceholder: function (btn) {
+            Hide('placeholder-0');
+            Hide('placeholder-1');
+            var data_length = this.bottomActionData.length;
+            if (data_length < 6) {
+                LMEPG.BM.getButtonById('bottom-link-' + (data_length - 1)).nextFocusRight = '';
+                return;
+            }
+            if (btn.id == 'bottom-link-0' && this.prevImg) {
+                G('placeholder-img-0').src = this.prevImg.src;
+                Show('placeholder-0');
+            }
+            if (btn.id == 'bottom-link-4' && this.nextImg) {
+                G('placeholder-img-1').src = this.nextImg.src;
+                Show('placeholder-1');
+            }
+        },
+        /*=====处理轮播对象封装=====*/
+        data: [], // 配置推荐位轮播数据
+        Carousel: {
+            reverseStatus: false,
+            init: function () {
+                var data = Tab1.data;
+                if (data.length < 2) {
+                    H('tab1-point-wrapper');
+                    return;
+                }
+                this.data = data;
+                this.img1 = G('tab1-link-0');
+                this.img2 = G('tab1-link-1');
+                this.timer = setInterval(this.update, 4333);
+            },
+
+            /*更新轮播图片*/
+            update: function () {
+                var me = Tab1.Carousel;
+                var data = me.data;
+
+                me.prevRender(me, data);
+                me.switchDot();
+                me.appendDataAfter(me, data);
+                me.shuffle(data[0].id);
+            },
+
+            /*追加数据结构（引用循环）*/
+            appendDataAfter: function (me, data) {
+                data.push(data.shift());
+            },
+
+            /*渲染图片UI*/
+            prevRender: function (me) {
+                var runTag = me.getTag();
+
+                LMEPG.Func.fade(runTag.hideTag, 1, 50, function () {
+                    runTag.hideTag.src = me.data[1].src;
+                    curTab1CarouselId = me.data[0].id;
+                });
+
+                LMEPG.Func.fade(runTag.showTag, 0, 50,function () {
+                    // 设置当前显示的角标
+                    if(me.data[0].corner_mark_url){
+                        G("icon-modify4").src = me.data[0].corner_mark_url;
+                        S("icon-modify4");
+                    }else {
+                        H("icon-modify4");
+                    }
+                });
+            },
+
+            /*添加动态小圆点*/
+            points: function () {
+                var htm = '';
+                var len = Tab1.data.length;
+
+                while (len--) {
+                    var className = len === 0 ? 'focus' : '';
+                    htm = '<img src="__ROOT__/Public/img/hd/Common/transparent.png" id="tab1-point-' + len + '" class="' + className + '">' + htm;
+                }
+
+                G('tab1-point-wrapper').innerHTML = htm;
+            },
+
+            /*获得切换过程中对应dom元素*/
+            getTag: function () {
+                this.reverseStatus = !this.reverseStatus;
+                return this.reverseStatus ? {hideTag: this.img1, showTag: this.img2} : {hideTag: this.img2, showTag: this.img1};
+            },
+
+            /*重组轮播数据*/
+            shuffle: function (id) {
+                var me = this;
+                me.data.sort(function (a, b) {
+                    var sum = a.id - b.id;
+                    if (id == me.data.length - 1) {
+                        return -sum;
+                    } else if (id == 0) {
+                        return sum;
+                    }
+                });
+            },
+
+            /*切换轮播小圆点提示*/
+            switchDot: function () {
+                G('tab1-point-' + this.data[0].id).removeAttribute('class');
+                G('tab1-point-' + this.data[1].id).setAttribute('class', 'focus');
+            }
+        },
+        createBtns: function () {
+            // 推荐位1
+            buttons.push({
+                id: 'tab1-link',
+                type: 'img',
+                nextFocusRight: 'tab1-link-2',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'tab1-link-4' : 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 21
+            });
+            // 中间四个推荐位
+            buttons.push({
+                id: 'tab1-link-2',
+                type: 'img',
+                nextFocusLeft: 'tab1-link',
+                nextFocusRight: RenderParam.platformType == 'sd' ? 'hot-0' : 'tab1-link-3',
+                nextFocusUp: 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'tab1-link-3' : 'tab1-link-4',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 22
+            }, {
+                id: 'tab1-link-3',
+                type: 'img',
+                nextFocusLeft: RenderParam.platformType == 'sd' ? 'tab1-link-5' : 'tab1-link-2',
+                nextFocusRight: 'hot-0',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link-2' : 'tab-1',
+                nextFocusDown: RenderParam.platformType == 'sd' ? 'bottom-link-1' : 'tab1-link-5',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 23
+            }, {
+                id: 'tab1-link-4',
+                type: 'img',
+                nextFocusLeft: RenderParam.platformType == 'sd' ? '' : 'tab1-link',
+                nextFocusRight: 'tab1-link-5',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link' : 'tab1-link-2',
+                nextFocusDown: 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 24
+            }, {
+                id: 'tab1-link-5',
+                type: 'img',
+                nextFocusLeft: 'tab1-link-4',
+                nextFocusRight: RenderParam.platformType == 'sd' ? 'tab1-link-3' : 'hot-0',
+                nextFocusUp: RenderParam.platformType == 'sd' ? 'tab1-link' : 'tab1-link-3',
+                nextFocusDown: 'bottom-link-0',
+                click: Page.onClickRecommendPosition,
+                focusChange: Tab1.onFocusIn,
+                cNavId: 2,
+                cPosition: 25
+            });
+            // 热播榜
+            var hot_length = 6;
+            while (hot_length--) {
+                var topFocus = hot_length == 0 ? 'tab-1' : 'hot-' + (hot_length - 1);
+                var downFocus = hot_length == 5 ? 'bottom-link-3' : 'hot-' + (hot_length + 1);
+                buttons.push({
+                    id: 'hot-' + hot_length,
+                    type: 'div',
+                    nextFocusLeft: 'tab1-link-3',
+                    nextFocusUp: topFocus,
+                    nextFocusDown: downFocus,
+                    click: Page.onClickHotVideo,
+                    focusChange: Tab1.hotOnFocusIn,
+                    backgroundImage: RenderParam.platformType == 'sd'
+                        ? g_appRootPath+'/Public/img/sd/Home/V16/Home/Tab1/hot_bg.png'
+                        : g_appRootPath+'/Public/img/hd/Home/V16/Home/Tab1/hot_bg.png',
+                    focusImage: RenderParam.platformType == 'sd' ? g_appRootPath+'/Public/img/sd/Home/V16/Home/Tab1/hot_link.png' :g_appRootPath+ '/Public/img/hd/Home/V16/Home/Tab1/hot_link.png',
+                    cNavId: 2
+                });
+            }
+            // 跳转二级页面按钮
+            var tabCount = 5; // 后台拉去的个数
+            while (tabCount--) {
+                var top1Focus = function () {
+                    var id;
+                    if (tabCount < 2) {
+                        id = 'tab1-link-4';
+                    } else if (tabCount == 2 || RenderParam.videoPlayRank.count == 0) {
+                        id = 'tab1-link-5';
+                    } else {
+                        id = 'hot-5';
+                    }
+                    return id;
+                }();
+                buttons.push({
+                    id: 'bottom-link-' + tabCount,
+                    type: 'others',
+                    nextFocusLeft: 'bottom-link-' + (tabCount - 1),
+                    nextFocusRight: 'bottom-link-' + (tabCount + 1),
+                    nextFocusUp: top1Focus,
+                    click: Tab1.onClickJumpLevel2Page,
+                    focusChange: Tab1.onFocusIn,
+                    beforeMoveChange: Tab1.turnPage,
+                    cNavId: tabCount
+                });
+            }
+        }
+    };
+</script>

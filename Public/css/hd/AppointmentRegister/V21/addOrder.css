@@ -1,0 +1,189 @@
+#container {
+    height: 100%;
+    background: #0D8080;
+    color: #FFF;
+}
+
+.appointment {
+    width: 96px;
+    height: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 50px;
+    left: 80px;
+}
+
+.hospital {
+    position: absolute;
+    top: 111px;
+    left: 80px;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.doctor {
+    font-size: 24px;
+    position: absolute;
+    top: 161px;
+    left: 80px;
+    line-height: 30px;
+}
+
+.title1 {
+    width: 50px;
+    height: 24px;
+    background: #F94C4C;
+    position: absolute;
+    top: 165px;
+    left: 343px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.department {
+    font-size: 24px;
+    position: absolute;
+    top: 111px;
+    left: 701px;
+}
+
+.dayTime {
+    font-size: 24px;
+    position: absolute;
+    top: 161px;
+    left: 701px;
+}
+
+.line {
+    width: 1120px;
+    height: 1px;
+    background: #fff;
+    opacity: 0.2;
+    position: absolute;
+    top: 224px;
+    left: 80px;
+}
+
+.first {
+    width: 203px;
+    height: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 256px;
+    left: 80px;
+}
+
+.add {
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    position: absolute;
+    top: 440px;
+    left: 540px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 60px;
+    text-align: center;
+    background:url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    background-size: 100% 100%;
+}
+
+.choose {
+    width: 280px;
+    height: 20px;
+    font-size: 20px;
+    position: absolute;
+    top: 520px;
+    left: 500px;
+}
+.exchange {
+    width: 160px;
+    height: 50px;
+    position: absolute;
+    top: 396px;
+    left: 860px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 30px;
+    background:url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    background-size: 100% 100%;
+
+
+}
+
+.nameTitle {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    font-size: 20px;
+    top: 329px;
+    left: 80px;
+    opacity: 0.5;
+}
+
+.sexTitle {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    font-size: 20px;
+    opacity: 0.5;
+    top: 329px;
+    left: 280px;
+}
+
+.cardTitle {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    font-size: 20px;
+    opacity: 0.5;
+    top: 329px;
+    left: 500px;
+}
+
+.people-item .name {
+    position: absolute;
+    width: 100px;
+    height: 24px;
+    font-size: 24px;
+    top: 409px;
+    left: 80px;
+}
+
+.people-item .gender {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    top: 409px;
+    left: 280px;
+}
+
+.people-item .card-id {
+    position: absolute;
+    width: 240px;
+    height: 24px;
+    font-size: 24px;
+    top: 409px;
+    left: 500px;
+}
+
+.next {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    background:url("../../../../img/hd/AppointmentRegister/V21/box2.png");
+    font-size: 24px;
+    top: 560px;
+    left: 540px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 60px;
+    background-size: 100% 100%;
+
+}

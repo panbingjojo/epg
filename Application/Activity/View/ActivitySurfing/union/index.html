@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>冲浪联合活动游戏页面</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Activity/ActivitySurfing/union/index.css?t={$time}">
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmajax_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcore_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmmarquee.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmstbutils.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmintent_v1.0.1.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmlog_v1.0.0.js?t={$time}"></script>
+    <!--弹窗规则定义-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/ActivitySurfing/PopRule.js?t={$time}"></script>
+    <!--页面跳转-->
+    <script type="text/javascript">
+        /**
+         * 获取当前页对象
+         */
+        function getCurrentPage() {
+            var objCurrent = LMEPG.Intent.createIntent("activity-common-home");
+            objCurrent.setParam("userId", "{$userId}");
+            objCurrent.setParam("inner", "{$inner}");
+
+            return objCurrent;
+        }
+
+        /**
+         * 跳转到弹框页
+         */
+        function jumpDialog(text) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("userId", "{$userId}");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("leftTimes", "{$leftTimes}");
+            objDialog.setParam("demoTimes", "{$demoTimes}");
+            objDialog.setParam("context", text);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+
+        /**
+         * 显示非会员答题次数用尽
+         */
+        function jumpNoVipTimesOverDialog() {
+            jumpDialog(NOT_VIP_USER_PLAY_TIMES_OVER);
+        }
+
+        /**
+         * 显示中奖
+         */
+        function jumpDrawnPrizeDialog(prizeName,prizeIdx) {
+            var objCurrent = getCurrentPage();
+            var objDialog = LMEPG.Intent.createIntent("activity-common-dialog");
+            objDialog.setParam("inner", "{$inner}");
+            objDialog.setParam("prizeName", prizeName);
+            objDialog.setParam("prizeIdx", prizeIdx);
+            objDialog.setParam("context", VIP_USER_DRAWN_PRIZE);
+
+            LMEPG.Intent.jump(objDialog, objCurrent);
+        }
+        
+        /**
+         * 显示未中奖
+         */
+        function jumpNotDrawnPrizeDialog() {
+            jumpDialog(USER_NOT_DRAWN_PRIZE_TIPS);
+        }
+
+        /**
+         * 返回事件
+         */
+        function onBack() {
+            //回到活动界面
+            LMEPG.Intent.back();
+        }
+
+    </script>
+
+</head>
+<body style="background: url('__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/play_bg.png') no-repeat">
+<img class="produce_confirm" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/confirm_produce.gif" alt="" />
+<div id="scol-balloon">
+    <div id="balloon-box" class="balloon-box" style="left: 0px">
+        <img class="balloon" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/bollon.png" alt="" />
+        <img class="balloon" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/bollon.png" alt="" />
+    </div>
+</div>
+<div id="surfe-box">
+    <img id="surf1" class="surfe" style="display: block" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/surfe_1.png" alt="" />
+    <img id="surf2" class="surfe" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/surfe_2.png" alt="" />
+    <img id="surf3" class="surfe" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/surfe_3.png" alt="" />
+    <img id="surf4" class="surfe" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/surfe_4.png" alt="" />
+</div>
+<img class="progress_bar_box" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/progress_bar.png" alt="" />
+<div class="bar_box">
+    <div id="progress_bar"
+         style="width: 0px; background-image: url('__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/bar.png');"></div>
+    <img id="man" style="left: -15px" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/man.png" alt="" />
+</div>
+<img class="end" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/end.png" alt="" />
+<div id="play"></div>
+<div id="confirm"></div>
+<div id="dialog"></div>
+
+<script type="text/javascript">
+    var buttons;
+    var timerID1;//气球滚动定时器
+    var balloon = document.getElementById("balloon-box");
+    var surfe_box = document.getElementById("surfe-box");
+    var progress_bar = document.getElementById("progress_bar");
+    var man = document.getElementById("man");//进度条小人
+    var surfeNUm = 1;//冲浪图片替换参数
+    var newLeft;//气球位移量
+    var balloonLength = "{$platformType}" == "hd"? -1254 : -699;//气球滚动循环量：高清-1254，标清-699
+    var progress = 1;//进度条点击次数
+    var progressBarLength = "{$platformType}" == "hd"? 1066 : 500;//进度条总长度:高清1066，标清500
+    var numLength = "{$platformType}" == "hd"? 58 : 28;//气球移动单位量:高清58，标清28
+    var keyTime = 4;//点击次数
+    var progressLength = progressBarLength / keyTime;//进度条前进长度
+    var dialog = document.getElementById("dialog");
+    var leftTimes = {$leftTimes}; // 剩余次数
+    var demoTimes = {$demoTimes};
+    var surfId;
+
+
+    buttons = [
+        {
+            id: 'play',
+            name: '冲刺',
+            type: 'img',
+            click: playGame
+        }, {
+            id: 'confirm',
+            name: '确认抽奖',
+            type: 'img',
+            click: participationActivity //抽奖就是跳到答题成功的弹窗
+        }];
+
+    window.onload = function () {
+        uploadAnswerResult();
+    };
+
+    //云朵定时器
+    function directionX() {
+        try {
+//            当气球飘过一屏时循环
+            if (parseInt(balloon.style.left) <= balloonLength) {
+                balloon.style.left = '0px';
+            }
+            animateBallon();
+            timerID1 = setTimeout("directionX()",160);
+        } catch (e) {
+        }
+    }
+
+    //冲浪定时器
+    function directionY() {
+        try {
+            animate();
+            timerID1 = setTimeout("directionY()", 160);
+        } catch (e) {
+        }
+    }
+
+    //云朵动画
+    function animateBallon() {
+        newLeft = parseInt(balloon.style.left) - numLength;
+        balloon.style.left = newLeft + 'px';
+    }
+
+    //冲浪动画
+    function animate() {
+        //当气任务图片完成第四帧时循环
+        surfId=document.getElementById("surf"+surfeNUm);
+        surfId.style.display="none";
+        surfeNUm++;
+        if (surfeNUm == 5) {
+            surfeNUm = 1
+        }
+        surfId=document.getElementById("surf"+surfeNUm);
+        surfId.style.display="block";
+    }
+
+    /**
+     * 点击后玩游戏
+     */
+    function playGame() {
+        if (progress == 1) {
+            directionY();
+            directionX();
+            progress++;
+            progress_bar.style.width = parseInt(progress_bar.style.width) + progressLength + "px";
+            man.style.left = parseInt(man.style.left) + progressLength + "px";
+        } else if (progress < keyTime) {
+            progress_bar.style.width = parseInt(progress_bar.style.width) + progressLength + "px";
+            man.style.left = parseInt(man.style.left) + progressLength + "px";
+            progress++;
+        } else if (progress == keyTime) {
+            progress_bar.style.width = parseInt(progress_bar.style.width) + progressLength + "px";
+            man.style.left = parseInt(man.style.left) + progressLength + "px";
+            progress++;
+            dialog.innerHTML = '<img class="dialog" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/cross.png"/><img class="btn-only2" src="__ROOT__/Public/img/{$platformType}/Activity/ActivitySurfing/union/get_in2.gif"/>';
+            LMEPG.ButtonManager.requestFocus('confirm');
+        } else {
+        }
+    }
+
+    //参与抽奖
+    function participationActivity() {
+        LMEPG.KeyEventManager.setAllowFlag(false);
+        setTimeout("LMEPG.KeyEventManager.setAllowFlag(true)",1000);
+        // 免费试玩 demoTimes = 1
+        if (demoTimes == 1) {
+            // 每天有一次试玩机会
+            jumpNotDrawnPrizeDialog();
+            return;
+        }
+
+        LMEPG.ajax.postAPI('Activity/participateActivity', null,
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) {
+                        //没有抽中奖品
+                        jumpNotDrawnPrizeDialog();
+                    } else if (result == 1) {
+                        //抽中奖品
+                        prizeName = data.prize_name;
+                        prizeIdx = data.prize_idx;
+                        jumpDrawnPrizeDialog(prizeName,prizeIdx)
+                    } else {
+                        LMEPG.UI.showToast("打开宝箱出错:" + result);
+                        setTimeout("onBack()",3000);
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("抽奖结果处理异常！");
+                    LMEPG.Log.error(e.toString());
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.dismissWaitingDialog();
+                LMEPG.UI.showToast("请求抽奖发生错误！");
+            }
+        );
+    }
+
+    /**
+     * 上报参与记录（上报答题结果）
+     */
+    function uploadAnswerResult() {
+        LMEPG.ajax.postAPI('Activity/uploadPlayedRecord', null,
+            function (rsp) {
+                try {
+                    var data = rsp instanceof Object ? rsp : JSON.parse(rsp);
+                    var result = data.result;
+                    if (result == 0) { //上报参与记录成功
+                        LMEPG.ButtonManager.init(['play'], buttons, '', true);
+                    } else {
+                        //上报答题结果失败
+                        LMEPG.UI.showToast("上报参与记录失败:" + result + ",请稍后重试！", 5);
+                        setTimeout(onBack,5);
+                    }
+                } catch (e) {
+                    LMEPG.UI.showToast("上报参与记录异常,请稍后重试！", 5);
+                    setTimeout(onBack,5);
+                }
+            },
+            function (rsp) {
+                LMEPG.UI.showToast("上报参与记录异常,请稍后重试！", 5);
+                setTimeout(onBack,5);
+            }
+        );
+    }
+
+</script>
+</body>
+</html>

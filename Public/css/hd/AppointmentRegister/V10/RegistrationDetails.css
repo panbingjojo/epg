@@ -1,0 +1,125 @@
+
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+.infoList{
+    position: absolute;
+    top: 101px;
+    left: 80px;
+    width: 1150px;
+    height: 595px;
+    overflow: hidden;
+}
+#default{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.form{
+    position: relative;
+    margin-top: 25px;
+    width: 1040px;
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 28px;
+    background: url("../../../../../Public/img/hd/AppointmentRegister/V10/BtnBox/box_record_2.png");
+    border-radius: 25px;
+    border: 1px #898F94 solid;
+    text-align: left;
+
+}
+.infoList:after{
+    content: '';
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+table{
+    margin-top: 15px;
+    width: 100%;
+}
+.status-info{
+    width: 1060px;
+    padding: 20px 30px;
+    text-align: center;
+    font-size: 28px;
+    color: #FFFFFF;
+    background: url("../../../../../Public/img/hd/AppointmentRegister/V10/BtnBox/box_record_3.png");
+    border-radius: 20px;
+    margin-top: 20px;
+    line-height: 45px;
+}
+
+.status-content{
+    margin-top: 10px;
+}
+/*.form-box{*/
+    /*position: relative;*/
+    /*text-align: left;*/
+    /*margin:0px auto;*/
+/*}*/
+.form-title{
+    font-size: 32px;
+    line-height: 50px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.form-row{
+    line-height: 47px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.icon-img{
+    position: relative;
+    width: 37px;
+    height: 37px;
+    top: 7px;
+}
+.btn {
+    /*float: left;*/
+    display:inline-block ;
+    margin-left: 15px;
+    /*display: inline;*/
+}
+.btn-list{
+    position: relative;
+    top: 30px;
+    width:800px;
+    /*width:-webkit-fit-content;*/
+    /*width:-moz-fit-content;*/
+    margin: 0 auto;
+    text-align: center;
+    text-align: center;
+}
+#countdown{
+    position: absolute;
+    top: 38px;
+    left: 570px;
+    color: #ffa647;
+}
+.code{
+    width: 150px;
+    height: 150px;
+    float: left;
+}
+.btn-hover{
+    font-weight: bold;
+}

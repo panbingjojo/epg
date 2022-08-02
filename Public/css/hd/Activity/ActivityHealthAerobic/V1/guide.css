@@ -1,0 +1,299 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    background-repeat: no-repeat;
+}
+
+body {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    color: #fff;
+}
+
+body > * {
+    position: absolute;
+}
+
+.abs {
+    position: absolute;
+}
+
+#bg {
+    top: 0;
+    left: 0;
+}
+
+.right-btn-wrapper {
+    top: 29px;
+    left: 1107px;
+}
+
+#lottery-count {
+    top: 426px;
+    left: 431px;
+    font-size: 28px;
+}
+
+#total-oxygen {
+    top: 473px;
+    left: 452px;
+    font-size: 28px;
+}
+
+
+.collect-wrapper {
+    top: 528px;
+    left: 386px;
+}
+
+.collect-wrapper img {
+    margin-right: 22px;
+}
+
+#water,
+#bug,
+#weeding {
+    position: absolute;
+    width: 107px;
+    height: 120px;
+    opacity: 0;
+}
+
+#water {
+    top: 212px;
+    left: 446px;
+}
+
+#bug {
+    top: 12px;
+    left: 626px;
+}
+
+#weeding {
+    top: 278px;
+    left: 751px;
+}
+#modify-tips{
+    top: 305px;
+    left: 323px;
+}
+/*倒计时*/
+#count-down {
+    position: absolute;
+    top: 13px;
+    left: 1115px;
+    font-size: 22px;
+    width: 150px;
+}
+
+#game-intro {
+    position: absolute;
+    width: 500px;
+    text-align: center;
+    font-size: 20px;
+    top: 685px;
+    left: 22px;
+}
+
+/*+++++++++++++++常规弹框+++++++++++++++++*/
+#searchText {
+    position: absolute;
+    z-index: 99;
+    width: 250px;
+    overflow: hidden;
+}
+
+#btn-one {
+    top: 420px;
+    left: 540px;
+}
+
+/*中奖名单*/
+#win-table {
+    top: 180px;
+    left: 247px;
+    width: 800px;
+    height: 170px;
+}
+
+table {
+    width: 800px;
+}
+
+#win-table tr {
+}
+
+#win-table tr td {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 21px;
+    overflow: hidden
+}
+
+/*中奖名单排版*/
+#win-table tr td.user,
+.single-table tr td.user {
+    width: 29%;
+}
+
+#win-table tr td.winTime,
+.single-table tr td.winTime {
+    width: 40%;
+}
+
+#win-table tr td.prize,
+.single-table tr td.prize {
+    width: 31%;
+}
+
+.list-submit {
+    top: 567px;
+    left: 451px;
+}
+
+.list-cancle {
+    top: 567px !important;
+    left: 659px !important;
+}
+
+.tel-wrap {
+    position: absolute;
+    font-size: 20px;
+
+}
+
+.tel-list {
+    top: 502px;
+    left: 582px;
+}
+
+.single-table {
+    top: 444px;
+    left: 247px;
+    width: 800px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+/*兑换奖品*/
+#exchange-wrap{
+    font-size: 32px;
+    position: absolute;
+    top: 280px;
+    left: 603px;
+    width: 400px;
+}
+#exchange-wrap div{
+    position: relative;
+    margin-bottom: 20px;
+}
+#exchange-wrap p{
+    line-height: 40px;
+}
+#exchange-wrap img{
+    position: absolute;
+    top: -10px;
+    left: 160px;
+}
+.myScore{
+    top: 77px;
+    left: 307px;
+    font-size: 32px;
+}
+.hasExchange{
+    top: 144px;
+    left: 386px;
+    font-size: 32px;
+}
+#exchange-close{
+    top: 58px;
+    left: 1158px;
+}
+.tel-exchange{
+    top: 355px;
+    left: 593px;
+}
+.tel-exchange>span{
+    font-size: 26px !important;
+    color: #333 !important;
+}
+
+/*活动规则*/
+
+#rule-close {
+    top: 12px;
+    left: 1067px;
+}
+
+/*订购相关*/
+#btn-sure-pay {
+    top: 528px;
+    left: 458px;
+}
+
+#btn-cancle {
+    top: 528px;
+    left: 663px;
+}
+
+/*完成游戏*/
+.complete-submit {
+    top: 483px;
+    left: 444px;
+}
+
+.complete-cancle {
+    top: 483px !important;
+    left: 656px;
+}
+
+.tel-complete {
+    top: 423px;
+    left: 617px;
+    font-size: 30px;
+}
+
+#win-prize {
+    top: 259px;
+    left: 688px;
+}
+.total-noPrize{
+    top: 250px;
+    left: 580px;
+    font-style: italic;
+}
+.my-noPrize{
+    top: 460px;
+    left: 580px;
+    font-style: italic;
+}
+/*等待框*/
+.g_waiting_dialog {
+    position: absolute;
+    left: 590px;
+    top: 310px;
+    width: 99px;
+    height: 100px;
+    line-height: 166px;
+    font-size: 32px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../../img/hd/Common/bg_waiting_dialog.gif") no-repeat;
+}
+/*提示语*/
+.g_toast {
+    position: absolute;
+    left: 364px;
+    top: 279px;
+    width: 551px;
+    height: 126px;
+    line-height: 166px;
+    font-size: 20px;
+    z-index: 9999;
+    text-align: center;
+    color: #ff6600;
+    background: url("../../../../../img/hd/Common/bg_toast.png") no-repeat;
+}

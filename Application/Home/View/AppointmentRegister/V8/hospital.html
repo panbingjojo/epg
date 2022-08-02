@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <title>医院详情</title>
+
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/AppointmentRegister/V8/hospital.css?t={$time}"/>
+
+    <script type="text/javascript">
+        var RenderParam = {
+            hospitalId:'{$hospitalId}',
+            backDepIndex:'{$backDepIndex}',
+            docBtnId:'{$docBtnId}',
+            openDepId:'{$openDepId}'
+        }
+    </script>
+
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+
+    <script type="text/javascript" src="__ROOT__/Public/js/AppointmentRegister/V8/hospital.js?t={$time}"></script>
+
+</head>
+<body>
+<div id="hospital-container">
+    <div class="head-area">
+        <div class="hospital-pic-area">
+            <img src="" id="hospital-img" style="width: 280px;height: 180px">
+        </div>
+        <div class="hospital-intro-area">
+            <div class="hospital-name" id="hospital-name"></div>
+            <div class="hospital-addr" id="hospital-addr"></div>
+            <div style="position: relative;width: 850px">
+                <div class="hospital-intro" id="hospital-intro"></div>
+                <div id="to-detail">医院介绍</div>
+            </div>
+        </div>
+    </div>
+    <div class="choose-tip">预约挂号请选择科室</div>
+    <div class="doctor-area">
+
+        <div class="department-area" id="department-area"></div>
+
+        <div class="doctor-list-area" id="doctor-list-area">
+            <div class="list-row" id="list-row"></div>
+            <div id="no-result">暂无专家</div>
+        </div>
+    </div>
+    <div class="more-dep" style="display: none" id="more-dep">
+        <div class="all-dep-area" id="all-dep-area"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        Home.init()
+    }
+</script>
+</body>
+</html>

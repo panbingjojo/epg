@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>123123123</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}"/>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <eq name="isRunOnAndroid" value="1">
+        <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+    </eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <style type="text/css">
+        html {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        body {
+            background-color: #2bf3ff;
+        }
+
+        div#container {
+            position: relative;
+            margin: 0 auto;
+            width: 500px;
+            height: 300px;
+            background-color: #0e4995;
+        }
+
+        div#list-wrapper div {
+            float: left;
+        }
+
+        div#arrow-wrapper img {
+            position: absolute;
+            top: 45%;
+        }
+
+        img#page-prev {
+            left: -30px;
+        }
+
+        img#page-next {
+            right: -30px;
+        }
+
+        div.list-item {
+            float: left;
+        }
+
+        img.list-item-img {
+            width: 88px;
+            height: 300px;
+            margin-left: 10px;
+        }
+
+        div.list-item.focus {
+            border-radius: 10px;
+            border: 2px solid gold;
+            box-shadow: 0 0 5px 2px goldenrod;
+        }
+    </style>
+</head>
+<body>
+<div id="debug"></div>
+<div id="container">
+    <div id="list-wrapper"></div>
+    <div id="arrow-wrapper">
+        <img id="page-prev" src="__ROOT__/Public/img/hd/Album/album117/icon_prev_page.png"/>
+        <img id="page-next" src="__ROOT__/Public/img/hd/Album/album117/icon_next_page.png"/>
+    </div>
+</div>
+<script type="text/javascript">
+	window.isPreventDefault = false;
+	var resourcesUrl = '{$resourcesUrl}';
+	var getData = {$data}.data.video_list[0].content_desc.map((t) => {return {img_url: resourcesUrl + t, intro_txt: '图片标题信息'};});
+	var buttons = [{id: 'debug', type: 'div'}];
+	window.onload = function() {
+		LMEPG.BM.init('debug', buttons, '', true);
+		LMPage.init({
+			data: getData,
+			listCount: 5,
+			listWrap: document.getElementById('list-wrapper'),
+			prevArrow: document.getElementById('page-prev'),
+			nextArrow: document.getElementById('page-next'),
+			// 按钮
+			keyUp: '',
+			keyDown: '',
+			keyLeft: '',
+			keyRight: '',
+			keyTurn: 'right',
+			clickToDo: ''
+		});
+	};
+	(function(epg, d, w) {
+
+		w.LMPage = {
+			Nc: 0,
+			Nm: 0,
+			keyUp: '',
+			keyDown: '',
+			keyLeft: '',
+			keyRight: '',
+			keyTurn: 'right',
+			clickToDo: '',
+			init: function(param) {
+				this.resolveParam(param);
+				this.renderPage();
+				this.createButtons();
+
+			},
+			resolveParam: function(param) {
+				param = param || {};
+				for (var i in param) {
+					this[i] = param[i];
+				}
+				this.Nm = Math.ceil(param.data.length / param.listCount);
+			},
+			turnPage: function(key, btn) {
+				var prevKey = this.keyTurn == 'right' ? 'left' : 'up';
+				var nextKey = this.keyTurn;
+				key == prevKey && btn.id == 'page-focus-0' && this.prevPage();
+				key == nextKey && btn.id == 'page-focus-' + (this.listCount - 1) && this.nextPage();
+			},
+			prevPage: function() {
+				if (this.Nc == 0) return;
+				this.Nc--;
+				this.renderPage();
+			},
+			nextPage: function() {
+				if (this.Nc == this.Nm) return;
+				this.Nc++;
+				this.renderPage();
+			},
+			renderPage: function() {
+				var htm = '';
+				var startNc = this.Nc * this.listCount;
+				var cutData = this.data.slice(startNc, startNc + this.listCount);
+				for (var i = 0; i < cutData.length; i++) {
+					htm += '<div class="list-item" id="list-focus-' + i + '">' +
+						'<img class="list-item-img" src="' + cutData[i].img_url + '"/>' +
+						'<p class="list-item-p">' + cutData[i].intro_txt +
+						'</div>';
+				}
+				this.listWrap.innerHTML = htm;
+				this.toggleArrow();
+			},
+			toggleArrow: function() {
+				this.prevArrow.style.visibility = 'visible';
+				this.nextArrow.style.visibility = 'visible';
+				if (this.Nc == 0) this.prevArrow.style.visibility = 'hidden';
+				if (this.Nc == this.Nm) this.nextArrow.style.visibility = 'hidden';
+			},
+			listItemOnFocus: function(btn, hasFocus) {
+				var btnEl = d.getElementById(btn.id);
+				var wholeClassName = btnEl.className;
+				if (hasFocus) {
+					console.log(btnEl);
+					btnEl.className += ' focus';
+				} else{
+					btnEl.className = wholeClassName.replace(/focus/g, '');
+				}
+			},
+			createButtons: function() {
+				var num = this.listCount;
+				while (num--) {
+					epg.BM.addButtons({
+						id: 'list-focus-' + num,
+						type: 'others',
+						nextFocusUp: this.keyUp ? this.keyUp : 'list-focus-' + (num - 1),
+						nextFocusDown: this.keyDown? this.key(),
+						nextFocusLeft: this.keyLeft,
+						nextFocusRight: this.keyRight,
+						beforeMoveChange: this.turnPage,
+						focusChange: this.listItemOnFocus,
+						click: this.clickToDo
+					});
+				}
+				epg.BM.requestFocus('list-focus-0');
+			}
+		};
+	}(LMEPG, document, window));
+</script>
+</body>
+</html>

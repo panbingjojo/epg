@@ -1,0 +1,98 @@
+.login-area{
+    width: 1280px;
+    height: 720px;
+    background-size: 1364px 760px;
+    background: url("/Public/img/hd/Home/V32/login-bg.png") 0 -40px;
+    position: relative;
+}
+
+.qr-btn{
+    position: absolute;
+    top: 85px;
+    right: 67px;
+}
+
+.avatar{
+    position: absolute;
+    left: 587px;
+    top: 188px;
+    width: 106px;
+    height: 106px;
+    border-radius: 50%;
+    background: #fff311;
+    border: 2px solid #06062F;
+}
+
+.exchange-btn-1{
+    position: absolute;
+    left: 715px;
+    top: 222px;
+}
+
+.input-area{
+    position: absolute;
+    left: 443px;
+    top: 350px;
+}
+
+.label{
+    display: inline-block;
+    color: white;
+    font-size: 30px;
+    vertical-align: middle;
+
+}
+
+.input{
+    display: inline-block;
+    width: 290px;
+    height: 46px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 28px;
+    line-height: 46px;
+    padding: 0 5px;
+}
+
+.exchange-btn-2{
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+.sure-btn{
+    position: absolute;
+    left: 438px;
+    top: 487px;
+}
+
+.qr-area{
+    width: 1280px;
+    height: 720px;
+    background: url("/Public/img/hd/Home/V32/login-qr-bg.png") 55px -40px;
+    position: relative;
+    color: #fff;
+}
+
+.qr-tip{
+    position: absolute;
+    left: 500px;
+    top: 240px;
+    font-size: 30px;
+}
+
+.qr-pic{
+    position: absolute;
+    left: 535px;
+    top: 320px;
+    width: 212px;
+    height: 212px;
+    background: #0eb0b5;
+}
+
+.qr-direct-btn{
+    position: absolute;
+    right: 67px;
+    top: 85px
+}

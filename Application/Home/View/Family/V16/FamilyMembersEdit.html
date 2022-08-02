@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <title>家庭成员管理-中国联通新版V16</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Common/V13/dialog.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/Family/V16/FamilyMemberEdit.css?t={$time}"/>
+
+    <!--全局渲染参数-->
+    <script type="text/javascript">
+        var RenderParam = {
+            //公共渲染
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            subAreaCode: "{$subAreaCode}",      // 省份下的子区域
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+            accountId: "{$accountId}",          // 用户Id
+
+            //当前页渲染
+            userfromType: "{$userfromType}",
+            subId: "{$subId}",
+            fromId: "{$fromId}",
+            intentType: "{$intentType}",
+            actionType: "{$actionType}",
+            memberList: JSON.parse('{$member}'),
+
+            skin: {$skin},      // 用户自定义背景
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Dialog/Dialog.1.01.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Family/V16/MemberEdit.js?t={$time}"></script>
+</head>
+<body>
+<p id="title">家庭成员添加</p>
+<div id="member-container">
+    <img id="icon-member" src="" alt="">
+    <ul id="call-wrap">
+        <li id="prev-member"></li>
+        <li id="select-member"></li>
+        <li id="next-member"></li>
+    </ul>
+    <div class="body-characteristic">
+        <img class="icon-wrap" src="__ROOT__/Public/img/hd/Family/V16/icon_bg.png" alt="">
+        <ul id="prev-wrap">
+            <li id="prev-age" class="age">20</li>
+            <li id="prev-height" class="height">170</li>
+            <li id="prev-weight" class="weight">55</li>
+        </ul>
+        <ul id="select-wrap">
+            <li class="age"><span id="select-age">21</span></li>
+            <li class="height"><span id="select-height">171</span></li>
+            <li class="weight"><span id="select-weight">55.5</span></li>
+        </ul>
+        <ul id="next-wrap">
+            <li id="next-age" class="age">22</li>
+            <li id="next-height" class="height">172</li>
+            <li id="next-weight" class="weight">56</li>
+        </ul>
+    </div>
+    <img id="submit" src="__ROOT__/Public/img/hd/Family/V16/submit.png" alt="">
+</div>
+<p class="text-info">遥控器按“上”“下”“左”“右”键可切换选项，选择符合您的信息</p>
+<img id="delete-member" src="__ROOT__/Public/img/hd/Family/V16/btn_delete.png" alt="">
+</body>
+</html>

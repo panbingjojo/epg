@@ -1,0 +1,20 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    background: url("../../../../img/hd/Pay/V430002/bg_order--.png") no-repeat;
+    background-size: 1280px 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+.order_item_container {
+    top: 234px;
+    left: 428px;
+}

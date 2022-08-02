@@ -1,0 +1,8 @@
+/*背景图*/
+#background {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}

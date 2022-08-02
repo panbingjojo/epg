@@ -1,0 +1,60 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+    font-size: 22px;
+}
+
+body {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background: url("../../../../../Public/img/hd/OutbreakReport/V2/live_bg.png") no-repeat;
+    color: black;;
+}
+
+.list {
+    position: absolute;
+    top: 179px;
+    left: 41px;
+}
+
+.btn-video {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.btn-img {
+    position: absolute;
+    top: -18px;
+    left: -18px;
+}
+
+.list-info {
+    position: absolute;
+    top: 0px;
+    left: 795px;
+    width: 376px;
+    padding: 15px;
+    border: 1px solid;
+    background: #c3d2e3;
+    color: #041317;
+    height: 416px;
+    overflow: hidden;
+}
+
+.title {
+    color: #041317;
+    font-size: 27px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.content {
+    font-size: 23px;
+    margin-top: 10px;
+}

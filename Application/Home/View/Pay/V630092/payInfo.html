@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>支付信息carrierIdSet</title>
+    <meta charset="utf-8" name="page-view-size" content='{$size}'>
+
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/hd/Pay/V520092/PayInfo.css?t={$time}">
+
+    <!--全局渲染参数-->
+    <script>
+        var RenderParam = {
+            // 公用参数
+            accountId: "{$accountId}",            // 账号
+            carrierId: "{$carrierId}",          // 地区id
+            areaCode: "{$areaCode}",            // 省份地区码
+            platformType: "{$platformType}",    // 平台类型
+            debug: "{$debug}",                  // 调试模式
+            pageSize: "{$size}",                // 页面尺寸
+            stbModel: "{$stbModel}",            // 盒子的型号
+            fsUrl: "{$resourcesUrl}",           // fs 地址
+            time: "{$time}",                    // 开始渲染时间
+            userId: "{$userId}",                // 用户Id
+
+            // 页面参数
+            isVip: "{$isVip}",
+            vipInfo: {$vipInfo},                // 用户VIP信息
+            orderItems: {$orderItems},          // 套餐配置
+        };
+    </script>
+
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公共库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+<eq name="isRunOnAndroid" value="1">
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+</eq>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Pay/630092/payInfo.js?t={$time}"></script>
+</head>
+<body style="background-image: url(__ROOT__/Public/img/hd/Pay/V520092/bg_payInfo.png);">
+<p class="title">订购信息</p>
+<div class="pay-info-wrap">
+    <img id="vip-icon" src="__ROOT__/Public/img/hd/Pay/V520092/vip.png" alt="">
+    <p id="user-account"></p>
+    <img id="btn-pay" src="__ROOT__/Public/img/hd/Pay/V520092/debook.png" alt="">
+</div>
+<p id="pay-notice">你已经订购39健康</p>
+<div id="desc-info" class="desc-info">
+    <p> ITV账单订购29元/月，到期自动续订</p>
+    <p>如遇订购成功却提示上传订购信息失败，请拨打10000号查询。</p>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        LMEPG.Log.info("payInfo.html  -----> init");
+        UserVipInfo.init();
+        view.updateView();
+        LMEPG.BM.init(['btn-pay'], buttons, false, true);
+//        alert(LMEPG.BM.getCurrentButton());
+    }
+</script>
+<script type="text/javascript" src="__ROOT__/Public/js/Unclassified/by640092Set.js?t={$time}"></script>
+
+</body>
+</html>

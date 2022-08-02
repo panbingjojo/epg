@@ -1,0 +1,98 @@
+body {
+    width: 644px;
+    height: 530px;
+    color: #fff;
+    background-image: url("../../../../img/sd/Home/V13/Home/bg.png");
+}
+
+p#title {
+    position: absolute;
+    top:20px;
+    left: 20px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+div#container {
+    position: relative;
+    top: 160px;
+    width: 644px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+div#list-wrapper {
+    width: 544px;
+    margin: 0 auto;
+    height: 280px;
+}
+div.item-wrap{
+    float: left;
+    padding: 6px;
+    position: relative;
+    width: 166px;
+    height: 108px;
+}
+
+img.item-img{
+    width: 166px;
+    height: 108px;
+}
+.item-img{
+    width: 166px;
+    height: 108px;
+    border-radius: 15px;
+}
+div.item-p{
+    width: 166px;
+    height: 24px;
+    position: absolute;
+    top: 90px;
+    left: 6px;
+    font-size: 18px;
+    background-position: center;
+    background-image: url(../../../../img/sd/AppointmentRegister/V13/hosp_name_bg.png);
+}
+div#icon-arrow {
+    position: absolute;
+    top: 100px;
+    left: 0;
+}
+div#icon-arrow img{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+div#icon-arrow img#icon-next {
+    left: 594px;
+}
+
+div#page-action {
+    width: 460px;
+    margin: 0 auto;
+}
+div#page-action img,
+div#page-action p{
+    float: left;
+    color: #b2deff;
+    margin: 0 6px;
+}
+div#page-action p{
+    margin-top: 6px;
+    font-size: 18px;
+}
+#page-first,
+#page-last{
+    width: 76px;
+    height: 38px;
+}
+#page-prev,
+#page-next{
+    width: 100px;
+    height: 38px;
+}
+.item-wrap img{
+    width: 166px;
+    height: 108px;
+}

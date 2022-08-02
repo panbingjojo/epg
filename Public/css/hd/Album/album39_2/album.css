@@ -1,0 +1,199 @@
+﻿* {
+    font-family: "Source Han Sans CN";
+    padding: 0px;
+    margin: 0px;
+    outline: none !important;
+    -webkit-shape-outside: none;
+}
+
+body {
+    height: 720px;
+    width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#focus-2-1 {
+    position: absolute;
+    top: 374px;
+    left: 57px;
+    z-index: 0;
+    outline: none !important;
+    width: 232px;
+    height: 314px;
+
+}
+#focus-2-1-title{
+    position: absolute;
+    top: 454px;
+    left: 128px;
+    z-index: 0;
+    outline: none !important;
+    width: 24px;
+    height: 194px;
+    font-size: 20px;
+    overflow: hidden;
+    color: #022f3c;
+}
+
+
+#focus-2-2-title{
+    position: absolute;
+    top: 454px;
+    left: 340px;
+    z-index: 0;
+    outline: none !important;
+    width: 24px;
+    height: 194px;
+    font-size: 20px;
+    overflow: hidden;
+    color: #022f3c;
+}
+#focus-2-3-title{
+    position: absolute;
+    top: 454px;
+    left: 568px;
+    z-index: 0;
+    outline: none !important;
+    width: 24px;
+    height: 194px;
+    font-size: 20px;
+    overflow: hidden;
+    color: #022f3c;
+}
+#focus-2-4-title{
+    position: absolute;
+    top: 454px;
+    left: 798px;
+    z-index: 0;
+    outline: none !important;
+    width: 24px;
+    height: 194px;
+    font-size: 20px;
+    overflow: hidden;
+    color: #022f3c;
+}
+#focus-2-5-title{
+    position: absolute;
+    top: 454px;
+    left: 1018px;
+    z-index: 0;
+    outline: none !important;
+    width: 24px;
+    height: 194px;
+    font-size: 20px;
+    overflow: hidden;
+    color: #022f3c;
+}
+#focus-2-2 {
+    position: absolute;
+    top: 374px;
+    left: 271px;
+    z-index: 0;
+    outline: none !important;
+    width: 232px;
+    height: 314px;
+}
+
+#focus-2-3 {
+    position: absolute;
+    top: 374px;
+    left: 500px;
+    z-index: 0;
+    outline: none !important;
+    width: 232px;
+    height: 314px;
+
+}
+
+#focus-2-4 {
+    position: absolute;
+    top: 374px;
+    left: 725px;
+    z-index: 0;
+    outline: none !important;
+    width: 232px;
+    height: 314px;
+}
+#focus-2-5 {
+    position: absolute;
+    top: 374px;
+    left: 945px;
+    z-index: 0;
+    outline: none !important;
+    width: 232px;
+    height: 314px;
+}
+
+
+
+#focus-1-1 {
+    position: absolute;
+    top: 335px;
+    left:928px;
+    z-index: 0;
+    outline: none !important;
+    width: 77px;
+    height: 77px;
+
+}
+#back {
+    position: absolute;
+    top: 31px;
+    left: 1150px;
+    z-index: 0;
+    outline: none !important;
+    width: 77px;
+    height: 77px;
+
+}
+
+#page-left{
+    position: absolute;
+    top: 538px;
+    left: 433px;
+    z-index: 0;
+    outline: none !important;
+    width: 27px;
+    height: 35px;
+}
+#page-right{
+    position: absolute;
+    top: 538px;
+    left: 1241px;
+    z-index: 0;
+    outline: none !important;
+    width: 27px;
+    height: 35px;
+}
+
+
+
+/*模态*/
+#model {
+    background-color: #333333;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+/*加载中*/
+#alert_box2 {
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 101;
+    display: none;
+}
+.none{ display: none}
+
+

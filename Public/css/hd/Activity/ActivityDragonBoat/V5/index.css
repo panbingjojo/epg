@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Source Han Sans CN;
+    outline: none;
+    outline: none !important;
+}
+
+body {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+#bg {
+    background-Repeat: no-repeat;
+    width: 1280px;
+    height: 720px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#boat{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#btn-go{
+    position: absolute;
+    top: 576px;
+    left: 504px;
+}
+#timer{
+    top: 93px;
+    left: 47px;
+    font-size: 25px;
+    color: #fff;
+    width: 60px;
+    /*border: 1px red solid;*/
+    text-align: center;
+}

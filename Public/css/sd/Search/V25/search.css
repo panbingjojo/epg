@@ -1,0 +1,345 @@
+#searchText {
+    position: absolute;
+    width: 400px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    outline: none !important;
+    top: 35px;
+    left: -55px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 30px;
+    /*text-overflow: ellipsis;*/
+}
+
+
+#left {
+    width: 288px;
+    height: 482px;
+    left: 30px;
+    top: 27px;
+    background-repeat: no-repeat;
+    -moz-background-size: 518px 667px; /* 老版本的 Firefox */
+    background-size: 288px 482px;
+    background-image: url("../../../../../Public/img/hd/Search/V25/bg.png");
+    position: absolute;
+}
+
+
+.key_btn {
+    width: 91px;
+    height: 91px;
+    position: absolute;
+    z-index: 1
+}
+.big_btn{
+    width: 83px;
+    height: 83px;
+    position: absolute;
+    /*top: -40px;*/
+    left: 5px;
+    z-index: 1
+}
+
+.tab1 {
+    top: 140px;
+    left: 44px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab2 {
+    top: 140px;
+    left: 129px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab3 {
+    top: 140px;
+    left: 217px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab4 {
+    top: 223px;
+    left: 44px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab5 {
+    top: 223px;
+    left: 129px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab6 {
+    top: 223px;
+    left: 217px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab7 {
+    top: 310px;
+    left: 44px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab8 {
+    top: 310px;
+    left: 129px;
+    position: absolute;
+    z-index: 1
+}
+
+.tab9 {
+    top: 310px;
+    left: 217px;
+    position: absolute;
+    z-index: 1
+}
+
+#focus-4-1 {
+    top: 395px;
+    left: 44px;
+    position: absolute;
+    z-index: 1
+}
+
+#focus-4-2 {
+    top: 395px;
+    left: 129px;
+    position: absolute;
+    z-index: 1
+}
+
+#focus-4-3 {
+    top: 395px;
+    left: 217px;
+    position: absolute;
+    z-index: 1
+}
+
+.rightWrap {
+    position: absolute;
+    top: 180px;
+    left: 342px;
+    height: 420px;
+}
+
+#topArrow {
+    position: absolute;
+    left: 850px;
+    top: 130px;
+    width: 30px;
+    height: 20px;
+    visibility: hidden;
+}
+
+#bottomArrow {
+    position: absolute;
+    left: 850px;
+    top: 620px;
+    width: 30px;
+    height: 20px;
+    visibility: hidden;
+}
+
+#page_num {
+    position: absolute;
+    left: 458px;
+    top: 450px;
+    width: 60px;
+    height: 20px;
+    font-size: 24px;
+    color: #B2DEFF;
+}
+
+#searchTitle {
+    position: absolute;
+    left: 605px;
+    top: 130px;
+    width: 200px;
+    height: 20px;
+    color: white;
+    font-size: 28px;
+    line-height: 28px;
+}
+
+
+#down_content_arrows {
+    position: absolute;
+    top: 405px;
+    left: 463px;
+    /*display: none;*/
+}
+
+#up_content_arrows {
+    position: absolute;
+    top: 135px;
+    left: 463px;
+    /*display: none;*/
+}
+
+#recommended_1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 124px;
+    height: 80px;
+}
+
+#recommended_2 {
+    position: absolute;
+    left: 154px;
+    top: 0px;
+    width: 124px;
+    height: 80px;
+}
+
+#recommended_3 {
+    position: absolute;
+    left: 0px;
+    top: 115px;
+    width: 124px;
+    height: 80px;
+}
+
+#recommended_4 {
+    position: absolute;
+    left: 154px;
+    top: 115px;
+    width: 124px;
+    height: 180px;
+}
+
+#recommended_5 {
+    position: absolute;
+    left: 0px;
+    top: 400px;
+    width: 280px;
+    height: 180px;
+}
+
+#recommended_6{
+    position: absolute;
+    left: 312px;
+    top: 400px;
+    width: 280px;
+    height: 180px;
+}
+
+.item_img {
+    position: absolute;
+    top: -42px;
+    left:-42px;
+    width: 124px;
+    height: 80px;
+    padding: 42px;
+    border-radius: 14px;
+}
+
+/*.item_title {*/
+    /*position: absolute;*/
+    /*top: 142px;*/
+    /*width: 234px;*/
+    /*text-align: center;*/
+    /*font-size: 24px;*/
+    /*margin-top: 16px;*/
+    /*color: white;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+/*}*/
+
+.vip_corner {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 62px;
+    height: 62px;
+    z-index: 4;
+}
+
+.collection_zoom_out>.item_img{
+    /*position: absolute;*/
+    /*border-radius: 14px;*/
+    /*border: 1px #fff solid;*/
+    /*box-shadow: 0px 0px 3px 3px #ffffff;*/
+    /*-webkit-transform: scale(1.00);*/
+    /*-moz-transform: scale(1.08);*/
+    /*z-index: 99;*/
+    background: url("../../../../../Public/img/hd/Search/V25/LT/search-choose.png") no-repeat;
+    background-size: 134px 91px;
+    background-position: 37px 36px;
+    /*width: 304px;*/
+    /*height: 200px;*/
+    /*z-index: 996;*/
+    /*-webkit-transition: all 0.2s;*/
+    /*-moz-transition: all 0.2s;*/
+}
+
+.collection_zoom_out_nav3>.item_img{
+    background: url("../../../../../Public/img/hd/Search/V25/LT/search_choose3.png") no-repeat;
+    background-position: 37px 37px;
+    background-size: 134px 189px;
+}
+
+#no_search_text{
+    position: absolute;
+    top: 260px;
+    left: 410px;
+    font-size: 18px;
+    color: #ffffff;
+    display: none;
+}
+
+.nav{
+    position: absolute;
+    top: 60px;
+    left: 325px;
+    font-size: 15px;
+}
+.nav p{
+    display: inline-block;
+    width: 92px;
+    height: 50px;
+    text-align: center;
+    margin-left: 15px;
+    line-height: 50px;
+    background-size: 92px 50px;
+}
+.nav p:first-child{
+    margin-left: 0;
+}
+
+.num-squ{
+    position: absolute;
+    top: 58px;
+    right: 0;
+    font-size: 15px;
+    color: #fff;
+    width: 52px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    background-image: url(/Public/img/hd/Channel/V25/num-squ.png);
+}
+
+.nav-3{
+    height: 180px;
+}
+
+.collection_zoom_out>.nav-3{
+    background-size: 163px 260px;
+    background-position: 22px 1px;
+}
+
+
+

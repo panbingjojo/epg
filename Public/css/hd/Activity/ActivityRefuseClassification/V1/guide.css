@@ -1,0 +1,504 @@
+
+body {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/V640092/bg_home.png");
+}
+
+#activity-time {
+    position: absolute;
+    top: 276px;
+    left: 466px;
+    width: 400px;
+    height: 36px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/bg_activity_time.png");
+}
+
+.btn-home-wrap0 {
+    position: absolute;
+    top: 400px;
+    left: 140px;
+    width: 1000px;
+    text-align: center;
+}
+
+.btn-home-wrap0 img {
+    margin: 0 60px;
+}
+
+.btn-home-wrap1 {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 160px;
+}
+
+.btn-home-wrap2 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 166px;
+}
+
+.btn-home-wrap3 {
+    position: absolute;
+    top: 520px;
+    left: 50px;
+    width: 1180px;
+}
+
+.btn-home-wrap3 img {
+    margin: 0 30px;
+    width: 240px;
+    height: 160px;
+}
+
+#btn-pay-0 {
+    margin-left: 15px;
+}
+
+#btn-pay-3 {
+    margin-right: 0;
+}
+
+.modal-btn {
+    width: 120px;
+    height: 72px;
+}
+
+#times-count {
+    position: absolute;
+    top: 644px;
+    left: 748px;
+    font-size: 24px;
+    color: #e64560;
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/bg_leave_time.png");
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background-position: center;
+}
+
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    z-index: 1;
+    display: none;
+}
+
+/*VIP没有游戏次数*/
+#modal-vip-notimes {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/no_times.png");
+}
+
+#btn-one0 {
+    position: absolute;
+    top: 418px;
+    left: 536px;
+}
+
+img.btn-pay {
+    position: absolute;
+    top: 411px;
+    width: 196px;
+    height: 78px;
+}
+
+#btn-pay-sure {
+    left: 441px;
+}
+
+#btn-pay-cancel {
+    left: 657px;
+}
+
+
+/*普通用户没有游戏次数*/
+#modal-pay-notimes {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/pay_vip.png");
+}
+
+img.btn-pay {
+    position: absolute;
+    top: 322px;
+    width: 144px;
+    height: 57px;
+}
+
+#btn-pay-sure {
+    left: 172px;
+}
+
+#btn-pay-cancel {
+    left: 331px;
+}
+
+#count-down {
+    position: absolute;
+    color: #fff;
+    font-size: 72px;
+    top: 240px;
+    left: 695px;
+    font-weight: bold;
+}
+
+/*====活动规则====*/
+#modal-rule {
+    /*background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_rule.png");*/
+}
+
+#btn-rule-close {
+    position: absolute;
+    top: 56px;
+    left: 1111px;
+    width: 111px;
+    height: 96px;
+}
+
+/*倒计时*/
+#modal-cd {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/cd_bg.png");
+}
+
+/*====中奖名单====*/
+#modal-list {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_win_list.png");
+}
+
+#total-list {
+    top: 180px;
+    left: 200px;
+    position: absolute;
+}
+
+#all-marquee {
+    height: 158px;
+}
+
+#my-marquee {
+    height: 58px;
+}
+
+table.marquee-table {
+    width: 870px;
+}
+
+table#all-table tr {
+    height: 40px;
+}
+
+table.marquee-table td {
+    width: 33%;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+}
+
+#my-list {
+    position: absolute;
+    top: 460px;
+    left: 200px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.list-tel {
+    position: absolute;
+    color: #999999;
+    top: 538px;
+    left: 460px;
+    width: 280px;
+    font-size: 24px;
+    text-align: center;
+}
+
+img.btn-list {
+    position: absolute;
+    top: 520px;
+}
+
+#btn-list-submit {
+    left: 780px;
+}
+
+#btn-list-cancel {
+    left: 908px;
+}
+
+/*====无游戏次数====*/
+#modal-allPay-over {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/no_times.png");
+}
+
+#btn-one0 {
+    position: absolute;
+    top: 448px;
+    left: 576px;
+}
+
+img.btn-pay {
+    position: absolute;
+    top: 411px;
+    width: 196px;
+    height: 78px;
+}
+
+#btn-pay-sure {
+    left: 441px;
+}
+
+#btn-pay-cancel {
+    left: 657px;
+}
+
+/*====完成游戏（中奖）====*/
+#modal-accomplish {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_success_exchange.png");
+}
+
+#accomplish-prize {
+    position: absolute;
+    top: 188px;
+    left: 525px;
+    width: 244px;
+    height: 185px;
+}
+
+#accomplish-tel {
+    position: absolute;
+    top: 364px;
+    left: 600px;
+    width: 280px;
+    text-align: center;
+    font-size: 24px;
+    color: #cc7a29;
+}
+
+img.btn-win {
+    position: absolute;
+    top: 420px;
+}
+
+#btn-accomplish-submit {
+    left: 600px;
+}
+
+#btn-accomplish-cancel {
+    left: 750px;
+}
+
+/*====分类课堂====*/
+#modal-classified-lesson {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_classified_lesson.png");
+}
+
+#classified-txt {
+    position: absolute;
+    top: 140px;
+    left: 200px;
+    width: 880px;
+    height: 360px;
+}
+
+.classified-btn {
+    position: absolute;
+    top: 520px;
+    width: 160px;
+    height: 72px;
+}
+
+#btn-prev {
+    left: 200px;
+}
+
+#btn-next {
+    left: 920px;
+}
+
+/*====垃圾分类====*/
+#modal-classified {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_classified.png");
+}
+
+.refuse-item {
+    position: absolute;
+    top: 140px;
+    height: 120px;
+}
+
+#refuse-img {
+    left: 260px;
+    width: 160px;
+}
+
+#refuse-name {
+    left: 420px;
+    width: 200px;
+}
+
+#btn-refuse-wrap {
+    position: absolute;
+    top: 280px;
+    left: 200px;
+}
+
+#btn-refuse-wrap img {
+    width: 200px;
+    height: 320px;
+    margin-right: 20px;
+}
+
+/*====分类结果====*/
+.answer-right {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_answer_rigth.png");
+}
+
+.answer-error {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_answer_error.png");
+}
+
+.answer-right1 {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_answer_rigth1.png");
+}
+
+.answer-error1 {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_answer_error1.png");
+}
+
+#modal-answer-result img {
+    position: absolute;
+}
+
+#answer-refuse-img {
+    width: 200px;
+    height: 120px;
+    top: 240px;
+    left: 380px;
+}
+
+#answer-refuse-classified {
+    width: 200px;
+    height: 120px;
+    top: 240px;
+    left: 700px;
+}
+
+#answer-gift {
+    top: 340px;
+    left: 600px;
+    width: 80px;
+    height: 72px;
+}
+
+#answer-submit {
+    top: 430px;
+    left: 580px;
+}
+
+/*====联合订购====*/
+#modal-pay-union {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/mdal_pay_union.png");
+}
+
+.union-pay-wrap {
+    position: absolute;
+    top: 300px;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    text-align: center;
+}
+
+.union-pay-wrap img {
+    width: 240px;
+    height: 160px;
+}
+
+#union-pay-0,
+#union-pay-2 {
+    margin-right: -20px;
+    margin-bottom: 150px;
+}
+
+#union-pay-1,
+#union-pay-3 {
+    margin-left: -20px;
+}
+
+/*====兑换奖品====*/
+#modal-exchange {
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/modal_exchange.png");
+}
+
+table#material-wrap {
+    position: absolute;
+    top: 224px;
+    left: 460px;
+}
+
+#total-collect-material {
+    position: absolute;
+    top: 136px;
+    left: 110px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+}
+
+#total-collect-material span {
+    margin-left: 250px;
+}
+
+/*第一行*/
+tr.row-0 {
+    height: 72px;
+}
+
+/*第二行*/
+tr.row-1 {
+    height: 200px;
+}
+
+/*第三行*/
+tr.row-2 {
+    height: 72px;
+}
+
+#material-wrap td {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+}
+
+/*第一列*/
+td.col-0 {
+    width: 80px;
+}
+
+/*第二列*/
+td.col-1 {
+    width: 260px;
+}
+
+/*第三列*/
+td.col-2 {
+    width: 120px;
+}
+
+/*第四列*/
+td.col-3 {
+    width: 120px;
+    background-position: center;
+    background-image: url("../../../../img/Activity/ActivityRefuseClassification/V1/exchange.png");
+}
+
+
+
+
+

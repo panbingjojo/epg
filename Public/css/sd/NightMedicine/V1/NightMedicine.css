@@ -1,0 +1,181 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body > * {
+    position: absolute;
+}
+
+#container {
+    left: 20px;
+    top: 144px;
+    width: 440px;
+    height: 280px;
+    /*color: #fff;*/
+    text-align: center;
+}
+
+#city-list {
+    position: absolute;
+    left: 0px;
+    top: -14px;
+    width: 154px;
+}
+
+#area-list {
+    position: absolute;
+    left: 156px;
+    top: 1px;
+    width: 154px;
+    z-index: 999;
+}
+
+.btn-area {
+    width: 154px;
+    height: 44px;
+    margin-top: 14px;
+    text-align: center;
+    color: #fff;
+    line-height: 44px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    background: url("../../../../../Public/img/sd/Menu/QHotherPages/V640092/area_btn.png") no-repeat;
+}
+
+.area {
+    width: 154px;
+    height: 44px;
+    text-align: center;
+    color: #fff;
+    line-height: 44px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    background: url("../../../../../Public/img/sd/Menu/QHotherPages/V640092/city.png") no-repeat;
+}
+
+#pharmacy {
+    position: absolute;
+    left: 165px;
+    top: 0px;
+    width: 436px;
+    height: 280px;
+    background: url("../../../../../Public/img/sd/Menu/QHotherPages/V640092/main.png") no-repeat;
+}
+
+.intro-info {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    width: 240px;
+    height: 250px;
+    text-align: left;
+    /*border: 1px red solid;*/
+}
+
+#name {
+    font-size: 22px;
+    font-weight: bold;
+    width: 252px;
+    height: 30px;
+    overflow: hidden;
+    /*border-bottom:1px #fff solid ;*/
+}
+
+.row {
+    width: 252px;
+    /*height: 30px;*/
+    font-size: 16px;
+    vertical-align: middle;
+    margin-top: 15px;
+    overflow: hidden;
+    /*border: 1px red solid;*/
+
+}
+
+.icon {
+    position: relative;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+}
+
+.code-info {
+    position: absolute;
+    top:20px;
+    left: 270px;
+    width: 150px;
+    /*border: 1px red solid;*/
+}
+
+.info {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#code {
+    width: 130px;
+    height: 130px;
+    margin-top: 20px;
+}
+
+.area-page {
+    position: absolute;
+    left: 84px;
+    width: 25px;
+    height: 25px;
+}
+
+#area-prev-arrow {
+    position: absolute;
+    top: 104px;
+}
+
+#area-next-arrow {
+    position: absolute;
+    top: 446px;
+}
+
+.arrow {
+    position: absolute;
+    left: 388px;
+    width: 30px;
+    height: 30px;
+}
+
+#prev-arrow {
+    position: absolute;
+    top: 98px;
+}
+
+#next-arrow {
+    position: absolute;
+    top: 446px;
+}
+
+#page-index {
+    position: absolute;
+    top: 450px;
+    left: 520px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#pharmacy {
+    color: #fff;
+}
+
+.more{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 18px;
+    left: 137px;
+}

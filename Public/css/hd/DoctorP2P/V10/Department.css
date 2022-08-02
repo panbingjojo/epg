@@ -1,0 +1,76 @@
+body {
+    color: white;
+}
+
+.title {
+    position: absolute;
+    left: 80px;
+    top: 38px;
+    line-height: 37px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.title-line {
+    position: absolute;
+    left: 80px;
+    top: 87px;
+    width: 150px;
+    height: 2px;
+}
+
+.center {
+    position: absolute;
+    top: 141px;
+    left: 80px;
+    font-size: 27px;
+    width: 1120px;
+    height: 486px;
+}
+
+/*科室容器*/
+#department-container {
+    position: absolute;
+    top: 0px;
+    width: 1120px;
+    height: 486px;
+    overflow: hidden;
+}
+
+/*科室列表*/
+#department-list {
+    position: absolute;
+    left: 40px;
+}
+
+#department-list:after {
+    content: " ";
+    height: 30px;
+    width: 100%;
+    display: inline-block;
+}
+
+/*科室项*/
+.department-item {
+    width: 152px;
+    float: left;
+    padding: 0px 20px;
+    margin-top: 20px;
+    margin-left: 48px;
+    overflow: hidden;
+}
+
+.department-item-bg {
+    text-align: center;
+    /*width: 192px;*/
+    height: 72px;
+    line-height: 72px;
+    font-size: 28px;
+    background: url(../../../../img/hd/Home/V10/HomeBox/bg_btn_1.png) no-repeat;
+}
+
+.border {
+    background: url("../../../../../Public/img/hd/DoctorP2P/V10/box_depart.png");
+}
+

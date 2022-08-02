@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>39健康年会员</title>
+    <meta charset="utf-8" name="page-view-size" content="{$size}">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/{$platformType}/common.css?t={$time}"/>
+    <link rel="stylesheet" type="text/css"
+          href="__ROOT__/Public/css/hd/Activity/Activity39OrderyearVip/V1/index.css?t={$time}">
+    <style type="text/css">
+        body {
+            background-image: url("{$activityFsImg}/bg_home.png");
+        }
+    </style>
+    <!--第三方依赖库-->
+    <script type="text/javascript" src="__ROOT__/Public/ThirdParty/js/json2.js?t={$time}"></script>
+    <!--公用库-->
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmcommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmui.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/lmauthEx.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/Common/js/android.js?t={$time}"></script>
+
+
+    <script type="application/javascript">
+        RenderParam = {
+            isVip: "{$isVip}",                                              // 是否是vip（0-非vip 1-vip）
+            isOrderBack: "{$isOrderBack}",                                  // 是否为订购返回
+            cOrderResult: "{$Think.cookie.c_order_result}",
+            lmcid: "{$carrierId}",
+            platformType: "{$platformType}",
+            userAccount: "{$userAccount}",
+            keyCountdown: "{$keyCountdown}",
+            leftTimes: "{$activityTimes}",
+            extraTimes: "{$extraTimes}",
+            inner: "{$inner}",
+            userId: "{$userId}",
+            activityName: "{$activityName}",
+            imagePath: '{$activityFsImg}/',
+            score: '{$score}',
+            fromLaunch: '{$fromLaunch}',
+            valueCountdown : {
+                showDialog : '0'
+            }
+        };
+        window.onload = function () {
+            Activity.init();
+        };
+    </script>
+
+    <!--当前模块js-->
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Template/LMActivityCommon.js?t={$time}"></script>
+    <script type="text/javascript" src="__ROOT__/Public/js/Activity/Activity39OrderyearVip/V1/index.js?t={$time}"></script>
+
+</head>
+<body id="body">
+<div id="debug"></div>
+<!--游戏剩余次数-->
+<div id="left_times"></div>
+
+<div id="btn_container">
+    <img src="" id="btn_back">
+    <img src="" id="btn_activity_rule">
+    <img src="" id="btn_start">
+</div>
+
+<!--活动规则-->
+<div id="activity_rule" class="modal">
+    <!--活动规则图素js写入-->
+    <img src="" id="bg_activity_rule">
+    <img src="" id="btn_close_rule">
+</div>
+<!--游戏——抽奖成功-->
+<div id="lottery_success" class="modal">
+    <img src="" id="bg_lottery_success">
+    <div id="lottery_tel">请输入有效的电话</div>
+    <img id="btn_lottery_submit" src="">
+    <img id="btn_lottery_cancel" src="">
+</div>
+
+<!--游戏结束-->
+<div id="game_over" class="modal">
+    <img src="" id="bg_game_over">
+    <img src="" id="btn_game_over_sure">
+</div>
+
+<!--<!订购VIP&ndash;&gt;-->
+<div id="order_vip" class="modal">
+    <img id="order_vip_bg" src="">
+    <img src="" id="btn_order_submit">
+    <img src="" id="btn_order_cancel">
+</div>
+
+<!--订购状态-->
+<div id="order_status" class="modal">
+</div>
+
+</body>
+</html>
